@@ -1,0 +1,11 @@
+itemGroup.purmag=Purificati Magicae
+
+#Crystals \/
+tile.crystal.rock.name=Rock Crystal
+tile.crystal.sea.name=Sea Crystal
+
+item.crystal_shard.rock.name=Rock Shard
+item.crystal_shard.sea.name=Sea Shard
+
+#Other \/
+item.crystal_cutter.name=Crystal Cutter
