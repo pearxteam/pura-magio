@@ -1,16 +1,11 @@
 package net.pearx.purmag;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.ItemRecord;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
-import net.pearx.purmag.model.CrystalType;
-import net.pearx.purmag.registries.CrystalRegistry;
 import net.pearx.purmag.registries.ItemRegistry;
 import net.pearx.purmag.registries.BlockRegistry;
+import net.pearx.purmag.registries.SipTypeRegistry;
 import net.pearx.purmag.tiles.TileCrystal;
 
 /**
@@ -21,7 +16,7 @@ public class ClientProxy extends CommonProxy
     @Override
     public void preInit()
     {
-        OBJLoader.INSTANCE.addDomain(PMCore.ModId);
+        OBJLoader.INSTANCE.addDomain(PurmagCore.ModId);
         ItemRegistry.setupModels();
     }
 
@@ -30,7 +25,7 @@ public class ClientProxy extends CommonProxy
     {
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, w, pos, tintIndex) ->
         {
-            String type = CrystalType.def;
+            String type = SipTypeRegistry.def;
             if(w != null && pos != null)
             {
                 TileEntity te = w.getTileEntity(pos);
@@ -40,26 +35,26 @@ public class ClientProxy extends CommonProxy
                     type = tec.getType();
                 }
             }
-            return PMCore.CrystalReg.registry.get(type).getColor();
+            return PurmagCore.CrystalReg.registry.get(type).getColor();
         }, BlockRegistry.crystal);
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
         {
-            String type = CrystalType.def;
+            String type = SipTypeRegistry.def;
             if(stack.hasTagCompound() && stack.getTagCompound().hasKey("type"))
             {
                 type = stack.getTagCompound().getString("type");
             }
-            return PMCore.CrystalReg.registry.get(type).getColor();
+            return PurmagCore.CrystalReg.registry.get(type).getColor();
         }, ItemRegistry.crystal);
 
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
         {
-            String type = CrystalType.def;
+            String type = SipTypeRegistry.def;
             if(stack.hasTagCompound() && stack.getTagCompound().hasKey("type"))
             {
                 type = stack.getTagCompound().getString("type");
             }
-            return PMCore.CrystalReg.registry.get(type).getColor();
+            return PurmagCore.CrystalReg.registry.get(type).getColor();
         }, ItemRegistry.crystal_shard);
     }
 }

@@ -5,10 +5,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.Utils;
-import net.pearx.purmag.items.ItemBlockCrystal;
-import net.pearx.purmag.items.ItemCrystalCutter;
-import net.pearx.purmag.items.ItemCrystalShard;
-import net.pearx.purmag.items.ItemUtils;
+import net.pearx.purmag.items.*;
 
 /**
  * Created by mrAppleXZ on 08.04.17 18:46.
@@ -18,6 +15,7 @@ public class ItemRegistry
     public static Item crystal;
     public static Item crystal_shard;
     public static Item crystal_cutter;
+    public static Item if_tablet;
 
     public static void setup()
     {
@@ -29,6 +27,9 @@ public class ItemRegistry
 
         crystal_cutter = new ItemCrystalCutter();
         GameRegistry.register(crystal_cutter);
+
+        if_tablet = new ItemIfTablet();
+        GameRegistry.register(if_tablet);
     }
 
     @SideOnly(Side.CLIENT)

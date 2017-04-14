@@ -1,13 +1,11 @@
-package net.pearx.purmag.model;
+package net.pearx.purmag.api;
 
 /**
  * Created by mrAppleXZ on 10.04.17 9:06.
  */
-public class CrystalType
+public class SipType
 {
-    public static final String def = "rock";
-
-    public CrystalType(int color)
+    public SipType(int color)
     {
         setColor(color);
     }

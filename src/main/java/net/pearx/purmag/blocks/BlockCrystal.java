@@ -7,24 +7,19 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.pearx.purmag.PMCore;
+import net.pearx.purmag.PurmagCore;
 import net.pearx.purmag.PMCreativeTab;
 import net.pearx.purmag.Utils;
-import net.pearx.purmag.model.CrystalType;
-import net.pearx.purmag.registries.CrystalRegistry;
 import net.pearx.purmag.registries.ItemRegistry;
+import net.pearx.purmag.registries.SipTypeRegistry;
 import net.pearx.purmag.tiles.TileCrystal;
-import org.lwjgl.input.Mouse;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -75,7 +70,7 @@ public class BlockCrystal extends BlockBase implements ITileEntityProvider
         if (te != null && te instanceof TileCrystal)
         {
             TileCrystal tec = (TileCrystal) te;
-            String type = CrystalType.def;
+            String type = SipTypeRegistry.def;
             if (stack.hasTagCompound())
             {
                 if (stack.getTagCompound().hasKey("type"))
@@ -123,7 +118,7 @@ public class BlockCrystal extends BlockBase implements ITileEntityProvider
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        Iterator<String> it = PMCore.CrystalReg.registry.keySet().iterator();
+        Iterator<String> it = PurmagCore.CrystalReg.registry.keySet().iterator();
         while(it.hasNext())
         {
             String s = it.next();

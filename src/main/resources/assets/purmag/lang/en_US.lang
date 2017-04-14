@@ -1,11 +1,14 @@
 itemGroup.purmag=Purificati Magicae
 
-#Crystals \/
-tile.crystal.rock.name=Rock Crystal
-tile.crystal.sea.name=Sea Crystal
-
-item.crystal_shard.rock.name=Rock Shard
-item.crystal_shard.sea.name=Sea Shard
+#Items and tiles
+tile.crystal.name=%s Crystal
+item.crystal_shard.name=%s Shard
+item.crystal_cutter.name=Crystal Cutter
+item.if_tablet.name=Information Field Tablet
 
 #Other \/
-item.crystal_cutter.name=Crystal Cutter
+sip_tooltip=§3Stored Sip: §6
+
+#Sip Types
+sip.sea=Maro
+sip.rock=Roko

@@ -1,7 +1,7 @@
 package net.pearx.purmag.registries;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.pearx.purmag.PMCore;
+import net.pearx.purmag.PurmagCore;
 import net.pearx.purmag.tiles.TileCrystal;
 
 /**
@@ -11,7 +11,7 @@ public class TileRegistry
 {
     public static void setup()
     {
-        GameRegistry.registerTileEntity(TileCrystal.class, PMCore.ModId + "_crystal");
+        GameRegistry.registerTileEntity(TileCrystal.class, PurmagCore.ModId + "_crystal");
 
         //ModelLoader.setCustomModelResourceLocation(ItemRegistry.crystal, 0, new ModelResourceLocation(ItemRegistry.crystal.getRegistryName(), "inventory"));
     }

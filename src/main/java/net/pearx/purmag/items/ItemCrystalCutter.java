@@ -9,11 +9,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pearx.purmag.Utils;
 import net.pearx.purmag.registries.BlockRegistry;
 import net.pearx.purmag.registries.ItemRegistry;
+import net.pearx.purmag.registries.SoundRegistry;
 import net.pearx.purmag.tiles.TileCrystal;
 
 /**
@@ -25,6 +27,7 @@ public class ItemCrystalCutter extends ItemBase
     {
         setRegistryName(Utils.getRegistryName("crystal_cutter"));
         setUnlocalizedName("crystal_cutter");
+        setMaxStackSize(1);
     }
 
     @Override
@@ -35,6 +38,7 @@ public class ItemCrystalCutter extends ItemBase
             TileEntity te = world.getTileEntity(pos);
             if (te != null && te instanceof TileCrystal)
             {
+                world.playSound(playerIn, pos, SoundRegistry.CrystalCutter, SoundCategory.PLAYERS, 1, 1);
                 if(!world.isRemote)
                 {
                     TileCrystal tc = ((TileCrystal) te);

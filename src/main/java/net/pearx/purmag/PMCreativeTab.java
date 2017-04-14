@@ -12,7 +12,7 @@ public class PMCreativeTab extends CreativeTabs
     public static PMCreativeTab instance = new PMCreativeTab();
     public PMCreativeTab()
     {
-        super(PMCore.ModId);
+        super(PurmagCore.ModId);
     }
 
     @Override

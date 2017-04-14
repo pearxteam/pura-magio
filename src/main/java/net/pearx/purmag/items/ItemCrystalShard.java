@@ -4,8 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.pearx.purmag.PMCore;
-import net.pearx.purmag.PMCreativeTab;
+import net.pearx.purmag.PurmagCore;
 import net.pearx.purmag.Utils;
 import net.pearx.purmag.registries.ItemRegistry;
 
@@ -27,7 +26,7 @@ public class ItemCrystalShard extends ItemBase
     @Override
     public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        Iterator<String> it = PMCore.CrystalReg.registry.keySet().iterator();
+        Iterator<String> it = PurmagCore.CrystalReg.registry.keySet().iterator();
         while(it.hasNext())
         {
             String s = it.next();

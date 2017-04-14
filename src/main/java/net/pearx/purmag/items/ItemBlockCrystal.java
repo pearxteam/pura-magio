@@ -1,8 +1,10 @@
 package net.pearx.purmag.items;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatisticsManager;
 import net.pearx.purmag.PMCreativeTab;
 import net.pearx.purmag.registries.BlockRegistry;
 
@@ -12,14 +14,14 @@ import net.pearx.purmag.registries.BlockRegistry;
 public class ItemBlockCrystal extends ItemBlock
 {
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getItemStackDisplayName(ItemStack stack)
     {
         String add = "";
         if(stack.hasTagCompound() && stack.getTagCompound().hasKey("type"))
         {
-            add = "." + stack.getTagCompound().getString("type");
+            return add + I18n.format("tile.crystal.name", I18n.format("sip." + stack.getTagCompound().getString("type")));
         }
-        return super.getUnlocalizedName(stack) + add;
+        return super.getItemStackDisplayName(stack);
     }
 
     public ItemBlockCrystal()
