@@ -17,13 +17,13 @@ public class PMEvents
     @SubscribeEvent
     public void onBake(ModelBakeEvent e)
     {
-        e.getModelRegistry().putObject(new ModelResourceLocation(new ResourceLocation(PurmagCore.ModId, "crystal"), "normal"), new CrystalModel());
+        e.getModelRegistry().putObject(new ModelResourceLocation(new ResourceLocation(PurMag.ModId, "crystal"), "normal"), new CrystalModel());
     }
 
     @SubscribeEvent
     public void stitch(TextureStitchEvent.Pre e)
     {
-        e.getMap().registerSprite(new ResourceLocation(PurmagCore.ModId, "models/crystal"));
+        e.getMap().registerSprite(new ResourceLocation(PurMag.ModId, "models/crystal"));
     }
 
     @SubscribeEvent

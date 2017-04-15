@@ -1,4 +1,4 @@
-package net.pearx.purmag.registries;
+package net.pearx.purmag.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.client.registry.ClientRegistry;

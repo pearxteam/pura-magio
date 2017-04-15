@@ -1,11 +1,13 @@
-package net.pearx.purmag;
+package net.pearx.purmag.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.model.obj.OBJLoader;
-import net.pearx.purmag.registries.ItemRegistry;
-import net.pearx.purmag.registries.BlockRegistry;
-import net.pearx.purmag.registries.SipTypeRegistry;
+import net.pearx.purmag.CommonProxy;
+import net.pearx.purmag.PurMag;
+import net.pearx.purmag.items.ItemRegistry;
+import net.pearx.purmag.blocks.BlockRegistry;
+import net.pearx.purmag.sip.SipTypeRegistry;
 import net.pearx.purmag.tiles.TileCrystal;
 
 /**
@@ -16,7 +18,7 @@ public class ClientProxy extends CommonProxy
     @Override
     public void preInit()
     {
-        OBJLoader.INSTANCE.addDomain(PurmagCore.ModId);
+        OBJLoader.INSTANCE.addDomain(PurMag.ModId);
         ItemRegistry.setupModels();
     }
 
@@ -35,7 +37,7 @@ public class ClientProxy extends CommonProxy
                     type = tec.getType();
                 }
             }
-            return PurmagCore.CrystalReg.registry.get(type).getColor();
+            return PurMag.instance.sip.getType(type).getColor();
         }, BlockRegistry.crystal);
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
         {
@@ -44,7 +46,7 @@ public class ClientProxy extends CommonProxy
             {
                 type = stack.getTagCompound().getString("type");
             }
-            return PurmagCore.CrystalReg.registry.get(type).getColor();
+            return PurMag.instance.sip.getType(type).getColor();
         }, ItemRegistry.crystal);
 
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
@@ -54,7 +56,7 @@ public class ClientProxy extends CommonProxy
             {
                 type = stack.getTagCompound().getString("type");
             }
-            return PurmagCore.CrystalReg.registry.get(type).getColor();
+            return PurMag.instance.sip.getType(type).getColor();
         }, ItemRegistry.crystal_shard);
     }
 }

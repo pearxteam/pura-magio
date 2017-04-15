@@ -1,12 +1,13 @@
 package net.pearx.purmag.items;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.pearx.purmag.PurmagCore;
+import net.pearx.purmag.PurMag;
 import net.pearx.purmag.Utils;
-import net.pearx.purmag.registries.ItemRegistry;
+import net.pearx.purmag.sip.SipType;
 
 import java.util.Iterator;
 import java.util.List;
@@ -26,12 +27,10 @@ public class ItemCrystalShard extends ItemBase
     @Override
     public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        Iterator<String> it = PurmagCore.CrystalReg.registry.keySet().iterator();
-        while(it.hasNext())
+        for(SipType t : PurMag.instance.sip.types)
         {
-            String s = it.next();
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("type", s);
+            tag.setString("type", t.getName());
             ItemStack st = new ItemStack(ItemRegistry.crystal_shard);
             st.setTagCompound(tag);
             list.add(st);
@@ -39,13 +38,13 @@ public class ItemCrystalShard extends ItemBase
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getItemStackDisplayName(ItemStack stack)
     {
         String add = "";
         if(stack.hasTagCompound() && stack.getTagCompound().hasKey("type"))
         {
-            add = "." + stack.getTagCompound().getString("type");
+            return add + I18n.format(getUnlocalizedName() + ".name", I18n.format("sip." + stack.getTagCompound().getString("type")));
         }
-        return super.getUnlocalizedName(stack) + add;
+        return super.getItemStackDisplayName(stack);
     }
 }

@@ -6,9 +6,6 @@ item.crystal_shard.name=%s Shard
 item.crystal_cutter.name=Crystal Cutter
 item.if_tablet.name=Information Field Tablet
 
-#Other \/
-sip_tooltip=§3Stored Sip: §6
-
 #Sip Types
-sip.sea=Maro
-sip.rock=Roko
+sip.sea=Mara
+sip.rock=Roka

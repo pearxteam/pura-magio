@@ -1,4 +1,4 @@
-package net.pearx.purmag.api;
+package net.pearx.purmag.sip;
 
 /**
  * Created by mrAppleXZ on 12.04.17 8:25.

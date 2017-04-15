@@ -6,25 +6,30 @@ import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.pearx.purmag.registries.*;
+import net.pearx.purmag.blocks.BlockRegistry;
+import net.pearx.purmag.infofield.IFRegistry;
+import net.pearx.purmag.items.ItemRegistry;
+import net.pearx.purmag.sip.SipTypeRegistry;
+import net.pearx.purmag.tiles.TileRegistry;
 
 import java.util.ArrayList;
 
 /**
  * Created by mrAppleXZ on 08.04.17 10:31.
  */
-@Mod(name = PurmagCore.Name, modid = PurmagCore.ModId)
-public class PurmagCore
+@Mod(name = PurMag.Name, modid = PurMag.ModId)
+public class PurMag
 {
-    public static PurmagCore instance;
-
-    public static SipTypeRegistry CrystalReg = new SipTypeRegistry();
+    public static PurMag instance;
 
     public static final String ModId = "purmag";
     public static final String Name = "Purificati Magicae";
     public static final String Version = "1.0.0";
 
-    @SidedProxy(clientSide = "net.pearx.purmag.ClientProxy", serverSide = "net.pearx.purmag.ServerProxy")
+    public SipTypeRegistry sip = new SipTypeRegistry();
+    public IFRegistry if_registry = new IFRegistry();
+
+    @SidedProxy(clientSide = "net.pearx.purmag.client.ClientProxy", serverSide = "net.pearx.purmag.server.ServerProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler
@@ -36,9 +41,10 @@ public class PurmagCore
         ItemRegistry.setup();
         TileRegistry.setup();
         SoundRegistry.setup();
+        sip.setup();
+        if_registry.setup();
         proxy.preInit();
         MinecraftForge.EVENT_BUS.register(new PMEvents());
-
     }
 
     @Mod.EventHandler
@@ -55,8 +61,8 @@ public class PurmagCore
         data.credits = "DrVexsear - many ideas\nafdw & Prototik - cool guys";
         data.authorList = a;
         data.description = "Purificati Magicae";
-        data.modId = PurmagCore.ModId;
-        data.name = PurmagCore.Name;
-        data.version = PurmagCore.Version;
+        data.modId = PurMag.ModId;
+        data.name = PurMag.Name;
+        data.version = PurMag.Version;
     }
 }

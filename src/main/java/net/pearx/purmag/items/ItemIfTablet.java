@@ -8,6 +8,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.pearx.purmag.client.guis.GuiIfTablet;
+import org.lwjgl.input.Mouse;
 
 /**
  * Created by mrAppleXZ on 13.04.17 21:54.

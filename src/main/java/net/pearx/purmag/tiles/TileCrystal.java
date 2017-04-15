@@ -1,8 +1,7 @@
 package net.pearx.purmag.tiles;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.pearx.purmag.api.SipType;
-import net.pearx.purmag.registries.SipTypeRegistry;
+import net.pearx.purmag.sip.SipTypeRegistry;
 
 /**
  * Created by mrAppleXZ on 08.04.17 17:56.

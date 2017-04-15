@@ -13,7 +13,7 @@ public class Utils
 {
     public static String getRegistryName(String name)
     {
-        return PurmagCore.ModId + ":" + name;
+        return PurMag.ModId + ":" + name;
     }
 
     @SideOnly(Side.CLIENT)

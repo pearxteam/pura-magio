@@ -14,11 +14,12 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.pearx.purmag.PurmagCore;
 import net.pearx.purmag.PMCreativeTab;
+import net.pearx.purmag.PurMag;
 import net.pearx.purmag.Utils;
-import net.pearx.purmag.registries.ItemRegistry;
-import net.pearx.purmag.registries.SipTypeRegistry;
+import net.pearx.purmag.items.ItemRegistry;
+import net.pearx.purmag.sip.SipType;
+import net.pearx.purmag.sip.SipTypeRegistry;
 import net.pearx.purmag.tiles.TileCrystal;
 
 import javax.annotation.Nullable;
@@ -118,12 +119,10 @@ public class BlockCrystal extends BlockBase implements ITileEntityProvider
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        Iterator<String> it = PurmagCore.CrystalReg.registry.keySet().iterator();
-        while(it.hasNext())
+        for(SipType t : PurMag.instance.sip.types)
         {
-            String s = it.next();
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("type", s);
+            tag.setString("type", t.getName());
             ItemStack st = new ItemStack(ItemRegistry.crystal);
             st.setTagCompound(tag);
             list.add(st);

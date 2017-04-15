@@ -1,11 +1,14 @@
-package net.pearx.purmag.registries;
+package net.pearx.purmag.items;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.Utils;
 import net.pearx.purmag.items.*;
+import net.pearx.purmag.sip.SipTypeRegistry;
 
 /**
  * Created by mrAppleXZ on 08.04.17 18:46.
@@ -38,6 +41,16 @@ public class ItemRegistry
         Utils.setModelLocation(crystal);
         Utils.setModelLocation(crystal_shard);
         Utils.setModelLocation(crystal_cutter);
+        Utils.setModelLocation(if_tablet);
+    }
+
+    public static ItemStack getDefaultCrystal()
+    {
+        ItemStack stack = new ItemStack(crystal);
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setString("type", SipTypeRegistry.def);
+        stack.setTagCompound(tag);
+        return stack;
     }
 
 }

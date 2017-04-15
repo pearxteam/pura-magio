@@ -1,8 +1,8 @@
 package net.pearx.purmag.items;
 
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -13,9 +13,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pearx.purmag.Utils;
-import net.pearx.purmag.registries.BlockRegistry;
-import net.pearx.purmag.registries.ItemRegistry;
-import net.pearx.purmag.registries.SoundRegistry;
+import net.pearx.purmag.blocks.BlockRegistry;
 import net.pearx.purmag.tiles.TileCrystal;
 
 /**
@@ -38,7 +36,7 @@ public class ItemCrystalCutter extends ItemBase
             TileEntity te = world.getTileEntity(pos);
             if (te != null && te instanceof TileCrystal)
             {
-                world.playSound(playerIn, pos, SoundRegistry.CrystalCutter, SoundCategory.PLAYERS, 1, 1);
+                world.playSound(playerIn, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1, 1);
                 if(!world.isRemote)
                 {
                     TileCrystal tc = ((TileCrystal) te);

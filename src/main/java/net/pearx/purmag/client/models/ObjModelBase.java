@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.TRSRTransformation;
-import net.pearx.purmag.PurmagCore;
+import net.pearx.purmag.PurMag;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class ObjModelBase implements IBakedModel
 
     public void setObj(String name)
     {
-        objFile = new ResourceLocation(PurmagCore.ModId, name);
+        objFile = new ResourceLocation(PurMag.ModId, name);
     }
 
     public ResourceLocation getObj()
