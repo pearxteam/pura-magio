@@ -20,4 +20,16 @@ public class ItemDrawable implements IGuiDrawable
     {
         gs.mc.getRenderItem().renderItemAndEffectIntoGUI(stack, x, y);
     }
+
+    @Override
+    public short getWidth()
+    {
+        return 32;
+    }
+
+    @Override
+    public short getHeight()
+    {
+        return 32;
+    }
 }

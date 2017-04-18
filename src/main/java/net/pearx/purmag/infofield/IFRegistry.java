@@ -42,6 +42,7 @@ public class IFRegistry
 
     public void setup()
     {
-        registerChannel(new IFChannel("crystallogy", new ItemDrawable(new ItemStack(ItemRegistry.crystal))));
+        registerChannel(new IFChannel("information_field", new ItemDrawable(new ItemStack(ItemRegistry.crystal)), 0));
+        registerChannel(new IFChannel("crystallogy", new ItemDrawable(new ItemStack(ItemRegistry.crystal)), 0));
     }
 }

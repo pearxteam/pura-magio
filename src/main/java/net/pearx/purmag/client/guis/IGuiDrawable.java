@@ -7,5 +7,8 @@ import net.minecraft.client.gui.GuiScreen;
  */
 public interface IGuiDrawable
 {
+    short getWidth();
+    short getHeight();
+
     void draw(GuiScreen gs, int x, int y);
 }

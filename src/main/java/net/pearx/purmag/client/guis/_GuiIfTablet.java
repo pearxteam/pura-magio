@@ -9,9 +9,9 @@ import net.pearx.purmag.items.ItemRegistry;
 /**
  * Created by mrAppleXZ on 13.04.17 22:10.
  */
-public class GuiIfTablet extends GuiScreen
+public class _GuiIfTablet extends GuiScreen
 {
-    public static final ResourceLocation BG_TEX = new ResourceLocation(PurMag.ModId, "textures/gui/if_tablet.png");
+    /*public static final ResourceLocation BG_TEX = new ResourceLocation(PurMag.ModId, "textures/gui/if_tablet.png");
     public static final int ID = 0;
 
     public GuiPart pBg = new GuiPart(BG_TEX, 0, 0, 384, 256, 512, 512);
@@ -42,5 +42,5 @@ public class GuiIfTablet extends GuiScreen
         pFrame.draw(this, posx, posy);
         pTab.draw(this, posx + 352, posy);
         new ItemDrawable(ItemRegistry.getDefaultCrystal()).draw(this, posx + 362, posy + 10);
-    }
+    }*/
 }

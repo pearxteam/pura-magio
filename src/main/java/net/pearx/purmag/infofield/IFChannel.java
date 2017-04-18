@@ -12,18 +12,20 @@ public class IFChannel
 {
     private IGuiDrawable icon;
     private String id;
+    private int tier;
 
     private ArrayList<String> entries = new ArrayList<>();
 
-    public IFChannel(String id, IGuiDrawable icon)
+    public IFChannel(String id, IGuiDrawable icon, int tier)
     {
         setId(id);
         setIcon(icon);
+        setTier(tier);
     }
 
-    public IFChannel(String id, IGuiDrawable icon, String... entries)
+    public IFChannel(String id, IGuiDrawable icon, int tier, String... entries)
     {
-        this(id, icon);
+        this(id, icon, tier);
         for (String entr : entries)
             addEntry(entr);
     }
@@ -51,6 +53,16 @@ public class IFChannel
     public ArrayList<String> getEntries()
     {
         return entries;
+    }
+
+    public int getTier()
+    {
+        return tier;
+    }
+
+    public void setTier(int tier)
+    {
+        this.tier = tier;
     }
 
     public void addEntry(String entr)

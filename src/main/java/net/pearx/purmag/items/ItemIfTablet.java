@@ -7,8 +7,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.pearx.purmag.client.guis.GuiIfTablet;
-import org.lwjgl.input.Mouse;
+import net.pearx.purmag.client.guis.PmGui;
+import net.pearx.purmag.client.guis.if_tablet.GuiIfTabletContainer;
 
 /**
  * Created by mrAppleXZ on 13.04.17 21:54.
@@ -25,7 +25,7 @@ public class ItemIfTablet extends ItemBase
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World w, EntityPlayer p, EnumHand hand)
     {
         if(w.isRemote)
-            Minecraft.getMinecraft().displayGuiScreen(new GuiIfTablet());
+            Minecraft.getMinecraft().displayGuiScreen(new PmGui(new GuiIfTabletContainer()));
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 }
