@@ -6,7 +6,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pearx.purmag.PurMag;
 import net.pearx.purmag.Utils;
+import net.pearx.purmag.infofield.IFRegistry;
+import net.pearx.purmag.infofield.IFTier;
 import net.pearx.purmag.items.*;
 import net.pearx.purmag.sip.SipTypeRegistry;
 
@@ -41,7 +44,10 @@ public class ItemRegistry
         Utils.setModelLocation(crystal);
         Utils.setModelLocation(crystal_shard);
         Utils.setModelLocation(crystal_cutter);
-        Utils.setModelLocation(if_tablet);
+        for(IFTier t : PurMag.instance.if_registry.tiers)
+        {
+            Utils.setModelLocation(if_tablet, t.getTier());
+        }
     }
 
     public static ItemStack getDefaultCrystal()

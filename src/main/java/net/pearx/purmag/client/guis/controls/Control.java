@@ -82,6 +82,11 @@ public class Control
 
     }
 
+    public void postRender()
+    {
+
+    }
+
     public void keyDown(int keycode)
     {
 
@@ -129,8 +134,8 @@ public class Control
 
     public void invokeRender()
     {
-        GlStateManager.pushMatrix();
         Point p = getPointOnGui();
+        GlStateManager.pushMatrix();
         GlStateManager.translate(p.getX(), p.getY(), 0);
         render();
         GlStateManager.popMatrix();
@@ -138,6 +143,10 @@ public class Control
         {
             cont.invokeRender();
         }
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(p.getX(), p.getY(), 0);
+        postRender();
+        GlStateManager.popMatrix();
     }
 
     public void invokeKeyDown(int keycode)

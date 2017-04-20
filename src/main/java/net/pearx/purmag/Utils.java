@@ -17,8 +17,15 @@ public class Utils
     }
 
     @SideOnly(Side.CLIENT)
+    public static void setModelLocation(Item itm, int meta)
+    {
+        String s = meta == -1 ? itm.getRegistryName().toString() : itm.getRegistryName() + "." + meta;
+        ModelLoader.setCustomModelResourceLocation(itm, meta == -1 ? 0 : meta, new ModelResourceLocation(s, "normal"));
+    }
+
+    @SideOnly(Side.CLIENT)
     public static void setModelLocation(Item itm)
     {
-        ModelLoader.setCustomModelResourceLocation(itm, 0, new ModelResourceLocation(itm.getRegistryName(), "normal"));
+        setModelLocation(itm, -1);
     }
 }

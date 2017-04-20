@@ -13,6 +13,7 @@ public class IFRegistry
 {
     public ArrayList<IFChannel> channels = new ArrayList<>();
     public ArrayList<IFEntry> entries = new ArrayList<>();
+    public ArrayList<IFTier> tiers = new ArrayList<>();
 
     public void registerChannel(IFChannel chan)
     {
@@ -22,6 +23,11 @@ public class IFRegistry
     public void registerEntry(IFEntry entr)
     {
         entries.add(entr);
+    }
+
+    public void registerTier(IFTier t)
+    {
+        tiers.add(t);
     }
 
     public IFChannel getChannel(String id)
@@ -40,8 +46,22 @@ public class IFRegistry
         return null;
     }
 
+    public IFTier getTier(int tier)
+    {
+        for (IFTier t : tiers)
+        {
+            if(t.getTier() == tier)
+                return t;
+        }
+        return null;
+    }
+
     public void setup()
     {
+        registerTier(new IFTier(0));
+        registerTier(new IFTier(1));
+        registerTier(new IFTier(2));
+
         registerChannel(new IFChannel("information_field", new ItemDrawable(new ItemStack(ItemRegistry.crystal)), 0));
         registerChannel(new IFChannel("crystallogy", new ItemDrawable(new ItemStack(ItemRegistry.crystal)), 0));
     }

@@ -7,6 +7,16 @@ import net.minecraft.client.gui.GuiScreen;
  */
 public class GuiControlContainer extends Control
 {
+    public GuiControlContainer(Control cont)
+    {
+        controls.add(cont);
+    }
+
+    public GuiControlContainer()
+    {
+
+    }
+
     private GuiScreen gs;
 
     public GuiScreen getGs()

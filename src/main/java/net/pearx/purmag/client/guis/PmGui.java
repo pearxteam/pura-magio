@@ -1,6 +1,7 @@
 package net.pearx.purmag.client.guis;
 
 import net.minecraft.client.gui.GuiScreen;
+import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.client.guis.controls.GuiControlContainer;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -18,6 +19,11 @@ public class PmGui extends GuiScreen
     {
         gui = cg;
         gui.setGs(this);
+    }
+
+    public PmGui(Control cont)
+    {
+        this(new GuiControlContainer(cont));
     }
 
     @Override
