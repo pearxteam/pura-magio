@@ -3,6 +3,7 @@ package net.pearx.purmag.client.guis.controls;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
+import net.pearx.purmag.client.guis.PmGui;
 import org.lwjgl.util.Point;
 import org.lwjgl.util.Rectangle;
 
@@ -11,8 +12,6 @@ import org.lwjgl.util.Rectangle;
  */
 public class Control
 {
-    private boolean entered;
-
     public ControlList controls = new ControlList(this);
     private Control parent;
     private int width;
@@ -20,9 +19,9 @@ public class Control
     private int x;
     private int y;
     private boolean selected;
+    private boolean focused;
 
     public boolean keyEventsRS = true;
-    public boolean scrollEventsRS = true;
     public SelectType selectType = SelectType.CLICK;
 
     public Control getParent()
@@ -68,6 +67,21 @@ public class Control
     public void setY(int y)
     {
         this.y = y;
+    }
+
+    public boolean isSelected()
+    {
+        return selected;
+    }
+
+    public boolean isFocused()
+    {
+        return focused;
+    }
+
+    public void setFocused(boolean val)
+    {
+        focused = val;
     }
 
 
@@ -127,6 +141,11 @@ public class Control
 
     }
 
+    public void mouseWheel(int delta)
+    {
+
+    }
+
     public void invokeSelectionChanged()
     {
         selectionChanged();
@@ -153,7 +172,7 @@ public class Control
     {
         for (Control cont : controls)
             cont.invokeKeyDown(keycode);
-        if ((keyEventsRS && selected) || !keyEventsRS)
+        if (!keyEventsRS || isSelected())
             keyDown(keycode);
     }
 
@@ -161,7 +180,7 @@ public class Control
     {
         for (Control cont : controls)
             cont.invokeKeyUp(keycode);
-        if ((keyEventsRS && selected) || !keyEventsRS)
+        if (!keyEventsRS || isSelected())
             keyUp(keycode);
     }
 
@@ -169,7 +188,7 @@ public class Control
     {
         for (Control cont : controls)
             cont.invokeKeyPress(key, keycode);
-        if ((keyEventsRS && selected) || !keyEventsRS)
+        if (!keyEventsRS || isSelected())
             keyPress(key, keycode);
     }
 
@@ -210,20 +229,20 @@ public class Control
                 cont.invokeMouseMove(x - cont.getX(), y - cont.getY(), dx, dy);
                 return;
             }
-            if (cont.entered)
+            if (cont.isFocused())
             {
-                cont.entered = false;
+                cont.setFocused(false);
                 cont.invokeMouseLeave();
             }
         }
-        if (getParent() != null && getParent().entered)
+        if (getParent() != null && getParent().isFocused())
         {
-            getParent().entered = false;
+            getParent().setFocused(false);
             getParent().invokeMouseLeave();
         }
-        if (!entered)
+        if (!isFocused())
         {
-            entered = true;
+            setFocused(true);
             invokeMouseEnter();
         }
         mouseMove(x, y, dx, dy);
@@ -231,14 +250,21 @@ public class Control
 
     public void invokeMouseEnter()
     {
-        if(selectType == SelectType.MOUSEENTER)
-            select();
         mouseEnter();
     }
 
     public void invokeMouseLeave()
     {
         mouseLeave();
+    }
+
+    public void invokeMouseWheel(int delta)
+    {
+        for (Control cont : controls)
+        {
+            cont.invokeMouseWheel(delta);
+        }
+        mouseWheel(delta);
     }
 
     public void select()
@@ -261,7 +287,7 @@ public class Control
         return (GuiControlContainer) getMainParent(this);
     }
 
-    public GuiScreen getGuiScreen()
+    public PmGui getGuiScreen()
     {
         return getMainGui().getGs();
     }

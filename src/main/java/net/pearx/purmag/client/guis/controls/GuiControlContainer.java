@@ -1,6 +1,7 @@
 package net.pearx.purmag.client.guis.controls;
 
 import net.minecraft.client.gui.GuiScreen;
+import net.pearx.purmag.client.guis.PmGui;
 
 /**
  * Created by mrAppleXZ on 16.04.17 19:52.
@@ -17,14 +18,14 @@ public class GuiControlContainer extends Control
 
     }
 
-    private GuiScreen gs;
+    private PmGui gs;
 
-    public GuiScreen getGs()
+    public PmGui getGs()
     {
         return gs;
     }
 
-    public void setGs(GuiScreen gs)
+    public void setGs(PmGui gs)
     {
         this.gs = gs;
     }

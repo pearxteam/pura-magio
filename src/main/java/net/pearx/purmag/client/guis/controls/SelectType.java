@@ -5,7 +5,6 @@ package net.pearx.purmag.client.guis.controls;
  */
 public enum SelectType
 {
-    MOUSEENTER,
     CLICK,
     NONE
 }

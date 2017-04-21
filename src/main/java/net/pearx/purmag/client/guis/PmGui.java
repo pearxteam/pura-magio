@@ -72,10 +72,19 @@ public class PmGui extends GuiScreen
                 else
                     gui.invokeMouseUp(Mouse.getEventButton(), x - gui.getX(), y - gui.getY());
             }
-            else
+            if(Mouse.getEventDX() != 0 || Mouse.getEventDY() != 0)
             {
                 gui.invokeMouseMove(x - gui.getX(), y - gui.getY(), Mouse.getEventDX(), Mouse.getEventDY());
             }
+            if(Mouse.getEventDWheel() != 0)
+            {
+                gui.invokeMouseWheel(Mouse.getEventDWheel());
+            }
         }
+    }
+
+    public void drawRectangle(int x, int y, int width, int height, int color)
+    {
+        drawRect(x, y, x + width, y + height, color);
     }
 }

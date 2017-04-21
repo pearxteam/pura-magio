@@ -33,7 +33,7 @@ public class ItemIfTablet extends ItemBase
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World w, EntityPlayer p, EnumHand hand)
     {
         if(w.isRemote)
-            Minecraft.getMinecraft().displayGuiScreen(new PmGui(new GuiIfTablet(stack.getItemDamage())));
+            Minecraft.getMinecraft().displayGuiScreen(new PmGui(new GuiIfTablet(p, stack.getItemDamage())));
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 
