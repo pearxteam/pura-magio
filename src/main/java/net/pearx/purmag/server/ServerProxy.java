@@ -1,6 +1,6 @@
 package net.pearx.purmag.server;
 
-import net.pearx.purmag.CommonProxy;
+import net.pearx.purmag.common.CommonProxy;
 
 /**
  * Created by mrAppleXZ on 08.04.17 21:06.

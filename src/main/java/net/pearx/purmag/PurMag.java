@@ -6,12 +6,15 @@ import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.pearx.purmag.blocks.BlockRegistry;
-import net.pearx.purmag.client.PMEventsClient;
-import net.pearx.purmag.infofield.IFRegistry;
-import net.pearx.purmag.items.ItemRegistry;
-import net.pearx.purmag.sip.SipTypeRegistry;
-import net.pearx.purmag.tiles.TileRegistry;
+import net.pearx.purmag.common.CapabilityRegistry;
+import net.pearx.purmag.common.CommonProxy;
+import net.pearx.purmag.common.CommonEvents;
+import net.pearx.purmag.common.SoundRegistry;
+import net.pearx.purmag.common.blocks.BlockRegistry;
+import net.pearx.purmag.common.infofield.IfRegistry;
+import net.pearx.purmag.common.items.ItemRegistry;
+import net.pearx.purmag.common.sip.SipTypeRegistry;
+import net.pearx.purmag.common.tiles.TileRegistry;
 
 import java.util.ArrayList;
 
@@ -28,7 +31,7 @@ public class PurMag
     public static final String Version = "1.0.0";
 
     public SipTypeRegistry sip = new SipTypeRegistry();
-    public IFRegistry if_registry = new IFRegistry();
+    public IfRegistry if_registry = new IfRegistry();
 
     @SidedProxy(clientSide = "net.pearx.purmag.client.ClientProxy", serverSide = "net.pearx.purmag.server.ServerProxy")
     public static CommonProxy proxy;
@@ -44,8 +47,9 @@ public class PurMag
         SoundRegistry.setup();
         sip.setup();
         if_registry.setup();
+        CapabilityRegistry.setup();
         proxy.preInit();
-        MinecraftForge.EVENT_BUS.register(new PMEventsCommon());
+        MinecraftForge.EVENT_BUS.register(new CommonEvents());
     }
 
     @Mod.EventHandler

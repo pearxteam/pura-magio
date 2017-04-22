@@ -1,5 +1,6 @@
 package net.pearx.purmag.client.guis.if_tablet;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -7,6 +8,10 @@ import net.minecraft.util.math.MathHelper;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.client.guis.controls.Control;
+import net.pearx.purmag.common.infofield.IfEntry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mrAppleXZ on 16.04.17 20:05.
@@ -26,6 +31,9 @@ public class GuiIfTablet extends Control
 
     public GuiIfTabletSelector selector;
 
+    public List<IfEntry> availableEntries = new ArrayList<>();
+    public int entrsWidth, entrsHeight;
+
     public GuiIfTablet(EntityPlayer p, int tier)
     {
         this.tier = tier;
@@ -38,10 +46,11 @@ public class GuiIfTablet extends Control
         texFrame = new TexturePart(textures, 0, h, w, h, 512, 512);
         texTab = new TexturePart(textures, w, 0, 32, 32, 512, 512);
 
-        selector = new GuiIfTabletSelector(texTab, p, tier);
+        selector = new GuiIfTabletSelector(this, p);
         selector.setX(w - selector.getWidth());
         selector.setY((h - selector.getHeight()) / 2);
         controls.add(selector);
+        reloadResearches();
     }
 
     @Override
@@ -54,6 +63,20 @@ public class GuiIfTablet extends Control
     public int getY()
     {
         return (getGuiScreen().height - h) / 2;
+    }
+
+    public void reloadResearches()
+    {
+        for(IfEntry entr : PurMag.instance.if_registry.entries)
+        {
+            if(selector.getSelectedChannel().containsEntry(entr.getId()))
+            {
+                if(entr.isAvailable(Minecraft.getMinecraft().player, tier))
+                {
+                    availableEntries.add(entr);
+                }
+            }
+        }
     }
 
     @Override

@@ -1,14 +1,12 @@
 package net.pearx.purmag.client.guis.if_tablet;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.SoundRegistry;
+import net.pearx.purmag.common.SoundRegistry;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
-import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.client.guis.controls.Control;
-import net.pearx.purmag.infofield.IFChannel;
+import net.pearx.purmag.common.infofield.IfChannel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,19 +16,19 @@ import java.util.List;
  */
 public class GuiIfTabletSelector extends Control
 {
-    public List<IFChannel> channels = new ArrayList<>();
-    TexturePart tab;
+    public List<IfChannel> channels = new ArrayList<>();
+    GuiIfTablet g;
     int selected = 0;
 
-    public GuiIfTabletSelector(TexturePart tab, EntityPlayer p, int tier)
+    public GuiIfTabletSelector(GuiIfTablet g, EntityPlayer p)
     {
-        this.tab = tab;
+        this.g = g;
 
-        setWidth(tab.width + 4);
-        setHeight(tab.height * 7);
-        for(IFChannel chan : PurMag.instance.if_registry.channels)
+        setWidth(g.texTab.width + 4);
+        setHeight(g.texTab.height * 7);
+        for(IfChannel chan : PurMag.instance.if_registry.channels)
         {
-            if(chan.isAvailable(p, tier))
+            if(chan.isAvailable(p, g.tier))
                 channels.add(chan);
         }
     }
@@ -41,6 +39,7 @@ public class GuiIfTabletSelector extends Control
         {
             Minecraft.getMinecraft().player.playSound(SoundRegistry.IfChannelChange, 1, 1);
             selected = sel;
+            g.reloadResearches();
         }
     }
 
@@ -53,11 +52,11 @@ public class GuiIfTabletSelector extends Control
             if(i >= 0 && i < channels.size())
             {
                 int xoff = i == selected ? 0 : 4;
-                tab.draw(xoff, offset);
+                g.texTab.draw(xoff, offset);
                 IGuiDrawable draw = channels.get(i).getIcon();
-                draw.draw(xoff + ((tab.width - draw.getWidth()) / 2), offset + ((tab.height - draw.getHeight()) / 2));
+                draw.draw(xoff + ((g.texTab.width - draw.getWidth()) / 2), offset + ((g.texTab.height - draw.getHeight()) / 2));
             }
-            offset += tab.height;
+            offset += g.texTab.height;
         }
     }
 
@@ -71,5 +70,10 @@ public class GuiIfTabletSelector extends Control
             if (delta < 0)
                 setSelected(selected + 1);
         }
+    }
+
+    public IfChannel getSelectedChannel()
+    {
+        return channels.get(selected);
     }
 }
