@@ -2,7 +2,9 @@ package net.pearx.purmag.infofield;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.pearx.purmag.client.guis.IGuiDrawable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 
 import java.util.ArrayList;
 
@@ -83,6 +85,6 @@ public class IFChannel
 
     public boolean isAvailable(EntityPlayer p, int tier)
     {
-        return getTier() >= tier;
+        return tier >= getTier();
     }
 }

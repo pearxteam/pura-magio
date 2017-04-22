@@ -2,7 +2,6 @@ package net.pearx.purmag.client.guis.if_tablet;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.pearx.purmag.PurMag;

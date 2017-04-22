@@ -1,31 +1,32 @@
 package net.pearx.purmag;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 
 /**
- * Created by mrAppleXZ on 08.04.17 18:53.
+ * Created by mrAppleXZ on 21.04.17 18:07.
  */
 public class Utils
 {
-    public static String getRegistryName(String name)
+    public static ResourceLocation getRegistryName(String name)
     {
-        return PurMag.ModId + ":" + name;
+        return new ResourceLocation(PurMag.ModId, name);
     }
 
-    @SideOnly(Side.CLIENT)
-    public static void setModelLocation(Item itm, int meta)
+    public static NBTTagCompound posToNbt(BlockPos pos)
     {
-        String s = meta == -1 ? itm.getRegistryName().toString() : itm.getRegistryName() + "." + meta;
-        ModelLoader.setCustomModelResourceLocation(itm, meta == -1 ? 0 : meta, new ModelResourceLocation(s, "normal"));
+       NBTTagCompound tag = new NBTTagCompound();
+       tag.setInteger("x", pos.getX());
+       tag.setInteger("y", pos.getY());
+       tag.setInteger("z", pos.getZ());
+       return tag;
     }
 
-    @SideOnly(Side.CLIENT)
-    public static void setModelLocation(Item itm)
+    public static BlockPos posFromNbt(NBTTagCompound tag)
     {
-        setModelLocation(itm, -1);
+        return new BlockPos(tag.getInteger("x"), tag.getInteger("y"), tag.getInteger("z"));
     }
 }

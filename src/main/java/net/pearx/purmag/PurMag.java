@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.pearx.purmag.blocks.BlockRegistry;
+import net.pearx.purmag.client.PMEventsClient;
 import net.pearx.purmag.infofield.IFRegistry;
 import net.pearx.purmag.items.ItemRegistry;
 import net.pearx.purmag.sip.SipTypeRegistry;
@@ -44,7 +45,7 @@ public class PurMag
         sip.setup();
         if_registry.setup();
         proxy.preInit();
-        MinecraftForge.EVENT_BUS.register(new PMEvents());
+        MinecraftForge.EVENT_BUS.register(new PMEventsCommon());
     }
 
     @Mod.EventHandler

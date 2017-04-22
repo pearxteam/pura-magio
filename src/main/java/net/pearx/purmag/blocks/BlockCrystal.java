@@ -2,6 +2,8 @@ package net.pearx.purmag.blocks;
 
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,12 +13,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.pearx.purmag.PMCreativeTab;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.Utils;
+import net.pearx.purmag.client.ClientUtils;
 import net.pearx.purmag.items.ItemRegistry;
 import net.pearx.purmag.sip.SipType;
 import net.pearx.purmag.sip.SipTypeRegistry;
@@ -28,7 +35,7 @@ import java.util.*;
 /**
  * Created by mrAppleXZ on 08.04.17 17:46.
  */
-public class BlockCrystal extends BlockBase implements ITileEntityProvider
+public class BlockCrystal extends BlockBase
 {
     public BlockCrystal()
     {
@@ -59,14 +66,9 @@ public class BlockCrystal extends BlockBase implements ITileEntityProvider
     }
 
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
-        return new TileCrystal();
-    }
-
-    @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
+        super.onBlockPlacedBy(world, pos, state, placer, stack);
         TileEntity te = world.getTileEntity(pos);
         if (te != null && te instanceof TileCrystal)
         {
@@ -127,5 +129,24 @@ public class BlockCrystal extends BlockBase implements ITileEntityProvider
             st.setTagCompound(tag);
             list.add(st);
         }
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state)
+    {
+        return new TileCrystal();
+    }
+
+    @Nullable
+    @Override
+    protected RayTraceResult rayTrace(BlockPos pos, Vec3d start, Vec3d end, AxisAlignedBB boundingBox)
+    {
+        return super.rayTrace(pos, start, end, boundingBox);
     }
 }

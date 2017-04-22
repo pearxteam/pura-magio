@@ -1,6 +1,5 @@
 package net.pearx.purmag.items;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -10,9 +9,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.client.guis.PmGui;
-import net.pearx.purmag.client.guis.if_tablet.GuiIfTablet;
-import net.pearx.purmag.infofield.IFRegistry;
 import net.pearx.purmag.infofield.IFTier;
 
 import java.util.List;
@@ -32,8 +28,7 @@ public class ItemIfTablet extends ItemBase
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World w, EntityPlayer p, EnumHand hand)
     {
-        if(w.isRemote)
-            Minecraft.getMinecraft().displayGuiScreen(new PmGui(new GuiIfTablet(p, stack.getItemDamage())));
+        PurMag.proxy.openIfTablet(p, stack.getItemDamage());
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 

@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.Utils;
+import net.pearx.purmag.client.ClientUtils;
 import net.pearx.purmag.sip.SipType;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**

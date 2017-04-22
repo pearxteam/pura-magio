@@ -1,10 +1,14 @@
 package net.pearx.purmag.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.pearx.purmag.CommonProxy;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.client.guis.PmGui;
+import net.pearx.purmag.client.guis.if_tablet.GuiIfTablet;
 import net.pearx.purmag.items.ItemRegistry;
 import net.pearx.purmag.blocks.BlockRegistry;
 import net.pearx.purmag.sip.SipTypeRegistry;
@@ -20,6 +24,7 @@ public class ClientProxy extends CommonProxy
     {
         OBJLoader.INSTANCE.addDomain(PurMag.ModId);
         ItemRegistry.setupModels();
+        MinecraftForge.EVENT_BUS.register(new PMEventsClient());
     }
 
     @Override
@@ -58,5 +63,11 @@ public class ClientProxy extends CommonProxy
             }
             return PurMag.instance.sip.getType(type).getColor();
         }, ItemRegistry.crystal_shard);
+    }
+
+    @Override
+    public void openIfTablet(EntityPlayer p, int tier)
+    {
+        Minecraft.getMinecraft().displayGuiScreen(new PmGui(new GuiIfTablet(p, tier)));
     }
 }

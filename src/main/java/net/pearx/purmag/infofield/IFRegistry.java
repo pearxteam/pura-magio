@@ -1,7 +1,7 @@
 package net.pearx.purmag.infofield;
 
 import net.minecraft.item.ItemStack;
-import net.pearx.purmag.client.guis.ItemDrawable;
+import net.pearx.purmag.client.guis.drawables.ItemDrawable;
 import net.pearx.purmag.items.ItemRegistry;
 
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class IFRegistry
         registerTier(new IFTier(1));
         registerTier(new IFTier(2));
 
-        registerChannel(new IFChannel("information_field", new ItemDrawable(new ItemStack(ItemRegistry.crystal)), 0));
-        registerChannel(new IFChannel("crystallogy", new ItemDrawable(new ItemStack(ItemRegistry.crystal)), 0));
+        registerChannel(new IFChannel("information_field", new ItemDrawable(new ItemStack(ItemRegistry.if_tablet), 1.5f), 0));
+        registerChannel(new IFChannel("crystallogy", new ItemDrawable(new ItemStack(ItemRegistry.crystal), 1.5f), 0));
     }
 }

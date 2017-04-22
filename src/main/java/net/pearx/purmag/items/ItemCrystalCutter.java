@@ -13,6 +13,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pearx.purmag.Utils;
+import net.pearx.purmag.client.ClientUtils;
 import net.pearx.purmag.blocks.BlockRegistry;
 import net.pearx.purmag.tiles.TileCrystal;
 

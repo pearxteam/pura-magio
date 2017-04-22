@@ -7,10 +7,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.Utils;
-import net.pearx.purmag.infofield.IFRegistry;
+import net.pearx.purmag.client.ClientUtils;
 import net.pearx.purmag.infofield.IFTier;
-import net.pearx.purmag.items.*;
 import net.pearx.purmag.sip.SipTypeRegistry;
 
 /**
@@ -41,12 +39,12 @@ public class ItemRegistry
     @SideOnly(Side.CLIENT)
     public static void setupModels()
     {
-        Utils.setModelLocation(crystal);
-        Utils.setModelLocation(crystal_shard);
-        Utils.setModelLocation(crystal_cutter);
+        ClientUtils.setModelLocation(crystal);
+        ClientUtils.setModelLocation(crystal_shard);
+        ClientUtils.setModelLocation(crystal_cutter);
         for(IFTier t : PurMag.instance.if_registry.tiers)
         {
-            Utils.setModelLocation(if_tablet, t.getTier());
+            ClientUtils.setModelLocation(if_tablet, t.getTier());
         }
     }
 
