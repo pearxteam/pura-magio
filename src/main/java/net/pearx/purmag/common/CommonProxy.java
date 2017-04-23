@@ -17,7 +17,7 @@ public class CommonProxy
 
     }
 
-    public void openIfTablet(EntityPlayer p, int tier)
+    public void openIfTablet(int tier)
     {
 
     }

@@ -29,7 +29,7 @@ public class ItemIfTablet extends ItemBase
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World w, EntityPlayer p, EnumHand hand)
     {
         if(!w.isRemote)
-            PurMag.proxy.openIfTablet(p, stack.getItemDamage());
+            PurMag.proxy.openIfTablet(stack.getItemDamage());
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 

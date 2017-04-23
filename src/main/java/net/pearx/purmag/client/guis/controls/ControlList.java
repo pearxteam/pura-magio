@@ -56,7 +56,9 @@ public class ControlList implements List<Control>
     public boolean add(Control control)
     {
         control.setParent(parent);
-        return lst.add(control);
+        boolean bool = lst.add(control);
+        control.init();
+        return bool;
     }
 
     @Override
@@ -130,7 +132,9 @@ public class ControlList implements List<Control>
     {
         get(i).setParent(null);
         control.setParent(parent);
-        return lst.set(i, control);
+        Control c = lst.set(i, control);
+        control.init();
+        return c;
     }
 
     @Override
@@ -138,6 +142,7 @@ public class ControlList implements List<Control>
     {
         control.setParent(parent);
         lst.add(i, control);
+        control.init();
     }
 
     @Override

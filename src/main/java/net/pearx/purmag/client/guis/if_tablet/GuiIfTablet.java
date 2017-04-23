@@ -20,8 +20,6 @@ import java.util.List;
  */
 public class GuiIfTablet extends Control
 {
-    int degrees = 0;
-
     public int w = 384;
     public int h = 256;
     public ResourceLocation textures;
@@ -29,32 +27,34 @@ public class GuiIfTablet extends Control
 
     public TexturePart texBg;
     public TexturePart texFrame;
-    public TexturePart texTab;
-    public AnimatedDrawable runes;
 
     public GuiIfTabletSelector selector;
+    public GuiIfTabletEntries entries;
 
-    public List<IfEntry> availableEntries = new ArrayList<>();
-    public int entrsMinX, entrsMaxX, entrsMinY, entrsMaxY;
-
-    public GuiIfTablet(EntityPlayer p, int tier)
+    public GuiIfTablet(int tier)
     {
         this.tier = tier;
+    }
 
+    @Override
+    public void init()
+    {
         setWidth(w);
         setHeight(h);
 
         textures = new ResourceLocation(PurMag.ModId, "textures/gui/if_tablet." + tier + ".png");
         texBg = new TexturePart(textures, 0, 0, w, h, 512, 512);
         texFrame = new TexturePart(textures, 0, h, w, h, 512, 512);
-        texTab = new TexturePart(textures, w, 0, 32, 32, 512, 512);
-        runes = new AnimatedDrawable(new ResourceLocation(PurMag.ModId, "textures/runes.png"), 32, 38, 32, 38, 32, 380, 10);
 
-        selector = new GuiIfTabletSelector(this, p);
+        selector = new GuiIfTabletSelector();
+        controls.add(selector);
         selector.setX(w - selector.getWidth());
         selector.setY((h - selector.getHeight()) / 2);
-        controls.add(selector);
-        reloadResearches();
+
+        entries = new GuiIfTabletEntries();
+        controls.add(entries);
+
+        entries.reload();
     }
 
     @Override
@@ -69,42 +69,13 @@ public class GuiIfTablet extends Control
         return (getGuiScreen().height - h) / 2;
     }
 
-    public void reloadResearches()
-    {
-        for(IfEntry entr : PurMag.instance.if_registry.entries)
-        {
-            if(selector.getSelectedChannel().containsEntry(entr.getId()))
-            {
-                if(entr.isAvailable(Minecraft.getMinecraft().player, tier))
-                {
-                    if(entr.getX() < entrsMinX)
-                        entrsMinX = entr.getX();
-                    if(entr.getX() > entrsMaxX)
-                        entrsMaxX = entr.getX();
-                    if(entr.getY() < entrsMinY)
-                        entrsMinY = entr.getY();
-                    if(entr.getY() > entrsMaxY)
-                        entrsMaxY = entr.getY();
-                    availableEntries.add(entr);
-                }
-            }
-        }
-    }
-
     @Override
     public void render()
     {
-        //Draw BG
-        degrees++;
-        if(degrees == 361)
-            degrees = 0;
-        float sin = MathHelper.sin((float)Math.toRadians(degrees)) * 0.15f;
+        float sin = MathHelper.sin((float)Math.toRadians(System.currentTimeMillis() / 10 % 360)) * 0.15f;
         GlStateManager.color(0.85f + sin, 0.85f + sin, 0.85f + sin);
         texBg.draw(0, 0);
         GlStateManager.color(1, 1, 1);
-        GlStateManager.enableBlend();
-        drawEntry(null, 35, 35);
-        GlStateManager.disableBlend();
     }
 
     @Override
@@ -112,10 +83,5 @@ public class GuiIfTablet extends Control
     {
         getGuiScreen().drawString(selector.getSelectedChannel().getDisplayName(), 8, 8, Color.WHITE);
         texFrame.draw(0, 0);
-    }
-
-    public void drawEntry(IfEntry entr, int x, int y)
-    {
-        runes.draw(x, y);
     }
 }

@@ -10,14 +10,12 @@ import net.minecraft.util.ResourceLocation;
  */
 public class AnimatedDrawable implements IGuiDrawable
 {
-    private int elemW, elemH, texElemW, texElemH;
-    private int texW, texH, timesToChange;
-    private int timesElapsed = -1;
+    private int elemW, elemH, texElemW, texElemH, texW, texH, msDivider;
     private int cycle = 0;
     private int totalCycles;
     private ResourceLocation tex;
 
-    public AnimatedDrawable(ResourceLocation tex, int elemW, int elemH, int texElemW, int texElemH, int texW, int texH, int timesToChange)
+    public AnimatedDrawable(ResourceLocation tex, int elemW, int elemH, int texElemW, int texElemH, int texW, int texH, int msDivider)
     {
         this.elemW = elemW;
         this.elemH = elemH;
@@ -26,7 +24,7 @@ public class AnimatedDrawable implements IGuiDrawable
         this.tex = tex;
         this.texElemW = texElemW;
         this.texElemH = texElemH;
-        this.timesToChange = timesToChange;
+        this.msDivider = msDivider;
         totalCycles = texH / texElemH - 1;
     }
 
@@ -45,14 +43,8 @@ public class AnimatedDrawable implements IGuiDrawable
     @Override
     public void draw(int x, int y)
     {
-        timesElapsed++;
-        if(timesElapsed == timesToChange)
-        {
-            timesElapsed = -1;
-            cycle++;
-        }
-        if(cycle > totalCycles)
-            cycle = 0;
+        cycle = (int)(System.currentTimeMillis() / msDivider % totalCycles);
+
         Minecraft.getMinecraft().getTextureManager().bindTexture(tex);
         GuiScreen.drawScaledCustomSizeModalRect(x, y, 0, cycle * texElemH, texElemW, texElemH, elemW, elemH, texW, texH);
     }

@@ -66,8 +66,8 @@ public class ClientProxy extends CommonProxy
     }
 
     @Override
-    public void openIfTablet(EntityPlayer p, int tier)
+    public void openIfTablet(int tier)
     {
-        Minecraft.getMinecraft().displayGuiScreen(new PmGui(new GuiIfTablet(p, tier)));
+        Minecraft.getMinecraft().displayGuiScreen(new PmGui(new GuiIfTablet(tier)));
     }
 }

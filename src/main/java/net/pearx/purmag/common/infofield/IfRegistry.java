@@ -66,9 +66,13 @@ public class IfRegistry
         registerTier(new IfTier(2));
 
         registerChannel(new IfChannel("information_field", new ItemDrawable(new ItemStack(ItemRegistry.if_tablet), 1.5f), 0));
-        registerChannel(new IfChannel("crystallography", new ItemDrawable(new ItemStack(ItemRegistry.crystal), 1.5f), 0));
+        registerChannel(new IfChannel("crystallography", new ItemDrawable(new ItemStack(ItemRegistry.crystal), 1.5f), 0, "crystals", "crystals1", "crystals2"));
 
         registerEntry(new IfEntry("crystals", 0, new ItemDrawable(ItemBlockCrystal.getCrystalWithSip(SipTypeRegistry.def)), null, null, 0, 0, 0));
+
+        registerEntry(new IfEntry("crystals1", 0, new ItemDrawable(ItemBlockCrystal.getCrystalWithSip("flame")), null, null, 0, -1, -1));
+
+        registerEntry(new IfEntry("crystals2", 0, new ItemDrawable(ItemBlockCrystal.getCrystalWithSip("sea")), null, null, 0, 1, 1));
     }
 }
 

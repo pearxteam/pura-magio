@@ -31,7 +31,6 @@ public class PmGui extends GuiScreen
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-        drawDefaultBackground();
 
         if(gui != null)
             gui.invokeRender();
@@ -63,22 +62,22 @@ public class PmGui extends GuiScreen
     @Override
     public void handleMouseInput() throws IOException
     {
-        if(gui != null)
+        if (gui != null)
         {
             int x = Mouse.getEventX() * width / mc.displayWidth;
             int y = height - Mouse.getEventY() * height / mc.displayHeight - 1;
-            if(Mouse.getEventButton() != -1)
+            if (Mouse.getEventButton() != -1)
             {
-                if(Mouse.getEventButtonState())
+                if (Mouse.getEventButtonState())
                     gui.invokeMouseDown(Mouse.getEventButton(), x - gui.getX(), y - gui.getY());
                 else
                     gui.invokeMouseUp(Mouse.getEventButton(), x - gui.getX(), y - gui.getY());
             }
-            if(Mouse.getEventDX() != 0 || Mouse.getEventDY() != 0)
+            if (Mouse.getEventDX() != 0 || Mouse.getEventDY() != 0)
             {
-                gui.invokeMouseMove(x - gui.getX(), y - gui.getY(), Mouse.getEventDX(), Mouse.getEventDY());
+                gui.invokeMouseMove(x - gui.getX(), y - gui.getY(), Mouse.getEventDX(), -Mouse.getEventDY());
             }
-            if(Mouse.getEventDWheel() != 0)
+            if (Mouse.getEventDWheel() != 0)
             {
                 gui.invokeMouseWheel(Mouse.getEventDWheel());
             }
@@ -88,7 +87,8 @@ public class PmGui extends GuiScreen
     @Override
     public void initGui()
     {
-        System.out.println("init");
+        //if(gui != null)
+         //   gui.invokeInit();
     }
 
     public void drawRectangle(int x, int y, int width, int height, int color)

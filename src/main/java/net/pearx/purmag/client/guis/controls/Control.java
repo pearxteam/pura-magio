@@ -28,6 +28,7 @@ public class Control
     {
         return parent;
     }
+
     public void setParent(Control parent)
     {
         this.parent = parent;
@@ -37,6 +38,7 @@ public class Control
     {
         return width;
     }
+
     public void setWidth(int width)
     {
         this.width = width;
@@ -46,6 +48,7 @@ public class Control
     {
         return height;
     }
+
     public void setHeight(int height)
     {
         this.height = height;
@@ -55,6 +58,7 @@ public class Control
     {
         return x;
     }
+
     public void setX(int x)
     {
         this.x = x;
@@ -64,6 +68,7 @@ public class Control
     {
         return y;
     }
+
     public void setY(int y)
     {
         this.y = y;
@@ -83,7 +88,6 @@ public class Control
     {
         focused = val;
     }
-
 
 
     public void selectionChanged()
@@ -142,6 +146,11 @@ public class Control
     }
 
     public void mouseWheel(int delta)
+    {
+
+    }
+
+    public void init()
     {
 
     }
@@ -265,6 +274,13 @@ public class Control
             cont.invokeMouseWheel(delta);
         }
         mouseWheel(delta);
+    }
+
+    public void invokeInit()
+    {
+        init();
+        for(Control c : controls)
+            c.invokeInit();
     }
 
     public void select()
