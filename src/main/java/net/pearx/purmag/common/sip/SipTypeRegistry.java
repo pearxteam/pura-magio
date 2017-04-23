@@ -28,5 +28,8 @@ public class SipTypeRegistry
     {
         register(new SipType("rock", 0x9e9e9e));
         register(new SipType("sea", 0x42A5F5));
+        register(new SipType("flame", 0xFB8C00));
+        register(new SipType("air", 0xFFE57F));
+        register(new SipType("information", 0x68C397));
     }
 }

@@ -4,6 +4,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.PMCreativeTab;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 
@@ -15,10 +16,9 @@ public class ItemBlockCrystal extends ItemBlock
     @Override
     public String getItemStackDisplayName(ItemStack stack)
     {
-        String add = "";
         if(stack.hasTagCompound() && stack.getTagCompound().hasKey("type"))
         {
-            return add + I18n.format(getUnlocalizedName() + ".name", I18n.format("sip." + stack.getTagCompound().getString("type")));
+            return I18n.format(getUnlocalizedName() + ".name", PurMag.instance.sip.getType(stack.getTagCompound().getString("type")).getDisplayName());
         }
         return super.getItemStackDisplayName(stack);
     }

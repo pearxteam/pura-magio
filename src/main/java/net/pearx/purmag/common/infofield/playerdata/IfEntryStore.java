@@ -1,7 +1,11 @@
 package net.pearx.purmag.common.infofield.playerdata;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.networking.NetworkManager;
+import net.pearx.purmag.common.networking.packets.SPacketSyncEntryStore;
 
 import java.util.HashMap;
 
@@ -38,6 +42,12 @@ public class IfEntryStore implements IIfEntryStore
     public boolean isFullyUnlocked(String id)
     {
         return getSteps(id) >= PurMag.instance.if_registry.getEntry(id).getSteps().size();
+    }
+
+    @Override
+    public void sync(EntityPlayer p)
+    {
+        NetworkManager.sendTo(new SPacketSyncEntryStore(serializeNBT()), p);
     }
 
     @Override

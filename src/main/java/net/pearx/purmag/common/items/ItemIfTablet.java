@@ -28,7 +28,8 @@ public class ItemIfTablet extends ItemBase
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World w, EntityPlayer p, EnumHand hand)
     {
-        PurMag.proxy.openIfTablet(p, stack.getItemDamage());
+        if(!w.isRemote)
+            PurMag.proxy.openIfTablet(p, stack.getItemDamage());
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 

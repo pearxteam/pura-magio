@@ -13,6 +13,7 @@ import net.pearx.purmag.common.SoundRegistry;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.infofield.IfRegistry;
 import net.pearx.purmag.common.items.ItemRegistry;
+import net.pearx.purmag.common.networking.NetworkManager;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
 import net.pearx.purmag.common.tiles.TileRegistry;
 
@@ -48,6 +49,8 @@ public class PurMag
         sip.setup();
         if_registry.setup();
         CapabilityRegistry.setup();
+        NetworkManager.setup();
+
         proxy.preInit();
         MinecraftForge.EVENT_BUS.register(new CommonEvents());
     }

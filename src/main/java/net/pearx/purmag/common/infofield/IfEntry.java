@@ -25,8 +25,10 @@ public class IfEntry
     private IIfPage[] pages;
     private List<IIfResearchStep> steps;
     private int stepsForDisplay;
+    private int x;
+    private int y;
 
-    public IfEntry(String id, int tier, IGuiDrawable icon, List<String> parents, List<IIfResearchStep> steps, int stepsForDisplay, IIfPage... pages)
+    public IfEntry(String id, int tier, IGuiDrawable icon, List<String> parents, List<IIfResearchStep> steps, int stepsForDisplay, int x, int y, IIfPage... pages)
     {
         if(parents == null)
             parents = new ArrayList<>();
@@ -37,6 +39,8 @@ public class IfEntry
         setPages(pages);
         setSteps(steps);
         setStepsForDisplay(stepsForDisplay);
+        setX(x);
+        setY(y);
     }
 
     public String getId()
@@ -135,5 +139,25 @@ public class IfEntry
     public void setStepsForDisplay(int stepsForDisplay)
     {
         this.stepsForDisplay = stepsForDisplay;
+    }
+
+    public int getX()
+    {
+        return x;
+    }
+
+    public void setX(int x)
+    {
+        this.x = x;
+    }
+
+    public int getY()
+    {
+        return y;
+    }
+
+    public void setY(int y)
+    {
+        this.y = y;
     }
 }

@@ -8,8 +8,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public interface IGuiDrawable
 {
-    short getWidth();
-    short getHeight();
+    int getWidth();
+    int getHeight();
 
     @SideOnly(Side.CLIENT)
     void draw(int x, int y);

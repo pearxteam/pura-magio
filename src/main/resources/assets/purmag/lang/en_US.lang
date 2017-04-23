@@ -10,5 +10,12 @@ item.if_tablet.1.name=Information Field Tablet
 item.if_tablet.2.name=Golden Information Field Tablet
 
 #Sip Types
-sip.sea=Mara
-sip.rock=Roka
+sip.sea.name=Mara
+sip.rock.name=Roka
+sip.flame.name=Flama
+sip.air.name=Aera
+sip.information.name=Informa
+
+#Channels
+if_channel.information_field.name=Information Field
+if_channel.crystallography.name=Crystallography

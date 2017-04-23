@@ -37,14 +37,14 @@ public class ItemDrawable implements IGuiDrawable
     }
 
     @Override
-    public short getWidth()
+    public int getWidth()
     {
-        return (short)(16 * scale);
+        return (int)(16 * scale);
     }
 
     @Override
-    public short getHeight()
+    public int getHeight()
     {
-        return (short)(16 * scale);
+        return (int)(16 * scale);
     }
 }

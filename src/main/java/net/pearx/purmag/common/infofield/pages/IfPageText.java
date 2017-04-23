@@ -26,7 +26,7 @@ public class IfPageText implements IIfPage
 
     public String getDisplayText()
     {
-        return I18n.format(getUnlocalizedText());
+        return I18n.format("if_page." + getUnlocalizedText() + ".text");
     }
 
     @Override

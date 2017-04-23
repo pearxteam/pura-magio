@@ -5,6 +5,7 @@ import net.pearx.purmag.client.guis.drawables.ItemDrawable;
 import net.pearx.purmag.common.blocks.BlockCrystal;
 import net.pearx.purmag.common.items.ItemBlockCrystal;
 import net.pearx.purmag.common.items.ItemRegistry;
+import net.pearx.purmag.common.sip.SipTypeRegistry;
 
 import java.util.ArrayList;
 
@@ -65,8 +66,11 @@ public class IfRegistry
         registerTier(new IfTier(2));
 
         registerChannel(new IfChannel("information_field", new ItemDrawable(new ItemStack(ItemRegistry.if_tablet), 1.5f), 0));
-        registerChannel(new IfChannel("crystallogy", new ItemDrawable(new ItemStack(ItemRegistry.crystal), 1.5f), 0));
+        registerChannel(new IfChannel("crystallography", new ItemDrawable(new ItemStack(ItemRegistry.crystal), 1.5f), 0));
 
-        registerEntry(new IfEntry("rock_crystal", 0, new ItemDrawable(ItemBlockCrystal.getCrystalWithSip("rock")), null, null, 0));
+        registerEntry(new IfEntry("crystals", 0, new ItemDrawable(ItemBlockCrystal.getCrystalWithSip(SipTypeRegistry.def)), null, null, 0, 0, 0));
     }
 }
+
+
+

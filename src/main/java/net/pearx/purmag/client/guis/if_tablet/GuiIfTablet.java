@@ -8,8 +8,10 @@ import net.minecraft.util.math.MathHelper;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.client.guis.controls.Control;
+import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
 import net.pearx.purmag.common.infofield.IfEntry;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,11 +30,12 @@ public class GuiIfTablet extends Control
     public TexturePart texBg;
     public TexturePart texFrame;
     public TexturePart texTab;
+    public AnimatedDrawable runes;
 
     public GuiIfTabletSelector selector;
 
     public List<IfEntry> availableEntries = new ArrayList<>();
-    public int entrsWidth, entrsHeight;
+    public int entrsMinX, entrsMaxX, entrsMinY, entrsMaxY;
 
     public GuiIfTablet(EntityPlayer p, int tier)
     {
@@ -45,6 +48,7 @@ public class GuiIfTablet extends Control
         texBg = new TexturePart(textures, 0, 0, w, h, 512, 512);
         texFrame = new TexturePart(textures, 0, h, w, h, 512, 512);
         texTab = new TexturePart(textures, w, 0, 32, 32, 512, 512);
+        runes = new AnimatedDrawable(new ResourceLocation(PurMag.ModId, "textures/runes.png"), 32, 38, 32, 38, 32, 380, 10);
 
         selector = new GuiIfTabletSelector(this, p);
         selector.setX(w - selector.getWidth());
@@ -73,6 +77,14 @@ public class GuiIfTablet extends Control
             {
                 if(entr.isAvailable(Minecraft.getMinecraft().player, tier))
                 {
+                    if(entr.getX() < entrsMinX)
+                        entrsMinX = entr.getX();
+                    if(entr.getX() > entrsMaxX)
+                        entrsMaxX = entr.getX();
+                    if(entr.getY() < entrsMinY)
+                        entrsMinY = entr.getY();
+                    if(entr.getY() > entrsMaxY)
+                        entrsMaxY = entr.getY();
                     availableEntries.add(entr);
                 }
             }
@@ -82,6 +94,7 @@ public class GuiIfTablet extends Control
     @Override
     public void render()
     {
+        //Draw BG
         degrees++;
         if(degrees == 361)
             degrees = 0;
@@ -89,11 +102,20 @@ public class GuiIfTablet extends Control
         GlStateManager.color(0.85f + sin, 0.85f + sin, 0.85f + sin);
         texBg.draw(0, 0);
         GlStateManager.color(1, 1, 1);
+        GlStateManager.enableBlend();
+        drawEntry(null, 35, 35);
+        GlStateManager.disableBlend();
     }
 
     @Override
     public void postRender()
     {
+        getGuiScreen().drawString(selector.getSelectedChannel().getDisplayName(), 8, 8, Color.WHITE);
         texFrame.draw(0, 0);
+    }
+
+    public void drawEntry(IfEntry entr, int x, int y)
+    {
+        runes.draw(x, y);
     }
 }
