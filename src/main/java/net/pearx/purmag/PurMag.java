@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.CommonProxy;
 import net.pearx.purmag.common.CommonEvents;
@@ -16,6 +17,7 @@ import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.networking.NetworkManager;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
 import net.pearx.purmag.common.tiles.TileRegistry;
+import net.pearx.purmag.server.commands.CommandIf;
 
 import java.util.ArrayList;
 
@@ -72,5 +74,11 @@ public class PurMag
         data.modId = PurMag.ModId;
         data.name = PurMag.Name;
         data.version = PurMag.Version;
+    }
+
+    @Mod.EventHandler
+    public void serverStartup(FMLServerStartingEvent e)
+    {
+        e.registerServerCommand(new CommandIf());
     }
 }

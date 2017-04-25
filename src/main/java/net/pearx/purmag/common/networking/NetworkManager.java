@@ -22,11 +22,8 @@ public class NetworkManager
         INSTANCE.registerMessage(SPacketSyncEntryStore.Handler.class, SPacketSyncEntryStore.class, id++, Side.CLIENT);
     }
 
-    public static void sendTo(IMessage msg, EntityPlayer p)
+    public static void sendTo(IMessage msg, EntityPlayerMP p)
     {
-        if(p instanceof EntityPlayerMP)
-        {
-            INSTANCE.sendTo(msg, (EntityPlayerMP) p);
-        }
+            INSTANCE.sendTo(msg, p);
     }
 }

@@ -3,6 +3,7 @@ package net.pearx.purmag.common;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -38,13 +39,13 @@ public class CommonEvents
     @SubscribeEvent
     public void onRespawn(PlayerEvent.PlayerRespawnEvent e)
     {
-        e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).sync(e.player);
+        e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).sync((EntityPlayerMP)e.player);
     }
 
     @SubscribeEvent
     public void onJoin(PlayerEvent.PlayerLoggedInEvent e)
     {
-        e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).sync(e.player);
+        e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).sync((EntityPlayerMP)e.player);
     }
 
     @SubscribeEvent
@@ -57,7 +58,7 @@ public class CommonEvents
     @SubscribeEvent
     public void onChangeDim(PlayerEvent.PlayerChangedDimensionEvent e)
     {
-        e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).sync(e.player);
+        e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).sync((EntityPlayerMP)e.player);
     }
 
 }

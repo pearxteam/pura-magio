@@ -45,7 +45,7 @@ public class IfEntryStore implements IIfEntryStore
     }
 
     @Override
-    public void sync(EntityPlayer p)
+    public void sync(EntityPlayerMP p)
     {
         NetworkManager.sendTo(new SPacketSyncEntryStore(serializeNBT()), p);
     }

@@ -19,3 +19,12 @@ sip.information.name=Informa
 #Channels
 if_channel.information_field.name=Information Field
 if_channel.crystallography.name=Crystallography
+
+#Entries
+if_entry.crystals.name=Crystals
+
+#Commands
+command.if.usage=Usage: /infofield <unlock|lock> <entry> <player>
+command.if.playerNotFound=Player not found!
+command.if.entryNotFound=IF Entry not found!
+command.if.success=§7The if entry §5%1$s§7 is successfully unlocked for §5%2$s§7!
