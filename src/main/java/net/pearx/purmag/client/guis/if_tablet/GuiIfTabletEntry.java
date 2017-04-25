@@ -11,6 +11,7 @@ import net.pearx.purmag.common.infofield.IfEntry;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -32,21 +33,26 @@ public class GuiIfTabletEntry extends Control
     @Override
     public void render()
     {
-        boolean oldBlend = GL11.glIsEnabled(GL11.GL_BLEND);
-        GlStateManager.enableBlend();
-
-        float f = 1;
-        try
+        Rectangle rect = new Rectangle(getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
+        if(rect.contains(getX(), getY()) || rect.contains(getX() + getWidth(), getY() + getHeight()))
         {
-            f = 1 - (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).getSteps(entry.getId()) / entry.getSteps().size());
-        }
-        catch(ArithmeticException e){}
-        GlStateManager.color(f, 1, f);
+            boolean oldBlend = GL11.glIsEnabled(GL11.GL_BLEND);
+            GlStateManager.enableBlend();
 
-        getEntries().runes.draw(0, -4);
-        if(!oldBlend)
-            GlStateManager.disableBlend();
-        entry.getIcon().draw((getWidth() - entry.getIcon().getWidth()) / 2, (getHeight() - entry.getIcon().getHeight()) / 2);
+            float f = 1;
+            try
+            {
+                f = 1 - (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).getSteps(entry.getId()) / entry.getSteps().size());
+            } catch (ArithmeticException e)
+            {
+            }
+            GlStateManager.color(f, 1, f);
+
+            getEntries().runes.draw(0, -4);
+            if (!oldBlend)
+                GlStateManager.disableBlend();
+            entry.getIcon().draw((getWidth() - entry.getIcon().getWidth()) / 2, (getHeight() - entry.getIcon().getHeight()) / 2);
+        }
     }
 
     @Override

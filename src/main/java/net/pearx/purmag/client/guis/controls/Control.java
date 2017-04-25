@@ -164,16 +164,16 @@ public class Control
     {
         Point p = getPointOnGui();
         GlStateManager.pushMatrix();
-        GlStateManager.translate(p.getX(), p.getY(), 0);
+        GlStateManager.translate(getX(), getY(), 0);
         render();
-        GlStateManager.popMatrix();
         for(Control cont : controls)
         {
             cont.invokeRender();
         }
         GlStateManager.pushMatrix();
-        GlStateManager.translate(p.getX(), p.getY(), 300);
+        GlStateManager.translate(0, 0, 300);
         postRender();
+        GlStateManager.popMatrix();
         GlStateManager.popMatrix();
     }
 

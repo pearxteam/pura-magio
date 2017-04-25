@@ -27,4 +27,4 @@ if_entry.crystals.name=Crystals
 command.if.usage=Usage: /infofield <unlock|lock> <entry> <player>
 command.if.playerNotFound=Player not found!
 command.if.entryNotFound=IF Entry not found!
-command.if.success=§7The if entry §5%1$s§7 is successfully unlocked for §5%2$s§7!
+command.if.success=§7The IF entry §5%1$s§7 is successfully unlocked for §5%2$s§7!

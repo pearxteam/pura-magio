@@ -46,7 +46,7 @@ public class GuiIfTabletSelector extends ControlIfTabletPart
     }
 
     @Override
-    public void render()
+    public void postRender()
     {
         int offset = 0;
         for(int i = selected - 3; i <= selected + 3; i++)
