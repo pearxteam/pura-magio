@@ -36,6 +36,10 @@ public class SPacketSyncEntryStore implements IMessage
 
     public static class Handler implements IMessageHandler<SPacketSyncEntryStore, IMessage>
     {
+        public Handler()
+        {
+
+        }
 
         @Override
         public IMessage onMessage(SPacketSyncEntryStore message, MessageContext ctx)

@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
@@ -81,7 +82,7 @@ public class GuiIfTablet extends Control
     @Override
     public void postRender()
     {
-        getGuiScreen().drawString(selector.getSelectedChannel().getDisplayName(), 8, 8, Color.WHITE);
+        DrawingTools.drawString(selector.getSelectedChannel().getDisplayName(), 8, 8, Color.WHITE);
         texFrame.draw(0, 0);
     }
 }

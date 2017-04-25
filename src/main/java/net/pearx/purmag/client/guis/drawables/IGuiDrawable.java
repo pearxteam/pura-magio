@@ -1,5 +1,4 @@
 package net.pearx.purmag.client.guis.drawables;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

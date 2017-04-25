@@ -65,13 +65,10 @@ public class GuiIfTabletSelector extends ControlIfTabletPart
     @Override
     public void mouseWheel(int delta)
     {
-        if(isFocused())
-        {
             if (delta > 0)
                 setSelected(selected - 1);
             if (delta < 0)
                 setSelected(selected + 1);
-        }
     }
 
     public IfChannel getSelectedChannel()

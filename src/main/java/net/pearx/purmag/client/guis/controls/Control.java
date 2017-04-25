@@ -172,7 +172,7 @@ public class Control
             cont.invokeRender();
         }
         GlStateManager.pushMatrix();
-        GlStateManager.translate(p.getX(), p.getY(), 0);
+        GlStateManager.translate(p.getX(), p.getY(), 300);
         postRender();
         GlStateManager.popMatrix();
     }
@@ -238,22 +238,8 @@ public class Control
                 cont.invokeMouseMove(x - cont.getX(), y - cont.getY(), dx, dy);
                 return;
             }
-            if (cont.isFocused())
-            {
-                cont.setFocused(false);
-                cont.invokeMouseLeave();
-            }
         }
-        if (getParent() != null && getParent().isFocused())
-        {
-            getParent().setFocused(false);
-            getParent().invokeMouseLeave();
-        }
-        if (!isFocused())
-        {
-            setFocused(true);
-            invokeMouseEnter();
-        }
+        setSelected(getMainParent(this), this);
         mouseMove(x, y, dx, dy);
     }
 
@@ -315,6 +301,22 @@ public class Control
         {
             unselectAll(cont);
         }
+    }
+
+    public static void setSelected(Control c, Control select)
+    {
+        if(c.isFocused() && c != select)
+        {
+            c.setFocused(false);
+            c.invokeMouseLeave();
+        }
+        if(!c.isFocused() && c == select)
+        {
+            c.setFocused(true);
+            c.invokeMouseEnter();
+        }
+        for (Control cont : c.controls)
+            setSelected(cont, select);
     }
 
     public static Control getMainParent(Control c)

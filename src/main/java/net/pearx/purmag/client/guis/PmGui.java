@@ -1,13 +1,11 @@
 package net.pearx.purmag.client.guis;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.client.guis.controls.GuiControlContainer;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import java.awt.*;
 import java.io.IOException;
 
 /**
@@ -82,22 +80,5 @@ public class PmGui extends GuiScreen
                 gui.invokeMouseWheel(Mouse.getEventDWheel());
             }
         }
-    }
-
-    @Override
-    public void initGui()
-    {
-        //if(gui != null)
-         //   gui.invokeInit();
-    }
-
-    public void drawRectangle(int x, int y, int width, int height, int color)
-    {
-        drawRect(x, y, x + width, y + height, color);
-    }
-
-    public void drawString(String text, int x, int y, Color col)
-    {
-        drawString(Minecraft.getMinecraft().fontRendererObj, text, x, y, col.getRGB());
     }
 }

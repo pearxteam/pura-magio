@@ -32,6 +32,8 @@ public class IfEntry
     {
         if(parents == null)
             parents = new ArrayList<>();
+        if(steps == null)
+            steps = new ArrayList<>();
         setId(id);
         setTier(tier);
         setParents(parents);

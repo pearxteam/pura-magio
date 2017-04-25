@@ -18,11 +18,6 @@ public class GuiIfTabletEntries extends ControlIfTabletPart
     public int entrSize = 32;
     public AnimatedDrawable runes;
 
-    public int entrsMinX, entrsMaxX, entrsMinY, entrsMaxY;
-    public int minX, maxX, minY, maxY;
-    public int offsetX, offsetY;
-    public boolean isMouseDown;
-
     public GuiIfTabletEntries()
     {
 
@@ -31,19 +26,11 @@ public class GuiIfTabletEntries extends ControlIfTabletPart
     @Override
     public void init()
     {
+        setWidth(getTablet().w - 10);
+        setHeight(getTablet().h - 10);
+        setX(5);
+        setY(5);
         runes = new AnimatedDrawable(new ResourceLocation(PurMag.ModId, "textures/runes.png"), 32, 38, 32, 38, 32, 380, 100);
-    }
-
-    @Override
-    public void mouseDown(int button, int x, int y)
-    {
-        isMouseDown = true;
-    }
-
-    @Override
-    public void mouseUp(int button, int x, int y)
-    {
-        isMouseDown = false;
     }
 
     public void reload()
@@ -55,32 +42,12 @@ public class GuiIfTabletEntries extends ControlIfTabletPart
             {
                 if(entr.isAvailable(Minecraft.getMinecraft().player, getTablet().tier))
                 {
-                    if(entr.getX() < entrsMinX)
-                        entrsMinX = entr.getX();
-                    if(entr.getX() > entrsMaxX)
-                        entrsMaxX = entr.getX();
-                    if(entr.getY() < entrsMinY)
-                        entrsMinY = entr.getY();
-                    if(entr.getY() > entrsMaxY)
-                        entrsMaxY = entr.getY();
-                    controls.add(new GuiIfTabletEntry(entr));
+                    GuiIfTabletEntry entrC = new GuiIfTabletEntry(entr);
+                    entrC.setX(entr.getX() * entrSize + ((getTablet().w - entrSize) / 2));
+                    entrC.setY(entr.getY() * entrSize + ((getTablet().h - entrSize) / 2));
+                    controls.add(entrC);
                 }
             }
-        }
-        minX = entrsMinX * entrSize;
-        minY = entrsMinY * entrSize;
-        maxX = entrsMaxX * entrSize + entrSize;
-        maxY = entrsMaxY * entrSize + entrSize;
-    }
-
-    public void setOffset(int plusX, int plusY)
-    {
-        int newX = offsetX + plusX;
-        int newY = offsetY + plusY;
-        if(newX <= maxX && newY <= maxY && newX >= minX && newY >= minY)
-        {
-            offsetX = newX;
-            offsetY = newY;
         }
     }
 }

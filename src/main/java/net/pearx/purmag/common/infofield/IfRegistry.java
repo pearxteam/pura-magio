@@ -1,6 +1,7 @@
 package net.pearx.purmag.common.infofield;
 
 import net.minecraft.item.ItemStack;
+import net.pearx.purmag.client.guis.drawables.BigItemDrawable;
 import net.pearx.purmag.client.guis.drawables.ItemDrawable;
 import net.pearx.purmag.common.blocks.BlockCrystal;
 import net.pearx.purmag.common.items.ItemBlockCrystal;
@@ -65,14 +66,14 @@ public class IfRegistry
         registerTier(new IfTier(1));
         registerTier(new IfTier(2));
 
-        registerChannel(new IfChannel("information_field", new ItemDrawable(new ItemStack(ItemRegistry.if_tablet), 1.5f), 0));
-        registerChannel(new IfChannel("crystallography", new ItemDrawable(new ItemStack(ItemRegistry.crystal), 1.5f), 0, "crystals", "crystals1", "crystals2"));
+        registerChannel(new IfChannel("information_field", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet)), 0));
+        registerChannel(new IfChannel("crystallography", new BigItemDrawable(new ItemStack(ItemRegistry.crystal)), 0, "crystals", "crystals1", "crystals2"));
 
-        registerEntry(new IfEntry("crystals", 0, new ItemDrawable(ItemBlockCrystal.getCrystalWithSip(SipTypeRegistry.def)), null, null, 0, 0, 0));
+        registerEntry(new IfEntry("crystals", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip(SipTypeRegistry.def)), null, null, 0, 0, 0));
 
-        registerEntry(new IfEntry("crystals1", 0, new ItemDrawable(ItemBlockCrystal.getCrystalWithSip("flame")), null, null, 0, -1, -1));
+        registerEntry(new IfEntry("crystals1", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip("flame")), null, null, 0, -1, -1));
 
-        registerEntry(new IfEntry("crystals2", 0, new ItemDrawable(ItemBlockCrystal.getCrystalWithSip("sea")), null, null, 0, 1, 1));
+        registerEntry(new IfEntry("crystals2", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip("sea")), null, null, 0, 1, 1));
     }
 }
 
