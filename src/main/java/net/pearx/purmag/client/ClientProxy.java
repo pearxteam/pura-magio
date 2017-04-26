@@ -3,6 +3,7 @@ package net.pearx.purmag.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.pearx.purmag.common.CommonProxy;
@@ -19,10 +20,13 @@ import net.pearx.purmag.common.tiles.TileCrystal;
  */
 public class ClientProxy extends CommonProxy
 {
+    public static int STENCIL;
+
     @Override
     public void preInit()
     {
         Minecraft.getMinecraft().getFramebuffer().enableStencil();
+        STENCIL = MinecraftForgeClient.reserveStencilBit();
         OBJLoader.INSTANCE.addDomain(PurMag.ModId);
         ItemRegistry.setupModels();
         MinecraftForge.EVENT_BUS.register(new ClientEvents());

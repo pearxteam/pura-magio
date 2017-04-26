@@ -73,4 +73,20 @@ public class DrawingTools
         GlStateManager.enableAlpha();
         GlStateManager.enableTexture2D();
     }
+
+    public static void drawRectangle(int x, int y, int width, int height)
+    {
+        int bottom = y + height;
+        int right = x + width;
+        Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        GlStateManager.disableTexture2D();
+        vertexbuffer.begin(7, DefaultVertexFormats.POSITION);
+        vertexbuffer.pos((double)x, (double)bottom, 0.0D).endVertex();
+        vertexbuffer.pos((double)right, (double)bottom, 0.0D).endVertex();
+        vertexbuffer.pos((double)right, (double)y, 0.0D).endVertex();
+        vertexbuffer.pos((double)x, (double)y, 0.0D).endVertex();
+        tessellator.draw();
+        GlStateManager.enableTexture2D();
+    }
 }

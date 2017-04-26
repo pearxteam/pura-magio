@@ -82,7 +82,9 @@ public class GuiIfTablet extends Control
     @Override
     public void postRender()
     {
+        GlStateManager.enableBlend();
         DrawingTools.drawString(selector.getSelectedChannel().getDisplayName(), 8, 8, Color.WHITE);
         texFrame.draw(0, 0);
+        GlStateManager.disableBlend();
     }
 }

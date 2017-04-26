@@ -1,12 +1,18 @@
 package net.pearx.purmag.client.guis.if_tablet;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.client.ClientProxy;
+import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
 import net.pearx.purmag.common.infofield.IfEntry;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
 
 /**
  * Created by mrAppleXZ on 23.04.17 19:12.
@@ -27,7 +33,23 @@ public class GuiIfTabletEntries extends ControlIfTabletPart
     @Override
     public void render()
     {
+        GL11.glEnable(GL11.GL_STENCIL_TEST);
+        GlStateManager.clear(GL11.GL_STENCIL_BUFFER_BIT);
 
+        GL11.glStencilMask(0xFF);
+        GL11.glStencilFunc(GL11.GL_ALWAYS, 1, 0xFF);
+        GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE);
+        GL11.glColorMask(false, false, false, false);
+        DrawingTools.drawRectangle(0, 0, getWidth(), getHeight());
+        GL11.glColorMask(true, true, true, true);
+        GL11.glStencilMask(0x00);
+        GL11.glStencilFunc(GL11.GL_NOTEQUAL, 0, 0xFF);
+    }
+
+    @Override
+    public void postRender()
+    {
+        GL11.glDisable(GL11.GL_STENCIL_TEST);
     }
 
     @Override

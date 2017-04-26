@@ -33,26 +33,17 @@ public class GuiIfTabletEntry extends Control
     @Override
     public void render()
     {
-        Rectangle rect = new Rectangle(getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
-        if(rect.contains(getX(), getY()) || rect.contains(getX() + getWidth(), getY() + getHeight()))
+        GlStateManager.enableBlend();
+        float f = 1;
+        try
         {
-            boolean oldBlend = GL11.glIsEnabled(GL11.GL_BLEND);
-            GlStateManager.enableBlend();
+            f = 1 - (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).getSteps(entry.getId()) / entry.getSteps().size());
+        } catch (ArithmeticException e) {}
+        GlStateManager.color(f, 1, f);
+        getEntries().runes.draw(0, -4);
+        GlStateManager.disableBlend();
 
-            float f = 1;
-            try
-            {
-                f = 1 - (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).getSteps(entry.getId()) / entry.getSteps().size());
-            } catch (ArithmeticException e)
-            {
-            }
-            GlStateManager.color(f, 1, f);
-
-            getEntries().runes.draw(0, -4);
-            if (!oldBlend)
-                GlStateManager.disableBlend();
-            entry.getIcon().draw((getWidth() - entry.getIcon().getWidth()) / 2, (getHeight() - entry.getIcon().getHeight()) / 2);
-        }
+        entry.getIcon().draw((getWidth() - entry.getIcon().getWidth()) / 2, (getHeight() - entry.getIcon().getHeight()) / 2);
     }
 
     @Override

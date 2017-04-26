@@ -1,6 +1,7 @@
 package net.pearx.purmag.client.guis.if_tablet;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.common.SoundRegistry;
@@ -48,6 +49,7 @@ public class GuiIfTabletSelector extends ControlIfTabletPart
     @Override
     public void postRender()
     {
+        GlStateManager.enableBlend();
         int offset = 0;
         for(int i = selected - 3; i <= selected + 3; i++)
         {
@@ -60,6 +62,7 @@ public class GuiIfTabletSelector extends ControlIfTabletPart
             }
             offset += texTab.height;
         }
+        GlStateManager.disableBlend();
     }
 
     @Override
