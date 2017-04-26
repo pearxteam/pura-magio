@@ -17,7 +17,6 @@ import java.util.List;
  */
 public class IfEntry
 {
-    //todo types
     private String id;
     private int tier;
     private List<String> parents;
@@ -113,23 +112,25 @@ public class IfEntry
     //Just available to see, not read/continue researching/etc.
     public boolean isAvailable(EntityPlayer p, int tier)
     {
-        //if player hasn't capability
-        if (!p.hasCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null))
-            return false;
-
         IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null);
         //if tier is < needed.
         if (tier < getTier())
             return false;
 
-        //if not all the parents unlocked
-        for (String id : getParents())
-            if (!store.isFullyUnlocked(id))
-                return false;
+        if(!isAllParentsUnlocked(p))
+            return false;
 
         if(store.getSteps(getId()) < getStepsForDisplay())
             return false;
 
+        return true;
+    }
+
+    public boolean isAllParentsUnlocked(EntityPlayer p)
+    {
+        for (String id : getParents())
+            if (!p.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).isFullyUnlocked(id))
+                return false;
         return true;
     }
 

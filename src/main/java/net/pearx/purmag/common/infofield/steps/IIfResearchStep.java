@@ -5,4 +5,8 @@ package net.pearx.purmag.common.infofield.steps;
  */
 public interface IIfResearchStep
 {
+    /**
+     * Gets the description of the research step that will be rendered in IF Tablet.
+     */
+    String getDescription();
 }

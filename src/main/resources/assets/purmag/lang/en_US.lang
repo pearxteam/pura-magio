@@ -20,8 +20,11 @@ sip.information.name=Informa
 if_channel.information_field.name=Information Field
 if_channel.crystallography.name=Crystallography
 
-#Entries
+#Entries and steps
+if_step.none.desc=No description
+
 if_entry.crystals.name=Crystals
+if_step.crystals.collect.desc=You thinking that you can find something in a cave or on a beach...
 
 #Commands
 command.if.usage=Usage: /infofield <unlock|lock> <entry> <player>

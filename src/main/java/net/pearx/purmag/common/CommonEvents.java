@@ -1,15 +1,23 @@
 package net.pearx.purmag.common;
 
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.infofield.IfEntry;
+import net.pearx.purmag.common.infofield.IfRegistry;
+import net.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import net.pearx.purmag.common.infofield.playerdata.IfEntryStoreProvier;
+import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
+import net.pearx.purmag.common.infofield.steps.IIfResearchStepCollect;
 
 
 /**
@@ -20,14 +28,40 @@ public class CommonEvents
     @SubscribeEvent
     public void onTooltip(ItemTooltipEvent e)
     {
-        if(e.getItemStack().hasTagCompound())
+
+    }
+
+    @SubscribeEvent
+    public void onPickup(EntityItemPickupEvent e)
+    {
+        if(e.getEntityPlayer() instanceof EntityPlayerMP)
         {
-            if(e.getItemStack().getTagCompound().hasKey("sipStored"))
+            EntityPlayerMP p = (EntityPlayerMP)e.getEntityPlayer();
+            IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null);
+            for (IfEntry entr : PurMag.instance.if_registry.entries)
             {
-                e.getToolTip().add(I18n.format("sip_tooltip") + e.getItemStack().getTagCompound().getInteger("sipStored"));
+                int steps = store.getSteps(entr.getId());
+                if(steps < entr.getSteps().size())
+                {
+                    IIfResearchStep step = entr.getSteps().get(steps);
+                    if (step instanceof IIfResearchStepCollect)
+                    {
+                        if (entr.isAllParentsUnlocked(p))
+                        {
+                            IIfResearchStepCollect s = (IIfResearchStepCollect) step;
+                            if (s.isSuitable(e.getItem().getEntityItem()))
+                            {
+                                store.setSteps(entr.getId(), steps + 1);
+                                store.sync(p);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
+
+
 
     @SubscribeEvent
     public void onCaps(AttachCapabilitiesEvent<Entity> e)
@@ -60,5 +94,4 @@ public class CommonEvents
     {
         e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).sync((EntityPlayerMP)e.player);
     }
-
 }

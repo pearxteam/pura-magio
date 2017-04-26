@@ -12,12 +12,13 @@ import net.pearx.purmag.common.CapabilityRegistry;
 /**
  * Created by mrAppleXZ on 23.04.17 11:32.
  */
-public class SPacketSyncEntryStore implements IMessage
+public class CPacketSyncEntryStore implements IMessage
 {
+    //TODO: Send only needed steps, not everything at one moment. :/
     NBTTagCompound tag;
 
-    public SPacketSyncEntryStore() {}
-    public SPacketSyncEntryStore(NBTTagCompound tag)
+    public CPacketSyncEntryStore() {}
+    public CPacketSyncEntryStore(NBTTagCompound tag)
     {
         this.tag = tag;
     }
@@ -34,7 +35,7 @@ public class SPacketSyncEntryStore implements IMessage
         ByteBufUtils.writeTag(buf, tag);
     }
 
-    public static class Handler implements IMessageHandler<SPacketSyncEntryStore, IMessage>
+    public static class Handler implements IMessageHandler<CPacketSyncEntryStore, IMessage>
     {
         public Handler()
         {
@@ -42,7 +43,7 @@ public class SPacketSyncEntryStore implements IMessage
         }
 
         @Override
-        public IMessage onMessage(SPacketSyncEntryStore message, MessageContext ctx)
+        public IMessage onMessage(CPacketSyncEntryStore message, MessageContext ctx)
         {
             Minecraft.getMinecraft().addScheduledTask(new Runnable()
             {

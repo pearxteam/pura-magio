@@ -1,11 +1,10 @@
 package net.pearx.purmag.common.infofield.playerdata;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.networking.NetworkManager;
-import net.pearx.purmag.common.networking.packets.SPacketSyncEntryStore;
+import net.pearx.purmag.common.networking.packets.CPacketSyncEntryStore;
 
 import java.util.HashMap;
 
@@ -47,7 +46,7 @@ public class IfEntryStore implements IIfEntryStore
     @Override
     public void sync(EntityPlayerMP p)
     {
-        NetworkManager.sendTo(new SPacketSyncEntryStore(serializeNBT()), p);
+        NetworkManager.sendTo(new CPacketSyncEntryStore(serializeNBT()), p);
     }
 
     @Override
