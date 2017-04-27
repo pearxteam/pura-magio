@@ -5,6 +5,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.TexturePart;

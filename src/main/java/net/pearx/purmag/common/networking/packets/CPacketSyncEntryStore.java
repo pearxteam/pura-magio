@@ -45,14 +45,7 @@ public class CPacketSyncEntryStore implements IMessage
         @Override
         public IMessage onMessage(CPacketSyncEntryStore message, MessageContext ctx)
         {
-            Minecraft.getMinecraft().addScheduledTask(new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).deserializeNBT(message.tag);
-                }
-            });
+            Minecraft.getMinecraft().addScheduledTask(() -> Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).deserializeNBT(message.tag));
             return null;
         }
     }

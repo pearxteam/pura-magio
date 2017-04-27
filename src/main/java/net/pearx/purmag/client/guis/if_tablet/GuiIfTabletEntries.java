@@ -3,6 +3,7 @@ package net.pearx.purmag.client.guis.if_tablet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.ClientProxy;
 import net.pearx.purmag.client.guis.DrawingTools;
@@ -19,6 +20,8 @@ import java.awt.*;
  */
 public class GuiIfTabletEntries extends ControlIfTabletPart
 {
+    public int bit = 0;
+
     public int entrSize = 32;
     public AnimatedDrawable runes;
     public int minOffsetX, minOffsetY, maxOffsetX, maxOffsetY;
@@ -33,23 +36,31 @@ public class GuiIfTabletEntries extends ControlIfTabletPart
     @Override
     public void render()
     {
-        GL11.glEnable(GL11.GL_STENCIL_TEST);
-        GlStateManager.clear(GL11.GL_STENCIL_BUFFER_BIT);
+        bit = MinecraftForgeClient.reserveStencilBit();
+        int flag = 1 << bit;
 
-        GL11.glStencilMask(0xFF);
-        GL11.glStencilFunc(GL11.GL_ALWAYS, 1, 0xFF);
-        GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_STENCIL_TEST);
+        GL11.glStencilFunc(GL11.GL_ALWAYS, flag, flag);
+        GL11.glStencilOp(GL11.GL_ZERO, GL11.GL_ZERO, GL11.GL_REPLACE);
+        GL11.glStencilMask(flag);
         GL11.glColorMask(false, false, false, false);
+        GL11.glDepthMask(false);
+        GL11.glClearStencil(0);
+        GL11.glClear(GL11.GL_STENCIL_BUFFER_BIT);
         DrawingTools.drawRectangle(0, 0, getWidth(), getHeight());
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glStencilFunc(GL11.GL_EQUAL, flag, flag);
+        GL11.glStencilMask(0);
         GL11.glColorMask(true, true, true, true);
-        GL11.glStencilMask(0x00);
-        GL11.glStencilFunc(GL11.GL_NOTEQUAL, 0, 0xFF);
+        GL11.glDepthMask(true);
     }
 
     @Override
     public void postRender()
     {
         GL11.glDisable(GL11.GL_STENCIL_TEST);
+        MinecraftForgeClient.releaseStencilBit(bit);
     }
 
     @Override

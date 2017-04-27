@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ClientUtils
 {
+
     public static void setModelLocation(Item itm, int meta)
     {
         String s = meta == -1 ? itm.getRegistryName().toString() : itm.getRegistryName() + "." + meta;

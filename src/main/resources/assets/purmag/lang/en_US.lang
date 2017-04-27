@@ -1,5 +1,3 @@
-itemGroup.purmag=Purificati Magicae
-
 #Items and tiles
 tile.crystal.name=%s Crystal
 item.crystal_shard.name=%s Shard
@@ -26,8 +24,12 @@ if_step.none.desc=No description
 if_entry.crystals.name=Crystals
 if_step.crystals.collect.desc=You thinking that you can find something in a cave or on a beach...
 
+#Common
+itemGroup.purmag=Purificati Magicae
+if_step.unlocked.text=You've completed a research step!
+
 #Commands
-command.if.usage=Usage: /infofield <unlock|lock> <entry> <player>
+command.if.usage=Usage: /infofield <unlock|lock> <entry> [player]
 command.if.playerNotFound=Player not found!
 command.if.entryNotFound=IF Entry not found!
 command.if.success=§7The IF entry §5%1$s§7 is successfully unlocked for §5%2$s§7!

@@ -1,13 +1,12 @@
 package net.pearx.purmag.common.networking.packets;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufUtil;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.pearx.purmag.client.DisplayMessage;
-import org.lwjgl.BufferUtils;
+import net.pearx.purmag.common.DisplayMessage;
+import net.pearx.purmag.client.DisplayMessageQuery;
 
 /**
  * Created by mrAppleXZ on 26.04.17 22:03.
@@ -20,7 +19,7 @@ public class CPacketDisplayMessage implements IMessage
 
     public CPacketDisplayMessage(DisplayMessage msg)
     {
-
+        this.msg = msg;
     }
 
     @Override
@@ -42,6 +41,7 @@ public class CPacketDisplayMessage implements IMessage
         @Override
         public IMessage onMessage(CPacketDisplayMessage msg, MessageContext ctx)
         {
+            Minecraft.getMinecraft().addScheduledTask(() -> DisplayMessageQuery.addMessage(msg.msg));
             return null;
         }
     }

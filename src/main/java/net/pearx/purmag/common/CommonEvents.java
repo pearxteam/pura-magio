@@ -18,6 +18,8 @@ import net.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import net.pearx.purmag.common.infofield.playerdata.IfEntryStoreProvier;
 import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
 import net.pearx.purmag.common.infofield.steps.IIfResearchStepCollect;
+import net.pearx.purmag.common.networking.NetworkManager;
+import net.pearx.purmag.common.networking.packets.CPacketDisplayMessage;
 
 
 /**
@@ -53,6 +55,7 @@ public class CommonEvents
                             {
                                 store.setSteps(entr.getId(), steps + 1);
                                 store.sync(p);
+                                NetworkManager.sendTo(new CPacketDisplayMessage(new DisplayMessage("%0", "%1", "if_entry:" + entr.getId(), "i18n:if_step.unlocked.text")), p);
                             }
                         }
                     }
@@ -60,8 +63,6 @@ public class CommonEvents
             }
         }
     }
-
-
 
     @SubscribeEvent
     public void onCaps(AttachCapabilitiesEvent<Entity> e)

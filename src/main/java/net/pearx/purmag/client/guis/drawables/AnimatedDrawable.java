@@ -24,7 +24,7 @@ public class AnimatedDrawable implements IGuiDrawable
         this.texElemW = texElemW;
         this.texElemH = texElemH;
         this.msDivider = msDivider;
-        totalCycles = texH / texElemH - 1;
+        totalCycles = texH / texElemH;
     }
 
     @Override
