@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.pearx.purmag.common.DisplayMessage;
 import net.pearx.purmag.client.DisplayMessageQuery;
+import net.pearx.purmag.common.SoundRegistry;
 
 /**
  * Created by mrAppleXZ on 26.04.17 22:03.

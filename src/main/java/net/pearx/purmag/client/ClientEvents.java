@@ -1,5 +1,7 @@
 package net.pearx.purmag.client;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
@@ -11,6 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.models.CrystalModel;
 import net.pearx.purmag.common.DisplayMessage;
+import net.pearx.purmag.common.SoundRegistry;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -46,6 +49,7 @@ public class ClientEvents
             {
                 if(!isDMDisplayed)
                 {
+                    Minecraft.getMinecraft().player.playSound(SoundRegistry.Notification, 1, 1);
                     timerDM.schedule(new TimerTask()
                     {
                         @Override

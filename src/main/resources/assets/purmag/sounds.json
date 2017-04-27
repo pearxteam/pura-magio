@@ -1,5 +1,10 @@
 {
   "if_channel_change": {
-    "sounds": [ "purmag:if_channel_change" ]
+    "sounds": [ "purmag:if_channel_change" ],
+    "subtitle": "subtitle.if_channel_change"
+  },
+  "notification": {
+    "sounds": [ "purmag:notification" ],
+    "subtitle": "subtitle.purmag_notification"
   }
 }

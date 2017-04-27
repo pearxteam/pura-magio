@@ -29,7 +29,13 @@ itemGroup.purmag=Purificati Magicae
 if_step.unlocked.text=You've completed a research step!
 
 #Commands
+command.if.unlocked=""
 command.if.usage=Usage: /infofield <unlock|lock> <entry> [player]
 command.if.playerNotFound=Player not found!
 command.if.entryNotFound=IF Entry not found!
-command.if.success=§7The IF entry §5%1$s§7 is successfully unlocked for §5%2$s§7!
+command.if.success.unlock=§7The IF entry %s§7 is successfully unlocked for %s§7!
+command.if.success.lock=§7The IF entry %s§7 is successfully locked for %s§7!
+
+#Subtitles
+subtitle.if_channel_change=IF channel changes
+subtitle.purmag_notification=Notification notifies

@@ -9,11 +9,17 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class SoundRegistry
 {
     public static SoundEvent IfChannelChange;
+    public static SoundEvent Notification;
 
     public static void setup()
     {
         IfChannelChange = new SoundEvent(Utils.getRegistryName("if_channel_change"));
         IfChannelChange.setRegistryName(Utils.getRegistryName("if_channel_change"));
+
+        Notification = new SoundEvent(Utils.getRegistryName("notification"));
+        Notification.setRegistryName(Utils.getRegistryName("notification"));
+
         GameRegistry.register(IfChannelChange);
+        GameRegistry.register(Notification);
     }
 }

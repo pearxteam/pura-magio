@@ -44,13 +44,13 @@ public class CommandIf extends CommandBase
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
     {
-        if(args.length != 3)
+        if(args.length != 3 && args.length != 2)
         {
             throw new WrongUsageException(getUsage(sender));
         }
         String act = args[0];
         String res = args[1];
-        String player = args[2];
+        String player = args.length > 2 ? args[2] : sender.getName();
         if(!Arrays.asList(server.getPlayerList().getOnlinePlayerNames()).contains(player))
         {
             throw new CommandException("command.if.playerNotFound");
@@ -75,7 +75,7 @@ public class CommandIf extends CommandBase
         IIfEntryStore s = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null);
         s.setSteps(res, steps);
         s.sync(p);
-        sender.sendMessage(new TextComponentString(I18n.format("command.if.success", res, player)));
+        sender.sendMessage(new TextComponentTranslation("command.if.success." + act, "§5" + res, "§5" + player));
     }
 
     @Override
