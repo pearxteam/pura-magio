@@ -31,8 +31,8 @@ public class GuiIfTablet extends Control
     public TexturePart texBg;
     public TexturePart texFrame;
 
-    public GuiIfTabletSelector selector;
-    public GuiIfTabletEntries entries;
+    public GuiIfTabletSE se = new GuiIfTabletSE();
+    public GuiIfTabletS if_screen;
 
     public GuiIfTablet(int tier)
     {
@@ -49,15 +49,7 @@ public class GuiIfTablet extends Control
         texBg = new TexturePart(textures, 0, 0, w, h, 512, 512);
         texFrame = new TexturePart(textures, 0, h, w, h, 512, 512);
 
-        selector = new GuiIfTabletSelector();
-        controls.add(selector);
-        selector.setX(w - selector.getWidth());
-        selector.setY((h - selector.getHeight()) / 2);
-
-        entries = new GuiIfTabletEntries();
-        controls.add(entries);
-
-        entries.reload();
+        changeScreen(se);
     }
 
     @Override
@@ -85,8 +77,14 @@ public class GuiIfTablet extends Control
     public void postRender()
     {
         GlStateManager.enableBlend();
-        DrawingTools.drawString(selector.getSelectedChannel().getDisplayName(), 8, 8, Color.WHITE);
         texFrame.draw(0, 0);
         GlStateManager.disableBlend();
+    }
+
+    public void changeScreen(GuiIfTabletS screen)
+    {
+        if_screen = screen;
+        controls.remove(if_screen);
+        controls.add(screen);
     }
 }
