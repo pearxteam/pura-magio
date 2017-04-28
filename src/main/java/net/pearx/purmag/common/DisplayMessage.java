@@ -125,10 +125,12 @@ public class DisplayMessage
         y += 3;
         AnimatedDrawable draw = new AnimatedDrawable(BG, 192, 32, 192, 32, 192, 384, 50);
         GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
         GlStateManager.translate(0, 0, 500);
         draw.draw(0, 0);
         DrawingTools.drawString(formatSting(getSubject()), x, y, Color.YELLOW);
         DrawingTools.drawString(formatSting(getDescription()), x + 5, y + 11, Color.WHITE);
+        GlStateManager.disableBlend();
         GlStateManager.popMatrix();
     }
 }
