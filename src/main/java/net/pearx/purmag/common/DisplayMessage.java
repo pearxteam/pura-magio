@@ -124,14 +124,12 @@ public class DisplayMessage
         x += 3;
         y += 3;
         GlStateManager.pushMatrix();
-        GlStateManager.enableBlend();
         GlStateManager.translate(0, 0, 500);
         GlStateManager.enableBlend();
         GuiDrawableRegistry.displayMessage.draw(0, 0);
         GlStateManager.disableBlend();
         DrawingTools.drawString(formatSting(getSubject()), x, y, Color.YELLOW);
         DrawingTools.drawString(formatSting(getDescription()), x + 5, y + 11, Color.WHITE);
-        GlStateManager.disableBlend();
         GlStateManager.popMatrix();
     }
 }
