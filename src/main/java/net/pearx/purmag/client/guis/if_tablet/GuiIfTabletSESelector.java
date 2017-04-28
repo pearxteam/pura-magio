@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by mrAppleXZ on 21.04.17 11:54.
  */
-public class GuiIfTabletSelector extends ControlIfTabletPart
+public class GuiIfTabletSESelector extends GuiIfTabletSEPart
 {
     public TexturePart texTab;
 
@@ -25,13 +25,13 @@ public class GuiIfTabletSelector extends ControlIfTabletPart
     @Override
     public void init()
     {
-        texTab = new TexturePart(getTablet().textures, getTablet().w, 0, 32, 32, 512, 512);
+        texTab = new TexturePart(getTabletScreen().getTablet().textures, getTabletScreen().getWidth(), 0, 32, 32, 512, 512);
 
         setWidth(texTab.width + 4);
         setHeight(texTab.height * 7);
         for(IfChannel chan : PurMag.instance.if_registry.channels)
         {
-            if(chan.isAvailable(Minecraft.getMinecraft().player, getTablet().tier))
+            if(chan.isAvailable(Minecraft.getMinecraft().player, getTabletScreen().getTablet().tier))
                 channels.add(chan);
         }
     }
@@ -42,7 +42,7 @@ public class GuiIfTabletSelector extends ControlIfTabletPart
         {
             Minecraft.getMinecraft().player.playSound(SoundRegistry.IfChannelChange, 1, 1);
             selected = sel;
-            getTablet().entries.reload();
+            getTabletScreen().entries.reload();
         }
     }
 

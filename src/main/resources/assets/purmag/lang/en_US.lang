@@ -29,7 +29,6 @@ itemGroup.purmag=Purificati Magicae
 if_step.unlocked.text=You've completed a research step!
 
 #Commands
-command.if.unlocked=""
 command.if.usage=Usage: /infofield <unlock|lock> <entry> [player]
 command.if.playerNotFound=Player not found!
 command.if.entryNotFound=IF Entry not found!

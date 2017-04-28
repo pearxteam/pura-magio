@@ -1,11 +1,9 @@
 package net.pearx.purmag.client.guis.if_tablet;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.client.ClientProxy;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
@@ -13,12 +11,10 @@ import net.pearx.purmag.common.infofield.IfEntry;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import java.awt.*;
-
 /**
  * Created by mrAppleXZ on 23.04.17 19:12.
  */
-public class GuiIfTabletEntries extends ControlIfTabletPart
+public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
 {
     public int bit = 0;
 
@@ -28,7 +24,7 @@ public class GuiIfTabletEntries extends ControlIfTabletPart
     public int offsetX, offsetY;
     public int prevMouseX, prevMouseY;
 
-    public GuiIfTabletEntries()
+    public GuiIfTabletSEEntries()
     {
 
     }
@@ -66,8 +62,8 @@ public class GuiIfTabletEntries extends ControlIfTabletPart
     @Override
     public void init()
     {
-        setWidth(getTablet().w - 10);
-        setHeight(getTablet().h - 10);
+        setWidth(getTabletScreen().getWidth() - 10);
+        setHeight(getTabletScreen().getHeight() - 10);
         setX(5);
         setY(5);
         runes = new AnimatedDrawable(new ResourceLocation(PurMag.ModId, "textures/runes.png"), 32, 38, 32, 38, 32, 380, 100);
@@ -94,9 +90,9 @@ public class GuiIfTabletEntries extends ControlIfTabletPart
 
         for(IfEntry entr : PurMag.instance.if_registry.entries)
         {
-            if(getTablet().selector.getSelectedChannel().containsEntry(entr.getId()))
+            if(getTabletScreen().selector.getSelectedChannel().containsEntry(entr.getId()))
             {
-                if(entr.isAvailable(Minecraft.getMinecraft().player, getTablet().tier))
+                if(entr.isAvailable(Minecraft.getMinecraft().player, getTabletScreen().getTablet().tier))
                 {
                     if(entr.getX() < minX)
                         minX = entr.getX();
@@ -106,9 +102,9 @@ public class GuiIfTabletEntries extends ControlIfTabletPart
                         maxX = entr.getX();
                     if(entr.getY() > maxY)
                         maxY = entr.getY();
-                    GuiIfTabletEntry entrC = new GuiIfTabletEntry(entr);
-                    entrC.setX(entr.getX() * entrSize + ((getTablet().w - entrSize) / 2));
-                    entrC.setY(entr.getY() * entrSize + ((getTablet().h - entrSize) / 2));
+                    GuiIfTabletSEEntry entrC = new GuiIfTabletSEEntry(entr);
+                    entrC.setX(entr.getX() * entrSize + ((getTabletScreen().getWidth() - entrSize) / 2));
+                    entrC.setY(entr.getY() * entrSize + ((getTabletScreen().getHeight() - entrSize) / 2));
                     controls.add(entrC);
                 }
             }
@@ -116,10 +112,10 @@ public class GuiIfTabletEntries extends ControlIfTabletPart
 
         offsetX = 0;
         offsetY = 0;
-        minOffsetX = (minX * entrSize) - (getTablet().w / 2) - (entrSize / 2);
-        minOffsetY = (minY * entrSize) - (getTablet().h / 2) - (entrSize / 2);
-        maxOffsetX = (maxX * entrSize) + getTablet().w / 2;
-        maxOffsetY = (maxY * entrSize) + (getTablet().h / 2);
+        minOffsetX = (minX * entrSize) - (getTabletScreen().getWidth() / 2) - (entrSize / 2);
+        minOffsetY = (minY * entrSize) - (getTabletScreen().getHeight() / 2) - (entrSize / 2);
+        maxOffsetX = (maxX * entrSize) + getTabletScreen().getWidth() / 2;
+        maxOffsetY = (maxY * entrSize) + (getTabletScreen().getHeight() / 2);
     }
 
     public void setOffset(int pX, int pY)

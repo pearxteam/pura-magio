@@ -126,7 +126,9 @@ public class DisplayMessage
         AnimatedDrawable draw = new AnimatedDrawable(BG, 192, 32, 192, 32, 192, 384, 50);
         GlStateManager.pushMatrix();
         GlStateManager.translate(0, 0, 500);
+        GlStateManager.enableBlend();
         draw.draw(0, 0);
+        GlStateManager.disableBlend();
         DrawingTools.drawString(formatSting(getSubject()), x, y, Color.YELLOW);
         DrawingTools.drawString(formatSting(getDescription()), x + 5, y + 11, Color.WHITE);
         GlStateManager.popMatrix();
