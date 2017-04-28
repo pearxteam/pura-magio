@@ -2,6 +2,7 @@ package net.pearx.purmag.client.guis.if_tablet;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.pearx.purmag.client.GuiDrawableRegistry;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.common.CapabilityRegistry;
@@ -32,7 +33,7 @@ public class GuiIfTabletSEEntry extends Control
             f = 1 - (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).getSteps(entry.getId()) / entry.getSteps().size());
         } catch (ArithmeticException e) {}
         GlStateManager.color(f, 1, f);
-        getEntries().runes.draw(0, -4);
+        GuiDrawableRegistry.runes.draw(0, -4);
         GlStateManager.disableBlend();
 
         entry.getIcon().draw((getWidth() - entry.getIcon().getWidth()) / 2, (getHeight() - entry.getIcon().getHeight()) / 2);

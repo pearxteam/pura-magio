@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.client.GuiDrawableRegistry;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
 
@@ -22,7 +23,6 @@ import java.util.List;
  */
 public class DisplayMessage
 {
-    public static final ResourceLocation BG = new ResourceLocation(PurMag.ModId, "textures/message.png");
     private String subject;
     private String description;
     private List<String> args;
@@ -123,11 +123,10 @@ public class DisplayMessage
     {
         x += 3;
         y += 3;
-        AnimatedDrawable draw = new AnimatedDrawable(BG, 192, 32, 192, 32, 192, 384, 50);
         GlStateManager.pushMatrix();
         GlStateManager.translate(0, 0, 500);
         GlStateManager.enableBlend();
-        draw.draw(0, 0);
+        GuiDrawableRegistry.displayMessage.draw(0, 0);
         GlStateManager.disableBlend();
         DrawingTools.drawString(formatSting(getSubject()), x, y, Color.YELLOW);
         DrawingTools.drawString(formatSting(getDescription()), x + 5, y + 11, Color.WHITE);

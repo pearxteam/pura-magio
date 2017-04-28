@@ -19,7 +19,6 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
     public int bit = 0;
 
     public int entrSize = 32;
-    public AnimatedDrawable runes;
     public int minOffsetX, minOffsetY, maxOffsetX, maxOffsetY;
     public int offsetX, offsetY;
     public int prevMouseX, prevMouseY;
@@ -66,7 +65,6 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
         setHeight(getTabletScreen().getHeight() - 10);
         setX(5);
         setY(5);
-        runes = new AnimatedDrawable(new ResourceLocation(PurMag.ModId, "textures/runes.png"), 32, 38, 32, 38, 32, 380, 100);
     }
 
     @Override

@@ -32,6 +32,8 @@ public class ClientProxy extends CommonProxy
     @Override
     public void init()
     {
+        GuiDrawableRegistry.setup();
+
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, w, pos, tintIndex) ->
         {
             String type = SipTypeRegistry.def;
