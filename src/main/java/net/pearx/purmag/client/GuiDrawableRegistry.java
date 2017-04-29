@@ -17,6 +17,6 @@ public class GuiDrawableRegistry
     public static void setup()
     {
         runes = new AnimatedDrawable(new ResourceLocation(PurMag.ModId, "textures/runes.png"), 32, 38, 32, 38, 32, 380, 100);
-        displayMessage = new AnimatedDrawable(new ResourceLocation(PurMag.ModId, "textures/message.png"), 192, 32, 192, 32, 192, 384, 50);
+        displayMessage = new AnimatedDrawable(new ResourceLocation(PurMag.ModId, "textures/message.png"), 192, 32, 192, 32, 192, 1024, 100);
     }
 }
