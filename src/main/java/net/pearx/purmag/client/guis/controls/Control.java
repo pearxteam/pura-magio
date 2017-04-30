@@ -23,6 +23,7 @@ public class Control
     private boolean selected;
     private boolean focused;
 
+    public boolean initialized;
     public boolean keyEventsRS = true;
     public SelectType selectType = SelectType.CLICK;
 
@@ -265,9 +266,11 @@ public class Control
 
     public void invokeInit()
     {
-        init();
-        for(Control c : controls)
-            c.invokeInit();
+        if(!initialized)
+        {
+            init();
+            initialized = true;
+        }
     }
 
     public void select()
