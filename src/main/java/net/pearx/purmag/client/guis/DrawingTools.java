@@ -25,12 +25,12 @@ public class DrawingTools
 
     public static void drawString(String str, int x, int y, Color col, boolean dropShadow)
     {
-        Minecraft.getMinecraft().fontRendererObj.drawString(str, x, y, col.getRGB(), dropShadow);
+        Minecraft.getMinecraft().fontRenderer.drawString(str, x, y, col.getRGB(), dropShadow);
     }
 
     public static void drawString(String str, int x, int y, Color col)
     {
-        Minecraft.getMinecraft().fontRendererObj.drawString(str, x, y, col.getRGB(), true);
+        Minecraft.getMinecraft().fontRenderer.drawString(str, x, y, col.getRGB(), true);
     }
 
     public static void drawHoveringText(String str, int x, int y)

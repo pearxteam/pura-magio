@@ -2,6 +2,7 @@ package net.pearx.purmag.common.infofield.steps;
 
 import net.minecraft.client.resources.I18n;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
+import net.pearx.purmag.client.guis.if_tablet.steps.IRSRenderer;
 
 /**
  * Created by mrAppleXZ on 26.04.17 14:48.
@@ -38,7 +39,7 @@ public class IRSBase implements IIfResearchStep
     }
 
     @Override
-    public IGuiDrawable getIcon()
+    public IRSRenderer getRenderer()
     {
         return null;
     }

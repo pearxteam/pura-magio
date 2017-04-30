@@ -2,7 +2,7 @@ package net.pearx.purmag.common.infofield;
 
 import net.minecraft.item.ItemStack;
 import net.pearx.purmag.client.guis.drawables.BigItemDrawable;
-import net.pearx.purmag.common.infofield.steps.IRSCollectSimple;
+import net.pearx.purmag.common.infofield.steps.IRSCollect;
 import net.pearx.purmag.common.items.ItemBlockCrystal;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
@@ -79,7 +79,7 @@ public class IfRegistry
         registerChannel(new IfChannel("information_field", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet)), 0));
         registerChannel(new IfChannel("crystallography", new BigItemDrawable(new ItemStack(ItemRegistry.crystal)), 0, "crystals", "crystals1", "crystals2"));
 
-        registerEntry(new IfEntry("crystals", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip(SipTypeRegistry.def)), null, Arrays.asList(new IRSCollectSimple(new ItemStack(ItemRegistry.crystal_shard), "crystals.collect", false)), 0, 0, 0));
+        registerEntry(new IfEntry("crystals", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip(SipTypeRegistry.def)), null, Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals.collect", false)), 0, 0, 0));
 
         registerEntry(new IfEntry("crystals1", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip("flame")), Arrays.asList("crystals"), null, 0, -1, -1));
 

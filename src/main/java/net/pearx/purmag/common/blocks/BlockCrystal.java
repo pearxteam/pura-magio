@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -114,7 +115,7 @@ public class BlockCrystal extends BlockBase
     }
 
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(SipType t : PurMag.instance.sip.types)
         {
@@ -125,6 +126,8 @@ public class BlockCrystal extends BlockBase
             list.add(st);
         }
     }
+
+
 
     @Override
     public boolean hasTileEntity(IBlockState state)

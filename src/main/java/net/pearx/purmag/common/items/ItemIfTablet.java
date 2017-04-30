@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.infofield.IfTier;
@@ -34,7 +35,7 @@ public class ItemIfTablet extends ItemBase
     }
 
     @Override
-    public void getSubItems(Item itm, CreativeTabs tab, List<ItemStack> sub)
+    public void getSubItems(Item itm, CreativeTabs tab, NonNullList<ItemStack> sub)
     {
         for (IfTier t : PurMag.instance.if_registry.tiers)
         {

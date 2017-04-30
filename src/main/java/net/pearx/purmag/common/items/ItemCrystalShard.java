@@ -5,6 +5,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.sip.SipType;
@@ -25,7 +26,7 @@ public class ItemCrystalShard extends ItemBase
     }
 
     @Override
-    public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> list)
+    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(SipType t : PurMag.instance.sip.types)
         {

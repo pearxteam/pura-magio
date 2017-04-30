@@ -9,6 +9,8 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
+apply from: 'properties.gradle'
+
 repositories {
   maven {
     name "progwml"
@@ -26,12 +28,12 @@ compileJava {
 }
 
 minecraft {
-    version = "${mc_version}-${forge_version}"
+    version = mc_version + "-" + forge_version
     runDir = "run"
-    mappings = "stable_29"
+    mappings = mappings_version
 }
 
 dependencies {
-  deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
-  runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+  deobfCompile "mezz.jei:jei_" + mc_version + ":" + jei_version + ":api"
+  runtime "mezz.jei:jei_" + mc_version + ":" + jei_version
 }

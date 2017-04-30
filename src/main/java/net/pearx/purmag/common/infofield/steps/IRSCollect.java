@@ -5,16 +5,18 @@ import net.minecraft.item.ItemStack;
 import net.pearx.purmag.client.GuiDrawableRegistry;
 import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
+import net.pearx.purmag.client.guis.if_tablet.steps.IRSCollectRenderer;
+import net.pearx.purmag.client.guis.if_tablet.steps.IRSRenderer;
 
 /**
  * Created by mrAppleXZ on 26.04.17 14:16.
  */
-public class IRSCollectSimple extends IRSBase implements IIfResearchStepCollect
+public class IRSCollect extends IRSBase implements IIfResearchStepCollect
 {
     public ItemStack stack;
     public boolean showStack;
 
-    public IRSCollectSimple(ItemStack stack, String unlocDesc, boolean showStack)
+    public IRSCollect(ItemStack stack, String unlocDesc, boolean showStack)
     {
         this.stack = stack;
         this.showStack = showStack;
@@ -46,8 +48,8 @@ public class IRSCollectSimple extends IRSBase implements IIfResearchStepCollect
     }
 
     @Override
-    public IGuiDrawable getIcon()
+    public IRSRenderer getRenderer()
     {
-        return GuiDrawableRegistry.stepCollect;
+        return new IRSCollectRenderer();
     }
 }
