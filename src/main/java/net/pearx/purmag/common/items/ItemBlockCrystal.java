@@ -1,6 +1,6 @@
 package net.pearx.purmag.common.items;
 
-import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,7 +18,7 @@ public class ItemBlockCrystal extends ItemBlock
     {
         if(stack.hasTagCompound() && stack.getTagCompound().hasKey("type"))
         {
-            return I18n.format(getUnlocalizedName() + ".name", PurMag.instance.sip.getType(stack.getTagCompound().getString("type")).getDisplayName());
+            return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.instance.sip.getType(stack.getTagCompound().getString("type")).getDisplayName());
         }
         return super.getItemStackDisplayName(stack);
     }

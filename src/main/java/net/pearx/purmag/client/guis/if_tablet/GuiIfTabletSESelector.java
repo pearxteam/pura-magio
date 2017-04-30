@@ -2,6 +2,8 @@ package net.pearx.purmag.client.guis.if_tablet;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.common.SoundRegistry;
@@ -15,6 +17,7 @@ import java.util.List;
 /**
  * Created by mrAppleXZ on 21.04.17 11:54.
  */
+@SideOnly(Side.CLIENT)
 public class GuiIfTabletSESelector extends GuiIfTabletSEPart
 {
     public TexturePart texTab;

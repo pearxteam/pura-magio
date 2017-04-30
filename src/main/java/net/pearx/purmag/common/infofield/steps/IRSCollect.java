@@ -1,7 +1,9 @@
 package net.pearx.purmag.common.infofield.steps;
 
-import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.GuiDrawableRegistry;
 import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
@@ -48,6 +50,7 @@ public class IRSCollect extends IRSBase implements IIfResearchStepCollect
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public IRSRenderer getRenderer()
     {
         return new IRSCollectRenderer();

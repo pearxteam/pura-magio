@@ -2,6 +2,8 @@ package net.pearx.purmag.client.guis.if_tablet;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.GuiDrawableRegistry;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.Control;
@@ -11,6 +13,7 @@ import net.pearx.purmag.common.infofield.IfEntry;
 /**
  * Created by mrAppleXZ on 23.04.17 18:42.
  */
+@SideOnly(Side.CLIENT)
 public class GuiIfTabletSEEntry extends Control
 {
     public IfEntry entry;

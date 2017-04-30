@@ -1,12 +1,12 @@
 package net.pearx.purmag.client.models;
 
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import net.minecraftforge.common.model.TRSRTransformation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
-import scala.swing.model.Matrix;
 
 import javax.vecmath.Matrix4f;
 import javax.vecmath.Vector3f;
@@ -14,6 +14,7 @@ import javax.vecmath.Vector3f;
 /**
  * Created by mrAppleXZ on 09.04.17 15:25.
  */
+@SideOnly(Side.CLIENT)
 public class CrystalModel extends ObjModelBase implements IPerspectiveAwareModel
 {
     public CrystalModel()

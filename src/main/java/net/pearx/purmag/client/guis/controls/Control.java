@@ -1,8 +1,9 @@
 package net.pearx.purmag.client.guis.controls;
 
 
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.PmGui;
 import org.lwjgl.util.Point;
 import org.lwjgl.util.Rectangle;
@@ -10,6 +11,7 @@ import org.lwjgl.util.Rectangle;
 /**
  * Created by mrAppleXZ on 16.04.17 13:12.
  */
+@SideOnly(Side.CLIENT)
 public class Control
 {
     public ControlList controls = new ControlList(this);
@@ -162,7 +164,6 @@ public class Control
 
     public void invokeRender()
     {
-        Point p = getPointOnGui();
         GlStateManager.pushMatrix();
         GlStateManager.translate(getX(), getY(), 0);
         render();

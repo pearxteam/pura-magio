@@ -1,11 +1,13 @@
 package net.pearx.purmag.client.guis;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by mrAppleXZ on 16.04.17 20:49.
  */
+@SideOnly(Side.CLIENT)
 public class TexturePart
 {
     public ResourceLocation loc;

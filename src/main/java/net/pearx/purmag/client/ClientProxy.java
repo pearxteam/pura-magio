@@ -6,6 +6,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.common.CommonProxy;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.PmGui;
@@ -18,6 +20,7 @@ import net.pearx.purmag.common.tiles.TileCrystal;
 /**
  * Created by mrAppleXZ on 08.04.17 21:06.
  */
+@SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
     @Override

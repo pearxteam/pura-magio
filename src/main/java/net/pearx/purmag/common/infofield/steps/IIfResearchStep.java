@@ -12,11 +12,13 @@ public interface IIfResearchStep
     /**
      * Gets the description of the research step that will be rendered in IF Tablet.
      */
+    @SideOnly(Side.CLIENT)
     String getDescription();
 
     /**
      * Gets the display name of the research step that will be rendered in IF Tablet.
      */
+    @SideOnly(Side.CLIENT)
     String getDisplayName();
 
     @SideOnly(Side.CLIENT)

@@ -7,6 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.TexturePart;
@@ -21,6 +23,7 @@ import java.util.List;
 /**
  * Created by mrAppleXZ on 16.04.17 20:05.
  */
+@SideOnly(Side.CLIENT)
 public class GuiIfTablet extends Control
 {
     public int w = 384;

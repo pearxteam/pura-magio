@@ -1,6 +1,8 @@
 package net.pearx.purmag.common.infofield.steps;
 
-import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 import net.pearx.purmag.client.guis.if_tablet.steps.IRSRenderer;
 
@@ -29,13 +31,13 @@ public class IRSBase implements IIfResearchStep
     @Override
     public String getDescription()
     {
-        return getUnlocalizedDescription() == null ? I18n.format("if_step.none.desc") : I18n.format("if_step." + getUnlocalizedDescription() + ".desc");
+        return getUnlocalizedDescription() == null ? I18n.translateToLocal("if_step.none.desc") : I18n.translateToLocal("if_step." + getUnlocalizedDescription() + ".desc");
     }
 
     @Override
     public String getDisplayName()
     {
-        return I18n.format("if_step." + getUnlocalizedName() + ".name");
+        return I18n.translateToLocal("if_step." + getUnlocalizedName() + ".name");
     }
 
     @Override

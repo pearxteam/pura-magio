@@ -1,6 +1,8 @@
 package net.pearx.purmag.client.guis;
 
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.client.guis.controls.GuiControlContainer;
 import org.lwjgl.input.Keyboard;
@@ -11,6 +13,7 @@ import java.io.IOException;
 /**
  * Created by mrAppleXZ on 16.04.17 20:02.
  */
+@SideOnly(Side.CLIENT)
 public class PmGui extends GuiScreen
 {
     public GuiControlContainer gui;

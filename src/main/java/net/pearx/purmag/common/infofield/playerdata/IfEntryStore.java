@@ -13,7 +13,6 @@ import java.util.HashMap;
  */
 public class IfEntryStore implements IIfEntryStore
 {
-    //TODO: CHECK SYNCS!
     private HashMap<String, Integer> entries = new HashMap<>();
 
     @Override
@@ -33,7 +32,6 @@ public class IfEntryStore implements IIfEntryStore
     @Override
     public void setSteps(String id, int steps)
     {
-        //TODO: Syncing
         entries.put(id, steps);
     }
 

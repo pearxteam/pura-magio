@@ -3,6 +3,8 @@ package net.pearx.purmag.client.guis.if_tablet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.Control;
@@ -14,6 +16,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Created by mrAppleXZ on 23.04.17 19:12.
  */
+@SideOnly(Side.CLIENT)
 public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
 {
     public int bit = 0;

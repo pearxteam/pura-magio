@@ -13,6 +13,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.TRSRTransformation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 
 import javax.annotation.Nullable;
@@ -22,6 +24,7 @@ import java.util.List;
 /**
  * Created by mrAppleXZ on 10.04.17 8:55.
  */
+@SideOnly(Side.CLIENT)
 public class ObjModelBase implements IBakedModel
 {
     private ResourceLocation objFile;

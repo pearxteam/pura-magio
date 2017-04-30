@@ -8,6 +8,8 @@ import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.awt.*;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
 /**
  * Created by mrAppleXZ on 16.04.17 20:45.
  */
+@SideOnly(Side.CLIENT)
 public class DrawingTools
 {
     public static void drawTexture(ResourceLocation tex, int x, int y, int width, int height, int u, int v, int texw, int texh)

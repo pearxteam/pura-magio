@@ -1,7 +1,7 @@
 package net.pearx.purmag.common.infofield;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.text.translation.I18n;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 
 import java.util.ArrayList;
@@ -78,7 +78,7 @@ public class IfChannel
 
     public String getDisplayName()
     {
-        return I18n.format("if_channel." + id + ".name");
+        return I18n.translateToLocal("if_channel." + id + ".name");
     }
 
     public boolean isAvailable(EntityPlayer p, int tier)

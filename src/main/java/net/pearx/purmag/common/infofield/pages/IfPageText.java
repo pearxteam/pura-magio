@@ -1,6 +1,8 @@
 package net.pearx.purmag.common.infofield.pages;
 
-import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by mrAppleXZ on 22.04.17 21:05.
@@ -26,7 +28,7 @@ public class IfPageText implements IIfPage
 
     public String getDisplayText()
     {
-        return I18n.format("if_page." + getUnlocalizedText() + ".text");
+        return I18n.translateToLocal("if_page." + getUnlocalizedText() + ".text");
     }
 
     @Override

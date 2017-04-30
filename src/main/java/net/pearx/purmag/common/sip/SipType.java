@@ -1,6 +1,6 @@
 package net.pearx.purmag.common.sip;
 
-import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.translation.I18n;
 
 /**
  * Created by mrAppleXZ on 10.04.17 9:06.
@@ -38,6 +38,6 @@ public class SipType
 
     public String getDisplayName()
     {
-        return I18n.format("sip." + name + ".name");
+        return I18n.translateToLocal("sip." + name + ".name");
     }
 }

@@ -1,7 +1,9 @@
 package net.pearx.purmag.common.infofield;
 
-import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 import net.pearx.purmag.common.CapabilityRegistry;
@@ -106,7 +108,7 @@ public class IfEntry
 
     public String getDisplayName()
     {
-        return I18n.format("if_entry." + id + ".name");
+        return I18n.translateToLocal("if_entry." + id + ".name");
     }
 
     //Just available to see, not read/continue researching/etc.

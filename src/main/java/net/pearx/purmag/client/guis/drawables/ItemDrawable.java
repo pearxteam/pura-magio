@@ -4,6 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by mrAppleXZ on 15.04.17 9:49.
@@ -25,6 +27,7 @@ public class ItemDrawable implements IGuiDrawable
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void draw(int x, int y)
     {
         GlStateManager.pushMatrix();

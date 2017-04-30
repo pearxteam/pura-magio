@@ -1,10 +1,14 @@
 package net.pearx.purmag.client.guis.controls;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import java.util.*;
 
 /**
  * Created by mrAppleXZ on 16.04.17 13:12.
  */
+@SideOnly(Side.CLIENT)
 public class ControlList implements List<Control>
 {
     private ArrayList<Control> lst = new ArrayList<>();

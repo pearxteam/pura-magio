@@ -3,7 +3,7 @@ package net.pearx.purmag.common;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.relauncher.Side;
@@ -54,7 +54,7 @@ public class DisplayMessage
                     localized = PurMag.instance.if_registry.getEntry(cont).getDisplayName();
                     break;
                 case "i18n":
-                    localized = I18n.format(cont);
+                    localized = I18n.translateToLocal(cont);
                     break;
             }
             s = s.replace("%" + i, localized);

@@ -1,6 +1,8 @@
 package net.pearx.purmag.client.guis.drawables;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by mrAppleXZ on 23.04.17 20:15.
