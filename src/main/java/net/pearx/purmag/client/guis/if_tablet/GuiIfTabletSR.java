@@ -19,9 +19,9 @@ import java.awt.*;
 @SideOnly(Side.CLIENT)
 public class GuiIfTabletSR extends GuiIfTabletS
 {
-    IfEntry entry;
-    int doneSteps;
-    Button btnBack;
+    public IfEntry entry;
+    public int doneSteps;
+    public Button btnBack;
 
     public GuiIfTabletSR(IfEntry entr)
     {
@@ -33,6 +33,11 @@ public class GuiIfTabletSR extends GuiIfTabletS
     @Override
     public void init()
     {
+        if(doneSteps >= entry.getSteps().size())
+        {
+            getTablet().changeScreen(new GuiIfTabletSP(entry));
+            return;
+        }
         btnBack = new Button(I18n.translateToLocal("button.back.name"), () -> goBack());
         btnBack.setX(8);
         btnBack.setY(getHeight() - 24 - 8);

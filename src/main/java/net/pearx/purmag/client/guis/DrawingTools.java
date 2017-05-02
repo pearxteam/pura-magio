@@ -26,14 +26,14 @@ public class DrawingTools
         GuiScreen.drawModalRectWithCustomSizedTexture(x, y, u, v, width, height, texw, texh);
     }
 
-    public static void drawString(String str, int x, int y, Color col, boolean dropShadow)
-    {
-        Minecraft.getMinecraft().fontRenderer.drawString(str, x, y, col.getRGB(), dropShadow);
-    }
-
     public static void drawString(String str, int x, int y, Color col)
     {
         Minecraft.getMinecraft().fontRenderer.drawString(str, x, y, col.getRGB(), true);
+    }
+
+    public static void drawString(String str, int x, int y, Color col, int width)
+    {
+        Minecraft.getMinecraft().fontRenderer.drawSplitString(str, x, y, width, col.getRGB());
     }
 
     public static int measureString(String str)
@@ -50,7 +50,7 @@ public class DrawingTools
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate(10, 0, 500);
-        drawString(str, x, y, Color.WHITE, true);
+        drawString(str, x, y, Color.WHITE);
         GlStateManager.popMatrix();
     }
 

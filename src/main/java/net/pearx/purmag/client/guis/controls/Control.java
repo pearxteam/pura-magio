@@ -266,13 +266,13 @@ public class Control
 
     public void invokeInit()
     {
-        if(!initialized)
+        if (!initialized)
         {
             init();
             initialized = true;
         }
         Control parent = getMainParent(this);
-        if(parent.getGuiScreen() != null)
+        if (parent.getGuiScreen() != null)
             parent.invokeMouseMove(parent.getGuiScreen().getMouseX(), parent.getGuiScreen().getMouseY(), 0, 0);
     }
 
@@ -289,16 +289,15 @@ public class Control
         invokeSelectionChanged();
     }
 
-    public GuiControlContainer getMainGui()
-    {
-        if (this instanceof GuiControlContainer)
-            return (GuiControlContainer) this;
-        return (GuiControlContainer) getMainParent(this);
-    }
-
     public PmGui getGuiScreen()
     {
-        return getMainGui().getGs();
+        Control parent = getMainParent(this);
+        if(parent instanceof GuiControlContainer)
+        {
+            GuiControlContainer cont = (GuiControlContainer) parent;
+            return cont.getGs();
+        }
+        return null;
     }
 
     public static void unselectAll(Control c)

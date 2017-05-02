@@ -1,5 +1,6 @@
 package net.pearx.purmag.common.infofield.steps;
 
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -9,38 +10,68 @@ import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 import net.pearx.purmag.client.guis.if_tablet.steps.IRSCollectRenderer;
 import net.pearx.purmag.client.guis.if_tablet.steps.IRSRenderer;
+import net.pearx.purmag.common.PMCreativeTab;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mrAppleXZ on 26.04.17 14:16.
  */
-public class IRSCollect extends IRSBase implements IIfResearchStepCollect
+public class IRSCollect extends IRSBase
 {
-    public ItemStack stack;
-    public boolean showStack;
+    private ItemStack stack;
+    private boolean showStack;
+    public boolean checkNbt;
+    public boolean checkMeta;
 
-    public IRSCollect(ItemStack stack, String unlocDesc, boolean showStack)
+    public IRSCollect(ItemStack stack, String unlocDesc, boolean showStack, boolean checkMeta, boolean checkNbt)
     {
         this.stack = stack;
         this.showStack = showStack;
         setUnlocalizedDescription(unlocDesc);
+        this.checkMeta = checkMeta;
+        this.checkNbt = checkNbt;
     }
 
-    @Override
-    public ItemStack getDisplayStack()
+    public IRSCollect(ItemStack stack, String unlocDesc, boolean showStack)
+    {
+        this(stack, unlocDesc, showStack, false, false);
+    }
+
+    public ItemStack getStack()
     {
         return stack;
     }
 
-    @Override
     public boolean isSuitable(ItemStack stack)
     {
-        return stack.getItem() == this.stack.getItem() && stack.getMetadata() == this.stack.getMetadata();
+        boolean itemCond = stack.getItem() == this.stack.getItem();
+        boolean metaCond = checkMeta ? stack.getMetadata() == this.stack.getMetadata() : true;
+        boolean nbtCond = true;
+        //todo: write nbtCond
+
+        return itemCond && metaCond && nbtCond;
     }
 
-    @Override
-    public boolean showStack()
+    public boolean getShowStack()
     {
         return showStack;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public List<ItemStack> getStacksToRender()
+    {
+        NonNullList<ItemStack> lst = NonNullList.create();
+        stack.getItem().getSubItems(stack.getItem(), PMCreativeTab.instance, lst);
+
+        ArrayList<ItemStack> out = new ArrayList<>();
+        for(ItemStack stack : lst)
+        {
+            if(isSuitable(stack))
+                out.add(stack);
+        }
+        return out;
     }
 
     @Override

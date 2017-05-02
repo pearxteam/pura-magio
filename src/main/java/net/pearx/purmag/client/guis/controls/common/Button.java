@@ -2,6 +2,8 @@ package net.pearx.purmag.client.guis.controls.common;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.client.guis.controls.Control;
@@ -13,6 +15,7 @@ import java.awt.*;
 /**
  * Created by mrAppleXZ on 02.05.17 8:53.
  */
+@SideOnly(Side.CLIENT)
 public class Button extends Control
 {
     public ResourceLocation textures;

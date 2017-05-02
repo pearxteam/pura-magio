@@ -1,7 +1,5 @@
 package net.pearx.purmag.common;
 
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -13,11 +11,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.infofield.IfEntry;
-import net.pearx.purmag.common.infofield.IfRegistry;
 import net.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import net.pearx.purmag.common.infofield.playerdata.IfEntryStoreProvier;
 import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
-import net.pearx.purmag.common.infofield.steps.IIfResearchStepCollect;
+import net.pearx.purmag.common.infofield.steps.IRSCollect;
 import net.pearx.purmag.common.networking.NetworkManager;
 import net.pearx.purmag.common.networking.packets.CPacketDisplayMessage;
 
@@ -46,11 +43,11 @@ public class CommonEvents
                 if(steps < entr.getSteps().size())
                 {
                     IIfResearchStep step = entr.getSteps().get(steps);
-                    if (step instanceof IIfResearchStepCollect)
+                    if (step instanceof IRSCollect)
                     {
                         if (entr.isAllParentsUnlocked(p))
                         {
-                            IIfResearchStepCollect s = (IIfResearchStepCollect) step;
+                            IRSCollect s = (IRSCollect) step;
                             if (s.isSuitable(e.getItem().getEntityItem()))
                             {
                                 store.setSteps(entr.getId(), steps + 1);
