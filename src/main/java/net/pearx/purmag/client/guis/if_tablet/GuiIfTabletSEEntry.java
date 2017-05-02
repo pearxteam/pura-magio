@@ -68,7 +68,7 @@ public class GuiIfTabletSEEntry extends Control
     }
 
     @Override
-    public void mouseDown(int button, int x, int y)
+    public void mouseUp(int button, int x, int y)
     {
         getEntries().getTabletScreen().getTablet().changeScreen(new GuiIfTabletSR(entry));
     }

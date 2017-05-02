@@ -38,4 +38,7 @@ command.if.success.lock=§7The IF entry %s§7 is successfully locked for %s§7!
 
 #Subtitles
 subtitle.if_channel_change=IF channel changes
-subtitle.purmag_notification=Notification notifies
+subtitle.purmag_notification=Notification
+
+#Buttons
+button.back.name=Back

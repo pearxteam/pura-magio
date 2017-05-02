@@ -29,8 +29,10 @@ public class ItemIfTablet extends ItemBase
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World w, EntityPlayer p, EnumHand hand)
     {
-        if(!w.isRemote)
+        if(w.isRemote)
+        {
             PurMag.proxy.openIfTablet(stack.getItemDamage());
+        }
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 
@@ -48,6 +50,4 @@ public class ItemIfTablet extends ItemBase
     {
         return super.getUnlocalizedName(stack) + "." + stack.getItemDamage();
     }
-
-
 }

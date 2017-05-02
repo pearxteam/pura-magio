@@ -210,7 +210,6 @@ public class Control
             if (new Rectangle(cont.getX(), cont.getY(), cont.getWidth(), cont.getHeight()).contains(x, y))
             {
                 cont.invokeMouseDown(button, x - cont.getX(), y - cont.getY());
-                return;
             }
         }
         if(selectType == SelectType.CLICK)
@@ -225,7 +224,6 @@ public class Control
             if (new Rectangle(cont.getX(), cont.getY(), cont.getWidth(), cont.getHeight()).contains(x, y))
             {
                 cont.invokeMouseUp(button, x - cont.getX(), y - cont.getY());
-                return;
             }
         }
         mouseUp(button, x, y);
@@ -233,16 +231,18 @@ public class Control
 
     public void invokeMouseMove(int x, int y, int dx, int dy)
     {
+        boolean last = true;
         for (Control cont : controls)
         {
             if (new Rectangle(cont.getX(), cont.getY(), cont.getWidth(), cont.getHeight()).contains(x, y))
             {
                 cont.invokeMouseMove(x - cont.getX(), y - cont.getY(), dx, dy);
-                return;
+                last = false;
             }
         }
-        setSelected(getMainParent(this), this);
         mouseMove(x, y, dx, dy);
+        if(last)
+            setSelected(getMainParent(this), this);
     }
 
     public void invokeMouseEnter()
@@ -271,6 +271,9 @@ public class Control
             init();
             initialized = true;
         }
+        Control parent = getMainParent(this);
+        if(parent.getGuiScreen() != null)
+            parent.invokeMouseMove(parent.getGuiScreen().getMouseX(), parent.getGuiScreen().getMouseY(), 0, 0);
     }
 
     public void select()

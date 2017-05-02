@@ -65,8 +65,8 @@ public class PmGui extends GuiScreen
     {
         if (gui != null)
         {
-            int x = Mouse.getEventX() * width / mc.displayWidth;
-            int y = height - Mouse.getEventY() * height / mc.displayHeight - 1;
+            int x = getMouseX();
+            int y = getMouseY();
             if (Mouse.getEventButton() != -1)
             {
                 if (Mouse.getEventButtonState())
@@ -83,5 +83,15 @@ public class PmGui extends GuiScreen
                 gui.invokeMouseWheel(Mouse.getEventDWheel());
             }
         }
+    }
+
+    public int getMouseX()
+    {
+        return Mouse.getEventX() * width / mc.displayWidth;
+    }
+
+    public int getMouseY()
+    {
+        return height - Mouse.getEventY() * height / mc.displayHeight - 1;
     }
 }

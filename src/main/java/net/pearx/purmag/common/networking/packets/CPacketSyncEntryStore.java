@@ -7,6 +7,8 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.common.CapabilityRegistry;
 
 /**
@@ -43,6 +45,7 @@ public class CPacketSyncEntryStore implements IMessage
         }
 
         @Override
+        @SideOnly(Side.CLIENT)
         public IMessage onMessage(CPacketSyncEntryStore message, MessageContext ctx)
         {
             Minecraft.getMinecraft().addScheduledTask(() -> Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).deserializeNBT(message.tag));

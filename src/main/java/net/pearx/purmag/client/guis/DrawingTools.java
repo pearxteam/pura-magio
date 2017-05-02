@@ -36,6 +36,16 @@ public class DrawingTools
         Minecraft.getMinecraft().fontRenderer.drawString(str, x, y, col.getRGB(), true);
     }
 
+    public static int measureString(String str)
+    {
+        return Minecraft.getMinecraft().fontRenderer.getStringWidth(str);
+    }
+
+    public static int getFontHeight()
+    {
+        return Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT;
+    }
+
     public static void drawHoveringText(String str, int x, int y)
     {
         GlStateManager.pushMatrix();
