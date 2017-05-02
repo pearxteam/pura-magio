@@ -34,4 +34,10 @@ public class GuiIfTabletSE extends GuiIfTabletS
     {
         DrawingTools.drawString(selector.getSelectedChannel().getDisplayName(), 8, 8, Color.WHITE);
     }
+
+    @Override
+    public boolean isGlowing()
+    {
+        return true;
+    }
 }

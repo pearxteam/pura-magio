@@ -28,4 +28,6 @@ public class GuiIfTabletS extends Control
     {
         return getTablet().getHeight();
     }
+
+    public boolean isGlowing() { return false; }
 }

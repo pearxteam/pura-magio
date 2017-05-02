@@ -70,7 +70,7 @@ public class GuiIfTablet extends Control
     @Override
     public void render()
     {
-        float sin = MathHelper.sin((float)Math.toRadians(System.currentTimeMillis() / 10 % 360)) * 0.15f;
+        float sin = if_screen.isGlowing() ? MathHelper.sin((float)Math.toRadians(System.currentTimeMillis() / 10 % 360)) * 0.15f : 0;
         GlStateManager.color(0.85f + sin, 0.85f + sin, 0.85f + sin);
         texBg.draw(0, 0);
         GlStateManager.color(1, 1, 1);
