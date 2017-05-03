@@ -1,6 +1,7 @@
 package net.pearx.purmag.client.guis;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -26,14 +27,38 @@ public class DrawingTools
         GuiScreen.drawModalRectWithCustomSizedTexture(x, y, u, v, width, height, texw, texh);
     }
 
+    public static void drawString(String str, int x, int y, Color col, boolean shadow, float scale, FontRenderer rend)
+    {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(x, y, 0);
+        GlStateManager.scale(scale, scale, 0);
+        rend.drawString(str, 0, 0, col.getRGB(), shadow);
+        GlStateManager.popMatrix();
+    }
+
+    public static void drawString(String str, int x, int y, Color col, boolean shadow, float scale)
+    {
+        drawString(str, x, y, col, shadow, scale, Minecraft.getMinecraft().fontRenderer);
+    }
+
+    public static void drawString(String str, int x, int y, Color col, boolean shadow)
+    {
+        drawString(str, x, y, col, shadow, 1, Minecraft.getMinecraft().fontRenderer);
+    }
+
     public static void drawString(String str, int x, int y, Color col)
     {
-        Minecraft.getMinecraft().fontRenderer.drawString(str, x, y, col.getRGB(), true);
+        drawString(str, x, y, col, true);
+    }
+
+    public static void drawString(String str, int x, int y, Color col, int width, FontRenderer rend)
+    {
+        rend.drawSplitString(str, x, y, width, col.getRGB());
     }
 
     public static void drawString(String str, int x, int y, Color col, int width)
     {
-        Minecraft.getMinecraft().fontRenderer.drawSplitString(str, x, y, width, col.getRGB());
+        drawString(str, x, y, col, width, Minecraft.getMinecraft().fontRenderer);
     }
 
     public static int measureString(String str)
@@ -46,11 +71,11 @@ public class DrawingTools
         return Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT;
     }
 
-    public static void drawHoveringText(String str, int x, int y)
+    public static void drawHoveringText(String str, int x, int y, Color c, boolean shadow, float scale, FontRenderer rend)
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate(10, 0, 500);
-        drawString(str, x, y, Color.WHITE);
+        drawString(str, x, y, c, shadow, scale, rend);
         GlStateManager.popMatrix();
     }
 

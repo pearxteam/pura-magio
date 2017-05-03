@@ -25,7 +25,7 @@ public class GuiIfTabletSR extends GuiIfTabletS
 
     public GuiIfTabletSR(IfEntry entr)
     {
-        keyEventsRS = false;
+        super();
         entry = entr;
         doneSteps = Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).getSteps(entry.getId());
     }
@@ -48,20 +48,6 @@ public class GuiIfTabletSR extends GuiIfTabletS
     }
 
     @Override
-    public void keyUp(int keycode)
-    {
-        if(keycode == Keyboard.KEY_BACK || keycode == Keyboard.KEY_Q)
-        {
-            goBack();
-        }
-    }
-
-    public void goBack()
-    {
-        getTablet().changeScreen(getTablet().se);
-    }
-
-    @Override
     public void render()
     {
         String dn = entry.getDisplayName();
@@ -69,6 +55,6 @@ public class GuiIfTabletSR extends GuiIfTabletS
         String stepName = entry.getSteps().get(doneSteps).getDisplayName();
         DrawingTools.drawString(dn, (getWidth() - DrawingTools.measureString(dn)) / 2, 8, Color.WHITE);
         DrawingTools.drawString(steps, (getWidth() - DrawingTools.measureString(steps)) / 2, 18, Color.WHITE);
-        DrawingTools.drawString(stepName, (getWidth() - DrawingTools.measureString(stepName)) / 2, 28, Color.WHITE);
+        DrawingTools.drawString(stepName, (getWidth() - DrawingTools.measureString(stepName)) / 2, 36, Color.WHITE);
     }
 }

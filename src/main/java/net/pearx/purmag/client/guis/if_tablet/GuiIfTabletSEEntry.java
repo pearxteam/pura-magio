@@ -10,6 +10,8 @@ import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.infofield.IfEntry;
 
+import java.awt.*;
+
 /**
  * Created by mrAppleXZ on 23.04.17 18:42.
  */
@@ -47,7 +49,8 @@ public class GuiIfTabletSEEntry extends Control
     {
         if(isFocused())
         {
-            DrawingTools.drawHoveringText(entry.getDisplayName(), prevX, prevY);
+            DrawingTools.drawHoveringText(entry.getDisplayName(), prevX, prevY, Color.WHITE, true, 1, Minecraft.getMinecraft().fontRenderer);
+            DrawingTools.drawHoveringText(entry.getDisplayDescription(), prevX, prevY + 9, Color.WHITE, true, 0.9f, Minecraft.getMinecraft().fontRenderer);
         }
     }
 

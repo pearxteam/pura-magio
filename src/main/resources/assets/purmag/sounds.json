@@ -1,10 +1,14 @@
 {
-  "if_channel_change": {
-    "sounds": [ "purmag:if_channel_change" ],
-    "subtitle": "subtitle.if_channel_change"
+  "magical_click": {
+    "sounds": [ "purmag:magical_click" ],
+    "subtitle": "subtitle.magical_click"
   },
   "notification": {
     "sounds": [ "purmag:notification" ],
     "subtitle": "subtitle.purmag_notification"
+  },
+  "click": {
+    "sounds": [ "purmag:click" ],
+    "subtitle": "subtitle.purmag_click"
   }
 }

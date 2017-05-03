@@ -23,7 +23,8 @@ if_step.none.desc=No description
 if_step.collect.name=Collect
 
 if_entry.crystals.name=Crystals
-if_step.crystals.collect.desc=You thinking that you can find something in a cave or on a beach...
+if_entry.crystals.desc=It's a candies?
+if_step.crystals.collect.desc=You thinking that you can find something colorful and powerful somewhere...
 
 #Common
 itemGroup.purmag=Purificati Magicae
@@ -37,8 +38,9 @@ command.if.success.unlock=§7The IF entry %s§7 is successfully unlocked for %s�
 command.if.success.lock=§7The IF entry %s§7 is successfully locked for %s§7!
 
 #Subtitles
-subtitle.if_channel_change=IF channel changes
+subtitle.magical_click=Magical Click
 subtitle.purmag_notification=Notification
+subtitle.purmag_click=Click
 
 #Buttons
 button.back.name=Back

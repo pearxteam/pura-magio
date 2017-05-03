@@ -1,6 +1,9 @@
 package net.pearx.purmag.client.guis;
 
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.controls.Control;
@@ -83,6 +86,13 @@ public class PmGui extends GuiScreen
                 gui.invokeMouseWheel(Mouse.getEventDWheel());
             }
         }
+    }
+
+    public void drawTooltip(ItemStack stack, int x, int y)
+    {
+        renderToolTip(stack, x, y);
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.disableLighting();
     }
 
     public int getMouseX()

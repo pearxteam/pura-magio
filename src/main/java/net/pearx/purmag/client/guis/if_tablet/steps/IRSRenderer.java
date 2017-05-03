@@ -15,9 +15,9 @@ public class IRSRenderer extends Control
     public void init()
     {
         setWidth(getTablet().getWidth() - 16);
-        setHeight(getTablet().getHeight() - (8 + 38 + 24));
+        setHeight(getTablet().getHeight() - (8 + 46 + 24));
         setX(8);
-        setY(38);
+        setY(46);
     }
 
     public GuiIfTabletSR getTablet()

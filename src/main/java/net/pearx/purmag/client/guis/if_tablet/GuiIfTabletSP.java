@@ -12,6 +12,6 @@ public class GuiIfTabletSP extends GuiIfTabletS
 {
     public GuiIfTabletSP(IfEntry entr)
     {
-
+        super();
     }
 }

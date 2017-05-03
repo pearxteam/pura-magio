@@ -1,5 +1,7 @@
 package net.pearx.purmag.client.guis.if_tablet.steps;
 
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -7,7 +9,7 @@ import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.drawables.ItemDrawable;
 import net.pearx.purmag.common.infofield.steps.IRSCollect;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -17,6 +19,7 @@ import java.util.List;
 public class IRSCollectRenderer extends IRSRenderer
 {
     public IRSCollect step;
+    int lastX, lastY;
 
     @Override
     public void init()
@@ -33,12 +36,23 @@ public class IRSCollectRenderer extends IRSRenderer
         if(step.getShowStack())
         {
             List<ItemStack> toDisplay = step.getStacksToRender();
-            ItemStack rend = toDisplay.get((int)(System.currentTimeMillis() / 1000 % toDisplay.size()));
+            ItemStack rend = toDisplay.get((int) (System.currentTimeMillis() / 1000 % toDisplay.size()));
             ItemDrawable draw = new ItemDrawable(rend, 5);
             yoff = draw.getWidth();
-            draw.draw((getWidth() - draw.getWidth()) / 2, 0);
-            //todo: Drawing item tooltip. Heh.
+            int x = (getWidth() - draw.getWidth()) / 2;
+            draw.draw(x, 0);
+            if(isFocused() && new Rectangle(x, 0, draw.getWidth(), draw.getHeight()).contains(lastX, lastY))
+            {
+                getGuiScreen().drawTooltip(rend, lastX, lastY);
+            }
         }
         DrawingTools.drawString(step.getDescription(), 5, yoff, Color.WHITE, getWidth() - 5);
+    }
+
+    @Override
+    public void mouseMove(int x, int y, int dx, int dy)
+    {
+        lastX = x;
+        lastY = y;
     }
 }

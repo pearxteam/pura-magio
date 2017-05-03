@@ -111,6 +111,8 @@ public class IfEntry
         return I18n.translateToLocal("if_entry." + id + ".name");
     }
 
+    public String getDisplayDescription() { return I18n.translateToLocal("if_entry." + id + ".desc"); }
+
     //Just available to see, not read/continue researching/etc.
     public boolean isAvailable(EntityPlayer p, int tier)
     {

@@ -1,5 +1,6 @@
 package net.pearx.purmag.client.guis.controls.common;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -8,6 +9,7 @@ import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
+import net.pearx.purmag.common.SoundRegistry;
 import net.pearx.purmag.common.Utils;
 
 import java.awt.*;
@@ -56,6 +58,7 @@ public class Button extends Control
     @Override
     public void mouseUp(int button, int x, int y)
     {
+        Minecraft.getMinecraft().player.playSound(SoundRegistry.MagicalClick, 1, 1);
         clickAction.run();
     }
 

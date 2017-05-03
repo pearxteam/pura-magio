@@ -8,18 +8,23 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  */
 public class SoundRegistry
 {
-    public static SoundEvent IfChannelChange;
+    public static SoundEvent MagicalClick;
     public static SoundEvent Notification;
+    public static SoundEvent Click;
 
     public static void setup()
     {
-        IfChannelChange = new SoundEvent(Utils.getRegistryName("if_channel_change"));
-        IfChannelChange.setRegistryName(Utils.getRegistryName("if_channel_change"));
+        MagicalClick = new SoundEvent(Utils.getRegistryName("magical_click"));
+        MagicalClick.setRegistryName(Utils.getRegistryName("magical_click"));
 
         Notification = new SoundEvent(Utils.getRegistryName("notification"));
         Notification.setRegistryName(Utils.getRegistryName("notification"));
 
-        GameRegistry.register(IfChannelChange);
+        Click = new SoundEvent(Utils.getRegistryName("click"));
+        Click.setRegistryName(Utils.getRegistryName("click"));
+
+        GameRegistry.register(MagicalClick);
         GameRegistry.register(Notification);
+        GameRegistry.register(Click);
     }
 }
