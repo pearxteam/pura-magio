@@ -10,6 +10,7 @@ import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.infofield.pages.IIfPage;
 import net.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
+import scala.actors.threadpool.Arrays;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class IfEntry
     private int tier;
     private List<String> parents;
     private IGuiDrawable icon;
-    private IIfPage[] pages;
+    private List<IIfPage> pages;
     private List<IIfResearchStep> steps;
     private int stepsForDisplay;
     private int x;
@@ -39,7 +40,7 @@ public class IfEntry
         setTier(tier);
         setParents(parents);
         setIcon(icon);
-        setPages(pages);
+        setPages(Arrays.asList(pages));
         setSteps(steps);
         setStepsForDisplay(stepsForDisplay);
         setX(x);
@@ -86,12 +87,12 @@ public class IfEntry
         this.icon = icon;
     }
 
-    public IIfPage[] getPages()
+    public List<IIfPage> getPages()
     {
         return pages;
     }
 
-    public void setPages(IIfPage[] pages)
+    public void setPages(List<IIfPage> pages)
     {
         this.pages = pages;
     }

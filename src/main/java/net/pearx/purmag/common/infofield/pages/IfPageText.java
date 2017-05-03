@@ -3,6 +3,7 @@ package net.pearx.purmag.common.infofield.pages;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pearx.purmag.client.guis.if_tablet.pages.IPRenderer;
 
 /**
  * Created by mrAppleXZ on 22.04.17 21:05.
@@ -32,8 +33,10 @@ public class IfPageText implements IIfPage
     }
 
     @Override
-    public void render()
+    @SideOnly(Side.CLIENT)
+    public IPRenderer getRenderer()
     {
-
+        //todo yeah
+        return new IPRenderer();
     }
 }

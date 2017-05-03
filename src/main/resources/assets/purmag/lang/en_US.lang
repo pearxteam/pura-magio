@@ -44,3 +44,5 @@ subtitle.purmag_click=Click
 
 #Buttons
 button.back.name=Back
+button.prev.name=<
+button.next.name=>

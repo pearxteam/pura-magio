@@ -35,10 +35,10 @@ public class GuiIfTabletSR extends GuiIfTabletS
     {
         if(doneSteps >= entry.getSteps().size())
         {
-            getTablet().changeScreen(new GuiIfTabletSP(entry));
+            getTablet().changeScreen(new GuiIfTabletSP(entry, 0));
             return;
         }
-        btnBack = new Button(I18n.translateToLocal("button.back.name"), () -> goBack());
+        btnBack = new Button(I18n.translateToLocal("button.back.name"), this::goBack);
         btnBack.setX(8);
         btnBack.setY(getHeight() - 24 - 8);
         btnBack.setWidth(getWidth() - 16);
@@ -50,11 +50,9 @@ public class GuiIfTabletSR extends GuiIfTabletS
     @Override
     public void render()
     {
-        String dn = entry.getDisplayName();
-        String steps = (doneSteps + 1) + "/" + entry.getSteps().size();
+        String dn = entry.getDisplayName() + " [" + (doneSteps + 1) + "/" + entry.getSteps().size() + "]";
         String stepName = entry.getSteps().get(doneSteps).getDisplayName();
         DrawingTools.drawString(dn, (getWidth() - DrawingTools.measureString(dn)) / 2, 8, Color.WHITE);
-        DrawingTools.drawString(steps, (getWidth() - DrawingTools.measureString(steps)) / 2, 18, Color.WHITE);
-        DrawingTools.drawString(stepName, (getWidth() - DrawingTools.measureString(stepName)) / 2, 36, Color.WHITE);
+        DrawingTools.drawString(stepName, (getWidth() - DrawingTools.measureString(stepName)) / 2, 26, Color.WHITE);
     }
 }
