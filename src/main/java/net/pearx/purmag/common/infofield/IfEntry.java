@@ -10,9 +10,9 @@ import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.infofield.pages.IIfPage;
 import net.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
-import scala.actors.threadpool.Arrays;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
