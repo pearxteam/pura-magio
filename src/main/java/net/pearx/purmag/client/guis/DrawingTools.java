@@ -51,14 +51,23 @@ public class DrawingTools
         drawString(str, x, y, col, true);
     }
 
-    public static void drawString(String str, int x, int y, Color col, int width, FontRenderer rend)
+    public static void drawString(String str, int x, int y, Color col, int width, boolean shadow, FontRenderer rend)
     {
-        rend.drawSplitString(str, x, y, width, col.getRGB());
+        rend.resetStyles();
+        rend.textColor = col.getRGB();
+        str = rend.trimStringNewline(str);
+        rend.renderSplitString(str, x + 1, y + 1, width, true);
+        rend.renderSplitString(str, x, y, width, false);
+    }
+
+    public static void drawString(String str, int x, int y, Color col, int width, boolean shadow)
+    {
+        drawString(str, x, y, col, width, shadow, Minecraft.getMinecraft().fontRenderer);
     }
 
     public static void drawString(String str, int x, int y, Color col, int width)
     {
-        drawString(str, x, y, col, width, Minecraft.getMinecraft().fontRenderer);
+        drawString(str, x, y, col, width, true);
     }
 
     public static int measureString(String str)

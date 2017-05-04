@@ -24,7 +24,8 @@ if_step.collect.name=Collect
 
 if_entry.crystals.name=Crystals
 if_entry.crystals.desc=It's a candies?
-if_step.crystals.collect.desc=You thinking that you can find something colorful and powerful somewhere...
+if_step.crystals.0.desc=You thinking that you can find something colorful somewhere...
+if_page.crystals.0.text=I found strange crystal clusters... After touching them, I felt as if some strange wave ran through my body. They shine from inside, as if they really contain some power. I tried to take a cluster, but to my regret from the hit of the pick on it, it split into shards. I will continue researching.
 
 #Common
 itemGroup.purmag=Purificati Magicae

@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.common.Button;
+import net.pearx.purmag.client.guis.if_tablet.pages.IPRenderer;
 import net.pearx.purmag.common.infofield.IfEntry;
 
 import java.awt.*;
@@ -17,6 +18,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
 {
     public IfEntry entry;
     public int index;
+    public IPRenderer rend;
 
     public GuiIfTabletSP(IfEntry entr, int index)
     {
@@ -52,6 +54,8 @@ public class GuiIfTabletSP extends GuiIfTabletS
         btnNext.setX(backWidth + 8 + 8 + 16);
         btnNext.setY(y);
         controls.add(btnNext);
+
+        update(index);
     }
 
     @Override
@@ -59,5 +63,13 @@ public class GuiIfTabletSP extends GuiIfTabletS
     {
         String s = entry.getDisplayName() + " [" + (index + 1) + "/" + entry.getPages().size() + "]";
         DrawingTools.drawString(s, (getWidth() - DrawingTools.measureString(s)) / 2, DrawingTools.getFontHeight(), Color.WHITE);
+    }
+
+    public void update(int index)
+    {
+        this.index = index;
+        controls.remove(rend);
+        rend = entry.getPages().get(index).getRenderer();
+        controls.add(rend);
     }
 }
