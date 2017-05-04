@@ -30,7 +30,9 @@ public class ClientEvents
     @SubscribeEvent
     public void onBake(ModelBakeEvent e)
     {
-        e.getModelRegistry().putObject(new ModelResourceLocation(new ResourceLocation(PurMag.ModId, "crystal"), "normal"), new CrystalModel());
+        CrystalModel mdl = new CrystalModel();
+        mdl.bake();
+        e.getModelRegistry().putObject(new ModelResourceLocation(new ResourceLocation(PurMag.ModId, "crystal"), "normal"), mdl);
     }
 
     @SubscribeEvent

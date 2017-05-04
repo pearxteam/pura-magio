@@ -82,7 +82,7 @@ public class IfRegistry
 
         registerEntry(new IfEntry("crystals", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip(SipTypeRegistry.def)), null, Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals.0", true)), 0, 0, 0, new IfPageText("crystals.0")));
 
-        registerEntry(new IfEntry("crystals1", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip("flame")), Arrays.asList("crystals"), null, 0, -1, -1));
+        registerEntry(new IfEntry("crystals1", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip("flame")), Arrays.asList("crystals"), Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal), "crystals.1", true)), 0, -1, -1));
 
         registerEntry(new IfEntry("crystals2", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip("sea")), Arrays.asList("crystals"), null, 0, 1, 1));
     }

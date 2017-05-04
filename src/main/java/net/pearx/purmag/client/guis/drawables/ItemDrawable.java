@@ -2,6 +2,7 @@ package net.pearx.purmag.client.guis.drawables;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,7 +34,10 @@ public class ItemDrawable implements IGuiDrawable
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, 0);
         GlStateManager.scale(scale, scale, scale);
-        Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(stack, 0, 0);
+        RenderHelper.enableStandardItemLighting();
+        RenderItem rend = Minecraft.getMinecraft().getRenderItem();
+        rend.renderItemAndEffectIntoGUI(stack, 0, 0);
+        RenderHelper.disableStandardItemLighting();
         GlStateManager.popMatrix();
     }
 

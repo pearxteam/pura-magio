@@ -16,6 +16,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
+import org.lwjgl.input.Mouse;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -43,28 +44,30 @@ public class ObjModelBase implements IBakedModel
 
     protected IBakedModel getBaked()
     {
-        if(baked == null)
-        {
-            IModel mdl = null;
-            try
-            {
-                mdl = ModelLoaderRegistry.getModel(getObj());
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-            baked = mdl.bake(TRSRTransformation.identity(), DefaultVertexFormats.ITEM,
-                    location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString()));
-        }
         return baked;
     }
+
+    public void bake()
+    {
+        IModel mdl = null;
+        try
+        {
+            mdl = ModelLoaderRegistry.getModel(getObj());
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        baked = mdl.bake(TRSRTransformation.identity(), DefaultVertexFormats.ITEM,
+                location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString()));
+    }
+
     @Override
     public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand)
     {
         List<BakedQuad> l = new ArrayList<>();
         for(BakedQuad q : getBaked().getQuads(state, side, rand))
         {
-            l.add(new BakedQuad(q.getVertexData(), 0, q.getFace(), q.getSprite()));
+            l.add(new BakedQuad(q.getVertexData(), 1, q.getFace(), q.getSprite()));
         }
         return l;
     }

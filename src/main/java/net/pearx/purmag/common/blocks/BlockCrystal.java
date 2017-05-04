@@ -40,6 +40,7 @@ public class BlockCrystal extends BlockBase
         setCreativeTab(PMCreativeTab.instance);
         setUnlocalizedName("crystal");
         setHardness(2);
+        setLightLevel(5);
         setHarvestLevel("pickaxe", 1);
     }
 
