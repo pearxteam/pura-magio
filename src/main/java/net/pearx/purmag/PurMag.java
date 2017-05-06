@@ -13,7 +13,7 @@ import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.infofield.IfRegistry;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.networking.NetworkManager;
-import net.pearx.purmag.common.sip.SipType;
+import net.pearx.purmag.common.sif.SifStorage;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
 import net.pearx.purmag.common.tiles.TileRegistry;
 import net.pearx.purmag.common.worldgen.WorldgenRegistry;
@@ -21,9 +21,7 @@ import net.pearx.purmag.server.commands.CommandIf;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.Random;
 
 /**
  * Created by mrAppleXZ on 08.04.17 10:31.
@@ -33,6 +31,8 @@ public class PurMag
 {
     public static PurMag instance;
 
+    public static Random rand = new Random();
+
     public static final String ModId = "purmag";
     public static final String Name = "Purificati Magicae";
     public static final String Version = "1.0.0";
@@ -40,7 +40,8 @@ public class PurMag
     public SipTypeRegistry sip = new SipTypeRegistry();
     public IfRegistry if_registry = new IfRegistry();
     public PMConfig config = new PMConfig();
-    public Configuration configFile;
+
+    private Configuration configFile;
 
     @SidedProxy(clientSide = "net.pearx.purmag.client.ClientProxy", serverSide = "net.pearx.purmag.server.ServerProxy")
     public static CommonProxy proxy;

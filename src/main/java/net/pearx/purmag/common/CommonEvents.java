@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.pearx.purmag.PurMag;
@@ -17,6 +18,9 @@ import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
 import net.pearx.purmag.common.infofield.steps.IRSCollect;
 import net.pearx.purmag.common.networking.NetworkManager;
 import net.pearx.purmag.common.networking.packets.CPacketDisplayMessage;
+import net.pearx.purmag.common.sif.SifStorage;
+
+import java.util.Random;
 
 
 /**
@@ -91,5 +95,17 @@ public class CommonEvents
     public void onChangeDim(PlayerEvent.PlayerChangedDimensionEvent e)
     {
         e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).sync((EntityPlayerMP)e.player);
+    }
+
+    @SubscribeEvent
+    public void onChunkSave(ChunkDataEvent.Save e)
+    {
+        e.getData().setFloat("sif_power", SifStorage.INSTANCE.getPower(e.getChunk()));
+    }
+
+    @SubscribeEvent
+    public void onChunkLoad(ChunkDataEvent.Load e)
+    {
+       SifStorage.INSTANCE.setPower(e.getChunk(), e.getData().getFloat("sif_power"));
     }
 }
