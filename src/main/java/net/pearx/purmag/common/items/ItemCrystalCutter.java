@@ -34,8 +34,6 @@ public class ItemCrystalCutter extends ItemBase
     @Override
     public EnumActionResult onItemUse(EntityPlayer playerIn, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        float f = PurMag.proxy.getSifStorage().getPower(GlobalChunkPos.fromChunk(world.getChunkFromBlockCoords(pos)));
-        playerIn.sendMessage(new TextComponentString(Float.toString(f)));
         if (world.getBlockState(pos).getBlock() == BlockRegistry.crystal)
         {
             TileEntity te = world.getTileEntity(pos);
