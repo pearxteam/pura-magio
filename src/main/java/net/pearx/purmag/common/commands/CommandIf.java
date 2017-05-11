@@ -1,21 +1,17 @@
-package net.pearx.purmag.server.commands;
+package net.pearx.purmag.common.commands;
 
 
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.infofield.IfEntry;
-import net.pearx.purmag.common.infofield.IfRegistry;
 import net.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 
 import javax.annotation.Nullable;

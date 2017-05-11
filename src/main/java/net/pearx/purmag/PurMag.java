@@ -13,11 +13,10 @@ import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.infofield.IfRegistry;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.networking.NetworkManager;
-import net.pearx.purmag.common.sif.SifStorage;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
 import net.pearx.purmag.common.tiles.TileRegistry;
 import net.pearx.purmag.common.worldgen.WorldgenRegistry;
-import net.pearx.purmag.server.commands.CommandIf;
+import net.pearx.purmag.common.commands.CommandIf;
 
 import java.io.File;
 import java.util.ArrayList;

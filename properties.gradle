@@ -1,7 +1,7 @@
 ext
 {
   mc_version="1.11.2"
-  forge_version="13.20.0.2285"
+  forge_version="13.20.0.2296"
   jei_version="4.3.3.270"
-  mappings_version="snapshot_20170430"
+  mappings_version="snapshot_20170510"
 }

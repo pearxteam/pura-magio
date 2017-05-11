@@ -1,17 +1,17 @@
 package net.pearx.purmag.client;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pearx.purmag.client.sif.SifStorageClient;
 import net.pearx.purmag.common.CommonProxy;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.PmGui;
 import net.pearx.purmag.client.guis.if_tablet.GuiIfTablet;
+import net.pearx.purmag.common.sif.SifStorage;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
@@ -23,6 +23,8 @@ import net.pearx.purmag.common.tiles.TileCrystal;
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
+    private SifStorageClient storage = new SifStorageClient();
+
     @Override
     public void preInit()
     {
@@ -76,5 +78,11 @@ public class ClientProxy extends CommonProxy
     public void openIfTablet(int tier)
     {
         Minecraft.getMinecraft().displayGuiScreen(new PmGui(new GuiIfTablet(tier)));
+    }
+
+    @Override
+    public SifStorage getSifStorage()
+    {
+        return storage;
     }
 }

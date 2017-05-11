@@ -1,9 +1,13 @@
 package net.pearx.purmag.common.sif;
 
 
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.chunk.Chunk;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.GlobalChunkPos;
+import org.lwjgl.input.Mouse;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -12,19 +16,39 @@ import java.util.WeakHashMap;
  */
 public class SifStorage
 {
-    public static SifStorage INSTANCE = new SifStorage();
+    public Map<GlobalChunkPos, Float> values = new HashMap<>();
 
-    public Map<Chunk, Float> values = new WeakHashMap<>();
-
-    public void setPower(Chunk chunk, float f)
+    public void setPower(GlobalChunkPos chunk, float f)
     {
         values.put(chunk, f);
     }
 
-    public float getPower(Chunk chunk)
+    public void removeChunk(GlobalChunkPos pos)
+    {
+        values.remove(pos);
+    }
+
+    public float getPower(GlobalChunkPos chunk)
     {
         if(!values.containsKey(chunk))
-            setPower(chunk, PurMag.rand.nextFloat());
+        {
+            int main;
+            float f = PurMag.rand.nextFloat();
+            if(PurMag.rand.nextFloat() <= 0.01f)
+                main = -1;
+            else
+            {
+                float ff = PurMag.rand.nextFloat();
+                if(ff <= 0.02f)
+                    main = 2;
+                else if(ff <= 0.20f)
+                    main = 1;
+                else
+                    main = 0;
+
+            }
+            setPower(chunk, main + f);
+        }
         return values.get(chunk);
     }
 }
