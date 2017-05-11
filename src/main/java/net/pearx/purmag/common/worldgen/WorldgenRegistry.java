@@ -19,8 +19,8 @@ public class WorldgenRegistry
         if(PurMag.instance.config.genCrystals)
         {
             crystalGen.add(new WGCrystalsEntry(WGCrystalsType.SURFACE, "sea",  Biomes.BEACH));
+            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.UNDERGROUND, "rock"));
+            GameRegistry.registerWorldGenerator(new WGCrystals(), 5);
         }
-
-        GameRegistry.registerWorldGenerator(new WGCrystals(), 5);
     }
 }

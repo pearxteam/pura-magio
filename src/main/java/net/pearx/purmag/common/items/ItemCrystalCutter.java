@@ -12,6 +12,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.GlobalChunkPos;
 import net.pearx.purmag.common.Utils;
@@ -34,6 +35,10 @@ public class ItemCrystalCutter extends ItemBase
     @Override
     public EnumActionResult onItemUse(EntityPlayer playerIn, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        //todo remove this debug print
+        Chunk ch = world.getChunkFromBlockCoords(pos);
+        playerIn.sendMessage(new TextComponentString(Float.toString(PurMag.proxy.getSifStorage().getPower(new GlobalChunkPos(ch.xPosition, ch.zPosition, world.provider.getDimension())))));
+
         if (world.getBlockState(pos).getBlock() == BlockRegistry.crystal)
         {
             TileEntity te = world.getTileEntity(pos);

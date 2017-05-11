@@ -12,6 +12,7 @@ import net.pearx.purmag.common.GlobalChunkPos;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.tiles.TileCrystal;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -26,33 +27,63 @@ public class WGCrystals implements IWorldGenerator
         {
             int x = chunkX * 16 + random.nextInt(16);
             int z = chunkZ * 16 + random.nextInt(16);
-            Biome b = world.getBiome(new BlockPos(x, 0, z));
+            int y = 0;
 
             boolean cont = false;
-            for (Biome bio : entr.getBiomes())
+            if(entr.getBiomes().length > 0)
             {
-                if (b.equals(bio))
+                for (Biome b : entr.getBiomes())
                 {
-                    cont = true;
+                    if (b.equals(world.getBiome(new BlockPos(x, y, z))))
+                    {
+                        cont = true;
+                        break;
+                    }
                 }
             }
-            if (!cont)
-                break;
+            else
+                cont = true;
 
-            int count = (int)PurMag.proxy.getSifStorage().getPower(new GlobalChunkPos(chunkX, chunkZ, world.provider.getDimension()));
+            if (!cont) continue;
 
-            for(int i = 0; i < count; i++)
+            int sif = (int)PurMag.proxy.getSifStorage().getPower(new GlobalChunkPos(chunkX, chunkZ, world.provider.getDimension()));
+
+            if (sif > 0)
             {
-                if (entr.getType() == WGCrystalsType.SURFACE)
+                switch (entr.getType())
                 {
-                    int y = world.getHeight(x, z);
-                    BlockPos pos = new BlockPos(x + i, y, z + i);
+                    case SURFACE:
+                        y = world.getHeight(x, z);
+                        break;
+                    case UNDERGROUND:
+                        y = world.getHeight(x, z) / 2;
+                        for (int x1 = -1; x1 <= 1; x1++)
+                        {
+                            for (int y1 = 0; y1 <= 2; y1++)
+                            {
+                                for (int z1 = -1; z1 <= 1; z1++)
+                                {
+                                    world.setBlockToAir(new BlockPos(x + x1, y + y1, z + z1));
+                                }
+                            }
+                        }
+                        break;
+                }
 
+                for (int i = 0; i < sif; i++)
+                {
+                    BlockPos pos = new BlockPos(x, y + i, z);
                     world.setBlockState(pos, BlockRegistry.crystal.getDefaultState());
                     TileEntity te = world.getTileEntity(pos);
-                    if (te instanceof TileCrystal)
-                        ((TileCrystal) te).setType(entr.getSip());
-                    System.out.println(pos);
+                    if (te != null)
+                    {
+                        if (te instanceof TileCrystal)
+                        {
+                            TileCrystal tc = (TileCrystal) te;
+                            tc.setType(entr.getSip());
+                            System.out.println(pos);
+                        }
+                    }
                 }
             }
         }

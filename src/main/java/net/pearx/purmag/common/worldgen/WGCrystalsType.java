@@ -5,5 +5,6 @@ package net.pearx.purmag.common.worldgen;
  */
 public enum WGCrystalsType
 {
-    SURFACE
+    SURFACE,
+    UNDERGROUND
 }
