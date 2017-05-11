@@ -7,6 +7,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.GlobalChunkPos;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.tiles.TileCrystal;
 
@@ -20,12 +22,12 @@ public class WGCrystals implements IWorldGenerator
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
     {
-        int x = chunkX * 16 + 8;
-        int z = chunkZ * 16 + 8;
-        Biome b = world.getBiome(new BlockPos(x, 0, z));
         for(WGCrystalsEntry entr : WorldgenRegistry.crystalGen)
         {
-            //todo worldgen depends on sif
+            int x = chunkX * 16 + random.nextInt(16);
+            int z = chunkZ * 16 + random.nextInt(16);
+            Biome b = world.getBiome(new BlockPos(x, 0, z));
+
             boolean cont = false;
             for (Biome bio : entr.getBiomes())
             {
@@ -37,19 +39,21 @@ public class WGCrystals implements IWorldGenerator
             if (!cont)
                 break;
 
-            if (random.nextFloat() > entr.getChance())
-                break;
+            int count = (int)PurMag.proxy.getSifStorage().getPower(new GlobalChunkPos(chunkX, chunkZ, world.provider.getDimension()));
 
-            if(entr.getType() == WGCrystalsType.SURFACE)
+            for(int i = 0; i < count; i++)
             {
-                int y = world.getHeight(x, z);
-                BlockPos pos = new BlockPos(x, y, z);
+                if (entr.getType() == WGCrystalsType.SURFACE)
+                {
+                    int y = world.getHeight(x, z);
+                    BlockPos pos = new BlockPos(x + i, y, z + i);
 
-                world.setBlockState(pos, BlockRegistry.crystal.getDefaultState());
-                TileEntity te = world.getTileEntity(pos);
-                if (te instanceof TileCrystal)
-                    ((TileCrystal) te).setType(entr.getSip());
-                System.out.println(pos);
+                    world.setBlockState(pos, BlockRegistry.crystal.getDefaultState());
+                    TileEntity te = world.getTileEntity(pos);
+                    if (te instanceof TileCrystal)
+                        ((TileCrystal) te).setType(entr.getSip());
+                    System.out.println(pos);
+                }
             }
         }
     }

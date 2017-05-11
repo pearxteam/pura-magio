@@ -9,15 +9,13 @@ public class WGCrystalsEntry
 {
     private WGCrystalsType type;
     private String sip;
-    private float chance;
     private Biome[] biomes;
 
-    public WGCrystalsEntry(WGCrystalsType type, String sip, float chance, Biome... biomes)
+    public WGCrystalsEntry(WGCrystalsType type, String sip, Biome... biomes)
     {
         setType(type);
         setSip(sip);
         setBiomes(biomes);
-        setChance(chance);
     }
 
     public WGCrystalsType getType()
@@ -48,15 +46,5 @@ public class WGCrystalsEntry
     public void setBiomes(Biome[] biomes)
     {
         this.biomes = biomes;
-    }
-
-    public float getChance()
-    {
-        return chance;
-    }
-
-    public void setChance(float chance)
-    {
-        this.chance = chance;
     }
 }

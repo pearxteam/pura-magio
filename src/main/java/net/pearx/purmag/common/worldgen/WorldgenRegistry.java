@@ -16,9 +16,9 @@ public class WorldgenRegistry
 
     public static void setup()
     {
-        if(PurMag.instance.config.genSeaCrystals)
+        if(PurMag.instance.config.genCrystals)
         {
-            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.SURFACE, "sea", PurMag.instance.config.chanceSeaCrystal, Biomes.BEACH));
+            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.SURFACE, "sea",  Biomes.BEACH));
         }
 
         GameRegistry.registerWorldGenerator(new WGCrystals(), 5);

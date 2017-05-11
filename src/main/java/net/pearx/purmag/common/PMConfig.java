@@ -5,10 +5,5 @@ package net.pearx.purmag.common;
  */
 public class PMConfig
 {
-    public boolean genSeaCrystals;
-    public boolean genFlameCrystals;
-    public boolean genRockCrystals;
-    public float chanceSeaCrystal;
-    public float chanceFlameCrystal;
-    public float chanceRockCrystal;
+    public boolean genCrystals;
 }

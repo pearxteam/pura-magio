@@ -89,13 +89,7 @@ public class PurMag
 
     private void setupConfig()
     {
-        config.genSeaCrystals = configFile.getBoolean("Generate Sea Crystals", "WORLD", true, "");
-        config.genRockCrystals = configFile.getBoolean("Generate Rock Crystals", "WORLD", true, "");
-        config.genFlameCrystals = configFile.getBoolean("Generate Flame Crystals", "WORLD", true, "");
-
-        config.chanceSeaCrystal = configFile.getFloat("Sea Crystal Chance", "WORLD", 0.3f, 0f, 1f, "Chance to generate a Sea Crystal. 1 - 100%, 0 - 0%.");
-        config.chanceRockCrystal = configFile.getFloat("Rock Crystal Chance", "WORLD", 0.3f, 0f, 1f, "Chance to generate a Rock Crystal. 1 - 100%, 0 - 0%.");
-        config.chanceFlameCrystal = configFile.getFloat("Flame Crystal Chance", "WORLD", 0.3f, 0f, 1f, "Chance to generate a Flame Crystal. 1 - 100%, 0 - 0%.");
+        config.genCrystals = configFile.getBoolean("Generate Crystals", "WORLD", true, "");
 
         if(configFile.hasChanged())
             configFile.save();
