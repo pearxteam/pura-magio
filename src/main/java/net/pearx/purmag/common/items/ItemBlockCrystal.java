@@ -13,16 +13,6 @@ import net.pearx.purmag.common.blocks.BlockRegistry;
  */
 public class ItemBlockCrystal extends ItemBlock
 {
-    @Override
-    public String getItemStackDisplayName(ItemStack stack)
-    {
-        if(stack.hasTagCompound() && stack.getTagCompound().hasKey("type"))
-        {
-            return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.instance.sip.getType(stack.getTagCompound().getString("type")).getDisplayName());
-        }
-        return super.getItemStackDisplayName(stack);
-    }
-
     public ItemBlockCrystal()
     {
         super(BlockRegistry.crystal);
@@ -31,13 +21,13 @@ public class ItemBlockCrystal extends ItemBlock
         setCreativeTab(PMCreativeTab.instance);
     }
 
-    public static ItemStack getCrystalWithSip(String sip)
+    @Override
+    public String getItemStackDisplayName(ItemStack stack)
     {
-        //todo: power
-        ItemStack stack = new ItemStack(ItemRegistry.crystal);
-        NBTTagCompound tag = new NBTTagCompound();
-        tag.setString("type", sip);
-        stack.setTagCompound(tag);
-        return stack;
+        if(stack.hasTagCompound() && stack.getTagCompound().hasKey("type"))
+        {
+            return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.instance.sip.getType(stack.getTagCompound().getString("type")).getDisplayName());
+        }
+        return super.getItemStackDisplayName(stack);
     }
 }

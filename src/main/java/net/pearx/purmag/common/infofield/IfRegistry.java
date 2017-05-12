@@ -6,6 +6,7 @@ import net.pearx.purmag.common.infofield.pages.IfPageText;
 import net.pearx.purmag.common.infofield.steps.IRSCollect;
 import net.pearx.purmag.common.items.ItemBlockCrystal;
 import net.pearx.purmag.common.items.ItemRegistry;
+import net.pearx.purmag.common.items.ItemUtils;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
 
 import java.util.ArrayList;
@@ -80,11 +81,7 @@ public class IfRegistry
         registerChannel(new IfChannel("information_field", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet)), 0));
         registerChannel(new IfChannel("crystallography", new BigItemDrawable(new ItemStack(ItemRegistry.crystal)), 0, "crystals", "crystals1", "crystals2"));
 
-        registerEntry(new IfEntry("crystals", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip(SipTypeRegistry.def)), null, Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals.0", true)), 0, 0, 0, new IfPageText("crystals.0")));
-
-        registerEntry(new IfEntry("crystals1", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip("flame")), Arrays.asList("crystals"), Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal), "crystals.1", true)), 0, -1, -1));
-
-        registerEntry(new IfEntry("crystals2", 0, new BigItemDrawable(ItemBlockCrystal.getCrystalWithSip("sea")), Arrays.asList("crystals"), null, 0, 1, 1));
+        registerEntry(new IfEntry("crystals", 0, new BigItemDrawable(ItemUtils.getItemWithSip(SipTypeRegistry.def, ItemRegistry.crystal)), null, Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals.0", true)), 0, 0, 0, new IfPageText("crystals.0")));
     }
 }
 

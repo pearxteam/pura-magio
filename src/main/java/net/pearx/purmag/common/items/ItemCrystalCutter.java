@@ -17,8 +17,7 @@ import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.GlobalChunkPos;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.blocks.BlockRegistry;
-import net.pearx.purmag.common.tiles.TileCrystal;
-import org.lwjgl.input.Mouse;
+import net.pearx.purmag.common.tiles.TileSingleSip;
 
 /**
  * Created by mrAppleXZ on 11.04.17 10:22.
@@ -35,20 +34,16 @@ public class ItemCrystalCutter extends ItemBase
     @Override
     public EnumActionResult onItemUse(EntityPlayer playerIn, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        //todo remove this debug print
-        Chunk ch = world.getChunkFromBlockCoords(pos);
-        playerIn.sendMessage(new TextComponentString(Float.toString(PurMag.proxy.getSifStorage().getPower(new GlobalChunkPos(ch.xPosition, ch.zPosition, world.provider.getDimension())))));
-
         if (world.getBlockState(pos).getBlock() == BlockRegistry.crystal)
         {
             TileEntity te = world.getTileEntity(pos);
-            if (te != null && te instanceof TileCrystal)
+            if (te != null && te instanceof TileSingleSip)
             {
                 world.playSound(playerIn, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1, 1);
                 if(!world.isRemote)
                 {
-                    TileCrystal tc = ((TileCrystal) te);
-                    ItemStack is = ItemBlockCrystal.getCrystalWithSip(tc.getType());
+                    TileSingleSip tc = ((TileSingleSip) te);
+                    ItemStack is = ItemUtils.getItemWithSip(tc.getType(), ItemRegistry.crystal);
                     world.setBlockToAir(pos);
                     EntityItem ei = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ());
                     ei.setEntityItemStack(is);

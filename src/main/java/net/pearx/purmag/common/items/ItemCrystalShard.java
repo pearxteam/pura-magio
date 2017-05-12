@@ -30,11 +30,7 @@ public class ItemCrystalShard extends ItemBase
     {
         for(SipType t : PurMag.instance.sip.types)
         {
-            NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("type", t.getName());
-            ItemStack st = new ItemStack(ItemRegistry.crystal_shard);
-            st.setTagCompound(tag);
-            list.add(st);
+            list.add(ItemUtils.getItemWithSip(t.getName(), ItemRegistry.crystal_shard));
         }
     }
 

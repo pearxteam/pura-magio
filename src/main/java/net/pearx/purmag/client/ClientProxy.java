@@ -15,7 +15,7 @@ import net.pearx.purmag.common.sif.SifStorage;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
-import net.pearx.purmag.common.tiles.TileCrystal;
+import net.pearx.purmag.common.tiles.TileSingleSip;
 
 /**
  * Created by mrAppleXZ on 08.04.17 21:06.
@@ -45,9 +45,9 @@ public class ClientProxy extends CommonProxy
             if(w != null && pos != null)
             {
                 TileEntity te = w.getTileEntity(pos);
-                if (te != null && te instanceof TileCrystal)
+                if (te != null && te instanceof TileSingleSip)
                 {
-                    TileCrystal tec = (TileCrystal) te;
+                    TileSingleSip tec = (TileSingleSip) te;
                     type = tec.getType();
                 }
             }

@@ -21,9 +21,10 @@ import net.pearx.purmag.common.PMCreativeTab;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.items.ItemRegistry;
+import net.pearx.purmag.common.items.ItemUtils;
 import net.pearx.purmag.common.sip.SipType;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
-import net.pearx.purmag.common.tiles.TileCrystal;
+import net.pearx.purmag.common.tiles.TileSingleSip;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -31,7 +32,7 @@ import java.util.*;
 /**
  * Created by mrAppleXZ on 08.04.17 17:46.
  */
-public class BlockCrystal extends BlockBase
+public class BlockCrystal extends BlockSingleSip
 {
     public BlockCrystal()
     {
@@ -67,9 +68,9 @@ public class BlockCrystal extends BlockBase
     {
         super.onBlockPlacedBy(world, pos, state, placer, stack);
         TileEntity te = world.getTileEntity(pos);
-        if (te != null && te instanceof TileCrystal)
+        if (te != null && te instanceof TileSingleSip)
         {
-            TileCrystal tec = (TileCrystal) te;
+            TileSingleSip tec = (TileSingleSip) te;
             String type = SipTypeRegistry.def;
             if (stack.hasTagCompound())
             {
@@ -101,51 +102,14 @@ public class BlockCrystal extends BlockBase
     {
         Random rand = world instanceof World ? ((World) world).rand : RANDOM;
         ArrayList<ItemStack> lst = new ArrayList<>();
-        ItemStack stack = new ItemStack(ItemRegistry.crystal_shard, rand.nextInt(4) + 3);
 
         TileEntity te = world.getTileEntity(pos);
-        if(te != null && te instanceof TileCrystal)
+        if(te != null && te instanceof TileSingleSip)
         {
-            String type = ((TileCrystal)te).getType();
-            NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("type", type);
-            stack.setTagCompound(tag);
+            ItemStack stack = ItemUtils.getItemWithSip(((TileSingleSip)te).getType(), ItemRegistry.crystal_shard);
+            stack.setCount(rand.nextInt(4) + 3);
+            lst.add(stack);
         }
-        lst.add(stack);
         return lst;
-    }
-
-    @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
-    {
-        for(SipType t : PurMag.instance.sip.types)
-        {
-            NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("type", t.getName());
-            ItemStack st = new ItemStack(ItemRegistry.crystal);
-            st.setTagCompound(tag);
-            list.add(st);
-        }
-    }
-
-
-
-    @Override
-    public boolean hasTileEntity(IBlockState state)
-    {
-        return true;
-    }
-
-    @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
-    {
-        return new TileCrystal();
-    }
-
-    @Nullable
-    @Override
-    protected RayTraceResult rayTrace(BlockPos pos, Vec3d start, Vec3d end, AxisAlignedBB boundingBox)
-    {
-        return super.rayTrace(pos, start, end, boundingBox);
     }
 }

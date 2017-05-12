@@ -6,7 +6,7 @@ import net.pearx.purmag.common.sip.SipTypeRegistry;
 /**
  * Created by mrAppleXZ on 08.04.17 17:56.
  */
-public class TileCrystal extends SipTileEntity
+public class TileSingleSip extends TileEntitySyncable
 {
 
     private String type = SipTypeRegistry.def;

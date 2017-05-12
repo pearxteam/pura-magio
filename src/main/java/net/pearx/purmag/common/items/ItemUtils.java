@@ -3,6 +3,8 @@ package net.pearx.purmag.common.items;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.pearx.purmag.common.PMCreativeTab;
 
 /**
@@ -10,8 +12,17 @@ import net.pearx.purmag.common.PMCreativeTab;
  */
 public class ItemUtils
 {
-    public static Item itemFromBlock(Block b)
+    public static Item getItemFromBlock(Block b)
     {
         return new ItemBlock(b).setRegistryName(b.getRegistryName()).setCreativeTab(PMCreativeTab.instance);
+    }
+
+    public static ItemStack getItemWithSip(String sip, Item itm)
+    {
+        ItemStack stack = new ItemStack(itm);
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setString("type", sip);
+        stack.setTagCompound(tag);
+        return stack;
     }
 }

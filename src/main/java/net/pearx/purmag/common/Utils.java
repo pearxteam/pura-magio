@@ -1,5 +1,6 @@
 package net.pearx.purmag.common;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,19 +16,5 @@ public class Utils
     public static ResourceLocation getRegistryName(String name)
     {
         return new ResourceLocation(PurMag.ModId, name);
-    }
-
-    public static NBTTagCompound posToNbt(BlockPos pos)
-    {
-       NBTTagCompound tag = new NBTTagCompound();
-       tag.setInteger("x", pos.getX());
-       tag.setInteger("y", pos.getY());
-       tag.setInteger("z", pos.getZ());
-       return tag;
-    }
-
-    public static BlockPos posFromNbt(NBTTagCompound tag)
-    {
-        return new BlockPos(tag.getInteger("x"), tag.getInteger("y"), tag.getInteger("z"));
     }
 }
