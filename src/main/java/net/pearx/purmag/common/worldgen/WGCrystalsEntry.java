@@ -2,6 +2,9 @@ package net.pearx.purmag.common.worldgen;
 
 import net.minecraft.world.biome.Biome;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by mrAppleXZ on 04.05.17 16:08.
  */
@@ -10,11 +13,15 @@ public class WGCrystalsEntry
     private WGCrystalsType type;
     private String sip;
     private Biome[] biomes;
+    private List<Integer> blacklistedDims;
 
-    public WGCrystalsEntry(WGCrystalsType type, String sip, Biome... biomes)
+    public WGCrystalsEntry(WGCrystalsType type, String sip, List<Integer> blacklistedDims, Biome... biomes)
     {
         setType(type);
         setSip(sip);
+        if(blacklistedDims == null)
+            blacklistedDims = new ArrayList<>();
+        setBlacklistedDims(blacklistedDims);
         setBiomes(biomes);
     }
 
@@ -46,5 +53,15 @@ public class WGCrystalsEntry
     public void setBiomes(Biome[] biomes)
     {
         this.biomes = biomes;
+    }
+
+    public List<Integer> getBlacklistedDims()
+    {
+        return blacklistedDims;
+    }
+
+    public void setBlacklistedDims(List<Integer> blacklistedDims)
+    {
+        this.blacklistedDims = blacklistedDims;
     }
 }

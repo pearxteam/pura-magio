@@ -20,6 +20,7 @@ import net.pearx.purmag.common.commands.CommandIf;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -90,6 +91,14 @@ public class PurMag
     private void setupConfig()
     {
         config.genCrystals = configFile.getBoolean("Generate Crystals", "WORLD", true, "");
+
+        String[] rcbld = configFile.getStringList("Rock Crystals Dimension Blacklist", "WORLD", new String[] {"1", "-1"}, "");
+        List<Integer> lst = new ArrayList<>();
+        for(String s : rcbld)
+        {
+            lst.add(Integer.parseInt(s));
+        }
+        config.genRockCrystalsDimBlacklist = lst;
 
         if(configFile.hasChanged())
             configFile.save();

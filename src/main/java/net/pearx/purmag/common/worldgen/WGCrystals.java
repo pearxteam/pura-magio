@@ -25,6 +25,8 @@ public class WGCrystals implements IWorldGenerator
     {
         for(WGCrystalsEntry entr : WorldgenRegistry.crystalGen)
         {
+            if(entr.getBlacklistedDims().contains(world.provider.getDimension())) continue;
+
             int x = chunkX * 16 + random.nextInt(16);
             int z = chunkZ * 16 + random.nextInt(16);
             int y = 0;
@@ -57,14 +59,18 @@ public class WGCrystals implements IWorldGenerator
                         break;
                     case UNDERGROUND:
                         y = world.getHeight(x, z) / 2;
-                        for (int x1 = -1; x1 <= 1; x1++)
+                        for (int y1 = 0; y1 <= 2; y1++)
                         {
-                            for (int y1 = 0; y1 <= 2; y1++)
+                            world.setBlockToAir(new BlockPos(x, y + y1, z));
+                        }
+                        break;
+                    case FIRSTAIR:
+                        for(int y1 = 0; y1 < 256; y1++)
+                        {
+                            if(world.isAirBlock(new BlockPos(x, y1, z)))
                             {
-                                for (int z1 = -1; z1 <= 1; z1++)
-                                {
-                                    world.setBlockToAir(new BlockPos(x + x1, y + y1, z + z1));
-                                }
+                                y = y1;
+                                break;
                             }
                         }
                         break;

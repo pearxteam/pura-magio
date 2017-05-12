@@ -3,6 +3,7 @@ package net.pearx.purmag.common.worldgen;
 import net.minecraft.init.Biomes;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.PMConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +19,9 @@ public class WorldgenRegistry
     {
         if(PurMag.instance.config.genCrystals)
         {
-            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.SURFACE, "sea",  Biomes.BEACH));
-            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.UNDERGROUND, "rock"));
+            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.SURFACE, "sea", null, Biomes.BEACH));
+            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.UNDERGROUND, "rock", PurMag.instance.config.genRockCrystalsDimBlacklist));
+            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.FIRSTAIR, "flame", null, Biomes.HELL));
             GameRegistry.registerWorldGenerator(new WGCrystals(), 5);
         }
     }
