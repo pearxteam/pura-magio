@@ -1,5 +1,6 @@
 #Items and tiles
 tile.crystal.name=%s Crystal
+tile.crystal_glass.name=%s Crystal Glass
 item.crystal_shard.name=%s Shard
 item.crystal_cutter.name=Crystal Cutter
 

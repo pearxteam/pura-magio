@@ -1,7 +1,9 @@
 package net.pearx.purmag.common.items;
 
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
+import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.PMCreativeTab;
 
 /**
@@ -12,7 +14,8 @@ public class ItemBlockBase extends ItemBlock
     public ItemBlockBase(Block block)
     {
         super(block);
-        setCreativeTab(PMCreativeTab.instance);
+        setRegistryName(block.getRegistryName());
+        setUnlocalizedName(block.getUnlocalizedName());
     }
 
     @Override

@@ -79,6 +79,7 @@ public class WGCrystals implements IWorldGenerator
                 {
                     BlockPos pos = new BlockPos(x, y + i, z);
                     world.setBlockState(pos, BlockRegistry.crystal.getDefaultState().withProperty(BlockSingleSip.SIPTYPE, entr.getSip()));
+                    System.out.println(pos + " " + entr.getSip());
                 }
             }
         }

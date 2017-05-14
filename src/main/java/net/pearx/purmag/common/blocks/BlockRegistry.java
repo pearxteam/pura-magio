@@ -9,11 +9,15 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class BlockRegistry
 {
     public static Block crystal;
+    public static Block crystal_glass;
 
 
     public static void setup()
     {
         crystal = new BlockCrystal();
         GameRegistry.register(crystal);
+
+        crystal_glass = new BlockCrystalGlass();
+        GameRegistry.register(crystal_glass);
     }
 }

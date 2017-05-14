@@ -11,19 +11,10 @@ import net.pearx.purmag.common.blocks.BlockRegistry;
 /**
  * Created by mrAppleXZ on 10.04.17 23:00.
  */
-public class ItemBlockCrystal extends ItemBlockBase
+public class ItemBlockCrystal extends ItemBlockSingleSip
 {
     public ItemBlockCrystal()
     {
         super(BlockRegistry.crystal);
-        setRegistryName(block.getRegistryName());
-        setUnlocalizedName(block.getUnlocalizedName());
-        setHasSubtypes(true);
-    }
-
-    @Override
-    public String getItemStackDisplayName(ItemStack stack)
-    {
-        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.instance.sip.getType(stack.getMetadata()).getDisplayName());
     }
 }

@@ -1,6 +1,8 @@
 package net.pearx.purmag.client;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
@@ -38,13 +40,23 @@ public class ClientProxy extends CommonProxy
     {
         GuiDrawableRegistry.setup();
 
-        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, w, pos, tintIndex) ->
-                PurMag.instance.sip.getType(state.getValue(BlockSingleSip.SIPTYPE)).getColor(), BlockRegistry.crystal);
-        Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
-                PurMag.instance.sip.getType(stack.getMetadata()).getColor(), ItemRegistry.crystal);
+        registerSipBlockColor(BlockRegistry.crystal);
+        registerSipBlockColor(BlockRegistry.crystal_glass);
+        registerSipItemColor(ItemRegistry.crystal_glass);
+        registerSipItemColor(ItemRegistry.crystal);
+        registerSipItemColor(ItemRegistry.crystal_shard);
+    }
 
+    public static void registerSipItemColor(Item itm)
+    {
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
-                PurMag.instance.sip.getType(stack.getMetadata()).getColor(), ItemRegistry.crystal_shard);
+                PurMag.instance.sip.getType(stack.getMetadata()).getColor(), itm);
+    }
+
+    public static void registerSipBlockColor(Block bl)
+    {
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, w, pos, tintIndex) ->
+                PurMag.instance.sip.getType(state.getValue(BlockSingleSip.SIPTYPE)).getColor(), bl);
     }
 
     @Override

@@ -31,7 +31,6 @@ public class BlockCrystal extends BlockSingleSip
     {
         super(Material.ROCK);
         setRegistryName(Utils.getRegistryName("crystal"));
-        setCreativeTab(PMCreativeTab.instance);
         setUnlocalizedName("crystal");
         setHardness(2);
         setLightLevel(5);

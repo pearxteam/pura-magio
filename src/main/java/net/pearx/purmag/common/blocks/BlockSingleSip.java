@@ -33,7 +33,7 @@ public class BlockSingleSip extends BlockBase
     {
         for(SipType t : PurMag.instance.sip.types)
         {
-            list.add(new ItemStack(ItemRegistry.crystal, 1, t.getId()));
+            list.add(new ItemStack(itemIn, 1, t.getId()));
         }
     }
 

@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.ClientUtils;
+import net.pearx.purmag.client.blockstates.ISMSingleSip;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.blocks.BlockSingleSip;
 import net.pearx.purmag.common.infofield.IfTier;
@@ -28,6 +29,7 @@ public class ItemRegistry
     public static Item crystal_shard;
     public static Item crystal_cutter;
     public static Item if_tablet;
+    public static Item crystal_glass;
 
     public static void setup()
     {
@@ -42,6 +44,9 @@ public class ItemRegistry
 
         if_tablet = new ItemIfTablet();
         GameRegistry.register(if_tablet);
+
+        crystal_glass = new ItemBlockCrystalGlass();
+        GameRegistry.register(crystal_glass);
     }
 
     @SideOnly(Side.CLIENT)
@@ -51,6 +56,7 @@ public class ItemRegistry
         {
             ClientUtils.setModelLocation(crystal, t.getId(), "");
             ClientUtils.setModelLocation(crystal_shard, t.getId(), "");
+            ClientUtils.setModelLocation(crystal_glass, t.getId(), "");
         }
         ClientUtils.setModelLocation(crystal_cutter);
         for (IfTier t : PurMag.instance.if_registry.tiers)
@@ -58,19 +64,7 @@ public class ItemRegistry
             ClientUtils.setModelLocation(if_tablet, t.getTier(), "." + t.getTier());
         }
 
-        ModelLoader.setCustomStateMapper(BlockRegistry.crystal, new IStateMapper()
-        {
-            @Override
-            @SideOnly(Side.CLIENT)
-            public Map<IBlockState, ModelResourceLocation> putStateModelLocations(Block blockIn)
-            {
-                HashMap<IBlockState, ModelResourceLocation> map = new HashMap<>();
-                for(String s : PurMag.instance.sip.allowedValues)
-                {
-                    map.put(BlockRegistry.crystal.getDefaultState().withProperty(BlockSingleSip.SIPTYPE, s), ClientUtils.getModelResourceLocation("crystal"));
-                }
-                return map;
-            }
-        });
+        ModelLoader.setCustomStateMapper(BlockRegistry.crystal, new ISMSingleSip(ClientUtils.getModelResourceLocation("crystal")));
+        ModelLoader.setCustomStateMapper(BlockRegistry.crystal_glass, new ISMSingleSip(ClientUtils.getModelResourceLocation("crystal_glass")));
     }
 }
