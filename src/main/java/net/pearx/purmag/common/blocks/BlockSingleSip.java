@@ -29,6 +29,12 @@ public class BlockSingleSip extends BlockBase
     }
 
     @Override
+    public int damageDropped(IBlockState state)
+    {
+        return PurMag.instance.sip.getType(state.getValue(SIPTYPE)).getId();
+    }
+
+    @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(SipType t : PurMag.instance.sip.types)

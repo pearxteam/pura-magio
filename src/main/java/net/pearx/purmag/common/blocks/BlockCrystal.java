@@ -67,12 +67,6 @@ public class BlockCrystal extends BlockSingleSip
     }
 
     @Override
-    public int damageDropped(IBlockState state)
-    {
-        return PurMag.instance.sip.getType(state.getValue(SIPTYPE)).getId();
-    }
-
-    @Override
     public int getHarvestLevel(IBlockState state)
     {
         return 1;
