@@ -14,11 +14,13 @@ public class SipType
 {
     private String name;
     private int color;
+    private int id;
 
-    public SipType(String name, int color)
+    public SipType(String name, int color, int id)
     {
         setColor(color);
         setName(name);
+        setId(id);
     }
 
     public int getColor()
@@ -48,6 +50,11 @@ public class SipType
 
     public int getId()
     {
-        return PurMag.proxy.getSipIdStorage().getMap().get(getName());
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 }

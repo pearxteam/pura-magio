@@ -30,29 +30,20 @@ public class SipTypeRegistry
         return null;
     }
 
+    public SipType getType(int id)
+    {
+        for(SipType type : types)
+            if(type.getId() == id)
+                return type;
+        return null;
+    }
+
     public void setup()
     {
-        register(new SipType("rock", 0x9e9e9e));
-        register(new SipType("sea", 0x42A5F5));
-        register(new SipType("flame", 0xFB8C00));
-        register(new SipType("air", 0xFFE57F));
-        register(new SipType("information", 0x68C397));
-    }
-
-    public static int getTypeId(String name)
-    {
-        return PurMag.proxy.getSipIdStorage().getMap().get(name);
-    }
-
-    public static String getTypeName(int id)
-    {
-        for(Map.Entry<String, Integer> entr : PurMag.proxy.getSipIdStorage().getMap().entrySet())
-        {
-            if(entr.getValue().equals(id))
-            {
-                return entr.getKey();
-            }
-        }
-        return null;
+        register(new SipType("rock", 0x9e9e9e, 0));
+        register(new SipType("sea", 0x42A5F5, 1));
+        register(new SipType("flame", 0xFB8C00, 2));
+        register(new SipType("air", 0xFFE57F, 3));
+        register(new SipType("information", 0x68C397, 4));
     }
 }

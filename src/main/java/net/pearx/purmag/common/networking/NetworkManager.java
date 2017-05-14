@@ -23,8 +23,6 @@ public class NetworkManager
         INSTANCE.registerMessage(CPacketSyncEntryStore.Handler.class, CPacketSyncEntryStore.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(CPacketDisplayMessage.Handler.class, CPacketDisplayMessage.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(CPacketSyncSif.Handler.class, CPacketSyncSif.class, id++, Side.CLIENT);
-        INSTANCE.registerMessage(CPacketSyncSipIds.Handler.class, CPacketSyncSipIds.class, id++, Side.CLIENT);
-        INSTANCE.registerMessage(CPacketCleanSipIds.Handler.class, CPacketCleanSipIds.class, id++, Side.CLIENT);
     }
 
     public static void sendTo(IMessage msg, EntityPlayerMP p)

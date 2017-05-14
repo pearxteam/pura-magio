@@ -1,7 +1,6 @@
 package net.pearx.purmag.common;
 
 import net.pearx.purmag.common.sif.SifStorage;
-import net.pearx.purmag.common.sip.SipIdStorage;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -28,6 +27,4 @@ public class CommonProxy
     {
         throw new NotImplementedException();
     }
-
-    public SipIdStorage getSipIdStorage() { throw new NotImplementedException(); }
 }

@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pearx.purmag.PurMag;
 
 /**
  * Created by mrAppleXZ on 08.04.17 18:53.
@@ -12,15 +13,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ClientUtils
 {
-
-    public static void setModelLocation(Item itm, int meta)
+    public static ModelResourceLocation getModelResourceLocation(String s)
     {
-        String s = meta == -1 ? itm.getRegistryName().toString() : itm.getRegistryName() + "." + meta;
-        ModelLoader.setCustomModelResourceLocation(itm, meta == -1 ? 0 : meta, new ModelResourceLocation(s, "normal"));
+        return new ModelResourceLocation(PurMag.ModId + ":" + s, "normal");
+    }
+
+    public static void setModelLocation(Item itm, int meta, String suffix)
+    {
+        ModelLoader.setCustomModelResourceLocation(itm, meta, new ModelResourceLocation(itm.getRegistryName() + suffix, "normal"));
     }
 
     public static void setModelLocation(Item itm)
     {
-        setModelLocation(itm, -1);
+        setModelLocation(itm, 0, "");
     }
 }

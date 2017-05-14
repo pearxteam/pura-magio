@@ -1,6 +1,5 @@
 package net.pearx.purmag;
 
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -17,7 +16,6 @@ import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.networking.NetworkManager;
 import net.pearx.purmag.common.sif.SifEvents;
 import net.pearx.purmag.common.sip.SipEvents;
-import net.pearx.purmag.common.sip.SipIdStorage;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
 import net.pearx.purmag.common.tiles.TileRegistry;
 import net.pearx.purmag.common.worldgen.WorldgenRegistry;
@@ -115,12 +113,5 @@ public class PurMag
     public void serverStartup(FMLServerStartingEvent e)
     {
         e.registerServerCommand(new CommandIf());
-        SipIdStorage.onServerLoad();
-    }
-
-    @Mod.EventHandler
-    public void serverShutdown(FMLServerStoppingEvent e)
-    {
-        SipIdStorage.onServerShutdown();
     }
 }

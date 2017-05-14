@@ -10,15 +10,4 @@ import net.pearx.purmag.PurMag;
  */
 public class SipEvents
 {
-    @SubscribeEvent
-    public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent e)
-    {
-        PurMag.proxy.getSipIdStorage().sync((EntityPlayerMP)e.player);
-    }
-
-    @SubscribeEvent
-    public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent e)
-    {
-        PurMag.proxy.getSipIdStorage().desync((EntityPlayerMP)e.player);
-    }
 }

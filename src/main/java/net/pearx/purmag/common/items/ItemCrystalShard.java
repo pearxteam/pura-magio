@@ -30,17 +30,13 @@ public class ItemCrystalShard extends ItemBase
     {
         for(SipType t : PurMag.instance.sip.types)
         {
-            list.add(ItemUtils.getItemWithSip(t.getName(), ItemRegistry.crystal_shard));
+            list.add(new ItemStack(ItemRegistry.crystal_shard, 1, t.getId()));
         }
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack)
     {
-        if(stack.hasTagCompound() && stack.getTagCompound().hasKey("SIPTYPE"))
-        {
-            return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.instance.sip.getType(stack.getTagCompound().getString("SIPTYPE")).getDisplayName());
-        }
-        return super.getItemStackDisplayName(stack);
+        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.instance.sip.getType(stack.getMetadata()).getDisplayName());
     }
 }

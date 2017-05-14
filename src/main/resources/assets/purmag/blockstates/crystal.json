@@ -1,12 +1,11 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "purmag:crystal",
-    "transform": "forge:default-block",
-    "custom": { "flip-v": true }
+    "model": "purmag:crystal"
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}]
+    "normal": [
+      {}
+    ]
   }
 }

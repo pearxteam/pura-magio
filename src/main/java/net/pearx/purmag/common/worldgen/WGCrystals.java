@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.GlobalChunkPos;
 import net.pearx.purmag.common.blocks.BlockRegistry;
+import net.pearx.purmag.common.blocks.BlockSingleSip;
 
 import java.util.Random;
 
@@ -77,17 +78,7 @@ public class WGCrystals implements IWorldGenerator
                 for (int i = 0; i < sif; i++)
                 {
                     BlockPos pos = new BlockPos(x, y + i, z);
-                    world.setBlockState(pos, BlockRegistry.crystal.getDefaultState());
-                    TileEntity te = world.getTileEntity(pos);
-                    if (te != null)
-                    {
-                        if (te instanceof TileSingleSip)
-                        {
-                            TileSingleSip tc = (TileSingleSip) te;
-                            tc.setType(entr.getSip());
-                            System.out.println(pos);
-                        }
-                    }
+                    world.setBlockState(pos, BlockRegistry.crystal.getDefaultState().withProperty(BlockSingleSip.SIPTYPE, entr.getSip()));
                 }
             }
         }

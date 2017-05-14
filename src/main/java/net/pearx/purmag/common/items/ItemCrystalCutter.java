@@ -1,5 +1,6 @@
 package net.pearx.purmag.common.items;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -14,6 +15,7 @@ import net.minecraft.world.World;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.blocks.BlockRegistry;
+import net.pearx.purmag.common.blocks.BlockSingleSip;
 
 /**
  * Created by mrAppleXZ on 11.04.17 10:22.
@@ -30,25 +32,19 @@ public class ItemCrystalCutter extends ItemBase
     @Override
     public EnumActionResult onItemUse(EntityPlayer playerIn, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if(!world.isRemote)
-            System.out.println(PurMag.instance.sip.getType("flame").getId());
-        if (world.getBlockState(pos).getBlock() == BlockRegistry.crystal)
+        IBlockState state = world.getBlockState(pos);
+        if (state.getBlock() == BlockRegistry.crystal)
         {
-            TileEntity te = world.getTileEntity(pos);
-            if (te != null && te instanceof TileSingleSip)
+            world.playSound(playerIn, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1, 1);
+            if (!world.isRemote)
             {
-                world.playSound(playerIn, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1, 1);
-                if(!world.isRemote)
-                {
-                    TileSingleSip tc = ((TileSingleSip) te);
-                    ItemStack is = ItemUtils.getItemWithSip(tc.getType(), ItemRegistry.crystal);
-                    world.setBlockToAir(pos);
-                    EntityItem ei = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ());
-                    ei.setEntityItemStack(is);
-                    world.spawnEntity(ei);
-                }
-                return EnumActionResult.SUCCESS;
+                ItemStack is = ItemUtils.getItemWithSip(state.getValue(BlockSingleSip.SIPTYPE), ItemRegistry.crystal);
+                world.setBlockToAir(pos);
+                EntityItem ei = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ());
+                ei.setEntityItemStack(is);
+                world.spawnEntity(ei);
             }
+            return EnumActionResult.SUCCESS;
         }
         return EnumActionResult.PASS;
     }
