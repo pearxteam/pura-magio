@@ -2,29 +2,19 @@ package net.pearx.purmag.common.blocks;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.pearx.purmag.common.PMCreativeTab;
-import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.items.ItemUtils;
-import net.pearx.purmag.common.sip.SipType;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
-import net.pearx.purmag.common.tiles.TileSingleSip;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -71,12 +61,12 @@ public class BlockCrystal extends BlockSingleSip
         if (te != null && te instanceof TileSingleSip)
         {
             TileSingleSip tec = (TileSingleSip) te;
-            String type = SipTypeRegistry.def;
+            String type = SipTypeRegistry.DEFAULT;
             if (stack.hasTagCompound())
             {
-                if (stack.getTagCompound().hasKey("type"))
+                if (stack.getTagCompound().hasKey("SIPTYPE"))
                 {
-                    type = stack.getTagCompound().getString("type");
+                    type = stack.getTagCompound().getString("SIPTYPE");
                 }
             }
             tec.setType(type);

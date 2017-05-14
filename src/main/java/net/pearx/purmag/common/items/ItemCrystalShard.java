@@ -37,9 +37,9 @@ public class ItemCrystalShard extends ItemBase
     @Override
     public String getItemStackDisplayName(ItemStack stack)
     {
-        if(stack.hasTagCompound() && stack.getTagCompound().hasKey("type"))
+        if(stack.hasTagCompound() && stack.getTagCompound().hasKey("SIPTYPE"))
         {
-            return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.instance.sip.getType(stack.getTagCompound().getString("type")).getDisplayName());
+            return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.instance.sip.getType(stack.getTagCompound().getString("SIPTYPE")).getDisplayName());
         }
         return super.getItemStackDisplayName(stack);
     }

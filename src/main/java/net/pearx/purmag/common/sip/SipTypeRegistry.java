@@ -1,19 +1,25 @@
 package net.pearx.purmag.common.sip;
 
+import net.pearx.purmag.PurMag;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mrAppleXZ on 10.04.17 9:05.
  */
 public class SipTypeRegistry
 {
-    public static final String def = "rock";
+    public static final String DEFAULT = "rock";
 
-    public ArrayList<SipType> types = new ArrayList<>();
+    public List<SipType> types = new ArrayList<>();
+    public List<String> allowedValues = new ArrayList<>();
 
     public void register(SipType t)
     {
         types.add(t);
+        allowedValues.add(t.getName());
     }
 
     public SipType getType(String name)
@@ -31,5 +37,22 @@ public class SipTypeRegistry
         register(new SipType("flame", 0xFB8C00));
         register(new SipType("air", 0xFFE57F));
         register(new SipType("information", 0x68C397));
+    }
+
+    public static int getTypeId(String name)
+    {
+        return PurMag.proxy.getSipIdStorage().getMap().get(name);
+    }
+
+    public static String getTypeName(int id)
+    {
+        for(Map.Entry<String, Integer> entr : PurMag.proxy.getSipIdStorage().getMap().entrySet())
+        {
+            if(entr.getValue().equals(id))
+            {
+                return entr.getKey();
+            }
+        }
+        return null;
     }
 }

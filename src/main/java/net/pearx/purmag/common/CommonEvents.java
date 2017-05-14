@@ -98,38 +98,4 @@ public class CommonEvents
     {
         e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).sync((EntityPlayerMP)e.player);
     }
-
-    @SubscribeEvent
-    public void onChunkSave(ChunkDataEvent.Save e)
-    {
-        e.getData().setFloat("sif_power", PurMag.proxy.getSifStorage().getPower(GlobalChunkPos.fromChunk(e.getChunk())));
-    }
-
-    @SubscribeEvent
-    public void onChunkLoad(ChunkDataEvent.Load e)
-    {
-        PurMag.proxy.getSifStorage().setPower(GlobalChunkPos.fromChunk(e.getChunk()), e.getData().getFloat("sif_power"));
-    }
-
-    @SubscribeEvent
-    public void onChunkUnload(ChunkEvent.Unload e)
-    {
-        PurMag.proxy.getSifStorage().removeChunk(GlobalChunkPos.fromChunk(e.getChunk()));
-    }
-
-    @SubscribeEvent
-    @SideOnly(Side.SERVER)
-    public void onChunkWatch(ChunkWatchEvent.Watch e)
-    {
-        GlobalChunkPos pos = new GlobalChunkPos(e.getChunk().chunkXPos, e.getChunk().chunkZPos, e.getPlayer().world.provider.getDimension());
-        NetworkManager.sendTo(new CPacketSyncSif(pos, false, PurMag.proxy.getSifStorage().getPower(pos)), e.getPlayer());
-    }
-
-    @SubscribeEvent
-    @SideOnly(Side.SERVER)
-    public void onChunkUnwatch(ChunkWatchEvent.UnWatch e)
-    {
-        GlobalChunkPos pos = new GlobalChunkPos(e.getChunk().chunkXPos, e.getChunk().chunkZPos, e.getPlayer().world.provider.getDimension());
-        NetworkManager.sendTo(new CPacketSyncSif(pos, true, 0), e.getPlayer());
-    }
 }

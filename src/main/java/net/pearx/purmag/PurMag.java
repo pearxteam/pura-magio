@@ -1,5 +1,6 @@
 package net.pearx.purmag;
 
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -8,11 +9,15 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.pearx.purmag.common.*;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.infofield.IfRegistry;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.networking.NetworkManager;
+import net.pearx.purmag.common.sif.SifEvents;
+import net.pearx.purmag.common.sip.SipEvents;
+import net.pearx.purmag.common.sip.SipIdStorage;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
 import net.pearx.purmag.common.tiles.TileRegistry;
 import net.pearx.purmag.common.worldgen.WorldgenRegistry;
@@ -67,6 +72,8 @@ public class PurMag
 
         proxy.preInit();
         MinecraftForge.EVENT_BUS.register(new CommonEvents());
+        MinecraftForge.EVENT_BUS.register(new SifEvents());
+        MinecraftForge.EVENT_BUS.register(new SipEvents());
     }
 
     @Mod.EventHandler
@@ -108,5 +115,12 @@ public class PurMag
     public void serverStartup(FMLServerStartingEvent e)
     {
         e.registerServerCommand(new CommandIf());
+        SipIdStorage.onServerLoad();
+    }
+
+    @Mod.EventHandler
+    public void serverShutdown(FMLServerStoppingEvent e)
+    {
+        SipIdStorage.onServerShutdown();
     }
 }

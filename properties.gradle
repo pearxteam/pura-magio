@@ -4,4 +4,6 @@ ext
   forge_version="13.20.0.2296"
   jei_version="4.3.3.270"
   mappings_version="snapshot_20170510"
+  top_version="1.1x-1.4.6-56"
+  compatlayer_version="0.2.8"
 }

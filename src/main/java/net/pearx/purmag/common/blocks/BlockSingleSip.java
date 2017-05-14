@@ -1,39 +1,28 @@
 package net.pearx.purmag.common.blocks;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
-import net.minecraft.world.World;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.common.items.ItemRegistry;
-import net.pearx.purmag.common.items.ItemUtils;
+import net.pearx.purmag.common.blocks.properties.PropertySipType;
 import net.pearx.purmag.common.sip.SipType;
-import net.pearx.purmag.common.tiles.TileSingleSip;
+import net.pearx.purmag.common.sip.SipTypeRegistry;
 
 /**
  * Created by mrAppleXZ on 12.05.17 22:00.
  */
 public class BlockSingleSip extends BlockBase
 {
+    public static final PropertySipType SIPTYPE = PropertySipType.create();
+
     public BlockSingleSip(Material materialIn)
     {
         super(materialIn);
-    }
-
-    @Override
-    public boolean hasTileEntity(IBlockState state)
-    {
-        return true;
-    }
-
-    @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
-    {
-        return new TileSingleSip();
+        setDefaultState(getBlockState().getBaseState().withProperty(SIPTYPE, SipTypeRegistry.DEFAULT));
     }
 
     @Override
@@ -41,7 +30,25 @@ public class BlockSingleSip extends BlockBase
     {
         for(SipType t : PurMag.instance.sip.types)
         {
-            list.add(ItemUtils.getItemWithSip(t.getName(), Item.getItemFromBlock(this)));
+            list.add(new ItemStack(itemIn, 1, t.getId()));
         }
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return getDefaultState().withProperty(SIPTYPE, SipTypeRegistry.getTypeName(meta));
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return SipTypeRegistry.getTypeId(state.getValue(SIPTYPE));
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, SIPTYPE);
     }
 }

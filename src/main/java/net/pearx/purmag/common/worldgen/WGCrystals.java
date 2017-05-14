@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.GlobalChunkPos;
 import net.pearx.purmag.common.blocks.BlockRegistry;
-import net.pearx.purmag.common.tiles.TileSingleSip;
 
 import java.util.Random;
 

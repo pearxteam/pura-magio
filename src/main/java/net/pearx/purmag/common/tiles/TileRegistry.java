@@ -11,6 +11,6 @@ public class TileRegistry
 {
     public static void setup()
     {
-        GameRegistry.registerTileEntity(TileSingleSip.class, Utils.getRegistryName("singlesip").toString());
+
     }
 }

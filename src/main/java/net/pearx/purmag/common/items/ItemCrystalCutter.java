@@ -10,14 +10,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.common.GlobalChunkPos;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.blocks.BlockRegistry;
-import net.pearx.purmag.common.tiles.TileSingleSip;
 
 /**
  * Created by mrAppleXZ on 11.04.17 10:22.
@@ -34,6 +30,8 @@ public class ItemCrystalCutter extends ItemBase
     @Override
     public EnumActionResult onItemUse(EntityPlayer playerIn, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        if(!world.isRemote)
+            System.out.println(PurMag.instance.sip.getType("flame").getId());
         if (world.getBlockState(pos).getBlock() == BlockRegistry.crystal)
         {
             TileEntity te = world.getTileEntity(pos);
