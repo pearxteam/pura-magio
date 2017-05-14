@@ -46,8 +46,8 @@ public class BlockCrystalGlass extends BlockSingleSip
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
-        Block off = blockAccess.getBlockState(pos.offset(side)).getBlock();
-        if(off == this)
+        IBlockState off = blockAccess.getBlockState(pos.offset(side));
+        if(off.equals(blockState))
             return false;
         return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
