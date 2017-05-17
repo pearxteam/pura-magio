@@ -1,6 +1,0 @@
-{
-  "parent": "purmag:block/cube_all_colored",
-  "textures": {
-    "all": "purmag:blocks/crystal_glass"
-  }
-}

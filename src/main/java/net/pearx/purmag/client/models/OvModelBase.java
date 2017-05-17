@@ -16,7 +16,6 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
-import org.lwjgl.input.Mouse;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -26,18 +25,18 @@ import java.util.List;
  * Created by mrAppleXZ on 10.04.17 8:55.
  */
 @SideOnly(Side.CLIENT)
-public class ObjModelBase implements IBakedModel
+public class OvModelBase implements IModelBase
 {
-    private ResourceLocation objFile;
+    private ResourceLocation baseModel;
 
-    public void setObj(String name)
+    public void setBaseModel(ResourceLocation loc)
     {
-        objFile = new ResourceLocation(PurMag.ModId, name);
+        baseModel = loc;
     }
 
-    public ResourceLocation getObj()
+    public ResourceLocation getBaseModel()
     {
-        return objFile;
+        return baseModel;
     }
 
     private IBakedModel baked;
@@ -47,12 +46,13 @@ public class ObjModelBase implements IBakedModel
         return baked;
     }
 
+    @Override
     public void bake()
     {
         IModel mdl = null;
         try
         {
-            mdl = ModelLoaderRegistry.getModel(getObj());
+            mdl = ModelLoaderRegistry.getModel(getBaseModel());
         } catch (Exception e)
         {
             e.printStackTrace();

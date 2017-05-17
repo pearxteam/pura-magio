@@ -1,7 +1,6 @@
 package net.pearx.purmag.client;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
@@ -11,7 +10,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.client.models.CrystalModel;
+import net.pearx.purmag.client.models.IModelBase;
+import net.pearx.purmag.client.models.StandardModels;
 import net.pearx.purmag.common.DisplayMessage;
 import net.pearx.purmag.common.SoundRegistry;
 
@@ -30,15 +30,25 @@ public class ClientEvents
     @SubscribeEvent
     public void onBake(ModelBakeEvent e)
     {
-        CrystalModel mdl = new CrystalModel();
-        mdl.bake();
-        e.getModelRegistry().putObject(new ModelResourceLocation(new ResourceLocation(PurMag.ModId, "crystal"), "normal"), mdl);
+        putModel(e, new StandardModels.Crystal(), new ResourceLocation(PurMag.ModId, "crystal"));
+        putModel(e, new StandardModels.CrystalGlass(), new ResourceLocation(PurMag.ModId, "crystal_glass"));
+    }
+
+    private void putModel(ModelBakeEvent e, IModelBase model, ResourceLocation loc)
+    {
+        model.bake();
+        e.getModelRegistry().putObject(new ModelResourceLocation(loc, "normal"), model);
     }
 
     @SubscribeEvent
     public void stitch(TextureStitchEvent.Pre e)
     {
         e.getMap().registerSprite(new ResourceLocation(PurMag.ModId, "models/crystal"));
+        for(int i = 0; i < 2; i++)
+            for(int j = 0; j < 2; j++)
+                for(int k = 0; k < 2; k++)
+                    for(int l = 0; l < 2; l++)
+                        e.getMap().registerSprite(new ResourceLocation(PurMag.ModId, "blocks/crystal_glass/" + i + j + k + l));
     }
 
     @SubscribeEvent
