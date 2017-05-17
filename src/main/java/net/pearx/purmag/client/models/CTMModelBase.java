@@ -97,7 +97,14 @@ public class CTMModelBase extends OvModelBase
 
     public String getConnectionsString(EnumFacing north, EnumFacing east, EnumFacing south, EnumFacing west, IExtendedBlockState state)
     {
-        return boolToShortString(state.getValue(CTMController.PROPS.get(north))) + boolToShortString(state.getValue(CTMController.PROPS.get(east))) + boolToShortString(state.getValue(CTMController.PROPS.get(south))) + boolToShortString(state.getValue(CTMController.PROPS.get(west)));
+        try
+        {
+            return boolToShortString(state.getValue(CTMController.PROPS.get(north))) + boolToShortString(state.getValue(CTMController.PROPS.get(east))) + boolToShortString(state.getValue(CTMController.PROPS.get(south))) + boolToShortString(state.getValue(CTMController.PROPS.get(west)));
+        }
+        catch(Exception e)
+        {
+            return "0000";
+        }
     }
 
     public String boolToShortString(Boolean bool)
