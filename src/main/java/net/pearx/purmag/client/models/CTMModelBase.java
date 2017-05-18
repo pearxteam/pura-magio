@@ -84,7 +84,7 @@ public class CTMModelBase extends OvModelBase
                         break;
                 }
             }
-            quads.add(new BakedQuadRetextured(baseQ, getSprite(digits)));
+            quads.add(new BakedQuadWNT(baseQ, getSprite(digits)));
         }
         return quads;
     }

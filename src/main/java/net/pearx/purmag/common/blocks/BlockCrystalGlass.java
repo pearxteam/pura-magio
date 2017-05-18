@@ -62,6 +62,12 @@ public class BlockCrystalGlass extends BlockSingleSip
     }
 
     @Override
+    public boolean hasCustomBreakingProgress(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
     protected BlockStateContainer createBlockState()
     {
         return new ExtendedBlockState(this, new IProperty[] {SIPTYPE}, CTMController.PROPS.values().toArray(new IUnlistedProperty[0]));
