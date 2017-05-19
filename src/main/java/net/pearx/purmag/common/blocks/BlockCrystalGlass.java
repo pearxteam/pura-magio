@@ -34,6 +34,7 @@ public class BlockCrystalGlass extends BlockSingleSip
         setUnlocalizedName("crystal_glass");
         setHardness(1f);
         setSoundType(SoundType.GLASS);
+        setHarvestLevel("pickaxe", 0);
     }
 
     @Override

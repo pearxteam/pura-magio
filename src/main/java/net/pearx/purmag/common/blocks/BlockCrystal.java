@@ -34,6 +34,7 @@ public class BlockCrystal extends BlockSingleSip
         setUnlocalizedName("crystal");
         setHardness(2);
         setLightLevel(5);
+        setHarvestLevel("pickaxe", 1);
     }
 
     @Override
@@ -64,18 +65,5 @@ public class BlockCrystal extends BlockSingleSip
     public int quantityDropped(Random random)
     {
         return random.nextInt(4) + 3;
-    }
-
-    @Override
-    public int getHarvestLevel(IBlockState state)
-    {
-        return 1;
-    }
-
-    @Nullable
-    @Override
-    public String getHarvestTool(IBlockState state)
-    {
-        return "pickaxe";
     }
 }

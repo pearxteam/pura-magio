@@ -1,5 +1,6 @@
 package net.pearx.purmag.common;
 
+import net.minecraft.item.Item;
 import net.pearx.purmag.common.sif.SifStorage;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
