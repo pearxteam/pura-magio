@@ -17,10 +17,8 @@ import javax.annotation.Nullable;
  */
 public class ItemBase extends Item
 {
-    @Nullable
-    @Override
-    public CreativeTabs getCreativeTab()
+    public ItemBase()
     {
-        return PMCreativeTab.instance;
+        setCreativeTab(PMCreativeTab.instance);
     }
 }

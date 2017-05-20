@@ -1,6 +1,5 @@
 stages:
   - build
-  - test
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
@@ -17,8 +16,3 @@ build:
   artifacts:
     paths:
       - build/libs/*.jar
-
-test:
-  stage: test
-  script:
-    - ./gradlew check

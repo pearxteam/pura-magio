@@ -22,11 +22,11 @@ public class BlockOre extends BlockBase
 {
     public ItemStack dropped;
 
-    public BlockOre(String modid, String name, float hardness, int harvestLevel)
+    public BlockOre(ResourceLocation loc, float hardness, int harvestLevel)
     {
         super(Material.ROCK);
-        setRegistryName(new ResourceLocation(modid, "ore_" + name));
-        setUnlocalizedName("ore_" + name);
+        setRegistryName(loc);
+        setUnlocalizedName(loc.getResourcePath());
         setHardness(hardness);
         setHarvestLevel("pickaxe", harvestLevel);
     }

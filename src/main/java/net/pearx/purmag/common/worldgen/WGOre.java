@@ -51,6 +51,7 @@ public class WGOre implements IWorldGenerator
                     if (prev.getBlock().isReplaceableOreGen(prev, world, last, input -> true))
                     {
                         world.setBlockState(last, state);
+                        System.out.println(last + " ore");
                         last = new BlockPos(x + getOffset(random), y + getOffset(random), z + getOffset(random));
                     }
                 }

@@ -8,9 +8,9 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.pearx.purmag.common.*;
 import net.pearx.purmag.common.blocks.BlockRegistry;
+import net.pearx.purmag.common.config.PMConfig;
 import net.pearx.purmag.common.infofield.IfRegistry;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.networking.NetworkManager;
@@ -23,7 +23,6 @@ import net.pearx.purmag.common.commands.CommandIf;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -44,8 +43,6 @@ public class PurMag
     public IfRegistry if_registry = new IfRegistry();
     public PMConfig config = new PMConfig();
 
-    private Configuration configFile;
-
     @SidedProxy(clientSide = "net.pearx.purmag.client.ClientProxy", serverSide = "net.pearx.purmag.server.ServerProxy")
     public static CommonProxy proxy;
 
@@ -55,8 +52,7 @@ public class PurMag
         instance = this;
         setupMetadata(e.getModMetadata());
 
-        configFile = new Configuration(new File(e.getModConfigurationDirectory(), "Purificati Magicae.cfg"));
-        setupConfig();
+        config.setup(new Configuration(new File(e.getModConfigurationDirectory(), "Purificati Magicae.cfg")));
 
         sip.setup();
         BlockRegistry.setup();
@@ -91,22 +87,6 @@ public class PurMag
         data.modId = PurMag.ModId;
         data.name = PurMag.Name;
         data.version = PurMag.Version;
-    }
-
-    private void setupConfig()
-    {
-        config.genCrystals = configFile.getBoolean("Generate Crystals", "WORLD", true, "");
-
-        String[] rcbld = configFile.getStringList("Rock Crystals Dimension Blacklist", "WORLD", new String[] {"1", "-1"}, "");
-        List<Integer> lst = new ArrayList<>();
-        for(String s : rcbld)
-        {
-            lst.add(Integer.parseInt(s));
-        }
-        config.genRockCrystalsDimBlacklist = lst;
-
-        if(configFile.hasChanged())
-            configFile.save();
     }
 
     @Mod.EventHandler

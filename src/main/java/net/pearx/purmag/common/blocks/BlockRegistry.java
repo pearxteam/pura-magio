@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.worldgen.WGOre;
 
@@ -26,7 +27,7 @@ public class BlockRegistry
         crystal_glass = new BlockCrystalGlass();
         GameRegistry.register(crystal_glass);
 
-        ore_crysagnetite = new BlockOre(PurMag.ModId, "crysagnetite", 3f, 2);
+        ore_crysagnetite = new BlockOre(Utils.getRegistryName("ore_crysagnetite"), 3f, 2);
         GameRegistry.register(ore_crysagnetite);
         OreDictionary.registerOre("oreCrysagnetite", ore_crysagnetite);
     }

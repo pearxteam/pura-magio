@@ -14,6 +14,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.ClientUtils;
 import net.pearx.purmag.client.blockstates.ISMSingleSip;
+import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.blocks.BlockOre;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.blocks.BlockSingleSip;
@@ -34,6 +35,7 @@ public class ItemRegistry
     public static Item if_tablet;
     public static Item crystal_glass;
     public static Item ore_crysagnetite;
+    public static Item ingot_crysagnetite;
 
     public static void setup()
     {
@@ -55,6 +57,10 @@ public class ItemRegistry
         ore_crysagnetite = ItemUtils.getItemFromBlock(BlockRegistry.ore_crysagnetite);
         GameRegistry.register(ore_crysagnetite);
         BlockRegistry.ore_crysagnetite.dropped = new ItemStack(ore_crysagnetite);
+
+        ingot_crysagnetite = new ItemSimple(Utils.getRegistryName("ingot_crysagnetite"));
+        GameRegistry.register(ingot_crysagnetite);
+        OreDictionary.registerOre("ingotCrysagnetite", ingot_crysagnetite);
     }
 
     @SideOnly(Side.CLIENT)
@@ -72,6 +78,7 @@ public class ItemRegistry
             ClientUtils.setModelLocation(if_tablet, t.getTier(), "." + t.getTier());
         }
         ClientUtils.setModelLocation(ore_crysagnetite);
+        ClientUtils.setModelLocation(ingot_crysagnetite);
 
         ModelLoader.setCustomStateMapper(BlockRegistry.crystal, new ISMSingleSip(ClientUtils.getModelResourceLocation("crystal")));
         ModelLoader.setCustomStateMapper(BlockRegistry.crystal_glass, new ISMSingleSip(ClientUtils.getModelResourceLocation("crystal_glass")));
