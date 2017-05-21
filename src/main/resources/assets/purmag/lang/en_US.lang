@@ -50,3 +50,7 @@ subtitle.purmag_click=Click
 button.back.name=Back
 button.prev.name=<
 button.next.name=>
+
+#Keys
+key.categories.purmag=Purificati Magicae
+key.use_sip_amulet=Use Sip Amulet

@@ -7,6 +7,7 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
@@ -14,6 +15,8 @@ import net.pearx.purmag.client.models.IModelBase;
 import net.pearx.purmag.client.models.StandardModels;
 import net.pearx.purmag.common.DisplayMessage;
 import net.pearx.purmag.common.SoundRegistry;
+import net.pearx.purmag.common.networking.NetworkManager;
+import net.pearx.purmag.common.networking.packets.SPacketUseSipAmulet;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -75,6 +78,15 @@ public class ClientEvents
                 isDMDisplayed = true;
                 msg.draw(0, 0);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onKeyPress(InputEvent.KeyInputEvent e)
+    {
+        if(KeyBindings.USE_SIP_AMULET.isPressed())
+        {
+            NetworkManager.sendToServer(new SPacketUseSipAmulet());
         }
     }
 }

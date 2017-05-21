@@ -1,5 +1,6 @@
 package net.pearx.purmag.common.sip;
 
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;

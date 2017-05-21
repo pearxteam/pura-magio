@@ -45,6 +45,8 @@ public class ClientProxy extends CommonProxy
         registerSipItemColor(ItemRegistry.crystal_glass);
         registerSipItemColor(ItemRegistry.crystal);
         registerSipItemColor(ItemRegistry.crystal_shard);
+
+        KeyBindings.setup();
     }
 
     public static void registerSipItemColor(Item itm)

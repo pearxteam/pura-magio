@@ -1,6 +1,7 @@
 package net.pearx.purmag.common.networking;
 
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -23,6 +24,7 @@ public class NetworkManager
         INSTANCE.registerMessage(CPacketSyncEntryStore.Handler.class, CPacketSyncEntryStore.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(CPacketDisplayMessage.Handler.class, CPacketDisplayMessage.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(CPacketSyncSif.Handler.class, CPacketSyncSif.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(SPacketUseSipAmulet.Handler.class, SPacketUseSipAmulet.class, id++, Side.SERVER);
     }
 
     public static void sendTo(IMessage msg, EntityPlayerMP p)

@@ -15,6 +15,7 @@ import net.pearx.purmag.common.infofield.IfRegistry;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.networking.NetworkManager;
 import net.pearx.purmag.common.sif.SifEvents;
+import net.pearx.purmag.common.sip.SipEffectsRegistry;
 import net.pearx.purmag.common.sip.SipEvents;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
 import net.pearx.purmag.common.tiles.TileRegistry;
@@ -40,6 +41,7 @@ public class PurMag
     public static final String Version = "1.0.0";
 
     public SipTypeRegistry sip = new SipTypeRegistry();
+    public SipEffectsRegistry sip_effects = new SipEffectsRegistry();
     public IfRegistry if_registry = new IfRegistry();
     public PMConfig config = new PMConfig();
 
@@ -55,6 +57,7 @@ public class PurMag
         config.setup(new Configuration(new File(e.getModConfigurationDirectory(), "Purificati Magicae.cfg")));
 
         sip.setup();
+        sip_effects.setup();
         BlockRegistry.setup();
         ItemRegistry.setup();
         TileRegistry.setup();

@@ -1,5 +1,6 @@
 package net.pearx.purmag.common.config;
 
+import net.minecraft.util.StringUtils;
 import net.minecraftforge.common.config.Configuration;
 
 import java.util.ArrayList;
@@ -47,7 +48,10 @@ public class PMConfig
         List<Integer> lst = new ArrayList<>();
         for(String s : rcbld)
         {
-            lst.add(Integer.parseInt(s));
+            if(!StringUtils.isNullOrEmpty(s))
+            {
+                lst.add(Integer.parseInt(s));
+            }
         }
         return lst;
     }
