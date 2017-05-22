@@ -65,8 +65,6 @@ public class SPacketUseSipAmulet implements IMessage
                     ctx.getServerHandler().player.addPotionEffect(new PotionEffect(eff.getEffect(), eff.getTicks() * entr.getValue(), lvl));
                 }
                 ItemSipAmulet.clearSip(amulet);
-                //todo remove this debug thing and add glove \/
-                ItemSipAmulet.addSip(amulet, PurMag.instance.sip.types.get(PurMag.rand.nextInt(PurMag.instance.sip.types.size())).getName(), 3);
                 ItemUtils.setBauble(ctx.getServerHandler().player, BaubleType.AMULET.getValidSlots()[0], amulet);
             }
             return null;

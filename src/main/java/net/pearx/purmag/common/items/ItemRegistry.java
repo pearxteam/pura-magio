@@ -37,6 +37,7 @@ public class ItemRegistry
     public static Item ore_crysagnetite;
     public static Item ingot_crysagnetite;
     public static Item sip_amulet;
+    public static Item glove;
 
     public static void setup()
     {
@@ -65,6 +66,9 @@ public class ItemRegistry
 
         sip_amulet = new ItemSipAmulet();
         GameRegistry.register(sip_amulet);
+
+        glove = new ItemGlove();
+        GameRegistry.register(glove);
     }
 
     @SideOnly(Side.CLIENT)
