@@ -89,6 +89,7 @@ public class ItemRegistry
         ClientUtils.setModelLocation(ingot_crysagnetite);
         for(int i = 0; i < 3; i++)
             ClientUtils.setModelLocation(sip_amulet, i, "." + i);
+        ClientUtils.setModelLocation(glove);
 
         ModelLoader.setCustomStateMapper(BlockRegistry.crystal, new ISMSingleSip(ClientUtils.getModelResourceLocation("crystal")));
         ModelLoader.setCustomStateMapper(BlockRegistry.crystal_glass, new ISMSingleSip(ClientUtils.getModelResourceLocation("crystal_glass")));

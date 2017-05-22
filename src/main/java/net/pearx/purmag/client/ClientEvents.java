@@ -1,6 +1,7 @@
 package net.pearx.purmag.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
@@ -15,6 +16,7 @@ import net.pearx.purmag.client.models.IModelBase;
 import net.pearx.purmag.client.models.StandardModels;
 import net.pearx.purmag.common.DisplayMessage;
 import net.pearx.purmag.common.SoundRegistry;
+import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.items.ItemSipAmulet;
 import net.pearx.purmag.common.networking.NetworkManager;
@@ -37,6 +39,7 @@ public class ClientEvents
     {
         putModel(e, new StandardModels.Crystal(), new ResourceLocation(PurMag.ModId, "crystal"));
         putModel(e, new StandardModels.CrystalGlass(), new ResourceLocation(PurMag.ModId, "crystal_glass"));
+        putModel(e, new StandardModels.Glove(), Utils.getRegistryName("glove"));
     }
 
     private void putModel(ModelBakeEvent e, IModelBase model, ResourceLocation loc)
@@ -57,9 +60,9 @@ public class ClientEvents
     }
 
     @SubscribeEvent
-    public void renderMessage(RenderGameOverlayEvent e)
+    public void renderMessage(RenderGameOverlayEvent.Pre e)
     {
-        if(e.getType() == RenderGameOverlayEvent.ElementType.HOTBAR)
+        if(e.getType() == RenderGameOverlayEvent.ElementType.TEXT)
         {
             DisplayMessage msg = DisplayMessageQuery.getMessage();
             if (msg != null)
@@ -78,6 +81,7 @@ public class ClientEvents
                     }, 5000); //5 seconds
                 }
                 isDMDisplayed = true;
+                GlStateManager.color(1, 1, 1);
                 msg.draw(0, 0);
             }
         }

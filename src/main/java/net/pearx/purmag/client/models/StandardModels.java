@@ -8,9 +8,11 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.Utils;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.vecmath.Matrix4f;
+import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
 
 /**
@@ -38,6 +40,25 @@ public class StandardModels
         public CrystalGlass()
         {
             setBaseTexture(new ResourceLocation(PurMag.ModId, "blocks/crystal_glass"));
+        }
+    }
+
+    public static class Glove extends OvModelBase implements IPerspectiveAwareModel
+    {
+        public Glove() { setBaseModel(Utils.getRegistryName("item/glove.obj")); }
+
+        @Override
+        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
+        {
+            if(cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND)
+            {
+                return Pair.of(this, new TRSRTransformation(new Vector3f(0f, 0.2f, -0.1f), new Quat4f(0, 0, 45, 1), null, new Quat4f(0, 0, 180, 1)).getMatrix());
+            }
+            if(cameraTransformType == ItemCameraTransforms.TransformType.GUI)
+            {
+                return Pair.of(this, new TRSRTransformation(null, new Quat4f(180, 180, gi180, 1), null, null).getMatrix());
+            }
+            return Pair.of(this, new TRSRTransformation(null, null, null, null).getMatrix());
         }
     }
 }
