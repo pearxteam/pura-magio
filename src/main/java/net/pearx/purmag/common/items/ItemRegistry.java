@@ -36,6 +36,7 @@ public class ItemRegistry
     public static Item crystal_glass;
     public static Item ore_crysagnetite;
     public static Item ingot_crysagnetite;
+    public static Item sip_amulet;
 
     public static void setup()
     {
@@ -61,6 +62,9 @@ public class ItemRegistry
         ingot_crysagnetite = new ItemSimple(Utils.getRegistryName("ingot_crysagnetite"));
         GameRegistry.register(ingot_crysagnetite);
         OreDictionary.registerOre("ingotCrysagnetite", ingot_crysagnetite);
+
+        sip_amulet = new ItemSipAmulet();
+        GameRegistry.register(sip_amulet);
     }
 
     @SideOnly(Side.CLIENT)
@@ -79,6 +83,8 @@ public class ItemRegistry
         }
         ClientUtils.setModelLocation(ore_crysagnetite);
         ClientUtils.setModelLocation(ingot_crysagnetite);
+        for(int i = 0; i < 3; i++)
+            ClientUtils.setModelLocation(sip_amulet, i, "." + i);
 
         ModelLoader.setCustomStateMapper(BlockRegistry.crystal, new ISMSingleSip(ClientUtils.getModelResourceLocation("crystal")));
         ModelLoader.setCustomStateMapper(BlockRegistry.crystal_glass, new ISMSingleSip(ClientUtils.getModelResourceLocation("crystal_glass")));

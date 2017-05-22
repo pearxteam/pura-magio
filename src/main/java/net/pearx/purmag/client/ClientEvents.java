@@ -15,6 +15,8 @@ import net.pearx.purmag.client.models.IModelBase;
 import net.pearx.purmag.client.models.StandardModels;
 import net.pearx.purmag.common.DisplayMessage;
 import net.pearx.purmag.common.SoundRegistry;
+import net.pearx.purmag.common.items.ItemRegistry;
+import net.pearx.purmag.common.items.ItemSipAmulet;
 import net.pearx.purmag.common.networking.NetworkManager;
 import net.pearx.purmag.common.networking.packets.SPacketUseSipAmulet;
 
@@ -86,7 +88,10 @@ public class ClientEvents
     {
         if(KeyBindings.USE_SIP_AMULET.isPressed())
         {
-            NetworkManager.sendToServer(new SPacketUseSipAmulet());
+            if(ItemSipAmulet.checkForAmulet(Minecraft.getMinecraft().player))
+            {
+                NetworkManager.sendToServer(new SPacketUseSipAmulet());
+            }
         }
     }
 }

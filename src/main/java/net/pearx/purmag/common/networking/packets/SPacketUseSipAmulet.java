@@ -1,9 +1,23 @@
 package net.pearx.purmag.common.networking.packets;
 
+import baubles.api.BaubleType;
+import baubles.api.cap.BaublesCapabilities;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.items.ItemSipAmulet;
+import net.pearx.purmag.common.items.ItemUtils;
+import net.pearx.purmag.common.sip.SipEffect;
+import net.pearx.purmag.common.sip.SipType;
+import net.pearx.purmag.common.sip.SipTypeRegistry;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by mrAppleXZ on 21.05.17 18:37.
@@ -37,6 +51,24 @@ public class SPacketUseSipAmulet implements IMessage
         @Override
         public IMessage onMessage(SPacketUseSipAmulet message, MessageContext ctx)
         {
+            if(ItemSipAmulet.checkForAmulet(ctx.getServerHandler().player))
+            {
+                //todo spawn particles
+                ItemStack amulet = ItemUtils.getBauble(ctx.getServerHandler().player, BaubleType.AMULET.getValidSlots()[0]);
+                HashMap<String, Integer> sips = ItemSipAmulet.getSips(amulet);
+                for(Map.Entry<String, Integer> entr : sips.entrySet())
+                {
+                    SipEffect eff = PurMag.instance.sip_effects.getMap().get(entr.getKey());
+                    int lvl = amulet.getMetadata();
+                    if(eff.getMaxLevel() != -1 && lvl > eff.getMaxLevel())
+                        lvl = eff.getMaxLevel();
+                    ctx.getServerHandler().player.addPotionEffect(new PotionEffect(eff.getEffect(), eff.getTicks() * entr.getValue(), lvl));
+                }
+                ItemSipAmulet.clearSip(amulet);
+                //todo remove this debug thing and add glove \/
+                ItemSipAmulet.addSip(amulet, PurMag.instance.sip.types.get(PurMag.rand.nextInt(PurMag.instance.sip.types.size())).getName(), 3);
+                ItemUtils.setBauble(ctx.getServerHandler().player, BaubleType.AMULET.getValidSlots()[0], amulet);
+            }
             return null;
         }
     }

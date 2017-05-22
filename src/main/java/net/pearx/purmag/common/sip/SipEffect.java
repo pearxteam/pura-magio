@@ -9,13 +9,13 @@ import net.minecraft.potion.PotionEffect;
 public class SipEffect
 {
     private Potion effect;
-    private int seconds;
+    private int ticks;
     private int maxLevel;
 
-    public SipEffect(Potion effect, int seconds, int maxLevel)
+    public SipEffect(Potion effect, int ticks, int maxLevel)
     {
         this.effect = effect;
-        this.seconds = seconds;
+        this.ticks = ticks;
         this.maxLevel = maxLevel;
     }
 
@@ -29,14 +29,14 @@ public class SipEffect
         this.effect = effect;
     }
 
-    public int getSeconds()
+    public int getTicks()
     {
-        return seconds;
+        return ticks;
     }
 
-    public void setSeconds(int seconds)
+    public void setTicks(int ticks)
     {
-        this.seconds = seconds;
+        this.ticks = ticks;
     }
 
     public int getMaxLevel()
