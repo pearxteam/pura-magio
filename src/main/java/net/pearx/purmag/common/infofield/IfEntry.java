@@ -2,9 +2,6 @@ package net.pearx.purmag.common.infofield;
 
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.infofield.pages.IIfPage;
@@ -117,7 +114,7 @@ public class IfEntry
     //Just available to see, not read/continue researching/etc.
     public boolean isAvailable(EntityPlayer p, int tier)
     {
-        IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null);
+        IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
         //if tier is < needed.
         if (tier < getTier())
             return false;
@@ -134,7 +131,7 @@ public class IfEntry
     public boolean isAllParentsUnlocked(EntityPlayer p)
     {
         for (String id : getParents())
-            if (!p.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).isFullyUnlocked(id))
+            if (!p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).isFullyUnlocked(id))
                 return false;
         return true;
     }

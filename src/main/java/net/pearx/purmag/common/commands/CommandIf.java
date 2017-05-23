@@ -68,7 +68,7 @@ public class CommandIf extends CommandBase
                 throw new WrongUsageException(getUsage(sender));
         }
         EntityPlayerMP p = server.getPlayerList().getPlayerByUsername(player);
-        IIfEntryStore s = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null);
+        IIfEntryStore s = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
         s.setSteps(res, steps);
         s.sync(p);
         sender.sendMessage(new TextComponentTranslation("command.if.success." + act, "§5" + res, "§5" + player));

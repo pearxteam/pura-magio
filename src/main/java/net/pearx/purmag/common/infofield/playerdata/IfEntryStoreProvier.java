@@ -2,12 +2,9 @@ package net.pearx.purmag.common.infofield.playerdata;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.pearx.purmag.common.CapabilityRegistry;
-import net.pearx.purmag.common.Utils;
 
 import javax.annotation.Nullable;
 
@@ -34,14 +31,14 @@ public class IfEntryStoreProvier implements ICapabilitySerializable<NBTTagCompou
     @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
     {
-        return capability == CapabilityRegistry.ENTRY_STORE_CAPABILITY;
+        return capability == CapabilityRegistry.ENTRY_STORE_CAP;
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
     {
-        if(capability == CapabilityRegistry.ENTRY_STORE_CAPABILITY)
-            return CapabilityRegistry.ENTRY_STORE_CAPABILITY.cast(cap);
+        if(capability == CapabilityRegistry.ENTRY_STORE_CAP)
+            return CapabilityRegistry.ENTRY_STORE_CAP.cast(cap);
 
         return null;
     }

@@ -35,7 +35,7 @@ public class GuiIfTabletSEEntry extends Control
         float f = 1;
         try
         {
-            f = 1 - (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).getSteps(entry.getId()) / entry.getSteps().size());
+            f = 1 - (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).getSteps(entry.getId()) / entry.getSteps().size());
         } catch (ArithmeticException e) {}
         GlStateManager.color(f, 1, f);
         GuiDrawableRegistry.runes.draw(0, -4);

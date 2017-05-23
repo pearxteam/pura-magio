@@ -1,5 +1,6 @@
 package net.pearx.purmag.common.sip;
 
+import net.minecraft.util.text.TextFormatting;
 import net.pearx.purmag.PurMag;
 
 import java.util.ArrayList;
@@ -40,10 +41,10 @@ public class SipTypeRegistry
 
     public void setup()
     {
-        register(new SipType("rock", 0x9e9e9e, 0));
-        register(new SipType("sea", 0x42A5F5, 1));
-        register(new SipType("flame", 0xFB8C00, 2));
-        register(new SipType("air", 0xFFE57F, 3));
-        register(new SipType("information", 0x68C397, 4));
+        register(new SipType("rock", 0x9e9e9e, TextFormatting.GRAY, 0));
+        register(new SipType("sea", 0x42A5F5, TextFormatting.BLUE, 1));
+        register(new SipType("flame", 0xFB8C00, TextFormatting.GOLD, 2));
+        register(new SipType("air", 0xFFE57F, TextFormatting.YELLOW, 3));
+        register(new SipType("information", 0x68C397, TextFormatting.GREEN, 4));
     }
 }

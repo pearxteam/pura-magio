@@ -5,11 +5,9 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
-import net.pearx.purmag.client.guis.controls.common.*;
 import net.pearx.purmag.client.guis.controls.common.Button;
 import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.infofield.IfEntry;
-import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
 
@@ -27,7 +25,7 @@ public class GuiIfTabletSR extends GuiIfTabletS
     {
         super();
         entry = entr;
-        doneSteps = Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAPABILITY, null).getSteps(entry.getId());
+        doneSteps = Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).getSteps(entry.getId());
     }
 
     @Override

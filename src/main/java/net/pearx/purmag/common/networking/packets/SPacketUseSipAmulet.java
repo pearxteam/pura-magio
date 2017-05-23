@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.items.ItemSipAmulet;
 import net.pearx.purmag.common.items.ItemUtils;
 import net.pearx.purmag.common.sip.SipEffect;
@@ -55,7 +56,7 @@ public class SPacketUseSipAmulet implements IMessage
             {
                 //todo spawn particles
                 ItemStack amulet = ItemUtils.getBauble(ctx.getServerHandler().player, BaubleType.AMULET.getValidSlots()[0]);
-                HashMap<String, Integer> sips = ItemSipAmulet.getSips(amulet);
+                Map<String, Integer> sips = amulet.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).getStored();
                 for(Map.Entry<String, Integer> entr : sips.entrySet())
                 {
                     SipEffect eff = PurMag.instance.sip_effects.getMap().get(entr.getKey());
@@ -64,7 +65,7 @@ public class SPacketUseSipAmulet implements IMessage
                         lvl = eff.getMaxLevel();
                     ctx.getServerHandler().player.addPotionEffect(new PotionEffect(eff.getEffect(), eff.getTicks() * entr.getValue(), lvl));
                 }
-                ItemSipAmulet.clearSip(amulet);
+                amulet.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).removeAll();
                 ItemUtils.setBauble(ctx.getServerHandler().player, BaubleType.AMULET.getValidSlots()[0], amulet);
             }
             return null;

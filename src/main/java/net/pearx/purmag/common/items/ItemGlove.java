@@ -8,6 +8,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.Utils;
 
 /**
@@ -35,7 +36,7 @@ public class ItemGlove extends ItemBase
                 if (ItemSipAmulet.checkForAmulet(playerIn))
                 {
                     ItemStack amulet = ItemUtils.getBauble(playerIn, BaubleType.AMULET.getValidSlots()[0]);
-                    ItemSipAmulet.addSip(amulet, PurMag.instance.sip.getType(shard.getMetadata()).getName(), shrink);
+                    amulet.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).add(PurMag.instance.sip.getType(shard.getMetadata()).getName(), shrink);
                     ItemUtils.setBauble(playerIn, BaubleType.AMULET.getValidSlots()[0], amulet);
                 }
                 playerIn.getHeldItem(EnumHand.MAIN_HAND).shrink(shrink);

@@ -1,6 +1,7 @@
 package net.pearx.purmag.common.sip;
 
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
@@ -16,12 +17,14 @@ public class SipType
     private String name;
     private int color;
     private int id;
+    private TextFormatting formatting;
 
-    public SipType(String name, int color, int id)
+    public SipType(String name, int color, TextFormatting formatting, int id)
     {
         setColor(color);
         setName(name);
         setId(id);
+        setFormatting(formatting);
     }
 
     public int getColor()
@@ -57,5 +60,15 @@ public class SipType
     public void setId(int id)
     {
         this.id = id;
+    }
+
+    public TextFormatting getFormatting()
+    {
+        return formatting;
+    }
+
+    public void setFormatting(TextFormatting formatting)
+    {
+        this.formatting = formatting;
     }
 }
