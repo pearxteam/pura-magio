@@ -22,12 +22,13 @@ public class BlockOre extends BlockBase
 {
     public ItemStack dropped;
 
-    public BlockOre(ResourceLocation loc, float hardness, int harvestLevel)
+    public BlockOre(ResourceLocation loc, float hardness, float lightlevel, int harvestLevel)
     {
         super(Material.ROCK);
         setRegistryName(loc);
         setUnlocalizedName(loc.getResourcePath());
         setHardness(hardness);
+        setLightLevel(lightlevel);
         setHarvestLevel("pickaxe", harvestLevel);
     }
 

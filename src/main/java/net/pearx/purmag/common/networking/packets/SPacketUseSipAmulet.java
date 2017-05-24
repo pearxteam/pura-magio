@@ -63,7 +63,7 @@ public class SPacketUseSipAmulet implements IMessage
                     int lvl = amulet.getMetadata();
                     if(eff.getMaxLevel() != -1 && lvl > eff.getMaxLevel())
                         lvl = eff.getMaxLevel();
-                    ctx.getServerHandler().player.addPotionEffect(new PotionEffect(eff.getEffect(), eff.getTicks() * entr.getValue(), lvl));
+                    ctx.getServerHandler().player.addPotionEffect(new PotionEffect(eff.getEffect(), eff.getTicks() * entr.getValue(), lvl, false, false));
                 }
                 amulet.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).removeAll();
                 ItemUtils.setBauble(ctx.getServerHandler().player, BaubleType.AMULET.getValidSlots()[0], amulet);

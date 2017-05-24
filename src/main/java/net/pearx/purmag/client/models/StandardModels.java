@@ -10,6 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.Utils;
 import org.apache.commons.lang3.tuple.Pair;
+import org.lwjgl.input.Keyboard;
 
 import javax.vecmath.Matrix4f;
 import javax.vecmath.Quat4f;
@@ -47,6 +48,9 @@ public class StandardModels
     {
         public Glove() { setBaseModel(Utils.getRegistryName("item/glove.obj")); }
 
+
+        float xr, yr, zr;
+
         @Override
         public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
         {
@@ -56,7 +60,7 @@ public class StandardModels
             }
             if(cameraTransformType == ItemCameraTransforms.TransformType.GUI)
             {
-                return Pair.of(this, new TRSRTransformation(null, new Quat4f(180, 180, 180, 1), null, null).getMatrix());
+                return Pair.of(this, new TRSRTransformation(new Vector3f(0.15f, 0.15f, 0), null, null, new Quat4f(1.8f, -0.6f, -0.3f, 1)).getMatrix());
             }
             return Pair.of(this, new TRSRTransformation(null, null, null, null).getMatrix());
         }

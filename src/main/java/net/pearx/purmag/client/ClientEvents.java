@@ -57,6 +57,7 @@ public class ClientEvents
                 for(int k = 0; k < 2; k++)
                     for(int l = 0; l < 2; l++)
                         e.getMap().registerSprite(new ResourceLocation(PurMag.ModId, "blocks/crystal_glass/" + i + j + k + l));
+        e.getMap().registerSprite(Utils.getRegistryName("models/glove"));
     }
 
     @SubscribeEvent

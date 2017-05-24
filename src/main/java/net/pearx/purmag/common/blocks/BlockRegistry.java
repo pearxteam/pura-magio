@@ -27,7 +27,7 @@ public class BlockRegistry
         crystal_glass = new BlockCrystalGlass();
         GameRegistry.register(crystal_glass);
 
-        ore_crysagnetite = new BlockOre(Utils.getRegistryName("ore_crysagnetite"), 3f, 2);
+        ore_crysagnetite = new BlockOre(Utils.getRegistryName("ore_crysagnetite"), 3f, 0.1f, 2);
         GameRegistry.register(ore_crysagnetite);
         OreDictionary.registerOre("oreCrysagnetite", ore_crysagnetite);
     }
