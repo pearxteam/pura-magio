@@ -26,6 +26,7 @@ public class StandardModels
     {
         public Crystal()
         {
+            super(true);
             setBaseModel(new ResourceLocation(PurMag.ModId, "block/crystal.obj"));
         }
 
@@ -46,7 +47,11 @@ public class StandardModels
 
     public static class Glove extends OvModelBase implements IPerspectiveAwareModel
     {
-        public Glove() { setBaseModel(Utils.getRegistryName("item/glove.obj")); }
+        public Glove()
+        {
+            super(true);
+            setBaseModel(Utils.getRegistryName("item/glove.obj"));
+        }
 
 
         float xr, yr, zr;

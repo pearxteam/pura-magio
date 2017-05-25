@@ -8,10 +8,13 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.client.model.pipeline.LightUtil;
+import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,6 +30,12 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class OvModelBase implements IModelBase
 {
+    public boolean flipV;
+
+    public OvModelBase(boolean flipV)
+    {
+        this.flipV = flipV;
+    }
     private ResourceLocation baseModel;
 
     public void setBaseModel(ResourceLocation loc)
@@ -65,9 +74,31 @@ public class OvModelBase implements IModelBase
     public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand)
     {
         List<BakedQuad> l = new ArrayList<>();
-        for(BakedQuad q : getBaked().getQuads(state, side, rand))
+        if(flipV)
         {
-            l.add(new BakedQuad(q.getVertexData(), 1, q.getFace(), q.getSprite()));
+            for (BakedQuad q : getBaked().getQuads(state, side, rand))
+            {
+                UnpackedBakedQuad.Builder bld = new UnpackedBakedQuad.Builder(q.getFormat());
+                bld.setQuadTint(1);
+                bld.setQuadOrientation(q.getFace());
+                bld.setTexture(q.getSprite());
+                bld.setApplyDiffuseLighting(q.shouldApplyDiffuseLighting());
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int e = 0; e < q.getFormat().getElementCount(); e++)
+                    {
+                        float[] lst = new float[q.getFormat().getElement(e).getElementCount()];
+                        LightUtil.unpack(q.getVertexData(), lst, q.getFormat(), i, e);
+                        if (q.getFormat().getElement(e).getUsage() == VertexFormatElement.EnumUsage.UV)
+                        {
+                            float v = 1 - (q.getSprite().getUnInterpolatedV(lst[1]) / 16);
+                            lst[1] = q.getSprite().getInterpolatedV(v * 16);
+                        }
+                        bld.put(e, lst);
+                    }
+                }
+                l.add(bld.build());
+            }
         }
         return l;
     }
