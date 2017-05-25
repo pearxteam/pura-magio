@@ -36,6 +36,7 @@ public class ItemSipAmulet extends ItemBase implements IBauble
         setRegistryName(Utils.getRegistryName("sip_amulet"));
         setHasSubtypes(true);
         setUnlocalizedName("sip_amulet");
+        setMaxStackSize(1);
     }
 
     @Override

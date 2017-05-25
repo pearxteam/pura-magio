@@ -20,6 +20,7 @@ public class ItemGlove extends ItemBase
     {
         setRegistryName(Utils.getRegistryName("glove"));
         setUnlocalizedName("glove");
+        setMaxStackSize(1);
     }
 
     @Override

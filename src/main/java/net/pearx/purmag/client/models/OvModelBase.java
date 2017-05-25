@@ -1,5 +1,6 @@
 package net.pearx.purmag.client.models;
 
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -12,7 +13,9 @@ import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
+import net.minecraftforge.client.model.IModelCustomData;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.client.model.pipeline.LightUtil;
 import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.TRSRTransformation;
@@ -62,6 +65,10 @@ public class OvModelBase implements IModelBase
         try
         {
             mdl = ModelLoaderRegistry.getModel(getBaseModel());
+            if(mdl instanceof IModelCustomData && flipV)
+            {
+                mdl = ((IModelCustomData) mdl).process(ImmutableMap.of("flip-v", "true"));
+            }
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -74,7 +81,7 @@ public class OvModelBase implements IModelBase
     public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand)
     {
         List<BakedQuad> l = new ArrayList<>();
-        if(flipV)
+        /*if(flipV)
         {
             for (BakedQuad q : getBaked().getQuads(state, side, rand))
             {
@@ -99,7 +106,9 @@ public class OvModelBase implements IModelBase
                 }
                 l.add(bld.build());
             }
-        }
+        }*/
+        for (BakedQuad quad : getBaked().getQuads(state, side, rand))
+            l.add(new BakedQuad(quad.getVertexData(), 1, quad.getFace(), quad.getSprite(), quad.shouldApplyDiffuseLighting(), quad.getFormat()));
         return l;
     }
 

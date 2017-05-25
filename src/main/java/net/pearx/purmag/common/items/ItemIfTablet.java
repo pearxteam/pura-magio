@@ -24,6 +24,7 @@ public class ItemIfTablet extends ItemBase
         setUnlocalizedName("if_tablet");
         setRegistryName("if_tablet");
         setHasSubtypes(true);
+        setMaxStackSize(1);
     }
 
     @Override

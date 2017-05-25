@@ -65,7 +65,7 @@ public class StandardModels
             }
             if(cameraTransformType == ItemCameraTransforms.TransformType.GUI)
             {
-                return Pair.of(this, new TRSRTransformation(new Vector3f(0.15f, 0.15f, 0), null, null, new Quat4f(1.8f, -0.6f, -0.3f, 1)).getMatrix());
+                return Pair.of(this, new TRSRTransformation(new Vector3f(0.15f, 0.15f, 0), null, new Vector3f(1.2f, 1.2f, 1.2f), new Quat4f(1.8f, -0.6f, -0.3f, 1)).getMatrix());
             }
             return Pair.of(this, new TRSRTransformation(null, null, null, null).getMatrix());
         }
