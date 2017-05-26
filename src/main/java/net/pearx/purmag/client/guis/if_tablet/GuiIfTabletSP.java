@@ -36,28 +36,14 @@ public class GuiIfTabletSP extends GuiIfTabletS
     {
         super.init();
         Button btnBack = new Button(I18n.translateToLocal("button.back.name"), this::goBack);
-        //borders (8 * 2), margins (4 * 2), btns (16 * 2)
-        int backWidth = getWidth() - 16 - 8 - 32;
+        //borders (8 * 2)
+        int backWidth = getWidth() - 16;
         int y = getHeight() - 16 - 8;
         btnBack.setWidth(backWidth);
         btnBack.setHeight(16);
         btnBack.setX(8);
         btnBack.setY(y);
         controls.add(btnBack);
-
-        Button btnPrev = new Button(I18n.translateToLocal("button.prev.name"), () -> update(false));
-        btnPrev.setWidth(16);
-        btnPrev.setHeight(16);
-        btnPrev.setX(backWidth + 8 + 4);
-        btnPrev.setY(y);
-        controls.add(btnPrev);
-
-        Button btnNext = new Button(I18n.translateToLocal("button.next.name"), () -> update(true));
-        btnNext.setWidth(16);
-        btnNext.setHeight(16);
-        btnNext.setX(backWidth + 8 + 8 + 16);
-        btnNext.setY(y);
-        controls.add(btnNext);
 
         index = index - 1;
         update(true);
@@ -68,7 +54,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
     {
         if(Mouse.isButtonDown(0))
             if(dx > 2 || dx < -2)
-            update(dx > 0);
+            update(dx < 0);
     }
 
     @Override
@@ -92,7 +78,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
                 controls.add(newRend);
                 new Thread(() ->
                 {
-                    newRend.setX(next ? newRend.getX() - newRend.getWidth() : newRend.getX() + newRend.getWidth());
+                    newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
                     for (int i = 0; i <= newRend.getWidth(); i++)
                     {
                         try
@@ -102,9 +88,9 @@ public class GuiIfTabletSP extends GuiIfTabletS
                         {
                             e.printStackTrace();
                         }
-                        newRend.setX(newRend.getX() + (next ? 1 : -1));
+                        newRend.setX(newRend.getX() + (next ? -1 : 1));
                         if (rend != null)
-                            rend.setX(rend.getX() + (next ? 1 : -1));
+                            rend.setX(rend.getX() + (next ? -1 : 1));
                     }
                     if (rend != null)
                         controls.remove(rend);
