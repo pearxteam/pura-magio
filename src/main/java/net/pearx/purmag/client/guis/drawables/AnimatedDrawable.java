@@ -15,8 +15,14 @@ public class AnimatedDrawable implements IGuiDrawable
     private int cycle = 0;
     private int totalCycles;
     private ResourceLocation tex;
+    private int xOfffset, yOffset;
 
     public AnimatedDrawable(ResourceLocation tex, int elemW, int elemH, int texElemW, int texElemH, int texW, int texH, int msDivider)
+    {
+        this(tex, elemW, elemH, texElemW, texElemH, texW, texH, msDivider, 0, 0);
+    }
+
+    public AnimatedDrawable(ResourceLocation tex, int elemW, int elemH, int texElemW, int texElemH, int texW, int texH, int msDivider, int xOffset, int yOffset)
     {
         this.elemW = elemW;
         this.elemH = elemH;
@@ -27,6 +33,8 @@ public class AnimatedDrawable implements IGuiDrawable
         this.texElemH = texElemH;
         this.msDivider = msDivider;
         totalCycles = texH / texElemH;
+        this.xOfffset = xOffset;
+        this.yOffset = yOffset;
     }
 
     @Override
@@ -45,6 +53,8 @@ public class AnimatedDrawable implements IGuiDrawable
     @SideOnly(Side.CLIENT)
     public void draw(int x, int y)
     {
+        x += xOfffset;
+        y += yOffset;
         cycle = (int)(System.currentTimeMillis() / msDivider % totalCycles);
 
         Minecraft.getMinecraft().getTextureManager().bindTexture(tex);

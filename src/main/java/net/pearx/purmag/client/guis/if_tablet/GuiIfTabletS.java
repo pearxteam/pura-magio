@@ -15,6 +15,7 @@ public class GuiIfTabletS extends Control
     {
         keyEventsRS = false;
     }
+
     public GuiIfTablet getTablet()
     {
         if(getParent() instanceof GuiIfTablet)

@@ -38,6 +38,6 @@ public class GuiIfTabletSE extends GuiIfTabletS
     @Override
     public boolean isGlowing()
     {
-        return true;
+        return getTablet().shouldGlow;
     }
 }

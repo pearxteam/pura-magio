@@ -17,7 +17,7 @@ import java.io.IOException;
  * Created by mrAppleXZ on 16.04.17 20:02.
  */
 @SideOnly(Side.CLIENT)
-public class PmGui extends GuiScreen
+public class PmGui extends GuiScreen implements IGuiScreen
 {
     public GuiControlContainer gui;
 
@@ -88,6 +88,7 @@ public class PmGui extends GuiScreen
         }
     }
 
+    @Override
     public void drawTooltip(ItemStack stack, int x, int y)
     {
         renderToolTip(stack, x, y);
@@ -95,11 +96,25 @@ public class PmGui extends GuiScreen
         GlStateManager.disableLighting();
     }
 
+    @Override
+    public int getWidth()
+    {
+        return width;
+    }
+
+    @Override
+    public int getHeight()
+    {
+        return height;
+    }
+
+    @Override
     public int getMouseX()
     {
         return Mouse.getEventX() * width / mc.displayWidth;
     }
 
+    @Override
     public int getMouseY()
     {
         return height - Mouse.getEventY() * height / mc.displayHeight - 1;

@@ -3,6 +3,7 @@ package net.pearx.purmag.client.guis.controls;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pearx.purmag.client.guis.IGuiScreen;
 import net.pearx.purmag.client.guis.PmGui;
 
 /**
@@ -16,19 +17,14 @@ public class GuiControlContainer extends Control
         controls.add(cont);
     }
 
-    public GuiControlContainer()
-    {
+    private IGuiScreen gs;
 
-    }
-
-    private PmGui gs;
-
-    public PmGui getGs()
+    public IGuiScreen getGs()
     {
         return gs;
     }
 
-    public void setGs(PmGui gs)
+    public void setGs(IGuiScreen gs)
     {
         this.gs = gs;
     }
@@ -36,12 +32,12 @@ public class GuiControlContainer extends Control
     @Override
     public int getWidth()
     {
-        return getGuiScreen().width;
+        return getGuiScreen().getWidth();
     }
 
     @Override
     public int getHeight()
     {
-        return getGuiScreen().height;
+        return getGuiScreen().getHeight();
     }
 }

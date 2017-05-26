@@ -4,7 +4,7 @@ package net.pearx.purmag.client.guis.controls;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pearx.purmag.client.guis.PmGui;
+import net.pearx.purmag.client.guis.IGuiScreen;
 import org.lwjgl.util.Point;
 import org.lwjgl.util.Rectangle;
 
@@ -16,6 +16,7 @@ public class Control
 {
     public ControlList controls = new ControlList(this);
     private Control parent;
+
     private int width;
     private int height;
     private int x;
@@ -289,7 +290,7 @@ public class Control
         invokeSelectionChanged();
     }
 
-    public PmGui getGuiScreen()
+    public IGuiScreen getGuiScreen()
     {
         Control parent = getMainParent(this);
         if(parent instanceof GuiControlContainer)
