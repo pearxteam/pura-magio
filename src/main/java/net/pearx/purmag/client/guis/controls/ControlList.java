@@ -4,14 +4,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by mrAppleXZ on 16.04.17 13:12.
  */
 @SideOnly(Side.CLIENT)
-public class ControlList implements List<Control>
+public class ControlList implements Collection<Control>
 {
-    private ArrayList<Control> lst = new ArrayList<>();
+    private ConcurrentLinkedQueue<Control> lst = new ConcurrentLinkedQueue<>();
 
     public Control parent;
 
@@ -88,14 +89,6 @@ public class ControlList implements List<Control>
     }
 
     @Override
-    public boolean addAll(int i, Collection<? extends Control> collection)
-    {
-        for (Control c : collection)
-            c.setParent(parent);
-        return lst.addAll(i, collection);
-    }
-
-    @Override
     public boolean removeAll(Collection<?> collection)
     {
         for(Object o : collection)
@@ -123,66 +116,5 @@ public class ControlList implements List<Control>
         for (Control c : this)
             c.setParent(null);
         lst.clear();
-    }
-
-    @Override
-    public Control get(int i)
-    {
-        return lst.get(i);
-    }
-
-    @Override
-    public Control set(int i, Control control)
-    {
-        get(i).setParent(null);
-        control.setParent(parent);
-        Control c = lst.set(i, control);
-        control.invokeInit();
-        return c;
-    }
-
-    @Override
-    public void add(int i, Control control)
-    {
-        control.setParent(parent);
-        lst.add(i, control);
-        control.invokeInit();
-    }
-
-    @Override
-    public Control remove(int i)
-    {
-        get(i).setParent(null);
-        return lst.remove(i);
-    }
-
-    @Override
-    public int indexOf(Object o)
-    {
-        return lst.indexOf(o);
-    }
-
-    @Override
-    public int lastIndexOf(Object o)
-    {
-        return lst.lastIndexOf(o);
-    }
-
-    @Override
-    public ListIterator<Control> listIterator()
-    {
-        return lst.listIterator();
-    }
-
-    @Override
-    public ListIterator<Control> listIterator(int i)
-    {
-        return lst.listIterator(i);
-    }
-
-    @Override
-    public List<Control> subList(int i, int i1)
-    {
-        return lst.subList(i, i1);
     }
 }

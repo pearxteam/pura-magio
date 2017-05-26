@@ -244,6 +244,7 @@ public class Control
         mouseMove(x, y, dx, dy);
         if(last)
             setSelected(getMainParent(this), this);
+
     }
 
     public void invokeMouseEnter()

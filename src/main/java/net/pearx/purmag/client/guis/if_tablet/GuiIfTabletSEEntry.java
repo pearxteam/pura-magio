@@ -31,6 +31,8 @@ public class GuiIfTabletSEEntry extends Control
     @Override
     public void render()
     {
+        if((getX() + getWidth()) <= 0 || (getY() + getHeight()) <= 0 || getX() >= getEntries().getWidth() || getY() >= getEntries().getHeight())
+            return;
         GlStateManager.enableBlend();
         float f = 1;
         if(getEntries().getTabletScreen().getTablet().tier != 0)

@@ -32,6 +32,7 @@ public class GuiIfTabletSE extends GuiIfTabletS
     @Override
     public void postRender()
     {
+        super.postRender();
         DrawingTools.drawString(selector.getSelectedChannel().getDisplayName(), 8, 8, Color.WHITE);
     }
 

@@ -3,6 +3,7 @@ package net.pearx.purmag.client.guis.if_tablet.pages;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
+import net.pearx.purmag.common.infofield.pages.IIfPage;
 import net.pearx.purmag.common.infofield.pages.IfPageText;
 
 import java.awt.*;
@@ -13,10 +14,15 @@ import java.awt.*;
 @SideOnly(Side.CLIENT)
 public class IPTextRenderer extends IPRenderer
 {
+    public IPTextRenderer(IIfPage page)
+    {
+        super(page);
+    }
+
     @Override
     public void render()
     {
         super.render();
-        DrawingTools.drawString(((IfPageText)getTablet().entry.getPages().get(getTablet().index)).getDisplayText(), 5, 0, Color.WHITE, getWidth() - 5);
+        DrawingTools.drawString(((IfPageText)page).getDisplayText(), 5, 0, Color.WHITE, getWidth() - 5);
     }
 }

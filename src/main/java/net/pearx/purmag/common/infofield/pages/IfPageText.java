@@ -37,6 +37,6 @@ public class IfPageText implements IIfPage
     @SideOnly(Side.CLIENT)
     public IPRenderer getRenderer()
     {
-        return new IPTextRenderer();
+        return new IPTextRenderer(this);
     }
 }

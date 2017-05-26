@@ -48,6 +48,7 @@ public class GuiIfTabletSR extends GuiIfTabletS
     @Override
     public void render()
     {
+        super.render();
         String dn = entry.getDisplayName() + " [" + (doneSteps + 1) + "/" + entry.getSteps().size() + "]";
         String stepName = entry.getSteps().get(doneSteps).getDisplayName();
         DrawingTools.drawString(dn, (getWidth() - DrawingTools.measureString(dn)) / 2, 8, Color.WHITE);
