@@ -7,6 +7,7 @@ import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.common.Button;
 import net.pearx.purmag.client.guis.if_tablet.pages.IPRenderer;
 import net.pearx.purmag.common.infofield.IfEntry;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import java.awt.*;
@@ -46,7 +47,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
         controls.add(btnBack);
 
         index = index - 1;
-        update(true);
+        update(true, false);
     }
 
     @Override
@@ -54,7 +55,16 @@ public class GuiIfTabletSP extends GuiIfTabletS
     {
         if(Mouse.isButtonDown(0))
             if(dx > 2 || dx < -2)
-            update(dx < 0);
+                update(dx < 0, true);
+    }
+
+    @Override
+    public void keyUp(int keycode)
+    {
+        if(keycode == Keyboard.KEY_RIGHT)
+            update(true, true);
+        else if(keycode == Keyboard.KEY_LEFT)
+            update(false, true);
     }
 
     @Override
@@ -65,7 +75,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
         DrawingTools.drawString(s, (getWidth() - DrawingTools.measureString(s)) / 2, DrawingTools.getFontHeight(), Color.WHITE);
     }
 
-    public void update(boolean next)
+    public void update(boolean next, boolean playAnim)
     {
         if(sensitive)
         {
@@ -73,30 +83,39 @@ public class GuiIfTabletSP extends GuiIfTabletS
             if(ind >= 0 && ind < entry.getPages().size())
             {
                 this.index = ind;
-                sensitive = false;
-                newRend = entry.getPages().get(index).getRenderer();
-                controls.add(newRend);
-                new Thread(() ->
+                if(playAnim)
                 {
-                    newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
-                    for (int i = 0; i <= newRend.getWidth(); i++)
+                    sensitive = false;
+                    newRend = entry.getPages().get(index).getRenderer();
+                    controls.add(newRend);
+                    new Thread(() ->
                     {
-                        try
+                        newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
+                        for (int i = 0; i <= newRend.getWidth(); i++)
                         {
-                            Thread.sleep(1);
-                        } catch (InterruptedException e)
-                        {
-                            e.printStackTrace();
+                            try
+                            {
+                                Thread.sleep(1);
+                            } catch (InterruptedException e)
+                            {
+                                e.printStackTrace();
+                            }
+                            newRend.setX(newRend.getX() + (next ? -1 : 1));
+                            if (rend != null)
+                                rend.setX(rend.getX() + (next ? -1 : 1));
                         }
-                        newRend.setX(newRend.getX() + (next ? -1 : 1));
                         if (rend != null)
-                            rend.setX(rend.getX() + (next ? -1 : 1));
-                    }
-                    if (rend != null)
-                        controls.remove(rend);
-                    rend = newRend;
-                    sensitive = true;
-                }).start();
+                            controls.remove(rend);
+                        rend = newRend;
+                        sensitive = true;
+                    }).start();
+                }
+                else
+                {
+                    controls.remove(rend);
+                    rend = entry.getPages().get(index).getRenderer();
+                    controls.add(rend);
+                }
             }
         }
     }
