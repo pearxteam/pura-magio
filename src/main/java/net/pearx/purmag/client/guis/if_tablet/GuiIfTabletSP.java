@@ -61,6 +61,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
     @Override
     public void keyUp(int keycode)
     {
+        super.keyUp(keycodegit);
         if(keycode == Keyboard.KEY_RIGHT)
             update(true, true);
         else if(keycode == Keyboard.KEY_LEFT)
