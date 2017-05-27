@@ -12,10 +12,16 @@ import net.pearx.purmag.client.guis.if_tablet.pages.IPTextRenderer;
 public class IfPageText implements IIfPage
 {
     private String unlocalizedText;
+    private String[] properties;
 
     public IfPageText(String unlocalized)
     {
         setUnlocalizedText(unlocalized);
+    }
+    public IfPageText(String unlocalized, String... properties)
+    {
+        setUnlocalizedText(unlocalized);
+        setProperties(properties);
     }
 
     public String getUnlocalizedText()
@@ -30,7 +36,17 @@ public class IfPageText implements IIfPage
 
     public String getDisplayText()
     {
-        return I18n.translateToLocal("if_page." + getUnlocalizedText() + ".text");
+        return I18n.translateToLocalFormatted("if_page." + getUnlocalizedText() + ".text", properties);
+    }
+
+    public String[] getProperties()
+    {
+        return properties;
+    }
+
+    public void setProperties(String[] properties)
+    {
+        this.properties = properties;
     }
 
     @Override

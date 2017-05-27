@@ -1,6 +1,7 @@
 package net.pearx.purmag.common.infofield;
 
 import net.minecraft.item.ItemStack;
+import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.drawables.BigItemDrawable;
 import net.pearx.purmag.client.guis.drawables.SimpleDrawable;
 import net.pearx.purmag.common.Utils;
@@ -10,6 +11,7 @@ import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.items.ItemUtils;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -73,7 +75,7 @@ public class IfRegistry
         return null;
     }
 
-    public void attachEntry(String channel, String entry)
+    public void attachEntry(String channel, IfEntryLocation entry)
     {
         getChannel(channel).addEntry(entry);
     }
@@ -95,6 +97,15 @@ public class IfRegistry
         //todo icon
         registerChannel(new IfChannel("white", new SimpleDrawable(Utils.getRegistryName("todo"), 32, 32, 32, 32), 4));
 
+        registerEntry(new IfEntry(
+                "crysagnetite", 0,
+                new BigItemDrawable(new ItemStack(ItemRegistry.ore_crysagnetite)),
+                null,
+                Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.ore_crysagnetite), "crysagnetite", true)),
+                0,
+                new IfPageText("crysagnetite.0"), new IfPageText("crysagnetite.1", Integer.toString(PurMag.instance.config.genCrysagnetite.minY), Integer.toString(PurMag.instance.config.genCrysagnetite.maxY))));
+
+        attachEntry("geology", new IfEntryLocation("crysagnetite", 0, 0));
         //registerEntry(new IfEntry("crystals", 0, new BigItemDrawable(ItemUtils.getItemWithSip(SipTypeRegistry.DEFAULT, ItemRegistry.crystal)), null, Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals.0", true)), 0, 0, 0, new IfPageText("crystals.0"), new IfPageText("crystals.1")));
     }
 }

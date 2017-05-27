@@ -43,7 +43,7 @@ public class CommonEvents
                     IIfResearchStep step = entr.getSteps().get(steps);
                     if (step instanceof IRSCollect)
                     {
-                        if (entr.isAllParentsUnlocked(p))
+                        if (entr.isAvailableToResearch(p))
                         {
                             IRSCollect s = (IRSCollect) step;
                             if (s.isSuitable(e.getItem().getEntityItem()))

@@ -24,10 +24,8 @@ public class IfEntry
     private List<IIfPage> pages;
     private List<IIfResearchStep> steps;
     private int stepsForDisplay;
-    private int x;
-    private int y;
 
-    public IfEntry(String id, int tier, IGuiDrawable icon, List<String> parents, List<IIfResearchStep> steps, int stepsForDisplay, int x, int y, IIfPage... pages)
+    public IfEntry(String id, int tier, IGuiDrawable icon, List<String> parents, List<IIfResearchStep> steps, int stepsForDisplay, IIfPage... pages)
     {
         if(parents == null)
             parents = new ArrayList<>();
@@ -40,8 +38,6 @@ public class IfEntry
         setPages(Arrays.asList(pages));
         setSteps(steps);
         setStepsForDisplay(stepsForDisplay);
-        setX(x);
-        setY(y);
     }
 
     public String getId()
@@ -112,7 +108,7 @@ public class IfEntry
     public String getDisplayDescription() { return I18n.translateToLocal("if_entry." + id + ".desc"); }
 
     //Just available to see, not read/continue researching/etc.
-    public boolean isAvailable(EntityPlayer p, int tier)
+    public boolean isAvailableToSee(EntityPlayer p, int tier)
     {
         IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
         //if tier is < needed.
@@ -125,6 +121,13 @@ public class IfEntry
         if(store.getSteps(getId()) < getStepsForDisplay())
             return false;
 
+        return true;
+    }
+
+    public boolean isAvailableToResearch(EntityPlayer p)
+    {
+        if(!isAllParentsUnlocked(p))
+            return false;
         return true;
     }
 
@@ -144,25 +147,5 @@ public class IfEntry
     public void setStepsForDisplay(int stepsForDisplay)
     {
         this.stepsForDisplay = stepsForDisplay;
-    }
-
-    public int getX()
-    {
-        return x;
-    }
-
-    public void setX(int x)
-    {
-        this.x = x;
-    }
-
-    public int getY()
-    {
-        return y;
-    }
-
-    public void setY(int y)
-    {
-        this.y = y;
     }
 }

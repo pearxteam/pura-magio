@@ -1,17 +1,14 @@
 package net.pearx.purmag.client.guis.if_tablet;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.Control;
-import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
+import net.pearx.purmag.common.infofield.IfChannel;
 import net.pearx.purmag.common.infofield.IfEntry;
+import net.pearx.purmag.common.infofield.IfEntryLocation;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
 
 /**
  * Created by mrAppleXZ on 23.04.17 19:12.
@@ -57,25 +54,24 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
 
         int minX = 0, minY = 0, maxX = 0, maxY = 0;
 
-        for(IfEntry entr : PurMag.instance.if_registry.entries)
+        IfChannel chan = getTabletScreen().selector.getSelectedChannel();
+        for(IfEntryLocation loc : chan.getEntries())
         {
-            if(getTabletScreen().selector.getSelectedChannel().containsEntry(entr.getId()))
+            IfEntry entr = PurMag.instance.if_registry.getEntry(loc.getEntry());
+            if (entr.isAvailableToSee(Minecraft.getMinecraft().player, getTabletScreen().getTablet().tier))
             {
-                if(entr.isAvailable(Minecraft.getMinecraft().player, getTabletScreen().getTablet().tier))
-                {
-                    if(entr.getX() < minX)
-                        minX = entr.getX();
-                    if(entr.getY() < minY)
-                        minY = entr.getY();
-                    if(entr.getX() > maxX)
-                        maxX = entr.getX();
-                    if(entr.getY() > maxY)
-                        maxY = entr.getY();
-                    GuiIfTabletSEEntry entrC = new GuiIfTabletSEEntry(entr);
-                    entrC.setX(entr.getX() * entrSize + ((getTabletScreen().getWidth() - entrSize) / 2));
-                    entrC.setY(entr.getY() * entrSize + ((getTabletScreen().getHeight() - entrSize) / 2));
-                    controls.add(entrC);
-                }
+                if (loc.getX() < minX)
+                    minX = loc.getX();
+                if (loc.getY() < minY)
+                    minY = loc.getY();
+                if (loc.getX() > maxX)
+                    maxX = loc.getX();
+                if (loc.getY() > maxY)
+                    maxY = loc.getY();
+                GuiIfTabletSEEntry entrC = new GuiIfTabletSEEntry(entr);
+                entrC.setX(loc.getX() * entrSize + ((getTabletScreen().getWidth() - entrSize) / 2));
+                entrC.setY(loc.getY() * entrSize + ((getTabletScreen().getHeight() - entrSize) / 2));
+                controls.add(entrC);
             }
         }
 

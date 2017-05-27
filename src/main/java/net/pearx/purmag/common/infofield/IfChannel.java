@@ -15,7 +15,7 @@ public class IfChannel
     private String id;
     private int tier;
 
-    private ArrayList<String> entries = new ArrayList<>();
+    private ArrayList<IfEntryLocation> entries = new ArrayList<>();
 
     public IfChannel(String id, IGuiDrawable icon, int tier)
     {
@@ -44,7 +44,7 @@ public class IfChannel
         this.icon = icon;
     }
 
-    public ArrayList<String> getEntries()
+    public ArrayList<IfEntryLocation> getEntries()
     {
         return entries;
     }
@@ -59,12 +59,12 @@ public class IfChannel
         this.tier = tier;
     }
 
-    public void addEntry(String entr)
+    public void addEntry(IfEntryLocation entr)
     {
         getEntries().add(entr);
     }
 
-    public void removeEntry(String entr)
+    public void removeEntry(IfEntryLocation entr)
     {
         getEntries().remove(entr);
     }
@@ -79,7 +79,7 @@ public class IfChannel
         return tier >= getTier();
     }
 
-    public boolean containsEntry(String id)
+    public boolean containsEntry(IfEntryLocation id)
     {
         return entries.contains(id);
     }

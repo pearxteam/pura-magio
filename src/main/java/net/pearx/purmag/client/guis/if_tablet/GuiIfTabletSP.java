@@ -3,6 +3,7 @@ package net.pearx.purmag.client.guis.if_tablet;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pearx.purmag.client.GuiDrawableRegistry;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.common.Button;
 import net.pearx.purmag.client.guis.if_tablet.pages.IPRenderer;
@@ -73,7 +74,8 @@ public class GuiIfTabletSP extends GuiIfTabletS
     {
         super.render();
         String s = entry.getDisplayName() + " [" + (index + 1) + "/" + entry.getPages().size() + "]";
-        DrawingTools.drawString(s, (getWidth() - DrawingTools.measureString(s)) / 2, DrawingTools.getFontHeight(), Color.WHITE);
+        DrawingTools.drawString(s, (getWidth() - DrawingTools.measureString(s)) / 2, 8, Color.WHITE);
+        GuiDrawableRegistry.splitter.draw((getWidth() - GuiDrawableRegistry.splitter.getWidth()) / 2, DrawingTools.getFontHeight() + 8 + 2);
     }
 
     public void update(boolean next, boolean playAnim)

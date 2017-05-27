@@ -18,16 +18,17 @@ import java.util.HashMap;
 public class GuiDrawableRegistry
 {
     public static IGuiDrawable runes;
-    public static IGuiDrawable stepCollect;
     public static IGuiDrawable displayMessage;
     public static IGuiDrawable paperEntry;
+    public static IGuiDrawable splitter;
     public static HashMap<Integer, IGuiDrawable> ifTabletEntryBgs = new HashMap<>();
 
     public static void setup()
     {
-        runes = new AnimatedDrawable(Utils.getRegistryName("textures/runes.png"), 32, 38, 32, 38, 32, 380, 100, 0, -4);
-        displayMessage = new AnimatedDrawable(Utils.getRegistryName("textures/message.png"), 192, 32, 192, 32, 192, 1024, 100);
-        paperEntry = new SimpleDrawable(Utils.getRegistryName("textures/sticker.png"), 32, 32, 32, 32);
+        runes = new AnimatedDrawable(Utils.getRegistryName("textures/other/runes.png"), 32, 38, 32, 38, 32, 380, 100, 0, -6);
+        displayMessage = new AnimatedDrawable(Utils.getRegistryName("textures/other/message.png"), 192, 32, 192, 32, 192, 1024, 100);
+        paperEntry = new SimpleDrawable(Utils.getRegistryName("textures/other/sticker.png"), 32, 32, 32, 32);
+        splitter = new SimpleDrawable(Utils.getRegistryName("textures/other/splitter.png"), 276, 4, 276, 4);
         ifTabletEntryBgs.put(0, paperEntry);
         ifTabletEntryBgs.put(1, runes);
         ifTabletEntryBgs.put(2, runes);

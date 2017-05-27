@@ -37,6 +37,12 @@ if_entry.crystals.desc=It's a candies?
 if_step.crystals.0.desc=You thinking that you can find something colorful somewhere...
 if_page.crystals.0.text=I found strange crystal clusters... After touching them, I felt as if some strange wave ran through my body. They shine from inside, as if they really contain some power. I tried to take a cluster, but to my regret from the hit of the pick on it, it split into shards. I will continue researching.
 
+if_entry.crysagnetite.name=Crysagnetite
+if_entry.crysagnetite.desc=Purple magnet?
+if_step.crysagnetite.desc=Dig underground and find shimmering bright purple ore.
+if_page.crysagnetite.0.text=You found some strange metal that shimmers bright purple. At first sight, it looks like a magnetite. You tried to bring something iron to it, but this metal didn't attract it. Maybe it can attract something else?
+if_page.crysagnetite.1.text=You can find the ore between Y %1$s and %2$s.
+
 #Common
 itemGroup.purmag=Purificati Magicae
 if_step.unlocked.text=You've completed a research step!
