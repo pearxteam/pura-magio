@@ -24,13 +24,6 @@ public class IfChannel
         setTier(tier);
     }
 
-    public IfChannel(String id, IGuiDrawable icon, int tier, String... entries)
-    {
-        this(id, icon, tier);
-        for (String entr : entries)
-            addEntry(entr);
-    }
-
     public String getId()
     {
         return id;

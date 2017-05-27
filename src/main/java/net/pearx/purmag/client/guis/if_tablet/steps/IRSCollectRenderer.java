@@ -7,6 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.drawables.ItemDrawable;
+import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
 import net.pearx.purmag.common.infofield.steps.IRSCollect;
 
 import java.awt.*;
@@ -16,16 +17,13 @@ import java.util.List;
  * Created by mrAppleXZ on 29.04.17 20:00.
  */
 @SideOnly(Side.CLIENT)
-public class IRSCollectRenderer extends IRSRenderer
+public class IRSCollectRenderer extends IRSRenderer<IRSCollect>
 {
-    public IRSCollect step;
     int lastX, lastY;
 
-    @Override
-    public void init()
+    public IRSCollectRenderer(IRSCollect step)
     {
-        super.init();
-        step = (IRSCollect) getTablet().entry.getSteps().get(getTablet().doneSteps);
+        super(step);
     }
 
     @Override

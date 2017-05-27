@@ -4,13 +4,21 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.client.guis.if_tablet.GuiIfTabletSR;
+import net.pearx.purmag.common.infofield.pages.IIfPage;
+import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
 
 /**
  * Created by mrAppleXZ on 29.04.17 20:01.
  */
 @SideOnly(Side.CLIENT)
-public class IRSRenderer extends Control
+public class IRSRenderer<T extends IIfResearchStep> extends Control
 {
+    public T step;
+    public IRSRenderer(T step)
+    {
+        this.step = step;
+    }
+
     @Override
     public void init()
     {

@@ -2,6 +2,8 @@ package net.pearx.purmag.common.infofield;
 
 import net.minecraft.item.ItemStack;
 import net.pearx.purmag.client.guis.drawables.BigItemDrawable;
+import net.pearx.purmag.client.guis.drawables.SimpleDrawable;
+import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.infofield.pages.IfPageText;
 import net.pearx.purmag.common.infofield.steps.IRSCollect;
 import net.pearx.purmag.common.items.ItemRegistry;
@@ -71,16 +73,29 @@ public class IfRegistry
         return null;
     }
 
+    public void attachEntry(String channel, String entry)
+    {
+        getChannel(channel).addEntry(entry);
+    }
+
     public void setup()
     {
-        registerTier(new IfTier(0));
-        registerTier(new IfTier(1));
-        registerTier(new IfTier(2));
+        registerTier(new IfTier(0)); //Only player's thoughts.
+        registerTier(new IfTier(1)); //Player's thoughts and simple researches.
+        registerTier(new IfTier(2)); //Player's thoughts and advanced researches.
+        registerTier(new IfTier(3)); //Ancients' knowledges.
+        registerTier(new IfTier(4)); //The WHITE CATACLYSM knowledge.
 
-        registerChannel(new IfChannel("information_field", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet)), 0));
-        registerChannel(new IfChannel("crystallography", new BigItemDrawable(new ItemStack(ItemRegistry.crystal)), 0, "crystals", "crystals1", "crystals2"));
+        registerChannel(new IfChannel("information_field", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet, 1, 1)), 0));
+        registerChannel(new IfChannel("geology", new BigItemDrawable(new ItemStack(ItemRegistry.crystal)), 0));
+        registerChannel(new IfChannel("sip", new SimpleDrawable(Utils.getRegistryName("icons/sip"), 32, 32, 32, 32), 1));
+        registerChannel(new IfChannel("sif", new SimpleDrawable(Utils.getRegistryName("icons/sif"), 32, 32, 32, 32), 2));
+        //todo icon
+        registerChannel(new IfChannel("ancients", new SimpleDrawable(Utils.getRegistryName("todo"), 32, 32, 32, 32), 3));
+        //todo icon
+        registerChannel(new IfChannel("white", new SimpleDrawable(Utils.getRegistryName("todo"), 32, 32, 32, 32), 4));
 
-        registerEntry(new IfEntry("crystals", 0, new BigItemDrawable(ItemUtils.getItemWithSip(SipTypeRegistry.DEFAULT, ItemRegistry.crystal)), null, Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals.0", true)), 0, 0, 0, new IfPageText("crystals.0"), new IfPageText("crystals.1")));
+        //registerEntry(new IfEntry("crystals", 0, new BigItemDrawable(ItemUtils.getItemWithSip(SipTypeRegistry.DEFAULT, ItemRegistry.crystal)), null, Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals.0", true)), 0, 0, 0, new IfPageText("crystals.0"), new IfPageText("crystals.1")));
     }
 }
 

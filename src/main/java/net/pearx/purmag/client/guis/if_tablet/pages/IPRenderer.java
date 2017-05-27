@@ -10,10 +10,10 @@ import net.pearx.purmag.common.infofield.pages.IIfPage;
  * Created by mrAppleXZ on 03.05.17 21:30.
  */
 @SideOnly(Side.CLIENT)
-public class IPRenderer extends Control
+public class IPRenderer<T extends IIfPage> extends Control
 {
-    public IIfPage page;
-    public IPRenderer(IIfPage page)
+    public T page;
+    public IPRenderer(T page)
     {
         this.page = page;
     }

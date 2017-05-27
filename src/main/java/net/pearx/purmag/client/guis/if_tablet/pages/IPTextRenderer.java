@@ -12,9 +12,10 @@ import java.awt.*;
  * Created by mrAppleXZ on 04.05.17 8:39.
  */
 @SideOnly(Side.CLIENT)
-public class IPTextRenderer extends IPRenderer
+public class IPTextRenderer extends IPRenderer<IfPageText>
 {
-    public IPTextRenderer(IIfPage page)
+
+    public IPTextRenderer(IfPageText page)
     {
         super(page);
     }
@@ -23,6 +24,6 @@ public class IPTextRenderer extends IPRenderer
     public void render()
     {
         super.render();
-        DrawingTools.drawString(((IfPageText)page).getDisplayText(), 5, 0, Color.WHITE, getWidth() - 5);
+        DrawingTools.drawString(page.getDisplayText(), 5, 0, Color.WHITE, getWidth() - 5);
     }
 }

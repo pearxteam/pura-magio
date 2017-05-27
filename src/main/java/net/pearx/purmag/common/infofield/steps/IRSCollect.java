@@ -84,6 +84,6 @@ public class IRSCollect extends IRSBase
     @SideOnly(Side.CLIENT)
     public IRSRenderer getRenderer()
     {
-        return new IRSCollectRenderer();
+        return new IRSCollectRenderer(this);
     }
 }
