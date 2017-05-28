@@ -1,7 +1,10 @@
 package net.pearx.purmag.common.infofield;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.infofield.pages.IIfPage;
@@ -100,8 +103,21 @@ public class IfEntry
         this.steps = steps;
     }
 
+    public int getStepsForDisplay()
+    {
+        return stepsForDisplay;
+    }
+
+    public void setStepsForDisplay(int stepsForDisplay)
+    {
+        this.stepsForDisplay = stepsForDisplay;
+    }
+
+    @SideOnly(Side.CLIENT)
     public String getDisplayName()
     {
+        if(Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).getSteps(getId()) < getStepsForDisplay())
+            return "???";
         return I18n.translateToLocal("if_entry." + id + ".name");
     }
 
@@ -116,9 +132,6 @@ public class IfEntry
             return false;
 
         if(!isAllParentsUnlocked(p))
-            return false;
-
-        if(store.getSteps(getId()) < getStepsForDisplay())
             return false;
 
         return true;
@@ -137,15 +150,5 @@ public class IfEntry
             if (!p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).isFullyUnlocked(id))
                 return false;
         return true;
-    }
-
-    public int getStepsForDisplay()
-    {
-        return stepsForDisplay;
-    }
-
-    public void setStepsForDisplay(int stepsForDisplay)
-    {
-        this.stepsForDisplay = stepsForDisplay;
     }
 }

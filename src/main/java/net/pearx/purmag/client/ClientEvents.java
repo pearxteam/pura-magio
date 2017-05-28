@@ -98,7 +98,6 @@ public class ClientEvents
         {
             if(ItemSipAmulet.checkForAmulet(Minecraft.getMinecraft().player))
             {
-                EntityPlayer p = Minecraft.getMinecraft().player;
                 NetworkManager.sendToServer(new SPacketUseSipAmulet());
             }
         }

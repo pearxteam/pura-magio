@@ -1,5 +1,6 @@
 package net.pearx.purmag.common.infofield;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.drawables.BigItemDrawable;
@@ -103,9 +104,22 @@ public class IfRegistry
                 null,
                 Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.ore_crysagnetite), "crysagnetite", true)),
                 0,
-                new IfPageText("crysagnetite.0"), new IfPageText("crysagnetite.1", Integer.toString(PurMag.instance.config.genCrysagnetite.minY), Integer.toString(PurMag.instance.config.genCrysagnetite.maxY))));
+                new IfPageText("crysagnetite.0"), new IfPageText("crysagnetite.1", Integer.toString(PurMag.instance.config.genCrysagnetite.minY), Integer.toString(PurMag.instance.config.genCrysagnetite.maxY))
+        ));
 
         attachEntry("geology", new IfEntryLocation("crysagnetite", 0, 0));
+
+        registerEntry(new IfEntry(
+                "sip_knowledge", 1,
+                new SimpleDrawable(Utils.getRegistryName("icons/sip"), 32, 32, 32, 32),
+                null,
+                //todo read step
+                Arrays.asList(new IRSCollect(new ItemStack(Items.APPLE), "sip_knowledge", false)),
+                1,
+                new IfPageText("sip_knowledge.0")
+        ));
+
+        attachEntry("sip", new IfEntryLocation("sip_knowledge", 0, 0));
         //registerEntry(new IfEntry("crystals", 0, new BigItemDrawable(ItemUtils.getItemWithSip(SipTypeRegistry.DEFAULT, ItemRegistry.crystal)), null, Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals.0", true)), 0, 0, 0, new IfPageText("crystals.0"), new IfPageText("crystals.1")));
     }
 }

@@ -39,6 +39,7 @@ public class DisplayMessage
         setArgs(Arrays.asList(args));
     }
 
+    @SideOnly(Side.CLIENT)
     public String formatSting(String s)
     {
         for (int i = 0; i < args.size(); i++)
