@@ -33,6 +33,7 @@ import java.util.Random;
 @Mod(name = PurMag.Name, modid = PurMag.ModId)
 public class PurMag
 {
+    //todo laboratory, smeltery, redstone crystal, SIF plant
     public static PurMag instance;
 
     public static Random rand = new Random();

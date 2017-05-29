@@ -41,7 +41,9 @@ public class SimpleDrawable implements IGuiDrawable
     @SideOnly(Side.CLIENT)
     public void draw(int x, int y)
     {
+        GlStateManager.enableBlend();
         Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
         GuiScreen.drawScaledCustomSizeModalRect(x, y, 0, 0, texWidth, texHeight, targetWidth, targetHeight, texWidth, texHeight);
+        GlStateManager.disableBlend();
     }
 }

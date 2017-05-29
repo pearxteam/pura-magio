@@ -8,7 +8,6 @@ import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.common.SoundRegistry;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
-import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.common.infofield.IfChannel;
 
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class GuiIfTabletSESelector extends GuiIfTabletSEPart
     {
         if(sel >= 0 && sel < channels.size())
         {
-            Minecraft.getMinecraft().player.playSound(SoundRegistry.MagicalClick, 1, 1);
+            Minecraft.getMinecraft().player.playSound(SoundRegistry.magicalClick, 1, 1);
             selected = sel;
             getTabletScreen().entries.reload();
         }

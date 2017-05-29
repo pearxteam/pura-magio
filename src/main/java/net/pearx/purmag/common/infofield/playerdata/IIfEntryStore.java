@@ -17,4 +17,5 @@ public interface IIfEntryStore extends INBTSerializable<NBTTagCompound>
     void setSteps(String id, int st);
     boolean isFullyUnlocked(String id);
     void sync(EntityPlayerMP p);
+    void sync(EntityPlayerMP p, String res);
 }

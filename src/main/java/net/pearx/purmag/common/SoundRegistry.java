@@ -8,23 +8,28 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  */
 public class SoundRegistry
 {
-    public static SoundEvent MagicalClick;
-    public static SoundEvent Notification;
-    public static SoundEvent Click;
+    public static SoundEvent magicalClick;
+    public static SoundEvent notification;
+    public static SoundEvent click;
+    public static SoundEvent glass;
 
     public static void setup()
     {
-        MagicalClick = new SoundEvent(Utils.getRegistryName("magical_click"));
-        MagicalClick.setRegistryName(Utils.getRegistryName("magical_click"));
+        magicalClick = new SoundEvent(Utils.getRegistryName("magical_click"));
+        magicalClick.setRegistryName(Utils.getRegistryName("magical_click"));
 
-        Notification = new SoundEvent(Utils.getRegistryName("notification"));
-        Notification.setRegistryName(Utils.getRegistryName("notification"));
+        notification = new SoundEvent(Utils.getRegistryName("notification"));
+        notification.setRegistryName(Utils.getRegistryName("notification"));
 
-        Click = new SoundEvent(Utils.getRegistryName("click"));
-        Click.setRegistryName(Utils.getRegistryName("click"));
+        click = new SoundEvent(Utils.getRegistryName("click"));
+        click.setRegistryName(Utils.getRegistryName("click"));
 
-        GameRegistry.register(MagicalClick);
-        GameRegistry.register(Notification);
-        GameRegistry.register(Click);
+        glass = new SoundEvent(Utils.getRegistryName("glass"));
+        glass.setRegistryName(Utils.getRegistryName("glass"));
+
+        GameRegistry.register(magicalClick);
+        GameRegistry.register(notification);
+        GameRegistry.register(click);
+        GameRegistry.register(glass);
     }
 }

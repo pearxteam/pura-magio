@@ -91,8 +91,8 @@ public class IfRegistry
 
         registerChannel(new IfChannel("information_field", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet, 1, 1)), 0));
         registerChannel(new IfChannel("geology", new BigItemDrawable(new ItemStack(ItemRegistry.crystal)), 0));
-        registerChannel(new IfChannel("sip", new SimpleDrawable(Utils.getRegistryName("icons/sip"), 32, 32, 32, 32), 1));
-        registerChannel(new IfChannel("sif", new SimpleDrawable(Utils.getRegistryName("icons/sif"), 32, 32, 32, 32), 2));
+        registerChannel(new IfChannel("sip", new SimpleDrawable(Utils.getRegistryName("textures/icons/sip.png"), 28, 28, 28, 28), 1));
+        registerChannel(new IfChannel("sif", new SimpleDrawable(Utils.getRegistryName("textures/icons/sif.png"), 32, 32, 32, 32), 2));
         //todo icon
         registerChannel(new IfChannel("ancients", new SimpleDrawable(Utils.getRegistryName("todo"), 32, 32, 32, 32), 3));
         //todo icon
@@ -111,7 +111,7 @@ public class IfRegistry
 
         registerEntry(new IfEntry(
                 "sip_knowledge", 1,
-                new SimpleDrawable(Utils.getRegistryName("icons/sip"), 32, 32, 32, 32),
+                new SimpleDrawable(Utils.getRegistryName("textures/icons/sip_text.png"), 28, 28, 28, 28),
                 null,
                 //todo read step
                 Arrays.asList(new IRSCollect(new ItemStack(Items.APPLE), "sip_knowledge", false)),

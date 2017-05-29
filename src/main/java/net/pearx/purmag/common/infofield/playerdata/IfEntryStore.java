@@ -48,6 +48,14 @@ public class IfEntryStore implements IIfEntryStore
     }
 
     @Override
+    public void sync(EntityPlayerMP p, String res)
+    {
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setInteger(res, entries.get(res));
+        NetworkManager.sendTo(new CPacketSyncEntryStore(tag), p);
+    }
+
+    @Override
     public NBTTagCompound serializeNBT()
     {
         NBTTagCompound tag = new NBTTagCompound();

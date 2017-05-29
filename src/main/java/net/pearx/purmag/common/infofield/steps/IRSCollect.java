@@ -47,9 +47,8 @@ public class IRSCollect extends IRSBase
     public boolean isSuitable(ItemStack stack)
     {
         boolean itemCond = stack.getItem() == this.stack.getItem();
-        boolean metaCond = checkMeta ? stack.getMetadata() == this.stack.getMetadata() : true;
-        boolean nbtCond = true;
-        //todo: write nbtCond
+        boolean metaCond = !checkMeta || stack.getMetadata() == this.stack.getMetadata();
+        boolean nbtCond = !checkNbt || this.stack.getTagCompound().equals(stack.getTagCompound());
 
         return itemCond && metaCond && nbtCond;
     }

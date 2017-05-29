@@ -3,7 +3,6 @@ package net.pearx.purmag.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -13,7 +12,6 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.client.particles.ParticleSipMovingTo;
 import net.pearx.purmag.client.models.IModelBase;
 import net.pearx.purmag.client.models.StandardModels;
 import net.pearx.purmag.common.DisplayMessage;
@@ -23,7 +21,6 @@ import net.pearx.purmag.common.items.ItemSipAmulet;
 import net.pearx.purmag.common.networking.NetworkManager;
 import net.pearx.purmag.common.networking.packets.SPacketUseSipAmulet;
 
-import javax.vecmath.Vector3d;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -73,7 +70,7 @@ public class ClientEvents
             {
                 if(!isDMDisplayed)
                 {
-                    Minecraft.getMinecraft().player.playSound(SoundRegistry.Notification, 1, 1);
+                    Minecraft.getMinecraft().player.playSound(SoundRegistry.notification, 1, 1);
                     timerDM.schedule(new TimerTask()
                     {
                         @Override

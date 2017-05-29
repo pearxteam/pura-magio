@@ -73,7 +73,7 @@ public class SPacketUseSipAmulet implements IMessage
                     p.addPotionEffect(new PotionEffect(eff.getEffect(), eff.getTicks() * entr.getValue(), lvl, false, false));
                     float rads = (float)Math.toRadians(p.rotationYaw + 180);
                     Vector2f vec = new Vector2f(MathHelper.sin(rads), -MathHelper.cos(rads));
-                    for(int i = 0; i < entr.getValue() / 8f; i ++)
+                    for(int i = entr.getValue(); i > 0; i -= 8)
                     {
                         NetworkManager.sendToAllAround(new CPacketSpawnSipParticle(
                                         new Vector3d(p.posX, p.posY + 1.3f, p.posZ),
@@ -81,7 +81,7 @@ public class SPacketUseSipAmulet implements IMessage
                                         0.1f,
                                         p.dimension,
                                         entr.getKey(),
-                                        MathTools.remainderOrAll(entr.getValue(), 8)
+                                        i >= 8 ? 8 : i
                                 ),
                                 (int)p.posX, (int)p.posY, (int)p.posZ, p.dimension, 300);
                     }

@@ -70,7 +70,7 @@ public class CommandIf extends CommandBase
         EntityPlayerMP p = server.getPlayerList().getPlayerByUsername(player);
         IIfEntryStore s = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
         s.setSteps(res, steps);
-        s.sync(p);
+        s.sync(p, res);
         sender.sendMessage(new TextComponentTranslation("command.if.success." + act, "§5" + res, "§5" + player));
     }
 

@@ -58,7 +58,7 @@ public class Button extends Control
     @Override
     public void mouseUp(int button, int x, int y)
     {
-        Minecraft.getMinecraft().player.playSound(SoundRegistry.MagicalClick, 1, 1);
+        Minecraft.getMinecraft().player.playSound(SoundRegistry.magicalClick, 1, 1);
         clickAction.run();
     }
 

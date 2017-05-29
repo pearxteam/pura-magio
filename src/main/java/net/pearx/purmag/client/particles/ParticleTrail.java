@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
+import org.lwjgl.opengl.GL11;
 
 /**
  * Created by mrAppleXZ on 28.05.17 20:19.
@@ -34,14 +35,14 @@ public class ParticleTrail extends Particle
     }
 
     @Override
-    public int getFXLayer()
-    {
-        return 1;
-    }
-
-    @Override
     public boolean shouldDisableDepth()
     {
         return true;
+    }
+
+    @Override
+    public int getFXLayer()
+    {
+        return 1;
     }
 }

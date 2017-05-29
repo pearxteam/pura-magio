@@ -16,7 +16,6 @@ import net.pearx.purmag.common.CapabilityRegistry;
  */
 public class CPacketSyncEntryStore implements IMessage
 {
-    //TODO: Send only needed steps, not everything at one moment. :/
     NBTTagCompound tag;
 
     public CPacketSyncEntryStore() {}

@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.Utils;
+import org.lwjgl.opengl.GL11;
 
 import javax.vecmath.Vector3d;
 import java.awt.*;
@@ -22,7 +23,7 @@ public class ParticleSipMovingTo extends ParticleMovingTo
         Color col = new Color(PurMag.instance.sip.getType(sip).getColor());
         setRBGColorF (col.getRed() / 255f, col.getGreen() / 255f, col.getBlue() / 255f);
         setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Utils.getRegistryName("particle/sip").toString()));
-        float f = amount / 8f * 0.4f;
+        float f = amount / 8f;
         particleScale = 0.5f + f;
     }
 
