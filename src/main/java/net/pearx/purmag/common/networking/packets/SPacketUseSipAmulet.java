@@ -7,11 +7,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.CapabilityRegistry;
+import net.pearx.purmag.common.MathTools;
 import net.pearx.purmag.common.items.ItemSipAmulet;
 import net.pearx.purmag.common.items.ItemUtils;
 import net.pearx.purmag.common.networking.NetworkManager;
@@ -20,6 +22,7 @@ import net.pearx.purmag.common.sip.SipType;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
 import org.lwjgl.input.Mouse;
 
+import javax.vecmath.Vector2f;
 import javax.vecmath.Vector3d;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,9 +59,9 @@ public class SPacketUseSipAmulet implements IMessage
         @Override
         public IMessage onMessage(SPacketUseSipAmulet message, MessageContext ctx)
         {
-            if(ItemSipAmulet.checkForAmulet(ctx.getServerHandler().player))
+            EntityPlayer p = ctx.getServerHandler().player;
+            if(ItemSipAmulet.checkForAmulet(p))
             {
-                EntityPlayer p = ctx.getServerHandler().player;
                 ItemStack amulet = ItemUtils.getBauble(p, BaubleType.AMULET.getValidSlots()[0]);
                 Map<String, Integer> sips = amulet.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).getStored();
                 for(Map.Entry<String, Integer> entr : sips.entrySet())
@@ -68,15 +71,17 @@ public class SPacketUseSipAmulet implements IMessage
                     if(eff.getMaxLevel() != -1 && lvl > eff.getMaxLevel())
                         lvl = eff.getMaxLevel();
                     p.addPotionEffect(new PotionEffect(eff.getEffect(), eff.getTicks() * entr.getValue(), lvl, false, false));
-                    for(int i = 0; i < entr.getValue() / 16f; i ++)
+                    float rads = (float)Math.toRadians(p.rotationYaw + 180);
+                    Vector2f vec = new Vector2f(MathHelper.sin(rads), -MathHelper.cos(rads));
+                    for(int i = 0; i < entr.getValue() / 8f; i ++)
                     {
                         NetworkManager.sendToAllAround(new CPacketSpawnSipParticle(
-                                        new Vector3d(p.posX, p.posY + 1, p.posZ),
-                                        new Vector3d(p.posX + (PurMag.rand.nextFloat() * 10 - 5), p.posY + 1 + (PurMag.rand.nextFloat() * 10 - 5), p.posZ + (PurMag.rand.nextFloat() * 10 - 5)),
+                                        new Vector3d(p.posX, p.posY + 1.3f, p.posZ),
+                                        new Vector3d(p.posX + (vec.x * 5) + (PurMag.rand.nextFloat() * 4 - 2), p.posY + 1.3f + (PurMag.rand.nextFloat() * 4 - 2), p.posZ + (vec.y * 5) + (PurMag.rand.nextFloat() * 4 - 2)),
                                         0.1f,
                                         p.dimension,
                                         entr.getKey(),
-                                        entr.getValue() % 16 == 0 ? 16 : entr.getValue() % 16
+                                        MathTools.remainderOrAll(entr.getValue(), 8)
                                 ),
                                 (int)p.posX, (int)p.posY, (int)p.posZ, p.dimension, 300);
                     }

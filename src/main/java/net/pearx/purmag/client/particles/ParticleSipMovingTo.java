@@ -19,8 +19,7 @@ public class ParticleSipMovingTo extends ParticleMovingTo
         Color col = new Color(PurMag.instance.sip.getType(sip).getColor());
         setRBGColorF (col.getRed() / 255f, col.getGreen() / 255f, col.getBlue() / 255f);
         setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Utils.getRegistryName("particle/sip").toString()));
-        setAlphaF(0.8f);
-        float f = amount / 16f * 0.5f;
+        float f = amount / 8f * 0.4f;
         particleScale = 0.5f + f;
     }
 
@@ -28,8 +27,13 @@ public class ParticleSipMovingTo extends ParticleMovingTo
     public void onUpdate()
     {
         super.onUpdate();
-        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleTrail(world, prevPosX, prevPosY, prevPosZ, getRedColorF(), getGreenColorF(), getBlueColorF(), particleTexture, particleAlpha, particleScale * 0.5f, 40));
-        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleTrail(world, prevPosX + (actualSpeed.x / 2f), prevPosY + (actualSpeed.y / 2f), prevPosZ + (actualSpeed.z / 2f), getRedColorF(), getGreenColorF(), getBlueColorF(), particleTexture, particleAlpha, particleScale * 0.5f, 40));
+        addTrailParticle(prevPosX, prevPosY, prevPosZ);
+        addTrailParticle(prevPosX + (actualSpeed.x * 0.5f), prevPosY + (actualSpeed.y * 0.5f), prevPosZ + (actualSpeed.z * 0.5f));
+    }
+
+    private void addTrailParticle(double x, double y, double z)
+    {
+        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleTrail(world, x, y, z, getRedColorF(), getGreenColorF(), getBlueColorF(), particleTexture, particleAlpha, particleScale * 0.5f, 40));
     }
 
     @Override
@@ -43,6 +47,4 @@ public class ParticleSipMovingTo extends ParticleMovingTo
     {
         return true;
     }
-
-
 }
