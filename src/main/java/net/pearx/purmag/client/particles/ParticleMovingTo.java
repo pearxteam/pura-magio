@@ -39,4 +39,10 @@ public class ParticleMovingTo extends Particle
             this.setExpired();
         }
     }
+
+    @Override
+    public int getFXLayer()
+    {
+        return 1;
+    }
 }

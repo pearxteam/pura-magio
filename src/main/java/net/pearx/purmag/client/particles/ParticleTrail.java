@@ -1,7 +1,10 @@
 package net.pearx.purmag.client.particles;
 
 import net.minecraft.client.particle.Particle;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 
 /**

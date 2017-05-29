@@ -1,6 +1,9 @@
 package net.pearx.purmag.client.particles;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.Utils;
@@ -34,12 +37,6 @@ public class ParticleSipMovingTo extends ParticleMovingTo
     private void addTrailParticle(double x, double y, double z)
     {
         Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleTrail(world, x, y, z, getRedColorF(), getGreenColorF(), getBlueColorF(), particleTexture, particleAlpha, particleScale * 0.5f, 40));
-    }
-
-    @Override
-    public int getFXLayer()
-    {
-        return 1;
     }
 
     @Override

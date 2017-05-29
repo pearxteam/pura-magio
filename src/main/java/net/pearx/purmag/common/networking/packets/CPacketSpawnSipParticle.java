@@ -67,7 +67,7 @@ public class CPacketSpawnSipParticle implements IMessage
         @SideOnly(Side.CLIENT)
         public IMessage onMessage(CPacketSpawnSipParticle msg, MessageContext ctx)
         {
-            Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleSipMovingTo(DimensionManager.getWorld(msg.dim), msg.pos, msg.posTo, msg.sipType, msg.amount, msg.speed));
+            Minecraft.getMinecraft().addScheduledTask(() -> Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleSipMovingTo(DimensionManager.getWorld(msg.dim), msg.pos, msg.posTo, msg.sipType, msg.amount, msg.speed)));
             return null;
         }
     }
