@@ -12,6 +12,7 @@ import javax.vecmath.Vector3d;
 public class ParticleMovingTo extends Particle
 {
     protected Vector3d actualSpeed;
+    protected float speed;
 
     protected ParticleMovingTo(World worldIn, Vector3d loc, Vector3d locTo, float speed)
     {
@@ -23,6 +24,7 @@ public class ParticleMovingTo extends Particle
         setMaxAge(MathHelper.ceil(length / speed));
         actualSpeed = new Vector3d((vec.getX() / length) * speed, (vec.getY() / length) * speed, (vec.getZ() / length) * speed);
         canCollide = false;
+        this.speed = speed;
     }
 
     @Override

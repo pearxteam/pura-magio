@@ -91,9 +91,12 @@ public class PmGui extends GuiScreen implements IGuiScreen
     @Override
     public void drawTooltip(ItemStack stack, int x, int y)
     {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0, 0, 300);
         renderToolTip(stack, x, y);
         RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();
+        GlStateManager.popMatrix();
     }
 
     @Override

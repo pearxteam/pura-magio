@@ -32,12 +32,16 @@ public class ParticleSipMovingTo extends ParticleMovingTo
     {
         super.onUpdate();
         addTrailParticle(prevPosX, prevPosY, prevPosZ);
-        addTrailParticle(prevPosX + (actualSpeed.x * 0.5f), prevPosY + (actualSpeed.y * 0.5f), prevPosZ + (actualSpeed.z * 0.5f));
+        float count = speed * 50;
+        for(int i = 0; i < count; i++)
+        {
+            addTrailParticle(prevPosX + (actualSpeed.x * (i / count)), prevPosY + (actualSpeed.y * (i / count)), prevPosZ + (actualSpeed.z * (i / count)));
+        }
     }
 
     private void addTrailParticle(double x, double y, double z)
     {
-        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleTrail(world, x, y, z, getRedColorF(), getGreenColorF(), getBlueColorF(), particleTexture, particleAlpha, particleScale * 0.5f, 40));
+        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleTrail(world, x, y, z, getRedColorF(), getGreenColorF(), getBlueColorF(), particleTexture, particleAlpha, particleScale * 0.4f, 40));
     }
 
     @Override
