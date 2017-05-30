@@ -8,6 +8,7 @@ import net.pearx.purmag.client.guis.drawables.SimpleDrawable;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.infofield.pages.IfPageText;
 import net.pearx.purmag.common.infofield.steps.IRSCollect;
+import net.pearx.purmag.common.infofield.steps.IRSReadPapyrus;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.items.ItemUtils;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
@@ -113,8 +114,7 @@ public class IfRegistry
                 "sip_knowledge", 1,
                 new SimpleDrawable(Utils.getRegistryName("textures/icons/sip_text.png"), 28, 28, 28, 28),
                 null,
-                //todo read step
-                Arrays.asList(new IRSCollect(new ItemStack(Items.APPLE), "sip_knowledge", false)),
+                Arrays.asList(new IRSReadPapyrus("sip_knowledge")),
                 1,
                 new IfPageText("sip_knowledge.0")
         ));

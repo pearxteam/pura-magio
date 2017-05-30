@@ -10,6 +10,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.infofield.IfTier;
 
 import java.util.List;

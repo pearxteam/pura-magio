@@ -13,6 +13,7 @@ import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.config.PMConfig;
 import net.pearx.purmag.common.infofield.IfRegistry;
 import net.pearx.purmag.common.items.ItemRegistry;
+import net.pearx.purmag.common.items.papyrus.ItemPapyrus;
 import net.pearx.purmag.common.networking.NetworkManager;
 import net.pearx.purmag.common.sif.SifEvents;
 import net.pearx.purmag.common.sip.SipEffectsRegistry;
@@ -62,6 +63,7 @@ public class PurMag
         sip_effects.setup();
         BlockRegistry.setup();
         ItemRegistry.setup();
+        ItemPapyrus.setup();
         TileRegistry.setup();
         SoundRegistry.setup();
         if_registry.setup();

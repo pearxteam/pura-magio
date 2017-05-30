@@ -48,9 +48,7 @@ public class CommonEvents
                             IRSCollect s = (IRSCollect) step;
                             if (s.isSuitable(e.getItem().getEntityItem()))
                             {
-                                store.setSteps(entr.getId(), steps + 1);
-                                store.sync(p, entr.getId());
-                                NetworkManager.sendTo(new CPacketDisplayMessage(new DisplayMessage("%0", "%1", "if_entry:" + entr.getId(), "i18n:if_step.unlocked.text")), p);
+                                store.unlockStepAndSync(entr.getId(), p);
                             }
                         }
                     }

@@ -19,6 +19,7 @@ import net.pearx.purmag.common.blocks.BlockOre;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.blocks.BlockSingleSip;
 import net.pearx.purmag.common.infofield.IfTier;
+import net.pearx.purmag.common.items.papyrus.ItemPapyrus;
 import net.pearx.purmag.common.sip.SipType;
 
 import java.util.HashMap;
@@ -29,15 +30,16 @@ import java.util.Map;
  */
 public class ItemRegistry
 {
-    public static Item crystal;
-    public static Item crystal_shard;
-    public static Item crystal_cutter;
-    public static Item if_tablet;
-    public static Item crystal_glass;
+    public static ItemBlockCrystal crystal;
+    public static ItemCrystalShard crystal_shard;
+    public static ItemCrystalCutter crystal_cutter;
+    public static ItemIfTablet if_tablet;
+    public static ItemBlockCrystalGlass crystal_glass;
     public static Item ore_crysagnetite;
     public static Item ingot_crysagnetite;
-    public static Item sip_amulet;
-    public static Item glove;
+    public static ItemSipAmulet sip_amulet;
+    public static ItemGlove glove;
+    public static ItemPapyrus papyrus;
 
     public static void setup()
     {
@@ -69,6 +71,9 @@ public class ItemRegistry
 
         glove = new ItemGlove();
         GameRegistry.register(glove);
+
+        papyrus = new ItemPapyrus();
+        GameRegistry.register(papyrus);
     }
 
     @SideOnly(Side.CLIENT)
@@ -90,6 +95,7 @@ public class ItemRegistry
         for(int i = 0; i < 3; i++)
             ClientUtils.setModelLocation(sip_amulet, i, "." + i);
         ClientUtils.setModelLocation(glove);
+        ClientUtils.setModelLocation(papyrus);
 
         ModelLoader.setCustomStateMapper(BlockRegistry.crystal, new ISMSingleSip(ClientUtils.getModelResourceLocation("crystal")));
         ModelLoader.setCustomStateMapper(BlockRegistry.crystal_glass, new ISMSingleSip(ClientUtils.getModelResourceLocation("crystal_glass")));

@@ -3,7 +3,9 @@ package net.pearx.purmag.common.infofield.playerdata;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.DisplayMessage;
 import net.pearx.purmag.common.networking.NetworkManager;
+import net.pearx.purmag.common.networking.packets.CPacketDisplayMessage;
 import net.pearx.purmag.common.networking.packets.CPacketSyncEntryStore;
 
 import java.util.HashMap;
@@ -53,6 +55,14 @@ public class IfEntryStore implements IIfEntryStore
         NBTTagCompound tag = new NBTTagCompound();
         tag.setInteger(res, entries.get(res));
         NetworkManager.sendTo(new CPacketSyncEntryStore(tag), p);
+    }
+
+    @Override
+    public void unlockStepAndSync(String id, EntityPlayerMP p)
+    {
+        setSteps(id, getSteps(id) + 1);
+        sync(p, id);
+        NetworkManager.sendTo(new CPacketDisplayMessage(new DisplayMessage("%0", "%1", "if_entry:" + id, "i18n:if_step.unlocked.text")), p);
     }
 
     @Override
