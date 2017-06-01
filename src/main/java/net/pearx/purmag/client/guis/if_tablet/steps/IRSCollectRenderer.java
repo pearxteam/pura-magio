@@ -19,7 +19,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class IRSCollectRenderer extends IRSRenderer<IRSCollect>
 {
-    int lastX, lastY;
+    private int lastX, lastY;
 
     public IRSCollectRenderer(IRSCollect step)
     {

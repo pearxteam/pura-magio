@@ -1,10 +1,12 @@
 package net.pearx.purmag.client.guis.papyrus;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.Control;
+import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.items.ItemRegistry;
 
 import java.awt.*;
@@ -27,7 +29,11 @@ public class GuiPapyrus extends Control
     @Override
     public void render()
     {
-        DrawingTools.drawString(text, 0, 0, Color.LIGHT_GRAY, getWidth());
+        DrawingTools.drawTexture(Utils.getRegistryName("textures/gui/papyrus.png"), 0, 0, getWidth(), getHeight());
+        boolean unic = Minecraft.getMinecraft().fontRenderer.getUnicodeFlag();
+        Minecraft.getMinecraft().fontRenderer.setUnicodeFlag(true);
+        DrawingTools.drawString(text, 5, 5, Color.LIGHT_GRAY, getWidth() - 10);
+        Minecraft.getMinecraft().fontRenderer.setUnicodeFlag(unic);
     }
 
     @Override

@@ -127,4 +127,10 @@ public class PmGui extends GuiScreen implements IGuiScreen
     {
         return height - Mouse.getEventY() * height / mc.displayHeight - 1;
     }
+
+    @Override
+    public boolean doesGuiPauseGame()
+    {
+        return false;
+    }
 }

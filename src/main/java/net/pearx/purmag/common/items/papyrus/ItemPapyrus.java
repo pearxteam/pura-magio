@@ -83,11 +83,7 @@ public class ItemPapyrus extends ItemBase
     {
         for(PapyrusData data : papyruses)
         {
-            ItemStack stack = new ItemStack(this);
-            NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("papyrus_id", data.getPapyrusId());
-            stack.setTagCompound(tag);
-            subItems.add(stack);
+            subItems.add(getPapyrusItem(data.getPapyrusId()));
         }
     }
 
@@ -112,6 +108,15 @@ public class ItemPapyrus extends ItemBase
             if(dat.getPapyrusId().equals(id))
                 return dat;
         return null;
+    }
+
+    public ItemStack getPapyrusItem(String id)
+    {
+        ItemStack stack = new ItemStack(this);
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setString("papyrus_id", id);
+        stack.setTagCompound(tag);
+        return stack;
     }
 
     public static void setup()

@@ -61,11 +61,11 @@ public class PurMag
 
         sip.setup();
         sip_effects.setup();
-        if_registry.setup();
         BlockRegistry.setup();
         ItemRegistry.setup();
         ItemPapyrus.setup();
         TileRegistry.setup();
+        if_registry.setup();
         SoundRegistry.setup();
         CapabilityRegistry.setup();
         NetworkManager.setup();

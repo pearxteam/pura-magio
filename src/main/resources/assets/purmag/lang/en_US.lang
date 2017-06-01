@@ -33,6 +33,7 @@ if_channel.white.name=The White Cataclysm
 if_step.none.desc=No description
 if_step.collect.name=Collect
 if_step.read_papyrus.name=Read the Papyrus
+if_step.read_papyrus.desc=Find the papyrus named "%s" and read it.
 
 if_entry.crystals.name=Crystals
 if_entry.crystals.desc=It's a candies?
@@ -74,6 +75,6 @@ key.categories.purmag=Purificati Magicae
 key.use_sip_amulet=Use Sip Amulet
 
 #Papyruses
+#TODO: 2 part
 papyrus.sip_knowledge.name=The SIP Knowledge
-#TODO: Insert Dr's text
-papyrus.sip_knowledge.text=Januaro 27, 1501%nMi rimarkis nova tipo de energio hazarde kiam ekscitita fornon kun karbo. Io malgranda kaj apenaŭ videbla de tempo al tempo flugas el la forno. Estis kiel bulon de fajro, sed milfoje pli malgranda. Ili estis klare ne bruligis-eksteren pecojn de karbo. Poste mi trovis, ke tiu speco de energio kiu ne estas antaŭe konata, kiu ankaŭ brilas en nitrogeno. Tial tiu energio kaj estis videbla al mi. Mi pensas ke mi povas trovi uzon por ĝi en la estonteco, kiam mi konis ŝin pli bone.%n...%n...%nĜi rezultas ke ĉi tiu energio eblas de malsamaj tipoj kaj povas interagi kun la tuta afero, kaj ne nur kun nitrogeno. Bulo de energio kiu povas malobservi plurajn leĝojn de fiziko. Mi rimarkis, ke trapasis min, tiu pilko dum kelkaj sekundoj min vundeblaj per fajro. Mi daŭre studi.
+papyrus.sip_knowledge.text=Januaro 27, 1501  Servogey Shatunerov%nMi hazarde rimarkis nova filumo de energio, kiam hejtis la bakujon per karbo. Io malgranda kaj apenaŭ videbla de tempo al tempo elflugis el la bakujo. Estas kiel globa fulmo sed milfoje malpli malgranda. Tioj estas klare ne fajreron de fajro. Poste mi eksciis, ke tiu ia energio, antaŭ nekonata, kiu aldone, brilas en nitrogeno. Nome tial tia energio estis videble al mi. Mi supozas, ke kapablos trovi al ĝi apliko en la estonteco, kiam ekscios ĝin pli bone.%n...%n...%n
