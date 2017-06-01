@@ -1,6 +1,6 @@
 package net.pearx.purmag.common.infofield.pages;
 
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.if_tablet.pages.IPRenderer;
@@ -9,6 +9,7 @@ import net.pearx.purmag.client.guis.if_tablet.pages.IPTextRenderer;
 /**
  * Created by mrAppleXZ on 22.04.17 21:05.
  */
+@SideOnly(Side.CLIENT)
 public class IfPageText implements IIfPage
 {
     private String unlocalizedText;
@@ -36,7 +37,7 @@ public class IfPageText implements IIfPage
 
     public String getDisplayText()
     {
-        return I18n.translateToLocalFormatted("if_page." + getUnlocalizedText() + ".text", properties);
+        return I18n.format("if_page." + getUnlocalizedText() + ".text", properties);
     }
 
     public String[] getProperties()
@@ -50,7 +51,6 @@ public class IfPageText implements IIfPage
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public IPRenderer getRenderer()
     {
         return new IPTextRenderer(this);

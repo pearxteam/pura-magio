@@ -12,6 +12,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
@@ -65,6 +66,13 @@ public class ItemPapyrus extends ItemBase
                         }
                     }
                 }
+            }
+        }
+        if(stack.hasTagCompound())
+        {
+            if(stack.getTagCompound().hasKey("papyrus_id"))
+            {
+                PurMag.proxy.openPapyrus(stack.getTagCompound().getString("papyrus_id"));
             }
         }
         return new ActionResult<>(EnumActionResult.PASS, stack);

@@ -39,12 +39,14 @@ public class IRSCollectRenderer extends IRSRenderer<IRSCollect>
             yoff = draw.getWidth();
             int x = (getWidth() - draw.getWidth()) / 2;
             draw.draw(x, 0);
+            DrawingTools.drawString(step.getDescription(), 5, yoff, Color.WHITE, getWidth() - 5);
             if(isFocused() && new Rectangle(x, 0, draw.getWidth(), draw.getHeight()).contains(lastX, lastY))
             {
                 getGuiScreen().drawTooltip(rend, lastX, lastY);
             }
         }
-        DrawingTools.drawString(step.getDescription(), 5, yoff, Color.WHITE, getWidth() - 5);
+        else
+            DrawingTools.drawString(step.getDescription(), 5, yoff, Color.WHITE, getWidth() - 5);
     }
 
     @Override

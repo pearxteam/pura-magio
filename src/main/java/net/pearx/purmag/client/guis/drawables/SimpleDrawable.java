@@ -10,6 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by mrAppleXZ on 26.05.17 14:18.
  */
+@SideOnly(Side.CLIENT)
 public class SimpleDrawable implements IGuiDrawable
 {
     private ResourceLocation texture;
@@ -38,7 +39,6 @@ public class SimpleDrawable implements IGuiDrawable
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void draw(int x, int y)
     {
         GlStateManager.enableBlend();

@@ -7,6 +7,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by mrAppleXZ on 23.04.17 20:15.
  */
+@SideOnly(Side.CLIENT)
 public class BigItemDrawable extends ItemDrawable
 {
     public BigItemDrawable(ItemStack stack)

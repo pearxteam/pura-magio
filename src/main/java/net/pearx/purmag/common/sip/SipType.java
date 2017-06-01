@@ -6,6 +6,8 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import org.lwjgl.input.Mouse;
 
@@ -49,7 +51,7 @@ public class SipType
 
     public String getDisplayName()
     {
-        return I18n.translateToLocal("sip." + name + ".name");
+        return I18n.translateToLocalFormatted("sip." + name + ".name");
     }
 
     public int getId()

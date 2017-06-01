@@ -1,6 +1,6 @@
 package net.pearx.purmag.client.guis.if_tablet;
 
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.GuiDrawableRegistry;
@@ -37,7 +37,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
     public void init()
     {
         super.init();
-        Button btnBack = new Button(I18n.translateToLocal("button.back.name"), this::goBack);
+        Button btnBack = new Button(I18n.format("button.back.name"), this::goBack);
         //borders (8 * 2)
         int backWidth = getWidth() - 16;
         int y = getHeight() - 16 - 8;

@@ -53,11 +53,14 @@ public class DrawingTools
 
     public static void drawString(String str, int x, int y, Color col, int width, boolean shadow, FontRenderer rend)
     {
+        GlStateManager.pushMatrix();
         rend.resetStyles();
         rend.textColor = col.getRGB();
         str = rend.trimStringNewline(str);
-        rend.renderSplitString(str, x + 1, y + 1, width, true);
+        if(shadow)
+            rend.renderSplitString(str, x + 1, y + 1, width, true);
         rend.renderSplitString(str, x, y, width, false);
+        GlStateManager.popMatrix();
     }
 
     public static void drawString(String str, int x, int y, Color col, int width, boolean shadow)

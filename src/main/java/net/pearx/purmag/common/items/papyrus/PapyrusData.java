@@ -1,6 +1,8 @@
 package net.pearx.purmag.common.items.papyrus;
 
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by mrAppleXZ on 30.05.17 9:23.
@@ -24,13 +26,15 @@ public class PapyrusData
         this.papyrusId = papyrusId;
     }
 
+    @SideOnly(Side.CLIENT)
     public String getDisplayName()
     {
-        return I18n.translateToLocal("papyrus." + getPapyrusId() + ".name");
+        return I18n.format("papyrus." + getPapyrusId() + ".name");
     }
 
+    @SideOnly(Side.CLIENT)
     public String getDisplayText()
     {
-        return I18n.translateToLocal("papyrus." + getPapyrusId() + ".text");
+        return I18n.format("papyrus." + getPapyrusId() + ".text");
     }
 }

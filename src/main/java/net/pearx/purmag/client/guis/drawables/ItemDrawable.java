@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by mrAppleXZ on 15.04.17 9:49.
  */
+@SideOnly(Side.CLIENT)
 public class ItemDrawable implements IGuiDrawable
 {
     public ItemStack stack;
@@ -28,13 +29,12 @@ public class ItemDrawable implements IGuiDrawable
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void draw(int x, int y)
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, 0);
         GlStateManager.scale(scale, scale, scale);
-        RenderHelper.enableStandardItemLighting();
+        RenderHelper.enableGUIStandardItemLighting();
         RenderItem rend = Minecraft.getMinecraft().getRenderItem();
         rend.renderItemAndEffectIntoGUI(stack, 0, 0);
         RenderHelper.disableStandardItemLighting();

@@ -22,7 +22,7 @@ sip.air.name=Aera
 sip.information.name=Informa
 
 #Channels
-if_channel.information_field.name=Information Field
+if_channel.infofield.name=Information Field
 if_channel.geology.name=Geology
 if_channel.sip.name=Solid Interacting Power
 if_channel.sif.name=Solid Interacting Field
@@ -75,4 +75,5 @@ key.use_sip_amulet=Use Sip Amulet
 
 #Papyruses
 papyrus.sip_knowledge.name=The SIP Knowledge
-papyrus.sip_knowledge.text=TODO
+#TODO: Insert Dr's text
+papyrus.sip_knowledge.text=Januaro 27, 1501%nMi rimarkis nova tipo de energio hazarde kiam ekscitita fornon kun karbo. Io malgranda kaj apenaŭ videbla de tempo al tempo flugas el la forno. Estis kiel bulon de fajro, sed milfoje pli malgranda. Ili estis klare ne bruligis-eksteren pecojn de karbo. Poste mi trovis, ke tiu speco de energio kiu ne estas antaŭe konata, kiu ankaŭ brilas en nitrogeno. Tial tiu energio kaj estis videbla al mi. Mi pensas ke mi povas trovi uzon por ĝi en la estonteco, kiam mi konis ŝin pli bone.%n...%n...%nĜi rezultas ke ĉi tiu energio eblas de malsamaj tipoj kaj povas interagi kun la tuta afero, kaj ne nur kun nitrogeno. Bulo de energio kiu povas malobservi plurajn leĝojn de fiziko. Mi rimarkis, ke trapasis min, tiu pilko dum kelkaj sekundoj min vundeblaj per fajro. Mi daŭre studi.

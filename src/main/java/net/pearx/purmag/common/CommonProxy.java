@@ -1,5 +1,6 @@
 package net.pearx.purmag.common;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.pearx.purmag.common.sif.SifStorage;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -20,6 +21,11 @@ public class CommonProxy
     }
 
     public void openIfTablet(int tier)
+    {
+
+    }
+
+    public void openPapyrus(String id)
     {
 
     }

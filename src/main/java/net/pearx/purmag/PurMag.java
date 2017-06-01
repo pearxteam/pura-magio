@@ -61,12 +61,12 @@ public class PurMag
 
         sip.setup();
         sip_effects.setup();
+        if_registry.setup();
         BlockRegistry.setup();
         ItemRegistry.setup();
         ItemPapyrus.setup();
         TileRegistry.setup();
         SoundRegistry.setup();
-        if_registry.setup();
         CapabilityRegistry.setup();
         NetworkManager.setup();
         WorldgenRegistry.setup();
@@ -80,6 +80,7 @@ public class PurMag
     @Mod.EventHandler
     public void init(FMLInitializationEvent e)
     {
+
         proxy.init();
     }
 

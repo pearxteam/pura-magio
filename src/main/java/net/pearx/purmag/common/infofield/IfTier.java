@@ -1,6 +1,6 @@
 package net.pearx.purmag.common.infofield;
 
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -26,8 +26,9 @@ public class IfTier
         this.tier = tier;
     }
 
+    @SideOnly(Side.CLIENT)
     public String getDisplayName()
     {
-        return I18n.translateToLocal("if_tier." + tier + ".name");
+        return I18n.format("if_tier." + tier + ".name");
     }
 }

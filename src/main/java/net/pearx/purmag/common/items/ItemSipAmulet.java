@@ -16,6 +16,8 @@ import net.minecraft.util.Tuple;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.Utils;
@@ -55,6 +57,7 @@ public class ItemSipAmulet extends ItemBase implements IBauble
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
     {
         for(Map.Entry<String, Integer> entr : stack.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).getStored().entrySet())

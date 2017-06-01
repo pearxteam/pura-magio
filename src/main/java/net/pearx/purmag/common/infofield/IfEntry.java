@@ -1,7 +1,7 @@
 package net.pearx.purmag.common.infofield;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -23,12 +23,15 @@ public class IfEntry
     private String id;
     private int tier;
     private List<String> parents;
+    @SideOnly(Side.CLIENT)
     private IGuiDrawable icon;
+    @SideOnly(Side.CLIENT)
     private List<IIfPage> pages;
     private List<IIfResearchStep> steps;
     private int stepsForDisplay;
 
-    public IfEntry(String id, int tier, IGuiDrawable icon, List<String> parents, List<IIfResearchStep> steps, int stepsForDisplay, IIfPage... pages)
+    //todo icon pages
+    public IfEntry(String id, int tier, List<String> parents, List<IIfResearchStep> steps, int stepsForDisplay)
     {
         if(parents == null)
             parents = new ArrayList<>();
@@ -37,8 +40,6 @@ public class IfEntry
         setId(id);
         setTier(tier);
         setParents(parents);
-        setIcon(icon);
-        setPages(Arrays.asList(pages));
         setSteps(steps);
         setStepsForDisplay(stepsForDisplay);
     }
@@ -73,21 +74,25 @@ public class IfEntry
         this.parents = parents;
     }
 
+    @SideOnly(Side.CLIENT)
     public IGuiDrawable getIcon()
     {
         return icon;
     }
 
+    @SideOnly(Side.CLIENT)
     public void setIcon(IGuiDrawable icon)
     {
         this.icon = icon;
     }
 
+    @SideOnly(Side.CLIENT)
     public List<IIfPage> getPages()
     {
         return pages;
     }
 
+    @SideOnly(Side.CLIENT)
     public void setPages(List<IIfPage> pages)
     {
         this.pages = pages;
@@ -118,10 +123,11 @@ public class IfEntry
     {
         if(Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).getSteps(getId()) < getStepsForDisplay())
             return "???";
-        return I18n.translateToLocal("if_entry." + id + ".name");
+        return I18n.format("if_entry." + id + ".name");
     }
 
-    public String getDisplayDescription() { return I18n.translateToLocal("if_entry." + id + ".desc"); }
+    @SideOnly(Side.CLIENT)
+    public String getDisplayDescription() { return I18n.format("if_entry." + id + ".desc"); }
 
     //Just available to see, not read/continue researching/etc.
     public boolean isAvailableToSee(EntityPlayer p, int tier)

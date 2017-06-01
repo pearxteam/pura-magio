@@ -1,7 +1,7 @@
 package net.pearx.purmag.client.guis.if_tablet;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
@@ -36,7 +36,7 @@ public class GuiIfTabletSR extends GuiIfTabletS
             getTablet().changeScreen(new GuiIfTabletSP(entry, 0));
             return;
         }
-        btnBack = new Button(I18n.translateToLocal("button.back.name"), this::goBack);
+        btnBack = new Button(I18n.format("button.back.name"), this::goBack);
         btnBack.setX(8);
         btnBack.setY(getHeight() - 24 - 8);
         btnBack.setWidth(getWidth() - 16);

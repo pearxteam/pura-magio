@@ -9,6 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by mrAppleXZ on 23.04.17 12:55.
  */
+@SideOnly(Side.CLIENT)
 public class AnimatedDrawable implements IGuiDrawable
 {
     private int elemW, elemH, texElemW, texElemH, texW, texH, msDivider;
@@ -50,7 +51,6 @@ public class AnimatedDrawable implements IGuiDrawable
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void draw(int x, int y)
     {
         x += xOfffset;

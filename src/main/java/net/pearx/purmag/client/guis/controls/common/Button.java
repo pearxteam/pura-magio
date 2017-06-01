@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pearx.purmag.client.GuiDrawableRegistry;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.client.guis.controls.Control;
@@ -95,8 +96,8 @@ public class Button extends Control
         ru.draw(w - 8, 0);
         lb.draw(0, h - 8);
         rb.draw(w - 8, h - 8);
-        GlStateManager.color(1, 1, 1, 1);
 
+        GlStateManager.color(1, 1, 1, 1);
         DrawingTools.drawString(text, (w - DrawingTools.measureString(text)) / 2, (h - DrawingTools.getFontHeight()) / 2, textColor);
     }
 }

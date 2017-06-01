@@ -1,9 +1,11 @@
 package net.pearx.purmag.client.guis;
 
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.controls.Control;
@@ -12,6 +14,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by mrAppleXZ on 16.04.17 20:02.
@@ -92,10 +95,12 @@ public class PmGui extends GuiScreen implements IGuiScreen
     public void drawTooltip(ItemStack stack, int x, int y)
     {
         GlStateManager.pushMatrix();
-        GlStateManager.translate(0, 0, 300);
         renderToolTip(stack, x, y);
+        GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();
+        GlStateManager.disableDepth();
+        GlStateManager.color(1, 1, 1, 1);
         GlStateManager.popMatrix();
     }
 

@@ -1,7 +1,9 @@
 package net.pearx.purmag.common.infofield;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 
 import java.util.ArrayList;
@@ -11,16 +13,16 @@ import java.util.ArrayList;
  */
 public class IfChannel
 {
+    @SideOnly(Side.CLIENT)
     private IGuiDrawable icon;
     private String id;
     private int tier;
 
     private ArrayList<IfEntryLocation> entries = new ArrayList<>();
 
-    public IfChannel(String id, IGuiDrawable icon, int tier)
+    public IfChannel(String id, int tier)
     {
         setId(id);
-        setIcon(icon);
         setTier(tier);
     }
 
@@ -34,11 +36,13 @@ public class IfChannel
         this.id = id;
     }
 
+    @SideOnly(Side.CLIENT)
     public IGuiDrawable getIcon()
     {
         return icon;
     }
 
+    @SideOnly(Side.CLIENT)
     public void setIcon(IGuiDrawable icon)
     {
         this.icon = icon;
@@ -69,9 +73,10 @@ public class IfChannel
         getEntries().remove(entr);
     }
 
+    @SideOnly(Side.CLIENT)
     public String getDisplayName()
     {
-        return I18n.translateToLocal("if_channel." + id + ".name");
+        return I18n.format("if_channel." + id + ".name");
     }
 
     public boolean isAvailable(EntityPlayer p, int tier)
