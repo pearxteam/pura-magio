@@ -66,6 +66,7 @@ public class DrawingTools
         if(shadow)
             rend.renderSplitString(str, x + 1, y + 1, width, true);
         rend.renderSplitString(str, x, y, width, false);
+        GlStateManager.color(1, 1, 1);
         GlStateManager.popMatrix();
     }
 

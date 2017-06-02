@@ -45,9 +45,11 @@ if_entry.crysagnetite.desc=Purple magnet?
 if_step.crysagnetite.desc=Dig underground and find shimmering bright purple ore.
 if_page.crysagnetite.0.text=You found some strange metal that shimmers bright purple. At first sight, it looks like a magnetite. You tried to bring something iron to it, but this metal didn't attract it. Maybe it can attract something else?
 if_page.crysagnetite.1.text=You can find the ore between Y %1$s and %2$s.
-
 if_entry.sip_knowledge.name=The SIP Knowledge
 if_entry.sip_knowledge.desc=KappaPride!
+if_page.sip_knowledge.0.text=I found the old papyrus written in Esperanto. The text in a papyrus says about an energy named "Solid Interacting Power". I translated it to my language and got something like this: <see the next page>
+#TODO: English
+if_page.sip_knowledge.1.text=January 27, 1501   Servogey Shatunerov%nЯ заметил новый тип энергии случайно, когда топил печь углем. Что-то мелкое и едва заметное время от времени вылетало из печи. Оно было похоже на шаровую молнию, но в тысячи раз меньше. Это были явно не прогоревшие кусочки угля.  Позже я выяснил, что эта какая-то энергия, не известная ранее, которая к тому же,  светится в азоте. Именно по этому эта энергия и была видна мне. Я думаю, что смогу найти ей применение в будущем, когда узнаю ее получше.%n. . .%n. . .%nОказывается, эта энергия может быть разных типов и может взаимодействовать со всей материей, а не только с азотом. Шар, состоящий из этой энергии может нарушить несколько законов физики. Еще я заметил, что пройдя через меня, этот шар на пару секунд сделал меня неуязвимым к огню. Я буду продолжать исследования.
 
 #Common
 itemGroup.purmag=Purificati Magicae
@@ -75,6 +77,6 @@ key.categories.purmag=Purificati Magicae
 key.use_sip_amulet=Use Sip Amulet
 
 #Papyruses
-#TODO: 2 part
-papyrus.sip_knowledge.name=The SIP Knowledge
-papyrus.sip_knowledge.text=Januaro 27, 1501  Servogey Shatunerov%nMi hazarde rimarkis nova filumo de energio, kiam hejtis la bakujon per karbo. Io malgranda kaj apenaŭ videbla de tempo al tempo elflugis el la bakujo. Estas kiel globa fulmo sed milfoje malpli malgranda. Tioj estas klare ne fajreron de fajro. Poste mi eksciis, ke tiu ia energio, antaŭ nekonata, kiu aldone, brilas en nitrogeno. Nome tial tia energio estis videble al mi. Mi supozas, ke kapablos trovi al ĝi apliko en la estonteco, kiam ekscios ĝin pli bone.%n...%n...%n
+
+papyrus.sip_knowledge.name=The Solid Interacting Power I
+papyrus.sip_knowledge.text=Januaro 27, 1501  Servogey Shatunerov%nMi hazarde rimarkis nova filumo de energio, kiom hejtis la bakujon per karbo. Io malgranda kaj apenaŭ videbla de tempo al tempo elflugis el la bakujo. Estas kiel globa fulmo sed milfoje malpli malgranda. Tioj estas klare ne fajreron de fajro. Poste mi eksciis, ke tiu ia energio, antaŭ nekonata, kiu aldone, brilas en nitrogeno. Nome tial tia energio estis videble al mi. Mi supozas, ke kapablos trovi al ĝi apliko en la estonteco, kiam ekscios ĝin pli bone.%n. . .%n. . .%nŜajnis, tiu energio povas estis de diversaj tipoj kaj povas reagis kun tuta materio, sed ne nur kun nitrogeno. Globo, konsistanta el la tiu energio, povis rempi kelkaj la de konataj leĝo de fiziko. ankeraŭ mi remarkis, ke trairinte tra de mi, tiu globo igis de mi per nedifektebla al fajro por deupon de secundoj. Mi doŭrigos esploradoj.

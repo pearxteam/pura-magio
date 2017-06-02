@@ -3,6 +3,7 @@ package net.pearx.purmag.common.infofield.pages;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 import net.pearx.purmag.client.guis.if_tablet.pages.IPRenderer;
 import net.pearx.purmag.client.guis.if_tablet.pages.IPTextRenderer;
 
@@ -37,7 +38,7 @@ public class IfPageText implements IIfPage
 
     public String getDisplayText()
     {
-        return I18n.format("if_page." + getUnlocalizedText() + ".text", properties);
+        return I18n.format("if_page." + getUnlocalizedText() + ".text", getProperties());
     }
 
     public String[] getProperties()

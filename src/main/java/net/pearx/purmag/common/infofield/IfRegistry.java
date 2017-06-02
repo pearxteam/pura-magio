@@ -10,6 +10,7 @@ import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 import net.pearx.purmag.client.guis.drawables.SimpleDrawable;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.infofield.pages.IIfPage;
+import net.pearx.purmag.common.infofield.pages.IfPagePapyrus;
 import net.pearx.purmag.common.infofield.pages.IfPageText;
 import net.pearx.purmag.common.infofield.steps.IRSCollect;
 import net.pearx.purmag.common.infofield.steps.IRSReadPapyrus;
@@ -149,7 +150,8 @@ public class IfRegistry
                 ));
         registerEntryClient(
                 "sip_knowledge", new SimpleDrawable(Utils.getRegistryName("textures/icons/sip_text.png"), 28, 28, 28, 28),
-                new IfPageText("sip_knowledge.0")
+                new IfPageText("sip_knowledge.0"),
+                new IfPagePapyrus("sip_knowledge.1")
         );
     }
 }
