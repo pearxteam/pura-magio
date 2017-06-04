@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 /**
  * Created by mrAppleXZ on 11.04.17 20:28.
  */
-public class TileEntitySyncable extends TileEntity
+public class TileSyncable extends TileEntity
 {
     @Override
     @SideOnly(Side.CLIENT)

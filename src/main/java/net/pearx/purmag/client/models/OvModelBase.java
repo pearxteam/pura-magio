@@ -58,6 +58,11 @@ public class OvModelBase implements IModelBase
         return baked;
     }
 
+    protected void setBaked(IBakedModel baked)
+    {
+        this.baked = baked;
+    }
+
     @Override
     public void bake()
     {

@@ -1,11 +1,3 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "purmag:crystal"
-  },
-  "variants": {
-    "normal": [
-      {}
-    ]
-  }
+  "variants": { "normal": {"model": "purmag:crystal"} }
 }

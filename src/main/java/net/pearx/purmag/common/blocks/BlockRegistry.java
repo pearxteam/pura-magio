@@ -17,6 +17,7 @@ public class BlockRegistry
     public static Block crystal;
     public static Block crystal_glass;
     public static BlockOre ore_crysagnetite;
+    public static BlockTranslationDesk translation_desk;
 
 
     public static void setup()
@@ -30,5 +31,8 @@ public class BlockRegistry
         ore_crysagnetite = new BlockOre(Utils.getRegistryName("ore_crysagnetite"), 3f, 0.1f, 2);
         GameRegistry.register(ore_crysagnetite);
         OreDictionary.registerOre("oreCrysagnetite", ore_crysagnetite);
+
+        translation_desk = new BlockTranslationDesk();
+        GameRegistry.register(translation_desk);
     }
 }

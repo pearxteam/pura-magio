@@ -11,6 +11,6 @@ public class TileRegistry
 {
     public static void setup()
     {
-
+        GameRegistry.registerTileEntity(TileTranslationDesk.class, Utils.getRegistryName("translation_desk").toString());
     }
 }

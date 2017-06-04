@@ -4,20 +4,24 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.IStateMapper;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.ClientUtils;
-import net.pearx.purmag.client.blockstates.ISMSingleSip;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.blocks.BlockOre;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.blocks.BlockSingleSip;
+import net.pearx.purmag.common.blocks.BlockTranslationDesk;
+import net.pearx.purmag.common.blocks.controllers.FacingController;
 import net.pearx.purmag.common.infofield.IfTier;
 import net.pearx.purmag.common.items.papyrus.ItemPapyrus;
 import net.pearx.purmag.common.sip.SipType;
@@ -40,6 +44,7 @@ public class ItemRegistry
     public static ItemSipAmulet sip_amulet;
     public static ItemGlove glove;
     public static ItemPapyrus papyrus;
+    public static Item translation_desk;
 
     public static void setup()
     {
@@ -74,6 +79,9 @@ public class ItemRegistry
 
         papyrus = new ItemPapyrus();
         GameRegistry.register(papyrus);
+
+        translation_desk = ItemUtils.getItemFromBlock(BlockRegistry.translation_desk);
+        GameRegistry.register(translation_desk);
     }
 
     @SideOnly(Side.CLIENT)
@@ -96,8 +104,10 @@ public class ItemRegistry
             ClientUtils.setModelLocation(sip_amulet, i, "." + i);
         ClientUtils.setModelLocation(glove);
         ClientUtils.setModelLocation(papyrus);
+        ClientUtils.setModelLocation(translation_desk);
 
-        ModelLoader.setCustomStateMapper(BlockRegistry.crystal, new ISMSingleSip(ClientUtils.getModelResourceLocation("crystal")));
-        ModelLoader.setCustomStateMapper(BlockRegistry.crystal_glass, new ISMSingleSip(ClientUtils.getModelResourceLocation("crystal_glass")));
+        ModelLoader.setCustomStateMapper(BlockRegistry.crystal, new StateMap.Builder().ignore(BlockSingleSip.SIPTYPE).build());
+        ModelLoader.setCustomStateMapper(BlockRegistry.crystal_glass, new StateMap.Builder().ignore(BlockSingleSip.SIPTYPE).build());
+        ModelLoader.setCustomStateMapper(BlockRegistry.translation_desk, new StateMap.Builder().ignore(FacingController.FACING).build());
     }
 }

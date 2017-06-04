@@ -3,6 +3,7 @@ package net.pearx.purmag.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -36,9 +37,10 @@ public class ClientEvents
     @SubscribeEvent
     public void onBake(ModelBakeEvent e)
     {
-        putModel(e, new StandardModels.Crystal(), new ResourceLocation(PurMag.ModId, "crystal"));
-        putModel(e, new StandardModels.CrystalGlass(), new ResourceLocation(PurMag.ModId, "crystal_glass"));
+        putModel(e, new StandardModels.Crystal(), Utils.getRegistryName("crystal"));
+        putModel(e, new StandardModels.CrystalGlass(), Utils.getRegistryName("crystal_glass"));
         putModel(e, new StandardModels.Glove(), Utils.getRegistryName("glove"));
+        putModel(e, new StandardModels.TranslationDesk(), Utils.getRegistryName("translation_desk"));
     }
 
     private void putModel(ModelBakeEvent e, IModelBase model, ResourceLocation loc)
@@ -58,6 +60,7 @@ public class ClientEvents
                         e.getMap().registerSprite(new ResourceLocation(PurMag.ModId, "blocks/crystal_glass/" + i + j + k + l));
         e.getMap().registerSprite(Utils.getRegistryName("models/glove"));
         e.getMap().registerSprite(Utils.getRegistryName("particle/sip"));
+        e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk"));
     }
 
     @SubscribeEvent

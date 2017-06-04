@@ -2,6 +2,7 @@ package net.pearx.purmag.client.models;
 
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import net.minecraftforge.common.model.TRSRTransformation;
@@ -68,6 +69,15 @@ public class StandardModels
                 return Pair.of(this, new TRSRTransformation(new Vector3f(0.15f, 0.15f, 0), null, new Vector3f(1.2f, 1.2f, 1.2f), new Quat4f(1.8f, -0.6f, -0.3f, 1)).getMatrix());
             }
             return Pair.of(this, new TRSRTransformation(null, null, null, null).getMatrix());
+        }
+    }
+
+    public static class TranslationDesk extends FacingModel
+    {
+        public TranslationDesk()
+        {
+            super(true);
+            setBaseModel(Utils.getRegistryName("block/translation_desk.obj"));
         }
     }
 }
