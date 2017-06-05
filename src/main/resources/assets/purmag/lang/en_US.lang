@@ -2,6 +2,8 @@
 tile.crystal.name=%s Crystal
 tile.crystal_glass.name=%s Crystal Glass
 tile.ore_crysagnetite.name=Crysagnetite Ore
+tile.crystal_small.glowstone.name=Crystallized Glowstone
+tile.crystal_small.redstone.name=Crystallized Redstone
 item.crystal_shard.name=%s Shard
 item.crystal_cutter.name=Crystal Cutter
 item.ingot_crysagnetite.name=Crysagnetite Ingot

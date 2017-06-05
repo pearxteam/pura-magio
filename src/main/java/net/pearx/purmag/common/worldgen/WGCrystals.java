@@ -6,9 +6,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.GlobalChunkPos;
+import net.pearx.purmag.common.blocks.BlockCrystalSmall;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.blocks.BlockSingleSip;
 
@@ -33,9 +35,9 @@ public class WGCrystals implements IWorldGenerator
             boolean cont = false;
             if(entr.getBiomes().length > 0)
             {
-                for (Biome b : entr.getBiomes())
+                for (BiomeDictionary.Type b : entr.getBiomes())
                 {
-                    if (b.equals(world.getBiome(new BlockPos(x, y, z))))
+                    if (BiomeDictionary.hasType(world.getBiome(new BlockPos(x, y, z)), b))
                     {
                         cont = true;
                         break;
@@ -78,8 +80,7 @@ public class WGCrystals implements IWorldGenerator
                 for (int i = 0; i < sif; i++)
                 {
                     BlockPos pos = new BlockPos(x, y + i, z);
-                    world.setBlockState(pos, BlockRegistry.crystal.getDefaultState().withProperty(BlockSingleSip.SIPTYPE, entr.getSip()));
-                    System.out.println(pos + " " + entr.getSip());
+                    world.setBlockState(pos, BlockRegistry.crystal.getDefaultState().withProperty(BlockSingleSip.SIPTYPE, entr.getSip()), 2);
                 }
             }
         }

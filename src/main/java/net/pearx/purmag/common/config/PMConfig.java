@@ -11,33 +11,38 @@ import java.util.List;
  */
 public class PMConfig
 {
+    //todo air and informa worldgen.
     public boolean genCrystals;
     public List<Integer> genRockCrystalsDimBlacklist;
     public ConfigOregenEntry genCrysagnetite;
+    public ConfigOregenEntry genCrystallizedRedstone;
+    public ConfigOregenEntry genCrystallizedGlowstone;
 
     public void setup(Configuration configFile)
     {
         genCrystals = configFile.getBoolean("Generate Crystals", "WORLD", true, "");
         genRockCrystalsDimBlacklist = loadIntList(configFile, "Rock Crystals Dimension Blacklist", "WORLD", new String[] {"1", "-1"}, "");
 
-        genCrysagnetite = loadOregen(configFile, "Crysagnetite", 15, 25, 1, 1, 0.1f, new String[] {"-1", "1"});
+        genCrysagnetite = loadOregen(configFile, "Crysagnetite", 15, 25, 1, 1, 0.1f, new String[] {"-1", "1"}, false);
+        genCrystallizedRedstone = loadOregen(configFile, "Crystallized Redstone", 2, 16, 2, 4, 0.2f, new String[] {"-1", "1"}, false);
+        genCrystallizedGlowstone = loadOregen(configFile, "Crystallized Glowstone", 2, 100, 2, 4, 0.5f, new String[] {"-1"}, true);
 
         if(configFile.hasChanged())
             configFile.save();
     }
 
-    private ConfigOregenEntry loadOregen(Configuration config, String orename, int minY, int maxY, int minVs, int maxVs, float chance, String[] dimList)
+    private ConfigOregenEntry loadOregen(Configuration config, String orename, int minY, int maxY, int minVs, int maxVs, float chance, String[] dimList, boolean dimListMode)
     {
         ConfigOregenEntry cfg = new ConfigOregenEntry();
 
-        cfg.generate = config.getBoolean("Generate " + orename, "WORLD", true, "");
+        cfg.generate = config.getBoolean(orename, "WORLD", true, "");
         cfg.minY = config.getInt(orename + " Min Y", "WORLD", minY, 0, Integer.MAX_VALUE, "");
         cfg.maxY = config.getInt(orename + " Max Y", "WORLD", maxY, 0, Integer.MAX_VALUE, "");
         cfg.minVeinSize = config.getInt(orename + " Min Vein Size", "WORLD", minVs, 0, Integer.MAX_VALUE, "");
         cfg.maxVeinSize = config.getInt(orename + " Max Vein Size", "WORLD", maxVs, 0, Integer.MAX_VALUE, "");
         cfg.chance = config.getFloat(orename + " Generation Chance", "WORLD", chance, 0, 1, "");
         cfg.dimList = loadIntList(config, orename + " DimList", "WORLD", dimList, "");
-        cfg.dimListWhitelist = config.getBoolean(orename + " DimList Mode", "WORLD", false, "True = whitelist; False = blacklist");
+        cfg.dimListWhitelist = config.getBoolean(orename + " DimList Mode", "WORLD", dimListMode, "True = whitelist; False = blacklist");
 
         return cfg;
     }

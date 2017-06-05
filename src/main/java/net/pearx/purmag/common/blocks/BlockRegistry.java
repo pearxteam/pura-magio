@@ -18,6 +18,7 @@ public class BlockRegistry
     public static Block crystal_glass;
     public static BlockOre ore_crysagnetite;
     public static BlockTranslationDesk translation_desk;
+    public static BlockCrystalSmall crystal_small;
 
 
     public static void setup()
@@ -34,5 +35,8 @@ public class BlockRegistry
 
         translation_desk = new BlockTranslationDesk();
         GameRegistry.register(translation_desk);
+
+        crystal_small = new BlockCrystalSmall();
+        GameRegistry.register(crystal_small);
     }
 }

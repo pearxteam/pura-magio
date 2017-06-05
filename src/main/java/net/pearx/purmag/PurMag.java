@@ -1,5 +1,6 @@
 package net.pearx.purmag;
 
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -34,7 +35,7 @@ import java.util.Random;
 @Mod(name = PurMag.Name, modid = PurMag.ModId)
 public class PurMag
 {
-    //todo laboratory, smeltery, redstone crystal, SIF plant
+    //todo laboratory, smeltery, SIF plant, agronomy, paris, translation desk model
     public static PurMag instance;
 
     public static Random rand = new Random();

@@ -13,6 +13,8 @@ import net.pearx.purmag.common.CommonProxy;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.PmGui;
 import net.pearx.purmag.client.guis.if_tablet.GuiIfTablet;
+import net.pearx.purmag.common.blocks.BlockCrystal;
+import net.pearx.purmag.common.blocks.BlockCrystalSmall;
 import net.pearx.purmag.common.blocks.BlockSingleSip;
 import net.pearx.purmag.common.sif.SifStorage;
 import net.pearx.purmag.common.items.ItemRegistry;
@@ -47,6 +49,8 @@ public class ClientProxy extends CommonProxy
         registerSipItemColor(ItemRegistry.crystal_glass);
         registerSipItemColor(ItemRegistry.crystal);
         registerSipItemColor(ItemRegistry.crystal_shard);
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> state.getValue(BlockCrystalSmall.TYPE).getColor(), BlockRegistry.crystal_small);
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> BlockCrystalSmall.Type.values()[stack.getMetadata()].getColor(), ItemRegistry.crystal_small);
 
         KeyBindings.setup();
 

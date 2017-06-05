@@ -17,10 +17,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.ClientUtils;
 import net.pearx.purmag.common.Utils;
-import net.pearx.purmag.common.blocks.BlockOre;
-import net.pearx.purmag.common.blocks.BlockRegistry;
-import net.pearx.purmag.common.blocks.BlockSingleSip;
-import net.pearx.purmag.common.blocks.BlockTranslationDesk;
+import net.pearx.purmag.common.blocks.*;
 import net.pearx.purmag.common.blocks.controllers.FacingController;
 import net.pearx.purmag.common.infofield.IfTier;
 import net.pearx.purmag.common.items.papyrus.ItemPapyrus;
@@ -45,6 +42,7 @@ public class ItemRegistry
     public static ItemGlove glove;
     public static ItemPapyrus papyrus;
     public static Item translation_desk;
+    public static ItemBlockCrystalSmall crystal_small;
 
     public static void setup()
     {
@@ -82,6 +80,9 @@ public class ItemRegistry
 
         translation_desk = ItemUtils.getItemFromBlock(BlockRegistry.translation_desk);
         GameRegistry.register(translation_desk);
+
+        crystal_small = new ItemBlockCrystalSmall();
+        GameRegistry.register(crystal_small);
     }
 
     @SideOnly(Side.CLIENT)
@@ -105,9 +106,12 @@ public class ItemRegistry
         ClientUtils.setModelLocation(glove);
         ClientUtils.setModelLocation(papyrus);
         ClientUtils.setModelLocation(translation_desk);
+        for(BlockCrystalSmall.Type t : BlockCrystalSmall.Type.values())
+            ClientUtils.setModelLocation(crystal_small, t.ordinal(), "");
 
         ModelLoader.setCustomStateMapper(BlockRegistry.crystal, new StateMap.Builder().ignore(BlockSingleSip.SIPTYPE).build());
         ModelLoader.setCustomStateMapper(BlockRegistry.crystal_glass, new StateMap.Builder().ignore(BlockSingleSip.SIPTYPE).build());
         ModelLoader.setCustomStateMapper(BlockRegistry.translation_desk, new StateMap.Builder().ignore(FacingController.FACING).build());
+        ModelLoader.setCustomStateMapper(BlockRegistry.crystal_small, new StateMap.Builder().ignore(BlockCrystalSmall.TYPE).build());
     }
 }

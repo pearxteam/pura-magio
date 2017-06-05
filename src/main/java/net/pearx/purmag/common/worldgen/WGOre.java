@@ -1,11 +1,14 @@
 package net.pearx.purmag.common.worldgen;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import net.pearx.purmag.common.blocks.BlockRegistry;
 
 import java.util.List;
 import java.util.Random;
@@ -42,16 +45,18 @@ public class WGOre implements IWorldGenerator
             {
                 int y = random.nextInt(maxY - minY + 1) + minY;
                 int vs = random.nextInt(maxVeinSize - minVeinSize + 1) + minVeinSize;
-                int x = chunkX * 16 + 8;
-                int z = chunkZ * 16 + 8;
+                int x = chunkX * 16 + random.nextInt(16);
+                int z = chunkZ * 16 + random.nextInt(16);
                 BlockPos last = new BlockPos(x, y, z);
                 for (int i = 0; i < vs; i++)
                 {
                     IBlockState prev = world.getBlockState(last);
-                    if (prev.getBlock().isReplaceableOreGen(prev, world, last, input -> true))
+                    if (prev.getBlock().isReplaceableOreGen(prev, world, last, input ->
                     {
-                        world.setBlockState(last, state);
-                        System.out.println(last + " ore");
+                        return input.getBlock() != Blocks.AIR;
+                    }))
+                    {
+                        setState(world, last, state);
                         last = new BlockPos(x + getOffset(random), y + getOffset(random), z + getOffset(random));
                     }
                 }
@@ -59,8 +64,14 @@ public class WGOre implements IWorldGenerator
         }
     }
 
+    public void setState(World world, BlockPos pos, IBlockState state)
+    {
+        world.setBlockState(pos, state, 2);
+        System.out.println(pos + " ore " + state);
+    }
+
     public int getOffset(Random rand)
     {
-        return rand.nextBoolean() ? -1 : 1;
+        return rand.nextInt(3) - 1;
     }
 }

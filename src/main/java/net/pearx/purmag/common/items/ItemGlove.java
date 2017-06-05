@@ -28,6 +28,7 @@ public class ItemGlove extends ItemBase
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
+
         ItemStack glove = playerIn.getHeldItem(handIn);
         if (handIn == EnumHand.OFF_HAND)
         {

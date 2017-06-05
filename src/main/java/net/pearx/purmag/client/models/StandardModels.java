@@ -9,6 +9,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.client.Debugging;
 import net.pearx.purmag.common.Utils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.input.Keyboard;
@@ -34,7 +35,7 @@ public class StandardModels
         @Override
         public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
         {
-            return Pair.of(this, new TRSRTransformation(new Vector3f(0, -0.25f, 0), null, new Vector3f(0.45f, 0.45f, 0.45f), null).getMatrix());
+            return Pair.of(this, new TRSRTransformation(new Vector3f(0, -0.25f, 0), null, new Vector3f(0.45f, 0.45f, 0.45f), new Quat4f(0, -0.20944f, 0, 1)).getMatrix());
         }
     }
 
@@ -66,7 +67,7 @@ public class StandardModels
             }
             if(cameraTransformType == ItemCameraTransforms.TransformType.GUI)
             {
-                return Pair.of(this, new TRSRTransformation(new Vector3f(0.15f, 0.15f, 0), null, new Vector3f(1.2f, 1.2f, 1.2f), new Quat4f(1.8f, -0.6f, -0.3f, 1)).getMatrix());
+                return Pair.of(this, new TRSRTransformation(new Vector3f(0.15f, 0.15f, 0), null, new Vector3f(1.2f, 1.2f, 1.2f), new Quat4f(-1.64061f, -4.50295f, 0, 1)).getMatrix());
             }
             return Pair.of(this, new TRSRTransformation(null, null, null, null).getMatrix());
         }
@@ -78,6 +79,25 @@ public class StandardModels
         {
             super(true);
             setBaseModel(Utils.getRegistryName("block/translation_desk.obj"));
+        }
+    }
+
+    public static class CrystalSmall extends OvModelBase implements IPerspectiveAwareModel
+    {
+        public CrystalSmall()
+        {
+            super(true);
+            setBaseModel(Utils.getRegistryName("block/crystal_small.obj"));
+        }
+
+        @Override
+        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
+        {
+            if(cameraTransformType == ItemCameraTransforms.TransformType.GUI)
+            {
+                return Pair.of(this, new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, new Vector3f(1.5f, 1.5f, 1.5f), new Quat4f(0.349066f, 0.20944f, 0, 1)).getMatrix());
+            }
+            return Pair.of(this, new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, new Vector3f(1.5f, 1.5f, 1.5f), null).getMatrix());
         }
     }
 }
