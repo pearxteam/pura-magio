@@ -7,6 +7,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.common.Button;
 import net.pearx.purmag.common.CapabilityRegistry;
+import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.infofield.IfEntry;
 
 import java.awt.*;
@@ -36,7 +37,7 @@ public class GuiIfTabletSR extends GuiIfTabletS
             getTablet().changeScreen(new GuiIfTabletSP(entry, 0));
             return;
         }
-        btnBack = new Button(I18n.format("button.back.name"), this::goBack);
+        btnBack = new Button(Utils.getRegistryName("textures/gui/button.png"), I18n.format("button.back.name"), this::goBack);
         btnBack.setX(8);
         btnBack.setY(getHeight() - 24 - 8);
         btnBack.setWidth(getWidth() - 16);

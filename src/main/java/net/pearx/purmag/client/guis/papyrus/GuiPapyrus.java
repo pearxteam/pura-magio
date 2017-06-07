@@ -5,6 +5,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
+import net.pearx.purmag.client.guis.GuiOnScreen;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.items.ItemRegistry;
@@ -15,7 +16,7 @@ import java.awt.*;
  * Created by mrAppleXZ on 31.05.17 19:46.
  */
 @SideOnly(Side.CLIENT)
-public class GuiPapyrus extends Control
+public class GuiPapyrus extends GuiOnScreen
 {
     private String text;
 
@@ -34,17 +35,5 @@ public class GuiPapyrus extends Control
         Minecraft.getMinecraft().fontRenderer.setUnicodeFlag(true);
         DrawingTools.drawString(text, 5, 5, Color.LIGHT_GRAY, getWidth() - 10);
         Minecraft.getMinecraft().fontRenderer.setUnicodeFlag(unic);
-    }
-
-    @Override
-    public int getX()
-    {
-        return (getGuiScreen().getWidth() - getWidth()) / 2;
-    }
-
-    @Override
-    public int getY()
-    {
-        return (getGuiScreen().getHeight() - getHeight()) / 2;
     }
 }

@@ -18,6 +18,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.pearx.purmag.PurMag;
+import net.pearx.purmag.common.CommonProxy;
 import net.pearx.purmag.common.ItemStackUtils;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.blocks.controllers.FacingController;
@@ -74,6 +76,7 @@ public class BlockTranslationDesk extends BlockBase
                 ItemStackUtils.extractAll(handler, 0);
                 return true;
             }
+            PurMag.proxy.openTranslationDesk(pos, worldIn);
         }
         return false;
     }

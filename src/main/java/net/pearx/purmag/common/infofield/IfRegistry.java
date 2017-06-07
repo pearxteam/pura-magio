@@ -14,6 +14,7 @@ import net.pearx.purmag.common.infofield.pages.IfPagePapyrus;
 import net.pearx.purmag.common.infofield.pages.IfPageText;
 import net.pearx.purmag.common.infofield.steps.IRSCollect;
 import net.pearx.purmag.common.infofield.steps.IRSReadPapyrus;
+import net.pearx.purmag.common.infofield.steps.IRSTranslatePapyrus;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.items.ItemUtils;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
@@ -128,7 +129,7 @@ public class IfRegistry
         registerEntry(new IfEntry(
                 "sip_knowledge", 1,
                 null,
-                Arrays.asList(new IRSReadPapyrus("sip_knowledge")),
+                Arrays.asList(new IRSReadPapyrus("sip_knowledge"), new IRSTranslatePapyrus("sip_knowledge")),
                 1));
         attachEntry("sip", new IfEntryLocation("sip_knowledge", 0, 0));
         //registerEntry(new IfEntry("crystals", 0, new BigItemDrawable(ItemUtils.getItemWithSip(SipTypeRegistry.DEFAULT, ItemRegistry.crystal)), null, Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals.0", true)), 0, 0, 0, new IfPageText("crystals.0"), new IfPageText("crystals.1")));

@@ -7,6 +7,7 @@ import net.pearx.purmag.client.GuiDrawableRegistry;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.common.Button;
 import net.pearx.purmag.client.guis.if_tablet.pages.IPRenderer;
+import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.infofield.IfEntry;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -37,7 +38,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
     public void init()
     {
         super.init();
-        Button btnBack = new Button(I18n.format("button.back.name"), this::goBack);
+        Button btnBack = new Button(Utils.getRegistryName("textures/gui/button.png"), I18n.format("button.back.name"), this::goBack);
         //borders (8 * 2)
         int backWidth = getWidth() - 16;
         int y = getHeight() - 16 - 8;

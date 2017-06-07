@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.GuiDrawableRegistry;
 import net.pearx.purmag.client.guis.DrawingTools;
+import net.pearx.purmag.client.guis.GuiOnScreen;
 import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
@@ -27,7 +28,7 @@ import java.util.List;
  * Created by mrAppleXZ on 16.04.17 20:05.
  */
 @SideOnly(Side.CLIENT)
-public class GuiIfTablet extends Control
+public class GuiIfTablet extends GuiOnScreen
 {
     public ResourceLocation textures;
     public IGuiDrawable entryDrawable;
@@ -59,18 +60,6 @@ public class GuiIfTablet extends Control
         shouldGlow = tier != 0;
 
         changeScreen(se);
-    }
-
-    @Override
-    public int getX()
-    {
-        return (getGuiScreen().getWidth() - getWidth()) / 2;
-    }
-
-    @Override
-    public int getY()
-    {
-        return (getGuiScreen().getHeight() - getHeight()) / 2;
     }
 
     @Override

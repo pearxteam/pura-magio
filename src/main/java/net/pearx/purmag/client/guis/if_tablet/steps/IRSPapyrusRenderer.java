@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.drawables.ItemDrawable;
+import net.pearx.purmag.common.infofield.steps.IRSPapyrus;
 import net.pearx.purmag.common.infofield.steps.IRSReadPapyrus;
 import net.pearx.purmag.common.items.ItemRegistry;
 
@@ -14,11 +15,11 @@ import java.awt.*;
  * Created by mrAppleXZ on 01.06.17 19:42.
  */
 @SideOnly(Side.CLIENT)
-public class IRSReadPapyrusRenderer extends IRSRenderer<IRSReadPapyrus>
+public class IRSPapyrusRenderer extends IRSRenderer<IRSPapyrus>
 {
     private int lastX, lastY;
 
-    public IRSReadPapyrusRenderer(IRSReadPapyrus step)
+    public IRSPapyrusRenderer(IRSPapyrus step)
     {
         super(step);
     }

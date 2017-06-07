@@ -3,11 +3,15 @@ package net.pearx.purmag.client;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.papyrus.GuiPapyrus;
+import net.pearx.purmag.client.guis.translation_desk.GuiTranslationDesk;
 import net.pearx.purmag.client.sif.SifStorageClient;
 import net.pearx.purmag.common.CommonProxy;
 import net.pearx.purmag.PurMag;
@@ -85,5 +89,11 @@ public class ClientProxy extends CommonProxy
     public SifStorage getSifStorage()
     {
         return sifStorage;
+    }
+
+    @Override
+    public void openTranslationDesk(BlockPos pos,  World world)
+    {
+        Minecraft.getMinecraft().displayGuiScreen(new PmGui(new GuiTranslationDesk(pos, world)));
     }
 }

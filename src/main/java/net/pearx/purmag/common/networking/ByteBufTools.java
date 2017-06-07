@@ -1,6 +1,7 @@
 package net.pearx.purmag.common.networking;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.util.math.BlockPos;
 
 import javax.vecmath.Vector3d;
 
@@ -18,10 +19,18 @@ public class ByteBufTools
 
     public static Vector3d readVector3d(ByteBuf buf)
     {
-        Vector3d vec = new Vector3d();
-        vec.x = buf.readDouble();
-        vec.y = buf.readDouble();
-        vec.z = buf.readDouble();
-        return vec;
+        return new Vector3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+    }
+
+    public static void writeBlockPos(ByteBuf buf, BlockPos pos)
+    {
+        buf.writeInt(pos.getX());
+        buf.writeInt(pos.getY());
+        buf.writeInt(pos.getZ());
+    }
+
+    public static BlockPos readBlockPos(ByteBuf buf)
+    {
+        return new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
     }
 }

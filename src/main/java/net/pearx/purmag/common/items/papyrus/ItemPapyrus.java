@@ -119,6 +119,18 @@ public class ItemPapyrus extends ItemBase
         return stack;
     }
 
+    public String getId(ItemStack stack)
+    {
+        if(stack.hasTagCompound())
+        {
+            if(stack.getTagCompound().hasKey("papyrus_id"))
+            {
+                return stack.getTagCompound().getString("papyrus_id");
+            }
+        }
+        return "";
+    }
+
     public static void setup()
     {
         ItemRegistry.papyrus.papyruses.add(new PapyrusData("sip_knowledge"));
