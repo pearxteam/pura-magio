@@ -61,9 +61,10 @@ public class GuiTranslationDesk extends GuiOnScreen
     public Status status;
 
     public String entryName;
-    public boolean translating;
+    public ItemStack stack;
 
     public Button btnStart;
+    public GuiTranslationDeskPanel panel;
 
     public GuiTranslationDesk(BlockPos pos, World world)
     {
@@ -74,27 +75,28 @@ public class GuiTranslationDesk extends GuiOnScreen
         setWidth(384);
         setHeight(240);
 
-        textures = Utils.getRegistryName("textures/gui/translation_desk.png");
+        textures = Utils.getRegistryName("textures/gui/translation_desk/translation_desk.png");
         bg = new TexturePart(textures, 0, 0, getWidth(), getHeight(), texW, texH);
-        btnStart = new Button(Utils.getRegistryName("textures/gui/button_wooden.png"), I18n.format("translation_desk.button.start"), () ->
-        {
-            translating = true;
-            //todo
-        });
+        btnStart = new Button(Utils.getRegistryName("textures/gui/button_wooden.png"), I18n.format("translation_desk.button.start"), () -> panel.start());
         btnStart.setWidth(128);
         btnStart.setHeight(24);
         btnStart.setX(3);
         btnStart.setY(getHeight() - 24 - 5);
+
+        panel = new GuiTranslationDeskPanel();
     }
 
     @Override
     public void render()
     {
-        if(System.currentTimeMillis() / 1000 % 2 == 1) updateStatus();
         GlStateManager.enableBlend();
         bg.draw(0, 0);
         GlStateManager.disableBlend();
         DrawingTools.drawString(I18n.format("translation_desk.status") + " " + I18n.format("translation_desk.status." + status.toString()), 3, 5, Color.WHITE);
+        if(panel.translating)
+        {
+            DrawingTools.drawString(I18n.format("translation_desk.remains", panel.entries.size()), 3, 5 + DrawingTools.getFontHeight(), Color.WHITE);
+        }
     }
 
     @Override
@@ -102,21 +104,22 @@ public class GuiTranslationDesk extends GuiOnScreen
     {
         updateStatus();
         controls.add(btnStart);
+        controls.add(panel);
     }
 
     public void updateStatus()
     {
-        if(translating)
-        {
-            status = Status.TRANSLATING;
-            return;
-        }
-        entryName = null;
         TileEntity te = world.getTileEntity(pos);
         if(te != null && te instanceof TileTranslationDesk)
         {
             TileTranslationDesk ttd = (TileTranslationDesk) te;
             ItemStack stack = ttd.handler.getStackInSlot(0);
+            if(panel.translating)
+            {
+                status = Status.TRANSLATING;
+                return;
+            }
+            entryName = null;
             if(!stack.isEmpty())
             {
                 IIfEntryStore store = Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
@@ -130,7 +133,8 @@ public class GuiTranslationDesk extends GuiOnScreen
                         {
                             if(((IRSTranslatePapyrus) step).isSuitable(stack))
                             {
-                                entryName = entr.getId();
+                                this.entryName = entr.getId();
+                                this.stack = stack;
                                 status = Status.CAN_TRANSLATE;
                                 return;
                             }

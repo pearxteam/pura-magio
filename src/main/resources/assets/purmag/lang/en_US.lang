@@ -92,3 +92,4 @@ translation_desk.status.cant_translate=Can't Translate
 translation_desk.status.can_translate=Can Translate
 translation_desk.status.translating=Translating
 translation_desk.button.start=Start
+translation_desk.remains=%s remains
