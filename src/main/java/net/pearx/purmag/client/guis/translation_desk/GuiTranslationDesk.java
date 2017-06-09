@@ -38,6 +38,20 @@ import java.awt.*;
 @SideOnly(Side.CLIENT)
 public class GuiTranslationDesk extends GuiOnScreen
 {
+    public class BtnStart extends Button
+    {
+        public BtnStart(ResourceLocation textures, String str, Runnable run)
+        {
+            super(textures, str, run);
+        }
+
+        @Override
+        public String getText()
+        {
+            return panel.translating ? I18n.format("translation_desk.button.stop") : I18n.format("translation_desk.button.start");
+        }
+    }
+
     public enum Status
     {
         NO_PAPYRUS,
@@ -63,7 +77,7 @@ public class GuiTranslationDesk extends GuiOnScreen
     public String entryName;
     public ItemStack stack;
 
-    public Button btnStart;
+    public BtnStart btnStart;
     public GuiTranslationDeskPanel panel;
 
     public GuiTranslationDesk(BlockPos pos, World world)
@@ -77,7 +91,13 @@ public class GuiTranslationDesk extends GuiOnScreen
 
         textures = Utils.getRegistryName("textures/gui/translation_desk/translation_desk.png");
         bg = new TexturePart(textures, 0, 0, getWidth(), getHeight(), texW, texH);
-        btnStart = new Button(Utils.getRegistryName("textures/gui/button_wooden.png"), I18n.format("translation_desk.button.start"), () -> panel.start());
+        btnStart = new BtnStart(Utils.getRegistryName("textures/gui/button_wooden.png"), null, () ->
+        {
+            if(panel.translating)
+                panel.stop();
+            else
+                panel.start();
+        });
         btnStart.setWidth(128);
         btnStart.setHeight(24);
         btnStart.setX(3);
@@ -92,10 +112,11 @@ public class GuiTranslationDesk extends GuiOnScreen
         GlStateManager.enableBlend();
         bg.draw(0, 0);
         GlStateManager.disableBlend();
-        DrawingTools.drawString(I18n.format("translation_desk.status") + " " + I18n.format("translation_desk.status." + status.toString()), 3, 5, Color.WHITE);
+        DrawingTools.drawString(I18n.format("translation_desk.status", I18n.format("translation_desk.status." + status.toString())), 3, 5, Color.WHITE);
         if(panel.translating)
         {
             DrawingTools.drawString(I18n.format("translation_desk.remains", panel.entries.size()), 3, 5 + DrawingTools.getFontHeight(), Color.WHITE);
+            DrawingTools.drawString(I18n.format("translation_desk.rate", panel.rate, panel.totalEntries), 3, 5 + (DrawingTools.getFontHeight() * 2), Color.WHITE);
         }
     }
 

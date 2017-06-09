@@ -23,14 +23,15 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class Button extends Control
 {
-    public ResourceLocation textures;
+    protected ResourceLocation textures;
     /* lu, u, ru,
        l, c, r,
        lb, b, rb */
-    public List<TexturePart> parts;
-    public String text;
+    protected List<TexturePart> parts;
+
+    private String text;
     public Runnable clickAction;
-    public Color textColor = Color.WHITE;
+    private Color textColor = Color.WHITE;
 
     public Button(ResourceLocation textures, String str, Runnable run)
     {
@@ -43,7 +44,7 @@ public class Button extends Control
                 parts.add(new TexturePart(textures, x * 8, y * 8, 8, 8, 24, 24));
             }
         }
-        this.text = str;
+        setText(str);
         this.clickAction = run;
     }
 
@@ -89,6 +90,26 @@ public class Button extends Control
         parts.get(8).draw(w - 8, h - 8);
 
         GlStateManager.color(1, 1, 1, 1);
-        DrawingTools.drawString(text, (w - DrawingTools.measureString(text)) / 2, (h - DrawingTools.getFontHeight()) / 2, textColor);
+        DrawingTools.drawString(getText(), (w - DrawingTools.measureString(getText())) / 2, (h - DrawingTools.getFontHeight()) / 2, getTextColor());
+    }
+
+    public String getText()
+    {
+        return text;
+    }
+
+    public void setText(String text)
+    {
+        this.text = text;
+    }
+
+    public Color getTextColor()
+    {
+        return textColor;
+    }
+
+    public void setTextColor(Color textColor)
+    {
+        this.textColor = textColor;
     }
 }

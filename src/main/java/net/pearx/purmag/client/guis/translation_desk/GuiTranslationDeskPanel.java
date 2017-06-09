@@ -15,7 +15,9 @@ import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mrAppleXZ on 08.06.17 11:10.
@@ -23,14 +25,26 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class GuiTranslationDeskPanel extends Control
 {
+    public static final List<Integer> keyMap = new ArrayList<>();
+    static
+    {
+        keyMap.add(Keyboard.KEY_S);
+        keyMap.add(Keyboard.KEY_D);
+        keyMap.add(Keyboard.KEY_F);
+        keyMap.add(Keyboard.KEY_G);
+    }
     public boolean translating;
     public List<Entry> entries = new ArrayList<>();
-    public long lastms = 0;
+    public int totalEntries;
+    public int rate;
+    private long lastms = 0;
+    private boolean[] canPress = new boolean[4];
 
     public GuiTranslationDeskPanel()
     {
         setWidth(128);
         setHeight(230);
+        keyEventsRS = false;
     }
 
     @Override
@@ -46,9 +60,10 @@ public class GuiTranslationDeskPanel extends Control
         DrawingTools.drawRectangle(0, 0, getWidth(), getHeight());
 
         List<Entry> toRemove = new ArrayList<>();
+        boolean[] cp = new boolean[] {false, false, false, false};
         for(Entry entr : entries)
         {
-            entr.range -= ((System.currentTimeMillis() - lastms) * 0.08f);
+            entr.range -= ((System.currentTimeMillis() - lastms) * 0.1f);
 
             int x = 32 * entr.line;
             int y = getHeight() - entr.range;
@@ -62,25 +77,12 @@ public class GuiTranslationDeskPanel extends Control
                 {
                     if (y > getHeight() - (45 + h))
                     {
-                        boolean compl = false;
-                        switch (entr.line)
-                        {
-                            case 0:
-                                compl = Keyboard.isKeyDown(Keyboard.KEY_S);
-                                break;
-                            case 1:
-                                compl = Keyboard.isKeyDown(Keyboard.KEY_D);
-                                break;
-                            case 2:
-                                compl = Keyboard.isKeyDown(Keyboard.KEY_F);
-                                break;
-                            case 3:
-                                compl = Keyboard.isKeyDown(Keyboard.KEY_G);
-                                break;
-                        }
+                        boolean compl = Keyboard.isKeyDown(keyMap.get(entr.line));
+                        cp[entr.line] = true;
                         if(compl)
                         {
                             entr.setCompleted(true);
+                            rate++;
                         }
                         GlStateManager.color(0, 0, 1);
                     }
@@ -94,11 +96,26 @@ public class GuiTranslationDeskPanel extends Control
             if(entr.range <= 0)
                 toRemove.add(entr);
         }
+        canPress = cp;
         entries.removeAll(toRemove);
         GlStateManager.color(0, 0, 1);
         DrawingTools.drawRectangle(0, getHeight() - 45, getWidth(), 1);
         GlStateManager.color(1, 1, 1);
         lastms = System.currentTimeMillis();
+    }
+
+    @Override
+    public void keyDown(int keycode)
+    {
+        if(keyMap.contains(keycode))
+        {
+            for(int i = 0; i < keyMap.size(); i++)
+            {
+                if(keyMap.get(i).equals(keycode))
+                    if(!canPress[i])
+                        rate--;
+            }
+        }
     }
 
     public GuiTranslationDesk getDesk()
@@ -113,10 +130,11 @@ public class GuiTranslationDeskPanel extends Control
             translating = true;
             getDesk().updateStatus();
             char[] chars = ItemRegistry.papyrus.getPapyrus(ItemRegistry.papyrus.getId(getDesk().stack)).getDisplayText().toCharArray();
-            for(int i = 0; i < chars.length / 3; i++)
+            for(int i = 0; i < chars.length / 4; i++)
             {
                 entries.add(new Entry((byte) PurMag.rand.nextInt(4), 250 + (i * 40)));
             }
+            totalEntries = entries.size();
         }
     }
 
@@ -127,10 +145,10 @@ public class GuiTranslationDeskPanel extends Control
             translating = false;
             getDesk().updateStatus();
             entries.clear();
+            totalEntries = 0;
+            rate = 0;
         }
     }
-
-
 
     @SideOnly(Side.CLIENT)
     public static class Entry
