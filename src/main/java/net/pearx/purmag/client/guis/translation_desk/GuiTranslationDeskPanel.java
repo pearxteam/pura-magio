@@ -102,18 +102,25 @@ public class GuiTranslationDeskPanel extends Control
         DrawingTools.drawRectangle(0, getHeight() - 45, getWidth(), 1);
         GlStateManager.color(1, 1, 1);
         lastms = System.currentTimeMillis();
+
+        GlStateManager.enableBlend();
+        DrawingTools.drawTexture(Utils.getRegistryName("textures/gui/translation_desk/display.png"), 0, 0, getWidth(), getHeight());
+        GlStateManager.disableBlend();
     }
 
     @Override
     public void keyDown(int keycode)
     {
-        if(keyMap.contains(keycode))
+        if(rate > 0)
         {
-            for(int i = 0; i < keyMap.size(); i++)
+            if (keyMap.contains(keycode))
             {
-                if(keyMap.get(i).equals(keycode))
-                    if(!canPress[i])
-                        rate--;
+                for (int i = 0; i < keyMap.size(); i++)
+                {
+                    if (keyMap.get(i).equals(keycode))
+                        if (!canPress[i])
+                            rate--;
+                }
             }
         }
     }
@@ -125,7 +132,7 @@ public class GuiTranslationDeskPanel extends Control
 
     public void start()
     {
-        if(!translating)
+        if(getDesk().status == GuiTranslationDesk.Status.CAN_TRANSLATE)
         {
             translating = true;
             getDesk().updateStatus();
@@ -140,7 +147,7 @@ public class GuiTranslationDeskPanel extends Control
 
     public void stop()
     {
-        if(translating)
+        if(getDesk().status == GuiTranslationDesk.Status.TRANSLATING)
         {
             translating = false;
             getDesk().updateStatus();

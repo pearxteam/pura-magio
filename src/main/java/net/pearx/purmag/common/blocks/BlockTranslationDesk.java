@@ -8,6 +8,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -77,6 +78,7 @@ public class BlockTranslationDesk extends BlockBase
                 return true;
             }
             PurMag.proxy.openTranslationDesk(pos, worldIn);
+            return true;
         }
         return false;
     }
@@ -115,5 +117,18 @@ public class BlockTranslationDesk extends BlockBase
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
+    }
+
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    {
+        if(!worldIn.isRemote)
+        {
+            TileEntity te = worldIn.getTileEntity(pos);
+            if (te != null && te instanceof TileTranslationDesk)
+            {
+                ItemStackUtils.drop(((TileTranslationDesk)te).handler, worldIn, pos);
+            }
+        }
     }
 }
