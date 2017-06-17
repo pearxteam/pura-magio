@@ -104,7 +104,11 @@ public class GuiTranslationDeskPanel extends Control
                 GlStateManager.disableBlend();
             }
             if(entr.range <= 0)
+            {
+                if(!entr.isCompleted())
+                    minRate();
                 toRemove.add(entr);
+            }
         }
         entries.removeAll(toRemove);
         GlStateManager.color(0, 0, 1);
@@ -121,6 +125,12 @@ public class GuiTranslationDeskPanel extends Control
         DrawingTools.removeStencil(bit);
     }
 
+    public void minRate()
+    {
+        rate--;
+        Minecraft.getMinecraft().player.playSound(SoundRegistry.error, 1, 1);
+    }
+
     @Override
     public void keyDown(int keycode)
     {
@@ -133,9 +143,8 @@ public class GuiTranslationDeskPanel extends Control
                     if (keyMap.get(i).equals(keycode))
                         if (cooldowns[i] <= 0)
                         {
-                            rate -= 2;
-                            cooldowns[i] = 150;
-                            Minecraft.getMinecraft().player.playSound(SoundRegistry.error, 1, 1);
+                            minRate();
+                            cooldowns[i] = 50;
                         }
                 }
             }
@@ -178,11 +187,19 @@ public class GuiTranslationDeskPanel extends Control
 
     public void done()
     {
+        boolean updSt = false;
         if(rate >= (totalEntries * 0.7f))
         {
             NetworkManager.sendToServer(new SPacketDoneTranslation(getDesk().pos, getDesk().entryName));
+            updSt = true;
+        }
+        else
+        {
+            Minecraft.getMinecraft().player.playSound(SoundRegistry.error, 1, 0.1f);
         }
         stop();
+        if(updSt)
+            getDesk().status = GuiTranslationDesk.Status.CANT_TRANSLATE;
     }
 
     @SideOnly(Side.CLIENT)
