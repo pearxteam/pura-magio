@@ -65,7 +65,6 @@ public class GuiIfTablet extends GuiOnScreen
     @Override
     public void render()
     {
-
         float sin = if_screen.isGlowing() ? MathHelper.sin((float) Math.toRadians(System.currentTimeMillis() / 10 % 360)) * 0.15f : 0.15f;
         GlStateManager.color(0.85f + sin, 0.85f + sin, 0.85f + sin);
         texBg.draw(0, 0);

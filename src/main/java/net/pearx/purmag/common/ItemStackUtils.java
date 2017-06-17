@@ -13,10 +13,10 @@ public class ItemStackUtils
 {
     public static void extractAll(IItemHandler hand, int slot)
     {
-        ItemStack stack = hand.getStackInSlot(0);
+        ItemStack stack = hand.getStackInSlot(slot);
         if(!stack.isEmpty())
         {
-            hand.extractItem(0, stack.getCount(), false);
+            hand.extractItem(slot, stack.getCount(), false);
         }
     }
 

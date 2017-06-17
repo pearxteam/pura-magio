@@ -17,6 +17,7 @@ import net.pearx.purmag.client.guis.GuiOnScreen;
 import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.client.guis.controls.common.Button;
+import net.pearx.purmag.client.guis.controls.common.ProgressBar;
 import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.infofield.IfEntry;
@@ -52,6 +53,27 @@ public class GuiTranslationDesk extends GuiOnScreen
         }
     }
 
+    public class BarRate extends ProgressBar
+    {
+        @Override
+        public boolean isVisible()
+        {
+            return panel.translating;
+        }
+
+        @Override
+        public int getValue()
+        {
+            return panel.rate;
+        }
+
+        @Override
+        public int getMaxValue()
+        {
+            return panel.totalEntries;
+        }
+    }
+
     public enum Status
     {
         NO_PAPYRUS,
@@ -79,6 +101,7 @@ public class GuiTranslationDesk extends GuiOnScreen
 
     public BtnStart btnStart;
     public GuiTranslationDeskPanel panel;
+    public BarRate barRate;
 
     public GuiTranslationDesk(BlockPos pos, World world)
     {
@@ -104,6 +127,13 @@ public class GuiTranslationDesk extends GuiOnScreen
         btnStart.setY(getHeight() - 24 - 5);
 
         panel = new GuiTranslationDeskPanel();
+
+        barRate = new BarRate();
+        barRate.setColor(Color.GREEN);
+        barRate.setTextColor(Color.WHITE);
+        barRate.setText(net.minecraft.util.text.translation.I18n.translateToLocal("translation_desk.rate"));
+        barRate.setPos(3, 5 + (DrawingTools.getFontHeight() * 2));
+        barRate.setSize(128, 16);
     }
 
     @Override
@@ -116,7 +146,6 @@ public class GuiTranslationDesk extends GuiOnScreen
         if(panel.translating)
         {
             DrawingTools.drawString(I18n.format("translation_desk.remains", panel.entries.size()), 3, 5 + DrawingTools.getFontHeight(), Color.WHITE);
-            DrawingTools.drawString(I18n.format("translation_desk.rate", panel.rate, panel.totalEntries), 3, 5 + (DrawingTools.getFontHeight() * 2), Color.WHITE);
         }
     }
 
@@ -126,6 +155,7 @@ public class GuiTranslationDesk extends GuiOnScreen
         updateStatus();
         controls.add(btnStart);
         controls.add(panel);
+        controls.add(barRate);
     }
 
     public void updateStatus()

@@ -14,5 +14,8 @@
   "glass": {
     "sounds": [ "purmag:glass.0", "purmag:glass.1" ],
     "subtitle": "subtitle.purmag_glass"
+  },
+  "error": {
+    "sounds": [ "purmag:error" ]
   }
 }

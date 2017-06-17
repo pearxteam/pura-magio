@@ -94,4 +94,4 @@ translation_desk.status.translating=Translating
 translation_desk.button.start=Start
 translation_desk.button.stop=Stop
 translation_desk.remains=%s remains
-translation_desk.rate=Rate: %1$s of %2$s
+translation_desk.rate=Rate: %3$s

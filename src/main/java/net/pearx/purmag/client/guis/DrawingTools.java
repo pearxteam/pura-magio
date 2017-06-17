@@ -9,8 +9,10 @@ import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.util.List;
@@ -145,5 +147,34 @@ public class DrawingTools
         vertexbuffer.pos((double)x, (double)y, 0.0D).endVertex();
         tessellator.draw();
         GlStateManager.enableTexture2D();
+    }
+
+    public static int drawStencil(int w, int h)
+    {
+        int bit = MinecraftForgeClient.reserveStencilBit();
+        int flag = 1 << bit;
+
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_STENCIL_TEST);
+        GL11.glStencilFunc(GL11.GL_ALWAYS, flag, flag);
+        GL11.glStencilOp(GL11.GL_ZERO, GL11.GL_ZERO, GL11.GL_REPLACE);
+        GL11.glStencilMask(flag);
+        GL11.glColorMask(false, false, false, false);
+        GL11.glDepthMask(false);
+        GL11.glClearStencil(0);
+        GL11.glClear(GL11.GL_STENCIL_BUFFER_BIT);
+        DrawingTools.drawRectangle(0, 0, w, h);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glStencilFunc(GL11.GL_EQUAL, flag, flag);
+        GL11.glStencilMask(0);
+        GL11.glColorMask(true, true, true, true);
+        GL11.glDepthMask(true);
+        return bit;
+    }
+
+    public static void removeStencil(int bit)
+    {
+        GL11.glDisable(GL11.GL_STENCIL_TEST);
+        MinecraftForgeClient.releaseStencilBit(bit);
     }
 }

@@ -12,6 +12,7 @@ public class SoundRegistry
     public static SoundEvent notification;
     public static SoundEvent click;
     public static SoundEvent glass;
+    public static SoundEvent error;
 
     public static void setup()
     {
@@ -27,9 +28,13 @@ public class SoundRegistry
         glass = new SoundEvent(Utils.getRegistryName("glass"));
         glass.setRegistryName(Utils.getRegistryName("glass"));
 
+        error = new SoundEvent(Utils.getRegistryName("error"));
+        error.setRegistryName(Utils.getRegistryName("error"));
+
         GameRegistry.register(magicalClick);
         GameRegistry.register(notification);
         GameRegistry.register(click);
         GameRegistry.register(glass);
+        GameRegistry.register(error);
     }
 }

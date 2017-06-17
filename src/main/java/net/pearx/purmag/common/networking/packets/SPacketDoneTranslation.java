@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -26,23 +27,27 @@ import net.pearx.purmag.common.tiles.TileTranslationDesk;
 public class SPacketDoneTranslation implements IMessage
 {
     public BlockPos pos;
+    public String expected;
 
     public SPacketDoneTranslation() {}
-    public SPacketDoneTranslation(BlockPos pos)
+    public SPacketDoneTranslation(BlockPos pos, String expected)
     {
         this.pos = pos;
+        this.expected = expected;
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
         pos = ByteBufTools.readBlockPos(buf);
+        expected = ByteBufUtils.readUTF8String(buf);
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
         ByteBufTools.writeBlockPos(buf, pos);
+        ByteBufUtils.writeUTF8String(buf, expected);
     }
 
     public static class Handler implements IMessageHandler<SPacketDoneTranslation, IMessage>
@@ -62,15 +67,18 @@ public class SPacketDoneTranslation implements IMessage
                         IIfEntryStore store = ctx.getServerHandler().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
                         for (IfEntry entr : PurMag.instance.if_registry.entries)
                         {
-                            int steps = store.getSteps(entr.getId());
-                            if (steps < entr.getSteps().size())
+                            if(entr.getId().equals(message.expected))
                             {
-                                IIfResearchStep step = entr.getSteps().get(steps);
-                                if (step instanceof IRSTranslatePapyrus)
+                                int steps = store.getSteps(entr.getId());
+                                if (steps < entr.getSteps().size())
                                 {
-                                    if(((IRSTranslatePapyrus) step).isSuitable(papyrus))
+                                    IIfResearchStep step = entr.getSteps().get(steps);
+                                    if (step instanceof IRSTranslatePapyrus)
                                     {
-                                        store.unlockStepAndSync(entr.getId(), ctx.getServerHandler().player);
+                                        if (((IRSTranslatePapyrus) step).isSuitable(papyrus))
+                                        {
+                                            store.unlockStepAndSync(entr.getId(), ctx.getServerHandler().player);
+                                        }
                                     }
                                 }
                             }

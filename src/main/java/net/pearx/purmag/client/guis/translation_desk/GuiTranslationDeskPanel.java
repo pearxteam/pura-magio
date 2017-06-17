@@ -2,15 +2,21 @@ package net.pearx.purmag.client.guis.translation_desk;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.Control;
+import net.pearx.purmag.client.guis.controls.common.ProgressBar;
+import net.pearx.purmag.common.SoundRegistry;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.items.ItemRegistry;
+import net.pearx.purmag.common.networking.NetworkManager;
+import net.pearx.purmag.common.networking.packets.SPacketDoneTranslation;
 import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
@@ -38,7 +44,7 @@ public class GuiTranslationDeskPanel extends Control
     public int totalEntries;
     public int rate;
     private long lastms = 0;
-    private boolean[] canPress = new boolean[4];
+    private int[] cooldowns = new int[] {0, 0, 0, 0};
 
     public GuiTranslationDeskPanel()
     {
@@ -57,10 +63,13 @@ public class GuiTranslationDeskPanel extends Control
     @Override
     public void render()
     {
+        int bit = DrawingTools.drawStencil(getWidth(), getHeight());
         DrawingTools.drawRectangle(0, 0, getWidth(), getHeight());
 
         List<Entry> toRemove = new ArrayList<>();
-        boolean[] cp = new boolean[] {false, false, false, false};
+        for(int i = 0; i < cooldowns.length; i++)
+            if(cooldowns[i] > 0)
+                cooldowns[i] -= (System.currentTimeMillis() - lastms);
         for(Entry entr : entries)
         {
             entr.range -= ((System.currentTimeMillis() - lastms) * 0.1f);
@@ -77,12 +86,13 @@ public class GuiTranslationDeskPanel extends Control
                 {
                     if (y > getHeight() - (45 + h))
                     {
+                        cooldowns[entr.line] = 300;
                         boolean compl = Keyboard.isKeyDown(keyMap.get(entr.line));
-                        cp[entr.line] = true;
                         if(compl)
                         {
                             entr.setCompleted(true);
                             rate++;
+                            Minecraft.getMinecraft().player.playSound(SoundEvents.BLOCK_NOTE_SNARE, 1, 1);
                         }
                         GlStateManager.color(0, 0, 1);
                     }
@@ -96,7 +106,6 @@ public class GuiTranslationDeskPanel extends Control
             if(entr.range <= 0)
                 toRemove.add(entr);
         }
-        canPress = cp;
         entries.removeAll(toRemove);
         GlStateManager.color(0, 0, 1);
         DrawingTools.drawRectangle(0, getHeight() - 45, getWidth(), 1);
@@ -106,6 +115,10 @@ public class GuiTranslationDeskPanel extends Control
         GlStateManager.enableBlend();
         DrawingTools.drawTexture(Utils.getRegistryName("textures/gui/translation_desk/display.png"), 0, 0, getWidth(), getHeight());
         GlStateManager.disableBlend();
+
+        if(entries.size() == 0 && getDesk().status == GuiTranslationDesk.Status.TRANSLATING)
+            done();
+        DrawingTools.removeStencil(bit);
     }
 
     @Override
@@ -118,8 +131,12 @@ public class GuiTranslationDeskPanel extends Control
                 for (int i = 0; i < keyMap.size(); i++)
                 {
                     if (keyMap.get(i).equals(keycode))
-                        if (!canPress[i])
-                            rate--;
+                        if (cooldowns[i] <= 0)
+                        {
+                            rate -= 2;
+                            cooldowns[i] = 150;
+                            Minecraft.getMinecraft().player.playSound(SoundRegistry.error, 1, 1);
+                        }
                 }
             }
         }
@@ -142,6 +159,7 @@ public class GuiTranslationDeskPanel extends Control
                 entries.add(new Entry((byte) PurMag.rand.nextInt(4), 250 + (i * 40)));
             }
             totalEntries = entries.size();
+            getDesk().barRate.getMarks().add(new ProgressBar.Mark((int)(totalEntries * 0.7f), Color.BLACK));
         }
     }
 
@@ -154,7 +172,17 @@ public class GuiTranslationDeskPanel extends Control
             entries.clear();
             totalEntries = 0;
             rate = 0;
+            getDesk().barRate.getMarks().clear();
         }
+    }
+
+    public void done()
+    {
+        if(rate >= (totalEntries * 0.7f))
+        {
+            NetworkManager.sendToServer(new SPacketDoneTranslation(getDesk().pos, getDesk().entryName));
+        }
+        stop();
     }
 
     @SideOnly(Side.CLIENT)

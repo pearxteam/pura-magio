@@ -21,6 +21,7 @@ public class Control
     private int height;
     private int x;
     private int y;
+    private boolean visible = true;
     private boolean selected;
     private boolean focused;
 
@@ -76,6 +77,28 @@ public class Control
     public void setY(int y)
     {
         this.y = y;
+    }
+
+    public void setPos(int x, int y)
+    {
+        setX(x);
+        setY(y);
+    }
+
+    public void setSize(int w, int h)
+    {
+        setWidth(w);
+        setHeight(h);
+    }
+
+    public boolean isVisible()
+    {
+        return visible;
+    }
+
+    public void setVisible(boolean visible)
+    {
+        this.visible = visible;
     }
 
     public boolean isSelected()
@@ -168,14 +191,16 @@ public class Control
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate(getX(), getY(), 0);
-        render();
+        if(isVisible())
+            render();
         for(Control cont : controls)
         {
             cont.invokeRender();
         }
         GlStateManager.pushMatrix();
         GlStateManager.translate(0, 0, 300);
-        postRender();
+        if(isVisible())
+            postRender();
         GlStateManager.popMatrix();
         GlStateManager.popMatrix();
     }
