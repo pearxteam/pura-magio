@@ -1,15 +1,9 @@
 package net.pearx.purmag.common.items;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.IStateMapper;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -22,10 +16,6 @@ import net.pearx.purmag.common.blocks.controllers.FacingController;
 import net.pearx.purmag.common.infofield.IfTier;
 import net.pearx.purmag.common.items.papyrus.ItemPapyrus;
 import net.pearx.purmag.common.sip.SipType;
-import net.pearx.purmag.common.sip.SipTypeRegistry;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by mrAppleXZ on 08.04.17 18:46.

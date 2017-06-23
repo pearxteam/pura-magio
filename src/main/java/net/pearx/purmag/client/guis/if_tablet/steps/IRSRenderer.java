@@ -4,7 +4,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.client.guis.if_tablet.GuiIfTabletSR;
-import net.pearx.purmag.common.infofield.pages.IIfPage;
 import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
 
 /**

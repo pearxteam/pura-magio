@@ -1,5 +1,6 @@
 package net.pearx.purmag.common.items.papyrus;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -12,7 +13,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
@@ -24,6 +24,7 @@ import net.pearx.purmag.common.infofield.steps.IRSReadPapyrus;
 import net.pearx.purmag.common.items.ItemBase;
 import net.pearx.purmag.common.items.ItemRegistry;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,17 +80,21 @@ public class ItemPapyrus extends ItemBase
     }
 
     @Override
-    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems)
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
     {
-        for(PapyrusData data : papyruses)
+        if(isInCreativeTab(tab))
         {
-            subItems.add(getPapyrusItem(data.getPapyrusId()));
+            for (PapyrusData data : papyruses)
+            {
+                subItems.add(getPapyrusItem(data.getPapyrusId()));
+            }
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
         if(stack.hasTagCompound())
         {

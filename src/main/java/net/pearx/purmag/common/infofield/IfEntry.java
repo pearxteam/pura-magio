@@ -12,7 +12,6 @@ import net.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

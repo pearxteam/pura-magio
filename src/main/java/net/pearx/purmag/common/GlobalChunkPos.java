@@ -2,7 +2,6 @@ package net.pearx.purmag.common;
 
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.common.DimensionManager;
 
 /**
  * Created by mrAppleXZ on 09.05.17 18:23.
@@ -68,7 +67,7 @@ public class GlobalChunkPos
 
     public static GlobalChunkPos fromChunk(Chunk ch)
     {
-        return new GlobalChunkPos(ch.xPosition, ch.zPosition, ch.getWorld().provider.getDimension());
+        return new GlobalChunkPos(ch.x, ch.z, ch.getWorld().provider.getDimension());
     }
 
     @Override

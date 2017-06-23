@@ -1,10 +1,8 @@
 package net.pearx.purmag.common;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.common.items.ItemBlockCrystal;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.items.ItemUtils;
 

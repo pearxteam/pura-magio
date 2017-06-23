@@ -1,12 +1,13 @@
 package net.pearx.purmag;
 
-import net.minecraft.client.Minecraft;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.pearx.purmag.common.*;
@@ -26,7 +27,6 @@ import net.pearx.purmag.common.worldgen.WorldgenRegistry;
 import net.pearx.purmag.common.commands.CommandIf;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -83,8 +83,13 @@ public class PurMag
     @Mod.EventHandler
     public void init(FMLInitializationEvent e)
     {
-
         proxy.init();
+    }
+
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent e)
+    {
+        EntityRegistry.setupSpawns();
     }
 
     private void setupMetadata(ModMetadata data)

@@ -1,11 +1,9 @@
 package net.pearx.purmag.common.sip;
 
 import net.minecraft.util.text.TextFormatting;
-import net.pearx.purmag.PurMag;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by mrAppleXZ on 10.04.17 9:05.

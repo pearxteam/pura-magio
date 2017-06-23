@@ -1,7 +1,6 @@
 package net.pearx.purmag.common.sip;
 
 import net.minecraft.init.MobEffects;
-import net.pearx.purmag.PurMag;
 
 import java.util.HashMap;
 import java.util.Map;

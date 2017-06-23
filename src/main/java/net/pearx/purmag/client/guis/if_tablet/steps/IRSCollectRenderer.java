@@ -1,13 +1,10 @@
 package net.pearx.purmag.client.guis.if_tablet.steps;
 
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.drawables.ItemDrawable;
-import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
 import net.pearx.purmag.common.infofield.steps.IRSCollect;
 
 import java.awt.*;

@@ -2,20 +2,14 @@ package net.pearx.purmag.common.items;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import baubles.api.cap.BaublesCapabilities;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagInt;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.Tuple;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.Constants;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
@@ -24,7 +18,6 @@ import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.sip.SipType;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,11 +35,15 @@ public class ItemSipAmulet extends ItemBase implements IBauble
     }
 
     @Override
-    public void getSubItems(Item itm, CreativeTabs tab, NonNullList<ItemStack> subItems)
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
     {
-        for(int i = 0; i < 3; i++)
+        if(isInCreativeTab(tab))
         {
-            subItems.add(new ItemStack(this, 1, i));
+            for (int i = 0; i < 3; i++)
+            {
+                subItems.add(new ItemStack(this, 1, i));
+            }
         }
     }
 
@@ -58,7 +55,7 @@ public class ItemSipAmulet extends ItemBase implements IBauble
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
         for(Map.Entry<String, Integer> entr : stack.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).getStored().entrySet())
         {

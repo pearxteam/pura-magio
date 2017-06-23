@@ -1,15 +1,7 @@
 package net.pearx.purmag.common.sip;
 
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraft.world.World;
-import net.minecraft.world.storage.MapStorage;
-import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pearx.purmag.PurMag;
-import org.lwjgl.input.Mouse;
 
 /**
  * Created by mrAppleXZ on 10.04.17 9:06.

@@ -11,7 +11,6 @@ import net.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import net.pearx.purmag.common.infofield.playerdata.IfEntryStore;
 import net.pearx.purmag.common.sip.store.ISipStore;
 import net.pearx.purmag.common.sip.store.SipStore;
-import net.pearx.purmag.common.sip.store.SipStoreAll;
 
 import javax.annotation.Nullable;
 

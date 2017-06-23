@@ -1,7 +1,6 @@
 package net.pearx.purmag.common.sip;
 
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 
 /**
  * Created by mrAppleXZ on 21.05.17 17:09.

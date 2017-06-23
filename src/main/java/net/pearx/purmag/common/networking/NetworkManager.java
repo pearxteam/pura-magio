@@ -1,15 +1,12 @@
 package net.pearx.purmag.common.networking;
 
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.networking.packets.*;
-
-import javax.swing.text.html.HTMLEditorKit;
 
 /**
  * Created by mrAppleXZ on 23.04.17 11:23.

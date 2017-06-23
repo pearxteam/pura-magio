@@ -1,11 +1,9 @@
 package net.pearx.purmag.common.infofield.steps;
 
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.if_tablet.steps.IRSPapyrusRenderer;
 import net.pearx.purmag.client.guis.if_tablet.steps.IRSRenderer;
-import net.pearx.purmag.common.items.ItemRegistry;
 
 /**
  * Created by mrAppleXZ on 30.05.17 9:33.

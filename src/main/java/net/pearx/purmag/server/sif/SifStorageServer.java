@@ -1,7 +1,6 @@
 package net.pearx.purmag.server.sif;
 
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.server.management.PlayerChunkMap;
 import net.minecraft.server.management.PlayerChunkMapEntry;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.relauncher.Side;

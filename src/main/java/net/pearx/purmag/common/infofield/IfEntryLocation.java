@@ -1,7 +1,5 @@
 package net.pearx.purmag.common.infofield;
 
-import net.pearx.purmag.common.infofield.pages.IIfPage;
-
 /**
  * Created by mrAppleXZ on 27.05.17 13:14.
  */

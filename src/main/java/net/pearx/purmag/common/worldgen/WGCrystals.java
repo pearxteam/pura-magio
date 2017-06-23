@@ -1,16 +1,13 @@
 package net.pearx.purmag.common.worldgen;
 
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.GlobalChunkPos;
-import net.pearx.purmag.common.blocks.BlockCrystalSmall;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.blocks.BlockSingleSip;
 
@@ -21,6 +18,7 @@ import java.util.Random;
  */
 public class WGCrystals implements IWorldGenerator
 {
+
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
     {

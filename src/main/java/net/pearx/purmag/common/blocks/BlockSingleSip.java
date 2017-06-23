@@ -9,11 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.blocks.properties.PropertySipType;
-import net.pearx.purmag.common.items.ItemRegistry;
-import net.pearx.purmag.common.items.ItemUtils;
 import net.pearx.purmag.common.sip.SipType;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
-import org.lwjgl.input.Mouse;
 
 /**
  * Created by mrAppleXZ on 12.05.17 22:00.
@@ -35,11 +32,11 @@ public class BlockSingleSip extends BlockBase
     }
 
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(SipType t : PurMag.instance.sip.types)
         {
-            list.add(new ItemStack(itemIn, 1, t.getId()));
+            list.add(new ItemStack(this, 1, t.getId()));
         }
     }
 

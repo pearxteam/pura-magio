@@ -1,8 +1,5 @@
 package net.pearx.purmag.common;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pearx.purmag.common.sif.SifStorage;

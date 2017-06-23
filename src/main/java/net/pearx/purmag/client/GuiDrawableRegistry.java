@@ -1,9 +1,7 @@
 package net.pearx.purmag.client;
 
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 import net.pearx.purmag.client.guis.drawables.SimpleDrawable;

@@ -1,15 +1,11 @@
 package net.pearx.purmag.common.sif;
 
 
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.chunk.Chunk;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.GlobalChunkPos;
-import org.lwjgl.input.Mouse;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 /**
  * Created by mrAppleXZ on 06.05.17 17:49.

@@ -1,13 +1,9 @@
 package net.pearx.purmag.common.infofield.steps;
 
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pearx.purmag.client.GuiDrawableRegistry;
-import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
-import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 import net.pearx.purmag.client.guis.if_tablet.steps.IRSCollectRenderer;
 import net.pearx.purmag.client.guis.if_tablet.steps.IRSRenderer;
 import net.pearx.purmag.common.PMCreativeTab;
@@ -62,7 +58,7 @@ public class IRSCollect extends IRSBase
     public List<ItemStack> getStacksToRender()
     {
         NonNullList<ItemStack> lst = NonNullList.create();
-        stack.getItem().getSubItems(stack.getItem(), PMCreativeTab.instance, lst);
+        stack.getItem().getSubItems(stack.getItem().getCreativeTab() == null ? PMCreativeTab.instance : stack.getItem().getCreativeTab(), lst);
 
         ArrayList<ItemStack> out = new ArrayList<>();
         for(ItemStack stack : lst)

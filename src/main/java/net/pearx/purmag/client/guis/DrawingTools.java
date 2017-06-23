@@ -3,19 +3,17 @@ package net.pearx.purmag.client.guis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
-import java.util.List;
 
 /**
  * Created by mrAppleXZ on 16.04.17 20:45.
@@ -120,12 +118,12 @@ public class DrawingTools
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.shadeModel(7425);
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer vertexbuffer = tessellator.getBuffer();
-        vertexbuffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-        vertexbuffer.pos((double) right, (double) y, 0).color(f1, f2, f3, f).endVertex();
-        vertexbuffer.pos((double) x, (double) y, 0).color(f1, f2, f3, f).endVertex();
-        vertexbuffer.pos((double) x, (double) bottom, 0).color(f5, f6, f7, f4).endVertex();
-        vertexbuffer.pos((double) right, (double) bottom, 0).color(f5, f6, f7, f4).endVertex();
+        BufferBuilder bld = tessellator.getBuffer();
+        bld.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        bld.pos((double) right, (double) y, 0).color(f1, f2, f3, f).endVertex();
+        bld.pos((double) x, (double) y, 0).color(f1, f2, f3, f).endVertex();
+        bld.pos((double) x, (double) bottom, 0).color(f5, f6, f7, f4).endVertex();
+        bld.pos((double) right, (double) bottom, 0).color(f5, f6, f7, f4).endVertex();
         tessellator.draw();
         GlStateManager.shadeModel(7424);
         GlStateManager.disableBlend();
@@ -138,13 +136,13 @@ public class DrawingTools
         int bottom = y + height;
         int right = x + width;
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        BufferBuilder bld = tessellator.getBuffer();
         GlStateManager.disableTexture2D();
-        vertexbuffer.begin(7, DefaultVertexFormats.POSITION);
-        vertexbuffer.pos((double)x, (double)bottom, 0.0D).endVertex();
-        vertexbuffer.pos((double)right, (double)bottom, 0.0D).endVertex();
-        vertexbuffer.pos((double)right, (double)y, 0.0D).endVertex();
-        vertexbuffer.pos((double)x, (double)y, 0.0D).endVertex();
+        bld.begin(7, DefaultVertexFormats.POSITION);
+        bld.pos((double)x, (double)bottom, 0.0D).endVertex();
+        bld.pos((double)right, (double)bottom, 0.0D).endVertex();
+        bld.pos((double)right, (double)y, 0.0D).endVertex();
+        bld.pos((double)x, (double)y, 0.0D).endVertex();
         tessellator.draw();
         GlStateManager.enableTexture2D();
     }

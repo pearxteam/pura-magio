@@ -2,22 +2,14 @@ package net.pearx.purmag.common.entities;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.pearx.purmag.common.SoundRegistry;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 /**
  * Created by mrAppleXZ on 20.06.17 9:44.
@@ -59,7 +51,7 @@ public class EntityBeetle extends EntityCreature
 
     @Nullable
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
     {
         return SoundRegistry.BEETLE_HURT;
     }

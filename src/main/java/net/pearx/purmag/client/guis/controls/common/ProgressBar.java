@@ -1,11 +1,10 @@
 package net.pearx.purmag.client.guis.controls.common;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
@@ -117,7 +116,7 @@ public class ProgressBar extends Control
         Minecraft.getMinecraft().getTextureManager().bindTexture(Utils.getRegistryName("textures/gui/progress_bar/" + (System.currentTimeMillis() / 50 % 4) + ".png"));
         double w = (double)getWidth() / getMaxValue() * getValue();
         Tessellator tes = Tessellator.getInstance();
-        VertexBuffer buf = tes.getBuffer();
+        BufferBuilder buf = tes.getBuffer();
         buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
         buf.pos(0, getHeight(), 0).tex(0, 0).color(color.getRed(), color.getGreen(), color.getBlue(), 255).endVertex();
         buf.pos(w, getHeight(), 0).tex(w / 4d, 0).color(color.getRed(), color.getGreen(), color.getBlue(), 255).endVertex();

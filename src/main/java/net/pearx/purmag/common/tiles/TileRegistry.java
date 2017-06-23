@@ -1,7 +1,6 @@
 package net.pearx.purmag.common.tiles;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.Utils;
 
 /**

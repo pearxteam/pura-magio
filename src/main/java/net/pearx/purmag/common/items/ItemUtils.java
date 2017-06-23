@@ -1,6 +1,5 @@
 package net.pearx.purmag.common.items;
 
-import baubles.api.BaubleType;
 import baubles.api.cap.BaublesCapabilities;
 import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.block.Block;
@@ -8,8 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.items.IItemHandlerModifiable;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.PMCreativeTab;
 

@@ -3,28 +3,19 @@ package net.pearx.purmag.common;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.common.blocks.BlockCrystalSmall;
-import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.infofield.IfEntry;
 import net.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import net.pearx.purmag.common.infofield.playerdata.IfEntryStoreProvier;
 import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
 import net.pearx.purmag.common.infofield.steps.IRSCollect;
 import net.pearx.purmag.common.items.ItemSipAmulet;
-import net.pearx.purmag.common.networking.NetworkManager;
-import net.pearx.purmag.common.networking.packets.CPacketDisplayMessage;
 import net.pearx.purmag.common.sip.store.SipStoreAll;
 import net.pearx.purmag.common.sip.store.SipStoreProvider;
 
@@ -52,7 +43,7 @@ public class CommonEvents
                         if (entr.isAvailableToResearch(p))
                         {
                             IRSCollect s = (IRSCollect) step;
-                            if (s.isSuitable(e.getItem().getEntityItem()))
+                            if (s.isSuitable(e.getItem().getItem()))
                             {
                                 store.unlockStepAndSync(entr.getId(), p);
                             }

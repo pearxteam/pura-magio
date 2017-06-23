@@ -1,9 +1,7 @@
 package net.pearx.purmag.common.networking.packets;
 
 import baubles.api.BaubleType;
-import baubles.api.cap.BaublesCapabilities;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -14,18 +12,13 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.CapabilityRegistry;
-import net.pearx.purmag.common.MathTools;
 import net.pearx.purmag.common.items.ItemSipAmulet;
 import net.pearx.purmag.common.items.ItemUtils;
 import net.pearx.purmag.common.networking.NetworkManager;
 import net.pearx.purmag.common.sip.SipEffect;
-import net.pearx.purmag.common.sip.SipType;
-import net.pearx.purmag.common.sip.SipTypeRegistry;
-import org.lwjgl.input.Mouse;
 
 import javax.vecmath.Vector2f;
 import javax.vecmath.Vector3d;
-import java.util.HashMap;
 import java.util.Map;
 
 /**

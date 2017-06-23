@@ -1,13 +1,9 @@
 package net.pearx.purmag.client.particles;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.VertexBuffer;
-import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.Utils;
-import org.lwjgl.opengl.GL11;
 
 import javax.vecmath.Vector3d;
 import java.awt.*;

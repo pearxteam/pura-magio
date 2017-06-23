@@ -1,9 +1,7 @@
 package net.pearx.purmag.common.networking.packets;
 
 import io.netty.buffer.ByteBuf;
-import jdk.nashorn.internal.objects.Global;
 import net.minecraft.client.Minecraft;
-import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;

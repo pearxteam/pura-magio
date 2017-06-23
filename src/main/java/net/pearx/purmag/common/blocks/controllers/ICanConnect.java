@@ -1,6 +1,5 @@
 package net.pearx.purmag.common.blocks.controllers;
 
-import jdk.nashorn.internal.objects.annotations.Function;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;

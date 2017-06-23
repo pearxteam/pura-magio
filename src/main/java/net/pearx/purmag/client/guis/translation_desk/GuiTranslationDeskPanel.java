@@ -3,9 +3,6 @@ package net.pearx.purmag.client.guis.translation_desk;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.SoundEvent;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
@@ -21,9 +18,7 @@ import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by mrAppleXZ on 08.06.17 11:10.

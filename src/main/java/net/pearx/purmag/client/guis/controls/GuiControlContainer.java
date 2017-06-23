@@ -1,10 +1,8 @@
 package net.pearx.purmag.client.guis.controls;
 
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.IGuiScreen;
-import net.pearx.purmag.client.guis.PmGui;
 
 /**
  * Created by mrAppleXZ on 16.04.17 19:52.

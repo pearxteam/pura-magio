@@ -1,17 +1,14 @@
 package net.pearx.purmag.common;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.GuiDrawableRegistry;
 import net.pearx.purmag.client.guis.DrawingTools;
-import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
 
 import java.awt.*;
 import java.util.ArrayList;

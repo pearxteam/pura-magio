@@ -1,13 +1,8 @@
 package net.pearx.purmag.common.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.Utils;
-import net.pearx.purmag.common.items.ItemRegistry;
-import net.pearx.purmag.common.worldgen.WGOre;
 
 /**
  * Created by mrAppleXZ on 08.04.17 18:44.

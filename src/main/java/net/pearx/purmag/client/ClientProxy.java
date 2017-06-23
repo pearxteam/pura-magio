@@ -3,7 +3,6 @@ package net.pearx.purmag.client;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.obj.OBJLoader;
@@ -17,14 +16,12 @@ import net.pearx.purmag.common.CommonProxy;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.PmGui;
 import net.pearx.purmag.client.guis.if_tablet.GuiIfTablet;
-import net.pearx.purmag.common.blocks.BlockCrystal;
 import net.pearx.purmag.common.blocks.BlockCrystalSmall;
 import net.pearx.purmag.common.blocks.BlockSingleSip;
 import net.pearx.purmag.common.entities.EntityRegistry;
 import net.pearx.purmag.common.sif.SifStorage;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.blocks.BlockRegistry;
-import net.pearx.purmag.common.sip.SipTypeRegistry;
 
 /**
  * Created by mrAppleXZ on 08.04.17 21:06.

@@ -9,7 +9,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.common.DisplayMessage;
 import net.pearx.purmag.client.DisplayMessageQuery;
-import net.pearx.purmag.common.SoundRegistry;
 
 /**
  * Created by mrAppleXZ on 26.04.17 22:03.

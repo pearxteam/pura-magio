@@ -38,7 +38,7 @@ public class SifEvents
     @SideOnly(Side.SERVER)
     public void onChunkWatch(ChunkWatchEvent.Watch e)
     {
-        GlobalChunkPos pos = new GlobalChunkPos(e.getChunk().chunkXPos, e.getChunk().chunkZPos, e.getPlayer().world.provider.getDimension());
+        GlobalChunkPos pos = new GlobalChunkPos(e.getChunk().x, e.getChunk().z, e.getPlayer().world.provider.getDimension());
         NetworkManager.sendTo(new CPacketSyncSif(pos, false, PurMag.proxy.getSifStorage().getPower(pos)), e.getPlayer());
     }
 
@@ -46,7 +46,7 @@ public class SifEvents
     @SideOnly(Side.SERVER)
     public void onChunkUnwatch(ChunkWatchEvent.UnWatch e)
     {
-        GlobalChunkPos pos = new GlobalChunkPos(e.getChunk().chunkXPos, e.getChunk().chunkZPos, e.getPlayer().world.provider.getDimension());
+        GlobalChunkPos pos = new GlobalChunkPos(e.getChunk().x, e.getChunk().z, e.getPlayer().world.provider.getDimension());
         NetworkManager.sendTo(new CPacketSyncSif(pos, true, 0), e.getPlayer());
     }
 }

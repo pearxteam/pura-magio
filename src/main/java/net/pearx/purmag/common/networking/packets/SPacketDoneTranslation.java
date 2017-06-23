@@ -1,7 +1,6 @@
 package net.pearx.purmag.common.networking.packets;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -11,12 +10,10 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.client.guis.translation_desk.GuiTranslationDesk;
 import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.infofield.IfEntry;
 import net.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import net.pearx.purmag.common.infofield.steps.IIfResearchStep;
-import net.pearx.purmag.common.infofield.steps.IRSPapyrus;
 import net.pearx.purmag.common.infofield.steps.IRSTranslatePapyrus;
 import net.pearx.purmag.common.networking.ByteBufTools;
 import net.pearx.purmag.common.tiles.TileTranslationDesk;

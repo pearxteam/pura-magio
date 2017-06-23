@@ -1,28 +1,15 @@
 package net.pearx.purmag.client.guis.if_tablet;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.GuiDrawableRegistry;
-import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.GuiOnScreen;
 import net.pearx.purmag.client.guis.TexturePart;
-import net.pearx.purmag.client.guis.controls.Control;
-import net.pearx.purmag.client.guis.drawables.AnimatedDrawable;
 import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
-import net.pearx.purmag.client.guis.drawables.SimpleDrawable;
-import net.pearx.purmag.common.infofield.IfEntry;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by mrAppleXZ on 16.04.17 20:05.

@@ -1,12 +1,10 @@
 package net.pearx.purmag.client.guis.papyrus;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.GuiOnScreen;
-import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.items.ItemRegistry;
 

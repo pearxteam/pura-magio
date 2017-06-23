@@ -1,6 +1,5 @@
 package net.pearx.purmag.common.infofield;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,10 +15,7 @@ import net.pearx.purmag.common.infofield.steps.IRSCollect;
 import net.pearx.purmag.common.infofield.steps.IRSReadPapyrus;
 import net.pearx.purmag.common.infofield.steps.IRSTranslatePapyrus;
 import net.pearx.purmag.common.items.ItemRegistry;
-import net.pearx.purmag.common.items.ItemUtils;
-import net.pearx.purmag.common.sip.SipTypeRegistry;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 

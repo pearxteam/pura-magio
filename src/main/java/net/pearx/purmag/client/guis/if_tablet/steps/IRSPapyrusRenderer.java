@@ -6,7 +6,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.drawables.ItemDrawable;
 import net.pearx.purmag.common.infofield.steps.IRSPapyrus;
-import net.pearx.purmag.common.infofield.steps.IRSReadPapyrus;
 import net.pearx.purmag.common.items.ItemRegistry;
 
 import java.awt.*;

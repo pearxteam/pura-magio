@@ -3,7 +3,6 @@ package net.pearx.purmag.client.guis.if_tablet.pages;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.infofield.pages.IfPagePapyrus;
-import net.pearx.purmag.common.infofield.pages.IfPageText;
 
 import java.awt.*;
 

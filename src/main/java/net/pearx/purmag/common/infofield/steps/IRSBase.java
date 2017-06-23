@@ -3,7 +3,6 @@ package net.pearx.purmag.common.infofield.steps;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 import net.pearx.purmag.client.guis.if_tablet.steps.IRSRenderer;
 
 /**

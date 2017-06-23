@@ -1,16 +1,10 @@
 package net.pearx.purmag.common.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Tuple;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.pearx.purmag.PurMag;
-import net.pearx.purmag.common.worldgen.WGOre;
 
 import java.util.Random;
 
