@@ -1,5 +1,6 @@
 package net.pearx.purmag.common;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -8,33 +9,31 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  */
 public class SoundRegistry
 {
-    public static SoundEvent magicalClick;
-    public static SoundEvent notification;
-    public static SoundEvent click;
-    public static SoundEvent glass;
-    public static SoundEvent error;
+    public static SoundEvent MAGICAL_CLICK;
+    public static SoundEvent NOTIFICATION;
+    public static SoundEvent CLICK;
+    public static SoundEvent GLASS;
+    public static SoundEvent ERROR;
+    public static SoundEvent BEETLE_IDLE;
+    public static SoundEvent BEETLE_HURT;
 
     public static void setup()
     {
-        magicalClick = new SoundEvent(Utils.getRegistryName("magical_click"));
-        magicalClick.setRegistryName(Utils.getRegistryName("magical_click"));
 
-        notification = new SoundEvent(Utils.getRegistryName("notification"));
-        notification.setRegistryName(Utils.getRegistryName("notification"));
+        MAGICAL_CLICK = register(Utils.getRegistryName("misc.magical_click"));
+        NOTIFICATION = register(Utils.getRegistryName("misc.notification"));
+        CLICK = register(Utils.getRegistryName("misc.click"));
+        GLASS = register(Utils.getRegistryName("misc.glass"));
+        ERROR = register(Utils.getRegistryName("misc.error"));
+        BEETLE_IDLE = register(Utils.getRegistryName("mob.verda_beetle.idle"));
+        BEETLE_HURT = register(Utils.getRegistryName("mob.verda_beetle.hurt"));
+    }
 
-        click = new SoundEvent(Utils.getRegistryName("click"));
-        click.setRegistryName(Utils.getRegistryName("click"));
-
-        glass = new SoundEvent(Utils.getRegistryName("glass"));
-        glass.setRegistryName(Utils.getRegistryName("glass"));
-
-        error = new SoundEvent(Utils.getRegistryName("error"));
-        error.setRegistryName(Utils.getRegistryName("error"));
-
-        GameRegistry.register(magicalClick);
-        GameRegistry.register(notification);
-        GameRegistry.register(click);
-        GameRegistry.register(glass);
-        GameRegistry.register(error);
+    public static SoundEvent register(ResourceLocation loc)
+    {
+        SoundEvent ev = new SoundEvent(loc);
+        ev.setRegistryName(loc);
+        GameRegistry.register(ev);
+        return ev;
     }
 }

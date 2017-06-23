@@ -22,6 +22,7 @@ import net.pearx.purmag.common.blocks.controllers.FacingController;
 import net.pearx.purmag.common.infofield.IfTier;
 import net.pearx.purmag.common.items.papyrus.ItemPapyrus;
 import net.pearx.purmag.common.sip.SipType;
+import net.pearx.purmag.common.sip.SipTypeRegistry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +44,7 @@ public class ItemRegistry
     public static ItemPapyrus papyrus;
     public static Item translation_desk;
     public static ItemBlockCrystalSmall crystal_small;
+    public static Item plumfero;
 
     public static void setup()
     {
@@ -61,9 +63,17 @@ public class ItemRegistry
         crystal_glass = new ItemBlockCrystalGlass();
         GameRegistry.register(crystal_glass);
 
+        for(SipType t : PurMag.instance.sip.types)
+        {
+            OreDictionary.registerOre("sipCrystal", new ItemStack(crystal, 1, t.getId()));
+            OreDictionary.registerOre("sipShard", new ItemStack(crystal_shard, 1, t.getId()));
+            OreDictionary.registerOre("blockGlass", new ItemStack(crystal_glass, 1, t.getId()));
+        }
+
         ore_crysagnetite = ItemUtils.getItemFromBlock(BlockRegistry.ore_crysagnetite);
         GameRegistry.register(ore_crysagnetite);
         BlockRegistry.ore_crysagnetite.dropped = new ItemStack(ore_crysagnetite);
+        OreDictionary.registerOre("oreCrysagnetite", ore_crysagnetite);
 
         ingot_crysagnetite = new ItemSimple(Utils.getRegistryName("ingot_crysagnetite"));
         GameRegistry.register(ingot_crysagnetite);
@@ -83,6 +93,10 @@ public class ItemRegistry
 
         crystal_small = new ItemBlockCrystalSmall();
         GameRegistry.register(crystal_small);
+
+        plumfero = new ItemSimple(Utils.getRegistryName("plumfero"));
+        GameRegistry.register(plumfero);
+        OreDictionary.registerOre("ingotPlumfero", plumfero);
     }
 
     @SideOnly(Side.CLIENT)
@@ -108,6 +122,7 @@ public class ItemRegistry
         ClientUtils.setModelLocation(translation_desk);
         for(BlockCrystalSmall.Type t : BlockCrystalSmall.Type.values())
             ClientUtils.setModelLocation(crystal_small, t.ordinal(), "");
+        ClientUtils.setModelLocation(plumfero);
 
         ModelLoader.setCustomStateMapper(BlockRegistry.crystal, new StateMap.Builder().ignore(BlockSingleSip.SIPTYPE).build());
         ModelLoader.setCustomStateMapper(BlockRegistry.crystal_glass, new StateMap.Builder().ignore(BlockSingleSip.SIPTYPE).build());

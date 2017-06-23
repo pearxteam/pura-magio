@@ -51,10 +51,7 @@ public class WGOre implements IWorldGenerator
                 for (int i = 0; i < vs; i++)
                 {
                     IBlockState prev = world.getBlockState(last);
-                    if (prev.getBlock().isReplaceableOreGen(prev, world, last, input ->
-                    {
-                        return input.getBlock() != Blocks.AIR;
-                    }))
+                    if (prev.getBlock().isReplaceableOreGen(prev, world, last, input -> input.getBlock() != Blocks.AIR))
                     {
                         setState(world, last, state);
                         last = new BlockPos(x + getOffset(random), y + getOffset(random), z + getOffset(random));

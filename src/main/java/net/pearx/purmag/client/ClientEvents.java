@@ -8,10 +8,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.models.IModelBase;
 import net.pearx.purmag.client.models.StandardModels;
@@ -61,8 +63,11 @@ public class ClientEvents
                         e.getMap().registerSprite(new ResourceLocation(PurMag.ModId, "blocks/crystal_glass/" + i + j + k + l));
         e.getMap().registerSprite(Utils.getRegistryName("models/glove"));
         e.getMap().registerSprite(Utils.getRegistryName("particle/sip"));
-        e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk"));
         e.getMap().registerSprite(Utils.getRegistryName("models/crystal_small"));
+
+        e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk/wood"));
+        e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk/crystal"));
+        e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk/panel"));
     }
 
     @SubscribeEvent
@@ -75,7 +80,7 @@ public class ClientEvents
             {
                 if(!isDMDisplayed)
                 {
-                    Minecraft.getMinecraft().player.playSound(SoundRegistry.notification, 1, 1);
+                    Minecraft.getMinecraft().player.playSound(SoundRegistry.NOTIFICATION, 1, 1);
                     timerDM.schedule(new TimerTask()
                     {
                         @Override
@@ -102,6 +107,17 @@ public class ClientEvents
             {
                 NetworkManager.sendToServer(new SPacketUseSipAmulet());
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onTooltip(ItemTooltipEvent e)
+    {
+        //todo REMOVE DEBUG PRINT!
+        int[] ids = OreDictionary.getOreIDs(e.getItemStack());
+        for(int id : ids)
+        {
+            e.getToolTip().add(OreDictionary.getOreName(id));
         }
     }
 }

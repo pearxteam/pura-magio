@@ -60,6 +60,8 @@ public class WGCrystals implements IWorldGenerator
                         break;
                     case UNDERGROUND:
                         y = world.getHeight(x, z) / 2;
+                        if(y <= 5)
+                            continue;
                         for (int y1 = 0; y1 <= 2; y1++)
                         {
                             world.setBlockToAir(new BlockPos(x, y + y1, z));

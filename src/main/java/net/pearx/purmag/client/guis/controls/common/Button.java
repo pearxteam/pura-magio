@@ -5,13 +5,10 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pearx.purmag.client.GuiDrawableRegistry;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.TexturePart;
 import net.pearx.purmag.client.guis.controls.Control;
-import net.pearx.purmag.client.guis.drawables.IGuiDrawable;
 import net.pearx.purmag.common.SoundRegistry;
-import net.pearx.purmag.common.Utils;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -51,7 +48,7 @@ public class Button extends Control
     @Override
     public void mouseUp(int button, int x, int y)
     {
-        Minecraft.getMinecraft().player.playSound(SoundRegistry.magicalClick, 1, 1);
+        Minecraft.getMinecraft().player.playSound(SoundRegistry.MAGICAL_CLICK, 1, 1);
         clickAction.run();
     }
 

@@ -16,6 +16,7 @@ item.sip_amulet.0.name=Sip Amulet
 item.sip_amulet.1.name=Sip Amulet
 item.sip_amulet.2.name=Sip Amulet
 item.papyrus.name=Papyrus
+item.plumfero.name=Plumfero
 
 #Sip Types
 sip.sea.name=Mara
@@ -53,8 +54,7 @@ if_page.crysagnetite.1.text=You can find the ore between Y %1$s and %2$s.
 if_entry.sip_knowledge.name=The SIP Knowledge
 if_entry.sip_knowledge.desc=KappaPride!
 if_page.sip_knowledge.0.text=I found the old papyrus written in Esperanto. The text in a papyrus says about an energy named "Solid Interacting Power". I translated it to my language and got something like this: <see the next page>
-#TODO: English
-if_page.sip_knowledge.1.text=January 27, 1501   Servogey Shatunerov%nЯ заметил новый тип энергии случайно, когда топил печь углем. Что-то мелкое и едва заметное время от времени вылетало из печи. Оно было похоже на шаровую молнию, но в тысячи раз меньше. Это были явно не прогоревшие кусочки угля.  Позже я выяснил, что эта какая-то энергия, не известная ранее, которая к тому же,  светится в азоте. Именно по этому эта энергия и была видна мне. Я думаю, что смогу найти ей применение в будущем, когда узнаю ее получше.%n. . .%n. . .%nОказывается, эта энергия может быть разных типов и может взаимодействовать со всей материей, а не только с азотом. Шар, состоящий из этой энергии может нарушить несколько законов физики. Еще я заметил, что пройдя через меня, этот шар на пару секунд сделал меня неуязвимым к огню. Я буду продолжать исследования.
+if_page.sip_knowledge.1.text=January 27, 1501   Servogey Shatunerov%nI noticed a new type of energy by accident, when I stoked the furnace with coal. Something small and barely noticeable flew from time to time from the furnace. It was like a ball lightning, but a thousand times smaller. These were clearly not burnt pieces of coal. Later I found out that this is some kind of energy, not previously known, which, moreover, shines in nitrogen. This is why this energy was visible to me. I think I will be able to find application of it in the future when I'll know this energy better.%n. . .%n. . .%nIt turns out that this energy can be of different types and can interact with all matter, and not just with nitrogen. A ball consisting of this energy can violate several laws of physics. I also noticed that passing through me, this ball made me invulnerable to the fire for a couple of seconds. I will continue researching.
 
 #Common
 itemGroup.purmag=Purificati Magicae
@@ -95,3 +95,6 @@ translation_desk.button.start=Start
 translation_desk.button.stop=Stop
 translation_desk.remains=%s remains
 translation_desk.rate=Rate: %3$s
+
+#Entities
+entity.verda_beetle.name=Verda Beetle

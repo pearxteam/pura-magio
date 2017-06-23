@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.pearx.purmag.common.*;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.config.PMConfig;
+import net.pearx.purmag.common.entities.EntityRegistry;
 import net.pearx.purmag.common.infofield.IfRegistry;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.items.papyrus.ItemPapyrus;
@@ -35,7 +36,7 @@ import java.util.Random;
 @Mod(name = PurMag.Name, modid = PurMag.ModId)
 public class PurMag
 {
-    //todo laboratory, smeltery, SIF plant, agronomy, paris, translation desk model
+    //todo laboratory, smeltery, SIF plant, agronomy, paris, import plumfero texture, end translation desk, add beetle loot
     public static PurMag instance;
 
     public static Random rand = new Random();
@@ -71,6 +72,7 @@ public class PurMag
         CapabilityRegistry.setup();
         NetworkManager.setup();
         WorldgenRegistry.setup();
+        EntityRegistry.setup();
 
         proxy.preInit();
         MinecraftForge.EVENT_BUS.register(new CommonEvents());

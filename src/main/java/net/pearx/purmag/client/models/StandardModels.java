@@ -97,7 +97,7 @@ public class StandardModels
             {
                 return Pair.of(this, new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, new Vector3f(1.5f, 1.5f, 1.5f), new Quat4f(0.349066f, 0.20944f, 0, 1)).getMatrix());
             }
-            return Pair.of(this, new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, new Vector3f(1.5f, 1.5f, 1.5f), null).getMatrix());
+            return Pair.of(this, new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, null, null).getMatrix());
         }
     }
 }

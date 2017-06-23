@@ -127,26 +127,26 @@ public class GuiTranslationDeskPanel extends Control
 
     public void minRate()
     {
-        rate--;
-        Minecraft.getMinecraft().player.playSound(SoundRegistry.error, 1, 1);
+        if(rate > 0)
+        {
+            rate -= 2;
+        }
+        Minecraft.getMinecraft().player.playSound(SoundRegistry.ERROR, 1, 1);
     }
 
     @Override
     public void keyDown(int keycode)
     {
-        if(rate > 0)
+        if (keyMap.contains(keycode))
         {
-            if (keyMap.contains(keycode))
+            for (int i = 0; i < keyMap.size(); i++)
             {
-                for (int i = 0; i < keyMap.size(); i++)
-                {
-                    if (keyMap.get(i).equals(keycode))
-                        if (cooldowns[i] <= 0)
-                        {
-                            minRate();
-                            cooldowns[i] = 50;
-                        }
-                }
+                if (keyMap.get(i).equals(keycode))
+                    if (cooldowns[i] <= 0)
+                    {
+                        minRate();
+                        cooldowns[i] = 50;
+                    }
             }
         }
     }
@@ -195,7 +195,7 @@ public class GuiTranslationDeskPanel extends Control
         }
         else
         {
-            Minecraft.getMinecraft().player.playSound(SoundRegistry.error, 1, 0.1f);
+            Minecraft.getMinecraft().player.playSound(SoundRegistry.ERROR, 1, 0.1f);
         }
         stop();
         if(updSt)

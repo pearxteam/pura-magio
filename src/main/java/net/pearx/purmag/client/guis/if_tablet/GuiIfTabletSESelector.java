@@ -42,7 +42,7 @@ public class GuiIfTabletSESelector extends GuiIfTabletSEPart
     {
         if(sel >= 0 && sel < channels.size())
         {
-            Minecraft.getMinecraft().player.playSound(SoundRegistry.magicalClick, 1, 1);
+            Minecraft.getMinecraft().player.playSound(SoundRegistry.MAGICAL_CLICK, 1, 1);
             selected = sel;
             getTabletScreen().entries.reload();
         }

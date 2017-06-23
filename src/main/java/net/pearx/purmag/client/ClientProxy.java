@@ -20,6 +20,7 @@ import net.pearx.purmag.client.guis.if_tablet.GuiIfTablet;
 import net.pearx.purmag.common.blocks.BlockCrystal;
 import net.pearx.purmag.common.blocks.BlockCrystalSmall;
 import net.pearx.purmag.common.blocks.BlockSingleSip;
+import net.pearx.purmag.common.entities.EntityRegistry;
 import net.pearx.purmag.common.sif.SifStorage;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.blocks.BlockRegistry;
@@ -40,7 +41,7 @@ public class ClientProxy extends CommonProxy
         OBJLoader.INSTANCE.addDomain(PurMag.ModId);
         ItemRegistry.setupModels();
         MinecraftForge.EVENT_BUS.register(new ClientEvents());
-
+        EntityRegistry.setupClient();
     }
 
     @Override
