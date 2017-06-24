@@ -132,16 +132,19 @@ public class GuiTranslationDeskPanel extends Control
     @Override
     public void keyDown(int keycode)
     {
-        if (keyMap.contains(keycode))
+        if(translating)
         {
-            for (int i = 0; i < keyMap.size(); i++)
+            if (keyMap.contains(keycode))
             {
-                if (keyMap.get(i).equals(keycode))
-                    if (cooldowns[i] <= 0)
-                    {
-                        minRate();
-                        cooldowns[i] = 50;
-                    }
+                for (int i = 0; i < keyMap.size(); i++)
+                {
+                    if (keyMap.get(i).equals(keycode))
+                        if (cooldowns[i] <= 0)
+                        {
+                            minRate();
+                            cooldowns[i] = 50;
+                        }
+                }
             }
         }
     }

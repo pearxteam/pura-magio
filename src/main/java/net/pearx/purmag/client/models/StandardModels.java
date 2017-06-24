@@ -26,7 +26,7 @@ public class StandardModels
         public Crystal()
         {
             super(true);
-            setBaseModel(new ResourceLocation(PurMag.ModId, "block/crystal.obj"));
+            setBaseModel(new ResourceLocation(PurMag.MODID, "block/crystal.obj"));
         }
 
         @Override
@@ -40,7 +40,7 @@ public class StandardModels
     {
         public CrystalGlass()
         {
-            setBaseTexture(new ResourceLocation(PurMag.ModId, "blocks/crystal_glass"));
+            setBaseTexture(new ResourceLocation(PurMag.MODID, "blocks/crystal_glass"));
         }
     }
 

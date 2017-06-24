@@ -15,7 +15,7 @@ public class ClientUtils
 {
     public static ModelResourceLocation getModelResourceLocation(String s)
     {
-        return new ModelResourceLocation(PurMag.ModId + ":" + s, "normal");
+        return new ModelResourceLocation(PurMag.MODID + ":" + s, "normal");
     }
 
     public static void setModelLocation(Item itm, int meta, String suffix)

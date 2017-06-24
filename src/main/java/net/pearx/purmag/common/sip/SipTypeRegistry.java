@@ -37,7 +37,7 @@ public class SipTypeRegistry
         return null;
     }
 
-    public void setup()
+    public void register()
     {
         register(new SipType("rock", 0x9e9e9e, TextFormatting.GRAY, 0));
         register(new SipType("sea", 0x42A5F5, TextFormatting.BLUE, 1));

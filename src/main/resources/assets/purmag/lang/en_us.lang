@@ -16,8 +16,8 @@ item.sip_amulet.0.name=Sip Amulet
 item.sip_amulet.1.name=Sip Amulet
 item.sip_amulet.2.name=Sip Amulet
 item.papyrus.name=Papyrus
-item.plumfero.name=Plumfero
-item.beetle_venom.name=Beetle Venom
+item.ingot_plumfero.name=Plumfero Ingot
+item.verda_wing.name=Verda Wing
 item.beetle_meat.name=Beetle Meat
 
 #Sip Types

@@ -17,7 +17,7 @@ public class SipEffectsRegistry
         return map;
     }
 
-    public void setup()
+    public void register()
     {
         getMap().put("rock", new SipEffect(MobEffects.RESISTANCE, 80, -1));
         getMap().put("sea", new SipEffect(MobEffects.WATER_BREATHING, 80, -1));

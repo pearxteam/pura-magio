@@ -1,36 +1,44 @@
 package net.pearx.purmag.common.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraftforge.client.model.IModel;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.pearx.purmag.PurMag;
+import net.pearx.purmag.client.models.IModelProvider;
 import net.pearx.purmag.common.Utils;
 
 /**
  * Created by mrAppleXZ on 08.04.17 18:44.
  */
+@GameRegistry.ObjectHolder(PurMag.MODID)
+@Mod.EventBusSubscriber
 public class BlockRegistry
 {
-    public static Block crystal;
-    public static Block crystal_glass;
-    public static BlockOre ore_crysagnetite;
-    public static BlockTranslationDesk translation_desk;
-    public static BlockCrystalSmall crystal_small;
+    public static final Block crystal = null;
+    public static final Block crystal_glass = null;
+    public static final BlockOre ore_crysagnetite = null;
+    public static final BlockTranslationDesk translation_desk = null;
+    public static final BlockCrystalSmall crystal_small = null;
 
-
-    public static void setup()
+    @SubscribeEvent
+    public static void onRegisterBlocks(RegistryEvent.Register<Block> e)
     {
-        crystal = new BlockCrystal();
-        GameRegistry.register(crystal);
+        IForgeRegistry<Block> reg = e.getRegistry();
+        register(new BlockCrystal(), reg);
+        register(new BlockCrystalGlass(), reg);
+        register(new BlockOre(Utils.getRegistryName("ore_crysagnetite"), 3f, 0.1f, 2), reg);
+        register(new BlockTranslationDesk(), reg);
+        register(new BlockCrystalSmall(), reg);
+    }
 
-        crystal_glass = new BlockCrystalGlass();
-        GameRegistry.register(crystal_glass);
-
-        ore_crysagnetite = new BlockOre(Utils.getRegistryName("ore_crysagnetite"), 3f, 0.1f, 2);
-        GameRegistry.register(ore_crysagnetite);
-
-        translation_desk = new BlockTranslationDesk();
-        GameRegistry.register(translation_desk);
-
-        crystal_small = new BlockCrystalSmall();
-        GameRegistry.register(crystal_small);
+    public static void register(Block b, IForgeRegistry<Block> reg)
+    {
+        reg.register(b);
+        if(b instanceof IModelProvider)
+            PurMag.proxy.setupModels((IModelProvider) b);
     }
 }

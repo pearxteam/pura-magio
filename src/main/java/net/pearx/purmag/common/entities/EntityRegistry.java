@@ -5,7 +5,10 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -21,7 +24,7 @@ import java.awt.*;
  */
 public class EntityRegistry
 {
-    public static void setup()
+    public static void register()
     {
         int id = 0;
         registerEntity(Utils.getRegistryName("verda_beetle"), EntityBeetle.class, "verda_beetle", id++, Color.BLACK, Color.GREEN);
@@ -39,7 +42,7 @@ public class EntityRegistry
     }
 
     @SideOnly(Side.CLIENT)
-    public static void setupClient()
+    public static void registerClient()
     {
         RenderingRegistry.registerEntityRenderingHandler(EntityBeetle.class, manager -> new RenderBeetle(manager, new ModelBeetle(), 0.5f));
     }

@@ -40,7 +40,7 @@ public class GuiIfTablet extends GuiOnScreen
     @Override
     public void init()
     {
-        textures = new ResourceLocation(PurMag.ModId, "textures/gui/if_tablet." + tier + ".png");
+        textures = new ResourceLocation(PurMag.MODID, "textures/gui/if_tablet." + tier + ".png");
         texBg = new TexturePart(textures, 0, 0, getWidth(), getHeight(), 512, 512);
         texFrame = new TexturePart(textures, 0, getHeight(), getWidth(), getHeight(), 512, 512);
         entryDrawable = GuiDrawableRegistry.ifTabletEntryBgs.get(tier);

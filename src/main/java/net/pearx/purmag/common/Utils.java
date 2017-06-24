@@ -10,6 +10,6 @@ public class Utils
 {
     public static ResourceLocation getRegistryName(String name)
     {
-        return new ResourceLocation(PurMag.ModId, name);
+        return new ResourceLocation(PurMag.MODID, name);
     }
 }

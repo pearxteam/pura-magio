@@ -36,10 +36,10 @@ public class ItemGlove extends ItemBase
             if (shard.getItem() == ItemRegistry.crystal_shard)
             {
                 int shrink = playerIn.isSneaking() ? shard.getCount() : 1;
+                playerIn.playSound(SoundRegistry.GLASS, 1, 1);
                 if (ItemSipAmulet.checkForAmulet(playerIn))
                 {
                     ItemStack amulet = ItemUtils.getBauble(playerIn, BaubleType.AMULET.getValidSlots()[0]);
-                    playerIn.playSound(SoundRegistry.GLASS, 1, 1);
                     amulet.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).add(PurMag.instance.sip.getType(shard.getMetadata()).getName(), shrink);
                     ItemUtils.setBauble(playerIn, BaubleType.AMULET.getValidSlots()[0], amulet);
                 }

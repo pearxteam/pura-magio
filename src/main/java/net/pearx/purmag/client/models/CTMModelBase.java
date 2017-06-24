@@ -27,7 +27,7 @@ public class CTMModelBase extends OvModelBase
     public CTMModelBase()
     {
         super(false);
-        setBaseModel(new ResourceLocation(PurMag.ModId, "block/cube_all_colored"));
+        setBaseModel(new ResourceLocation(PurMag.MODID, "block/cube_all_colored"));
     }
 
     public ResourceLocation getBaseTexture()

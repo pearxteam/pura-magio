@@ -13,7 +13,7 @@ import net.pearx.purmag.common.networking.packets.*;
  */
 public class NetworkManager
 {
-    private static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(PurMag.ModId);
+    private static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(PurMag.MODID);
     private static int id = 0;
 
     public static void setup()

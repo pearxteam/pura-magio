@@ -1,7 +1,5 @@
 package net.pearx.purmag;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -36,17 +34,18 @@ import java.util.Random;
 /**
  * Created by mrAppleXZ on 08.04.17 10:31.
  */
-@Mod(name = PurMag.Name, modid = PurMag.ModId)
+@Mod(name = PurMag.NAME, modid = PurMag.MODID)
 public class PurMag
 {
-    //todo laboratory, smeltery, SIF plant, agronomy, paris, import plumfero texture, end translation desk, add beetle loot
+    //todo laboratory, smeltery, SIF plant, agronomy, paris, import ingot_plumfero texture, end translation desk, add beetle loot
+    @Mod.Instance
     public static PurMag instance;
 
     public static Random rand = new Random();
 
-    public static final String ModId = "purmag";
-    public static final String Name = "Purificati Magicae";
-    public static final String Version = "1.0.0";
+    public static final String MODID = "purmag";
+    public static final String NAME = "Purificati Magicae";
+    public static final String VERSION = "1.0.0";
 
     public SipTypeRegistry sip = new SipTypeRegistry();
     public SipEffectsRegistry sip_effects = new SipEffectsRegistry();
@@ -59,35 +58,33 @@ public class PurMag
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e)
     {
-        instance = this;
         setupMetadata(e.getModMetadata());
 
         config.setup(new Configuration(new File(e.getModConfigurationDirectory(), "Purificati Magicae.cfg")));
 
-        sip.setup();
-        sip_effects.setup();
-        BlockRegistry.setup();
-        ItemRegistry.setup();
-        ItemRegistry.setupOreDict();
-        ItemPapyrus.setup();
-        TileRegistry.setup();
-        if_registry.setup();
-        SoundRegistry.setup();
-        CapabilityRegistry.setup();
-        NetworkManager.setup();
-        WorldgenRegistry.setup();
-        LootTablesRegistry.setup();
-        EntityRegistry.setup();
+        sip.register();
+        sip_effects.register();
+        TileRegistry.register();
+        CapabilityRegistry.register();
+        EntityRegistry.register();
 
-        proxy.preInit();
         MinecraftForge.EVENT_BUS.register(new CommonEvents());
         MinecraftForge.EVENT_BUS.register(new SifEvents());
         MinecraftForge.EVENT_BUS.register(new SipEvents());
+
+        proxy.preInit();
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent e)
     {
+        ItemRegistry.setup();
+        ItemPapyrus.setup();
+        if_registry.setup();
+        NetworkManager.setup();
+        WorldgenRegistry.setup();
+        LootTablesRegistry.setup();
+
         proxy.init();
     }
 
@@ -103,9 +100,9 @@ public class PurMag
         data.credits = "afdw & Prototik - cool guys";
         data.authorList = Arrays.asList("mrAppleXZ", "DrVexsear");
         data.description = "Purificati Magicae";
-        data.modId = PurMag.ModId;
-        data.name = PurMag.Name;
-        data.version = PurMag.Version;
+        data.modId = PurMag.MODID;
+        data.name = PurMag.NAME;
+        data.version = PurMag.VERSION;
     }
 
     @Mod.EventHandler

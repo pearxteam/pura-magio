@@ -2,11 +2,11 @@
   "pools": [
     {
       "rolls": 1,
-      "name": "venom",
+      "name": "wing",
       "entries": [
         {
           "type": "item",
-          "name": "purmag:beetle_venom",
+          "name": "purmag:verda_wing",
           "weight": 1,
           "functions": [
             {

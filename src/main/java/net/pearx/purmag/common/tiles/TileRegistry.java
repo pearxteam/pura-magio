@@ -8,7 +8,7 @@ import net.pearx.purmag.common.Utils;
  */
 public class TileRegistry
 {
-    public static void setup()
+    public static void register()
     {
         GameRegistry.registerTileEntity(TileTranslationDesk.class, Utils.getRegistryName("translation_desk").toString());
     }

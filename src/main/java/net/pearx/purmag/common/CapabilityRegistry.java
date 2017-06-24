@@ -27,7 +27,7 @@ public class CapabilityRegistry
     public static final ResourceLocation ENTRY_STORE_NAME = Utils.getRegistryName("if_entry_store");
     public static final ResourceLocation SIP_STORE_NAME = Utils.getRegistryName("sip_store");
 
-    public static void setup()
+    public static void register()
     {
         CapabilityManager.INSTANCE.register(IIfEntryStore.class, new Capability.IStorage<IIfEntryStore>()
         {
