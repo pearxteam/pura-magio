@@ -1,6 +1,7 @@
 package net.pearx.purmag;
 
-import net.minecraftforge.common.BiomeDictionary;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -14,9 +15,11 @@ import net.pearx.purmag.common.*;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.config.PMConfig;
 import net.pearx.purmag.common.entities.EntityRegistry;
+import net.pearx.purmag.common.CommonEvents;
 import net.pearx.purmag.common.infofield.IfRegistry;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.items.papyrus.ItemPapyrus;
+import net.pearx.purmag.common.loot_tables.LootTablesRegistry;
 import net.pearx.purmag.common.networking.NetworkManager;
 import net.pearx.purmag.common.sif.SifEvents;
 import net.pearx.purmag.common.sip.SipEffectsRegistry;
@@ -65,6 +68,7 @@ public class PurMag
         sip_effects.setup();
         BlockRegistry.setup();
         ItemRegistry.setup();
+        ItemRegistry.setupOreDict();
         ItemPapyrus.setup();
         TileRegistry.setup();
         if_registry.setup();
@@ -72,6 +76,7 @@ public class PurMag
         CapabilityRegistry.setup();
         NetworkManager.setup();
         WorldgenRegistry.setup();
+        LootTablesRegistry.setup();
         EntityRegistry.setup();
 
         proxy.preInit();

@@ -15,14 +15,9 @@ import net.pearx.purmag.common.PMCreativeTab;
  */
 public class ItemUtils
 {
-    public static Item getItemFromBlock(Block b)
-    {
-        return new ItemBlock(b).setRegistryName(b.getRegistryName()).setCreativeTab(PMCreativeTab.instance);
-    }
 
     public static ItemStack getItemWithSip(String sip, Item itm)
     {
-        ItemStack stack = new ItemStack(itm);
         return new ItemStack(itm, 1, PurMag.instance.sip.getType(sip).getId());
     }
 

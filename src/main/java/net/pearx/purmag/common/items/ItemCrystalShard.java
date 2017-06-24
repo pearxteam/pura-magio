@@ -13,31 +13,12 @@ import net.pearx.purmag.common.sip.SipType;
 /**
  * Created by mrAppleXZ on 11.04.17 8:24.
  */
-public class ItemCrystalShard extends ItemBase
+public class ItemCrystalShard extends ItemSingleSip
 {
     public ItemCrystalShard()
     {
         setRegistryName(Utils.getRegistryName("crystal_shard"));
         setUnlocalizedName("crystal_shard");
         setHasSubtypes(true);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
-    {
-        if(isInCreativeTab(tab))
-        {
-            for (SipType t : PurMag.instance.sip.types)
-            {
-                items.add(new ItemStack(this, 1, t.getId()));
-            }
-        }
-    }
-
-    @Override
-    public String getItemStackDisplayName(ItemStack stack)
-    {
-        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.instance.sip.getType(stack.getMetadata()).getDisplayName());
     }
 }

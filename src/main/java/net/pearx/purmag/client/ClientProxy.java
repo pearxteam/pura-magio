@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.papyrus.GuiPapyrus;
 import net.pearx.purmag.client.guis.translation_desk.GuiTranslationDesk;
+import net.pearx.purmag.client.models.IModelProvider;
 import net.pearx.purmag.client.sif.SifStorageClient;
 import net.pearx.purmag.common.CommonProxy;
 import net.pearx.purmag.PurMag;
@@ -93,5 +94,11 @@ public class ClientProxy extends CommonProxy
     public void openTranslationDesk(BlockPos pos,  World world)
     {
         Minecraft.getMinecraft().displayGuiScreen(new PmGui(new GuiTranslationDesk(pos, world)));
+    }
+
+    @Override
+    public void setupModels(IModelProvider prov)
+    {
+        prov.setupModels();
     }
 }

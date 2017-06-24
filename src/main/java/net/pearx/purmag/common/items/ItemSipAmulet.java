@@ -13,6 +13,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.client.ClientUtils;
+import net.pearx.purmag.client.models.IModelProvider;
 import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.sip.SipType;
@@ -24,7 +26,7 @@ import java.util.Map;
 /**
  * Created by mrAppleXZ on 21.05.17 18:21.
  */
-public class ItemSipAmulet extends ItemBase implements IBauble
+public class ItemSipAmulet extends ItemBase implements IBauble, IModelProvider
 {
     public ItemSipAmulet()
     {
@@ -78,5 +80,13 @@ public class ItemSipAmulet extends ItemBase implements IBauble
     public BaubleType getBaubleType(ItemStack itemstack)
     {
         return BaubleType.AMULET;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void setupModels()
+    {
+        for(int i = 0; i < 3; i++)
+            ClientUtils.setModelLocation(this, i, "." + i);
     }
 }

@@ -2,6 +2,7 @@ package net.pearx.purmag.common;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.pearx.purmag.client.models.IModelProvider;
 import net.pearx.purmag.common.sif.SifStorage;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -39,4 +40,6 @@ public class CommonProxy
     {
         throw new NotImplementedException();
     }
+
+    public void setupModels(IModelProvider prov) {}
 }

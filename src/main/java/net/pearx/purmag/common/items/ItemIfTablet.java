@@ -11,12 +11,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.client.ClientUtils;
+import net.pearx.purmag.client.models.IModelProvider;
 import net.pearx.purmag.common.infofield.IfTier;
 
 /**
  * Created by mrAppleXZ on 13.04.17 21:54.
  */
-public class ItemIfTablet extends ItemBase
+public class ItemIfTablet extends ItemBase  implements IModelProvider
 {
     public ItemIfTablet()
     {
@@ -50,11 +52,19 @@ public class ItemIfTablet extends ItemBase
         }
     }
 
-
-
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
         return super.getUnlocalizedName(stack) + "." + stack.getItemDamage();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void setupModels()
+    {
+        for(IfTier t : PurMag.instance.if_registry.tiers)
+        {
+            ClientUtils.setModelLocation(this, t.getTier(), "." + t.getTier());
+        }
     }
 }

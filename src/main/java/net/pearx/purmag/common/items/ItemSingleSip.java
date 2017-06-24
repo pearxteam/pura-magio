@@ -1,7 +1,8 @@
 package net.pearx.purmag.common.items;
 
-import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -11,14 +12,21 @@ import net.pearx.purmag.client.models.IModelProvider;
 import net.pearx.purmag.common.sip.SipType;
 
 /**
- * Created by mrAppleXZ on 14.05.17 18:51.
+ * Created by mrAppleXZ on 24.06.17 11:35.
  */
-public class ItemBlockSingleSip extends ItemBlockBase implements IModelProvider
+public class ItemSingleSip extends ItemBase implements IModelProvider
 {
-    public ItemBlockSingleSip(Block block)
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
     {
-        super(block);
-        setHasSubtypes(true);
+        if(isInCreativeTab(tab))
+        {
+            for (SipType t : PurMag.instance.sip.types)
+            {
+                items.add(new ItemStack(this, 1, t.getId()));
+            }
+        }
     }
 
     @Override

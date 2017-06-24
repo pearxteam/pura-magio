@@ -5,9 +5,11 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.pearx.purmag.common.SoundRegistry;
+import net.pearx.purmag.common.Utils;
 
 import javax.annotation.Nullable;
 
@@ -59,10 +61,17 @@ public class EntityBeetle extends EntityCreature
     @Override
     public boolean attackEntityAsMob(Entity entityIn)
     {
-        if(entityIn instanceof EntityLiving)
+        if(entityIn instanceof EntityLivingBase)
         {
-            ((EntityLiving)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 40));
+            ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 100, 1));
         }
         return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
+    }
+
+    @Nullable
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return Utils.getRegistryName("entities/verda_beetle");
     }
 }

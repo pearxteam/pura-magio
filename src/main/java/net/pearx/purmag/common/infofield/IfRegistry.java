@@ -28,6 +28,15 @@ public class IfRegistry
     public ArrayList<IfEntry> entries = new ArrayList<>();
     public ArrayList<IfTier> tiers = new ArrayList<>();
 
+    public IfRegistry()
+    {
+        registerTier(new IfTier(0)); //Only player's thoughts.
+        registerTier(new IfTier(1)); //Player's thoughts and simple researches.
+        registerTier(new IfTier(2)); //Player's thoughts and advanced researches.
+        registerTier(new IfTier(3)); //Ancients' knowledges.
+        registerTier(new IfTier(4)); //The WHITE CATACLYSM knowledge.
+    }
+
     public void registerChannel(IfChannel chan)
     {
         channels.add(chan);
@@ -100,12 +109,6 @@ public class IfRegistry
 
     public void setup()
     {
-        registerTier(new IfTier(0)); //Only player's thoughts.
-        registerTier(new IfTier(1)); //Player's thoughts and simple researches.
-        registerTier(new IfTier(2)); //Player's thoughts and advanced researches.
-        registerTier(new IfTier(3)); //Ancients' knowledges.
-        registerTier(new IfTier(4)); //The WHITE CATACLYSM knowledge.
-
         registerChannel(new IfChannel("infofield", 0));
         registerChannel(new IfChannel("geology", 0));
         registerChannel(new IfChannel("sip", 1));
