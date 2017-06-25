@@ -17,8 +17,7 @@ public class ItemCrystalShard extends ItemSingleSip
 {
     public ItemCrystalShard()
     {
-        setRegistryName(Utils.getRegistryName("crystal_shard"));
-        setUnlocalizedName("crystal_shard");
+        setRegistryName("crystal_shard");
         setHasSubtypes(true);
     }
 }

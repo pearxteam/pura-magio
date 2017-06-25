@@ -30,9 +30,8 @@ public class ItemSipAmulet extends ItemBase implements IBauble, IModelProvider
 {
     public ItemSipAmulet()
     {
-        setRegistryName(Utils.getRegistryName("sip_amulet"));
+        setRegistryName("sip_amulet");
         setHasSubtypes(true);
-        setUnlocalizedName("sip_amulet");
         setMaxStackSize(1);
     }
 

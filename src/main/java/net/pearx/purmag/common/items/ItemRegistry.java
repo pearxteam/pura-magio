@@ -74,14 +74,14 @@ public class ItemRegistry
         register(new ItemIfTablet(), reg);
         register(new ItemBlockCrystalGlass(), reg);
         register(new ItemBlockBase(BlockRegistry.ore_crysagnetite), reg);
-        register(new ItemSimple(Utils.getRegistryName("ingot_crysagnetite")), reg);
+        register(new ItemBase().setRegistryName("ingot_crysagnetite"), reg);
         register(new ItemSipAmulet(), reg);
         register(new ItemGlove(), reg);
         register(new ItemPapyrus(), reg);
         register(new ItemBlockBase(BlockRegistry.translation_desk), reg);
         register(new ItemBlockCrystalSmall(), reg);
-        register(new ItemSimple(Utils.getRegistryName("ingot_plumfero")), reg);
-        register(new ItemSimple(Utils.getRegistryName("verda_wing")), reg);
-        register(new ItemSimple(Utils.getRegistryName("beetle_meat")), reg);
+        register(new ItemBase().setRegistryName("ingot_plumfero"), reg);
+        register(new ItemBase().setRegistryName("verda_wing"), reg);
+        register(new ItemFoodBakeable(3, 0.125f, false, 8, 0.55f).setRegistryName("beetle_meat"), reg);
     }
 }

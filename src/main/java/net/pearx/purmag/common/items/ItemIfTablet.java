@@ -22,7 +22,6 @@ public class ItemIfTablet extends ItemBase  implements IModelProvider
 {
     public ItemIfTablet()
     {
-        setUnlocalizedName("if_tablet");
         setRegistryName("if_tablet");
         setHasSubtypes(true);
         setMaxStackSize(1);

@@ -39,6 +39,7 @@ public class BlockTranslationDesk extends BlockBase
         super(Material.WOOD);
         setRegistryName(Utils.getRegistryName("translation_desk"));
         setHarvestLevel("axe", 0);
+        setHardness(1.7f);
         setUnlocalizedName("translation_desk");
     }
 

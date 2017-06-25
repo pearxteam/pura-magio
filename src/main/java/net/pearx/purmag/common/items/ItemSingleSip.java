@@ -14,7 +14,7 @@ import net.pearx.purmag.common.sip.SipType;
 /**
  * Created by mrAppleXZ on 24.06.17 11:35.
  */
-public class ItemSingleSip extends ItemBase implements IModelProvider
+public class ItemSingleSip extends ItemBase
 {
     @Override
     @SideOnly(Side.CLIENT)

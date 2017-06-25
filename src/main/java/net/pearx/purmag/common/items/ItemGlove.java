@@ -20,8 +20,7 @@ public class ItemGlove extends ItemBase
     //todo SOMEONE, PLS, MAKE NORMAL GLOVE TEXTURE ;(
     public ItemGlove()
     {
-        setRegistryName(Utils.getRegistryName("glove"));
-        setUnlocalizedName("glove");
+        setRegistryName("glove");
         setMaxStackSize(1);
     }
 
