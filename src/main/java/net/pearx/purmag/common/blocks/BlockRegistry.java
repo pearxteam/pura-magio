@@ -15,7 +15,7 @@ import net.pearx.purmag.common.Utils;
  * Created by mrAppleXZ on 08.04.17 18:44.
  */
 @GameRegistry.ObjectHolder(PurMag.MODID)
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = PurMag.MODID)
 public class BlockRegistry
 {
     public static final Block crystal = null;

@@ -37,7 +37,6 @@ public class ClientProxy extends CommonProxy
     {
         Minecraft.getMinecraft().getFramebuffer().enableStencil();
         OBJLoader.INSTANCE.addDomain(PurMag.MODID);
-        MinecraftForge.EVENT_BUS.register(new ClientEvents());
         EntityRegistry.registerClient();
     }
 

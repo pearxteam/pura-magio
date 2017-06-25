@@ -12,7 +12,7 @@ import net.pearx.purmag.PurMag;
 /**
  * Created by mrAppleXZ on 13.04.17 10:59.
  */
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = PurMag.MODID)
 @GameRegistry.ObjectHolder(PurMag.MODID)
 public class SoundRegistry
 {

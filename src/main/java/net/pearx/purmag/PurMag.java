@@ -10,18 +10,14 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.pearx.purmag.common.*;
-import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.config.PMConfig;
 import net.pearx.purmag.common.entities.EntityRegistry;
-import net.pearx.purmag.common.CommonEvents;
 import net.pearx.purmag.common.infofield.IfRegistry;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.items.papyrus.ItemPapyrus;
 import net.pearx.purmag.common.loot_tables.LootTablesRegistry;
 import net.pearx.purmag.common.networking.NetworkManager;
-import net.pearx.purmag.common.sif.SifEvents;
 import net.pearx.purmag.common.sip.SipEffectsRegistry;
-import net.pearx.purmag.common.sip.SipEvents;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
 import net.pearx.purmag.common.tiles.TileRegistry;
 import net.pearx.purmag.common.worldgen.WorldgenRegistry;
@@ -67,10 +63,6 @@ public class PurMag
         TileRegistry.register();
         CapabilityRegistry.register();
         EntityRegistry.register();
-
-        MinecraftForge.EVENT_BUS.register(new CommonEvents());
-        MinecraftForge.EVENT_BUS.register(new SifEvents());
-        MinecraftForge.EVENT_BUS.register(new SipEvents());
 
         proxy.preInit();
     }
