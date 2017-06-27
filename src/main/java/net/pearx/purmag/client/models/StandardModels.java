@@ -8,6 +8,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
+import net.pearx.purmag.client.Debugging;
 import net.pearx.purmag.common.Utils;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -70,12 +71,21 @@ public class StandardModels
         }
     }
 
-    public static class TranslationDesk extends FacingModel
+    public static class TranslationDesk extends FacingModel implements IPerspectiveAwareModel
     {
         public TranslationDesk()
         {
             super(true);
             setBaseModel(Utils.getRegistryName("block/translation_desk.obj"));
+        }
+
+
+        @Override
+        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
+        {
+            if(cameraTransformType == ItemCameraTransforms.TransformType.GUI)
+                return Pair.of(this, new TRSRTransformation(null, null, new Vector3f(0.6f, 0.6f, 0.6f), ModelUtils.getRotation(30, 225, 90)).getMatrix());
+            return Pair.of(this, new TRSRTransformation(null, null, new Vector3f(0.375f, 0.375f, 0.375f), null).getMatrix());
         }
     }
 
@@ -91,9 +101,7 @@ public class StandardModels
         public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
         {
             if(cameraTransformType == ItemCameraTransforms.TransformType.GUI)
-            {
                 return Pair.of(this, new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, new Vector3f(1.5f, 1.5f, 1.5f), new Quat4f(0.349066f, 0.20944f, 0, 1)).getMatrix());
-            }
             return Pair.of(this, new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, null, null).getMatrix());
         }
     }
