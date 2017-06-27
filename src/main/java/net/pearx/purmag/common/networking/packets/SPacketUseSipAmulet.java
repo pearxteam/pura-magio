@@ -62,7 +62,7 @@ public class SPacketUseSipAmulet implements IMessage
                     Map<String, Integer> sips = amulet.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).getStored();
                     for (Map.Entry<String, Integer> entr : sips.entrySet())
                     {
-                        SipEffect eff = PurMag.instance.sip_effects.getMap().get(entr.getKey());
+                        SipEffect eff = PurMag.INSTANCE.sip_effects.getMap().get(entr.getKey());
                         int lvl = amulet.getMetadata();
                         if (eff.getMaxLevel() != -1 && lvl > eff.getMaxLevel())
                             lvl = eff.getMaxLevel();
@@ -73,7 +73,7 @@ public class SPacketUseSipAmulet implements IMessage
                         {
                             NetworkManager.sendToAllAround(new CPacketSpawnSipParticle(
                                             new Vector3d(p.posX, p.posY + 1.3f, p.posZ),
-                                            new Vector3d(p.posX + (vec.x * 5) + (PurMag.rand.nextFloat() * 4 - 2), p.posY + 1.3f + (PurMag.rand.nextFloat() * 4 - 2), p.posZ + (vec.y * 5) + (PurMag.rand.nextFloat() * 4 - 2)),
+                                            new Vector3d(p.posX + (vec.x * 5) + (PurMag.INSTANCE.random.nextFloat() * 4 - 2), p.posY + 1.3f + (PurMag.INSTANCE.random.nextFloat() * 4 - 2), p.posZ + (vec.y * 5) + (PurMag.INSTANCE.random.nextFloat() * 4 - 2)),
                                             0.1f,
                                             p.dimension,
                                             entr.getKey(),

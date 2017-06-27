@@ -21,6 +21,7 @@ public class NetworkManager
         INSTANCE.registerMessage(CPacketSyncEntryStore.Handler.class, CPacketSyncEntryStore.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(CPacketDisplayMessage.Handler.class, CPacketDisplayMessage.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(CPacketSyncSif.Handler.class, CPacketSyncSif.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(CPacketDesyncSif.Handler.class, CPacketDesyncSif.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(SPacketUseSipAmulet.Handler.class, SPacketUseSipAmulet.class, id++, Side.SERVER);
         INSTANCE.registerMessage(CPacketSpawnSipParticle.Handler.class, CPacketSpawnSipParticle.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(SPacketDoneTranslation.Handler.class, SPacketDoneTranslation.class, id++, Side.SERVER);

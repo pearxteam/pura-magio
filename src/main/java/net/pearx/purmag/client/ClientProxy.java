@@ -6,13 +6,11 @@ import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.obj.OBJLoader;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.papyrus.GuiPapyrus;
 import net.pearx.purmag.client.guis.translation_desk.GuiTranslationDesk;
 import net.pearx.purmag.client.models.IModelProvider;
-import net.pearx.purmag.client.sif.SifStorageClient;
 import net.pearx.purmag.common.CommonProxy;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.PmGui;
@@ -20,7 +18,6 @@ import net.pearx.purmag.client.guis.if_tablet.GuiIfTablet;
 import net.pearx.purmag.common.blocks.BlockCrystalSmall;
 import net.pearx.purmag.common.blocks.BlockSingleSip;
 import net.pearx.purmag.common.entities.EntityRegistry;
-import net.pearx.purmag.common.sif.SifStorage;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 
@@ -30,8 +27,6 @@ import net.pearx.purmag.common.blocks.BlockRegistry;
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
-    private SifStorageClient sifStorage = new SifStorageClient();
-
     @Override
     public void preInit()
     {
@@ -55,19 +50,19 @@ public class ClientProxy extends CommonProxy
 
         KeyBindings.setup();
 
-        PurMag.instance.if_registry.setupClient();
+        PurMag.INSTANCE.if_registry.setupClient();
     }
 
     public static void registerSipItemColor(Item itm)
     {
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
-                PurMag.instance.sip.getType(stack.getMetadata()).getColor(), itm);
+                PurMag.INSTANCE.sip.getType(stack.getMetadata()).getColor(), itm);
     }
 
     public static void registerSipBlockColor(Block bl)
     {
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, w, pos, tintIndex) ->
-                PurMag.instance.sip.getType(state.getValue(BlockSingleSip.SIPTYPE)).getColor(), bl);
+                PurMag.INSTANCE.sip.getType(state.getValue(BlockSingleSip.SIPTYPE)).getColor(), bl);
     }
 
     @Override
@@ -80,12 +75,6 @@ public class ClientProxy extends CommonProxy
     public void openPapyrus(String id)
     {
         Minecraft.getMinecraft().displayGuiScreen(new PmGui(new GuiPapyrus(id)));
-    }
-
-    @Override
-    public SifStorage getSifStorage()
-    {
-        return sifStorage;
     }
 
     @Override

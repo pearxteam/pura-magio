@@ -1,5 +1,6 @@
 package net.pearx.purmag.common;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.chunk.Chunk;
 
@@ -14,9 +15,9 @@ public class GlobalChunkPos
 
     public GlobalChunkPos(int x, int z, int dim)
     {
-        setDimension(dim);
         setX(x);
         setZ(z);
+        setDimension(dim);
     }
 
     public int getDimension()
@@ -68,6 +69,18 @@ public class GlobalChunkPos
     public static GlobalChunkPos fromChunk(Chunk ch)
     {
         return new GlobalChunkPos(ch.x, ch.z, ch.getWorld().provider.getDimension());
+    }
+
+    public void writeBytes(ByteBuf buf)
+    {
+        buf.writeInt(getX());
+        buf.writeInt(getZ());
+        buf.writeInt(getDimension());
+    }
+
+    public static GlobalChunkPos readBytes(ByteBuf buf)
+    {
+        return new GlobalChunkPos(buf.readInt(), buf.readInt(), buf.readInt());
     }
 
     @Override

@@ -25,7 +25,7 @@ import net.minecraft.util.math.MathHelper;
 public interface IRenderBauble {
 
 	/**
-	 * Called for the rendering of the bauble on the player. The player instance can be
+	 * Called for the rendering of the bauble on the player. The player INSTANCE can be
 	 * acquired through the event parameter. Transformations are already applied for
 	 * the RenderType passed in. Make sure to check against the type parameter for
 	 * rendering. 

@@ -24,14 +24,14 @@ public class ItemBlockSingleSip extends ItemBlockBase implements IModelProvider
     @Override
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.instance.sip.getType(stack.getMetadata()).getDisplayName());
+        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.INSTANCE.sip.getType(stack.getMetadata()).getDisplayName());
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void setupModels()
     {
-        for(SipType t : PurMag.instance.sip.types)
+        for(SipType t : PurMag.INSTANCE.sip.types)
             ClientUtils.setModelLocation(this, t.getId(), "");
     }
 }

@@ -5,7 +5,6 @@ import baubles.api.IBauble;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
@@ -16,7 +15,6 @@ import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.ClientUtils;
 import net.pearx.purmag.client.models.IModelProvider;
 import net.pearx.purmag.common.CapabilityRegistry;
-import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.sip.SipType;
 
 import javax.annotation.Nullable;
@@ -60,7 +58,7 @@ public class ItemSipAmulet extends ItemBase implements IBauble, IModelProvider
     {
         for(Map.Entry<String, Integer> entr : stack.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).getStored().entrySet())
         {
-            SipType t = PurMag.instance.sip.getType(entr.getKey());
+            SipType t = PurMag.INSTANCE.sip.getType(entr.getKey());
             tooltip.add(t.getFormatting() + t.getDisplayName() + ": " + entr.getValue() + TextFormatting.RESET);
         }
     }

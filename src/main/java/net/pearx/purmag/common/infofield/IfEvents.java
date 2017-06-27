@@ -23,7 +23,7 @@ public class IfEvents
         {
             EntityPlayerMP p = (EntityPlayerMP)e.getEntityPlayer();
             IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
-            for (IfEntry entr : PurMag.instance.if_registry.entries)
+            for (IfEntry entr : PurMag.INSTANCE.if_registry.entries)
             {
                 int steps = store.getSteps(entr.getId());
                 if(steps < entr.getSteps().size())

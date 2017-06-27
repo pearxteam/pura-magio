@@ -146,7 +146,7 @@ public class IfRegistry
 
         registerEntryClient(
                 "crysagnetite", new BigItemDrawable(new ItemStack(ItemRegistry.ore_crysagnetite)),
-                new IfPageText("crysagnetite.0"), new IfPageText("crysagnetite.1", Integer.toString(PurMag.instance.config.genCrysagnetite.minY), Integer.toString(PurMag.instance.config.genCrysagnetite.maxY)
+                new IfPageText("crysagnetite.0"), new IfPageText("crysagnetite.1", Integer.toString(PurMag.INSTANCE.config.genCrysagnetite.minY), Integer.toString(PurMag.INSTANCE.config.genCrysagnetite.maxY)
                 ));
         registerEntryClient(
                 "sip_knowledge", new SimpleDrawable(Utils.getRegistryName("textures/icons/sip_text.png"), 28, 28, 28, 28),

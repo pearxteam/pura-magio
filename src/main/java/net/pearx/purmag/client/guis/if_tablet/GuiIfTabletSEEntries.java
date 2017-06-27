@@ -57,7 +57,7 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
         IfChannel chan = getTabletScreen().selector.getSelectedChannel();
         for(IfEntryLocation loc : chan.getEntries())
         {
-            IfEntry entr = PurMag.instance.if_registry.getEntry(loc.getEntry());
+            IfEntry entr = PurMag.INSTANCE.if_registry.getEntry(loc.getEntry());
             if (entr.isAvailableToSee(Minecraft.getMinecraft().player, getTabletScreen().getTablet().tier))
             {
                 if (loc.getX() < minX)

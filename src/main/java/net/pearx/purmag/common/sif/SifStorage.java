@@ -1,50 +1,29 @@
 package net.pearx.purmag.common.sif;
 
-
-import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.GlobalChunkPos;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by mrAppleXZ on 06.05.17 17:49.
+ * Created by mrAppleXZ on 27.06.17 15:29.
  */
 public class SifStorage
 {
-    public Map<GlobalChunkPos, Float> values = new HashMap<>();
+    protected Map<GlobalChunkPos, Float> loaded = new HashMap<>();
 
-    public void setPower(GlobalChunkPos chunk, float f)
+    public float get(GlobalChunkPos pos)
     {
-        values.put(chunk, f);
+        return loaded.get(pos);
     }
 
-    public void removeChunk(GlobalChunkPos pos)
+    public void set(GlobalChunkPos pos, float value)
     {
-        values.remove(pos);
+        loaded.put(pos, value);
     }
 
-    public float getPower(GlobalChunkPos chunk)
+    public void remove(GlobalChunkPos pos)
     {
-        if(!values.containsKey(chunk))
-        {
-            int main;
-            float f = PurMag.rand.nextFloat();
-            if(PurMag.rand.nextFloat() <= 0.01f)
-                main = -1;
-            else
-            {
-                float ff = PurMag.rand.nextFloat();
-                if(ff <= 0.02f)
-                    main = 2;
-                else if(ff <= 0.20f)
-                    main = 1;
-                else
-                    main = 0;
-
-            }
-            setPower(chunk, main + f);
-        }
-        return values.get(chunk);
+        loaded.remove(pos);
     }
 }

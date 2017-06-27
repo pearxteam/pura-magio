@@ -4,7 +4,6 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
@@ -49,7 +48,7 @@ public class ItemPapyrus extends ItemBase
         if(!worldIn.isRemote)
         {
             IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
-            for (IfEntry entr : PurMag.instance.if_registry.entries)
+            for (IfEntry entr : PurMag.INSTANCE.if_registry.entries)
             {
                 int steps = store.getSteps(entr.getId());
                 if (steps < entr.getSteps().size())

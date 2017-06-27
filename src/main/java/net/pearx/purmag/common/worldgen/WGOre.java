@@ -62,7 +62,7 @@ public class WGOre implements IWorldGenerator
     public void setState(World world, BlockPos pos, IBlockState state)
     {
         world.setBlockState(pos, state, 2);
-        System.out.println(pos + " ore " + state);
+        //System.out.println(pos + " ore " + state);
     }
 
     public int getOffset(Random rand)

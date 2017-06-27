@@ -15,7 +15,7 @@ public class ClientEvents
     @SubscribeEvent
     public static void onTooltip(ItemTooltipEvent e)
     {
-        //todo REMOVE DEBUG PRINT!
+        //todo [RELEASE] REMOVE DEBUG PRINT!
         int[] ids = OreDictionary.getOreIDs(e.getItemStack());
         for(int id : ids)
         {

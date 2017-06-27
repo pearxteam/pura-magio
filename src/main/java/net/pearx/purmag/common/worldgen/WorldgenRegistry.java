@@ -20,29 +20,29 @@ public class WorldgenRegistry
 
     public static void setup()
     {
-        if(PurMag.instance.config.genCrystals)
+        if(PurMag.INSTANCE.config.genCrystals)
         {
             crystalGen.add(new WGCrystalsEntry(WGCrystalsType.SURFACE, "sea", null, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.RIVER));
-            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.UNDERGROUND, "rock", PurMag.instance.config.genRockCrystalsDimBlacklist));
+            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.UNDERGROUND, "rock", PurMag.INSTANCE.config.genRockCrystalsDimBlacklist));
             crystalGen.add(new WGCrystalsEntry(WGCrystalsType.FIRSTAIR, "flame", null, BiomeDictionary.Type.NETHER));
             GameRegistry.registerWorldGenerator(new WGCrystals(), 5);
         }
-        if(PurMag.instance.config.genCrysagnetite.generate)
+        if(PurMag.INSTANCE.config.genCrysagnetite.generate)
         {
-            ConfigOregenEntry coe = PurMag.instance.config.genCrysagnetite;
+            ConfigOregenEntry coe = PurMag.INSTANCE.config.genCrysagnetite;
             GameRegistry.registerWorldGenerator(new WGOre(coe.minVeinSize, coe.maxVeinSize, coe.minY, coe.maxY, coe.chance, BlockRegistry.ore_crysagnetite.getDefaultState(), coe.dimList, coe.dimListWhitelist), 5);
         }
-        if(PurMag.instance.config.genCrystallizedRedstone.generate)
+        if(PurMag.INSTANCE.config.genCrystallizedRedstone.generate)
         {
-            ConfigOregenEntry coe = PurMag.instance.config.genCrystallizedRedstone;
+            ConfigOregenEntry coe = PurMag.INSTANCE.config.genCrystallizedRedstone;
             GameRegistry.registerWorldGenerator(new WGOreWithDownblock(coe.minVeinSize, coe.maxVeinSize, coe.minY, coe.maxY, coe.chance,
                     BlockRegistry.crystal_small.getDefaultState().withProperty(BlockCrystalSmall.TYPE, BlockCrystalSmall.Type.REDSTONE),
                     Blocks.REDSTONE_ORE.getDefaultState(),
                     coe.dimList, coe.dimListWhitelist), 6);
         }
-        if(PurMag.instance.config.genCrystallizedGlowstone.generate)
+        if(PurMag.INSTANCE.config.genCrystallizedGlowstone.generate)
         {
-            ConfigOregenEntry coe = PurMag.instance.config.genCrystallizedGlowstone;
+            ConfigOregenEntry coe = PurMag.INSTANCE.config.genCrystallizedGlowstone;
             GameRegistry.registerWorldGenerator(new WGOreWithDownblock(coe.minVeinSize, coe.maxVeinSize, coe.minY, coe.maxY, coe.chance,
                     BlockRegistry.crystal_small.getDefaultState().withProperty(BlockCrystalSmall.TYPE, BlockCrystalSmall.Type.GLOWSTONE),
                     Blocks.GLOWSTONE.getDefaultState(),

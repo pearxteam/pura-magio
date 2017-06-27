@@ -51,7 +51,7 @@ public class CommandIf extends CommandBase
         {
             throw new CommandException("command.if.playerNotFound");
         }
-        if(!PurMag.instance.if_registry.containsEntry(res))
+        if(!PurMag.INSTANCE.if_registry.containsEntry(res))
         {
             throw new CommandException("command.if.entryNotFound");
         }
@@ -59,7 +59,7 @@ public class CommandIf extends CommandBase
         switch(act)
         {
             case "unlock":
-                steps = PurMag.instance.if_registry.getEntry(res).getSteps().size();
+                steps = PurMag.INSTANCE.if_registry.getEntry(res).getSteps().size();
                 break;
             case "lock":
                 steps = 0;
@@ -94,7 +94,7 @@ public class CommandIf extends CommandBase
         if(args.length == 2)
         {
             ArrayList<String> arr = new ArrayList<>();
-            for(IfEntry entr : PurMag.instance.if_registry.entries)
+            for(IfEntry entr : PurMag.INSTANCE.if_registry.entries)
                 arr.add(entr.getId());
             return arr;
         }

@@ -1,6 +1,5 @@
 package net.pearx.purmag;
 
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
@@ -17,6 +16,8 @@ import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.items.papyrus.ItemPapyrus;
 import net.pearx.purmag.common.loot_tables.LootTablesRegistry;
 import net.pearx.purmag.common.networking.NetworkManager;
+import net.pearx.purmag.common.sif.SifStorage;
+import net.pearx.purmag.common.sif.SifStorageServer;
 import net.pearx.purmag.common.sip.SipEffectsRegistry;
 import net.pearx.purmag.common.sip.SipTypeRegistry;
 import net.pearx.purmag.common.tiles.TileRegistry;
@@ -30,14 +31,16 @@ import java.util.Random;
 /**
  * Created by mrAppleXZ on 08.04.17 10:31.
  */
+/*
+
+            setPower(chunk, main + f);
+ */
 @Mod(name = PurMag.NAME, modid = PurMag.MODID)
 public class PurMag
 {
-    //todo laboratory, smeltery, SIF plant, agronomy, paris, import ingot_plumfero texture, end translation desk, add beetle loot
+    //todo laboratory, smeltery, SIF plant, agronomy, paris
     @Mod.Instance
-    public static PurMag instance;
-
-    public static Random rand = new Random();
+    public static PurMag INSTANCE;
 
     public static final String MODID = "purmag";
     public static final String NAME = "Purificati Magicae";
@@ -47,6 +50,9 @@ public class PurMag
     public SipEffectsRegistry sip_effects = new SipEffectsRegistry();
     public IfRegistry if_registry = new IfRegistry();
     public PMConfig config = new PMConfig();
+    public Random random = new Random();
+
+    public SifStorageServer sif_storage = new SifStorageServer();
 
     @SidedProxy(clientSide = "net.pearx.purmag.client.ClientProxy", serverSide = "net.pearx.purmag.server.ServerProxy")
     public static CommonProxy proxy;

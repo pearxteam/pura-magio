@@ -1,33 +1,17 @@
 package net.pearx.purmag.client.events;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.client.DisplayMessageQuery;
-import net.pearx.purmag.client.KeyBindings;
 import net.pearx.purmag.client.models.IModelBase;
 import net.pearx.purmag.client.models.StandardModels;
-import net.pearx.purmag.common.DisplayMessage;
-import net.pearx.purmag.common.SoundRegistry;
 import net.pearx.purmag.common.Utils;
-import net.pearx.purmag.common.items.ItemSipAmulet;
-import net.pearx.purmag.common.networking.NetworkManager;
-import net.pearx.purmag.common.networking.packets.SPacketUseSipAmulet;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by mrAppleXZ on 09.04.17 15:36.
@@ -66,6 +50,7 @@ public class ModelEvents
         e.getMap().registerSprite(Utils.getRegistryName("models/crystal_small"));
         e.getMap().registerSprite(Utils.getRegistryName("models/wood"));
 
+        e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk/container"));
         e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk/crystal"));
         e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk/panel"));
     }

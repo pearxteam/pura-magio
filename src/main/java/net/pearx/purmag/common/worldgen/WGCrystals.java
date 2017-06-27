@@ -47,7 +47,7 @@ public class WGCrystals implements IWorldGenerator
 
             if (!cont) continue;
 
-            int sif = (int)PurMag.proxy.getSifStorage().getPower(new GlobalChunkPos(chunkX, chunkZ, world.provider.getDimension()));
+            int sif = (int)PurMag.INSTANCE.sif_storage.get(new GlobalChunkPos(chunkX, chunkZ, world.provider.getDimension()));
 
             if (sif > 0)
             {

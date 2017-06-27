@@ -43,7 +43,7 @@ public class CPacketSpawnSipParticle implements IMessage
         posTo = ByteBufTools.readVector3d(buf);
         speed = buf.readFloat();
         dim = buf.readInt();
-        sipType = PurMag.instance.sip.getType(buf.readInt()).getName();
+        sipType = PurMag.INSTANCE.sip.getType(buf.readInt()).getName();
         amount = buf.readInt();
     }
 
@@ -54,7 +54,7 @@ public class CPacketSpawnSipParticle implements IMessage
         ByteBufTools.writeVector3d(buf, posTo);
         buf.writeFloat(speed);
         buf.writeInt(dim);
-        buf.writeInt(PurMag.instance.sip.getType(sipType).getId());
+        buf.writeInt(PurMag.INSTANCE.sip.getType(sipType).getId());
         buf.writeInt(amount);
     }
 

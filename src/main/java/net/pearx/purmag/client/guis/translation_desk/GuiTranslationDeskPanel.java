@@ -163,7 +163,7 @@ public class GuiTranslationDeskPanel extends Control
             char[] chars = ItemRegistry.papyrus.getPapyrus(ItemRegistry.papyrus.getId(getDesk().stack)).getDisplayText().toCharArray();
             for(int i = 0; i < chars.length / 4; i++)
             {
-                entries.add(new Entry((byte) PurMag.rand.nextInt(4), 250 + (i * 40)));
+                entries.add(new Entry((byte) PurMag.INSTANCE.random.nextInt(4), 250 + (i * 40)));
             }
             totalEntries = entries.size();
             getDesk().barRate.getMarks().add(new ProgressBar.Mark((int)(totalEntries * 0.7f), Color.BLACK));

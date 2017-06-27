@@ -5,10 +5,7 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -49,6 +46,6 @@ public class EntityRegistry
 
     private static void registerEntity(ResourceLocation registryName, Class<? extends Entity> entityClass, String entityName, int id, Color eggPrimary, Color eggSecondary)
     {
-        net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity(registryName, entityClass, entityName, id, PurMag.instance, 80, 3, true, eggPrimary.getRGB(), eggSecondary.getRGB());
+        net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity(registryName, entityClass, entityName, id, PurMag.INSTANCE, 80, 3, true, eggPrimary.getRGB(), eggSecondary.getRGB());
     }
 }

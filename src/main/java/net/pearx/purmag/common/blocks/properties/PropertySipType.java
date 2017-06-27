@@ -24,7 +24,7 @@ public class PropertySipType extends PropertyHelper<String>
     @Override
     public Collection<String> getAllowedValues()
     {
-        return PurMag.instance.sip.allowedValues;
+        return PurMag.INSTANCE.sip.allowedValues;
     }
 
     @Override

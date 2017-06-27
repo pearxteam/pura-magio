@@ -168,7 +168,7 @@ public class GuiTranslationDesk extends GuiOnScreen
             if(!stack.isEmpty())
             {
                 IIfEntryStore store = Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
-                for(IfEntry entr : PurMag.instance.if_registry.entries)
+                for(IfEntry entr : PurMag.INSTANCE.if_registry.entries)
                 {
                     int steps = store.getSteps(entr.getId());
                     if(steps < entr.getSteps().size())

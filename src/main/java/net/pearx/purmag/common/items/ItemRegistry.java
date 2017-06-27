@@ -1,25 +1,17 @@
 package net.pearx.purmag.common.items;
 
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.ObjectHolderRegistry;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.models.IModelProvider;
-import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.blocks.*;
-import net.pearx.purmag.common.blocks.controllers.FacingController;
 import net.pearx.purmag.common.items.papyrus.ItemPapyrus;
-import net.pearx.purmag.common.sip.SipType;
 
 /**
  * Created by mrAppleXZ on 08.04.17 18:46.

@@ -11,43 +11,39 @@ import net.pearx.purmag.client.PurMagClient;
 import net.pearx.purmag.common.GlobalChunkPos;
 
 /**
- * Created by mrAppleXZ on 27.06.17 15:41.
+ * Created by mrAppleXZ on 27.06.17 16:20.
  */
-public class CPacketSyncSif implements IMessage
+public class CPacketDesyncSif implements IMessage
 {
     public GlobalChunkPos pos;
-    public float value;
 
-    public CPacketSyncSif() {}
-    public CPacketSyncSif(GlobalChunkPos pos, float value)
+    public CPacketDesyncSif() {}
+    public CPacketDesyncSif(GlobalChunkPos pos)
     {
         this.pos = pos;
-        this.value = value;
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
         pos = GlobalChunkPos.readBytes(buf);
-        value = buf.readFloat();
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
         pos.writeBytes(buf);
-        buf.writeFloat(value);
     }
 
-    public static class Handler implements IMessageHandler<CPacketSyncSif, IMessage>
+    public static class Handler implements IMessageHandler<CPacketDesyncSif, IMessage>
     {
         public Handler() {}
 
         @Override
         @SideOnly(Side.CLIENT)
-        public IMessage onMessage(CPacketSyncSif message, MessageContext ctx)
+        public IMessage onMessage(CPacketDesyncSif message, MessageContext ctx)
         {
-            Minecraft.getMinecraft().addScheduledTask(() -> PurMagClient.INSTANCE.sif_storage.set(message.pos, message.value));
+            Minecraft.getMinecraft().addScheduledTask(() -> PurMagClient.INSTANCE.sif_storage.remove(message.pos));
             return null;
         }
     }

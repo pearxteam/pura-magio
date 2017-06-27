@@ -62,7 +62,7 @@ public class SPacketDoneTranslation implements IMessage
                     if(!papyrus.isEmpty())
                     {
                         IIfEntryStore store = ctx.getServerHandler().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
-                        for (IfEntry entr : PurMag.instance.if_registry.entries)
+                        for (IfEntry entr : PurMag.INSTANCE.if_registry.entries)
                         {
                             if(entr.getId().equals(message.expected))
                             {
