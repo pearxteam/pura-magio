@@ -31,10 +31,6 @@ import java.util.Random;
 /**
  * Created by mrAppleXZ on 08.04.17 10:31.
  */
-/*
-
-            setPower(chunk, main + f);
- */
 @Mod(name = PurMag.NAME, modid = PurMag.MODID)
 public class PurMag
 {
