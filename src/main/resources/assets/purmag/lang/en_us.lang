@@ -29,8 +29,8 @@ sip.air.name=Aera
 sip.information.name=Informa
 
 #Channels
-if_channel.infofield.name=Information Field
-if_channel.geology.name=Geology
+if_channel.information.name=Information
+if_channel.exploration.name=Exploration
 if_channel.sip.name=Solid Interacting Power
 if_channel.sif.name=Solid Interacting Field
 if_channel.ancients.name=Ancients' Knowledges
@@ -43,9 +43,15 @@ if_step.read_papyrus.name=Read the Papyrus
 if_step.read_papyrus.desc=Find the Papyrus named "%s" and read it.
 if_step.translate_papyrus.name=Translate the Papyrus
 if_step.translate_papyrus.desc=Translate the Papyrus named "%s" using Translation Desk.
+if_step.kill_entity.name=Kill an Entity
+
+if_entry.wooden_tablet.name=Wooden Tablet
+if_entry.wooden_tablet.desc=Where's my WiFi?!
+if_page.wooden_tablet.0.text=Controls%n%nYou can move through the "channels" (tabs if you prefer) using mouse wheel. You can open entries using left click and go back by button in GUI or using "Q" or "Backspace" keys. You can change the pages by swipe or using "Right" and "Left" arrow keys.
+if_page.wooden_tablet.1.text=If I want to remember my thoughts, I should create a thing where I can record them. So, I just took a wooden plate and attached some paper to it. I can record all my thoughts and to do lists with it. Also, I use some dyes and a brush to draw colored pictures in the tablet.
 
 if_entry.crystals.name=Crystals
-if_entry.crystals.desc=It's a candies?
+if_entry.crystals.desc=It's the candies?
 if_step.crystals.0.desc=You thinking that you can find something colorful somewhere...
 if_page.crystals.0.text=I found strange crystal clusters... After touching them, I felt as if some strange wave ran through my body. They shine from inside, as if they really contain some power. I tried to take a cluster, but to my regret from the hit of the pick on it, it split into shards. I will continue researching.
 
@@ -54,14 +60,23 @@ if_entry.crysagnetite.desc=Purple magnet?
 if_step.crysagnetite.desc=Dig underground and find shimmering bright purple ore.
 if_page.crysagnetite.0.text=You found some strange metal that shimmers bright purple. At first sight, it looks like a magnetite. You tried to bring something iron to it, but this metal didn't attract it. Maybe it can attract something else?
 if_page.crysagnetite.1.text=You can find the ore between Y %1$s and %2$s.
+
 if_entry.sip_knowledge.name=The SIP Knowledge
 if_entry.sip_knowledge.desc=KappaPride!
 if_page.sip_knowledge.0.text=I found the old papyrus written in Esperanto. The text in a papyrus says about an energy named "Solid Interacting Power". I translated it to my language and got something like this: <see the next page>
 if_page.sip_knowledge.1.text=January 27, 1501   Servogey Shatunerov%nI noticed a new type of energy by accident, when I stoked the furnace with coal. Something small and barely noticeable flew from time to time from the furnace. It was like a ball lightning, but a thousand times smaller. These were clearly not burnt pieces of coal. Later I found out that this is some kind of energy, not previously known, which, moreover, shines in nitrogen. This is why this energy was visible to me. I think I will be able to find application of it in the future when I'll know this energy better.%n. . .%n. . .%nIt turns out that this energy can be of different types and can interact with all matter, and not just with nitrogen. A ball consisting of this energy can violate several laws of physics. I also noticed that passing through me, this ball made me invulnerable to the fire for a couple of seconds. I will continue researching.
 
-#Common
+if_entry.verda_beetle.name=Verda Beetle
+if_entry.verda_beetle.desc=I HAVE ARACHNOPHOBIA!!!
+if_step.verda_beetle.desc=Find a big brown beetle with green wings and kill it.
+if_page.verda_beetle.0.text=I found a few big brown beetles with green wings. But despite the fact that they have wings, they cannot fly. The beetles behave peacefully at first, but if I attack them, they will attack me too. Also, they make creaking sounds while they idle. For attack they usually use their mandibles.%nI noticed that beetles' meat is even edible and tastes like a crab meat. Also, I took some wings. Maybe, they can be useful.
+if_page.verda_beetle.1.name=Verda Beetle
+
+#Miscellaneous
 itemGroup.purmag=Purificati Magicae
 if_step.unlocked.text=You've completed a research step!
+hovering.scalable.text=Scalable
+hovering.rotatable.text=Rotatable
 
 #Commands
 command.if.usage=Usage: /infofield <unlock|lock> <entry> [player]
@@ -77,8 +92,6 @@ subtitle.purmag_click=Click
 
 #Buttons
 button.back.name=Back
-button.prev.name=<Updated base color palette
-button.next.name=>
 
 #Keys
 key.categories.purmag=Purificati Magicae

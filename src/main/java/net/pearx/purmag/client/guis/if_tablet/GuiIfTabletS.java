@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.controls.Control;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 
 /**
  * Created by mrAppleXZ on 28.04.17 11:27.

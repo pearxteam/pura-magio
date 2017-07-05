@@ -1,13 +1,20 @@
 package net.pearx.purmag.client.guis;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.controls.Control;
 import net.pearx.purmag.client.guis.controls.GuiControlContainer;
+import net.pearx.purmag.common.entities.EntityBeetle;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -35,7 +42,7 @@ public class PmGui extends GuiScreen implements IGuiScreen
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-
+        drawDefaultBackground();
         if(gui != null)
             gui.invokeRender();
     }
@@ -93,6 +100,19 @@ public class PmGui extends GuiScreen implements IGuiScreen
     {
         GlStateManager.pushMatrix();
         renderToolTip(stack, x, y);
+        GlStateManager.disableRescaleNormal();
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.disableLighting();
+        GlStateManager.disableDepth();
+        GlStateManager.color(1, 1, 1, 1);
+        GlStateManager.popMatrix();
+    }
+
+    @Override
+    public void drawHovering(String text, int x, int y)
+    {
+        GlStateManager.pushMatrix();
+        drawHoveringText(text, x, y);
         GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();

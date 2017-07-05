@@ -6,6 +6,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.drawables.ItemDrawable;
 import net.pearx.purmag.common.infofield.steps.IRSCollect;
+import org.lwjgl.util.Rectangle;
+
 
 import java.awt.*;
 import java.util.List;

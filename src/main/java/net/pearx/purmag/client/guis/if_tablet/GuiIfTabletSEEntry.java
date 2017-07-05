@@ -38,7 +38,7 @@ public class GuiIfTabletSEEntry extends Control
         {
             try
             {
-                f = 1 - (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).getSteps(entry.getId()) / entry.getSteps().size());
+                f = 1 - (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).getSteps(entry.getId()) / (float)entry.getSteps().size());
             } catch (ArithmeticException e)
             {
             }
@@ -81,6 +81,7 @@ public class GuiIfTabletSEEntry extends Control
     @Override
     public void mouseUp(int button, int x, int y)
     {
-        getEntries().getTabletScreen().getTablet().changeScreen(new GuiIfTabletSR(entry));
+        if(button == 0)
+            getEntries().getTabletScreen().getTablet().changeScreen(new GuiIfTabletSR(entry));
     }
 }

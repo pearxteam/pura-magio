@@ -7,8 +7,10 @@ import net.pearx.purmag.client.guis.DrawingTools;
 import net.pearx.purmag.client.guis.drawables.ItemDrawable;
 import net.pearx.purmag.common.infofield.steps.IRSPapyrus;
 import net.pearx.purmag.common.items.ItemRegistry;
+import org.lwjgl.util.Rectangle;
 
 import java.awt.*;
+
 
 /**
  * Created by mrAppleXZ on 01.06.17 19:42.

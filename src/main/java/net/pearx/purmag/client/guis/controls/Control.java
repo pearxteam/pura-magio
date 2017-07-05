@@ -198,7 +198,7 @@ public class Control
             cont.invokeRender();
         }
         GlStateManager.pushMatrix();
-        GlStateManager.translate(0, 0, 300);
+        GlStateManager.translate(0, 0, 700);
         if(isVisible())
             postRender();
         GlStateManager.popMatrix();

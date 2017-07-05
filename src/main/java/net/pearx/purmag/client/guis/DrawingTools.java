@@ -3,10 +3,10 @@ package net.pearx.purmag.client.guis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.fml.relauncher.Side;
@@ -93,7 +93,7 @@ public class DrawingTools
     public static void drawHoveringText(String str, int x, int y, Color c, boolean shadow, float scale, FontRenderer rend)
     {
         GlStateManager.pushMatrix();
-        GlStateManager.translate(10, 0, 500);
+        GlStateManager.translate(10, 0, 1);
         drawString(str, x, y, c, shadow, scale, rend);
         GlStateManager.popMatrix();
     }
@@ -149,13 +149,14 @@ public class DrawingTools
 
     public static int drawStencil(int w, int h)
     {
+        //todo REWRITE STENCILING
         int bit = MinecraftForgeClient.reserveStencilBit();
         int flag = 1 << bit;
 
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL11.GL_STENCIL_TEST);
         GL11.glStencilFunc(GL11.GL_ALWAYS, flag, flag);
-        GL11.glStencilOp(GL11.GL_ZERO, GL11.GL_ZERO, GL11.GL_REPLACE);
+        GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE);
         GL11.glStencilMask(flag);
         GL11.glColorMask(false, false, false, false);
         GL11.glDepthMask(false);
@@ -174,5 +175,31 @@ public class DrawingTools
     {
         GL11.glDisable(GL11.GL_STENCIL_TEST);
         MinecraftForgeClient.releaseStencilBit(bit);
+    }
+
+    public static void drawEntity(Entity ent, float x, float y, float scale, float rotX, float rotY, float rotZ)
+    {
+        GlStateManager.enableColorMaterial();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(x, y, 50);
+        GlStateManager.scale(-scale, scale, scale);
+        GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
+        GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.rotate(-135.0F, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(rotX, 1, 0, 0);
+        GlStateManager.rotate(rotY, 0, 1, 0);
+        GlStateManager.rotate(rotZ, 0, 0, 1);
+        RenderManager rendermanager = Minecraft.getMinecraft().getRenderManager();
+        rendermanager.setPlayerViewY(180.0F);
+        rendermanager.setRenderShadow(false);
+        rendermanager.doRenderEntity(ent, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
+        rendermanager.setRenderShadow(true);
+        GlStateManager.popMatrix();
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+        GlStateManager.disableTexture2D();
+        GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
     }
 }

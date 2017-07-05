@@ -70,7 +70,7 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
                     maxY = loc.getY();
                 GuiIfTabletSEEntry entrC = new GuiIfTabletSEEntry(entr);
                 entrC.setX(loc.getX() * entrSize + ((getTabletScreen().getWidth() - entrSize) / 2));
-                entrC.setY(loc.getY() * entrSize + ((getTabletScreen().getHeight() - entrSize) / 2));
+                entrC.setY(-loc.getY() * entrSize + ((getTabletScreen().getHeight() - entrSize) / 2));
                 controls.add(entrC);
             }
         }
