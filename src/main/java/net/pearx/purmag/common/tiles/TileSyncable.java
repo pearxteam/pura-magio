@@ -32,6 +32,7 @@ public class TileSyncable extends TileEntity
     @Override
     public SPacketUpdateTileEntity getUpdatePacket()
     {
-        return new SPacketUpdateTileEntity(getPos(), 1, writeToNBT(new NBTTagCompound()));
+        return new SPacketUpdateTileEntity(getPos(), 1, getUpdateTag());
+
     }
 }

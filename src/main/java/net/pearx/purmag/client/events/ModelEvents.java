@@ -12,6 +12,7 @@ import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.models.IModelBase;
 import net.pearx.purmag.client.models.StandardModels;
 import net.pearx.purmag.common.Utils;
+import net.pearx.purmag.common.infofield.IfTier;
 
 /**
  * Created by mrAppleXZ on 09.04.17 15:36.
@@ -28,6 +29,7 @@ public class ModelEvents
         putModel(e, new StandardModels.Glove(), Utils.getRegistryName("glove"));
         putModel(e, new StandardModels.TranslationDesk(), Utils.getRegistryName("translation_desk"));
         putModel(e, new StandardModels.CrystalSmall(), Utils.getRegistryName("crystal_small"));
+        putModel(e, new StandardModels.WallIfTablet(), Utils.getRegistryName("wall_if_tablet"));
     }
 
     private static void putModel(ModelBakeEvent e, IModelBase model, ResourceLocation loc)
@@ -53,5 +55,7 @@ public class ModelEvents
         e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk/container"));
         e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk/crystal"));
         e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk/panel"));
+        for(IfTier t : PurMag.INSTANCE.if_registry.tiers)
+            e.getMap().registerSprite(Utils.getRegistryName("models/wall_if_tablet." + t.getTier()));
     }
 }

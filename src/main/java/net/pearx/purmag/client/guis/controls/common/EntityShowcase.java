@@ -42,7 +42,6 @@ public class EntityShowcase extends Control
             {
                 e.printStackTrace();
             }
-        int bit = DrawingTools.drawStencil(getWidth(), getHeight());
         //draw two 16x16 icons
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();
@@ -57,7 +56,6 @@ public class EntityShowcase extends Control
         GlStateManager.translate(0, scale / 5, 150);
         DrawingTools.drawEntity(entity, getWidth() / 2, getHeight() / 2, scale, rotX, rotY, 0);
         GlStateManager.popMatrix();
-        DrawingTools.removeStencil(bit);
 
         if(act1 && new Rectangle(0, 0, 12, 12).contains(prevMouseX, prevMouseY))
             getGuiScreen().drawHovering(I18n.format("hovering.rotatable.text"), prevMouseX, prevMouseY);

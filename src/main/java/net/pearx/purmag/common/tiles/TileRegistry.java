@@ -11,5 +11,7 @@ public class TileRegistry
     public static void register()
     {
         GameRegistry.registerTileEntity(TileTranslationDesk.class, Utils.getRegistryName("translation_desk").toString());
+        GameRegistry.registerTileEntity(TileSingleSip.class, Utils.getRegistryName("single_sip").toString());
+        GameRegistry.registerTileEntity(TileWallIfTablet.class, Utils.getRegistryName("wall_if_tablet").toString());
     }
 }

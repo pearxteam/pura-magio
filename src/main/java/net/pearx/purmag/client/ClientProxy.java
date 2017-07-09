@@ -15,11 +15,14 @@ import net.pearx.purmag.common.CommonProxy;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.guis.PmGui;
 import net.pearx.purmag.client.guis.if_tablet.GuiIfTablet;
+import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.blocks.BlockCrystalSmall;
 import net.pearx.purmag.common.blocks.BlockSingleSip;
 import net.pearx.purmag.common.entities.EntityRegistry;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.blocks.BlockRegistry;
+import net.pearx.purmag.common.sip.SipUtils;
+import net.pearx.purmag.common.tiles.TileSingleSip;
 
 /**
  * Created by mrAppleXZ on 08.04.17 21:06.
@@ -56,13 +59,13 @@ public class ClientProxy extends CommonProxy
     public static void registerSipItemColor(Item itm)
     {
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
-                PurMag.INSTANCE.sip.getType(stack.getMetadata()).getColor(), itm);
+                PurMag.INSTANCE.sip.getType(SipUtils.getSipInStack(stack)).getColor(), itm);
     }
 
     public static void registerSipBlockColor(Block bl)
     {
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, w, pos, tintIndex) ->
-                PurMag.INSTANCE.sip.getType(state.getValue(BlockSingleSip.SIPTYPE)).getColor(), bl);
+                PurMag.INSTANCE.sip.getType(SipUtils.getSipInBlock(w, pos)).getColor(), bl);
     }
 
     @Override

@@ -10,6 +10,7 @@ import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.GlobalChunkPos;
 import net.pearx.purmag.common.blocks.BlockRegistry;
 import net.pearx.purmag.common.blocks.BlockSingleSip;
+import net.pearx.purmag.common.tiles.TileSingleSip;
 
 import java.util.Random;
 
@@ -80,7 +81,11 @@ public class WGCrystals implements IWorldGenerator
                 for (int i = 0; i < sif; i++)
                 {
                     BlockPos pos = new BlockPos(x, y + i, z);
-                    world.setBlockState(pos, BlockRegistry.crystal.getDefaultState().withProperty(BlockSingleSip.SIPTYPE, entr.getSip()), 2);
+                    System.out.println("crystal " + entr.getSip() + " " + pos);
+                    world.setBlockState(pos, BlockRegistry.crystal.getDefaultState(), 2);
+                    TileSingleSip tss = new TileSingleSip();
+                    tss.setType(entr.getSip());
+                    world.setTileEntity(pos, tss);
                 }
             }
         }

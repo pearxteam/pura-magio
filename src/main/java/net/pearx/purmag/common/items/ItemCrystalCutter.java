@@ -10,13 +10,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
-import net.pearx.purmag.PurMag;
-import net.pearx.purmag.client.PurMagClient;
-import net.pearx.purmag.common.GlobalChunkPos;
+import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.blocks.BlockRegistry;
-import net.pearx.purmag.common.blocks.BlockSingleSip;
+import net.pearx.purmag.common.sip.SipUtils;
+import net.pearx.purmag.common.tiles.TileSingleSip;
 
 /**
  * Created by mrAppleXZ on 11.04.17 10:22.
@@ -38,7 +36,7 @@ public class ItemCrystalCutter extends ItemBase
             world.playSound(playerIn, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1, 1);
             if (!world.isRemote)
             {
-                ItemStack is = ItemUtils.getItemWithSip(state.getValue(BlockSingleSip.SIPTYPE), ItemRegistry.crystal);
+                ItemStack is = SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), SipUtils.getSipInBlock(world, pos));
                 world.setBlockToAir(pos);
                 EntityItem ei = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ());
                 ei.setItem(is);

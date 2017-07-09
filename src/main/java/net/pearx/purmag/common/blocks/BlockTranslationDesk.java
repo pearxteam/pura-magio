@@ -1,6 +1,7 @@
 package net.pearx.purmag.common.blocks;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,7 +10,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -27,8 +31,6 @@ import javax.annotation.Nullable;
  */
 public class BlockTranslationDesk extends BlockBase
 {
-    public FacingController facing = new FacingController();
-
     public BlockTranslationDesk()
     {
         super(Material.WOOD);
@@ -80,25 +82,25 @@ public class BlockTranslationDesk extends BlockBase
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, FacingController.FACING);
+        return new BlockStateContainer(this, FacingController.FACING_H);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return facing.getStateFromMeta(getDefaultState(), meta);
+        return FacingController.getStateFromMetaHorizontal(getDefaultState(), meta);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return facing.getMetaFromState(state);
+        return FacingController.getMetaFromStateHorizontal(state);
     }
 
     @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.facing.getStateForPlacement(getDefaultState(), placer);
+        return FacingController.getStateForPlacementHorizontal(getDefaultState(), placer);
     }
 
     @Override
@@ -114,6 +116,12 @@ public class BlockTranslationDesk extends BlockBase
     }
 
     @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
+    {
+        return BlockFaceShape.UNDEFINED;
+    }
+
+    @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
         if(!worldIn.isRemote)
@@ -124,5 +132,17 @@ public class BlockTranslationDesk extends BlockBase
                 ItemStackUtils.drop(((TileTranslationDesk)te).handler, worldIn, pos);
             }
         }
+    }
+
+    @Override
+    public IBlockState withMirror(IBlockState state, Mirror mirror)
+    {
+        return FacingController.withMirrorHorizontal(state, mirror);
+    }
+
+    @Override
+    public IBlockState withRotation(IBlockState state, Rotation rot)
+    {
+        return FacingController.withRotationHoizontal(state, rot);
     }
 }

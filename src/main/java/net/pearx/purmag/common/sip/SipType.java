@@ -10,14 +10,12 @@ public class SipType
 {
     private String name;
     private int color;
-    private int id;
     private TextFormatting formatting;
 
-    public SipType(String name, int color, TextFormatting formatting, int id)
+    public SipType(String name, int color, TextFormatting formatting)
     {
         setColor(color);
         setName(name);
-        setId(id);
         setFormatting(formatting);
     }
 
@@ -44,16 +42,6 @@ public class SipType
     public String getDisplayName()
     {
         return I18n.translateToLocalFormatted("sip." + name + ".name");
-    }
-
-    public int getId()
-    {
-        return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
     }
 
     public TextFormatting getFormatting()

@@ -10,8 +10,6 @@ import java.util.List;
  */
 public class SipTypeRegistry
 {
-    public static final String DEFAULT = "rock";
-
     public List<SipType> types = new ArrayList<>();
     public List<String> allowedValues = new ArrayList<>();
 
@@ -29,20 +27,12 @@ public class SipTypeRegistry
         return null;
     }
 
-    public SipType getType(int id)
-    {
-        for(SipType type : types)
-            if(type.getId() == id)
-                return type;
-        return null;
-    }
-
     public void register()
     {
-        register(new SipType("rock", 0x9e9e9e, TextFormatting.GRAY, 0));
-        register(new SipType("sea", 0x42A5F5, TextFormatting.BLUE, 1));
-        register(new SipType("flame", 0xFB8C00, TextFormatting.GOLD, 2));
-        register(new SipType("air", 0xFFE57F, TextFormatting.YELLOW, 3));
-        register(new SipType("information", 0x68C397, TextFormatting.GREEN, 4));
+        register(new SipType("rock", 0x9e9e9e, TextFormatting.GRAY));
+        register(new SipType("sea", 0x42A5F5, TextFormatting.BLUE));
+        register(new SipType("flame", 0xFB8C00, TextFormatting.GOLD));
+        register(new SipType("air", 0xFFE57F, TextFormatting.YELLOW));
+        register(new SipType("information", 0x68C397, TextFormatting.GREEN));
     }
 }

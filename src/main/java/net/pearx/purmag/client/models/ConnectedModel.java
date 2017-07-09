@@ -20,11 +20,11 @@ import java.util.List;
  * Created by mrAppleXZ on 14.05.17 22:10.
  */
 @SideOnly(Side.CLIENT)
-public class CTMModelBase extends OvModelBase
+public class ConnectedModel extends OvModelBase
 {
     private ResourceLocation baseTexture;
 
-    public CTMModelBase()
+    public ConnectedModel()
     {
         super(false);
         setBaseModel(new ResourceLocation(PurMag.MODID, "block/cube_all_colored"));

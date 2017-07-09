@@ -22,6 +22,7 @@ public class BlockRegistry
     public static final BlockOre ore_crysagnetite = null;
     public static final BlockTranslationDesk translation_desk = null;
     public static final BlockCrystalSmall crystal_small = null;
+    public static final BlockWallIfTablet wall_if_tablet = null;
 
     @SubscribeEvent
     public static void onRegisterBlocks(RegistryEvent.Register<Block> e)
@@ -32,6 +33,7 @@ public class BlockRegistry
         register(new BlockOre(Utils.getRegistryName("ore_crysagnetite"), 3f, 0.1f, 2), reg);
         register(new BlockTranslationDesk(), reg);
         register(new BlockCrystalSmall(), reg);
+        register(new BlockWallIfTablet(), reg);
     }
 
     public static void register(Block b, IForgeRegistry<Block> reg)

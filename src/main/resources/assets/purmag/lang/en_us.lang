@@ -5,6 +5,9 @@ tile.ore_crysagnetite.name=Crysagnetite Ore
 tile.crystal_small.glowstone.name=Crystallized Glowstone
 tile.crystal_small.redstone.name=Crystallized Redstone
 tile.translation_desk.name=Translation Desk
+tile.wall_if_tablet.0.name=Wall Wooden Tablet
+tile.wall_if_tablet.1.name=Wall Information Field Tablet
+tile.wall_if_tablet.2.name=Wall Golden Information Field Tablet
 item.crystal_shard.name=%s Shard
 item.crystal_cutter.name=Crystal Cutter
 item.ingot_crysagnetite.name=Crysagnetite Ingot
@@ -20,6 +23,7 @@ item.ingot_plumfero.name=Plumfero Ingot
 item.verda_wing.name=Verda Wing
 item.beetle_meat.name=Beetle Meat
 item.beetle_meat.baked.name=Baked Beetle Meat
+
 
 #Sip Types
 sip.sea.name=Mara

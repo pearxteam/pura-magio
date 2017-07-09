@@ -35,6 +35,7 @@ public class ItemRegistry
     public static final Item ingot_plumfero = null;
     public static final Item verda_wing = null;
     public static final Item beetle_meat = null;
+    public static final ItemBlockWallIfTablet wall_if_tablet = null;
 
     public static void register(Item itm, IForgeRegistry<Item> reg)
     {
@@ -75,5 +76,6 @@ public class ItemRegistry
         register(new ItemBase().setRegistryName("ingot_plumfero"), reg);
         register(new ItemBase().setRegistryName("verda_wing"), reg);
         register(new ItemFoodBakeable(3, 0.125f, false, 8, 0.55f).setRegistryName("beetle_meat"), reg);
+        register(new ItemBlockWallIfTablet(), reg);
     }
 }

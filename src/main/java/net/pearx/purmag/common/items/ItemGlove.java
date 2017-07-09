@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.common.CapabilityRegistry;
 import net.pearx.purmag.common.SoundRegistry;
+import net.pearx.purmag.common.sip.SipUtils;
 
 /**
  * Created by mrAppleXZ on 22.05.17 18:55.
@@ -38,7 +39,7 @@ public class ItemGlove extends ItemBase
                 if (ItemSipAmulet.checkForAmulet(playerIn))
                 {
                     ItemStack amulet = ItemUtils.getBauble(playerIn, BaubleType.AMULET.getValidSlots()[0]);
-                    amulet.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).add(PurMag.INSTANCE.sip.getType(shard.getMetadata()).getName(), shrink);
+                    amulet.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).add(SipUtils.getSipInStack(shard), shrink);
                     ItemUtils.setBauble(playerIn, BaubleType.AMULET.getValidSlots()[0], amulet);
                 }
                 playerIn.getHeldItem(EnumHand.MAIN_HAND).shrink(shrink);

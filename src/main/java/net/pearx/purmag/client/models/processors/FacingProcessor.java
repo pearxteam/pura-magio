@@ -1,4 +1,4 @@
-package net.pearx.purmag.client.models;
+package net.pearx.purmag.client.models.processors;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -8,34 +8,31 @@ import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.pipeline.LightUtil;
 import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.TRSRTransformation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.common.blocks.controllers.FacingController;
 import org.lwjgl.util.vector.Vector3f;
 
 import javax.annotation.Nullable;
 import javax.vecmath.Matrix4f;
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mrAppleXZ on 04.06.17 11:31.
+/*
+ * Created by mrAppleXZ on 07.07.17 9:07.
  */
-public class FacingModel extends OvModelBase
+@SideOnly(Side.CLIENT)
+public class FacingProcessor implements IQuadProcessor
 {
-    public FacingModel(boolean flipV)
-    {
-        super(flipV);
-    }
-
     @Override
-    public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand)
+    public void process(List<BakedQuad> quads, @Nullable IBlockState state, @Nullable EnumFacing side, long rand)
     {
         if (state != null)
         {
-            EnumFacing face = state.getValue(FacingController.FACING);
+            EnumFacing face = state.getValue(FacingController.FACING_H);
             Matrix4f trans = TRSRTransformation.getMatrix(face);
-            List<BakedQuad> quads = new ArrayList<>();
-            for (BakedQuad q : getBaked().getQuads(state, side, rand))
+            for (int iq = 0; iq < quads.size(); iq++)
             {
+                BakedQuad q = quads.get(iq);
                 UnpackedBakedQuad.Builder bld = new UnpackedBakedQuad.Builder(q.getFormat());
                 bld.setQuadTint(1);
                 bld.setQuadOrientation(q.getFace());
@@ -58,10 +55,8 @@ public class FacingModel extends OvModelBase
                         bld.put(e, lst);
                     }
                 }
-                quads.add(bld.build());
+                quads.set(iq, bld.build());
             }
-            return quads;
         }
-        return super.getQuads(state, side, rand);
     }
 }

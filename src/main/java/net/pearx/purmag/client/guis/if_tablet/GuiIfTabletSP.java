@@ -56,7 +56,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
     public void mouseMove(int x, int y, int dx, int dy)
     {
         if(Mouse.isButtonDown(0))
-            if(dx > 2 || dx < -2)
+            if(dx > 10 || dx < -10)
                 update(dx < 0, true);
     }
 

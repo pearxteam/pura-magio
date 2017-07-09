@@ -1,59 +1,66 @@
 package net.pearx.purmag.common.blocks;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.World;
 import net.pearx.purmag.PurMag;
-import net.pearx.purmag.common.blocks.properties.PropertySipType;
+import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.sip.SipType;
-import net.pearx.purmag.common.sip.SipTypeRegistry;
+import net.pearx.purmag.common.sip.SipUtils;
+import net.pearx.purmag.common.tiles.TileSingleSip;
+
+import javax.annotation.Nullable;
 
 /**
  * Created by mrAppleXZ on 12.05.17 22:00.
  */
 public class BlockSingleSip extends BlockBase
 {
-    public static final PropertySipType SIPTYPE = PropertySipType.create();
-
     public BlockSingleSip(Material materialIn)
     {
         super(materialIn);
-        setDefaultState(getBlockState().getBaseState().withProperty(SIPTYPE, SipTypeRegistry.DEFAULT));
     }
 
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return PurMag.INSTANCE.sip.getType(state.getValue(SIPTYPE)).getId();
-    }
 
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(SipType t : PurMag.INSTANCE.sip.types)
         {
-            list.add(new ItemStack(this, 1, t.getId()));
+            list.add(SipUtils.getStackWithSip(new ItemStack(this), t.getName()));
         }
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta)
+    public boolean hasTileEntity(IBlockState state)
     {
-        return getDefaultState().withProperty(SIPTYPE, PurMag.INSTANCE.sip.getType(meta).getName());
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state)
+    {
+        return new TileSingleSip();
     }
 
     @Override
-    public int getMetaFromState(IBlockState state)
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        return PurMag.INSTANCE.sip.getType(state.getValue(SIPTYPE)).getId();
+        SipUtils.setSipInBlock(worldIn, pos, SipUtils.getSipInStack(stack));
     }
 
     @Override
-    protected BlockStateContainer createBlockState()
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new BlockStateContainer(this, SIPTYPE);
+        return SipUtils.getStackWithSip(new ItemStack(this), SipUtils.getSipInBlock(world, pos));
     }
 }

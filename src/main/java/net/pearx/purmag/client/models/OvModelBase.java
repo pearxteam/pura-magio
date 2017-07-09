@@ -9,16 +9,18 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.IModelCustomData;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pearx.purmag.client.models.processors.IQuadProcessor;
 
 import javax.annotation.Nullable;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,12 +31,15 @@ import java.util.List;
 public class OvModelBase implements IModelBase
 {
     public boolean flipV;
+    public List<IQuadProcessor> processors = new ArrayList<>();
+    private ResourceLocation baseModel;
+    private IBakedModel baked;
+    private WeakReference<ItemStack> stack;
 
     public OvModelBase(boolean flipV)
     {
         this.flipV = flipV;
     }
-    private ResourceLocation baseModel;
 
     public void setBaseModel(ResourceLocation loc)
     {
@@ -45,8 +50,6 @@ public class OvModelBase implements IModelBase
     {
         return baseModel;
     }
-
-    private IBakedModel baked;
 
     protected IBakedModel getBaked()
     {
@@ -65,9 +68,9 @@ public class OvModelBase implements IModelBase
         try
         {
             mdl = ModelLoaderRegistry.getModel(getBaseModel());
-            if(mdl instanceof IModelCustomData && flipV)
+            if(mdl instanceof IModel && flipV)
             {
-                mdl = ((IModelCustomData) mdl).process(ImmutableMap.of("flip-v", "true"));
+                mdl = mdl.process(ImmutableMap.of("flip-v", "true"));
             }
         } catch (Exception e)
         {
@@ -75,6 +78,20 @@ public class OvModelBase implements IModelBase
         }
         baked = mdl.bake(TRSRTransformation.identity(), DefaultVertexFormats.ITEM,
                 location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString()));
+    }
+
+    @Override
+    public void setStack(ItemStack stack)
+    {
+        this.stack = new WeakReference<>(stack);
+    }
+
+    @Override
+    public ItemStack getStack()
+    {
+        if(stack != null)
+            return stack.get();
+        return null;
     }
 
     @Override
@@ -109,6 +126,8 @@ public class OvModelBase implements IModelBase
         }*/
         for (BakedQuad quad : getBaked().getQuads(state, side, rand))
             l.add(new BakedQuad(quad.getVertexData(), 1, quad.getFace(), quad.getSprite(), quad.shouldApplyDiffuseLighting(), quad.getFormat()));
+        for(IQuadProcessor proc : processors)
+            proc.process(l, state, side, rand);
         return l;
     }
 

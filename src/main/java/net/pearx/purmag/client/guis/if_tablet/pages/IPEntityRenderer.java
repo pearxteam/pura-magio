@@ -21,7 +21,14 @@ public class IPEntityRenderer extends IPRenderer<IfPageEntity>
     @Override
     public void render()
     {
+        //TODO MAKE STENCILING
         DrawingTools.drawString(page.getName(), (getWidth() - DrawingTools.measureString(page.getName())) / 2, 0, Color.WHITE);
+    }
+
+    @Override
+    public void postRender()
+    {
+
     }
 
     @Override

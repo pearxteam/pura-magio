@@ -3,6 +3,7 @@ package net.pearx.purmag.common.networking.packets;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -43,7 +44,7 @@ public class CPacketSpawnSipParticle implements IMessage
         posTo = ByteBufTools.readVector3d(buf);
         speed = buf.readFloat();
         dim = buf.readInt();
-        sipType = PurMag.INSTANCE.sip.getType(buf.readInt()).getName();
+        sipType = ByteBufUtils.readUTF8String(buf);
         amount = buf.readInt();
     }
 
@@ -54,7 +55,7 @@ public class CPacketSpawnSipParticle implements IMessage
         ByteBufTools.writeVector3d(buf, posTo);
         buf.writeFloat(speed);
         buf.writeInt(dim);
-        buf.writeInt(PurMag.INSTANCE.sip.getType(sipType).getId());
+        ByteBufUtils.writeUTF8String(buf, sipType);
         buf.writeInt(amount);
     }
 

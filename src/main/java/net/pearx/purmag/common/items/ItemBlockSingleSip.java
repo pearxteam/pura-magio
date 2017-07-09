@@ -7,13 +7,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.ClientUtils;
-import net.pearx.purmag.client.models.IModelProvider;
-import net.pearx.purmag.common.sip.SipType;
+import net.pearx.purmag.common.sip.SipUtils;
 
 /**
  * Created by mrAppleXZ on 14.05.17 18:51.
  */
-public class ItemBlockSingleSip extends ItemBlockBase implements IModelProvider
+public class ItemBlockSingleSip extends ItemBlockBase
 {
     public ItemBlockSingleSip(Block block)
     {
@@ -24,14 +23,13 @@ public class ItemBlockSingleSip extends ItemBlockBase implements IModelProvider
     @Override
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.INSTANCE.sip.getType(stack.getMetadata()).getDisplayName());
+        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.INSTANCE.sip.getType(SipUtils.getSipInStack(stack)).getDisplayName());
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void setupModels()
     {
-        for(SipType t : PurMag.INSTANCE.sip.types)
-            ClientUtils.setModelLocation(this, t.getId(), "");
+        ClientUtils.setModelLocation(this);
     }
 }

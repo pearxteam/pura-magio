@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -30,9 +31,9 @@ public class CapabilityEvents
     }
 
     @SubscribeEvent
-    public static void onItemCaps(AttachCapabilitiesEvent<Item> e)
+    public static void onItemCaps(AttachCapabilitiesEvent<ItemStack> e)
     {
-        if(e.getObject() instanceof ItemSipAmulet)
+        if(e.getObject().getItem() instanceof ItemSipAmulet)
             e.addCapability(CapabilityRegistry.SIP_STORE_NAME, new SipStoreProvider(new SipStoreAll()));
     }
 

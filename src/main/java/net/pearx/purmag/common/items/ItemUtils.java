@@ -12,12 +12,6 @@ import net.pearx.purmag.PurMag;
  */
 public class ItemUtils
 {
-
-    public static ItemStack getItemWithSip(String sip, Item itm)
-    {
-        return new ItemStack(itm, 1, PurMag.INSTANCE.sip.getType(sip).getId());
-    }
-
     public static ItemStack getBauble(EntityPlayer p, int slot)
     {
         return p.getCapability(BaublesCapabilities.CAPABILITY_BAUBLES, null).getStackInSlot(slot);

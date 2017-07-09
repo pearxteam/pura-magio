@@ -13,7 +13,7 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class GuiIfTabletS extends Control
 {
-    public int bit = 0;
+    protected int bit = 0;
 
     public GuiIfTabletS()
     {
@@ -23,13 +23,23 @@ public class GuiIfTabletS extends Control
     @Override
     public void render()
     {
+        enableStencil();
+    }
+
+    public void enableStencil()
+    {
         bit = DrawingTools.drawStencil(getWidth(), getHeight());
+    }
+
+    public void disableStencil()
+    {
+        DrawingTools.removeStencil(bit);
     }
 
     @Override
     public void postRender()
     {
-        DrawingTools.removeStencil(bit);
+        disableStencil();
     }
 
     public GuiIfTablet getTablet()

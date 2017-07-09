@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -15,6 +16,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.blocks.controllers.CTMController;
+import net.pearx.purmag.common.sip.SipUtils;
+import net.pearx.purmag.common.tiles.TileSingleSip;
 
 /**
  * Created by mrAppleXZ on 14.05.17 18:30.
@@ -58,15 +61,9 @@ public class BlockCrystalGlass extends BlockSingleSip
     }
 
     @Override
-    public boolean hasCustomBreakingProgress(IBlockState state)
-    {
-        return true;
-    }
-
-    @Override
     protected BlockStateContainer createBlockState()
     {
-        return new ExtendedBlockState(this, new IProperty[] {SIPTYPE}, CTMController.PROPS.values().toArray(new IUnlistedProperty[0]));
+        return new ExtendedBlockState(this, new IProperty[] {}, CTMController.PROPS.values().toArray(new IUnlistedProperty[0]));
     }
 
     @Override
@@ -79,10 +76,9 @@ public class BlockCrystalGlass extends BlockSingleSip
     {
         IBlockState off = blockAccess.getBlockState(pos.offset(side));
         if(off.getBlock() == state.getBlock())
-            if(off.getValue(SIPTYPE).equals(state.getValue(SIPTYPE)))
-            {
-                return true;
-            }
+        {
+            return SipUtils.getSipInBlock(blockAccess, pos.offset(side)).equals(SipUtils.getSipInBlock(blockAccess, pos));
+        }
         return false;
     }
 }

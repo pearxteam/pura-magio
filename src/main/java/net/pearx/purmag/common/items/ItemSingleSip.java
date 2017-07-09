@@ -9,6 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pearx.purmag.PurMag;
 import net.pearx.purmag.client.ClientUtils;
 import net.pearx.purmag.common.sip.SipType;
+import net.pearx.purmag.common.sip.SipUtils;
 
 /**
  * Created by mrAppleXZ on 24.06.17 11:35.
@@ -23,7 +24,7 @@ public class ItemSingleSip extends ItemBase
         {
             for (SipType t : PurMag.INSTANCE.sip.types)
             {
-                items.add(new ItemStack(this, 1, t.getId()));
+                items.add(SipUtils.getStackWithSip(new ItemStack(this), t.getName()));
             }
         }
     }
@@ -31,14 +32,13 @@ public class ItemSingleSip extends ItemBase
     @Override
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.INSTANCE.sip.getType(stack.getMetadata()).getDisplayName());
+        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.INSTANCE.sip.getType(SipUtils.getSipInStack(stack)).getDisplayName());
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void setupModels()
     {
-        for(SipType t : PurMag.INSTANCE.sip.types)
-            ClientUtils.setModelLocation(this, t.getId(), "");
+        ClientUtils.setModelLocation(this);
     }
 }
