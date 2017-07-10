@@ -17,7 +17,13 @@ public class ItemBlockWallIfTablet extends ItemBlockBase
 {
     public ItemBlockWallIfTablet()
     {
-        super(BlockRegistry.wall_if_tablet);
+        this(BlockRegistry.wall_if_tablet);
+    }
+
+    public ItemBlockWallIfTablet(Block block)
+    {
+        super(block);
+        setHasSubtypes(true);
     }
 
     @Override

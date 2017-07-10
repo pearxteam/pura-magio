@@ -3,8 +3,10 @@ package net.pearx.purmag.common.blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
@@ -15,6 +17,7 @@ import net.pearx.purmag.common.Utils;
 import net.pearx.purmag.common.items.ItemRegistry;
 import net.pearx.purmag.common.sip.SipUtils;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 /**
@@ -54,6 +57,19 @@ public class BlockCrystal extends BlockSingleSip
     public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
     {
         return BlockFaceShape.UNDEFINED;
+    }
+
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
+    {
+        return willHarvest || super.removedByPlayer(state, world, pos, player, willHarvest);
+    }
+
+    @Override
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, @Nullable ItemStack stack)
+    {
+        super.harvestBlock(world, player, pos, state, te, stack);
+        world.setBlockToAir(pos);
     }
 
     @Override

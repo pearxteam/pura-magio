@@ -29,7 +29,9 @@ public class ModelEvents
         putModel(e, new StandardModels.Glove(), Utils.getRegistryName("glove"));
         putModel(e, new StandardModels.TranslationDesk(), Utils.getRegistryName("translation_desk"));
         putModel(e, new StandardModels.CrystalSmall(), Utils.getRegistryName("crystal_small"));
-        putModel(e, new StandardModels.WallIfTablet(), Utils.getRegistryName("wall_if_tablet"));
+        StandardModels.WallIfTablet wit = new StandardModels.WallIfTablet();
+        putModel(e, wit, Utils.getRegistryName("wall_if_tablet"));
+        putModel(e, wit, Utils.getRegistryName("broken_wall_if_tablet"));
     }
 
     private static void putModel(ModelBakeEvent e, IModelBase model, ResourceLocation loc)

@@ -1,6 +1,7 @@
 package net.pearx.purmag.common.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockWall;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -23,6 +24,7 @@ public class BlockRegistry
     public static final BlockTranslationDesk translation_desk = null;
     public static final BlockCrystalSmall crystal_small = null;
     public static final BlockWallIfTablet wall_if_tablet = null;
+    public static final BlockBrokenWallIfTablet broken_wall_if_tablet = null;
 
     @SubscribeEvent
     public static void onRegisterBlocks(RegistryEvent.Register<Block> e)
@@ -34,6 +36,7 @@ public class BlockRegistry
         register(new BlockTranslationDesk(), reg);
         register(new BlockCrystalSmall(), reg);
         register(new BlockWallIfTablet(), reg);
+        register(new BlockBrokenWallIfTablet(), reg);
     }
 
     public static void register(Block b, IForgeRegistry<Block> reg)

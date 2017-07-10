@@ -1,5 +1,6 @@
 package net.pearx.purmag.common.blocks;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -37,6 +38,7 @@ public class BlockTranslationDesk extends BlockBase
         setRegistryName(Utils.getRegistryName("translation_desk"));
         setHarvestLevel("axe", 0);
         setHardness(1.7f);
+        setSoundType(SoundType.WOOD);
         setUnlocalizedName("translation_desk");
     }
 
