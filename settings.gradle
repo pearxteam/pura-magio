@@ -1,2 +1,1 @@
 include ":PearXLibMC"
-project(":PearXLibMC").projectDir = new File("../PearXLibMC")
