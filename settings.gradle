@@ -1,1 +1,2 @@
-include ":PearXLibMC"
+include "PearXLibMC"
+include "PearXLibMC:PearXLib2"
