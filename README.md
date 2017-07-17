@@ -12,6 +12,7 @@ Windows: `gradlew.bat setupDecompWorkspace`
 6. Wait some time until all background tasks finished.
 7. Create two run configurations of type "Application". In both configurations, select "PurificatiMagicae" in "Use classpath of module:" and type at the end of "Working directory:" "\run" on Windows and "/run" on *nix. In first configuration, use "GradleStart" as main class. It's a client configuration. In second configuration, use "GradleStartServer" as main class. It's a server configuration.
 8. That's all.
+
 ## Building the project
 1. Clone the repository using SSH or HTTPS.
 HTTPS: `git clone --recursive https://git.pearx.ru/PearXTeam/PurificatiMagicae.git`
