@@ -25,6 +25,7 @@ public class NetworkManager
         INSTANCE.registerMessage(SPacketUseSipAmulet.Handler.class, SPacketUseSipAmulet.class, id++, Side.SERVER);
         INSTANCE.registerMessage(CPacketSpawnSipParticle.Handler.class, CPacketSpawnSipParticle.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(SPacketDoneTranslation.Handler.class, SPacketDoneTranslation.class, id++, Side.SERVER);
+        INSTANCE.registerMessage(CPacketSpawnParticle.Handler.class, CPacketSpawnParticle.class, id++, Side.CLIENT);
     }
 
     public static void sendTo(IMessage msg, EntityPlayerMP p)
@@ -34,8 +35,9 @@ public class NetworkManager
 
     public static void sendToAllAround(IMessage msg, int x, int y, int z, int dim, int radius)
     {
-        INSTANCE.sendToAllAround(msg, new NetworkRegistry.TargetPoint(dim, x, y, z, radius));
+        INSTANCE.sendToAllAround(msg, new NetworkRegistry.TargetPoint(dim, x + .5, y + .5, z + .5, radius));
     }
+
 
     public static void sendToServer(IMessage msg)
     {
