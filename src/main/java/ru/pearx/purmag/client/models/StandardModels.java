@@ -1,5 +1,6 @@
 package ru.pearx.purmag.client.models;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -7,17 +8,17 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.models.BakedQuadWNT;
-import ru.pearx.libmc.client.models.ConnectedModel;
-import ru.pearx.libmc.client.models.ModelUtils;
-import ru.pearx.libmc.client.models.OvModel;
+import ru.pearx.libmc.client.models.*;
 import ru.pearx.libmc.client.models.processors.FacingProcessor;
+import ru.pearx.libmc.client.models.processors.IQuadProcessor;
+import ru.pearx.libmc.client.models.processors.TintProcessor;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.AbstractWallIfTablet;
@@ -29,6 +30,7 @@ import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
 import java.lang.ref.WeakReference;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by mrAppleXZ on 17.05.17 8:04.
@@ -41,12 +43,14 @@ public class StandardModels
         public Crystal()
         {
             setBaseModel(new ResourceLocation(PurMag.MODID, "block/crystal.obj"));
+            quadProcessors.add(new TintProcessor(0));
         }
 
+        private Matrix4f mat = new TRSRTransformation(new Vector3f(0, -0.25f, 0), null, new Vector3f(0.45f, 0.45f, 0.45f), new Quat4f(0, -0.20944f, 0, 1)).getMatrix();
         @Override
         public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
         {
-            return Pair.of(this, new TRSRTransformation(new Vector3f(0, -0.25f, 0), null, new Vector3f(0.45f, 0.45f, 0.45f), new Quat4f(0, -0.20944f, 0, 1)).getMatrix());
+            return Pair.of(this, mat);
         }
     }
 
@@ -55,6 +59,7 @@ public class StandardModels
         public CrystalGlass()
         {
             setBaseTexture(new ResourceLocation(PurMag.MODID, "blocks/crystal_glass"));
+            quadProcessors.add(new TintProcessor(0));
         }
     }
 
@@ -65,21 +70,20 @@ public class StandardModels
             setBaseModel(Utils.getRegistryName("item/glove.obj"));
         }
 
-
-        float xr, yr, zr;
-
+        private Matrix4f mat_fp = new TRSRTransformation(new Vector3f(0f, 0.2f, -0.1f), new Quat4f(0, 0, 45, 1), null, new Quat4f(0, 0, 180, 1)).getMatrix();
+        private Matrix4f mat_gui = new TRSRTransformation(new Vector3f(0.15f, 0.15f, 0), null, new Vector3f(1.2f, 1.2f, 1.2f), new Quat4f(-1.64061f, -4.50295f, 0, 1)).getMatrix();
         @Override
         public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
         {
             if(cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND)
             {
-                return Pair.of(this, new TRSRTransformation(new Vector3f(0f, 0.2f, -0.1f), new Quat4f(0, 0, 45, 1), null, new Quat4f(0, 0, 180, 1)).getMatrix());
+                return Pair.of(this, mat_fp);
             }
             if(cameraTransformType == ItemCameraTransforms.TransformType.GUI)
             {
-                return Pair.of(this, new TRSRTransformation(new Vector3f(0.15f, 0.15f, 0), null, new Vector3f(1.2f, 1.2f, 1.2f), new Quat4f(-1.64061f, -4.50295f, 0, 1)).getMatrix());
+                return Pair.of(this, mat_gui);
             }
-            return Pair.of(this, new TRSRTransformation(null, null, null, null).getMatrix());
+            return Pair.of(this, null);
         }
     }
 
@@ -87,17 +91,18 @@ public class StandardModels
     {
         public TranslationDesk()
         {
-            processors.add(new FacingProcessor());
+            vertexProcessors.add(new FacingProcessor());
             setBaseModel(Utils.getRegistryName("block/translation_desk.obj"));
         }
 
-
+        private Matrix4f mat_gui = new TRSRTransformation(null, null, new Vector3f(0.6f, 0.6f, 0.6f), new Quat4f(0.523599f, 3.92699f, 1.5708f, 1)).getMatrix();
+        private Matrix4f mat = new TRSRTransformation(null, null, new Vector3f(0.375f, 0.375f, 0.375f), null).getMatrix();
         @Override
         public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
         {
             if(cameraTransformType == ItemCameraTransforms.TransformType.GUI)
-                return Pair.of(this, new TRSRTransformation(null, null, new Vector3f(0.6f, 0.6f, 0.6f), ModelUtils.getRotation(30, 225, 90)).getMatrix());
-            return Pair.of(this, new TRSRTransformation(null, null, new Vector3f(0.375f, 0.375f, 0.375f), null).getMatrix());
+                return Pair.of(this, mat_gui);
+            return Pair.of(this, mat);
         }
     }
 
@@ -106,53 +111,55 @@ public class StandardModels
         public CrystalSmall()
         {
             setBaseModel(Utils.getRegistryName("block/crystal_small.obj"));
+            quadProcessors.add(new TintProcessor(0));
         }
 
+        private Matrix4f mat_gui = new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, new Vector3f(1.5f, 1.5f, 1.5f), new Quat4f(0.349066f, 0.20944f, 0, 1)).getMatrix();
+        private Matrix4f mat = new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, null, null).getMatrix();
         @Override
         public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
         {
             if(cameraTransformType == ItemCameraTransforms.TransformType.GUI)
-                return Pair.of(this, new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, new Vector3f(1.5f, 1.5f, 1.5f), new Quat4f(0.349066f, 0.20944f, 0, 1)).getMatrix());
-            return Pair.of(this, new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, null, null).getMatrix());
+                return Pair.of(this, mat_gui);
+            return Pair.of(this, mat);
         }
     }
 
     public static class WallIfTablet extends OvModel
     {
-        private WeakReference<ItemStack> stack;
-
         public WallIfTablet()
         {
             setBaseModel(Utils.getRegistryName("block/wall_if_tablet.obj"));
-            processors.add(new FacingProcessor());
-            processors.add((quads, state, side, rand) ->
-            {
-                int tier = 0;
-                if(state != null && state instanceof IExtendedBlockState)
-                    tier = ((IExtendedBlockState)state).getValue(AbstractWallIfTablet.IF_TIER);
-                else if(stack != null && stack.get() != null)
-                    tier = stack.get().getMetadata();
-
-                for(int q = 0; q < quads.size(); q++)
-                {
-                    BakedQuad quad = quads.get(q);
-                    quads.set(q, new BakedQuadWNT(quads.get(q), Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(PurMag.MODID + ":models/wall_if_tablet." + tier)));
-                }
-            });
-        }
-
-        @Override
-        public ItemOverrideList getOverrides()
-        {
-            return new ItemOverrideList(Collections.emptyList())
+            vertexProcessors.add(new FacingProcessor());
+            quadProcessors.add(new IQuadProcessor()
             {
                 @Override
-                public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity)
+                public void process(List<BakedQuad> quads, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
                 {
-                    WallIfTablet.this.stack = new WeakReference<>(stack);
-                    return originalModel;
+                    int tier;
+                    if (state != null && state instanceof IExtendedBlockState)
+                        tier = ((IExtendedBlockState) state).getValue(AbstractWallIfTablet.IF_TIER);
+                    else
+                        tier = getStack().getMetadata();
+
+                    for (int q = 0; q < quads.size(); q++)
+                    {
+                        quads.set(q, new BakedQuadWNT(quads.get(q), Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(PurMag.MODID + ":models/wall_if_tablet." + tier)));
+                    }
                 }
-            };
+
+                @Override
+                public boolean processState()
+                {
+                    return true;
+                }
+
+                @Override
+                public boolean processStack()
+                {
+                    return true;
+                }
+            });
         }
     }
 }
