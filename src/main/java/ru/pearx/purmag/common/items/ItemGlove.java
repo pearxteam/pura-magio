@@ -16,7 +16,6 @@ import ru.pearx.purmag.common.sip.SipUtils;
  */
 public class ItemGlove extends ItemBase
 {
-    //todo SOMEONE, PLS, MAKE NORMAL GLOVE TEXTURE ;(
     public ItemGlove()
     {
         setRegistryName("glove");

@@ -139,11 +139,6 @@ public class IfRegistry
         registerChannel(new IfChannel("information", 0));
         registerChannel(new IfChannel("exploration", 0));
         registerChannel(new IfChannel("sip", 1));
-        registerChannel(new IfChannel("sif", 2));
-        //todo icon
-        registerChannel(new IfChannel("ancients", 3));
-        //todo icon
-        registerChannel(new IfChannel("white", 4));
 
         registerEntry(new IfEntry("wooden_tablet", 0, null, Collections.emptyList(), 0));
         attachEntry("information", new IfEntryLocation("wooden_tablet", 0, 0));
@@ -177,9 +172,6 @@ public class IfRegistry
         registerChannelClient("information", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet, 1, 1)));
         registerChannelClient("exploration", new BigItemDrawable(new ItemStack(ItemRegistry.crystal)));
         registerChannelClient("sip", new SimpleDrawable(Utils.getRegistryName("textures/icons/sip.png"), 28, 28, 28, 28));
-        registerChannelClient("sif", new SimpleDrawable(Utils.getRegistryName("textures/icons/sif.png"), 28, 28, 28, 28));
-        registerChannelClient("ancients", new SimpleDrawable(Utils.getRegistryName("todo"), 28, 28, 28, 28));
-        registerChannelClient("white", new SimpleDrawable(Utils.getRegistryName("todo"), 28, 28, 28, 28));
 
         registerEntryClient(
                 "wooden_tablet", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet)),

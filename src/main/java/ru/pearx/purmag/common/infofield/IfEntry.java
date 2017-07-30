@@ -29,7 +29,6 @@ public class IfEntry
     private List<IIfResearchStep> steps;
     private int stepsForDisplay;
 
-    //todo icon pages
     public IfEntry(String id, int tier, List<String> parents, List<IIfResearchStep> steps, int stepsForDisplay)
     {
         if(parents == null)

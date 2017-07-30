@@ -34,7 +34,7 @@ import java.util.Random;
 @Mod(name = PurMag.NAME, modid = PurMag.MODID)
 public class PurMag
 {
-    //todo laboratory, smeltery, SIF plant, agronomy, paris
+    //todo laboratory, smeltery, SIF plant, agronomy, paris, glove modules and upgrades
     @Mod.Instance
     public static PurMag INSTANCE;
 

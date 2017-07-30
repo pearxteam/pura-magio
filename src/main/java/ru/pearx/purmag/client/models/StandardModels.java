@@ -161,5 +161,19 @@ public class StandardModels
                 }
             });
         }
+
+        public Matrix4f mat = new TRSRTransformation(new Vector3f(0, 0, -0.3f), null, new Vector3f(0.625f, 0.625f, 0.625f), null).getMatrix();
+        public Matrix4f mat_gui = new TRSRTransformation(new Vector3f(0.3f, -0.2f, 0), TRSRTransformation.quatFromXYZDegrees(new Vector3f(30, 225, 0)), null, null).getMatrix();
+
+        @Override
+        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
+        {
+            switch (cameraTransformType)
+            {
+                case GUI:
+                    return Pair.of(this, mat_gui);
+            }
+            return Pair.of(this, mat);
+        }
     }
 }
