@@ -14,11 +14,6 @@ public class GuiIfTabletS extends Control
 {
     protected int bit = 0;
 
-    public GuiIfTabletS()
-    {
-        keyEventsRS = false;
-    }
-
     @Override
     public void render()
     {

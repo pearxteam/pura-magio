@@ -45,7 +45,6 @@ public class GuiTranslationDeskPanel extends Control
     {
         setWidth(128);
         setHeight(230);
-        keyEventsRS = false;
     }
 
     @Override

@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
 import ru.pearx.libmc.client.gui.TexturePart;
 import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.purmag.PurMag;
@@ -74,6 +75,15 @@ public class GuiIfTabletSESelector extends GuiIfTabletSEPart
                 setSelected(selected - 1);
             if (delta < 0)
                 setSelected(selected + 1);
+    }
+
+    @Override
+    public void keyUp(int keycode)
+    {
+        if(keycode == Keyboard.KEY_W || keycode == Keyboard.KEY_UP)
+            setSelected(selected - 1);
+        if(keycode == Keyboard.KEY_S || keycode == Keyboard.KEY_DOWN)
+            setSelected(selected + 1);
     }
 
     public IfChannel getSelectedChannel()
