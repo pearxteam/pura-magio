@@ -52,11 +52,7 @@ public class ModelEvents
         e.getMap().registerSprite(Utils.getRegistryName("models/glove"));
         e.getMap().registerSprite(Utils.getRegistryName("particle/sip"));
         e.getMap().registerSprite(Utils.getRegistryName("models/crystal_small"));
-        e.getMap().registerSprite(Utils.getRegistryName("models/wood"));
-
-        e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk/container"));
-        e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk/crystal"));
-        e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk/panel"));
+        e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk"));
         for(IfTier t : PurMag.INSTANCE.if_registry.tiers)
             e.getMap().registerSprite(Utils.getRegistryName("models/wall_if_tablet." + t.getTier()));
     }
