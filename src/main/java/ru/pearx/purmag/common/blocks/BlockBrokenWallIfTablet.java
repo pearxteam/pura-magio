@@ -1,6 +1,8 @@
 package ru.pearx.purmag.common.blocks;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -17,6 +19,7 @@ import ru.pearx.purmag.common.networking.packets.CPacketSpawnParticle;
 
 import javax.annotation.Nullable;
 import javax.vecmath.Vector3d;
+import java.util.List;
 import java.util.Random;
 
 /*
@@ -37,6 +40,13 @@ public class BlockBrokenWallIfTablet extends AbstractWallIfTablet
         NetworkManager.sendToAllAround(new CPacketSpawnParticle(EnumParticleTypes.EXPLOSION_LARGE, new Vector3d(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5), new Vector3d()),
                 pos.getX(), pos.getY(), pos.getZ(), worldIn.provider.getDimension(), 256);
         worldIn.setBlockToAir(pos);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced)
+    {
+        tooltip.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
     @Override

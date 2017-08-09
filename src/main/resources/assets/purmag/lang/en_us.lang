@@ -26,7 +26,7 @@ item.ingot_plumfero.name=Plumfero Ingot
 item.verda_wing.name=Verda Wing
 item.beetle_meat.name=Beetle Meat
 item.beetle_meat.baked.name=Baked Beetle Meat
-
+tile.broken_wall_if_tablet.tooltip=You can't harvest it.
 
 #Sip Types
 sip.sea.name=Mara
