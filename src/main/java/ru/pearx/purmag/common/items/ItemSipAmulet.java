@@ -17,6 +17,8 @@ import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.ClientUtils;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.sip.SipType;
+import ru.pearx.purmag.common.sip.store.SipStoreAll;
+import ru.pearx.purmag.common.sip.store.SipStoreProvider;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -92,8 +94,6 @@ public class ItemSipAmulet extends ItemBase implements IBauble
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt)
     {
-        return super.initCapabilities(stack, nbt);
+        return new SipStoreProvider(new SipStoreAll());
     }
-
-
 }

@@ -30,13 +30,6 @@ public class CapabilityEvents
     }
 
     @SubscribeEvent
-    public static void onItemCaps(AttachCapabilitiesEvent<ItemStack> e)
-    {
-        if(e.getObject().getItem() instanceof ItemSipAmulet)
-            e.addCapability(CapabilityRegistry.SIP_STORE_NAME, new SipStoreProvider(new SipStoreAll()));
-    }
-
-    @SubscribeEvent
     public static void onRespawn(PlayerEvent.PlayerRespawnEvent e)
     {
         e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).sync((EntityPlayerMP)e.player);
