@@ -1,2 +1,3 @@
-include "PearXLibMC"
-include "PearXLibMC:PearXLib2"
+include ":PearXLibMC"
+project(":PearXLibMC").projectDir = file("../PearXLibMC")
+include ":PearXLibMC:PearXLib2"

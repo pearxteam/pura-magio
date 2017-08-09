@@ -1,4 +1,0 @@
-[submodule "PearXLibMC"]
-	path = PearXLibMC
-	url = git://github.com/PearXTeam/PearXLibMC
-	branch = 1.12
