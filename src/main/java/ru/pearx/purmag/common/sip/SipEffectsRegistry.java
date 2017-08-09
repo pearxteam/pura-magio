@@ -19,10 +19,10 @@ public class SipEffectsRegistry
 
     public void register()
     {
-        getMap().put("rock", new SipEffect(MobEffects.RESISTANCE, 80, -1));
-        getMap().put("sea", new SipEffect(MobEffects.WATER_BREATHING, 80, -1));
-        getMap().put("flame", new SipEffect(MobEffects.FIRE_RESISTANCE, 80, -1));
-        getMap().put("air", new SipEffect(MobEffects.SPEED, 80, -1));
+        getMap().put("rock", new SipEffect(MobEffects.RESISTANCE, 400, -1));
+        getMap().put("sea", new SipEffect(MobEffects.WATER_BREATHING, 400, -1));
+        getMap().put("flame", new SipEffect(MobEffects.FIRE_RESISTANCE, 400, -1));
+        getMap().put("air", new SipEffect(MobEffects.SPEED, 400, -1));
         getMap().put("information", new SipEffect(MobEffects.BLINDNESS, 20, -1));
     }
 }
