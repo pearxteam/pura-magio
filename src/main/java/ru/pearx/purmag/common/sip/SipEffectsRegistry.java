@@ -17,6 +17,16 @@ public class SipEffectsRegistry
         return map;
     }
 
+    public void register(String type, SipEffect effect)
+    {
+        getMap().put(type, effect);
+    }
+
+    public void unregister(String type)
+    {
+        getMap().remove(type);
+    }
+
     public void register()
     {
         getMap().put("rock", new SipEffect(MobEffects.RESISTANCE, 400, -1));

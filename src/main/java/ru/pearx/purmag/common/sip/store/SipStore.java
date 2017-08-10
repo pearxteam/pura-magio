@@ -13,6 +13,12 @@ import java.util.Map;
 public class SipStore implements ISipStore
 {
     private HashMap<String, Integer> sip = new HashMap<>();
+    private int max;
+
+    public SipStore(int max)
+    {
+        this.max = max;
+    }
 
     @Override
     public int get(String type)
@@ -25,45 +31,45 @@ public class SipStore implements ISipStore
     @Override
     public int getMax(String type)
     {
-        return Integer.MAX_VALUE;
+        return max;
     }
 
     @Override
     public boolean canAdd(String type, int count)
     {
-        int base = get(type);
-        base += count;
-        return base <= getMax(type);
+        return get(type) < getMax(type);
     }
 
     @Override
-    public void add(String type, int count)
+    public int add(String type, int count)
     {
-        int base = get(type);
-        base += count;
-        sip.put(type, base);
+        int i = get(type) + count;
+        if(i > getMax(type))
+        {
+            sip.put(type, getMax(type));
+            return i - getMax(type);
+        }
+        sip.put(type, i);
+        return 0;
     }
 
     @Override
     public boolean canRemove(String type, int count)
     {
-        int base = get(type);
-        base -= count;
-        return base >= 0;
+        int i = get(type) - count;
+        return i >= 0;
     }
 
     @Override
     public void remove(String type, int count)
     {
-        int base = get(type);
-        base -= count;
-        sip.put(type, base);
+        sip.put(type, get(type) - count);
     }
 
     @Override
     public List<String> getAllowedTypes()
     {
-        return PurMag.INSTANCE.sip.allowedValues;
+        return PurMag.INSTANCE.sip.getAllowedValues();
     }
 
     @Override
@@ -84,7 +90,7 @@ public class SipStore implements ISipStore
     }
 
     @Override
-    public void removeAll()
+    public void clear()
     {
         sip.clear();
     }

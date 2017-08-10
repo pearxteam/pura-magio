@@ -11,6 +11,10 @@ import ru.pearx.purmag.common.tiles.TileSingleSip;
 /*
  * Created by mrAppleXZ on 09.07.17 8:57.
  */
+
+/**
+ * Utilities for getting the single sip type in stacks or blocks.
+ */
 public class SipUtils
 {
     public static ItemStack getStackWithSip(ItemStack base, String type)
@@ -25,7 +29,7 @@ public class SipUtils
     {
         if(stack.hasTagCompound() && stack.getTagCompound().hasKey("sip_type"))
             return stack.getTagCompound().getString("sip_type");
-        return PurMag.INSTANCE.sip.types.get(0).getName();
+        return PurMag.INSTANCE.sip.getDefaultType().getName();
     }
 
     public static String getSipInBlock(IBlockAccess access, BlockPos pos)
@@ -36,7 +40,7 @@ public class SipUtils
             TileSingleSip tss = (TileSingleSip) te;
             return tss.getType();
         }
-        return PurMag.INSTANCE.sip.types.get(0).getName();
+        return PurMag.INSTANCE.sip.getDefaultType().getName();
     }
 
     public static void setSipInBlock(IBlockAccess access, BlockPos pos, String type)
