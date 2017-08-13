@@ -5,5 +5,8 @@ package ru.pearx.purmag.common.sip.store;
  */
 public class SipStoreAll extends SipStore
 {
-
+    public SipStoreAll(int max)
+    {
+        super(max);
+    }
 }

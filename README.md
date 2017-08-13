@@ -12,9 +12,9 @@ SSH: `git clone --recursive git@pearx.ru:PearXTeam/PurificatiMagicae.git`
 
 4: Clone the PearXLibMC repository.
 
-HTTPS: `git clone --recursive https://github.com/PearXTeam/PearXLibMC.git`
+HTTPS: `git clone --recursive https://github.com/PearXTeam/PearXLibMC.git -b 1.12`
 
-SSH: `git clone --recursive git@github.com:PearXTeam/PearXLibMC.git`
+SSH: `git clone --recursive git@github.com:PearXTeam/PearXLibMC.git -b 1.12`
 
 ## Setting up the project for development.
 1: Execute the instructions in the "Preparing the project" section.

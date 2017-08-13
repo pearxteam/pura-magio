@@ -38,11 +38,17 @@ public class SipEffect
         this.ticks = ticks;
     }
 
+    /**
+     * Get the max level of the effect. -1 to unlimited.
+     */
     public int getMaxLevel()
     {
         return maxLevel;
     }
 
+    /**
+     * Set the max level of the effect. Set to -1 for unlimited level.
+     */
     public void setMaxLevel(int maxLevel)
     {
         this.maxLevel = maxLevel;

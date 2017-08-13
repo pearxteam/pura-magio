@@ -82,7 +82,7 @@ public class SPacketUseSipAmulet implements IMessage
                                     (int) p.posX, (int) p.posY, (int) p.posZ, p.dimension, 300);
                         }
                     }
-                    amulet.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).removeAll();
+                    amulet.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).clear();
                     ItemUtils.setBauble(ctx.getServerHandler().player, BaubleType.AMULET.getValidSlots()[0], amulet);
                 }
             });

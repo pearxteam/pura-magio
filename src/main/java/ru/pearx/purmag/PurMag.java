@@ -34,13 +34,18 @@ import java.util.Random;
 @Mod(name = PurMag.NAME, modid = PurMag.MODID)
 public class PurMag
 {
-    //todo laboratory, smeltery, SIF plant, agronomy, paris, glove modules and upgrades
+    //todo laboratory
+    //todo smeltery
+    //todo SIF plant, agronomy, paris,
+    //todo glove modules and upgrades
+    //todo time jail
+    //todo microscope
     @Mod.Instance
     public static PurMag INSTANCE;
 
     public static final String MODID = "purmag";
     public static final String NAME = "Purificati Magicae";
-    public static final String VERSION = "1.0.0";
+    public static final String VERSION = "@VERSION@";
 
     public SipTypeRegistry sip = new SipTypeRegistry();
     public SipEffectsRegistry sip_effects = new SipEffectsRegistry();

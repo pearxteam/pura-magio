@@ -1,5 +1,6 @@
 package ru.pearx.purmag.common.tiles;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import ru.pearx.libmc.common.tiles.TileSyncable;
 
@@ -19,6 +20,7 @@ public class TileWallIfTablet extends TileSyncable
     {
         this.tier = tier;
         markDirty();
+        sendUpdatesToClients();
     }
 
     @Override

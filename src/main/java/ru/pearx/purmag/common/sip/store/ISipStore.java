@@ -14,11 +14,10 @@ public interface ISipStore extends INBTSerializable<NBTTagCompound>
     int get(String type);
     int getMax(String type);
     boolean canAdd(String type, int count);
-    void add(String type, int count);
+    int add(String type, int count);
     boolean canRemove(String type, int count);
     void remove(String type, int count);
     Map<String, Integer> getStored();
-    void removeAll();
-
+    void clear();
     List<String> getAllowedTypes();
 }
