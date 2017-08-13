@@ -83,7 +83,7 @@ public class WGCrystals implements IWorldGenerator
                     System.out.println("crystal " + entr.getSip() + " " + pos);
                     world.setBlockState(pos, BlockRegistry.crystal.getDefaultState(), 2);
                     TileSingleSip tss = new TileSingleSip();
-                    tss.setType(entr.getSip());
+                    tss.setType(entr.getSip(), false);
                     world.setTileEntity(pos, tss);
                 }
             }
