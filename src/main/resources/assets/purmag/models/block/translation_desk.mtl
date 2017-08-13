@@ -10,7 +10,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 0
-map_Kd /home/me/Projects/PurificatiMagicae/blends/translation_desk.png
+map_Kd purmag:models/translation_desk
 
 newmtl wire
 Ns 96.078431
