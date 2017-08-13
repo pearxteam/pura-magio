@@ -101,7 +101,7 @@ public abstract class AbstractWallIfTablet extends BlockBase
         TileEntity te = world.getTileEntity(pos);
         if(te != null && te instanceof TileWallIfTablet)
         {
-            ((TileWallIfTablet) te).setTier(stack.getMetadata());
+            ((TileWallIfTablet) te).setTier(stack.getMetadata(), false);
         }
     }
 

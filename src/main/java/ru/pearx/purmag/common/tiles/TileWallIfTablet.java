@@ -16,11 +16,12 @@ public class TileWallIfTablet extends TileSyncable
         return tier;
     }
 
-    public void setTier(int tier)
+    public void setTier(int tier, boolean sync)
     {
         this.tier = tier;
         markDirty();
-        sendUpdatesToClients();
+        if(sync)
+            sendUpdatesToClients();
     }
 
     @Override
@@ -36,6 +37,6 @@ public class TileWallIfTablet extends TileSyncable
     {
         super.readFromNBT(compound);
         if(compound.hasKey("tier"))
-            setTier(compound.getInteger("tier"));
+            setTier(compound.getInteger("tier"), false);
     }
 }

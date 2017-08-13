@@ -94,6 +94,6 @@ public class ItemSipAmulet extends ItemBase implements IBauble
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt)
     {
-        return new SipStoreProvider(new SipStoreAll());
+        return new SipStoreProvider(new SipStoreAll(128));
     }
 }

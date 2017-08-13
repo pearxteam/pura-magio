@@ -16,11 +16,12 @@ public class TileSingleSip extends TileSyncable
         return type;
     }
 
-    public void setType(String type)
+    public void setType(String type, boolean sync)
     {
         this.type = type;
         markDirty();
-        sendUpdatesToClients();
+        if(sync)
+            sendUpdatesToClients();
     }
 
     @Override
@@ -36,6 +37,6 @@ public class TileSingleSip extends TileSyncable
     {
         super.readFromNBT(compound);
         if(compound.hasKey("sip_type"))
-            setType(compound.getString("sip_type"));
+            setType(compound.getString("sip_type"), false);
     }
 }

@@ -22,7 +22,7 @@ public class ItemSingleSip extends ItemBase
     {
         if(isInCreativeTab(tab))
         {
-            for (SipType t : PurMag.INSTANCE.sip.types)
+            for (SipType t : PurMag.INSTANCE.sip.getTypes())
             {
                 items.add(SipUtils.getStackWithSip(new ItemStack(this), t.getName()));
             }

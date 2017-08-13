@@ -32,7 +32,7 @@ public class BlockSingleSip extends BlockBase
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        for(SipType t : PurMag.INSTANCE.sip.types)
+        for(SipType t : PurMag.INSTANCE.sip.getTypes())
         {
             list.add(SipUtils.getStackWithSip(new ItemStack(this), t.getName()));
         }
@@ -54,7 +54,7 @@ public class BlockSingleSip extends BlockBase
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        SipUtils.setSipInBlock(worldIn, pos, SipUtils.getSipInStack(stack));
+        SipUtils.setSipInBlock(worldIn, pos, SipUtils.getSipInStack(stack), false);
     }
 
     @Override
