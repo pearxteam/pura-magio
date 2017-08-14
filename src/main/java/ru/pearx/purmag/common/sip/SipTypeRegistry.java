@@ -65,10 +65,14 @@ public class SipTypeRegistry
 
     public void register()
     {
+        //todo air and vision gen.
         register(new SipType("rock", 0x9e9e9e, TextFormatting.GRAY));
         register(new SipType("sea", 0x42A5F5, TextFormatting.BLUE));
         register(new SipType("flame", 0xFB8C00, TextFormatting.GOLD));
         register(new SipType("air", 0xFFE57F, TextFormatting.YELLOW));
         register(new SipType("information", 0x68C397, TextFormatting.GREEN));
+        register(new SipType("vision", 0x4527A0, TextFormatting.DARK_PURPLE));
+        register(new SipType("analysis", 0x57759C, TextFormatting.BLUE));
+        register(new SipType("electricity", 0xFFEB3B, TextFormatting.YELLOW));
     }
 }

@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.purmag.common.CapabilityRegistry;
-import ru.pearx.purmag.common.infofield.pages.IIfPage;
+import ru.pearx.purmag.client.infofield.pages.IIfPage;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import ru.pearx.purmag.common.infofield.steps.IIfResearchStep;
 

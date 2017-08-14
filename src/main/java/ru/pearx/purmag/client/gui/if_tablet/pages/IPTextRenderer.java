@@ -3,7 +3,7 @@ package ru.pearx.purmag.client.gui.if_tablet.pages;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.purmag.common.infofield.pages.IfPageText;
+import ru.pearx.purmag.client.infofield.pages.IfPageText;
 
 import java.awt.*;
 

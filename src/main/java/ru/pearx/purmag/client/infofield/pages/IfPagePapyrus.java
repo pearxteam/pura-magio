@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.infofield.pages;
+package ru.pearx.purmag.client.infofield.pages;
 
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPPapyrusRenderer;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;

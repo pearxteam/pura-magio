@@ -29,10 +29,14 @@ public class SipEffectsRegistry
 
     public void register()
     {
-        getMap().put("rock", new SipEffect(MobEffects.RESISTANCE, 400, -1));
-        getMap().put("sea", new SipEffect(MobEffects.WATER_BREATHING, 400, -1));
-        getMap().put("flame", new SipEffect(MobEffects.FIRE_RESISTANCE, 400, -1));
-        getMap().put("air", new SipEffect(MobEffects.SPEED, 400, -1));
-        getMap().put("information", new SipEffect(MobEffects.BLINDNESS, 20, -1));
+        register("rock", new SipEffect(MobEffects.RESISTANCE, 400, -1));
+        register("sea", new SipEffect(MobEffects.WATER_BREATHING, 400, -1));
+        register("flame", new SipEffect(MobEffects.FIRE_RESISTANCE, 400, -1));
+        register("air", new SipEffect(MobEffects.SPEED, 400, -1));
+        register("information", new SipEffect(MobEffects.BLINDNESS, 20, -1));
+        register("vision", new SipEffect(MobEffects.NIGHT_VISION, 400, -1));
+        //todo
+        register("analysis", new SipEffect(MobEffects.NAUSEA, 20, -1));
+        register("electricity", new SipEffect(MobEffects.STRENGTH, 300, -1));
     }
 }
