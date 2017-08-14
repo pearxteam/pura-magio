@@ -34,6 +34,9 @@ sip.rock.name=Roka
 sip.flame.name=Flama
 sip.air.name=Aera
 sip.information.name=Informa
+sip.vision.name=Vidada
+sip.analysis.name=Analiza
+sip.electricity.name=Elektra
 
 #Channels
 if_channel.information.name=Information

@@ -6,7 +6,7 @@ import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 import ru.pearx.purmag.client.gui.if_tablet.GuiIfTabletSP;
-import ru.pearx.purmag.common.infofield.pages.IIfPage;
+import ru.pearx.purmag.client.infofield.pages.IIfPage;
 
 /**
  * Created by mrAppleXZ on 03.05.17 21:30.

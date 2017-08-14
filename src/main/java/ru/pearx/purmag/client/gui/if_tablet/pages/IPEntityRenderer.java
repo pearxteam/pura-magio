@@ -2,7 +2,7 @@ package ru.pearx.purmag.client.gui.if_tablet.pages;
 
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.EntityShowcase;
-import ru.pearx.purmag.common.infofield.pages.IfPageEntity;
+import ru.pearx.purmag.client.infofield.pages.IfPageEntity;
 
 import java.awt.*;
 

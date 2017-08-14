@@ -39,6 +39,7 @@ public class ItemPapyrus extends ItemBase
         setUnlocalizedName("papyrus");
         setRegistryName("papyrus");
         setHasSubtypes(true);
+        setMaxStackSize(1);
     }
 
     @Override

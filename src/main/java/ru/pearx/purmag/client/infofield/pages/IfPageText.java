@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.infofield.pages;
+package ru.pearx.purmag.client.infofield.pages;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;

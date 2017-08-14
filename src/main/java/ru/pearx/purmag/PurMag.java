@@ -15,6 +15,7 @@ import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.items.papyrus.ItemPapyrus;
 import ru.pearx.purmag.common.loot_tables.LootTablesRegistry;
 import ru.pearx.purmag.common.networking.NetworkManager;
+import ru.pearx.purmag.common.recipes.RecipeRegistry;
 import ru.pearx.purmag.common.sif.SifStorageServer;
 import ru.pearx.purmag.common.sip.SipEffectsRegistry;
 import ru.pearx.purmag.common.sip.SipTypeRegistry;
@@ -66,7 +67,6 @@ public class PurMag
         config.setup(new Configuration(new File(e.getModConfigurationDirectory(), "Purificati Magicae.cfg")));
 
         sip.register();
-        sip_effects.register();
         TileRegistry.register();
         CapabilityRegistry.register();
         EntityRegistry.register();
@@ -77,12 +77,14 @@ public class PurMag
     @Mod.EventHandler
     public void init(FMLInitializationEvent e)
     {
+        sip_effects.register();
         ItemRegistry.setup();
         ItemPapyrus.setup();
         if_registry.setup();
         NetworkManager.setup();
         WorldgenRegistry.setup();
         LootTablesRegistry.setup();
+        RecipeRegistry.setup();
 
         proxy.init();
     }
