@@ -61,9 +61,14 @@ if_page.wooden_tablet.0.text=Controls%n%nYou can move through the "channels" (ta
 if_page.wooden_tablet.1.text=If I want to remember my thoughts, I should create a thing where I can record them. So, I just took a wooden plate and attached some paper to it. I can record all my thoughts and to do lists with it. Also, I use some dyes and a brush to draw colored pictures in the tablet.
 
 if_entry.crystals.name=Crystals
-if_entry.crystals.desc=It's the candies?
-if_step.crystals.0.desc=You thinking that you can find something colorful somewhere...
-if_page.crystals.0.text=I found strange crystal clusters... After touching them, I felt as if some strange wave ran through my body. They shine from inside, as if they really contain some power. I tried to take a cluster, but to my regret from the hit of the pick on it, it split into shards. I will continue researching.
+if_entry.crystals.desc=The rainbow candies?
+if_step.crystals.desc=Find these big colorful crystals in the world and mine them.
+if_page.crystals.0.text=I found the strange crystal clusters... After touching them, I felt as if some wave ran through my body. They shine from inside, as if they contain some power. I tried to take a cluster, but to my regret from the hit of the pick on it, it split into shards. I will continue researching.
+
+if_entry.flame_crystal.name=Flame Crystal
+if_entry.flame_crystal.desc=Hot! So HOT!!!
+if_step.flame_crystal.desc=Find the flame crystal in the hot place and mine it.
+if_page.flame_crystal.text=I found the flame crystals in the nether. Looks like I can find them only in the lowest levels of the nether. The flame crystals are very hot, maybe I can use them in the metallurgy in the future.
 
 if_entry.crysagnetite.name=Crysagnetite
 if_entry.crysagnetite.desc=Purple magnet?

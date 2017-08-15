@@ -77,7 +77,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
         super.render();
         String s = entry.getDisplayName() + " [" + (index + 1) + "/" + entry.getPages().size() + "]";
         DrawingTools.drawString(s, (getWidth() - DrawingTools.measureString(s)) / 2, 8, Color.WHITE);
-        GuiDrawableRegistry.splitter.draw((getWidth() - GuiDrawableRegistry.splitter.getWidth()) / 2, DrawingTools.getFontHeight() + 8 + 2);
+        GuiDrawableRegistry.splitter.draw(getGuiScreen(), (getWidth() - GuiDrawableRegistry.splitter.getWidth()) / 2, DrawingTools.getFontHeight() + 8 + 2);
     }
 
     public void update(boolean next, boolean playAnim)

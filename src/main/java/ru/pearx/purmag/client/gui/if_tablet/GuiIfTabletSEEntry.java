@@ -33,7 +33,7 @@ public class GuiIfTabletSEEntry extends Control
         if((getX() + getWidth()) <= 0 || (getY() + getHeight()) <= 0 || getX() >= getEntries().getWidth() || getY() >= getEntries().getHeight())
             return;
         float f = 1;
-        if(getEntries().getTabletScreen().isGlowing())
+        if(getEntries().getTabletScreen().getTablet().data.isShouldGlow())
         {
             if(entry.getSteps().size() == 0)
                 f = 0;
@@ -43,11 +43,11 @@ public class GuiIfTabletSEEntry extends Control
 
         GlStateManager.color(f, 1, f);
         GlStateManager.enableBlend();
-        getEntries().getTabletScreen().getTablet().entryDrawable.draw(0, 0);
+        getEntries().getTabletScreen().getTablet().data.getEntryBackground().draw(getGuiScreen(), 0, 0);
         GlStateManager.disableBlend();
         GlStateManager.color(1, 1, 1);
 
-        entry.getIcon().draw((getWidth() - entry.getIcon().getWidth()) / 2, (getHeight() - entry.getIcon().getHeight()) / 2);
+        entry.getIcon().draw(getGuiScreen(), (getWidth() - entry.getIcon().getWidth()) / 2, (getHeight() - entry.getIcon().getHeight()) / 2);
     }
 
     @Override

@@ -29,23 +29,16 @@ public class IRSCollectRenderer extends IRSRenderer<IRSCollect>
     public void render()
     {
         super.render();
-        int yoff = 0;
         if(step.getShowStack())
         {
             List<ItemStack> toDisplay = step.getStacksToRender();
             ItemStack rend = toDisplay.get((int) (System.currentTimeMillis() / 1000 % toDisplay.size()));
             ItemDrawable draw = new ItemDrawable(rend, 5);
-            yoff = draw.getWidth();
-            int x = (getWidth() - draw.getWidth()) / 2;
-            draw.draw(x, 0);
-            DrawingTools.drawString(step.getDescription(), 5, yoff, Color.WHITE, getWidth() - 5);
-            if(isFocused() && new Rectangle(x, 0, draw.getWidth(), draw.getHeight()).contains(lastX, lastY))
-            {
-                getGuiScreen().drawTooltip(rend, lastX, lastY);
-            }
+            DrawingTools.drawString(step.getDescription(), 5, draw.getWidth(), Color.WHITE, getWidth() - 5);
+            draw.drawWithTooltip(getGuiScreen(), (getWidth() - draw.getWidth()) / 2, 0, lastX, lastY);
         }
         else
-            DrawingTools.drawString(step.getDescription(), 5, yoff, Color.WHITE, getWidth() - 5);
+            DrawingTools.drawString(step.getDescription(), 5, 0, Color.WHITE, getWidth() - 5);
     }
 
     @Override
@@ -53,5 +46,16 @@ public class IRSCollectRenderer extends IRSRenderer<IRSCollect>
     {
         lastX = x;
         lastY = y;
+    }
+
+    @Override
+    public void setFocused(boolean val)
+    {
+        super.setFocused(val);
+        if(!val)
+        {
+            lastX = -1;
+            lastY = -1;
+        }
     }
 }

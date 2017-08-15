@@ -19,7 +19,7 @@ public class GuiDrawableRegistry
     public static IGuiDrawable displayMessage;
     public static IGuiDrawable paperEntry;
     public static IGuiDrawable splitter;
-    public static HashMap<Integer, IGuiDrawable> ifTabletEntryBgs = new HashMap<>();
+
 
     public static void setup()
     {
@@ -27,8 +27,5 @@ public class GuiDrawableRegistry
         displayMessage = new AnimatedDrawable(Utils.getRegistryName("textures/gui/message.png"), 192, 32, 192, 32, 192, 1024, 100);
         paperEntry = new SimpleDrawable(Utils.getRegistryName("textures/gui/sticker.png"), 32, 32, 32, 32);
         splitter = new SimpleDrawable(Utils.getRegistryName("textures/gui/splitter.png"), 276, 4, 276, 4);
-        ifTabletEntryBgs.put(0, paperEntry);
-        ifTabletEntryBgs.put(1, runes);
-        ifTabletEntryBgs.put(2, runes);
     }
 }

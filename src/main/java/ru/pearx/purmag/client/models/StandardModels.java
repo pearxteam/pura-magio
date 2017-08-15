@@ -144,7 +144,8 @@ public class StandardModels
 
                     for (int q = 0; q < quads.size(); q++)
                     {
-                        quads.set(q, new BakedQuadWNT(quads.get(q), Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(PurMag.MODID + ":models/wall_if_tablet." + tier)));
+                        String s = PurMag.INSTANCE.if_registry.getTier(tier).getWallTabletTexture().toString();
+                        quads.set(q, new BakedQuadWNT(quads.get(q), Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(s)));
                     }
                 }
 

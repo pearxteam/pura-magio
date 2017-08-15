@@ -66,10 +66,13 @@ public class PurMag
 
         config.setup(new Configuration(new File(e.getModConfigurationDirectory(), "Purificati Magicae.cfg")));
 
+        proxy.setupDrawables();
         sip.register();
         TileRegistry.register();
         CapabilityRegistry.register();
         EntityRegistry.register();
+
+        proxy.setupIfTiers();
 
         proxy.preInit();
     }

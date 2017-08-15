@@ -35,4 +35,14 @@ public class CommonProxy
     }
 
     public void setupModels(IModelProvider prov) {}
+
+    public void setupIfTiers()
+    {
+
+    }
+
+    public void setupDrawables()
+    {
+
+    }
 }

@@ -12,6 +12,7 @@ import ru.pearx.libmc.client.models.IPXModel;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.models.StandardModels;
 import ru.pearx.purmag.common.Utils;
+import ru.pearx.purmag.common.infofield.IfRegistry;
 import ru.pearx.purmag.common.infofield.IfTier;
 
 /**
@@ -54,6 +55,6 @@ public class ModelEvents
         e.getMap().registerSprite(Utils.getRegistryName("models/crystal_small"));
         e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk"));
         for(IfTier t : PurMag.INSTANCE.if_registry.tiers)
-            e.getMap().registerSprite(Utils.getRegistryName("models/wall_if_tablet." + t.getTier()));
+            e.getMap().registerSprite(t.getWallTabletTexture());
     }
 }

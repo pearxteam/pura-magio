@@ -1,19 +1,76 @@
 package ru.pearx.purmag.common.infofield;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
+import ru.pearx.purmag.client.gui.if_tablet.GuiIfTablet;
 
-/**
- * Created by mrAppleXZ on 20.04.17 10:30.
+/*
+ * Created by mrAppleXZ on 15.08.17 23:31.
  */
 public class IfTier
 {
+    @SideOnly(Side.CLIENT)
+    public static class TabletData
+    {
+        private IGuiDrawable entryBackground;
+        private boolean shouldGlow;
+        private ResourceLocation texture;
+
+        public TabletData(IGuiDrawable entryBackground, boolean shouldGlow, ResourceLocation texture)
+        {
+            this.entryBackground = entryBackground;
+            this.shouldGlow = shouldGlow;
+            this.texture = texture;
+        }
+
+        public IGuiDrawable getEntryBackground()
+        {
+            return entryBackground;
+        }
+
+        public void setEntryBackground(IGuiDrawable entryBackground)
+        {
+            this.entryBackground = entryBackground;
+        }
+
+        public boolean isShouldGlow()
+        {
+            return shouldGlow;
+        }
+
+        public void setShouldGlow(boolean shouldGlow)
+        {
+            this.shouldGlow = shouldGlow;
+        }
+
+        public ResourceLocation getTexture()
+        {
+            return texture;
+        }
+
+        public void setTexture(ResourceLocation texture)
+        {
+            this.texture = texture;
+        }
+    }
+
     private int tier;
+
+    @SideOnly(Side.CLIENT)
+    private TabletData tabletData;
+
+    @SideOnly(Side.CLIENT)
+    private ResourceLocation wallTabletTexture;
+
+    @SideOnly(Side.CLIENT)
+    private ResourceLocation itemModel;
 
     public IfTier(int tier)
     {
-        setTier(tier);
+        this.tier = tier;
     }
 
     public int getTier()
@@ -27,8 +84,49 @@ public class IfTier
     }
 
     @SideOnly(Side.CLIENT)
-    public String getDisplayName()
+    public TabletData getTabletData()
     {
-        return I18n.format("if_tier." + tier + ".name");
+        return tabletData;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void setTabletData(TabletData tabletData)
+    {
+        this.tabletData = tabletData;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public ResourceLocation getWallTabletTexture()
+    {
+        return wallTabletTexture;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void setWallTabletTexture(ResourceLocation wallTabletTexture)
+    {
+        this.wallTabletTexture = wallTabletTexture;
+    }
+
+    public String getUnlocalizedName()
+    {
+        return "if_tier." + getTier() + ".name";
+    }
+
+    @SideOnly(Side.CLIENT)
+    public String getName()
+    {
+        return I18n.format(getUnlocalizedName());
+    }
+
+    @SideOnly(Side.CLIENT)
+    public ResourceLocation getItemModel()
+    {
+        return itemModel;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void setItemModel(ResourceLocation itemModel)
+    {
+        this.itemModel = itemModel;
     }
 }

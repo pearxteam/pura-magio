@@ -15,8 +15,10 @@ import ru.pearx.purmag.client.gui.translation_desk.GuiTranslationDesk;
 import ru.pearx.purmag.common.CommonProxy;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.gui.if_tablet.GuiIfTablet;
+import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.BlockCrystalSmall;
 import ru.pearx.purmag.common.entities.EntityRegistry;
+import ru.pearx.purmag.common.infofield.IfTier;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.sip.SipUtils;
@@ -38,8 +40,6 @@ public class ClientProxy extends CommonProxy
     @Override
     public void init()
     {
-        GuiDrawableRegistry.setup();
-
         registerSipBlockColor(BlockRegistry.crystal);
         registerSipBlockColor(BlockRegistry.crystal_glass);
         registerSipItemColor(ItemRegistry.crystal_glass);
@@ -87,5 +87,19 @@ public class ClientProxy extends CommonProxy
     public void setupModels(IModelProvider prov)
     {
         prov.setupModels();
+    }
+
+    @Override
+    public void setupIfTiers()
+    {
+        PurMag.INSTANCE.if_registry.registerTierClient(0, new IfTier.TabletData(GuiDrawableRegistry.paperEntry, false, Utils.getRegistryName("textures/gui/if_tablet/0.png")), Utils.getRegistryName("models/wall_if_tablet/0"), Utils.getRegistryName("if_tablet/0"));
+        PurMag.INSTANCE.if_registry.registerTierClient(1, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getRegistryName("textures/gui/if_tablet/1.png")), Utils.getRegistryName("models/wall_if_tablet/1"), Utils.getRegistryName("if_tablet/1"));
+        PurMag.INSTANCE.if_registry.registerTierClient(2, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getRegistryName("textures/gui/if_tablet/2.png")), Utils.getRegistryName("models/wall_if_tablet/2"), Utils.getRegistryName("if_tablet/2"));
+    }
+
+    @Override
+    public void setupDrawables()
+    {
+        GuiDrawableRegistry.setup();
     }
 }
