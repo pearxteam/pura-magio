@@ -1,8 +1,11 @@
 package ru.pearx.purmag.client.gui.if_tablet.pages;
 
+import net.minecraft.client.resources.I18n;
+import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.purmag.client.gui.recipes.FurnaceControl;
 import ru.pearx.purmag.client.infofield.pages.IfPageFurnace;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,5 +51,12 @@ public class IPFurnaceRenderer extends IPRenderer<IfPageFurnace>
             x += cont.getWidth();
             x += margin;
         }
+    }
+
+    @Override
+    public void render()
+    {
+        String s = I18n.format("if_page.furnace_recipes.name");
+        DrawingTools.drawString(s, (getWidth() - DrawingTools.measureString(s)) / 2, 0, Color.WHITE);
     }
 }

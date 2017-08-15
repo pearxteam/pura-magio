@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
+import ru.pearx.purmag.client.GuiDrawableRegistry;
 import ru.pearx.purmag.common.Utils;
 
 /*
@@ -38,7 +39,7 @@ public class FurnaceControl extends Control
         if(outDraw == null || !ItemStack.areItemStacksEqualUsingNBTShareTag(outDraw.stack, out))
             outDraw = new ItemDrawable(out, 2);
         GlStateManager.enableBlend();
-        DrawingTools.drawTexture(Utils.getRegistryName("textures/gui/recipes/furnace.png"), 0, 0, getWidth(), getHeight());
+        GuiDrawableRegistry.furnace.draw(getGuiScreen(), 0, 0);
         GlStateManager.disableBlend();
         inDraw.drawWithTooltip(getGuiScreen(), 40, 16, lastX, lastY);
         outDraw.drawWithTooltip(getGuiScreen(), 40, 54, lastX, lastY);

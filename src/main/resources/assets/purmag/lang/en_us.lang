@@ -55,6 +55,8 @@ if_step.translate_papyrus.name=Translate the Papyrus
 if_step.translate_papyrus.desc=Translate the Papyrus named "%s" using Translation Desk.
 if_step.kill_entity.name=Kill an Entity
 
+if_page.furnace_recipes.name=Furnace Recipes
+
 if_entry.wooden_tablet.name=Wooden Tablet
 if_entry.wooden_tablet.desc=Where's my WiFi?!
 if_page.wooden_tablet.0.text=Controls%n%nYou can move through the "channels" (tabs if you prefer) using mouse wheel or "W" or "Up Arrow" and "S" or "Down Arrow" keys. You can open entries using left click and go back by button in GUI or using "Q" or "Backspace" keys. You can change the pages by swipe or using "Right Arrow" or "D" and "Left Arrow" or "A" keys.
@@ -65,10 +67,10 @@ if_entry.crystals.desc=The rainbow candies?
 if_step.crystals.desc=Find these big colorful crystals in the world and mine them.
 if_page.crystals.0.text=I found the strange crystal clusters... After touching them, I felt as if some wave ran through my body. They shine from inside, as if they contain some power. I tried to take a cluster, but to my regret from the hit of the pick on it, it split into shards. I will continue researching.
 
-if_entry.flame_crystal.name=Flame Crystal
+if_entry.flame_crystal.name=Flama Crystal
 if_entry.flame_crystal.desc=Hot! So HOT!!!
-if_step.flame_crystal.desc=Find the flame crystal in the hot place and mine it.
-if_page.flame_crystal.text=I found the flame crystals in the nether. Looks like I can find them only in the lowest levels of the nether. The flame crystals are very hot, maybe I can use them in the metallurgy in the future.
+if_step.flame_crystal.desc=Find the flama crystal in the hot place and mine it.
+if_page.flame_crystal.text=I found the flama crystals in the nether. Looks like I can find them only in the lowest levels of the nether. The flame crystals are very hot, maybe I can use them in the metallurgy in the future.
 
 if_entry.crysagnetite.name=Crysagnetite
 if_entry.crysagnetite.desc=Purple magnet?
