@@ -24,7 +24,7 @@ public class GuiDrawableRegistry
 
     public static void setup()
     {
-        runes = new AnimatedDrawable(Utils.getRegistryName("textures/gui/runes.png"), 32, 38, 32, 38, 32, 380, 100, 0, -6);
+        runes = new AnimatedDrawable(Utils.getRegistryName("textures/gui/recipes/runes.png"), 32, 38, 32, 38, 32, 380, 100, 0, -6);
         displayMessage = new AnimatedDrawable(Utils.getRegistryName("textures/gui/message.png"), 192, 32, 192, 32, 192, 1024, 100);
         paperEntry = new SimpleDrawable(Utils.getRegistryName("textures/gui/sticker.png"), 32, 32, 32, 32);
         splitter = new SimpleDrawable(Utils.getRegistryName("textures/gui/splitter.png"), 276, 4, 276, 4);
