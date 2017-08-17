@@ -2,11 +2,12 @@ package ru.pearx.purmag.client.gui.if_tablet.steps;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.EntityShowcase;
 import ru.pearx.purmag.common.infofield.steps.IRSKillEntity;
 
-import java.awt.*;
+
 
 /**
  * Created by mrAppleXZ on 02.07.17 13:03.
@@ -25,7 +26,7 @@ public class IRSKillEntityRenderer extends IRSRenderer<IRSKillEntity>
     @Override
     public void render()
     {
-        DrawingTools.drawString(step.getDescription(), 0, getHeight() - DrawingTools.getFontHeight() - 5, Color.WHITE);
+        DrawingTools.drawString(step.getDescription(), 0, getHeight() - DrawingTools.getFontHeight() - 5, Colors.WHITE);
     }
 
     @Override

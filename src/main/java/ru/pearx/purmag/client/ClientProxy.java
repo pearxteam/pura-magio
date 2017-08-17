@@ -56,13 +56,13 @@ public class ClientProxy extends CommonProxy
     public static void registerSipItemColor(Item itm)
     {
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
-                PurMag.INSTANCE.sip.getType(SipUtils.getSipInStack(stack)).getColor(), itm);
+                PurMag.INSTANCE.sip.getType(SipUtils.getSipInStack(stack)).getColor().getARGB(), itm);
     }
 
     public static void registerSipBlockColor(Block bl)
     {
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, w, pos, tintIndex) ->
-                PurMag.INSTANCE.sip.getType(SipUtils.getSipInBlock(w, pos)).getColor(), bl);
+                PurMag.INSTANCE.sip.getType(SipUtils.getSipInBlock(w, pos)).getColor().getARGB(), bl);
     }
 
     @Override
@@ -92,9 +92,7 @@ public class ClientProxy extends CommonProxy
     @Override
     public void setupIfTiers()
     {
-        PurMag.INSTANCE.if_registry.registerTierClient(0, new IfTier.TabletData(GuiDrawableRegistry.paperEntry, false, Utils.getRegistryName("textures/gui/if_tablet/0.png")), Utils.getRegistryName("models/wall_if_tablet/0"), Utils.getRegistryName("if_tablet/0"));
-        PurMag.INSTANCE.if_registry.registerTierClient(1, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getRegistryName("textures/gui/if_tablet/1.png")), Utils.getRegistryName("models/wall_if_tablet/1"), Utils.getRegistryName("if_tablet/1"));
-        PurMag.INSTANCE.if_registry.registerTierClient(2, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getRegistryName("textures/gui/if_tablet/2.png")), Utils.getRegistryName("models/wall_if_tablet/2"), Utils.getRegistryName("if_tablet/2"));
+       PurMag.INSTANCE.if_registry.setupIfTiersClient();
     }
 
     @Override

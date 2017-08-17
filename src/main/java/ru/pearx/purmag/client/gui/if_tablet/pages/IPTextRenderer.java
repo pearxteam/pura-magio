@@ -2,10 +2,11 @@ package ru.pearx.purmag.client.gui.if_tablet.pages;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.purmag.client.infofield.pages.IfPageText;
 
-import java.awt.*;
+
 
 /**
  * Created by mrAppleXZ on 04.05.17 8:39.
@@ -23,6 +24,6 @@ public class IPTextRenderer extends IPRenderer<IfPageText>
     public void render()
     {
         super.render();
-        DrawingTools.drawString(page.getDisplayText(), 5, 0, Color.WHITE, getWidth() - 5);
+        DrawingTools.drawString(page.getDisplayText(), 5, 0, Colors.WHITE, getWidth() - 5);
     }
 }

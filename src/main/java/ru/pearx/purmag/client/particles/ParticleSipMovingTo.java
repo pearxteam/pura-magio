@@ -2,13 +2,14 @@ package ru.pearx.purmag.client.particles;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
+import ru.pearx.lib.Color;
 import ru.pearx.libmc.client.particles.ParticleMovingTo;
 import ru.pearx.libmc.client.particles.ParticleTrail;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 
 import javax.vecmath.Vector3d;
-import java.awt.*;
+
 
 /**
  * Created by mrAppleXZ on 28.05.17 8:14.
@@ -18,7 +19,7 @@ public class ParticleSipMovingTo extends ParticleMovingTo
     public ParticleSipMovingTo(World worldIn, Vector3d loc, Vector3d locTo, String sip, int amount, float speed)
     {
         super(worldIn, loc, locTo, speed);
-        Color col = new Color(PurMag.INSTANCE.sip.getType(sip).getColor());
+        Color col = PurMag.INSTANCE.sip.getType(sip).getColor();
         setRBGColorF (col.getRed() / 255f, col.getGreen() / 255f, col.getBlue() / 255f);
         setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Utils.getRegistryName("particle/sip").toString()));
         float f = amount / 8f;

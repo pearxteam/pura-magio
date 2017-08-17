@@ -6,12 +6,13 @@ import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.OverlayGui;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 
-import java.awt.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -127,8 +128,8 @@ public class DisplayMessage
         GlStateManager.enableBlend();
         GuiDrawableRegistry.displayMessage.draw(OverlayGui.INSTANCE, 0, 0);
         GlStateManager.disableBlend();
-        DrawingTools.drawString(formatSting(getSubject()), x, y, Color.YELLOW);
-        DrawingTools.drawString(formatSting(getDescription()), x + 5, y + 11, Color.WHITE);
+        DrawingTools.drawString(formatSting(getSubject()), x, y, Colors.YELLOW_500);
+        DrawingTools.drawString(formatSting(getDescription()), x + 5, y + 11, Colors.WHITE);
         GlStateManager.popMatrix();
     }
 }

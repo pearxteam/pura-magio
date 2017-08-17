@@ -2,6 +2,7 @@ package ru.pearx.purmag.common.sip;
 
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
+import ru.pearx.lib.Color;
 
 /**
  * Created by mrAppleXZ on 10.04.17 9:06.
@@ -9,22 +10,22 @@ import net.minecraft.util.text.translation.I18n;
 public class SipType
 {
     private String name;
-    private int color;
+    private Color color;
     private TextFormatting formatting;
 
-    public SipType(String name, int color, TextFormatting formatting)
+    public SipType(String name, Color color, TextFormatting formatting)
     {
         setColor(color);
         setName(name);
         setFormatting(formatting);
     }
 
-    public int getColor()
+    public Color getColor()
     {
         return color;
     }
 
-    public void setColor(int color)
+    public void setColor(Color color)
     {
         this.color = color;
     }

@@ -3,12 +3,16 @@ package ru.pearx.purmag.client.gui.if_tablet;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.util.Point;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.infofield.IfChannel;
 import ru.pearx.purmag.common.infofield.IfEntry;
 import ru.pearx.purmag.common.infofield.IfEntryLocation;
 import org.lwjgl.input.Mouse;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mrAppleXZ on 23.04.17 19:12.
@@ -72,6 +76,26 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
                 entrC.setX(loc.getX() * entrSize + ((getTabletScreen().getWidth() - entrSize) / 2));
                 entrC.setY(-loc.getY() * entrSize + ((getTabletScreen().getHeight() - entrSize) / 2));
                 controls.add(entrC);
+            }
+        }
+        for(Control c : controls)
+        {
+            if(c instanceof GuiIfTabletSEEntry)
+            {
+                List<Point> points = new ArrayList<>();
+                GuiIfTabletSEEntry par = (GuiIfTabletSEEntry) c;
+                for(Control c1 : controls)
+                {
+                    if(c1 instanceof GuiIfTabletSEEntry)
+                    {
+                        GuiIfTabletSEEntry chi = (GuiIfTabletSEEntry) c1;
+                        if(chi.entry.getParents().contains(par.entry.getId()))
+                        {
+                            points.add(new Point(chi.getX() - par.getX() + chi.getWidth() / 2,  chi.getY() - par.getY() + chi.getHeight() / 2));
+                        }
+                    }
+                }
+                par.childs = points.toArray(new Point[points.size()]);
             }
         }
 

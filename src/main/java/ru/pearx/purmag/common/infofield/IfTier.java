@@ -4,6 +4,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.lib.Color;
 import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.purmag.client.gui.if_tablet.GuiIfTablet;
 
@@ -18,12 +19,16 @@ public class IfTier
         private IGuiDrawable entryBackground;
         private boolean shouldGlow;
         private ResourceLocation texture;
+        private Color lineColorStart;
+        private Color lineColorEnd;
 
-        public TabletData(IGuiDrawable entryBackground, boolean shouldGlow, ResourceLocation texture)
+        public TabletData(IGuiDrawable entryBackground, boolean shouldGlow, ResourceLocation texture, Color lineColorStart, Color lineColorEnd)
         {
             this.entryBackground = entryBackground;
             this.shouldGlow = shouldGlow;
             this.texture = texture;
+            this.lineColorStart = lineColorStart;
+            this.lineColorEnd = lineColorEnd;
         }
 
         public IGuiDrawable getEntryBackground()
@@ -54,6 +59,26 @@ public class IfTier
         public void setTexture(ResourceLocation texture)
         {
             this.texture = texture;
+        }
+
+        public Color getLineColorStart()
+        {
+            return lineColorStart;
+        }
+
+        public void setLineColorStart(Color lineColorStart)
+        {
+            this.lineColorStart = lineColorStart;
+        }
+
+        public Color getLineColorEnd()
+        {
+            return lineColorEnd;
+        }
+
+        public void setLineColorEnd(Color lineColorEnd)
+        {
+            this.lineColorEnd = lineColorEnd;
         }
     }
 
