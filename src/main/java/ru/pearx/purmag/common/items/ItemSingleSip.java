@@ -16,6 +16,15 @@ import ru.pearx.purmag.common.sip.SipUtils;
  */
 public class ItemSingleSip extends ItemBase
 {
+    public ItemSingleSip()
+    {
+    }
+
+    public ItemSingleSip(String name)
+    {
+        super(name);
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)

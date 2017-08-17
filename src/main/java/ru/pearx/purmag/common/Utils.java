@@ -12,4 +12,9 @@ public class Utils
     {
         return new ResourceLocation(PurMag.MODID, name);
     }
+
+    public static String getUnlocalizedName(String un)
+    {
+        return PurMag.MODID + "." + un;
+    }
 }

@@ -10,6 +10,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import ru.pearx.libmc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.items.papyrus.ItemPapyrus;
 
@@ -48,8 +49,6 @@ public class ItemRegistry
     @SuppressWarnings("ConstantConditions")
     public static void setup()
     {
-        BlockRegistry.ore_crysagnetite.dropped = new ItemStack(ore_crysagnetite);
-
         OreDictionary.registerOre("sipCrystal", new ItemStack(crystal, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("sipShard", new ItemStack(crystal_shard, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("blockGlass", new ItemStack(crystal_glass, 1, OreDictionary.WILDCARD_VALUE));
@@ -68,15 +67,15 @@ public class ItemRegistry
         register(new ItemIfTablet(), reg);
         register(new ItemBlockCrystalGlass(), reg);
         register(new ItemBlockBase(BlockRegistry.ore_crysagnetite), reg);
-        register(new ItemBase().setRegistryName("ingot_crysagnetite"), reg);
+        register(new ItemBase("ingot_crysagnetite"), reg);
         register(new ItemSipAmulet(), reg);
         register(new ItemGlove(), reg);
         register(new ItemPapyrus(), reg);
         register(new ItemBlockBase(BlockRegistry.translation_desk), reg);
         register(new ItemBlockCrystalSmall(), reg);
-        register(new ItemBase().setRegistryName("ingot_plumfero"), reg);
-        register(new ItemBase().setRegistryName("verda_wing"), reg);
-        register(new ItemFoodBakeable(3, 0.125f, false, 8, 0.55f).setRegistryName("beetle_meat"), reg);
+        register(new ItemBase("ingot_plumfero"), reg);
+        register(new ItemBase("verda_wing"), reg);
+        register(new ItemFoodBakeable("beetle_meat", 3, 0.125f, false, 8, 0.55f), reg);
         register(new ItemBlockWallIfTablet(), reg);
         register(new ItemBlockBrokenWallIfTablet(), reg);
     }

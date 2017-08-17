@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import org.apache.logging.log4j.Logger;
 import ru.pearx.purmag.common.config.PMConfig;
 import ru.pearx.purmag.common.entities.EntityRegistry;
 import ru.pearx.purmag.common.infofield.IfRegistry;
@@ -53,6 +54,7 @@ public class PurMag
     public IfRegistry if_registry = new IfRegistry();
     public PMConfig config = new PMConfig();
     public Random random = new Random();
+    public Logger log;
 
     public SifStorageServer sif_storage = new SifStorageServer();
 
@@ -62,6 +64,7 @@ public class PurMag
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e)
     {
+        log = e.getModLog();
         setupMetadata(e.getModMetadata());
 
         config.setup(new Configuration(new File(e.getModConfigurationDirectory(), "Purificati Magicae.cfg")));

@@ -9,6 +9,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.SoundRegistry;
+import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.sip.SipUtils;
 
 /**
@@ -18,7 +19,7 @@ public class ItemGlove extends ItemBase
 {
     public ItemGlove()
     {
-        setRegistryName("glove");
+        super("glove");
         setMaxStackSize(1);
     }
 

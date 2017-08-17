@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.CapabilityRegistry;
+import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.infofield.IfEntry;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import ru.pearx.purmag.common.infofield.steps.IIfResearchStep;
@@ -36,8 +37,7 @@ public class ItemPapyrus extends ItemBase
 
     public ItemPapyrus()
     {
-        setUnlocalizedName("papyrus");
-        setRegistryName("papyrus");
+        super("papyrus");
         setHasSubtypes(true);
         setMaxStackSize(1);
     }

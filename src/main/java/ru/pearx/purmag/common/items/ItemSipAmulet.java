@@ -31,7 +31,7 @@ public class ItemSipAmulet extends ItemBase implements IBauble
 {
     public ItemSipAmulet()
     {
-        setRegistryName("sip_amulet");
+        super("sip_amulet");
         setHasSubtypes(true);
         setMaxStackSize(1);
     }

@@ -1,6 +1,7 @@
 package ru.pearx.purmag.common.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -19,7 +20,7 @@ public class BlockRegistry
 {
     public static final Block crystal = null;
     public static final Block crystal_glass = null;
-    public static final BlockOre ore_crysagnetite = null;
+    public static final Block ore_crysagnetite = null;
     public static final BlockTranslationDesk translation_desk = null;
     public static final BlockCrystalSmall crystal_small = null;
     public static final BlockWallIfTablet wall_if_tablet = null;
@@ -31,7 +32,9 @@ public class BlockRegistry
         IForgeRegistry<Block> reg = e.getRegistry();
         register(new BlockCrystal(), reg);
         register(new BlockCrystalGlass(), reg);
-        register(new BlockOre(Utils.getRegistryName("ore_crysagnetite"), 3f, 0.1f, 2), reg);
+        Block ore_crysagnetite = new BlockBase("ore_crysagnetite", Material.ROCK).setHardness(3).setLightLevel(0.1f);
+        ore_crysagnetite.setHarvestLevel("pickaxe", 2);
+        register(ore_crysagnetite, reg);
         register(new BlockTranslationDesk(), reg);
         register(new BlockCrystalSmall(), reg);
         register(new BlockWallIfTablet(), reg);

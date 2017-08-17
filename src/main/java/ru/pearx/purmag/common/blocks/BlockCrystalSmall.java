@@ -26,8 +26,8 @@ public class BlockCrystalSmall extends BlockBase
     public BlockCrystalSmall()
     {
         super(Material.ROCK);
-        setRegistryName(Utils.getRegistryName("crystal_small"));
-        setUnlocalizedName("crystal_small");
+        setRegistryName("crystal_small");
+        setUnlocalizedName(Utils.getUnlocalizedName("crystal_small"));
         setHardness(6);
         setHarvestLevel("pickaxe", 2);
     }
@@ -39,13 +39,19 @@ public class BlockCrystalSmall extends BlockBase
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state)
+    public boolean isFullBlock(IBlockState state)
     {
         return false;
     }
 
     @Override
     public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }

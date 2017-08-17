@@ -1,5 +1,7 @@
 package ru.pearx.purmag.common.items;
 
+import ru.pearx.purmag.common.Utils;
+
 /**
  * Created by mrAppleXZ on 11.04.17 8:24.
  */
@@ -7,7 +9,7 @@ public class ItemCrystalShard extends ItemSingleSip
 {
     public ItemCrystalShard()
     {
-        setRegistryName("crystal_shard");
+        super("crystal_shard");
         setHasSubtypes(true);
     }
 }

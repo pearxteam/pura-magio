@@ -27,7 +27,7 @@ public class BlockCrystalGlass extends BlockSingleSip
     {
         super(Material.GLASS);
         setRegistryName(Utils.getRegistryName("crystal_glass"));
-        setUnlocalizedName("crystal_glass");
+        setUnlocalizedName(Utils.getUnlocalizedName("crystal_glass"));
         setHardness(1f);
         setSoundType(SoundType.GLASS);
         setHarvestLevel("pickaxe", 0);

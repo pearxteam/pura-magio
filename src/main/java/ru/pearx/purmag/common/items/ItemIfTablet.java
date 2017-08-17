@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.ClientUtils;
+import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.infofield.IfTier;
 
 /**
@@ -23,7 +24,7 @@ public class ItemIfTablet extends ItemBase
 {
     public ItemIfTablet()
     {
-        setRegistryName("if_tablet");
+        super("if_tablet");
         setHasSubtypes(true);
         setMaxStackSize(1);
     }

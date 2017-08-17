@@ -35,11 +35,11 @@ public class BlockTranslationDesk extends BlockBase
     public BlockTranslationDesk()
     {
         super(Material.WOOD);
-        setRegistryName(Utils.getRegistryName("translation_desk"));
+        setRegistryName("translation_desk");
         setHarvestLevel("axe", 0);
         setHardness(1.7f);
         setSoundType(SoundType.WOOD);
-        setUnlocalizedName("translation_desk");
+        setUnlocalizedName(Utils.getUnlocalizedName("translation_desk"));
     }
 
     @Override
