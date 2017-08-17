@@ -5,12 +5,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.block.model.ItemOverrideList;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
@@ -28,8 +24,6 @@ import javax.annotation.Nullable;
 import javax.vecmath.Matrix4f;
 import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
-import java.lang.ref.WeakReference;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -42,7 +36,7 @@ public class StandardModels
     {
         public Crystal()
         {
-            setBaseModel(new ResourceLocation(PurMag.MODID, "block/crystal.obj"));
+            setBaseModel(new ResourceLocation(PurMag.MODID, "obj/crystal.obj"));
             quadProcessors.add(new TintProcessor(0));
         }
 
@@ -67,7 +61,7 @@ public class StandardModels
     {
         public Glove()
         {
-            setBaseModel(Utils.getRegistryName("item/glove.obj"));
+            setBaseModel(Utils.getRegistryName("obj/glove.obj"));
         }
 
         private Matrix4f mat_fp = new TRSRTransformation(new Vector3f(0f, 0.2f, -0.1f), new Quat4f(0, 0, 45, 1), null, new Quat4f(0, 0, 180, 1)).getMatrix();
@@ -92,7 +86,7 @@ public class StandardModels
         public TranslationDesk()
         {
             vertexProcessors.add(new FacingProcessor());
-            setBaseModel(Utils.getRegistryName("block/translation_desk.obj"));
+            setBaseModel(Utils.getRegistryName("obj/translation_desk.obj"));
         }
 
         private Matrix4f mat_gui = new TRSRTransformation(null, null, new Vector3f(0.6f, 0.6f, 0.6f), new Quat4f(0.523599f, 3.92699f, 1.5708f, 1)).getMatrix();
@@ -110,7 +104,7 @@ public class StandardModels
     {
         public CrystalSmall()
         {
-            setBaseModel(Utils.getRegistryName("block/crystal_small.obj"));
+            setBaseModel(Utils.getRegistryName("obj/crystal_small.obj"));
             quadProcessors.add(new TintProcessor(0));
         }
 
@@ -129,7 +123,7 @@ public class StandardModels
     {
         public WallIfTablet()
         {
-            setBaseModel(Utils.getRegistryName("block/wall_if_tablet.obj"));
+            setBaseModel(Utils.getRegistryName("obj/wall_if_tablet.obj"));
             vertexProcessors.add(new FacingProcessor());
             quadProcessors.add(new IQuadProcessor()
             {
@@ -175,6 +169,15 @@ public class StandardModels
                     return Pair.of(this, mat_gui);
             }
             return Pair.of(this, mat);
+        }
+    }
+
+    public static class Microscope extends OvModel
+    {
+        public Microscope()
+        {
+            setBaseModel(Utils.getRegistryName("obj/microscope.obj"));
+            vertexProcessors.add(new FacingProcessor());
         }
     }
 }

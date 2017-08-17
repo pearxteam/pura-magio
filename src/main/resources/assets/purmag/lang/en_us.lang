@@ -27,6 +27,7 @@ item.purmag.verda_wing.name=Verda Wing
 item.purmag.beetle_meat.name=Beetle Meat
 item.purmag.beetle_meat.baked.name=Baked Beetle Meat
 tile.purmag.broken_wall_if_tablet.tooltip=You can't harvest it.
+tile.purmag.microscope.name=Microscope
 
 #Sip Types
 sip.sea.name=Mara

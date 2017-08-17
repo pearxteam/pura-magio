@@ -1,20 +1,13 @@
 package ru.pearx.purmag.client.gui.if_tablet;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.GuiOnScreen;
 import ru.pearx.libmc.client.gui.TexturePart;
-import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.purmag.PurMag;
-import ru.pearx.purmag.client.GuiDrawableRegistry;
-import ru.pearx.purmag.common.Utils;
-import ru.pearx.purmag.common.infofield.IfRegistry;
 import ru.pearx.purmag.common.infofield.IfTier;
-
-import java.util.HashMap;
 
 /**
  * Created by mrAppleXZ on 16.04.17 20:05.

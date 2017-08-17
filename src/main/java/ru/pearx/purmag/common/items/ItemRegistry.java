@@ -10,7 +10,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import ru.pearx.libmc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
-import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.items.papyrus.ItemPapyrus;
 
@@ -78,5 +77,6 @@ public class ItemRegistry
         register(new ItemFoodBakeable("beetle_meat", 3, 0.125f, false, 8, 0.55f), reg);
         register(new ItemBlockWallIfTablet(), reg);
         register(new ItemBlockBrokenWallIfTablet(), reg);
+        register(new ItemBlockBase(BlockRegistry.microscope), reg);
     }
 }

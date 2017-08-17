@@ -13,8 +13,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.PurMag;
-import ru.pearx.purmag.client.ClientUtils;
-import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.infofield.IfTier;
 
 /**

@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
-import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.CPacketSpawnParticle;
 
@@ -30,8 +29,7 @@ public class BlockBrokenWallIfTablet extends AbstractWallIfTablet
 {
     public BlockBrokenWallIfTablet()
     {
-        setRegistryName("broken_wall_if_tablet");
-        setUnlocalizedName(Utils.getUnlocalizedName("broken_wall_if_tablet"));
+        super("broken_wall_if_tablet");
     }
 
     @Override

@@ -7,8 +7,6 @@ import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
 import ru.pearx.purmag.common.infofield.steps.IRSCollect;
-import org.lwjgl.util.Rectangle;
-
 
 
 import java.util.List;

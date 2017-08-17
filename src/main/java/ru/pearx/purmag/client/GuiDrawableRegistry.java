@@ -7,8 +7,6 @@ import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.libmc.client.gui.drawables.SimpleDrawable;
 import ru.pearx.purmag.common.Utils;
 
-import java.util.HashMap;
-
 /**
  * Created by mrAppleXZ on 28.04.17 12:21.
  */

@@ -45,15 +45,15 @@ public abstract class AbstractWallIfTablet extends BlockBase
         BOUNDING_BOXES.put(EnumFacing.EAST, new AxisAlignedBB(0.05f, 0.15f, 0.15f, 0, 0.85f, 0.85f));
     }
 
-    public AbstractWallIfTablet()
+    public AbstractWallIfTablet(String name)
     {
-        super(Material.CIRCUITS);
+        super(name, Material.CIRCUITS);
         setHardness(1);
         setLightLevel(0.07f);
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state)
+    public boolean isFullBlock(IBlockState state)
     {
         return false;
     }
@@ -63,6 +63,13 @@ public abstract class AbstractWallIfTablet extends BlockBase
     {
         return false;
     }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
 
     @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)

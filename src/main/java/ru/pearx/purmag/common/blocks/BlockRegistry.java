@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import ru.pearx.libmc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
-import ru.pearx.purmag.common.Utils;
 
 /**
  * Created by mrAppleXZ on 08.04.17 18:44.
@@ -25,6 +24,7 @@ public class BlockRegistry
     public static final BlockCrystalSmall crystal_small = null;
     public static final BlockWallIfTablet wall_if_tablet = null;
     public static final BlockBrokenWallIfTablet broken_wall_if_tablet = null;
+    public static final BlockMicroscope microscope = null;
 
     @SubscribeEvent
     public static void onRegisterBlocks(RegistryEvent.Register<Block> e)
@@ -39,6 +39,7 @@ public class BlockRegistry
         register(new BlockCrystalSmall(), reg);
         register(new BlockWallIfTablet(), reg);
         register(new BlockBrokenWallIfTablet(), reg);
+        register(new BlockMicroscope(), reg);
     }
 
     public static void register(Block b, IForgeRegistry<Block> reg)

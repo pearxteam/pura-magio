@@ -2,11 +2,9 @@ package ru.pearx.purmag.client.gui.recipes;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
-import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
-import ru.pearx.purmag.common.Utils;
 
 /*
  * Created by mrAppleXZ on 15.08.17 14:49.

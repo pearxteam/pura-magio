@@ -14,7 +14,6 @@ import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.common.blocks.controllers.ConnectionsController;
-import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.sip.SipUtils;
 
 /**
@@ -25,9 +24,7 @@ public class BlockCrystalGlass extends BlockSingleSip
     public ConnectionsController ctm = new ConnectionsController();
     public BlockCrystalGlass()
     {
-        super(Material.GLASS);
-        setRegistryName(Utils.getRegistryName("crystal_glass"));
-        setUnlocalizedName(Utils.getUnlocalizedName("crystal_glass"));
+        super("crystal_glass", Material.GLASS);
         setHardness(1f);
         setSoundType(SoundType.GLASS);
         setHarvestLevel("pickaxe", 0);

@@ -14,7 +14,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import ru.pearx.purmag.common.Utils;
 
 /**
  * Created by mrAppleXZ on 04.06.17 18:22.
@@ -25,9 +24,7 @@ public class BlockCrystalSmall extends BlockBase
 
     public BlockCrystalSmall()
     {
-        super(Material.ROCK);
-        setRegistryName("crystal_small");
-        setUnlocalizedName(Utils.getUnlocalizedName("crystal_small"));
+        super("crystal_small", Material.ROCK);
         setHardness(6);
         setHarvestLevel("pickaxe", 2);
     }

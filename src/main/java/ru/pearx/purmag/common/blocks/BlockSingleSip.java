@@ -28,6 +28,10 @@ public class BlockSingleSip extends BlockBase
         super(materialIn);
     }
 
+    public BlockSingleSip(String name, Material materialIn)
+    {
+        super(name, materialIn);
+    }
 
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)

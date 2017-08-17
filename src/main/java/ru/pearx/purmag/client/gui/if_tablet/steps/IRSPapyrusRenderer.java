@@ -1,6 +1,5 @@
 package ru.pearx.purmag.client.gui.if_tablet.steps;
 
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.lib.Colors;
@@ -8,10 +7,6 @@ import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
 import ru.pearx.purmag.common.infofield.steps.IRSPapyrus;
 import ru.pearx.purmag.common.items.ItemRegistry;
-import org.lwjgl.util.Rectangle;
-import ru.pearx.purmag.common.items.papyrus.ItemPapyrus;
-
-
 
 
 /**

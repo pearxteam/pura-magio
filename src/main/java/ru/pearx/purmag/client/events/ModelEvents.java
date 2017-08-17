@@ -12,7 +12,6 @@ import ru.pearx.libmc.client.models.IPXModel;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.models.StandardModels;
 import ru.pearx.purmag.common.Utils;
-import ru.pearx.purmag.common.infofield.IfRegistry;
 import ru.pearx.purmag.common.infofield.IfTier;
 
 /**
@@ -33,6 +32,7 @@ public class ModelEvents
         StandardModels.WallIfTablet wit = new StandardModels.WallIfTablet();
         putModel(e, wit, Utils.getRegistryName("wall_if_tablet"));
         putModel(e, wit, Utils.getRegistryName("broken_wall_if_tablet"));
+        putModel(e, new StandardModels.Microscope(), Utils.getRegistryName("microscope"));
     }
 
     private static void putModel(ModelBakeEvent e, IPXModel model, ResourceLocation loc)
