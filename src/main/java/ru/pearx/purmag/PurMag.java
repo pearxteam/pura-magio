@@ -42,6 +42,7 @@ public class PurMag
     //todo glove modules and upgrades
     //todo time jail
     //todo microscope
+    //todo remote redstone controller
     @Mod.Instance
     public static PurMag INSTANCE;
 

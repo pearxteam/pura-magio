@@ -117,8 +117,8 @@ public class GuiTranslationDesk extends GuiOnScreen
         });
         btnStart.setWidth(128);
         btnStart.setHeight(24);
-        btnStart.setX(3);
-        btnStart.setY(getHeight() - 24 - 5);
+        btnStart.setX(8);
+        btnStart.setY(getHeight() - 24 - 8);
 
         panel = new GuiTranslationDeskPanel();
 
@@ -126,7 +126,7 @@ public class GuiTranslationDesk extends GuiOnScreen
         barRate.setColor(Colors.GREEN_500);
         barRate.setTextColor(Colors.WHITE);
         barRate.setText(net.minecraft.util.text.translation.I18n.translateToLocal("translation_desk.rate"));
-        barRate.setPos(3, 5 + (DrawingTools.getFontHeight() * 2));
+        barRate.setPos(15, 15 + (DrawingTools.getFontHeight() * 2));
         barRate.setSize(128, 16);
     }
 
@@ -136,10 +136,10 @@ public class GuiTranslationDesk extends GuiOnScreen
         GlStateManager.enableBlend();
         bg.draw(0, 0);
         GlStateManager.disableBlend();
-        DrawingTools.drawString(I18n.format("translation_desk.status", I18n.format("translation_desk.status." + status.toString())), 3, 5, Colors.WHITE);
+        DrawingTools.drawString(I18n.format("translation_desk.status", I18n.format("translation_desk.status." + status.toString())), 15, 15, Colors.WHITE);
         if(panel.translating)
         {
-            DrawingTools.drawString(I18n.format("translation_desk.remains", panel.entries.size()), 3, 5 + DrawingTools.getFontHeight(), Colors.WHITE);
+            DrawingTools.drawString(I18n.format("translation_desk.remains", panel.entries.size()), 15, 15 + DrawingTools.getFontHeight(), Colors.WHITE);
         }
     }
 
