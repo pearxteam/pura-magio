@@ -21,6 +21,10 @@ import ru.pearx.purmag.common.infofield.IfTier;
 @Mod.EventBusSubscriber(modid = PurMag.MODID)
 public class ModelEvents
 {
+    /*resources todo:
+     - microscope texture
+     - translation desk button
+    */
     @SubscribeEvent
     public static void onBake(ModelBakeEvent e)
     {
@@ -56,5 +60,6 @@ public class ModelEvents
         e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk"));
         for(IfTier t : PurMag.INSTANCE.if_registry.tiers)
             e.getMap().registerSprite(t.getWallTabletTexture());
+        e.getMap().registerSprite(Utils.getRegistryName("models/microscope"));
     }
 }

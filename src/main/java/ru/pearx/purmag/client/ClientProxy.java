@@ -20,6 +20,7 @@ import ru.pearx.purmag.common.entities.EntityRegistry;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.sip.SipUtils;
+import ru.pearx.purmag.common.tiles.TileRegistry;
 
 /**
  * Created by mrAppleXZ on 08.04.17 21:06.
@@ -49,6 +50,7 @@ public class ClientProxy extends CommonProxy
         KeyBindings.setup();
 
         PurMag.INSTANCE.if_registry.setupClient();
+        TileRegistry.registerClient();
     }
 
     public static void registerSipItemColor(Item itm)
