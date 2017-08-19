@@ -1,5 +1,8 @@
 package ru.pearx.purmag.client.gui.microscope;
 
+import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -46,6 +49,11 @@ public class MicroscopeDataBuilder
         register((list, stack) ->
         {
             list.add(stack.getDisplayName());
+            list.add(I18n.format("microscope.text.stackSize", stack.getMaxStackSize()));
+            if(stack.getItem().isRepairable())
+                list.add(I18n.format("microscope.text.repairable"));
+            if(stack.isItemEnchantable())
+                list.add(I18n.format("microscope.text.enchantable", stack.getItem().getItemEnchantability()));
         });
     }
 }

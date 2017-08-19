@@ -24,6 +24,7 @@ public class ModelEvents
     /*resources todo:
      - microscope texture
      - translation desk button
+     - furnace texture
     */
     @SubscribeEvent
     public static void onBake(ModelBakeEvent e)

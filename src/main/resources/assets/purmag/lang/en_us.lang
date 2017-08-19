@@ -132,3 +132,8 @@ translation_desk.rate=Rate: %3$s
 
 #Entities
 entity.verda_beetle.name=Verda Beetle
+
+#Microscope
+microscope.text.stackSize=Max stack size: %s.
+microscope.text.repairable=§aRepairable§r
+microscope.text.enchantable=§aEnchantable§r, §aEnchantability: §9%s§r.

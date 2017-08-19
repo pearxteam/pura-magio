@@ -33,7 +33,7 @@ public class GuiPapyrus extends GuiOnScreen
         DrawingTools.drawTexture(Utils.getRegistryName("textures/gui/papyrus.png"), 0, 0, getWidth(), getHeight());
         boolean unic = Minecraft.getMinecraft().fontRenderer.getUnicodeFlag();
         Minecraft.getMinecraft().fontRenderer.setUnicodeFlag(true);
-        DrawingTools.drawString(text, 5, 5, Colors.GREY_300, getWidth() - 10);
+        DrawingTools.drawString(text, 5, 5, Colors.GREY_500, getWidth() - 10);
         Minecraft.getMinecraft().fontRenderer.setUnicodeFlag(unic);
     }
 }
