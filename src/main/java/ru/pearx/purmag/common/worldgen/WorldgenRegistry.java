@@ -1,6 +1,7 @@
 package ru.pearx.purmag.common.worldgen;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import ru.pearx.libmc.common.worldgen.WGOre;
@@ -32,7 +33,7 @@ public class WorldgenRegistry
         if(PurMag.INSTANCE.config.genCrysagnetite.generate)
         {
             ConfigOregenEntry coe = PurMag.INSTANCE.config.genCrysagnetite;
-            GameRegistry.registerWorldGenerator(new WGOre(coe.minVeinSize, coe.maxVeinSize, coe.minY, coe.maxY, coe.chance, BlockRegistry.ore_crysagnetite.getDefaultState(), coe.dimList, coe.dimListWhitelist), 5);
+            GameRegistry.registerWorldGenerator(new WGOre(coe.minVeinSize, coe.maxVeinSize, coe.minY, coe.maxY, coe.chance, BlockRegistry.ore_crysagnetite.getDefaultState(), coe.dimList, coe.dimListWhitelist, coe.minVeins, coe.maxVeins, new WGOre.StonePredicate()), 5);
         }
         if(PurMag.INSTANCE.config.genCrystallizedRedstone.generate)
         {

@@ -42,7 +42,7 @@ public class SipType
 
     public String getDisplayName()
     {
-        return I18n.translateToLocalFormatted("sip_registry." + name + ".name");
+        return I18n.translateToLocalFormatted("sip." + name + ".name");
     }
 
     public TextFormatting getFormatting()

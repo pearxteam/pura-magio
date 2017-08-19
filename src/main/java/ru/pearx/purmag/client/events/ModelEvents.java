@@ -56,7 +56,7 @@ public class ModelEvents
                     for(int l = 0; l < 2; l++)
                         e.getMap().registerSprite(new ResourceLocation(PurMag.MODID, "blocks/crystal_glass/" + i + j + k + l));
         e.getMap().registerSprite(Utils.getRegistryName("models/glove"));
-        e.getMap().registerSprite(Utils.getRegistryName("particle/sip_registry"));
+        e.getMap().registerSprite(Utils.getRegistryName("particle/sip"));
         e.getMap().registerSprite(Utils.getRegistryName("models/crystal_small"));
         e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk"));
         for(IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)

@@ -13,7 +13,7 @@ import ru.pearx.purmag.common.tiles.TileSingleSip;
  */
 
 /**
- * Utilities for getting the single sip_registry type in stacks or blocks.
+ * Utilities for getting the single sip type in stacks or blocks.
  */
 public class SipUtils
 {
