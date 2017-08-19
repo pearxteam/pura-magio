@@ -162,7 +162,7 @@ public class GuiTranslationDeskPanel extends Control
         {
             translating = true;
             getDesk().updateStatus();
-            char[] chars = ItemRegistry.papyrus.getPapyrus(ItemRegistry.papyrus.getId(getDesk().stack)).getDisplayText().toCharArray();
+            char[] chars = PurMag.INSTANCE.getPapyrusRegistry().getPapyrus(ItemRegistry.papyrus.getId(getDesk().stack)).getDisplayText().toCharArray();
             for(int i = 0; i < chars.length / 4; i++)
             {
                 entries.add(new Entry((byte) PurMag.INSTANCE.random.nextInt(4), 250 + (i * 40)));

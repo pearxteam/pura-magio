@@ -5,8 +5,9 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import ru.pearx.libmc.client.ClientDebugger;
 import ru.pearx.libmc.client.PXLFastTESR;
+import ru.pearx.libmc.client.debug.TranslationDebugger;
+import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.purmag.common.tiles.TileMicroscope;
 
 import javax.vecmath.Vector3f;
@@ -24,12 +25,24 @@ public class TESRMicroscope extends PXLFastTESR<TileMicroscope>
         {
             GlStateManager.pushMatrix();
             GlStateManager.scale(0.25f, 0.25f, 0.25f);
-            Vector3f v = ClientDebugger.getTranslation();
-            if(stack.getItem() instanceof ItemBlock)
-                GlStateManager.translate(1.97f, 1.27f, 2.12f);
-            else
+            switch (getWorld().getBlockState(te.getPos()).getValue(HorizontalFacingController.FACING_H))
             {
-                GlStateManager.translate(1.97f, 1.05f, 2.16f);
+                case NORTH:
+                    GlStateManager.translate(1.99f, 1.27f, 2.12f);
+                    break;
+                case SOUTH:
+                    GlStateManager.translate(1.99f, 1.27f, 1.82f);
+                    break;
+                case EAST:
+                    GlStateManager.translate(1.87f, 1.27f, 2.02f);
+                    break;
+                case WEST:
+                    GlStateManager.translate(2.12f, 1.27f, 2.02f);
+                    break;
+            }
+            if(!(stack.getItem() instanceof ItemBlock))
+            {
+                GlStateManager.translate(0, -0.22f, 0);
                 GlStateManager.rotate(90, 1, 0, 0);
             }
             Minecraft.getMinecraft().getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);

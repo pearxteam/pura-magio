@@ -31,7 +31,7 @@ public class ItemSingleSip extends ItemBase
     {
         if(isInCreativeTab(tab))
         {
-            for (SipType t : PurMag.INSTANCE.sip.getTypes())
+            for (SipType t : PurMag.INSTANCE.getSipRegistry().getTypes())
             {
                 items.add(SipUtils.getStackWithSip(new ItemStack(this), t.getName()));
             }
@@ -41,7 +41,7 @@ public class ItemSingleSip extends ItemBase
     @Override
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.INSTANCE.sip.getType(SipUtils.getSipInStack(stack)).getDisplayName());
+        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.INSTANCE.getSipRegistry().getType(SipUtils.getSipInStack(stack)).getDisplayName());
     }
 
     @Override

@@ -4,6 +4,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.items.ItemRegistry;
 
 /**
@@ -22,7 +23,7 @@ public class IRSPapyrus extends IRSBase
     @SideOnly(Side.CLIENT)
     public String getDescription()
     {
-        return I18n.format("if_step." + getUnlocalizedName() + ".desc", ItemRegistry.papyrus.getPapyrus(id).getDisplayName());
+        return I18n.format("if_step." + getUnlocalizedName() + ".desc", PurMag.INSTANCE.getPapyrusRegistry().getPapyrus(id).getDisplayName());
     }
 
     public boolean isSuitable(ItemStack stack)

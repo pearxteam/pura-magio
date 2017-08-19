@@ -1,4 +1,4 @@
-package ru.pearx.purmag.client.gui.papyrus;
+package ru.pearx.purmag.client.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.relauncher.Side;
@@ -6,6 +6,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.GuiOnScreen;
+import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.items.ItemRegistry;
 
@@ -21,7 +22,7 @@ public class GuiPapyrus extends GuiOnScreen
 
     public GuiPapyrus(String papyrusId)
     {
-        text = ItemRegistry.papyrus.getPapyrus(papyrusId).getDisplayText();
+        text = PurMag.INSTANCE.getPapyrusRegistry().getPapyrus(papyrusId).getDisplayText();
         setWidth(192);
         setHeight(240);
     }

@@ -44,7 +44,7 @@ public class ItemIfTablet extends ItemBase
     {
         if(isInCreativeTab(tab))
         {
-            for (IfTier t : PurMag.INSTANCE.if_registry.tiers)
+            for (IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
             {
                 sub.add(new ItemStack(this, 1, t.getTier()));
             }
@@ -61,7 +61,7 @@ public class ItemIfTablet extends ItemBase
     @SideOnly(Side.CLIENT)
     public void setupModels()
     {
-        for(IfTier t : PurMag.INSTANCE.if_registry.tiers)
+        for(IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
         {
             ModelLoader.setCustomModelResourceLocation(this, t.getTier(), new ModelResourceLocation(t.getItemModel(), "normal"));
         }

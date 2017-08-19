@@ -156,7 +156,7 @@ public class IfRegistry
     {
         registerChannel(new IfChannel("information", 0));
         registerChannel(new IfChannel("exploration", 0));
-        registerChannel(new IfChannel("sip", 1));
+        registerChannel(new IfChannel("sip_registry", 1));
 
         //INFORMATION
         registerEntry(new IfEntry("wooden_tablet", 0, null, Collections.emptyList(), 0));
@@ -168,7 +168,7 @@ public class IfRegistry
                 null,
                 Arrays.asList(new IRSReadPapyrus("sip_knowledge"), new IRSTranslatePapyrus("sip_knowledge")),
                 1));
-        attachEntry("sip", new IfEntryLocation("sip_knowledge", 0, 0));
+        attachEntry("sip_registry", new IfEntryLocation("sip_knowledge", 0, 0));
 
         //EXPLORATION
         registerEntry(new IfEntry(
@@ -206,7 +206,7 @@ public class IfRegistry
     {
         registerChannelClient("information", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet, 1, 1)));
         registerChannelClient("exploration", new BigItemDrawable(new ItemStack(ItemRegistry.crystal)));
-        registerChannelClient("sip", new SimpleDrawable(Utils.getRegistryName("textures/icons/sip.png"), 28, 28, 28, 28));
+        registerChannelClient("sip_registry", new SimpleDrawable(Utils.getRegistryName("textures/icons/sip_registry.png"), 28, 28, 28, 28));
 
         registerEntryClient(
                 "wooden_tablet", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet)),

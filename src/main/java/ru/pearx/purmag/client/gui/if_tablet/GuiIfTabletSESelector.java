@@ -32,7 +32,7 @@ public class GuiIfTabletSESelector extends GuiIfTabletSEPart
 
         setWidth(texTab.width + 4);
         setHeight(texTab.height * 7);
-        for(IfChannel chan : PurMag.INSTANCE.if_registry.channels)
+        for(IfChannel chan : PurMag.INSTANCE.getIfRegistry().channels)
         {
             if(chan.isAvailable(Minecraft.getMinecraft().player, getTabletScreen().getTablet().tier))
                 channels.add(chan);

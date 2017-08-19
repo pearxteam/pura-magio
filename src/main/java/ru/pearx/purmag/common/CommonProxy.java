@@ -1,5 +1,6 @@
 package ru.pearx.purmag.common;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ru.pearx.libmc.client.models.IModelProvider;
@@ -42,6 +43,11 @@ public class CommonProxy
     }
 
     public void setupDrawables()
+    {
+
+    }
+
+    public void openMicroscope(ItemStack stack)
     {
 
     }

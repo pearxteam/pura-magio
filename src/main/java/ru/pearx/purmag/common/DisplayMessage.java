@@ -51,7 +51,7 @@ public class DisplayMessage
             switch (type)
             {
                 case "if_entry":
-                    localized = PurMag.INSTANCE.if_registry.getEntry(cont).getDisplayName();
+                    localized = PurMag.INSTANCE.getIfRegistry().getEntry(cont).getDisplayName();
                     break;
                 case "i18n":
                     localized = I18n.format(cont);

@@ -40,7 +40,7 @@ public class IfEntryStore implements IIfEntryStore
     @Override
     public boolean isFullyUnlocked(String id)
     {
-        return getSteps(id) >= PurMag.INSTANCE.if_registry.getEntry(id).getSteps().size();
+        return getSteps(id) >= PurMag.INSTANCE.getIfRegistry().getEntry(id).getSteps().size();
     }
 
     @Override

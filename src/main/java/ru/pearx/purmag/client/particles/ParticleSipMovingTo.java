@@ -19,9 +19,9 @@ public class ParticleSipMovingTo extends ParticleMovingTo
     public ParticleSipMovingTo(World worldIn, Vector3d loc, Vector3d locTo, String sip, int amount, float speed)
     {
         super(worldIn, loc, locTo, speed);
-        Color col = PurMag.INSTANCE.sip.getType(sip).getColor();
+        Color col = PurMag.INSTANCE.getSipRegistry().getType(sip).getColor();
         setRBGColorF (col.getRed() / 255f, col.getGreen() / 255f, col.getBlue() / 255f);
-        setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Utils.getRegistryName("particle/sip").toString()));
+        setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Utils.getRegistryName("particle/sip_registry").toString()));
         float f = amount / 8f;
         particleScale = 0.5f + f;
     }

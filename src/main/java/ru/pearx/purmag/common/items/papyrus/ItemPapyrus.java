@@ -32,8 +32,6 @@ import java.util.List;
  */
 public class ItemPapyrus extends ItemBase
 {
-    public List<PapyrusData> papyruses = new ArrayList<>();
-
     public ItemPapyrus()
     {
         super("papyrus");
@@ -48,7 +46,7 @@ public class ItemPapyrus extends ItemBase
         if(!worldIn.isRemote)
         {
             IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
-            for (IfEntry entr : PurMag.INSTANCE.if_registry.entries)
+            for (IfEntry entr : PurMag.INSTANCE.getIfRegistry().entries)
             {
                 int steps = store.getSteps(entr.getId());
                 if (steps < entr.getSteps().size())
@@ -84,7 +82,7 @@ public class ItemPapyrus extends ItemBase
     {
         if(isInCreativeTab(tab))
         {
-            for (PapyrusData data : papyruses)
+            for (PapyrusData data : PurMag.INSTANCE.getPapyrusRegistry().getPapyruses())
             {
                 subItems.add(getPapyrusItem(data.getPapyrusId()));
             }
@@ -99,19 +97,11 @@ public class ItemPapyrus extends ItemBase
         {
             if(stack.getTagCompound().hasKey("papyrus_id"))
             {
-                PapyrusData dat = getPapyrus(stack.getTagCompound().getString("papyrus_id"));
+                PapyrusData dat = PurMag.INSTANCE.getPapyrusRegistry().getPapyrus(stack.getTagCompound().getString("papyrus_id"));
                 if(dat != null)
                     tooltip.add(TextFormatting.GOLD + dat.getDisplayName() + TextFormatting.RESET);
             }
         }
-    }
-
-    public PapyrusData getPapyrus(String id)
-    {
-        for(PapyrusData dat : papyruses)
-            if(dat.getPapyrusId().equals(id))
-                return dat;
-        return null;
     }
 
     public ItemStack getPapyrusItem(String id)
@@ -133,10 +123,5 @@ public class ItemPapyrus extends ItemBase
             }
         }
         return "";
-    }
-
-    public static void setup()
-    {
-        ItemRegistry.papyrus.papyruses.add(new PapyrusData("sip_knowledge"));
     }
 }

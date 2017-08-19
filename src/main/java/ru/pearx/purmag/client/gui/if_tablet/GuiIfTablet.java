@@ -34,7 +34,7 @@ public class GuiIfTablet extends GuiOnScreen
     @Override
     public void init()
     {
-        data = PurMag.INSTANCE.if_registry.getTier(tier).getTabletData();
+        data = PurMag.INSTANCE.getIfRegistry().getTier(tier).getTabletData();
         texBg = new TexturePart(data.getTexture(), 0, 0, getWidth(), getHeight(), 512, 512);
         texFrame = new TexturePart(data.getTexture(), 0, getHeight(), getWidth(), getHeight(), 512, 512);
 

@@ -9,6 +9,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.tiles.TileAbstractSingleItem;
 import ru.pearx.purmag.common.tiles.TileMicroscope;
 
 import javax.annotation.Nullable;
@@ -34,8 +36,8 @@ public class BlockMicroscope extends BlockAbstractSingleItemHorizontal
     }
 
     @Override
-    public void openClientGui(World worldIn, BlockPos pos, IBlockState state, EntityPlayer p, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public void openClientGui(World worldIn, BlockPos pos, IBlockState state, EntityPlayer p, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, TileAbstractSingleItem tile)
     {
-
+        PurMag.proxy.openMicroscope(tile.handler.getStackInSlot(0));
     }
 }

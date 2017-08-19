@@ -3,6 +3,7 @@ package ru.pearx.purmag.client;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.obj.OBJLoader;
@@ -10,7 +11,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.PXLGui;
 import ru.pearx.libmc.client.models.IModelProvider;
-import ru.pearx.purmag.client.gui.papyrus.GuiPapyrus;
+import ru.pearx.purmag.client.gui.microscope.GuiMicroscope;
+import ru.pearx.purmag.client.gui.GuiPapyrus;
+import ru.pearx.purmag.client.gui.microscope.MicroscopeDataBuilder;
 import ru.pearx.purmag.client.gui.translation_desk.GuiTranslationDesk;
 import ru.pearx.purmag.common.CommonProxy;
 import ru.pearx.purmag.PurMag;
@@ -34,6 +37,7 @@ public class ClientProxy extends CommonProxy
         Minecraft.getMinecraft().getFramebuffer().enableStencil();
         OBJLoader.INSTANCE.addDomain(PurMag.MODID);
         EntityRegistry.registerClient();
+        PurMagClient.INSTANCE.getMicroscopeDataBuilder().setup();
     }
 
     @Override
@@ -49,20 +53,20 @@ public class ClientProxy extends CommonProxy
 
         KeyBindings.setup();
 
-        PurMag.INSTANCE.if_registry.setupClient();
+        PurMag.INSTANCE.getIfRegistry().setupClient();
         TileRegistry.registerClient();
     }
 
     public static void registerSipItemColor(Item itm)
     {
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
-                PurMag.INSTANCE.sip.getType(SipUtils.getSipInStack(stack)).getColor().getARGB(), itm);
+                PurMag.INSTANCE.getSipRegistry().getType(SipUtils.getSipInStack(stack)).getColor().getARGB(), itm);
     }
 
     public static void registerSipBlockColor(Block bl)
     {
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, w, pos, tintIndex) ->
-                PurMag.INSTANCE.sip.getType(SipUtils.getSipInBlock(w, pos)).getColor().getARGB(), bl);
+                PurMag.INSTANCE.getSipRegistry().getType(SipUtils.getSipInBlock(w, pos)).getColor().getARGB(), bl);
     }
 
     @Override
@@ -92,12 +96,18 @@ public class ClientProxy extends CommonProxy
     @Override
     public void setupIfTiers()
     {
-       PurMag.INSTANCE.if_registry.setupIfTiersClient();
+       PurMag.INSTANCE.getIfRegistry().setupIfTiersClient();
     }
 
     @Override
     public void setupDrawables()
     {
         GuiDrawableRegistry.setup();
+    }
+
+    @Override
+    public void openMicroscope(ItemStack stack)
+    {
+        Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiMicroscope(stack)));
     }
 }

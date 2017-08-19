@@ -23,7 +23,7 @@ public class IfEvents
         if(e.getEntityPlayer() instanceof EntityPlayerMP)
         {
             EntityPlayerMP p = (EntityPlayerMP) e.getEntityPlayer();
-            for (Pair<IfEntry, IRSCollect> pair : PurMag.INSTANCE.if_registry.getAllResearchableSteps(IRSCollect.class, p))
+            for (Pair<IfEntry, IRSCollect> pair : PurMag.INSTANCE.getIfRegistry().getAllResearchableSteps(IRSCollect.class, p))
             {
                 if (pair.getRight().isSuitable(e.getItem().getItem()))
                 {
@@ -39,7 +39,7 @@ public class IfEvents
         if (e.getSource().getTrueSource() instanceof EntityPlayerMP)
         {
             EntityPlayerMP p = (EntityPlayerMP) e.getSource().getTrueSource();
-            for (Pair<IfEntry, IRSKillEntity> pair : PurMag.INSTANCE.if_registry.getAllResearchableSteps(IRSKillEntity.class, p))
+            for (Pair<IfEntry, IRSKillEntity> pair : PurMag.INSTANCE.getIfRegistry().getAllResearchableSteps(IRSKillEntity.class, p))
             {
                 if (pair.getRight().clazz == e.getEntity().getClass())
                 {

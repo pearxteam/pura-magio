@@ -115,7 +115,7 @@ public abstract class AbstractWallIfTablet extends BlockBase
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
     {
-        for (IfTier t : PurMag.INSTANCE.if_registry.tiers)
+        for (IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
         {
             items.add(new ItemStack(this, 1, t.getTier()));
         }

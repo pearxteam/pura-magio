@@ -55,9 +55,10 @@ public abstract class BlockAbstractSingleItemHorizontal extends BlockBase
         TileEntity te = worldIn.getTileEntity(pos);
         if (te != null && te instanceof TileAbstractSingleItem)
         {
+            TileAbstractSingleItem tasi = (TileAbstractSingleItem) te;
             IItemHandler handler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
             ItemStack held = p.getHeldItem(hand);
-            if (!p.isSneaking() && ((TileAbstractSingleItem) te).isItemValid(held))
+            if (!p.isSneaking() && (tasi.isItemValid(held)))
             {
                 p.setHeldItem(hand, handler.insertItem(0, held, false));
                 return true;
@@ -68,13 +69,13 @@ public abstract class BlockAbstractSingleItemHorizontal extends BlockBase
                 ItemStackUtils.extractAll(handler, 0);
                 return true;
             }
-            openClientGui(worldIn, pos, state, p, hand, facing, hitX, hitY, hitZ);
+            openClientGui(worldIn, pos, state, p, hand, facing, hitX, hitY, hitZ, tasi);
             return true;
         }
         return false;
     }
 
-    public abstract void openClientGui(World worldIn, BlockPos pos, IBlockState state, EntityPlayer p, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ);
+    public abstract void openClientGui(World worldIn, BlockPos pos, IBlockState state, EntityPlayer p, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, TileAbstractSingleItem tile);
 
     @Override
     protected BlockStateContainer createBlockState()

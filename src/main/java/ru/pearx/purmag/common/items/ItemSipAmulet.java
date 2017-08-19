@@ -61,7 +61,7 @@ public class ItemSipAmulet extends ItemBase implements IBauble
     {
         for(Map.Entry<String, Integer> entr : stack.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).getStored().entrySet())
         {
-            SipType t = PurMag.INSTANCE.sip.getType(entr.getKey());
+            SipType t = PurMag.INSTANCE.getSipRegistry().getType(entr.getKey());
             tooltip.add(t.getFormatting() + t.getDisplayName() + ": " + entr.getValue() + TextFormatting.RESET);
         }
     }
