@@ -1,14 +1,16 @@
 package ru.pearx.purmag.common.worldgen;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import ru.pearx.libmc.common.worldgen.WGOre;
-import ru.pearx.libmc.common.worldgen.WGOreDouble;
+import ru.pearx.libmc.common.worldgen.WGOreOnOre;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.blocks.BlockCrystalSmall;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
+import ru.pearx.purmag.common.config.ConfigOreOnOreEntry;
 import ru.pearx.purmag.common.config.ConfigOregenEntry;
 
 import java.util.ArrayList;
@@ -37,19 +39,41 @@ public class WorldgenRegistry
         }
         if(PurMag.INSTANCE.config.genCrystallizedRedstone.generate)
         {
-            ConfigOregenEntry coe = PurMag.INSTANCE.config.genCrystallizedRedstone;
-            GameRegistry.registerWorldGenerator(new WGOreDouble(coe.minVeinSize, coe.maxVeinSize, coe.minY, coe.maxY, coe.chance,
+            ConfigOreOnOreEntry coe = PurMag.INSTANCE.config.genCrystallizedRedstone;
+            GameRegistry.registerWorldGenerator(new WGOreOnOre(coe.minY, coe.maxY, coe.chance,
                     BlockRegistry.crystal_small.getDefaultState().withProperty(BlockCrystalSmall.TYPE, BlockCrystalSmall.Type.REDSTONE),
-                    Blocks.REDSTONE_ORE.getDefaultState(),
-                    coe.dimList, coe.dimListWhitelist), 6);
+                    (world, pos, posUp) ->
+                    {
+                        Block b = world.getBlockState(pos).getBlock();
+                        if (b == Blocks.REDSTONE_ORE || b == Blocks.LIT_REDSTONE_ORE)
+                        {
+                            IBlockState up = world.getBlockState(posUp);
+                            if (up.getBlock().isReplaceableOreGen(up, world, posUp, new WGOre.StonePredicate()))
+                            {
+                                return true;
+                            }
+                        }
+                        return false;
+                    }, coe.dimList, coe.dimListWhitelist), 6);
         }
         if(PurMag.INSTANCE.config.genCrystallizedGlowstone.generate)
         {
-            ConfigOregenEntry coe = PurMag.INSTANCE.config.genCrystallizedGlowstone;
-            GameRegistry.registerWorldGenerator(new WGOreDouble(coe.minVeinSize, coe.maxVeinSize, coe.minY, coe.maxY, coe.chance,
+            ConfigOreOnOreEntry coe = PurMag.INSTANCE.config.genCrystallizedGlowstone;
+            GameRegistry.registerWorldGenerator(new WGOreOnOre(coe.minY, coe.maxY, coe.chance,
                     BlockRegistry.crystal_small.getDefaultState().withProperty(BlockCrystalSmall.TYPE, BlockCrystalSmall.Type.GLOWSTONE),
-                    Blocks.GLOWSTONE.getDefaultState(),
-                    coe.dimList, coe.dimListWhitelist), 6);
+                    (world, pos, posUp) ->
+                    {
+                        Block b = world.getBlockState(pos).getBlock();
+                        if (b == Blocks.GLOWSTONE)
+                        {
+                            IBlockState up = world.getBlockState(posUp);
+                            if (up.getBlock().isReplaceableOreGen(up, world, posUp, input -> input.getBlock() != Blocks.GLOWSTONE))
+                            {
+                                return true;
+                            }
+                        }
+                        return false;
+                    }, coe.dimList, coe.dimListWhitelist), 6);
         }
     }
 }

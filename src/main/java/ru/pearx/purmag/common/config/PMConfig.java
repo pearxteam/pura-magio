@@ -15,8 +15,8 @@ public class PMConfig
     public boolean genCrystals;
     public List<Integer> genRockCrystalsDimBlacklist;
     public ConfigOregenEntry genCrysagnetite;
-    public ConfigOregenEntry genCrystallizedRedstone;
-    public ConfigOregenEntry genCrystallizedGlowstone;
+    public ConfigOreOnOreEntry genCrystallizedRedstone;
+    public ConfigOreOnOreEntry genCrystallizedGlowstone;
 
     public void setup(Configuration configFile)
     {
@@ -24,8 +24,8 @@ public class PMConfig
         genRockCrystalsDimBlacklist = loadIntList(configFile, "Rock Crystals Dimension Blacklist", "WORLD", new String[] {"1", "-1"}, "");
 
         genCrysagnetite = loadOregen(configFile, "Crysagnetite", 15, 25, 1, 3, 1, 2, 0.1f, new String[] {"-1", "1"}, false);
-        genCrystallizedRedstone = loadOregen(configFile, "Crystallized Redstone", 2, 16, 2, 4, 1, 3, 0.2f, new String[] {"-1", "1"}, false);
-        genCrystallizedGlowstone = loadOregen(configFile, "Crystallized Glowstone", 2, 100, 2, 4, 1, 3, 0.5f, new String[] {"-1"}, true);
+        genCrystallizedRedstone = loadOreOnOre(configFile, "Crystallized Redstone", 0, 16, 0.03f, new String[] {"-1", "1"}, false);
+        genCrystallizedGlowstone = loadOreOnOre(configFile, "Crystallized Glowstone", 4, 123, 0.03f, new String[] {"-1"}, true);
 
         if(configFile.hasChanged())
             configFile.save();
@@ -41,7 +41,21 @@ public class PMConfig
         cfg.minVeinSize = config.getInt(orename + " Min Vein Size", "WORLD", minVs, 0, Integer.MAX_VALUE, "");
         cfg.maxVeinSize = config.getInt(orename + " Max Vein Size", "WORLD", maxVs, 0, Integer.MAX_VALUE, "");
         cfg.minVeins = config.getInt(orename + " Min Veins Per Chunk", "WORLD", minVeins, 0, Integer.MAX_VALUE, "");
-        cfg.maxVeins = config.getInt(orename + " Max Veins Per Chunk", "WORLD", minVeins, 0, Integer.MAX_VALUE, "");
+        cfg.maxVeins = config.getInt(orename + " Max Veins Per Chunk", "WORLD", maxVeins, 0, Integer.MAX_VALUE, "");
+        cfg.chance = config.getFloat(orename + " Generation Chance", "WORLD", chance, 0, 1, "");
+        cfg.dimList = loadIntList(config, orename + " DimList", "WORLD", dimList, "");
+        cfg.dimListWhitelist = config.getBoolean(orename + " DimList Mode", "WORLD", dimListMode, "True = whitelist; False = blacklist");
+
+        return cfg;
+    }
+
+    private ConfigOreOnOreEntry loadOreOnOre(Configuration config, String orename, int minY, int maxY, float chance, String[] dimList, boolean dimListMode)
+    {
+        ConfigOreOnOreEntry cfg = new ConfigOreOnOreEntry();
+
+        cfg.generate = config.getBoolean(orename, "WORLD", true, "");
+        cfg.minY = config.getInt(orename + " Min Y", "WORLD", minY, 0, Integer.MAX_VALUE, "");
+        cfg.maxY = config.getInt(orename + " Max Y", "WORLD", maxY, 0, Integer.MAX_VALUE, "");
         cfg.chance = config.getFloat(orename + " Generation Chance", "WORLD", chance, 0, 1, "");
         cfg.dimList = loadIntList(config, orename + " DimList", "WORLD", dimList, "");
         cfg.dimListWhitelist = config.getBoolean(orename + " DimList Mode", "WORLD", dimListMode, "True = whitelist; False = blacklist");
