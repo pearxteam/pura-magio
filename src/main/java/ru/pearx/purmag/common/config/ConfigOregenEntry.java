@@ -8,22 +8,10 @@ import java.util.List;
 public class ConfigOregenEntry
 {
     public boolean generate;
-    public int minY, maxY, minVeinSize, maxVeinSize;
+    public int minY, maxY, minVeinSize, maxVeinSize, minVeins, maxVeins;
     public float chance;
     public List<Integer> dimList;
     public boolean dimListWhitelist;
-
-    public ConfigOregenEntry(boolean generate, int minY, int maxY, int minVeinSize, int maxVeinSize, float chance, List<Integer> dimList, boolean dimListWhitelist)
-    {
-        this.generate = generate;
-        this.minY = minY;
-        this.maxY = maxY;
-        this.minVeinSize = minVeinSize;
-        this.maxVeinSize = maxVeinSize;
-        this.chance = chance;
-        this.dimList = dimList;
-        this.dimListWhitelist = dimListWhitelist;
-    }
 
     public ConfigOregenEntry()
     {

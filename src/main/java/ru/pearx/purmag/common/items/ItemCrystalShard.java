@@ -7,7 +7,7 @@ public class ItemCrystalShard extends ItemSingleSip
 {
     public ItemCrystalShard()
     {
-        setRegistryName("crystal_shard");
+        super("crystal_shard");
         setHasSubtypes(true);
     }
 }

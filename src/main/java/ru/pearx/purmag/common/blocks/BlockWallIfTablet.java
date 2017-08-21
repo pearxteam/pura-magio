@@ -7,7 +7,6 @@ public class BlockWallIfTablet extends AbstractWallIfTablet
 {
     public BlockWallIfTablet()
     {
-        setRegistryName("wall_if_tablet");
-        setUnlocalizedName("wall_if_tablet");
+        super("wall_if_tablet");
     }
 }

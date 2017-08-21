@@ -21,7 +21,7 @@ public class ItemCrystalCutter extends ItemBase
 {
     public ItemCrystalCutter()
     {
-        setRegistryName("crystal_cutter");
+        super("crystal_cutter");
         setMaxStackSize(1);
     }
 

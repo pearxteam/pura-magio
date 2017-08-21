@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.SoundEvents;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.libmc.client.gui.controls.common.ProgressBar;
@@ -16,9 +17,11 @@ import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.SPacketDoneTranslation;
 import org.lwjgl.input.Keyboard;
 
-import java.awt.*;
+
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  * Created by mrAppleXZ on 08.06.17 11:10.
@@ -159,13 +162,13 @@ public class GuiTranslationDeskPanel extends Control
         {
             translating = true;
             getDesk().updateStatus();
-            char[] chars = ItemRegistry.papyrus.getPapyrus(ItemRegistry.papyrus.getId(getDesk().stack)).getDisplayText().toCharArray();
+            char[] chars = PurMag.INSTANCE.getPapyrusRegistry().getPapyrus(ItemRegistry.papyrus.getId(getDesk().stack)).getDisplayText().toCharArray();
             for(int i = 0; i < chars.length / 4; i++)
             {
                 entries.add(new Entry((byte) PurMag.INSTANCE.random.nextInt(4), 250 + (i * 40)));
             }
             totalEntries = entries.size();
-            getDesk().barRate.getMarks().add(new ProgressBar.Mark((int)(totalEntries * 0.7f), Color.BLACK));
+            getDesk().barRate.getMarks().add(new ProgressBar.Mark((int)(totalEntries * 0.7f), Colors.BLACK));
         }
     }
 

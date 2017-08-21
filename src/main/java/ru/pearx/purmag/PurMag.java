@@ -8,11 +8,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import org.apache.logging.log4j.Logger;
 import ru.pearx.purmag.common.config.PMConfig;
 import ru.pearx.purmag.common.entities.EntityRegistry;
 import ru.pearx.purmag.common.infofield.IfRegistry;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.items.papyrus.ItemPapyrus;
+import ru.pearx.purmag.common.items.papyrus.PapyrusRegistry;
 import ru.pearx.purmag.common.loot_tables.LootTablesRegistry;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.recipes.RecipeRegistry;
@@ -40,7 +42,7 @@ public class PurMag
     //todo SIF plant, agronomy, paris,
     //todo glove modules and upgrades
     //todo time jail
-    //todo microscope
+    //todo remote redstone controller
     @Mod.Instance
     public static PurMag INSTANCE;
 
@@ -48,28 +50,55 @@ public class PurMag
     public static final String NAME = "Purificati Magicae";
     public static final String VERSION = "@VERSION@";
 
-    public SipTypeRegistry sip = new SipTypeRegistry();
-    public SipEffectsRegistry sip_effects = new SipEffectsRegistry();
-    public IfRegistry if_registry = new IfRegistry();
+    @SidedProxy(clientSide = "ru.pearx.purmag.client.ClientProxy", serverSide = "ru.pearx.purmag.server.ServerProxy")
+    public static CommonProxy proxy;
+
+    private SipTypeRegistry sip_registry = new SipTypeRegistry();
+    private SipEffectsRegistry sip_effects = new SipEffectsRegistry();
+    private IfRegistry if_registry = new IfRegistry();
+    private PapyrusRegistry papyrus_registry = new PapyrusRegistry();
+
     public PMConfig config = new PMConfig();
     public Random random = new Random();
+    public Logger log;
 
     public SifStorageServer sif_storage = new SifStorageServer();
 
-    @SidedProxy(clientSide = "ru.pearx.purmag.client.ClientProxy", serverSide = "ru.pearx.purmag.server.ServerProxy")
-    public static CommonProxy proxy;
+    public SipTypeRegistry getSipRegistry()
+    {
+        return sip_registry;
+    }
+
+    public SipEffectsRegistry getSipEffects()
+    {
+        return sip_effects;
+    }
+
+    public IfRegistry getIfRegistry()
+    {
+        return if_registry;
+    }
+
+    public PapyrusRegistry getPapyrusRegistry()
+    {
+        return papyrus_registry;
+    }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e)
     {
+        log = e.getModLog();
         setupMetadata(e.getModMetadata());
 
         config.setup(new Configuration(new File(e.getModConfigurationDirectory(), "Purificati Magicae.cfg")));
 
-        sip.register();
+        proxy.setupDrawables();
+        getSipRegistry().register();
         TileRegistry.register();
         CapabilityRegistry.register();
         EntityRegistry.register();
+
+        proxy.setupIfTiers();
 
         proxy.preInit();
     }
@@ -77,10 +106,10 @@ public class PurMag
     @Mod.EventHandler
     public void init(FMLInitializationEvent e)
     {
-        sip_effects.register();
+        getSipEffects().register();
         ItemRegistry.setup();
-        ItemPapyrus.setup();
-        if_registry.setup();
+        getPapyrusRegistry().setup();
+        getIfRegistry().setup();
         NetworkManager.setup();
         WorldgenRegistry.setup();
         LootTablesRegistry.setup();

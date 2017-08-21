@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.GuiOnScreen;
 import ru.pearx.libmc.client.gui.TexturePart;
@@ -24,7 +25,7 @@ import ru.pearx.purmag.common.infofield.steps.IIfResearchStep;
 import ru.pearx.purmag.common.infofield.steps.IRSTranslatePapyrus;
 import ru.pearx.purmag.common.tiles.TileTranslationDesk;
 
-import java.awt.*;
+
 
 /**
  * Created by mrAppleXZ on 07.06.17 20:12.
@@ -116,16 +117,16 @@ public class GuiTranslationDesk extends GuiOnScreen
         });
         btnStart.setWidth(128);
         btnStart.setHeight(24);
-        btnStart.setX(3);
-        btnStart.setY(getHeight() - 24 - 5);
+        btnStart.setX(8);
+        btnStart.setY(getHeight() - 24 - 8);
 
         panel = new GuiTranslationDeskPanel();
 
         barRate = new BarRate();
-        barRate.setColor(Color.GREEN);
-        barRate.setTextColor(Color.WHITE);
+        barRate.setColor(Colors.GREEN_500);
+        barRate.setTextColor(Colors.WHITE);
         barRate.setText(net.minecraft.util.text.translation.I18n.translateToLocal("translation_desk.rate"));
-        barRate.setPos(3, 5 + (DrawingTools.getFontHeight() * 2));
+        barRate.setPos(15, 15 + (DrawingTools.getFontHeight() * 2));
         barRate.setSize(128, 16);
     }
 
@@ -135,10 +136,10 @@ public class GuiTranslationDesk extends GuiOnScreen
         GlStateManager.enableBlend();
         bg.draw(0, 0);
         GlStateManager.disableBlend();
-        DrawingTools.drawString(I18n.format("translation_desk.status", I18n.format("translation_desk.status." + status.toString())), 3, 5, Color.WHITE);
+        DrawingTools.drawString(I18n.format("translation_desk.status", I18n.format("translation_desk.status." + status.toString())), 15, 15, Colors.WHITE);
         if(panel.translating)
         {
-            DrawingTools.drawString(I18n.format("translation_desk.remains", panel.entries.size()), 3, 5 + DrawingTools.getFontHeight(), Color.WHITE);
+            DrawingTools.drawString(I18n.format("translation_desk.remains", panel.entries.size()), 15, 15 + DrawingTools.getFontHeight(), Colors.WHITE);
         }
     }
 
@@ -167,7 +168,7 @@ public class GuiTranslationDesk extends GuiOnScreen
             if(!stack.isEmpty())
             {
                 IIfEntryStore store = Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
-                for(IfEntry entr : PurMag.INSTANCE.if_registry.entries)
+                for(IfEntry entr : PurMag.INSTANCE.getIfRegistry().entries)
                 {
                     int steps = store.getSteps(entr.getId());
                     if(steps < entr.getSteps().size())

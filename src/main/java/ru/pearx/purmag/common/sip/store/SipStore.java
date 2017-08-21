@@ -69,7 +69,7 @@ public class SipStore implements ISipStore
     @Override
     public List<String> getAllowedTypes()
     {
-        return PurMag.INSTANCE.sip.getAllowedValues();
+        return PurMag.INSTANCE.getSipRegistry().getAllowedValues();
     }
 
     @Override

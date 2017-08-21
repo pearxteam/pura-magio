@@ -28,11 +28,15 @@ public class BlockSingleSip extends BlockBase
         super(materialIn);
     }
 
+    public BlockSingleSip(String name, Material materialIn)
+    {
+        super(name, materialIn);
+    }
 
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        for(SipType t : PurMag.INSTANCE.sip.getTypes())
+        for(SipType t : PurMag.INSTANCE.getSipRegistry().getTypes())
         {
             list.add(SipUtils.getStackWithSip(new ItemStack(this), t.getName()));
         }

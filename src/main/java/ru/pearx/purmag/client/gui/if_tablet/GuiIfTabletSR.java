@@ -4,13 +4,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.Button;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.infofield.IfEntry;
 
-import java.awt.*;
+
 
 /**
  * Created by mrAppleXZ on 30.04.17 21:25.
@@ -52,7 +53,7 @@ public class GuiIfTabletSR extends GuiIfTabletS
         super.render();
         String dn = entry.getDisplayName() + " [" + (doneSteps + 1) + "/" + entry.getSteps().size() + "]";
         String stepName = entry.getSteps().get(doneSteps).getDisplayName();
-        DrawingTools.drawString(dn, (getWidth() - DrawingTools.measureString(dn)) / 2, 8, Color.WHITE);
-        DrawingTools.drawString(stepName, (getWidth() - DrawingTools.measureString(stepName)) / 2, 26, Color.WHITE);
+        DrawingTools.drawString(dn, (getWidth() - DrawingTools.measureString(dn)) / 2, 8, Colors.WHITE);
+        DrawingTools.drawString(stepName, (getWidth() - DrawingTools.measureString(stepName)) / 2, 26, Colors.WHITE);
     }
 }

@@ -23,7 +23,7 @@ public class ItemBlockSingleSip extends ItemBlockBase
     @Override
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.INSTANCE.sip.getType(SipUtils.getSipInStack(stack)).getDisplayName());
+        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".name", PurMag.INSTANCE.getSipRegistry().getType(SipUtils.getSipInStack(stack)).getDisplayName());
     }
 
     @Override

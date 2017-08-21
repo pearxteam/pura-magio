@@ -28,11 +28,11 @@ public class GuiIfTabletSESelector extends GuiIfTabletSEPart
     @Override
     public void init()
     {
-        texTab = new TexturePart(getTabletScreen().getTablet().textures, getTabletScreen().getWidth(), 0, 32, 32, 512, 512);
+        texTab = new TexturePart(getTabletScreen().getTablet().data.getTexture(), getTabletScreen().getWidth(), 0, 32, 32, 512, 512);
 
         setWidth(texTab.width + 4);
         setHeight(texTab.height * 7);
-        for(IfChannel chan : PurMag.INSTANCE.if_registry.channels)
+        for(IfChannel chan : PurMag.INSTANCE.getIfRegistry().channels)
         {
             if(chan.isAvailable(Minecraft.getMinecraft().player, getTabletScreen().getTablet().tier))
                 channels.add(chan);
@@ -61,7 +61,7 @@ public class GuiIfTabletSESelector extends GuiIfTabletSEPart
                 int xoff = i == selected ? 0 : 4;
                 texTab.draw(xoff, offset);
                 IGuiDrawable draw = channels.get(i).getIcon();
-                draw.draw(xoff + ((texTab.width - draw.getWidth()) / 2), offset + ((texTab.height - draw.getHeight()) / 2));
+                draw.draw(getGuiScreen(), xoff + ((texTab.width - draw.getWidth()) / 2), offset + ((texTab.height - draw.getHeight()) / 2));
             }
             offset += texTab.height;
         }

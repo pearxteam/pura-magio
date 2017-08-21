@@ -1,9 +1,7 @@
 package ru.pearx.purmag.common.jei;
 
-import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
-import mezz.jei.api.IModRegistry;
 
 /*
  * Created by mrAppleXZ on 14.08.17 11:42.

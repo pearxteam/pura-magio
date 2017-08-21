@@ -29,8 +29,7 @@ public class BlockBrokenWallIfTablet extends AbstractWallIfTablet
 {
     public BlockBrokenWallIfTablet()
     {
-        setRegistryName("broken_wall_if_tablet");
-        setUnlocalizedName("broken_wall_if_tablet");
+        super("broken_wall_if_tablet");
     }
 
     @Override

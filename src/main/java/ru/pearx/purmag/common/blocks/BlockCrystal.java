@@ -12,7 +12,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.sip.SipUtils;
 
@@ -26,9 +25,7 @@ public class BlockCrystal extends BlockSingleSip
 {
     public BlockCrystal()
     {
-        super(Material.ROCK);
-        setRegistryName(Utils.getRegistryName("crystal"));
-        setUnlocalizedName("crystal");
+        super("crystal", Material.ROCK);
         setHardness(2);
         setLightLevel(5);
         setHarvestLevel("pickaxe", 1);
@@ -41,7 +38,7 @@ public class BlockCrystal extends BlockSingleSip
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state)
+    public boolean isFullBlock(IBlockState state)
     {
         return false;
     }
@@ -51,6 +48,13 @@ public class BlockCrystal extends BlockSingleSip
     {
         return false;
     }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
 
     @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)

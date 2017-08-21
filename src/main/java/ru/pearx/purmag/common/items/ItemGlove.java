@@ -18,7 +18,7 @@ public class ItemGlove extends ItemBase
 {
     public ItemGlove()
     {
-        setRegistryName("glove");
+        super("glove");
         setMaxStackSize(1);
     }
 

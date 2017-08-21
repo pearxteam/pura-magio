@@ -14,7 +14,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import ru.pearx.purmag.common.Utils;
 
 /**
  * Created by mrAppleXZ on 04.06.17 18:22.
@@ -25,9 +24,7 @@ public class BlockCrystalSmall extends BlockBase
 
     public BlockCrystalSmall()
     {
-        super(Material.ROCK);
-        setRegistryName(Utils.getRegistryName("crystal_small"));
-        setUnlocalizedName("crystal_small");
+        super("crystal_small", Material.ROCK);
         setHardness(6);
         setHarvestLevel("pickaxe", 2);
     }
@@ -39,13 +36,19 @@ public class BlockCrystalSmall extends BlockBase
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state)
+    public boolean isFullBlock(IBlockState state)
     {
         return false;
     }
 
     @Override
     public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }

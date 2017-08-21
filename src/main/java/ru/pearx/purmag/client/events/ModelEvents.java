@@ -21,6 +21,11 @@ import ru.pearx.purmag.common.infofield.IfTier;
 @Mod.EventBusSubscriber(modid = PurMag.MODID)
 public class ModelEvents
 {
+    /*resources todo:
+     - microscope texture
+     - translation desk button
+     - furnace texture
+    */
     @SubscribeEvent
     public static void onBake(ModelBakeEvent e)
     {
@@ -32,6 +37,7 @@ public class ModelEvents
         StandardModels.WallIfTablet wit = new StandardModels.WallIfTablet();
         putModel(e, wit, Utils.getRegistryName("wall_if_tablet"));
         putModel(e, wit, Utils.getRegistryName("broken_wall_if_tablet"));
+        putModel(e, new StandardModels.Microscope(), Utils.getRegistryName("microscope"));
     }
 
     private static void putModel(ModelBakeEvent e, IPXModel model, ResourceLocation loc)
@@ -53,7 +59,8 @@ public class ModelEvents
         e.getMap().registerSprite(Utils.getRegistryName("particle/sip"));
         e.getMap().registerSprite(Utils.getRegistryName("models/crystal_small"));
         e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk"));
-        for(IfTier t : PurMag.INSTANCE.if_registry.tiers)
-            e.getMap().registerSprite(Utils.getRegistryName("models/wall_if_tablet." + t.getTier()));
+        for(IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
+            e.getMap().registerSprite(t.getWallTabletTexture());
+        e.getMap().registerSprite(Utils.getRegistryName("models/microscope"));
     }
 }

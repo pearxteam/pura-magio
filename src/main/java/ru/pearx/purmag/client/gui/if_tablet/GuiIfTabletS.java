@@ -55,8 +55,6 @@ public class GuiIfTabletS extends Control
         return getTablet().getHeight();
     }
 
-    public boolean isGlowing() { return false; }
-
     @Override
     public void keyUp(int keycode)
     {

@@ -6,11 +6,13 @@ import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
+import ru.pearx.libmc.client.gui.OverlayGui;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 
-import java.awt.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -49,7 +51,7 @@ public class DisplayMessage
             switch (type)
             {
                 case "if_entry":
-                    localized = PurMag.INSTANCE.if_registry.getEntry(cont).getDisplayName();
+                    localized = PurMag.INSTANCE.getIfRegistry().getEntry(cont).getDisplayName();
                     break;
                 case "i18n":
                     localized = I18n.format(cont);
@@ -124,10 +126,10 @@ public class DisplayMessage
         GlStateManager.pushMatrix();
         GlStateManager.translate(0, 0, 500);
         GlStateManager.enableBlend();
-        GuiDrawableRegistry.displayMessage.draw(0, 0);
+        GuiDrawableRegistry.displayMessage.draw(OverlayGui.INSTANCE, 0, 0);
         GlStateManager.disableBlend();
-        DrawingTools.drawString(formatSting(getSubject()), x, y, Color.YELLOW);
-        DrawingTools.drawString(formatSting(getDescription()), x + 5, y + 11, Color.WHITE);
+        DrawingTools.drawString(formatSting(getSubject()), x, y, Colors.YELLOW_500);
+        DrawingTools.drawString(formatSting(getDescription()), x + 5, y + 11, Colors.WHITE);
         GlStateManager.popMatrix();
     }
 }

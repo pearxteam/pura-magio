@@ -2,24 +2,25 @@ package ru.pearx.purmag.common.infofield;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.drawables.BigItemDrawable;
 import ru.pearx.libmc.client.gui.drawables.EntityDrawable;
 import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.libmc.client.gui.drawables.SimpleDrawable;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.client.GuiDrawableRegistry;
+import ru.pearx.purmag.client.infofield.pages.*;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.entities.EntityBeetle;
-import ru.pearx.purmag.client.infofield.pages.IIfPage;
-import ru.pearx.purmag.client.infofield.pages.IfPageEntity;
-import ru.pearx.purmag.client.infofield.pages.IfPagePapyrus;
-import ru.pearx.purmag.client.infofield.pages.IfPageText;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import ru.pearx.purmag.common.infofield.steps.*;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import org.apache.commons.lang3.tuple.Pair;
+import ru.pearx.purmag.common.sip.SipUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -134,15 +135,42 @@ public class IfRegistry
         getChannel(name).setIcon(icon);
     }
 
+    @SideOnly(Side.CLIENT)
+    public void registerTierClient(int tier, IfTier.TabletData tabletData, ResourceLocation wallTabletTexture, ResourceLocation tabletItemModel)
+    {
+        IfTier t = getTier(tier);
+        t.setTabletData(tabletData);
+        t.setWallTabletTexture(wallTabletTexture);
+        t.setItemModel(tabletItemModel);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void setupIfTiersClient()
+    {
+        registerTierClient(0, new IfTier.TabletData(GuiDrawableRegistry.paperEntry, false, Utils.getRegistryName("textures/gui/if_tablet/0.png"), Colors.BLACK, Colors.WHITE), Utils.getRegistryName("models/wall_if_tablet/0"), Utils.getRegistryName("if_tablet/0"));
+        registerTierClient(1, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getRegistryName("textures/gui/if_tablet/1.png"), Colors.LIGHTGREEN_900, Colors.LIGHTGREEN_300), Utils.getRegistryName("models/wall_if_tablet/1"), Utils.getRegistryName("if_tablet/1"));
+        registerTierClient(2, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getRegistryName("textures/gui/if_tablet/2.png"), Colors.LIGHTGREEN_900, Colors.LIGHTGREEN_300), Utils.getRegistryName("models/wall_if_tablet/2"), Utils.getRegistryName("if_tablet/2"));
+    }
+
     public void setup()
     {
         registerChannel(new IfChannel("information", 0));
         registerChannel(new IfChannel("exploration", 0));
         registerChannel(new IfChannel("sip", 1));
 
+        //INFORMATION
         registerEntry(new IfEntry("wooden_tablet", 0, null, Collections.emptyList(), 0));
         attachEntry("information", new IfEntryLocation("wooden_tablet", 0, 0));
 
+        //SIP
+        registerEntry(new IfEntry(
+                "sip_knowledge", 1,
+                null,
+                Arrays.asList(new IRSReadPapyrus("sip_knowledge"), new IRSTranslatePapyrus("sip_knowledge")),
+                1));
+        attachEntry("sip", new IfEntryLocation("sip_knowledge", 0, 0));
+
+        //EXPLORATION
         registerEntry(new IfEntry(
                 "crysagnetite", 0,
                 null,
@@ -151,19 +179,26 @@ public class IfRegistry
         attachEntry("exploration", new IfEntryLocation("crysagnetite", 0, 0));
 
         registerEntry(new IfEntry(
-                "sip_knowledge", 1,
-                null,
-                Arrays.asList(new IRSReadPapyrus("sip_knowledge"), new IRSTranslatePapyrus("sip_knowledge")),
-                1));
-        attachEntry("sip", new IfEntryLocation("sip_knowledge", 0, 0));
-
-        registerEntry(new IfEntry(
                 "verda_beetle", 0,
                 null,
                 Arrays.asList(new IRSKillEntity(EntityBeetle.class, "verda_beetle")),
                 0));
-        attachEntry("exploration", new IfEntryLocation("verda_beetle", 0, 5));
-        //registerEntry(new IfEntry("crystals", 0, new BigItemDrawable(ItemUtils.getItemWithSip(SipTypeRegistry.DEFAULT, ItemRegistry.crystal)), null, Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals.0", true)), 0, 0, 0, new IfPageText("crystals.0"), new IfPageText("crystals.1")));
+        attachEntry("exploration", new IfEntryLocation("verda_beetle", 0, 2));
+
+        registerEntry(new IfEntry(
+                "crystals", 0,
+                null,
+                Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals", true)),
+                0));
+        attachEntry("exploration", new IfEntryLocation("crystals", 0, -2));
+
+        registerEntry(new IfEntry(
+                "flame_crystal", 0,
+                Arrays.asList("crystals"),
+                Arrays.asList(new IRSCollect(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard), "flame"), "flame_crystal", true, true, true)),
+                0
+        ));
+        attachEntry("exploration", new IfEntryLocation("flame_crystal", 0, -4));
     }
 
     @SideOnly(Side.CLIENT)
@@ -191,7 +226,16 @@ public class IfRegistry
         registerEntryClient(
                 "verda_beetle", new EntityDrawable(EntityBeetle.class, 20, 5),
                 new IfPageText("verda_beetle.0"),
-                new IfPageEntity(EntityBeetle.class, "verda_beetle.1")
+                new IfPageEntity(EntityBeetle.class, "verda_beetle.1"),
+                new IfPageFurnace(new ItemStack(ItemRegistry.beetle_meat))
+        );
+        registerEntryClient(
+                "crystals", new BigItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "flame")),
+                new IfPageText("crystals.0")
+        );
+        registerEntryClient(
+                "flame_crystal", new BigItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "flame")),
+                new IfPageText("flame_crystal")
         );
     }
 }

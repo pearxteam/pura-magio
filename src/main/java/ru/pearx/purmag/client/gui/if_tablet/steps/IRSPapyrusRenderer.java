@@ -1,15 +1,12 @@
 package ru.pearx.purmag.client.gui.if_tablet.steps;
 
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
 import ru.pearx.purmag.common.infofield.steps.IRSPapyrus;
 import ru.pearx.purmag.common.items.ItemRegistry;
-import org.lwjgl.util.Rectangle;
-
-import java.awt.*;
 
 
 /**
@@ -19,6 +16,7 @@ import java.awt.*;
 public class IRSPapyrusRenderer extends IRSRenderer<IRSPapyrus>
 {
     private int lastX, lastY;
+    private ItemDrawable draw;
 
     public IRSPapyrusRenderer(IRSPapyrus step)
     {
@@ -29,15 +27,12 @@ public class IRSPapyrusRenderer extends IRSRenderer<IRSPapyrus>
     public void render()
     {
         super.render();
-        ItemStack stack = ItemRegistry.papyrus.getPapyrusItem(step.id);
-        ItemDrawable draw = new ItemDrawable(stack, 5);
-        int x = (getWidth() - draw.getWidth()) / 2;
-        draw.draw(x, 0);
-        DrawingTools.drawString(step.getDescription(), 5, draw.getHeight() + 5, Color.WHITE, getWidth() - 5);
-        if(isFocused() && new Rectangle(x, 0, draw.getWidth(), draw.getHeight()).contains(lastX, lastY))
+        if(draw == null || draw.stack.getItem() != ItemRegistry.papyrus || !ItemRegistry.papyrus.getId(draw.stack).equals(step.id))
         {
-            getGuiScreen().drawTooltip(stack, lastX, lastY);
+            draw = new ItemDrawable(ItemRegistry.papyrus.getPapyrusItem(step.id), 5);
         }
+        DrawingTools.drawString(step.getDescription(), 5, draw.getHeight() + 5, Colors.WHITE, getWidth() - 5);
+        draw.drawWithTooltip(getGuiScreen(), (getWidth() - draw.getWidth()) / 2, 0, lastX, lastY);
     }
 
     @Override
@@ -45,5 +40,16 @@ public class IRSPapyrusRenderer extends IRSRenderer<IRSPapyrus>
     {
         lastX = x;
         lastY = y;
+    }
+
+    @Override
+    public void setFocused(boolean val)
+    {
+        super.setFocused(val);
+        if(!val)
+        {
+            lastX = -1;
+            lastY = -1;
+        }
     }
 }

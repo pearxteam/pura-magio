@@ -62,7 +62,7 @@ public class SPacketUseSipAmulet implements IMessage
                     Map<String, Integer> sips = amulet.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).getStored();
                     for (Map.Entry<String, Integer> entr : sips.entrySet())
                     {
-                        SipEffect eff = PurMag.INSTANCE.sip_effects.getMap().get(entr.getKey());
+                        SipEffect eff = PurMag.INSTANCE.getSipEffects().getMap().get(entr.getKey());
                         int lvl = amulet.getMetadata();
                         if (eff.getMaxLevel() != -1 && lvl > eff.getMaxLevel())
                             lvl = eff.getMaxLevel();

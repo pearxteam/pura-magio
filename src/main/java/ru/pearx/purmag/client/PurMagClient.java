@@ -2,6 +2,7 @@ package ru.pearx.purmag.client;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.purmag.client.gui.microscope.MicroscopeDataBuilder;
 import ru.pearx.purmag.client.sif.SifStorageClient;
 
 /**
@@ -13,4 +14,11 @@ public class PurMagClient
     public static final PurMagClient INSTANCE = new PurMagClient();
 
     public SifStorageClient sif_storage = new SifStorageClient();
+
+    private MicroscopeDataBuilder microscopeDataBuilder = new MicroscopeDataBuilder();
+
+    public MicroscopeDataBuilder getMicroscopeDataBuilder()
+    {
+        return microscopeDataBuilder;
+    }
 }

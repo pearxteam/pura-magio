@@ -1,11 +1,11 @@
 package ru.pearx.purmag.common.sip;
 
 import net.minecraft.util.text.TextFormatting;
+import ru.pearx.lib.Color;
+import ru.pearx.lib.Colors;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by mrAppleXZ on 10.04.17 9:05.
@@ -66,13 +66,13 @@ public class SipTypeRegistry
     public void register()
     {
         //todo air and vision gen.
-        register(new SipType("rock", 0x9e9e9e, TextFormatting.GRAY));
-        register(new SipType("sea", 0x42A5F5, TextFormatting.BLUE));
-        register(new SipType("flame", 0xFB8C00, TextFormatting.GOLD));
-        register(new SipType("air", 0xFFE57F, TextFormatting.YELLOW));
-        register(new SipType("information", 0x68C397, TextFormatting.GREEN));
-        register(new SipType("vision", 0x4527A0, TextFormatting.DARK_PURPLE));
-        register(new SipType("analysis", 0x57759C, TextFormatting.BLUE));
-        register(new SipType("electricity", 0xFFEB3B, TextFormatting.YELLOW));
+        register(new SipType("rock", Colors.GREY_500, TextFormatting.GRAY));
+        register(new SipType("sea", Colors.BLUE_400, TextFormatting.BLUE));
+        register(new SipType("flame", Colors.ORANGE_600, TextFormatting.GOLD));
+        register(new SipType("air", Colors.AMBER_A100, TextFormatting.YELLOW));
+        register(new SipType("information", Color.fromRGB(0x68C397), TextFormatting.GREEN));
+        register(new SipType("vision", Colors.DEEPPURPLE_800, TextFormatting.DARK_PURPLE));
+        register(new SipType("analysis", Color.fromRGB(0x57759C), TextFormatting.BLUE));
+        register(new SipType("electricity", Colors.YELLOW_500, TextFormatting.YELLOW));
     }
 }

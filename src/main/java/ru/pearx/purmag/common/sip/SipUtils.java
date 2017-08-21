@@ -29,7 +29,7 @@ public class SipUtils
     {
         if(stack.hasTagCompound() && stack.getTagCompound().hasKey("sip_type"))
             return stack.getTagCompound().getString("sip_type");
-        return PurMag.INSTANCE.sip.getDefaultType().getName();
+        return PurMag.INSTANCE.getSipRegistry().getDefaultType().getName();
     }
 
     public static String getSipInBlock(IBlockAccess access, BlockPos pos)
@@ -40,7 +40,7 @@ public class SipUtils
             TileSingleSip tss = (TileSingleSip) te;
             return tss.getType();
         }
-        return PurMag.INSTANCE.sip.getDefaultType().getName();
+        return PurMag.INSTANCE.getSipRegistry().getDefaultType().getName();
     }
 
     public static void setSipInBlock(IBlockAccess access, BlockPos pos, String type, boolean sync)

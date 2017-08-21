@@ -3,6 +3,7 @@ package ru.pearx.purmag.client.gui.if_tablet;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
@@ -12,7 +13,7 @@ import ru.pearx.libmc.client.gui.controls.common.Button;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import java.awt.*;
+
 
 /**
  * Created by mrAppleXZ on 02.05.17 10:32.
@@ -76,8 +77,8 @@ public class GuiIfTabletSP extends GuiIfTabletS
     {
         super.render();
         String s = entry.getDisplayName() + " [" + (index + 1) + "/" + entry.getPages().size() + "]";
-        DrawingTools.drawString(s, (getWidth() - DrawingTools.measureString(s)) / 2, 8, Color.WHITE);
-        GuiDrawableRegistry.splitter.draw((getWidth() - GuiDrawableRegistry.splitter.getWidth()) / 2, DrawingTools.getFontHeight() + 8 + 2);
+        DrawingTools.drawString(s, (getWidth() - DrawingTools.measureString(s)) / 2, 8, Colors.WHITE);
+        GuiDrawableRegistry.splitter.draw(getGuiScreen(), (getWidth() - GuiDrawableRegistry.splitter.getWidth()) / 2, DrawingTools.getFontHeight() + 8 + 2);
     }
 
     public void update(boolean next, boolean playAnim)

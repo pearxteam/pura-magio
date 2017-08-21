@@ -1,10 +1,11 @@
 package ru.pearx.purmag.client.gui.if_tablet.pages;
 
+import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.EntityShowcase;
 import ru.pearx.purmag.client.infofield.pages.IfPageEntity;
 
-import java.awt.*;
+
 
 /*
  * Created by mrAppleXZ on 04.07.17 20:39.
@@ -22,7 +23,7 @@ public class IPEntityRenderer extends IPRenderer<IfPageEntity>
     public void render()
     {
         //TODO MAKE STENCILING
-        DrawingTools.drawString(page.getName(), (getWidth() - DrawingTools.measureString(page.getName())) / 2, 0, Color.WHITE);
+        DrawingTools.drawString(page.getName(), (getWidth() - DrawingTools.measureString(page.getName())) / 2, 0, Colors.WHITE);
     }
 
     @Override

@@ -1,15 +1,13 @@
 package ru.pearx.purmag.client.gui.if_tablet;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.GuiOnScreen;
 import ru.pearx.libmc.client.gui.TexturePart;
-import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.purmag.PurMag;
-import ru.pearx.purmag.client.GuiDrawableRegistry;
+import ru.pearx.purmag.common.infofield.IfTier;
 
 /**
  * Created by mrAppleXZ on 16.04.17 20:05.
@@ -17,15 +15,11 @@ import ru.pearx.purmag.client.GuiDrawableRegistry;
 @SideOnly(Side.CLIENT)
 public class GuiIfTablet extends GuiOnScreen
 {
-    public ResourceLocation textures;
-    public IGuiDrawable entryDrawable;
-    public boolean shouldGlow;
-
-
     public TexturePart texBg;
     public TexturePart texFrame;
 
     public int tier;
+    public IfTier.TabletData data;
 
     public GuiIfTabletSE se = new GuiIfTabletSE();
     public GuiIfTabletS if_screen;
@@ -40,11 +34,9 @@ public class GuiIfTablet extends GuiOnScreen
     @Override
     public void init()
     {
-        textures = new ResourceLocation(PurMag.MODID, "textures/gui/if_tablet." + tier + ".png");
-        texBg = new TexturePart(textures, 0, 0, getWidth(), getHeight(), 512, 512);
-        texFrame = new TexturePart(textures, 0, getHeight(), getWidth(), getHeight(), 512, 512);
-        entryDrawable = GuiDrawableRegistry.ifTabletEntryBgs.get(tier);
-        shouldGlow = tier != 0;
+        data = PurMag.INSTANCE.getIfRegistry().getTier(tier).getTabletData();
+        texBg = new TexturePart(data.getTexture(), 0, 0, getWidth(), getHeight(), 512, 512);
+        texFrame = new TexturePart(data.getTexture(), 0, getHeight(), getWidth(), getHeight(), 512, 512);
 
         changeScreen(se);
     }
@@ -52,7 +44,7 @@ public class GuiIfTablet extends GuiOnScreen
     @Override
     public void render()
     {
-        float sin = if_screen.isGlowing() ? MathHelper.sin((float) Math.toRadians(System.currentTimeMillis() / 10 % 360)) * 0.15f : 0.15f;
+        float sin = data.isShouldGlow() ? MathHelper.sin((float) Math.toRadians(System.currentTimeMillis() / 10 % 360)) * 0.15f : 0.15f;
         GlStateManager.color(0.85f + sin, 0.85f + sin, 0.85f + sin);
         texBg.draw(0, 0);
         GlStateManager.color(1, 1, 1);

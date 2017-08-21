@@ -24,7 +24,7 @@ public class PropertyIfTier implements IUnlistedProperty<Integer>
     @Override
     public boolean isValid(Integer value)
     {
-        return PurMag.INSTANCE.if_registry.getTier(value) != null;
+        return PurMag.INSTANCE.getIfRegistry().getTier(value) != null;
     }
 
     @Override
