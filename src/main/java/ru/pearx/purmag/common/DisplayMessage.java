@@ -12,7 +12,6 @@ import ru.pearx.libmc.client.gui.OverlayGui;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,6 +35,21 @@ public class DisplayMessage
         setDescription(desc);
         setSubject(subj);
         setArgs(Arrays.asList(args));
+    }
+
+    public static DisplayMessage readFromByteBuf(ByteBuf buf)
+    {
+        DisplayMessage msg = new DisplayMessage();
+        msg.setSubject(ByteBufUtils.readUTF8String(buf));
+        msg.setDescription(ByteBufUtils.readUTF8String(buf));
+        int size = buf.readInt();
+        ArrayList<String> s = new ArrayList<>();
+        for (int i = 0; i < size; i++)
+        {
+            s.add(ByteBufUtils.readUTF8String(buf));
+        }
+        msg.setArgs(s);
+        return msg;
     }
 
     @SideOnly(Side.CLIENT)
@@ -97,25 +111,10 @@ public class DisplayMessage
         ByteBufUtils.writeUTF8String(buf, subject);
         ByteBufUtils.writeUTF8String(buf, description);
         buf.writeInt(args.size());
-        for(String s : args)
+        for (String s : args)
         {
             ByteBufUtils.writeUTF8String(buf, s);
         }
-    }
-
-    public static DisplayMessage readFromByteBuf(ByteBuf buf)
-    {
-        DisplayMessage msg = new DisplayMessage();
-        msg.setSubject(ByteBufUtils.readUTF8String(buf));
-        msg.setDescription(ByteBufUtils.readUTF8String(buf));
-        int size = buf.readInt();
-        ArrayList<String> s = new ArrayList<>();
-        for(int i = 0; i < size; i++)
-        {
-            s.add(ByteBufUtils.readUTF8String(buf));
-        }
-        msg.setArgs(s);
-        return msg;
     }
 
     @SideOnly(Side.CLIENT)

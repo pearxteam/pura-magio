@@ -1,7 +1,5 @@
 package ru.pearx.purmag.common.items.papyrus;
 
-import ru.pearx.purmag.PurMag;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +22,8 @@ public class PapyrusRegistry
 
     public PapyrusData getPapyrus(String id)
     {
-        for(PapyrusData dat : getPapyruses())
-            if(dat.getPapyrusId().equals(id))
+        for (PapyrusData dat : getPapyruses())
+            if (dat.getPapyrusId().equals(id))
                 return dat;
         return null;
     }

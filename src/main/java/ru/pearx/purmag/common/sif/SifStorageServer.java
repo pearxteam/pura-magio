@@ -19,14 +19,14 @@ public class SifStorageServer extends SifStorage
     @Override
     public void set(GlobalChunkPos pos, float value)
     {
-        if(loaded.containsKey(pos))
-            if(loaded.get(pos).equals(value))
+        if (loaded.containsKey(pos))
+            if (loaded.get(pos).equals(value))
                 return;
         loaded.put(pos, value);
         WorldServer wrld = DimensionManager.getWorld(pos.getDimension());
         wrld.getChunkFromChunkCoords(pos.getX(), pos.getZ()).markDirty();
         PlayerChunkMapEntry map = wrld.getPlayerChunkMap().getEntry(pos.getX(), pos.getZ());
-        if(map != null)
+        if (map != null)
         {
             for (EntityPlayerMP p : map.players)
             {
@@ -38,11 +38,11 @@ public class SifStorageServer extends SifStorage
     @Override
     public void remove(GlobalChunkPos pos)
     {
-        if(!loaded.containsKey(pos))
+        if (!loaded.containsKey(pos))
             return;
         loaded.remove(pos);
         PlayerChunkMapEntry map = DimensionManager.getWorld(pos.getDimension()).getPlayerChunkMap().getEntry(pos.getX(), pos.getZ());
-        if(map != null)
+        if (map != null)
         {
             for (EntityPlayerMP p : map.players)
             {
@@ -54,7 +54,7 @@ public class SifStorageServer extends SifStorage
     @Override
     public float get(GlobalChunkPos pos)
     {
-        if(!loaded.containsKey(pos))
+        if (!loaded.containsKey(pos))
         {
             long worldSeed = DimensionManager.getWorld(pos.getDimension()).getSeed();
             Random rand = new Random(worldSeed);
@@ -64,14 +64,14 @@ public class SifStorageServer extends SifStorage
 
             int main;
             float f = rand.nextFloat();
-            if(rand.nextFloat() <= 0.01f)
+            if (rand.nextFloat() <= 0.01f)
                 main = -1;
             else
             {
                 float ff = rand.nextFloat();
-                if(ff <= 0.02f)
+                if (ff <= 0.02f)
                     main = 2;
-                else if(ff <= 0.20f)
+                else if (ff <= 0.20f)
                     main = 1;
                 else
                     main = 0;

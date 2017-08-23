@@ -40,23 +40,23 @@ public class CommandIf extends CommandBase
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
     {
-        if(args.length != 3 && args.length != 2)
+        if (args.length != 3 && args.length != 2)
         {
             throw new WrongUsageException(getUsage(sender));
         }
         String act = args[0];
         String res = args[1];
         String player = args.length > 2 ? args[2] : sender.getName();
-        if(!Arrays.asList(server.getPlayerList().getOnlinePlayerNames()).contains(player))
+        if (!Arrays.asList(server.getPlayerList().getOnlinePlayerNames()).contains(player))
         {
             throw new CommandException("command.if.playerNotFound");
         }
-        if(!PurMag.INSTANCE.getIfRegistry().containsEntry(res))
+        if (!PurMag.INSTANCE.getIfRegistry().containsEntry(res))
         {
             throw new CommandException("command.if.entryNotFound");
         }
         int steps;
-        switch(act)
+        switch (act)
         {
             case "unlock":
                 steps = PurMag.INSTANCE.getIfRegistry().getEntry(res).getSteps().size();
@@ -89,16 +89,16 @@ public class CommandIf extends CommandBase
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
     {
-        if(args.length == 1)
+        if (args.length == 1)
             return Arrays.asList("unlock", "lock");
-        if(args.length == 2)
+        if (args.length == 2)
         {
             ArrayList<String> arr = new ArrayList<>();
-            for(IfEntry entr : PurMag.INSTANCE.getIfRegistry().entries)
+            for (IfEntry entr : PurMag.INSTANCE.getIfRegistry().entries)
                 arr.add(entr.getId());
             return arr;
         }
-        if(args.length == 3)
+        if (args.length == 3)
             return Arrays.asList(server.getPlayerList().getOnlinePlayerNames());
         return Collections.EMPTY_LIST;
     }

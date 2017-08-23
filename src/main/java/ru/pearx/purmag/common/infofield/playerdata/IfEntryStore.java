@@ -26,7 +26,7 @@ public class IfEntryStore implements IIfEntryStore
     @Override
     public int getSteps(String id)
     {
-        if(entries.containsKey(id))
+        if (entries.containsKey(id))
             return entries.get(id);
         return 0;
     }
@@ -79,7 +79,7 @@ public class IfEntryStore implements IIfEntryStore
     @Override
     public void deserializeNBT(NBTTagCompound nbt)
     {
-        for(String s : nbt.getKeySet())
+        for (String s : nbt.getKeySet())
         {
             setSteps(s, nbt.getInteger(s));
         }

@@ -2,9 +2,8 @@ package ru.pearx.purmag.client.gui.if_tablet.pages;
 
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.client.infofield.pages.IfPagePapyrus;
-
+import ru.pearx.purmag.common.Utils;
 
 
 /**

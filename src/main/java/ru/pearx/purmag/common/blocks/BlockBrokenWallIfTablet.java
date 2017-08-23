@@ -70,6 +70,6 @@ public class BlockBrokenWallIfTablet extends AbstractWallIfTablet
                 x += 0.4;
                 break;
         }
-        worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, 0, 0 ,0);
+        worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, 0, 0, 0);
     }
 }

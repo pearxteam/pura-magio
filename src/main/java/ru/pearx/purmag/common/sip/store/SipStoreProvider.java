@@ -31,7 +31,7 @@ public class SipStoreProvider implements ICapabilitySerializable<NBTTagCompound>
     @Override
     public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
     {
-        if(capability == CapabilityRegistry.SIP_STORE_CAP)
+        if (capability == CapabilityRegistry.SIP_STORE_CAP)
             return CapabilityRegistry.SIP_STORE_CAP.cast(store);
         return null;
     }

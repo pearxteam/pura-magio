@@ -22,6 +22,7 @@ import ru.pearx.purmag.common.sip.SipUtils;
 public class BlockCrystalGlass extends BlockSingleSip
 {
     public ConnectionsController ctm = new ConnectionsController();
+
     public BlockCrystalGlass()
     {
         super("crystal_glass", Material.GLASS);
@@ -58,7 +59,7 @@ public class BlockCrystalGlass extends BlockSingleSip
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new ExtendedBlockState(this, new IProperty[] {}, ConnectionsController.PROPS.values().toArray(new IUnlistedProperty[0]));
+        return new ExtendedBlockState(this, new IProperty[]{}, ConnectionsController.PROPS.values().toArray(new IUnlistedProperty[0]));
     }
 
     @Override
@@ -70,7 +71,7 @@ public class BlockCrystalGlass extends BlockSingleSip
     public boolean canConnect(IBlockState state, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
         IBlockState off = blockAccess.getBlockState(pos.offset(side));
-        if(off.getBlock() == state.getBlock())
+        if (off.getBlock() == state.getBlock())
         {
             return SipUtils.getSipInBlock(blockAccess, pos.offset(side)).equals(SipUtils.getSipInBlock(blockAccess, pos));
         }

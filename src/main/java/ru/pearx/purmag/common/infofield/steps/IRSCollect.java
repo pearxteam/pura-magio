@@ -1,7 +1,7 @@
 package ru.pearx.purmag.common.infofield.steps;
 
-import net.minecraft.util.NonNullList;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.client.gui.if_tablet.steps.IRSCollectRenderer;
@@ -16,10 +16,10 @@ import java.util.List;
  */
 public class IRSCollect extends IRSBase
 {
-    private ItemStack stack;
-    private boolean showStack;
     public boolean checkNbt;
     public boolean checkMeta;
+    private ItemStack stack;
+    private boolean showStack;
 
     public IRSCollect(ItemStack stack, String unlocDesc, boolean showStack, boolean checkMeta, boolean checkNbt)
     {
@@ -61,9 +61,9 @@ public class IRSCollect extends IRSBase
         stack.getItem().getSubItems(stack.getItem().getCreativeTab() == null ? PMCreativeTab.INSTANCE : stack.getItem().getCreativeTab(), lst);
 
         ArrayList<ItemStack> out = new ArrayList<>();
-        for(ItemStack stack : lst)
+        for (ItemStack stack : lst)
         {
-            if(isSuitable(stack))
+            if (isSuitable(stack))
                 out.add(stack);
         }
         return out;

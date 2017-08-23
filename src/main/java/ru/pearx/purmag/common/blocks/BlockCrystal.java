@@ -16,7 +16,7 @@ import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.sip.SipUtils;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Random;
 
 /**
  * Created by mrAppleXZ on 08.04.17 17:46.
@@ -78,7 +78,7 @@ public class BlockCrystal extends BlockSingleSip
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        Random rand = world instanceof World ? ((World)world).rand : RANDOM;
+        Random rand = world instanceof World ? ((World) world).rand : RANDOM;
         drops.add(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard, rand.nextInt(4) + 3), SipUtils.getSipInBlock(world, pos)));
     }
 }
