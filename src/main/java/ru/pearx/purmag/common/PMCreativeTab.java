@@ -12,6 +12,7 @@ import ru.pearx.purmag.common.sip.SipUtils;
 public class PMCreativeTab extends CreativeTabs
 {
     public static PMCreativeTab INSTANCE = new PMCreativeTab();
+
     public PMCreativeTab()
     {
         super(PurMag.MODID);

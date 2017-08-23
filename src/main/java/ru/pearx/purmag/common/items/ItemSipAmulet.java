@@ -36,11 +36,21 @@ public class ItemSipAmulet extends ItemBase implements IBauble
         setMaxStackSize(1);
     }
 
+    public static boolean checkForAmulet(EntityPlayer p)
+    {
+        ItemStack amul = ItemUtils.getBauble(p, BaubleType.AMULET.getValidSlots()[0]);
+        if (amul != ItemStack.EMPTY && amul.getItem() == ItemRegistry.sip_amulet)
+        {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
     {
-        if(isInCreativeTab(tab))
+        if (isInCreativeTab(tab))
         {
             for (int i = 0; i < 3; i++)
             {
@@ -59,21 +69,11 @@ public class ItemSipAmulet extends ItemBase implements IBauble
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-        for(Map.Entry<String, Integer> entr : stack.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).getStored().entrySet())
+        for (Map.Entry<String, Integer> entr : stack.getCapability(CapabilityRegistry.SIP_STORE_CAP, null).getStored().entrySet())
         {
             SipType t = PurMag.INSTANCE.getSipRegistry().getType(entr.getKey());
             tooltip.add(t.getFormatting() + t.getDisplayName() + ": " + entr.getValue() + TextFormatting.RESET);
         }
-    }
-
-    public static boolean checkForAmulet(EntityPlayer p)
-    {
-        ItemStack amul = ItemUtils.getBauble(p, BaubleType.AMULET.getValidSlots()[0]);
-        if(amul != ItemStack.EMPTY && amul.getItem() == ItemRegistry.sip_amulet)
-        {
-            return true;
-        }
-        return false;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class ItemSipAmulet extends ItemBase implements IBauble
     @SideOnly(Side.CLIENT)
     public void setupModels()
     {
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
             ClientUtils.setModelLocation(this, i, "." + i);
     }
 

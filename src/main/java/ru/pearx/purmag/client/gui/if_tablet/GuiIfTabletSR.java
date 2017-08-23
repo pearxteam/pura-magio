@@ -12,7 +12,6 @@ import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.infofield.IfEntry;
 
 
-
 /**
  * Created by mrAppleXZ on 30.04.17 21:25.
  */
@@ -33,7 +32,7 @@ public class GuiIfTabletSR extends GuiIfTabletS
     @Override
     public void init()
     {
-        if(doneSteps >= entry.getSteps().size())
+        if (doneSteps >= entry.getSteps().size())
         {
             getTablet().changeScreen(new GuiIfTabletSP(entry, 0));
             return;

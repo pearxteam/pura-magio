@@ -17,7 +17,6 @@ import ru.pearx.purmag.client.models.entities.RenderBeetle;
 import ru.pearx.purmag.common.Utils;
 
 
-
 /**
  * Created by mrAppleXZ on 20.06.17 9:51.
  */
@@ -31,9 +30,9 @@ public class EntityRegistry
 
     public static void setupSpawns()
     {
-        for(Biome b : ForgeRegistries.BIOMES)
+        for (Biome b : ForgeRegistries.BIOMES)
         {
-            if(BiomeDictionary.hasType(b, BiomeDictionary.Type.FOREST))
+            if (BiomeDictionary.hasType(b, BiomeDictionary.Type.FOREST))
             {
                 net.minecraftforge.fml.common.registry.EntityRegistry.addSpawn(EntityBeetle.class, 3, 4, 5, EnumCreatureType.CREATURE, b);
             }

@@ -5,11 +5,11 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.apache.commons.lang3.tuple.Pair;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.infofield.steps.IRSCollect;
 import ru.pearx.purmag.common.infofield.steps.IRSKillEntity;
-import org.apache.commons.lang3.tuple.Pair;
 
 /**
  * Created by mrAppleXZ on 25.06.17 11:57.
@@ -20,7 +20,7 @@ public class IfEvents
     @SubscribeEvent
     public static void onPickup(EntityItemPickupEvent e)
     {
-        if(e.getEntityPlayer() instanceof EntityPlayerMP)
+        if (e.getEntityPlayer() instanceof EntityPlayerMP)
         {
             EntityPlayerMP p = (EntityPlayerMP) e.getEntityPlayer();
             for (Pair<IfEntry, IRSCollect> pair : PurMag.INSTANCE.getIfRegistry().getAllResearchableSteps(IRSCollect.class, p))

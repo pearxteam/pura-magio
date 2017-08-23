@@ -6,7 +6,6 @@ import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.purmag.client.gui.recipes.FurnaceControl;
 import ru.pearx.purmag.client.infofield.pages.IfPageFurnace;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class IPFurnaceRenderer extends IPRenderer<IfPageFurnace>
     public IPFurnaceRenderer(IfPageFurnace page)
     {
         super(page);
-        for(int i = 0; i < page.getInputs().size(); i++)
+        for (int i = 0; i < page.getInputs().size(); i++)
         {
             smelts.add(new FurnaceControl(page.getInput(i), page.getOutput(i)));
         }
@@ -35,17 +34,17 @@ public class IPFurnaceRenderer extends IPRenderer<IfPageFurnace>
 
         int totalWidth = 0;
         int height = 0;
-        for(FurnaceControl cont : smelts)
+        for (FurnaceControl cont : smelts)
         {
             totalWidth += cont.getWidth();
             totalWidth += margin;
-            if(height < cont.getHeight())
+            if (height < cont.getHeight())
                 height = cont.getHeight();
         }
         totalWidth -= margin;
         int x = (getWidth() - totalWidth) / 2;
         int y = (getHeight() - height) / 2;
-        for(FurnaceControl cont : smelts)
+        for (FurnaceControl cont : smelts)
         {
             cont.setPos(x, y);
             controls.add(cont);

@@ -35,7 +35,9 @@ public class CommonProxy
 
     }
 
-    public void setupModels(IModelProvider prov) {}
+    public void setupModels(IModelProvider prov)
+    {
+    }
 
     public void setupIfTiers()
     {

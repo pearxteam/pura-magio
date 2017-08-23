@@ -24,7 +24,7 @@ public class SifEvents
         {
             PurMag.INSTANCE.sif_storage.set(GlobalChunkPos.fromChunk(e.getChunk()), e.getData().getFloat("sif_power"));
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             PurMag.INSTANCE.log.error("Can't load the SIF chunk data!", ex);
         }
@@ -37,7 +37,7 @@ public class SifEvents
         {
             e.getData().setFloat("sif_power", PurMag.INSTANCE.sif_storage.get(GlobalChunkPos.fromChunk(e.getChunk())));
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             PurMag.INSTANCE.log.error("Can't save the SIF chunk data!", ex);
         }
@@ -50,7 +50,7 @@ public class SifEvents
         {
             PurMag.INSTANCE.sif_storage.remove(GlobalChunkPos.fromChunk(e.getChunk()));
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             PurMag.INSTANCE.log.error("Can't remove the SIP chunk data on chunk unload!", ex);
         }
@@ -64,7 +64,7 @@ public class SifEvents
             GlobalChunkPos pos = new GlobalChunkPos(e.getChunk().x, e.getChunk().z, e.getPlayer().dimension);
             NetworkManager.sendTo(new CPacketSyncSif(pos, PurMag.INSTANCE.sif_storage.get(pos)), e.getPlayer());
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             PurMag.INSTANCE.log.error("Can't sync the SIF chunk data with player!", ex);
         }
@@ -78,7 +78,7 @@ public class SifEvents
             GlobalChunkPos pos = new GlobalChunkPos(e.getChunk().x, e.getChunk().z, e.getPlayer().dimension);
             NetworkManager.sendTo(new CPacketDesyncSif(pos), e.getPlayer());
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             PurMag.INSTANCE.log.error("Can't desync the SIF chunk data with player!", ex);
         }

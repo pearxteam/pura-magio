@@ -26,7 +26,10 @@ public class SPacketDoneTranslation implements IMessage
     public BlockPos pos;
     public String expected;
 
-    public SPacketDoneTranslation() {}
+    public SPacketDoneTranslation()
+    {
+    }
+
     public SPacketDoneTranslation(BlockPos pos, String expected)
     {
         this.pos = pos;
@@ -52,19 +55,19 @@ public class SPacketDoneTranslation implements IMessage
         @Override
         public IMessage onMessage(SPacketDoneTranslation message, MessageContext ctx)
         {
-            ((WorldServer)ctx.getServerHandler().player.world).addScheduledTask(() ->
+            ((WorldServer) ctx.getServerHandler().player.world).addScheduledTask(() ->
             {
                 TileEntity te = ctx.getServerHandler().player.world.getTileEntity(message.pos);
-                if(te != null && te instanceof TileTranslationDesk)
+                if (te != null && te instanceof TileTranslationDesk)
                 {
                     TileTranslationDesk ttd = (TileTranslationDesk) te;
                     ItemStack papyrus = ttd.handler.getStackInSlot(0);
-                    if(!papyrus.isEmpty())
+                    if (!papyrus.isEmpty())
                     {
                         IIfEntryStore store = ctx.getServerHandler().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
                         for (IfEntry entr : PurMag.INSTANCE.getIfRegistry().entries)
                         {
-                            if(entr.getId().equals(message.expected))
+                            if (entr.getId().equals(message.expected))
                             {
                                 int steps = store.getSteps(entr.getId());
                                 if (steps < entr.getSteps().size())

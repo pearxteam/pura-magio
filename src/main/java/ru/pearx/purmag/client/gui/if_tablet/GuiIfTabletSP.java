@@ -3,16 +3,15 @@ package ru.pearx.purmag.client.gui.if_tablet;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
+import ru.pearx.libmc.client.gui.controls.common.Button;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.infofield.IfEntry;
-import ru.pearx.libmc.client.gui.controls.common.Button;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
 
 
 /**
@@ -56,8 +55,8 @@ public class GuiIfTabletSP extends GuiIfTabletS
     @Override
     public void mouseMove(int x, int y, int dx, int dy)
     {
-        if(Mouse.isButtonDown(0))
-            if(dx > 10 || dx < -10)
+        if (Mouse.isButtonDown(0))
+            if (dx > 10 || dx < -10)
                 update(dx < 0, true);
     }
 
@@ -65,9 +64,9 @@ public class GuiIfTabletSP extends GuiIfTabletS
     public void keyUp(int keycode)
     {
         super.keyUp(keycode);
-        if(keycode == Keyboard.KEY_RIGHT || keycode == Keyboard.KEY_D)
+        if (keycode == Keyboard.KEY_RIGHT || keycode == Keyboard.KEY_D)
             update(true, true);
-        if(keycode == Keyboard.KEY_LEFT || keycode == Keyboard.KEY_A)
+        if (keycode == Keyboard.KEY_LEFT || keycode == Keyboard.KEY_A)
             update(false, true);
     }
 
@@ -83,13 +82,13 @@ public class GuiIfTabletSP extends GuiIfTabletS
 
     public void update(boolean next, boolean playAnim)
     {
-        if(sensitive)
+        if (sensitive)
         {
             int ind = index + (next ? 1 : -1);
-            if(ind >= 0 && ind < entry.getPages().size())
+            if (ind >= 0 && ind < entry.getPages().size())
             {
                 this.index = ind;
-                if(playAnim)
+                if (playAnim)
                 {
                     sensitive = false;
                     newRend = entry.getPages().get(index).getRenderer();
@@ -102,7 +101,8 @@ public class GuiIfTabletSP extends GuiIfTabletS
                             try
                             {
                                 Thread.sleep(1);
-                            } catch (InterruptedException e)
+                            }
+                            catch (InterruptedException e)
                             {
                                 e.printStackTrace();
                             }
@@ -115,8 +115,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
                         rend = newRend;
                         sensitive = true;
                     }).start();
-                }
-                else
+                } else
                 {
                     controls.remove(rend);
                     rend = entry.getPages().get(index).getRenderer();

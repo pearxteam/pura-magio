@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.SoundEvents;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.Control;
@@ -15,13 +16,9 @@ import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.SPacketDoneTranslation;
-import org.lwjgl.input.Keyboard;
-
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.TreeMap;
 
 /**
  * Created by mrAppleXZ on 08.06.17 11:10.
@@ -30,6 +27,7 @@ import java.util.TreeMap;
 public class GuiTranslationDeskPanel extends Control
 {
     public static final List<Integer> keyMap = new ArrayList<>();
+
     static
     {
         keyMap.add(Keyboard.KEY_S);
@@ -37,12 +35,13 @@ public class GuiTranslationDeskPanel extends Control
         keyMap.add(Keyboard.KEY_F);
         keyMap.add(Keyboard.KEY_G);
     }
+
     public boolean translating;
     public List<Entry> entries = new ArrayList<>();
     public int totalEntries;
     public int rate;
     private long lastms = 0;
-    private int[] cooldowns = new int[] {0, 0, 0, 0};
+    private int[] cooldowns = new int[]{0, 0, 0, 0};
 
     public GuiTranslationDeskPanel()
     {
@@ -64,10 +63,10 @@ public class GuiTranslationDeskPanel extends Control
         DrawingTools.drawRectangle(0, 0, getWidth(), getHeight());
 
         List<Entry> toRemove = new ArrayList<>();
-        for(int i = 0; i < cooldowns.length; i++)
-            if(cooldowns[i] > 0)
+        for (int i = 0; i < cooldowns.length; i++)
+            if (cooldowns[i] > 0)
                 cooldowns[i] -= (System.currentTimeMillis() - lastms);
-        for(Entry entr : entries)
+        for (Entry entr : entries)
         {
             entr.range -= ((System.currentTimeMillis() - lastms) * 0.1f);
 
@@ -75,9 +74,9 @@ public class GuiTranslationDeskPanel extends Control
             int y = getHeight() - entr.range;
             int w = 32;
             int h = 20;
-            if(y > 0)
+            if (y > 0)
             {
-                if(entr.isCompleted())
+                if (entr.isCompleted())
                     GlStateManager.color(0, 1, 0);
                 else
                 {
@@ -85,24 +84,23 @@ public class GuiTranslationDeskPanel extends Control
                     {
                         cooldowns[entr.line] = 300;
                         boolean compl = Keyboard.isKeyDown(keyMap.get(entr.line));
-                        if(compl)
+                        if (compl)
                         {
                             entr.setCompleted(true);
                             rate++;
                             Minecraft.getMinecraft().player.playSound(SoundEvents.BLOCK_NOTE_SNARE, 1, 1);
                         }
                         GlStateManager.color(0, 0, 1);
-                    }
-                    else
+                    } else
                         GlStateManager.color(1, 0, 0);
                 }
                 GlStateManager.enableBlend();
                 DrawingTools.drawTexture(Utils.getRegistryName("textures/gui/translation_desk/semibutton.png"), x, y, w, h, 0, 0, w, h);
                 GlStateManager.disableBlend();
             }
-            if(entr.range <= 0)
+            if (entr.range <= 0)
             {
-                if(!entr.isCompleted())
+                if (!entr.isCompleted())
                     minRate();
                 toRemove.add(entr);
             }
@@ -117,14 +115,14 @@ public class GuiTranslationDeskPanel extends Control
         DrawingTools.drawTexture(Utils.getRegistryName("textures/gui/translation_desk/display.png"), 0, 0, getWidth(), getHeight());
         GlStateManager.disableBlend();
 
-        if(entries.size() == 0 && getDesk().status == GuiTranslationDesk.Status.TRANSLATING)
+        if (entries.size() == 0 && getDesk().status == GuiTranslationDesk.Status.TRANSLATING)
             done();
         DrawingTools.removeStencil(bit);
     }
 
     public void minRate()
     {
-        if(rate > 0)
+        if (rate > 0)
         {
             rate -= 2;
         }
@@ -134,7 +132,7 @@ public class GuiTranslationDeskPanel extends Control
     @Override
     public void keyDown(int keycode)
     {
-        if(translating)
+        if (translating)
         {
             if (keyMap.contains(keycode))
             {
@@ -158,23 +156,23 @@ public class GuiTranslationDeskPanel extends Control
 
     public void start()
     {
-        if(getDesk().status == GuiTranslationDesk.Status.CAN_TRANSLATE)
+        if (getDesk().status == GuiTranslationDesk.Status.CAN_TRANSLATE)
         {
             translating = true;
             getDesk().updateStatus();
             char[] chars = PurMag.INSTANCE.getPapyrusRegistry().getPapyrus(ItemRegistry.papyrus.getId(getDesk().stack)).getDisplayText().toCharArray();
-            for(int i = 0; i < chars.length / 4; i++)
+            for (int i = 0; i < chars.length / 4; i++)
             {
                 entries.add(new Entry((byte) PurMag.INSTANCE.random.nextInt(4), 250 + (i * 40)));
             }
             totalEntries = entries.size();
-            getDesk().barRate.getMarks().add(new ProgressBar.Mark((int)(totalEntries * 0.7f), Colors.BLACK));
+            getDesk().barRate.getMarks().add(new ProgressBar.Mark((int) (totalEntries * 0.7f), Colors.BLACK));
         }
     }
 
     public void stop()
     {
-        if(getDesk().status == GuiTranslationDesk.Status.TRANSLATING)
+        if (getDesk().status == GuiTranslationDesk.Status.TRANSLATING)
         {
             translating = false;
             getDesk().updateStatus();
@@ -188,17 +186,16 @@ public class GuiTranslationDeskPanel extends Control
     public void done()
     {
         boolean updSt = false;
-        if(rate >= (totalEntries * 0.7f))
+        if (rate >= (totalEntries * 0.7f))
         {
             NetworkManager.sendToServer(new SPacketDoneTranslation(getDesk().pos, getDesk().entryName));
             updSt = true;
-        }
-        else
+        } else
         {
             Minecraft.getMinecraft().player.playSound(SoundRegistry.ERROR, 1, 0.1f);
         }
         stop();
-        if(updSt)
+        if (updSt)
             getDesk().status = GuiTranslationDesk.Status.CANT_TRANSLATE;
     }
 

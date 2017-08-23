@@ -21,10 +21,8 @@ import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import ru.pearx.purmag.common.infofield.steps.IIfResearchStep;
 import ru.pearx.purmag.common.infofield.steps.IRSReadPapyrus;
 import ru.pearx.purmag.common.items.ItemBase;
-import ru.pearx.purmag.common.items.ItemRegistry;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,7 +41,7 @@ public class ItemPapyrus extends ItemBase
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer p, EnumHand handIn)
     {
         ItemStack stack = p.getHeldItem(handIn);
-        if(!worldIn.isRemote)
+        if (!worldIn.isRemote)
         {
             IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
             for (IfEntry entr : PurMag.INSTANCE.getIfRegistry().entries)
@@ -59,16 +57,16 @@ public class ItemPapyrus extends ItemBase
                             IRSReadPapyrus rp = (IRSReadPapyrus) step;
                             if (rp.isSuitable(stack))
                             {
-                                store.unlockStepAndSync(entr.getId(), (EntityPlayerMP)p);
+                                store.unlockStepAndSync(entr.getId(), (EntityPlayerMP) p);
                             }
                         }
                     }
                 }
             }
         }
-        if(stack.hasTagCompound())
+        if (stack.hasTagCompound())
         {
-            if(stack.getTagCompound().hasKey("papyrus_id"))
+            if (stack.getTagCompound().hasKey("papyrus_id"))
             {
                 PurMag.proxy.openPapyrus(stack.getTagCompound().getString("papyrus_id"));
             }
@@ -80,7 +78,7 @@ public class ItemPapyrus extends ItemBase
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
     {
-        if(isInCreativeTab(tab))
+        if (isInCreativeTab(tab))
         {
             for (PapyrusData data : PurMag.INSTANCE.getPapyrusRegistry().getPapyruses())
             {
@@ -93,12 +91,12 @@ public class ItemPapyrus extends ItemBase
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-        if(stack.hasTagCompound())
+        if (stack.hasTagCompound())
         {
-            if(stack.getTagCompound().hasKey("papyrus_id"))
+            if (stack.getTagCompound().hasKey("papyrus_id"))
             {
                 PapyrusData dat = PurMag.INSTANCE.getPapyrusRegistry().getPapyrus(stack.getTagCompound().getString("papyrus_id"));
-                if(dat != null)
+                if (dat != null)
                     tooltip.add(TextFormatting.GOLD + dat.getDisplayName() + TextFormatting.RESET);
             }
         }
@@ -115,9 +113,9 @@ public class ItemPapyrus extends ItemBase
 
     public String getId(ItemStack stack)
     {
-        if(stack.hasTagCompound())
+        if (stack.hasTagCompound())
         {
-            if(stack.getTagCompound().hasKey("papyrus_id"))
+            if (stack.getTagCompound().hasKey("papyrus_id"))
             {
                 return stack.getTagCompound().getString("papyrus_id");
             }

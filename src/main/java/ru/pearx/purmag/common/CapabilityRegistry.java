@@ -40,7 +40,7 @@ public class CapabilityRegistry
             @Override
             public void readNBT(Capability<IIfEntryStore> capability, IIfEntryStore instance, EnumFacing side, NBTBase nbt)
             {
-                instance.deserializeNBT((NBTTagCompound)nbt);
+                instance.deserializeNBT((NBTTagCompound) nbt);
             }
         }, IfEntryStore.class);
 

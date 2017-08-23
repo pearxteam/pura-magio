@@ -18,7 +18,10 @@ public class CPacketSyncEntryStore implements IMessage
 {
     NBTTagCompound tag;
 
-    public CPacketSyncEntryStore() {}
+    public CPacketSyncEntryStore()
+    {
+    }
+
     public CPacketSyncEntryStore(NBTTagCompound tag)
     {
         this.tag = tag;

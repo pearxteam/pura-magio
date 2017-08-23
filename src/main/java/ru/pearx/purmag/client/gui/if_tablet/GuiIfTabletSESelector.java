@@ -32,16 +32,16 @@ public class GuiIfTabletSESelector extends GuiIfTabletSEPart
 
         setWidth(texTab.width + 4);
         setHeight(texTab.height * 7);
-        for(IfChannel chan : PurMag.INSTANCE.getIfRegistry().channels)
+        for (IfChannel chan : PurMag.INSTANCE.getIfRegistry().channels)
         {
-            if(chan.isAvailable(Minecraft.getMinecraft().player, getTabletScreen().getTablet().tier))
+            if (chan.isAvailable(Minecraft.getMinecraft().player, getTabletScreen().getTablet().tier))
                 channels.add(chan);
         }
     }
 
     public void setSelected(int sel)
     {
-        if(sel >= 0 && sel < channels.size())
+        if (sel >= 0 && sel < channels.size())
         {
             Minecraft.getMinecraft().player.playSound(SoundRegistry.MAGICAL_CLICK, 1, 1);
             selected = sel;
@@ -54,9 +54,9 @@ public class GuiIfTabletSESelector extends GuiIfTabletSEPart
     {
         GlStateManager.enableBlend();
         int offset = 0;
-        for(int i = selected - 3; i <= selected + 3; i++)
+        for (int i = selected - 3; i <= selected + 3; i++)
         {
-            if(i >= 0 && i < channels.size())
+            if (i >= 0 && i < channels.size())
             {
                 int xoff = i == selected ? 0 : 4;
                 texTab.draw(xoff, offset);
@@ -71,18 +71,18 @@ public class GuiIfTabletSESelector extends GuiIfTabletSEPart
     @Override
     public void mouseWheel(int delta)
     {
-            if (delta > 0)
-                setSelected(selected - 1);
-            if (delta < 0)
-                setSelected(selected + 1);
+        if (delta > 0)
+            setSelected(selected - 1);
+        if (delta < 0)
+            setSelected(selected + 1);
     }
 
     @Override
     public void keyUp(int keycode)
     {
-        if(keycode == Keyboard.KEY_W || keycode == Keyboard.KEY_UP)
+        if (keycode == Keyboard.KEY_W || keycode == Keyboard.KEY_UP)
             setSelected(selected - 1);
-        if(keycode == Keyboard.KEY_S || keycode == Keyboard.KEY_DOWN)
+        if (keycode == Keyboard.KEY_S || keycode == Keyboard.KEY_DOWN)
             setSelected(selected + 1);
     }
 

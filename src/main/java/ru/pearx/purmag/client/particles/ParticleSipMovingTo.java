@@ -20,7 +20,7 @@ public class ParticleSipMovingTo extends ParticleMovingTo
     {
         super(worldIn, loc, locTo, speed);
         Color col = PurMag.INSTANCE.getSipRegistry().getType(sip).getColor();
-        setRBGColorF (col.getRed() / 255f, col.getGreen() / 255f, col.getBlue() / 255f);
+        setRBGColorF(col.getRed() / 255f, col.getGreen() / 255f, col.getBlue() / 255f);
         setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Utils.getRegistryName("particle/sip").toString()));
         float f = amount / 8f;
         particleScale = 0.5f + f;
@@ -32,7 +32,7 @@ public class ParticleSipMovingTo extends ParticleMovingTo
         super.onUpdate();
         addTrailParticle(prevPosX, prevPosY, prevPosZ);
         float count = speed * 50;
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
             addTrailParticle(prevPosX + (actualSpeed.x * (i / count)), prevPosY + (actualSpeed.y * (i / count)), prevPosZ + (actualSpeed.z * (i / count)));
         }

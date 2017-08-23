@@ -41,7 +41,7 @@ public class ItemRegistry
     public static void register(Item itm, IForgeRegistry<Item> reg)
     {
         reg.register(itm);
-        if(itm instanceof IModelProvider)
+        if (itm instanceof IModelProvider)
             PurMag.proxy.setupModels((IModelProvider) itm);
     }
 

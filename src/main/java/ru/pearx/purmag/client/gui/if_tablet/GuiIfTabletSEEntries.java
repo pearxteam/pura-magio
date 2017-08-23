@@ -3,13 +3,13 @@ package ru.pearx.purmag.client.gui.if_tablet;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.util.Point;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.infofield.IfChannel;
 import ru.pearx.purmag.common.infofield.IfEntry;
 import ru.pearx.purmag.common.infofield.IfEntryLocation;
-import org.lwjgl.input.Mouse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
     {
         int px = x - prevMouseX;
         int py = y - prevMouseY;
-        if(Mouse.isButtonDown(0))
+        if (Mouse.isButtonDown(0))
         {
             setOffset(px, py);
         }
@@ -59,7 +59,7 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
         int minX = 0, minY = 0, maxX = 0, maxY = 0;
 
         IfChannel chan = getTabletScreen().selector.getSelectedChannel();
-        for(IfEntryLocation loc : chan.getEntries())
+        for (IfEntryLocation loc : chan.getEntries())
         {
             IfEntry entr = PurMag.INSTANCE.getIfRegistry().getEntry(loc.getEntry());
             if (entr.isAvailableToSee(Minecraft.getMinecraft().player, getTabletScreen().getTablet().tier))
@@ -78,20 +78,20 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
                 controls.add(entrC);
             }
         }
-        for(Control c : controls)
+        for (Control c : controls)
         {
-            if(c instanceof GuiIfTabletSEEntry)
+            if (c instanceof GuiIfTabletSEEntry)
             {
                 List<Point> points = new ArrayList<>();
                 GuiIfTabletSEEntry par = (GuiIfTabletSEEntry) c;
-                for(Control c1 : controls)
+                for (Control c1 : controls)
                 {
-                    if(c1 instanceof GuiIfTabletSEEntry)
+                    if (c1 instanceof GuiIfTabletSEEntry)
                     {
                         GuiIfTabletSEEntry chi = (GuiIfTabletSEEntry) c1;
-                        if(chi.entry.getParents().contains(par.entry.getId()))
+                        if (chi.entry.getParents().contains(par.entry.getId()))
                         {
-                            points.add(new Point(chi.getX() - par.getX() + chi.getWidth() / 2,  chi.getY() - par.getY() + chi.getHeight() / 2));
+                            points.add(new Point(chi.getX() - par.getX() + chi.getWidth() / 2, chi.getY() - par.getY() + chi.getHeight() / 2));
                         }
                     }
                 }
@@ -111,11 +111,11 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
     {
         int newX = offsetX + pX;
         int newY = offsetY + pY;
-        if(newX >= minOffsetX && newY >= minOffsetY && newX <= maxOffsetX && newY <= maxOffsetY)
+        if (newX >= minOffsetX && newY >= minOffsetY && newX <= maxOffsetX && newY <= maxOffsetY)
         {
             offsetX = newX;
             offsetY = newY;
-            for(Control cont : controls)
+            for (Control cont : controls)
             {
                 cont.setX(cont.getX() + pX);
                 cont.setY(cont.getY() + pY);

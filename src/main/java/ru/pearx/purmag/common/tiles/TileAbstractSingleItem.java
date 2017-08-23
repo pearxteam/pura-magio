@@ -29,7 +29,7 @@ public abstract class TileAbstractSingleItem extends TileSyncable
         @Override
         public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate)
         {
-            if(!isItemValid(stack))
+            if (!isItemValid(stack))
                 return stack;
             return super.insertItem(slot, stack, simulate);
         }
@@ -38,7 +38,7 @@ public abstract class TileAbstractSingleItem extends TileSyncable
     @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
     {
-        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return true;
         return super.hasCapability(capability, facing);
     }
@@ -47,7 +47,7 @@ public abstract class TileAbstractSingleItem extends TileSyncable
     @Override
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
     {
-        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return (T) handler;
         return super.getCapability(capability, facing);
     }
@@ -64,7 +64,7 @@ public abstract class TileAbstractSingleItem extends TileSyncable
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        if(compound.hasKey("items"))
+        if (compound.hasKey("items"))
             handler.deserializeNBT((NBTTagCompound) compound.getTag("items"));
     }
 

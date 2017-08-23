@@ -17,7 +17,7 @@ public class DisplayMessageQuery
 
     public static DisplayMessage getMessage()
     {
-        if(query.size() < 1)
+        if (query.size() < 1)
             return null;
         return query.get(0);
     }

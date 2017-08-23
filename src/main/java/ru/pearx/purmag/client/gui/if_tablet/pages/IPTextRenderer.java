@@ -7,7 +7,6 @@ import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.purmag.client.infofield.pages.IfPageText;
 
 
-
 /**
  * Created by mrAppleXZ on 04.05.17 8:39.
  */

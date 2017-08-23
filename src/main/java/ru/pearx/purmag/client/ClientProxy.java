@@ -11,17 +11,16 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.PXLGui;
 import ru.pearx.libmc.client.models.IModelProvider;
-import ru.pearx.purmag.client.gui.microscope.GuiMicroscope;
+import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.gui.GuiPapyrus;
-import ru.pearx.purmag.client.gui.microscope.MicroscopeDataBuilder;
+import ru.pearx.purmag.client.gui.if_tablet.GuiIfTablet;
+import ru.pearx.purmag.client.gui.microscope.GuiMicroscope;
 import ru.pearx.purmag.client.gui.translation_desk.GuiTranslationDesk;
 import ru.pearx.purmag.common.CommonProxy;
-import ru.pearx.purmag.PurMag;
-import ru.pearx.purmag.client.gui.if_tablet.GuiIfTablet;
 import ru.pearx.purmag.common.blocks.BlockCrystalSmall;
+import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.entities.EntityRegistry;
 import ru.pearx.purmag.common.items.ItemRegistry;
-import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.sip.SipUtils;
 import ru.pearx.purmag.common.tiles.TileRegistry;
 
@@ -31,6 +30,18 @@ import ru.pearx.purmag.common.tiles.TileRegistry;
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
+    public static void registerSipItemColor(Item itm)
+    {
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
+                PurMag.INSTANCE.getSipRegistry().getType(SipUtils.getSipInStack(stack)).getColor().getARGB(), itm);
+    }
+
+    public static void registerSipBlockColor(Block bl)
+    {
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, w, pos, tintIndex) ->
+                PurMag.INSTANCE.getSipRegistry().getType(SipUtils.getSipInBlock(w, pos)).getColor().getARGB(), bl);
+    }
+
     @Override
     public void preInit()
     {
@@ -57,18 +68,6 @@ public class ClientProxy extends CommonProxy
         TileRegistry.registerClient();
     }
 
-    public static void registerSipItemColor(Item itm)
-    {
-        Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
-                PurMag.INSTANCE.getSipRegistry().getType(SipUtils.getSipInStack(stack)).getColor().getARGB(), itm);
-    }
-
-    public static void registerSipBlockColor(Block bl)
-    {
-        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, w, pos, tintIndex) ->
-                PurMag.INSTANCE.getSipRegistry().getType(SipUtils.getSipInBlock(w, pos)).getColor().getARGB(), bl);
-    }
-
     @Override
     public void openIfTablet(int tier)
     {
@@ -82,7 +81,7 @@ public class ClientProxy extends CommonProxy
     }
 
     @Override
-    public void openTranslationDesk(BlockPos pos,  World world)
+    public void openTranslationDesk(BlockPos pos, World world)
     {
         Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiTranslationDesk(pos, world)));
     }
@@ -96,7 +95,7 @@ public class ClientProxy extends CommonProxy
     @Override
     public void setupIfTiers()
     {
-       PurMag.INSTANCE.getIfRegistry().setupIfTiersClient();
+        PurMag.INSTANCE.getIfRegistry().setupIfTiersClient();
     }
 
     @Override
