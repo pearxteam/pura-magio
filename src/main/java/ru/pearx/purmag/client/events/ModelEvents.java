@@ -29,7 +29,7 @@ public class ModelEvents
     @SubscribeEvent
     public static void onBake(ModelBakeEvent e)
     {
-        putModel(e, new StandardModels.Crystal(), Utils.getRegistryName("crystal"));
+        putModel(e, PurMag.INSTANCE.config.useSmallerCrystalModel ? new StandardModels.CrystalOptionalSmaller() : new StandardModels.Crystal(), Utils.getRegistryName("crystal"));
         putModel(e, new StandardModels.CrystalGlass(), Utils.getRegistryName("crystal_glass"));
         putModel(e, new StandardModels.Glove(), Utils.getRegistryName("glove"));
         putModel(e, new StandardModels.TranslationDesk(), Utils.getRegistryName("translation_desk"));

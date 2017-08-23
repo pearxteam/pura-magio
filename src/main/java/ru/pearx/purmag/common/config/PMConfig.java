@@ -17,6 +17,7 @@ public class PMConfig
     public ConfigOregenEntry genCrysagnetite;
     public ConfigOreOnOreEntry genCrystallizedRedstone;
     public ConfigOreOnOreEntry genCrystallizedGlowstone;
+    public boolean useSmallerCrystalModel;
 
     public void setup(Configuration configFile)
     {
@@ -26,6 +27,8 @@ public class PMConfig
         genCrysagnetite = loadOregen(configFile, "Crysagnetite", 15, 25, 1, 3, 1, 2, 0.1f, new String[]{"-1", "1"}, false);
         genCrystallizedRedstone = loadOreOnOre(configFile, "Crystallized Redstone", 0, 16, 0.03f, new String[]{"-1", "1"}, false);
         genCrystallizedGlowstone = loadOreOnOre(configFile, "Crystallized Glowstone", 4, 123, 0.03f, new String[]{"-1"}, true);
+
+        useSmallerCrystalModel = configFile.getBoolean("Use Smaller Crystal Model", "CLIENT", false, "Use Smaller Crystal Model? Credits: gt22.");
 
         if (configFile.hasChanged())
             configFile.save();
