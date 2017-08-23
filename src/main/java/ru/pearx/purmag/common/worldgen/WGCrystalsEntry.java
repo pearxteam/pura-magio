@@ -19,7 +19,7 @@ public class WGCrystalsEntry
     {
         setType(type);
         setSip(sip);
-        if(blacklistedDims == null)
+        if (blacklistedDims == null)
             blacklistedDims = new ArrayList<>();
         setBlacklistedDims(blacklistedDims);
         setBiomes(biomes);

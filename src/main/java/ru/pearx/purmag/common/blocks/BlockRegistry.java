@@ -45,7 +45,7 @@ public class BlockRegistry
     public static void register(Block b, IForgeRegistry<Block> reg)
     {
         reg.register(b);
-        if(b instanceof IModelProvider)
+        if (b instanceof IModelProvider)
             PurMag.proxy.setupModels((IModelProvider) b);
     }
 }

@@ -32,9 +32,9 @@ public class FurnaceControl extends Control
     @Override
     public void render()
     {
-        if(inDraw == null || !ItemStack.areItemStacksEqualUsingNBTShareTag(inDraw.stack, in))
+        if (inDraw == null || !ItemStack.areItemStacksEqualUsingNBTShareTag(inDraw.stack, in))
             inDraw = new ItemDrawable(in, 2);
-        if(outDraw == null || !ItemStack.areItemStacksEqualUsingNBTShareTag(outDraw.stack, out))
+        if (outDraw == null || !ItemStack.areItemStacksEqualUsingNBTShareTag(outDraw.stack, out))
             outDraw = new ItemDrawable(out, 2);
         GlStateManager.enableBlend();
         GuiDrawableRegistry.furnace.draw(getGuiScreen(), 0, 0);
@@ -74,7 +74,7 @@ public class FurnaceControl extends Control
     public void setFocused(boolean val)
     {
         super.setFocused(val);
-        if(!val)
+        if (!val)
         {
             lastX = -1;
             lastY = -1;

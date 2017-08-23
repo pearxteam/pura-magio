@@ -17,7 +17,7 @@ public class ClientEvents
     {
         //todo [RELEASE] REMOVE DEBUG PRINT!
         int[] ids = OreDictionary.getOreIDs(e.getItemStack());
-        for(int id : ids)
+        for (int id : ids)
         {
             e.getToolTip().add(OreDictionary.getOreName(id));
         }

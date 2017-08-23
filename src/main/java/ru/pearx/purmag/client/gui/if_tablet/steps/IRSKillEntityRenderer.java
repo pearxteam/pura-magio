@@ -8,7 +8,6 @@ import ru.pearx.libmc.client.gui.controls.common.EntityShowcase;
 import ru.pearx.purmag.common.infofield.steps.IRSKillEntity;
 
 
-
 /**
  * Created by mrAppleXZ on 02.07.17 13:03.
  */

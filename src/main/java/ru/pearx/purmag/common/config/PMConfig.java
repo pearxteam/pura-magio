@@ -21,13 +21,13 @@ public class PMConfig
     public void setup(Configuration configFile)
     {
         genCrystals = configFile.getBoolean("Generate Crystals", "WORLD", true, "");
-        genRockCrystalsDimBlacklist = loadIntList(configFile, "Rock Crystals Dimension Blacklist", "WORLD", new String[] {"1", "-1"}, "");
+        genRockCrystalsDimBlacklist = loadIntList(configFile, "Rock Crystals Dimension Blacklist", "WORLD", new String[]{"1", "-1"}, "");
 
-        genCrysagnetite = loadOregen(configFile, "Crysagnetite", 15, 25, 1, 3, 1, 2, 0.1f, new String[] {"-1", "1"}, false);
-        genCrystallizedRedstone = loadOreOnOre(configFile, "Crystallized Redstone", 0, 16, 0.03f, new String[] {"-1", "1"}, false);
-        genCrystallizedGlowstone = loadOreOnOre(configFile, "Crystallized Glowstone", 4, 123, 0.03f, new String[] {"-1"}, true);
+        genCrysagnetite = loadOregen(configFile, "Crysagnetite", 15, 25, 1, 3, 1, 2, 0.1f, new String[]{"-1", "1"}, false);
+        genCrystallizedRedstone = loadOreOnOre(configFile, "Crystallized Redstone", 0, 16, 0.03f, new String[]{"-1", "1"}, false);
+        genCrystallizedGlowstone = loadOreOnOre(configFile, "Crystallized Glowstone", 4, 123, 0.03f, new String[]{"-1"}, true);
 
-        if(configFile.hasChanged())
+        if (configFile.hasChanged())
             configFile.save();
     }
 
@@ -67,9 +67,9 @@ public class PMConfig
     {
         String[] rcbld = configFile.getStringList(name, category, defaults, descr);
         List<Integer> lst = new ArrayList<>();
-        for(String s : rcbld)
+        for (String s : rcbld)
         {
-            if(!StringUtils.isNullOrEmpty(s))
+            if (!StringUtils.isNullOrEmpty(s))
             {
                 lst.add(Integer.parseInt(s));
             }

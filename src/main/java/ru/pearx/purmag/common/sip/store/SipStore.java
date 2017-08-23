@@ -23,7 +23,7 @@ public class SipStore implements ISipStore
     @Override
     public int get(String type)
     {
-        if(sip.containsKey(type))
+        if (sip.containsKey(type))
             return sip.get(type);
         return 0;
     }
@@ -44,7 +44,7 @@ public class SipStore implements ISipStore
     public int add(String type, int count)
     {
         int i = get(type) + count;
-        if(i > getMax(type))
+        if (i > getMax(type))
         {
             sip.put(type, getMax(type));
             return i - getMax(type);
@@ -82,7 +82,7 @@ public class SipStore implements ISipStore
     public NBTTagCompound serializeNBT()
     {
         NBTTagCompound nbt = new NBTTagCompound();
-        for(Map.Entry<String, Integer> entr : sip.entrySet())
+        for (Map.Entry<String, Integer> entr : sip.entrySet())
         {
             nbt.setInteger(entr.getKey(), entr.getValue());
         }
@@ -98,7 +98,7 @@ public class SipStore implements ISipStore
     @Override
     public void deserializeNBT(NBTTagCompound nbt)
     {
-        for(String type : nbt.getKeySet())
+        for (String type : nbt.getKeySet())
         {
             sip.put(type, nbt.getInteger(type));
         }

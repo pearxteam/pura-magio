@@ -28,12 +28,12 @@ public class DisplayMessageEvents
     @SubscribeEvent
     public static void renderMessage(RenderGameOverlayEvent.Pre e)
     {
-        if(e.getType() == RenderGameOverlayEvent.ElementType.TEXT)
+        if (e.getType() == RenderGameOverlayEvent.ElementType.TEXT)
         {
             DisplayMessage msg = DisplayMessageQuery.getMessage();
             if (msg != null)
             {
-                if(!isDMDisplayed)
+                if (!isDMDisplayed)
                 {
                     Minecraft.getMinecraft().player.playSound(SoundRegistry.NOTIFICATION, 1, 1);
                     timerDM.schedule(new TimerTask()

@@ -29,7 +29,7 @@ public class ItemSingleSip extends ItemBase
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
     {
-        if(isInCreativeTab(tab))
+        if (isInCreativeTab(tab))
         {
             for (SipType t : PurMag.INSTANCE.getSipRegistry().getTypes())
             {

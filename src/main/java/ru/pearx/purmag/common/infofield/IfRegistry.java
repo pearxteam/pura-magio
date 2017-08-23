@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.tuple.Pair;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.drawables.BigItemDrawable;
 import ru.pearx.libmc.client.gui.drawables.EntityDrawable;
@@ -19,7 +20,6 @@ import ru.pearx.purmag.common.entities.EntityBeetle;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import ru.pearx.purmag.common.infofield.steps.*;
 import ru.pearx.purmag.common.items.ItemRegistry;
-import org.apache.commons.lang3.tuple.Pair;
 import ru.pearx.purmag.common.sip.SipUtils;
 
 import java.util.ArrayList;
@@ -60,16 +60,16 @@ public class IfRegistry
 
     public IfChannel getChannel(String id)
     {
-        for(IfChannel chan : channels)
-            if(chan.getId().equals(id))
+        for (IfChannel chan : channels)
+            if (chan.getId().equals(id))
                 return chan;
         return null;
     }
 
     public IfEntry getEntry(String id)
     {
-        for(IfEntry entr : entries)
-            if(entr.getId().equals(id))
+        for (IfEntry entr : entries)
+            if (entr.getId().equals(id))
                 return entr;
         return null;
     }
@@ -88,7 +88,7 @@ public class IfRegistry
     {
         for (IfTier t : tiers)
         {
-            if(t.getTier() == tier)
+            if (t.getTier() == tier)
                 return t;
         }
         return null;
@@ -103,15 +103,15 @@ public class IfRegistry
     {
         List<Pair<IfEntry, T>> lst = new ArrayList<>();
         IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
-        for(IfEntry entr : entries)
+        for (IfEntry entr : entries)
         {
             int steps = store.getSteps(entr.getId());
-            if(steps < entr.getSteps().size())
+            if (steps < entr.getSteps().size())
             {
                 IIfResearchStep step = entr.getSteps().get(steps);
-                if(clazz.isInstance(step))
+                if (clazz.isInstance(step))
                 {
-                    if(entr.isAvailableToResearch(p))
+                    if (entr.isAvailableToResearch(p))
                     {
                         lst.add(Pair.of(entr, (T) step));
                     }

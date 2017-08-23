@@ -50,16 +50,16 @@ public class ModelEvents
     public static void stitch(TextureStitchEvent.Pre e)
     {
         e.getMap().registerSprite(new ResourceLocation(PurMag.MODID, "models/crystal"));
-        for(int i = 0; i < 2; i++)
-            for(int j = 0; j < 2; j++)
-                for(int k = 0; k < 2; k++)
-                    for(int l = 0; l < 2; l++)
+        for (int i = 0; i < 2; i++)
+            for (int j = 0; j < 2; j++)
+                for (int k = 0; k < 2; k++)
+                    for (int l = 0; l < 2; l++)
                         e.getMap().registerSprite(new ResourceLocation(PurMag.MODID, "blocks/crystal_glass/" + i + j + k + l));
         e.getMap().registerSprite(Utils.getRegistryName("models/glove"));
         e.getMap().registerSprite(Utils.getRegistryName("particle/sip"));
         e.getMap().registerSprite(Utils.getRegistryName("models/crystal_small"));
         e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk"));
-        for(IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
+        for (IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
             e.getMap().registerSprite(t.getWallTabletTexture());
         e.getMap().registerSprite(Utils.getRegistryName("models/microscope"));
     }

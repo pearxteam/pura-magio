@@ -12,7 +12,7 @@ public class GuiIfTabletSEPart extends Control
 {
     public GuiIfTabletSE getTabletScreen()
     {
-        if(getParent() instanceof GuiIfTabletSE)
+        if (getParent() instanceof GuiIfTabletSE)
             return (GuiIfTabletSE) getParent();
         return null;
     }

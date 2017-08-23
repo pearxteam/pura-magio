@@ -27,7 +27,7 @@ public class GuiMicroscope extends GuiOnScreen
     public void render()
     {
         int y = 8;
-        for(String s : PurMagClient.INSTANCE.getMicroscopeDataBuilder().build(stack))
+        for (String s : PurMagClient.INSTANCE.getMicroscopeDataBuilder().build(stack))
         {
             DrawingTools.drawString(s, 8, y, Colors.GREY_500);
             y += DrawingTools.getFontHeight();

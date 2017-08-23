@@ -1,6 +1,9 @@
 package ru.pearx.purmag.common.entities;
 
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
@@ -61,11 +64,11 @@ public class EntityBeetle extends EntityCreature
     @Override
     public boolean attackEntityAsMob(Entity entityIn)
     {
-        if(entityIn instanceof EntityLivingBase)
+        if (entityIn instanceof EntityLivingBase)
         {
-            ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 100, 1));
+            ((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 100, 1));
         }
-        return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
+        return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
     }
 
     @Nullable

@@ -19,7 +19,7 @@ public class TileSingleSip extends TileSyncable
     {
         this.type = type;
         markDirty();
-        if(sync)
+        if (sync)
             sendUpdatesToClients();
     }
 
@@ -35,7 +35,7 @@ public class TileSingleSip extends TileSyncable
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        if(compound.hasKey("sip_type"))
+        if (compound.hasKey("sip_type"))
             setType(compound.getString("sip_type"), false);
     }
 }

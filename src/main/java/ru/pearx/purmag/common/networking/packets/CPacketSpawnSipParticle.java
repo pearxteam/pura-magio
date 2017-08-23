@@ -9,8 +9,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.purmag.client.particles.ParticleSipMovingTo;
 import ru.pearx.libmc.common.networking.ByteBufTools;
+import ru.pearx.purmag.client.particles.ParticleSipMovingTo;
 
 import javax.vecmath.Vector3d;
 
@@ -25,7 +25,10 @@ public class CPacketSpawnSipParticle implements IMessage
     public String sipType;
     public int amount;
 
-    public CPacketSpawnSipParticle() {}
+    public CPacketSpawnSipParticle()
+    {
+    }
+
     public CPacketSpawnSipParticle(Vector3d pos, Vector3d posTo, float speed, int dim, String type, int amount)
     {
         this.pos = pos;
@@ -60,7 +63,9 @@ public class CPacketSpawnSipParticle implements IMessage
 
     public static class Handler implements IMessageHandler<CPacketSpawnSipParticle, IMessage>
     {
-        public Handler() {}
+        public Handler()
+        {
+        }
 
         @Override
         @SideOnly(Side.CLIENT)

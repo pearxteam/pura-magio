@@ -12,10 +12,15 @@ import java.util.HashMap;
 public interface IIfEntryStore extends INBTSerializable<NBTTagCompound>
 {
     HashMap<String, Integer> getMap();
+
     int getSteps(String id);
+
     void setSteps(String id, int st);
+
     boolean isFullyUnlocked(String id);
+
     void sync(EntityPlayerMP p);
+
     void sync(EntityPlayerMP p, String res);
 
     void unlockStepAndSync(String id, EntityPlayerMP p);

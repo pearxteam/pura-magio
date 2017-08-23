@@ -19,6 +19,7 @@ public class IfPageText implements IIfPage
     {
         setUnlocalizedText(unlocalized);
     }
+
     public IfPageText(String unlocalized, String... properties)
     {
         setUnlocalizedText(unlocalized);

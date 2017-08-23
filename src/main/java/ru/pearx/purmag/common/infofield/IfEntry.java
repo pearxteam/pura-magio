@@ -6,8 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
-import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.client.infofield.pages.IIfPage;
+import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import ru.pearx.purmag.common.infofield.steps.IIfResearchStep;
 
@@ -31,9 +31,9 @@ public class IfEntry
 
     public IfEntry(String id, int tier, List<String> parents, List<IIfResearchStep> steps, int stepsForDisplay)
     {
-        if(parents == null)
+        if (parents == null)
             parents = new ArrayList<>();
-        if(steps == null)
+        if (steps == null)
             steps = new ArrayList<>();
         setId(id);
         setTier(tier);
@@ -119,13 +119,16 @@ public class IfEntry
     @SideOnly(Side.CLIENT)
     public String getDisplayName()
     {
-        if(Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).getSteps(getId()) < getStepsForDisplay())
+        if (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).getSteps(getId()) < getStepsForDisplay())
             return "???";
         return I18n.format("if_entry." + id + ".name");
     }
 
     @SideOnly(Side.CLIENT)
-    public String getDisplayDescription() { return I18n.format("if_entry." + id + ".desc"); }
+    public String getDisplayDescription()
+    {
+        return I18n.format("if_entry." + id + ".desc");
+    }
 
     //Just available to see, not read/continue researching/etc.
     public boolean isAvailableToSee(EntityPlayer p, int tier)
@@ -135,7 +138,7 @@ public class IfEntry
         if (tier < getTier())
             return false;
 
-        if(!isAllParentsUnlocked(p))
+        if (!isAllParentsUnlocked(p))
             return false;
 
         return true;
@@ -143,7 +146,7 @@ public class IfEntry
 
     public boolean isAvailableToResearch(EntityPlayer p)
     {
-        if(!isAllParentsUnlocked(p))
+        if (!isAllParentsUnlocked(p))
             return false;
         return true;
     }

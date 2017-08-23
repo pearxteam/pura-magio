@@ -74,7 +74,7 @@ public class BlockCrystalSmall extends BlockBase
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        for(Type t : Type.values())
+        for (Type t : Type.values())
         {
             list.add(new ItemStack(this, 1, t.ordinal()));
         }
@@ -103,6 +103,7 @@ public class BlockCrystalSmall extends BlockBase
         GLOWSTONE(0xd2d200), REDSTONE(0xff0000);
 
         private int color;
+
         Type(int color)
         {
             setColor(color);
