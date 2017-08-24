@@ -88,6 +88,15 @@ public class StandardModels
         }
     }
 
+    public static class LuminousCrystalGlass extends ConnectedModel
+    {
+        public LuminousCrystalGlass()
+        {
+            setBaseTexture(new ResourceLocation(PurMag.MODID, "blocks/luminous_crystal_glass"));
+            quadProcessors.add(new TintProcessor(0));
+        }
+    }
+
     public static class Glove extends OvModel
     {
         private Matrix4f mat_fp = new TRSRTransformation(new Vector3f(0f, 0.2f, -0.1f), new Quat4f(0, 0, 45, 1), null, new Quat4f(0, 0, 180, 1)).getMatrix();
