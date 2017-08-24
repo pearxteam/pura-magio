@@ -20,11 +20,11 @@ import ru.pearx.purmag.common.items.papyrus.ItemPapyrus;
 @GameRegistry.ObjectHolder(PurMag.MODID)
 public class ItemRegistry
 {
-    public static final ItemBlockCrystal crystal = null;
+    public static final ItemBlockSingleSip crystal = null;
     public static final ItemCrystalShard crystal_shard = null;
     public static final ItemCrystalCutter crystal_cutter = null;
     public static final ItemIfTablet if_tablet = null;
-    public static final ItemBlockCrystalGlass crystal_glass = null;
+    public static final ItemBlockSingleSip crystal_glass = null;
     public static final Item ore_crysagnetite = null;
     public static final Item ingot_crysagnetite = null;
     public static final ItemSipAmulet sip_amulet = null;
@@ -37,6 +37,7 @@ public class ItemRegistry
     public static final Item beetle_meat = null;
     public static final ItemBlockWallIfTablet wall_if_tablet = null;
     public static final ItemBlockBrokenWallIfTablet broken_wall_if_tablet = null;
+    public static final ItemBlockSingleSip luminous_crystal_glass = null;
 
     public static void register(Item itm, IForgeRegistry<Item> reg)
     {
@@ -51,6 +52,7 @@ public class ItemRegistry
         OreDictionary.registerOre("sipCrystal", new ItemStack(crystal, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("sipShard", new ItemStack(crystal_shard, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("blockGlass", new ItemStack(crystal_glass, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("blockGlass", new ItemStack(luminous_crystal_glass, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("oreCrysagnetite", ore_crysagnetite);
         OreDictionary.registerOre("ingotCrysagnetite", ingot_crysagnetite);
         OreDictionary.registerOre("ingotPlumfero", ingot_plumfero);
@@ -60,11 +62,11 @@ public class ItemRegistry
     public static void onRegisterItems(RegistryEvent.Register<Item> e)
     {
         IForgeRegistry<Item> reg = e.getRegistry();
-        register(new ItemBlockCrystal(), reg);
+        register(new ItemBlockSingleSip(BlockRegistry.crystal), reg);
         register(new ItemCrystalShard(), reg);
         register(new ItemCrystalCutter(), reg);
         register(new ItemIfTablet(), reg);
-        register(new ItemBlockCrystalGlass(), reg);
+        register(new ItemBlockSingleSip(BlockRegistry.crystal_glass), reg);
         register(new ItemBlockBase(BlockRegistry.ore_crysagnetite), reg);
         register(new ItemBase("ingot_crysagnetite"), reg);
         register(new ItemSipAmulet(), reg);
@@ -78,5 +80,6 @@ public class ItemRegistry
         register(new ItemBlockWallIfTablet(), reg);
         register(new ItemBlockBrokenWallIfTablet(), reg);
         register(new ItemBlockBase(BlockRegistry.microscope), reg);
+        register(new ItemBlockSingleSip(BlockRegistry.luminous_crystal_glass), reg);
     }
 }

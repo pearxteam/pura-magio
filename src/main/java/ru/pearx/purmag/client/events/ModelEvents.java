@@ -38,6 +38,7 @@ public class ModelEvents
         putModel(e, wit, Utils.getRegistryName("wall_if_tablet"));
         putModel(e, wit, Utils.getRegistryName("broken_wall_if_tablet"));
         putModel(e, new StandardModels.Microscope(), Utils.getRegistryName("microscope"));
+        putModel(e, new StandardModels.CrystalGlass(), Utils.getRegistryName("luminous_crystal_glass"));
     }
 
     private static void putModel(ModelBakeEvent e, IPXModel model, ResourceLocation loc)

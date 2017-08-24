@@ -27,7 +27,7 @@ public class BlockCrystal extends BlockSingleSip
     {
         super("crystal", Material.ROCK);
         setHardness(2);
-        setLightLevel(5);
+        setLightLevel(0.5f);
         setHarvestLevel("pickaxe", 1);
     }
 

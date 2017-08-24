@@ -19,62 +19,10 @@ import ru.pearx.purmag.common.sip.SipUtils;
 /**
  * Created by mrAppleXZ on 14.05.17 18:30.
  */
-public class BlockCrystalGlass extends BlockSingleSip
+public class BlockCrystalGlass extends BlockAbstractCrystalGlass
 {
-    public ConnectionsController ctm = new ConnectionsController();
-
     public BlockCrystalGlass()
     {
-        super("crystal_glass", Material.GLASS);
-        setHardness(1f);
-        setSoundType(SoundType.GLASS);
-        setHarvestLevel("pickaxe", 0);
-    }
-
-    @Override
-    public BlockRenderLayer getBlockLayer()
-    {
-        return BlockRenderLayer.TRANSLUCENT;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-    {
-        return !canConnect(blockState, blockAccess, pos, side);
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new ExtendedBlockState(this, new IProperty[]{}, ConnectionsController.PROPS.values().toArray(new IUnlistedProperty[0]));
-    }
-
-    @Override
-    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        return ctm.getExtendedState(state, world, pos, this::canConnect);
-    }
-
-    public boolean canConnect(IBlockState state, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-    {
-        IBlockState off = blockAccess.getBlockState(pos.offset(side));
-        if (off.getBlock() == state.getBlock())
-        {
-            return SipUtils.getSipInBlock(blockAccess, pos.offset(side)).equals(SipUtils.getSipInBlock(blockAccess, pos));
-        }
-        return false;
+        super("crystal_glass");
     }
 }
