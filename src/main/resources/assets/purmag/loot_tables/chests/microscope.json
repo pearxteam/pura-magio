@@ -1,0 +1,48 @@
+{
+  "pools": [
+    {
+      "name": "shards",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "purmag:crystal_shard",
+          "entryName": "information_shard",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "set_nbt",
+              "tag": "{sip_type:\"information\"}"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 2,
+                "max": 8
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "purmag:crystal_shard",
+          "entryName": "vision_shard",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "set_nbt",
+              "tag": "{sip_type:\"vision\"}"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 2,
+                "max": 8
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

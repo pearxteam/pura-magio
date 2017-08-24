@@ -11,5 +11,7 @@ public class LootTablesRegistry
     public static void setup()
     {
         LootTableList.register(Utils.getRegistryName("entities/verda_beetle"));
+        LootTableList.register(Utils.getRegistryName("chests/lab_small"));
+        LootTableList.register(Utils.getRegistryName("chests/microscope"));
     }
 }
