@@ -25,6 +25,7 @@ public class BlockRegistry
     public static final BlockWallIfTablet wall_if_tablet = null;
     public static final BlockBrokenWallIfTablet broken_wall_if_tablet = null;
     public static final BlockMicroscope microscope = null;
+    public static final BlockLuminousCrystalGlass luminous_crystal_glass = null;
 
     @SubscribeEvent
     public static void onRegisterBlocks(RegistryEvent.Register<Block> e)
@@ -40,6 +41,7 @@ public class BlockRegistry
         register(new BlockWallIfTablet(), reg);
         register(new BlockBrokenWallIfTablet(), reg);
         register(new BlockMicroscope(), reg);
+        register(new BlockLuminousCrystalGlass(), reg);
     }
 
     public static void register(Block b, IForgeRegistry<Block> reg)

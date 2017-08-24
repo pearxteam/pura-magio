@@ -1,9 +1,0 @@
-{
-  "variants": {
-    "normal": { "model": "purmag:translation_desk" },
-    "facing=north": { "model": "purmag:translation_desk" },
-    "facing=south": { "model": "purmag:translation_desk", "y": 180 },
-    "facing=west":  { "model": "purmag:translation_desk", "y": 270 },
-    "facing=east":  { "model": "purmag:translation_desk", "y": 90 }
-  }
-}

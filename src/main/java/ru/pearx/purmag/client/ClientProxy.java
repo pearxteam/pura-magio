@@ -56,9 +56,11 @@ public class ClientProxy extends CommonProxy
     {
         registerSipBlockColor(BlockRegistry.crystal);
         registerSipBlockColor(BlockRegistry.crystal_glass);
+        registerSipBlockColor(BlockRegistry.luminous_crystal_glass);
         registerSipItemColor(ItemRegistry.crystal_glass);
         registerSipItemColor(ItemRegistry.crystal);
         registerSipItemColor(ItemRegistry.crystal_shard);
+        registerSipItemColor(ItemRegistry.luminous_crystal_glass);
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> state.getValue(BlockCrystalSmall.TYPE).getColor(), BlockRegistry.crystal_small);
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> BlockCrystalSmall.Type.values()[stack.getMetadata()].getColor(), ItemRegistry.crystal_small);
 

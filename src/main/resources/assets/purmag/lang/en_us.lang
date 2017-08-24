@@ -28,6 +28,7 @@ item.purmag.beetle_meat.name=Beetle Meat
 item.purmag.beetle_meat.baked.name=Baked Beetle Meat
 tile.purmag.broken_wall_if_tablet.tooltip=You can't harvest it.
 tile.purmag.microscope.name=Microscope
+tile.purmag.luminous_crystal_glass.name=%s Luminous Crystal Glass
 
 #Sip Types
 sip.sea.name=Mara
