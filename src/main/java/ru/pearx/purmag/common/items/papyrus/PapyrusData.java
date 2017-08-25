@@ -10,10 +10,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class PapyrusData
 {
     private String papyrusId;
+    private boolean isSecondary;
 
-    public PapyrusData(String papyrusId)
+    public PapyrusData(String papyrusId) {
+        this(papyrusId, false);
+    }
+
+    public PapyrusData(String papyrusId, boolean isSecondary)
     {
         this.papyrusId = papyrusId;
+        this.isSecondary = isSecondary;
     }
 
     public String getPapyrusId()
