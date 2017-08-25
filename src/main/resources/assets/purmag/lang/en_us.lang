@@ -120,6 +120,12 @@ key.use_sip_amulet=Use Sip Amulet
 papyrus.sip_knowledge.name=The Solid Interacting Power I
 papyrus.sip_knowledge.text=Januaro 27, 1501  Servogey Shatunerov%nMi hazarde rimarkis nova filumo de energio, kiom hejtis la bakujon per karbo. Io malgranda kaj apenaŭ videbla de tempo al tempo elflugis el la bakujo. Estas kiel globa fulmo sed milfoje malpli malgranda. Tioj estas klare ne fajreron de fajro. Poste mi eksciis, ke tiu ia energio, antaŭ nekonata, kiu aldone, brilas en nitrogeno. Nome tial tia energio estis videble al mi. Mi supozas, ke kapablos trovi al ĝi apliko en la estonteco, kiam ekscios ĝin pli bone.%n. . .%n. . .%nŜajnis, tiu energio povas estis de diversaj tipoj kaj povas reagis kun tuta materio, sed ne nur kun nitrogeno. Globo, konsistanta el la tiu energio, povis rempi kelkaj la de konataj leĝo de fiziko. ankeraŭ mi remarkis, ke trairinte tra de mi, tiu globo igis de mi per nedifektebla al fajro por deupon de secundoj. Mi doŭrigos esploradoj.
 
+papyrus.poem_1_1.name=La Espero (Part 1)
+papyrus.poem_1_1.text=En la mondon venis nova sento,%nTra la mondo iras forta voko;%nPer flugiloj de facila vento%nNun de loko flugu ĝi al loko.%n%nNe al glavo sangon soifanta%nĜi la homan tiras familion:%nAl la mond' eterne militanta%nĜi promesas sanktan harmonion.%n%nSub la sankta signo de l' espero%nKolektiĝas pacaj batalantoj,%nKaj rapide kreskas la afero%nPer laboro de la esperantoj.
+
+papyrus.poem_1_2.name=La Espero (Part 2)
+papyrus.poem_1_2.text=Forte staras muroj de miljaroj%nInter la popoloj dividitaj;%nSed dissaltos la obstinaj baroj,%nPer la sankta amo disbatitaj.%n%nSur neŭtrala lingva fundamento,%nKomprenante unu la alian,%nLa popoloj faros en konsento%nUnu grandan rondon familian.%n%nNia diligenta kolegaro%nEn laboro paca ne laciĝos,%nĜis la bela sonĝo de l' homaro%nPor eterna ben' efektiviĝos.
+
 #Translation Desk
 translation_desk.status=Status: %s
 translation_desk.status.no_papyrus=No Papyrus
