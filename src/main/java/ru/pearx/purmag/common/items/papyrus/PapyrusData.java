@@ -10,16 +10,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class PapyrusData
 {
     private String papyrusId;
-    private boolean isSecondary;
+    private boolean isImportant;
 
-    public PapyrusData(String papyrusId) {
-        this(papyrusId, false);
-    }
-
-    public PapyrusData(String papyrusId, boolean isSecondary)
+    public PapyrusData(String papyrusId, boolean isImportant)
     {
         this.papyrusId = papyrusId;
-        this.isSecondary = isSecondary;
+        this.isImportant = isImportant;
     }
 
     public String getPapyrusId()
@@ -30,6 +26,16 @@ public class PapyrusData
     public void setPapyrusId(String papyrusId)
     {
         this.papyrusId = papyrusId;
+    }
+
+    public boolean isImportant()
+    {
+        return isImportant;
+    }
+
+    public void setImportant(boolean important)
+    {
+        isImportant = important;
     }
 
     @SideOnly(Side.CLIENT)

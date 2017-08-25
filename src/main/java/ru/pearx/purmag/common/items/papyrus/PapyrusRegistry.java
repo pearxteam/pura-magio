@@ -30,8 +30,8 @@ public class PapyrusRegistry
 
     public void setup()
     {
-        registerPapyrus(new PapyrusData("sip_knowledge"));
-        registerPapyrus(new PapyrusData("poem_1_1", true));
-        registerPapyrus(new PapyrusData("poem_1_2", true));
+        registerPapyrus(new PapyrusData("sip_knowledge", true));
+        registerPapyrus(new PapyrusData("poem_1_1", false));
+        registerPapyrus(new PapyrusData("poem_1_2", false));
     }
 }
