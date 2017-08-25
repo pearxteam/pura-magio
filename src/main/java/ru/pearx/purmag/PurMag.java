@@ -91,6 +91,7 @@ public class PurMag
         TileRegistry.register();
         CapabilityRegistry.register();
         EntityRegistry.register();
+        getPapyrusRegistry().setup();
 
         proxy.setupIfTiers();
 
@@ -102,7 +103,6 @@ public class PurMag
     {
         getSipEffects().register();
         ItemRegistry.setup();
-        getPapyrusRegistry().setup();
         getIfRegistry().setup();
         NetworkManager.setup();
         WorldgenRegistry.setup();

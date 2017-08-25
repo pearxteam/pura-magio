@@ -14,6 +14,7 @@ public class LootEvents
     @SubscribeEvent
     public static void onLootTableLoad(LootTableLoadEvent e)
     {
-        //e.getTable().addPool(e.getLootTableManager().getLootTableFromLocation().getp);
+        if (e.getName().getResourceDomain().equals(PurMag.MODID) && e.getName().getResourcePath().equals("chests/lab_small"))
+            PurMag.INSTANCE.getPapyrusRegistry().addNotImportantToTable(e.getTable());
     }
 }
