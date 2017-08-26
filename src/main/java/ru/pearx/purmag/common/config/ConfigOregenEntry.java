@@ -11,7 +11,7 @@ public class ConfigOregenEntry
     public int minY, maxY, minVeinSize, maxVeinSize, minVeins, maxVeins;
     public float chance;
     public List<Integer> dimList;
-    public boolean dimListWhitelist;
+    public boolean dimListMode;
 
     public ConfigOregenEntry()
     {

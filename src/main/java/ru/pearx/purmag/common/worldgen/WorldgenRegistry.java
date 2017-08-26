@@ -12,6 +12,7 @@ import ru.pearx.purmag.common.blocks.BlockCrystalSmall;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.config.ConfigOreOnOreEntry;
 import ru.pearx.purmag.common.config.ConfigOregenEntry;
+import ru.pearx.purmag.common.config.ConfigStructureEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class WorldgenRegistry
         if (PurMag.INSTANCE.config.genCrysagnetite.generate)
         {
             ConfigOregenEntry coe = PurMag.INSTANCE.config.genCrysagnetite;
-            GameRegistry.registerWorldGenerator(new WGOre(coe.minVeinSize, coe.maxVeinSize, coe.minY, coe.maxY, coe.chance, BlockRegistry.ore_crysagnetite.getDefaultState(), coe.dimList, coe.dimListWhitelist, coe.minVeins, coe.maxVeins, new WGOre.StonePredicate()), 5);
+            GameRegistry.registerWorldGenerator(new WGOre(coe.minVeinSize, coe.maxVeinSize, coe.minY, coe.maxY, coe.chance, BlockRegistry.ore_crysagnetite.getDefaultState(), coe.dimList, coe.dimListMode, coe.minVeins, coe.maxVeins, new WGOre.StonePredicate()), 5);
         }
         if (PurMag.INSTANCE.config.genCrystallizedRedstone.generate)
         {
@@ -54,7 +55,7 @@ public class WorldgenRegistry
                             }
                         }
                         return false;
-                    }, coe.dimList, coe.dimListWhitelist), 6);
+                    }, coe.dimList, coe.dimListMode), 6);
         }
         if (PurMag.INSTANCE.config.genCrystallizedGlowstone.generate)
         {
@@ -73,7 +74,12 @@ public class WorldgenRegistry
                             }
                         }
                         return false;
-                    }, coe.dimList, coe.dimListWhitelist), 6);
+                    }, coe.dimList, coe.dimListMode), 6);
+        }
+        if (PurMag.INSTANCE.config.genLabSmall.generate)
+        {
+            ConfigStructureEntry cse = PurMag.INSTANCE.config.genLabSmall;
+            GameRegistry.registerWorldGenerator(new WGLabSmall(cse.chance, cse.dimList, cse.dimListMode), 20);
         }
     }
 }
