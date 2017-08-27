@@ -1,4 +1,4 @@
-package ru.pearx.purmag.client.particles;
+package ru.pearx.purmag.client.particle;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.particle.PXParticle;
 import ru.pearx.libmc.client.particle.ParticleEngine;
@@ -36,6 +37,7 @@ public class ParticleDemo extends PXParticle
     public ParticleDemo(double x, double y, double z)
     {
         super(x, y, z);
+        setMaxAge(200);
     }
 
     @Override
@@ -54,7 +56,9 @@ public class ParticleDemo extends PXParticle
     public void onRender()
     {
         GlStateManager.enableBlend();
+        GlStateManager.depthMask(false);
         DrawingTools.drawTexture(Utils.getRegistryName("textures/particle/sip.png"), 0, 0, 32, 32);
+        GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
     }
 

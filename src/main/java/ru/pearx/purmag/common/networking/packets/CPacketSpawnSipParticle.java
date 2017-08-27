@@ -9,8 +9,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.libmc.client.particle.ParticleEngine;
 import ru.pearx.libmc.common.networking.ByteBufTools;
-import ru.pearx.purmag.client.particles.ParticleSipMovingTo;
+import ru.pearx.purmag.client.particle.ParticleSipMovingTo;
 
 import javax.vecmath.Vector3d;
 
@@ -21,7 +22,6 @@ public class CPacketSpawnSipParticle implements IMessage
 {
     public Vector3d pos, posTo;
     public float speed;
-    public int dim;
     public String sipType;
     public int amount;
 
@@ -29,12 +29,11 @@ public class CPacketSpawnSipParticle implements IMessage
     {
     }
 
-    public CPacketSpawnSipParticle(Vector3d pos, Vector3d posTo, float speed, int dim, String type, int amount)
+    public CPacketSpawnSipParticle(Vector3d pos, Vector3d posTo, float speed, String type, int amount)
     {
         this.pos = pos;
         this.posTo = posTo;
         this.speed = speed;
-        this.dim = dim;
         this.sipType = type;
         this.amount = amount;
     }
@@ -45,7 +44,6 @@ public class CPacketSpawnSipParticle implements IMessage
         pos = ByteBufTools.readVector3d(buf);
         posTo = ByteBufTools.readVector3d(buf);
         speed = buf.readFloat();
-        dim = buf.readInt();
         sipType = ByteBufUtils.readUTF8String(buf);
         amount = buf.readInt();
     }
@@ -56,7 +54,6 @@ public class CPacketSpawnSipParticle implements IMessage
         ByteBufTools.writeVector3d(buf, pos);
         ByteBufTools.writeVector3d(buf, posTo);
         buf.writeFloat(speed);
-        buf.writeInt(dim);
         ByteBufUtils.writeUTF8String(buf, sipType);
         buf.writeInt(amount);
     }
@@ -71,7 +68,7 @@ public class CPacketSpawnSipParticle implements IMessage
         @SideOnly(Side.CLIENT)
         public IMessage onMessage(CPacketSpawnSipParticle msg, MessageContext ctx)
         {
-            Minecraft.getMinecraft().addScheduledTask(() -> Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleSipMovingTo(DimensionManager.getWorld(msg.dim), msg.pos, msg.posTo, msg.sipType, msg.amount, msg.speed)));
+            Minecraft.getMinecraft().addScheduledTask(() -> ParticleEngine.addParticle(new ParticleSipMovingTo(msg.pos, msg.posTo, msg.sipType, msg.amount, msg.speed)));
             return null;
         }
     }

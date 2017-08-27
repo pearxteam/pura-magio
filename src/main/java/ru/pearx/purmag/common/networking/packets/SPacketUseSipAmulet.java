@@ -75,7 +75,6 @@ public class SPacketUseSipAmulet implements IMessage
                                             new Vector3d(p.posX, p.posY + 1.3f, p.posZ),
                                             new Vector3d(p.posX + (vec.x * 5) + (PurMag.INSTANCE.random.nextFloat() * 4 - 2), p.posY + 1.3f + (PurMag.INSTANCE.random.nextFloat() * 4 - 2), p.posZ + (vec.y * 5) + (PurMag.INSTANCE.random.nextFloat() * 4 - 2)),
                                             0.1f,
-                                            p.dimension,
                                             entr.getKey(),
                                             i >= 8 ? 8 : i
                                     ),
