@@ -12,6 +12,7 @@ import ru.pearx.purmag.common.blocks.BlockCrystalSmall;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.config.ConfigOreOnOreEntry;
 import ru.pearx.purmag.common.config.ConfigOregenEntry;
+import ru.pearx.purmag.common.config.ConfigStructureEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +26,19 @@ public class WorldgenRegistry
 
     public static void setup()
     {
-        if(PurMag.INSTANCE.config.genCrystals)
+        if (PurMag.INSTANCE.config.genCrystals)
         {
             crystalGen.add(new WGCrystalsEntry(WGCrystalsType.SURFACE, "sea", null, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.RIVER));
             crystalGen.add(new WGCrystalsEntry(WGCrystalsType.UNDERGROUND, "rock", PurMag.INSTANCE.config.genRockCrystalsDimBlacklist));
             crystalGen.add(new WGCrystalsEntry(WGCrystalsType.FIRSTAIR, "flame", null, BiomeDictionary.Type.NETHER));
             GameRegistry.registerWorldGenerator(new WGCrystals(), 5);
         }
-        if(PurMag.INSTANCE.config.genCrysagnetite.generate)
+        if (PurMag.INSTANCE.config.genCrysagnetite.generate)
         {
             ConfigOregenEntry coe = PurMag.INSTANCE.config.genCrysagnetite;
-            GameRegistry.registerWorldGenerator(new WGOre(coe.minVeinSize, coe.maxVeinSize, coe.minY, coe.maxY, coe.chance, BlockRegistry.ore_crysagnetite.getDefaultState(), coe.dimList, coe.dimListWhitelist, coe.minVeins, coe.maxVeins, new WGOre.StonePredicate()), 5);
+            GameRegistry.registerWorldGenerator(new WGOre(coe.minVeinSize, coe.maxVeinSize, coe.minY, coe.maxY, coe.chance, BlockRegistry.ore_crysagnetite.getDefaultState(), coe.dimList, coe.dimListMode, coe.minVeins, coe.maxVeins, new WGOre.StonePredicate()), 5);
         }
-        if(PurMag.INSTANCE.config.genCrystallizedRedstone.generate)
+        if (PurMag.INSTANCE.config.genCrystallizedRedstone.generate)
         {
             ConfigOreOnOreEntry coe = PurMag.INSTANCE.config.genCrystallizedRedstone;
             GameRegistry.registerWorldGenerator(new WGOreOnOre(coe.minY, coe.maxY, coe.chance,
@@ -54,9 +55,9 @@ public class WorldgenRegistry
                             }
                         }
                         return false;
-                    }, coe.dimList, coe.dimListWhitelist), 6);
+                    }, coe.dimList, coe.dimListMode), 6);
         }
-        if(PurMag.INSTANCE.config.genCrystallizedGlowstone.generate)
+        if (PurMag.INSTANCE.config.genCrystallizedGlowstone.generate)
         {
             ConfigOreOnOreEntry coe = PurMag.INSTANCE.config.genCrystallizedGlowstone;
             GameRegistry.registerWorldGenerator(new WGOreOnOre(coe.minY, coe.maxY, coe.chance,
@@ -73,7 +74,12 @@ public class WorldgenRegistry
                             }
                         }
                         return false;
-                    }, coe.dimList, coe.dimListWhitelist), 6);
+                    }, coe.dimList, coe.dimListMode), 6);
+        }
+        if (PurMag.INSTANCE.config.genLabSmall.generate)
+        {
+            ConfigStructureEntry cse = PurMag.INSTANCE.config.genLabSmall;
+            GameRegistry.registerWorldGenerator(new WGLabSmall(cse.chance, cse.dimList, cse.dimListMode), 20);
         }
     }
 }

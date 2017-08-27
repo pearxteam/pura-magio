@@ -6,13 +6,13 @@ import ru.pearx.libmc.client.gui.controls.common.EntityShowcase;
 import ru.pearx.purmag.client.infofield.pages.IfPageEntity;
 
 
-
 /*
  * Created by mrAppleXZ on 04.07.17 20:39.
  */
 public class IPEntityRenderer extends IPRenderer<IfPageEntity>
 {
     public EntityShowcase showcase;
+
     public IPEntityRenderer(IfPageEntity page)
     {
         super(page);

@@ -8,8 +8,10 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -33,12 +35,18 @@ public class BlockBrokenWallIfTablet extends AbstractWallIfTablet
     }
 
     @Override
-    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        //leave this empty
+    }
+
+    @Override
+    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
     {
         worldIn.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 1, 1);
         NetworkManager.sendToAllAround(new CPacketSpawnParticle(EnumParticleTypes.EXPLOSION_LARGE, new Vector3d(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5), new Vector3d()),
                 pos.getX(), pos.getY(), pos.getZ(), worldIn.provider.getDimension(), 256);
-        worldIn.setBlockToAir(pos);
+        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
     }
 
     @Override
@@ -70,6 +78,6 @@ public class BlockBrokenWallIfTablet extends AbstractWallIfTablet
                 x += 0.4;
                 break;
         }
-        worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, 0, 0 ,0);
+        worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, 0, 0, 0);
     }
 }

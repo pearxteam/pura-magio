@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 /**
  * Created by mrAppleXZ on 22.04.17 18:18.
  */
-public class IfEntryStoreProvier implements ICapabilitySerializable<NBTTagCompound>
+public class IfEntryStoreProvider implements ICapabilitySerializable<NBTTagCompound>
 {
     public IIfEntryStore cap = new IfEntryStore();
 
@@ -37,7 +37,7 @@ public class IfEntryStoreProvier implements ICapabilitySerializable<NBTTagCompou
     @Override
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
     {
-        if(capability == CapabilityRegistry.ENTRY_STORE_CAP)
+        if (capability == CapabilityRegistry.ENTRY_STORE_CAP)
             return CapabilityRegistry.ENTRY_STORE_CAP.cast(cap);
 
         return null;

@@ -38,7 +38,7 @@ public class GuiIfTabletS extends Control
 
     public GuiIfTablet getTablet()
     {
-        if(getParent() instanceof GuiIfTablet)
+        if (getParent() instanceof GuiIfTablet)
             return (GuiIfTablet) getParent();
         return null;
     }
@@ -58,7 +58,7 @@ public class GuiIfTabletS extends Control
     @Override
     public void keyUp(int keycode)
     {
-        if(keycode == Keyboard.KEY_BACK || keycode == Keyboard.KEY_Q)
+        if (keycode == Keyboard.KEY_BACK || keycode == Keyboard.KEY_Q)
         {
             goBack();
         }

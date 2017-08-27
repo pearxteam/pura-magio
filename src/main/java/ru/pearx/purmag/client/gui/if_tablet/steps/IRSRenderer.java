@@ -13,6 +13,7 @@ import ru.pearx.purmag.common.infofield.steps.IIfResearchStep;
 public class IRSRenderer<T extends IIfResearchStep> extends Control
 {
     public T step;
+
     public IRSRenderer(T step)
     {
         this.step = step;
@@ -29,6 +30,6 @@ public class IRSRenderer<T extends IIfResearchStep> extends Control
 
     public GuiIfTabletSR getTablet()
     {
-        return (GuiIfTabletSR)getParent();
+        return (GuiIfTabletSR) getParent();
     }
 }

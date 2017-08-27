@@ -6,11 +6,8 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import ru.pearx.libmc.client.PXLFastTESR;
-import ru.pearx.libmc.client.debug.TranslationDebugger;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.purmag.common.tiles.TileMicroscope;
-
-import javax.vecmath.Vector3f;
 
 /*
  * Created by mrAppleXZ on 18.08.17 16:16.
@@ -21,7 +18,7 @@ public class TESRMicroscope extends PXLFastTESR<TileMicroscope>
     public void renderPre(TileMicroscope te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         ItemStack stack = te.handler.getStackInSlot(0);
-        if(!stack.isEmpty())
+        if (!stack.isEmpty())
         {
             GlStateManager.pushMatrix();
             GlStateManager.scale(0.25f, 0.25f, 0.25f);
@@ -40,7 +37,7 @@ public class TESRMicroscope extends PXLFastTESR<TileMicroscope>
                     GlStateManager.translate(2.12f, 1.27f, 2.02f);
                     break;
             }
-            if(!(stack.getItem() instanceof ItemBlock))
+            if (!(stack.getItem() instanceof ItemBlock))
             {
                 GlStateManager.translate(0, -0.22f, 0);
                 GlStateManager.rotate(90, 1, 0, 0);

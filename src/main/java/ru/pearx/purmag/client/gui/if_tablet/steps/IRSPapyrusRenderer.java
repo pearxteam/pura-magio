@@ -27,7 +27,7 @@ public class IRSPapyrusRenderer extends IRSRenderer<IRSPapyrus>
     public void render()
     {
         super.render();
-        if(draw == null || draw.stack.getItem() != ItemRegistry.papyrus || !ItemRegistry.papyrus.getId(draw.stack).equals(step.id))
+        if (draw == null || draw.stack.getItem() != ItemRegistry.papyrus || !ItemRegistry.papyrus.getId(draw.stack).equals(step.id))
         {
             draw = new ItemDrawable(ItemRegistry.papyrus.getPapyrusItem(step.id), 5);
         }
@@ -46,7 +46,7 @@ public class IRSPapyrusRenderer extends IRSRenderer<IRSPapyrus>
     public void setFocused(boolean val)
     {
         super.setFocused(val);
-        if(!val)
+        if (!val)
         {
             lastX = -1;
             lastY = -1;

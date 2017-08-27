@@ -19,7 +19,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import ru.pearx.libmc.common.ItemStackUtils;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
-import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.tiles.TileAbstractSingleItem;
 
 import javax.annotation.Nullable;
@@ -129,12 +128,12 @@ public abstract class BlockAbstractSingleItemHorizontal extends BlockBase
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
-        if(!worldIn.isRemote)
+        if (!worldIn.isRemote)
         {
             TileEntity te = worldIn.getTileEntity(pos);
             if (te != null && te instanceof TileAbstractSingleItem)
             {
-                ItemStackUtils.drop(((TileAbstractSingleItem)te).handler, worldIn, pos);
+                ItemStackUtils.drop(((TileAbstractSingleItem) te).handler, worldIn, pos);
             }
         }
     }

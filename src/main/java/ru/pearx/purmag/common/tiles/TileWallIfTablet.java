@@ -19,7 +19,7 @@ public class TileWallIfTablet extends TileSyncable
     {
         this.tier = tier;
         markDirty();
-        if(sync)
+        if (sync)
             sendUpdatesToClients();
     }
 
@@ -35,7 +35,7 @@ public class TileWallIfTablet extends TileSyncable
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        if(compound.hasKey("tier"))
+        if (compound.hasKey("tier"))
             setTier(compound.getInteger("tier"), false);
     }
 }

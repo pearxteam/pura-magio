@@ -31,7 +31,7 @@ public class ItemIfTablet extends ItemBase
     public ActionResult<ItemStack> onItemRightClick(World w, EntityPlayer p, EnumHand hand)
     {
         ItemStack stack = p.getHeldItem(hand);
-        if(w.isRemote)
+        if (w.isRemote)
         {
             PurMag.proxy.openIfTablet(stack.getItemDamage());
         }
@@ -42,7 +42,7 @@ public class ItemIfTablet extends ItemBase
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> sub)
     {
-        if(isInCreativeTab(tab))
+        if (isInCreativeTab(tab))
         {
             for (IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
             {
@@ -61,7 +61,7 @@ public class ItemIfTablet extends ItemBase
     @SideOnly(Side.CLIENT)
     public void setupModels()
     {
-        for(IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
+        for (IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
         {
             ModelLoader.setCustomModelResourceLocation(this, t.getTier(), new ModelResourceLocation(t.getItemModel(), "normal"));
         }

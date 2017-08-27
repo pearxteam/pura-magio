@@ -28,7 +28,7 @@ public class ItemBlockCrystalSmall extends ItemBlockBase
     @SideOnly(Side.CLIENT)
     public void setupModels()
     {
-        for(BlockCrystalSmall.Type t : BlockCrystalSmall.Type.values())
+        for (BlockCrystalSmall.Type t : BlockCrystalSmall.Type.values())
             ClientUtils.setModelLocation(this, t.ordinal(), "");
     }
 }

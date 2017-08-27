@@ -53,7 +53,7 @@ public class SPacketUseSipAmulet implements IMessage
         @Override
         public IMessage onMessage(SPacketUseSipAmulet message, MessageContext ctx)
         {
-            ((WorldServer)ctx.getServerHandler().player.world).addScheduledTask(() ->
+            ((WorldServer) ctx.getServerHandler().player.world).addScheduledTask(() ->
             {
                 EntityPlayer p = ctx.getServerHandler().player;
                 if (ItemSipAmulet.checkForAmulet(p))

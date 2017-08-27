@@ -12,8 +12,6 @@ import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.infofield.IfEntry;
 
 
-
-
 /**
  * Created by mrAppleXZ on 23.04.17 18:42.
  */
@@ -21,8 +19,8 @@ import ru.pearx.purmag.common.infofield.IfEntry;
 public class GuiIfTabletSEEntry extends Control
 {
     public IfEntry entry;
-    private int prevX, prevY;
     Point[] childs;
+    private int prevX, prevY;
 
     public GuiIfTabletSEEntry(IfEntry entry)
     {
@@ -34,19 +32,19 @@ public class GuiIfTabletSEEntry extends Control
     @Override
     public void render()
     {
-        for(Point p : childs)
+        for (Point p : childs)
         {
             DrawingTools.drawLine(getWidth() / 2, getHeight() / 2, p.getX(), p.getY(), 3, getEntries().getTabletScreen().getTablet().data.getLineColorStart(), getEntries().getTabletScreen().getTablet().data.getLineColorEnd());
         }
-        if((getX() + getWidth()) <= 0 || (getY() + getHeight()) <= 0 || getX() >= getEntries().getWidth() || getY() >= getEntries().getHeight())
+        if ((getX() + getWidth()) <= 0 || (getY() + getHeight()) <= 0 || getX() >= getEntries().getWidth() || getY() >= getEntries().getHeight())
             return;
         float f = 1;
-        if(getEntries().getTabletScreen().getTablet().data.isShouldGlow())
+        if (getEntries().getTabletScreen().getTablet().data.isShouldGlow())
         {
-            if(entry.getSteps().size() == 0)
+            if (entry.getSteps().size() == 0)
                 f = 0;
             else
-                f = 1 - (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).getSteps(entry.getId()) / (float)entry.getSteps().size());
+                f = 1 - (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).getSteps(entry.getId()) / (float) entry.getSteps().size());
         }
 
         GlStateManager.pushMatrix();
@@ -64,7 +62,7 @@ public class GuiIfTabletSEEntry extends Control
     @Override
     public void postRender()
     {
-        if(isFocused())
+        if (isFocused())
         {
             DrawingTools.drawHoveringText(entry.getDisplayName(), prevX, prevY, Colors.WHITE, true, 1, Minecraft.getMinecraft().fontRenderer);
             DrawingTools.drawHoveringText(entry.getDisplayDescription(), prevX, prevY + 9, Colors.WHITE, true, 0.9f, Minecraft.getMinecraft().fontRenderer);
@@ -73,7 +71,7 @@ public class GuiIfTabletSEEntry extends Control
 
     public GuiIfTabletSEEntries getEntries()
     {
-        if(getParent() instanceof GuiIfTabletSEEntries)
+        if (getParent() instanceof GuiIfTabletSEEntries)
         {
             return (GuiIfTabletSEEntries) getParent();
         }
@@ -90,7 +88,7 @@ public class GuiIfTabletSEEntry extends Control
     @Override
     public void mouseUp(int button, int x, int y)
     {
-        if(button == 0)
+        if (button == 0)
             getEntries().getTabletScreen().getTablet().changeScreen(new GuiIfTabletSR(entry));
     }
 }

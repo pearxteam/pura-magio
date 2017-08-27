@@ -15,6 +15,7 @@ import ru.pearx.purmag.client.infofield.pages.IIfPage;
 public class IPRenderer<T extends IIfPage> extends Control
 {
     public T page;
+
     public IPRenderer(T page)
     {
         this.page = page;
@@ -32,6 +33,6 @@ public class IPRenderer<T extends IIfPage> extends Control
 
     public GuiIfTabletSP getTablet()
     {
-        return (GuiIfTabletSP)getParent();
+        return (GuiIfTabletSP) getParent();
     }
 }

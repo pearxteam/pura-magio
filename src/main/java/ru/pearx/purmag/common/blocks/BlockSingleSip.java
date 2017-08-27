@@ -36,7 +36,7 @@ public class BlockSingleSip extends BlockBase
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        for(SipType t : PurMag.INSTANCE.getSipRegistry().getTypes())
+        for (SipType t : PurMag.INSTANCE.getSipRegistry().getTypes())
         {
             list.add(SipUtils.getStackWithSip(new ItemStack(this), t.getName()));
         }

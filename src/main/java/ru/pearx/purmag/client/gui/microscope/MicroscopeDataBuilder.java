@@ -1,8 +1,6 @@
 package ru.pearx.purmag.client.gui.microscope;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,12 +14,6 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class MicroscopeDataBuilder
 {
-    @SideOnly(Side.CLIENT)
-    public interface Entry
-    {
-        void addInformation(List<String> list, ItemStack stack);
-    }
-
     private List<Entry> entries = new ArrayList<>();
 
     public List<Entry> getEntries()
@@ -37,7 +29,7 @@ public class MicroscopeDataBuilder
     public List<String> build(ItemStack stack)
     {
         List<String> lst = new ArrayList<>();
-        for(Entry e : entries)
+        for (Entry e : entries)
         {
             e.addInformation(lst, stack);
         }
@@ -50,10 +42,16 @@ public class MicroscopeDataBuilder
         {
             list.add(stack.getDisplayName());
             list.add(I18n.format("microscope.text.stackSize", stack.getMaxStackSize()));
-            if(stack.getItem().isRepairable())
+            if (stack.getItem().isRepairable())
                 list.add(I18n.format("microscope.text.repairable"));
-            if(stack.isItemEnchantable())
+            if (stack.isItemEnchantable())
                 list.add(I18n.format("microscope.text.enchantable", stack.getItem().getItemEnchantability()));
         });
+    }
+
+    @SideOnly(Side.CLIENT)
+    public interface Entry
+    {
+        void addInformation(List<String> list, ItemStack stack);
     }
 }

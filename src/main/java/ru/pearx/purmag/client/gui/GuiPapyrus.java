@@ -8,8 +8,6 @@ import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.GuiOnScreen;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
-import ru.pearx.purmag.common.items.ItemRegistry;
-
 
 
 /**

@@ -7,8 +7,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.purmag.common.DisplayMessage;
 import ru.pearx.purmag.client.DisplayMessageQuery;
+import ru.pearx.purmag.common.DisplayMessage;
 
 /**
  * Created by mrAppleXZ on 26.04.17 22:03.
@@ -17,7 +17,9 @@ public class CPacketDisplayMessage implements IMessage
 {
     public DisplayMessage msg;
 
-    public CPacketDisplayMessage(){}
+    public CPacketDisplayMessage()
+    {
+    }
 
     public CPacketDisplayMessage(DisplayMessage msg)
     {
@@ -27,7 +29,7 @@ public class CPacketDisplayMessage implements IMessage
     @Override
     public void fromBytes(ByteBuf buf)
     {
-       msg = DisplayMessage.readFromByteBuf(buf);
+        msg = DisplayMessage.readFromByteBuf(buf);
     }
 
     @Override
@@ -38,7 +40,9 @@ public class CPacketDisplayMessage implements IMessage
 
     public static class Handler implements IMessageHandler<CPacketDisplayMessage, IMessage>
     {
-        public Handler(){}
+        public Handler()
+        {
+        }
 
         @Override
         @SideOnly(Side.CLIENT)

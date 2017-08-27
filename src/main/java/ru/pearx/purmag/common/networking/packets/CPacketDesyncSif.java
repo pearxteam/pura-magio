@@ -17,7 +17,10 @@ public class CPacketDesyncSif implements IMessage
 {
     public GlobalChunkPos pos;
 
-    public CPacketDesyncSif() {}
+    public CPacketDesyncSif()
+    {
+    }
+
     public CPacketDesyncSif(GlobalChunkPos pos)
     {
         this.pos = pos;
@@ -37,7 +40,9 @@ public class CPacketDesyncSif implements IMessage
 
     public static class Handler implements IMessageHandler<CPacketDesyncSif, IMessage>
     {
-        public Handler() {}
+        public Handler()
+        {
+        }
 
         @Override
         @SideOnly(Side.CLIENT)

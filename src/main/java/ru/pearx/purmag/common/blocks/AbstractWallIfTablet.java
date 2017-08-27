@@ -37,6 +37,7 @@ public abstract class AbstractWallIfTablet extends BlockBase
 {
     public static final PropertyIfTier IF_TIER = new PropertyIfTier("if_tier");
     public static final Map<EnumFacing, AxisAlignedBB> BOUNDING_BOXES = new HashMap<>();
+
     static
     {
         BOUNDING_BOXES.put(EnumFacing.NORTH, new AxisAlignedBB(0.15f, 0.15f, 0.95f, 0.85f, 0.85f, 1));
@@ -50,6 +51,12 @@ public abstract class AbstractWallIfTablet extends BlockBase
         super(name, Material.CIRCUITS);
         setHardness(1);
         setLightLevel(0.07f);
+    }
+
+    private static boolean canAttachToBlock(World world, BlockPos pos, EnumFacing facing)
+    {
+        IBlockState state = world.getBlockState(pos);
+        return facing.getHorizontalIndex() != -1 && !isExceptBlockForAttachWithPiston(state.getBlock()) && state.getBlockFaceShape(world, pos, facing) == BlockFaceShape.SOLID;
     }
 
     @Override
@@ -70,7 +77,6 @@ public abstract class AbstractWallIfTablet extends BlockBase
         return false;
     }
 
-
     @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
     {
@@ -80,7 +86,7 @@ public abstract class AbstractWallIfTablet extends BlockBase
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new ExtendedBlockState(this, new IProperty[] {HorizontalFacingController.FACING_H}, new IUnlistedProperty[] {IF_TIER});
+        return new ExtendedBlockState(this, new IProperty[]{HorizontalFacingController.FACING_H}, new IUnlistedProperty[]{IF_TIER});
     }
 
     @Override
@@ -88,7 +94,6 @@ public abstract class AbstractWallIfTablet extends BlockBase
     {
         return HorizontalFacingController.getMetaFromState(state);
     }
-
 
     @Override
     public IBlockState getStateFromMeta(int meta)
@@ -106,7 +111,7 @@ public abstract class AbstractWallIfTablet extends BlockBase
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         TileEntity te = world.getTileEntity(pos);
-        if(te != null && te instanceof TileWallIfTablet)
+        if (te != null && te instanceof TileWallIfTablet)
         {
             ((TileWallIfTablet) te).setTier(stack.getMetadata(), false);
         }
@@ -121,12 +126,6 @@ public abstract class AbstractWallIfTablet extends BlockBase
         }
     }
 
-    private static boolean canAttachToBlock(World world, BlockPos pos, EnumFacing facing)
-    {
-        IBlockState state = world.getBlockState(pos);
-        return facing.getHorizontalIndex() != -1 && !isExceptBlockForAttachWithPiston(state.getBlock()) && state.getBlockFaceShape(world, pos, facing) == BlockFaceShape.SOLID;
-    }
-
     @Override
     public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side)
     {
@@ -137,7 +136,7 @@ public abstract class AbstractWallIfTablet extends BlockBase
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
         EnumFacing face = state.getValue(HorizontalFacingController.FACING_H);
-        if(!canAttachToBlock(world, pos.offset(face.getOpposite()), face))
+        if (!canAttachToBlock(world, pos.offset(face.getOpposite()), face))
         {
             dropBlockAsItem(world, pos, state, 0);
             world.setBlockToAir(pos);
@@ -147,10 +146,10 @@ public abstract class AbstractWallIfTablet extends BlockBase
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if(world.isRemote)
+        if (world.isRemote)
         {
             TileEntity te = world.getTileEntity(pos);
-            if(te != null && te instanceof TileWallIfTablet)
+            if (te != null && te instanceof TileWallIfTablet)
                 PurMag.proxy.openIfTablet(((TileWallIfTablet) te).getTier());
         }
         return true;
@@ -174,7 +173,7 @@ public abstract class AbstractWallIfTablet extends BlockBase
     {
         TileEntity te = world.getTileEntity(pos);
         int tier = 0;
-        if(te != null && te instanceof TileWallIfTablet)
+        if (te != null && te instanceof TileWallIfTablet)
             tier = ((TileWallIfTablet) te).getTier();
         return new ItemStack(this, 1, tier);
     }
@@ -194,12 +193,12 @@ public abstract class AbstractWallIfTablet extends BlockBase
     @Override
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if(state instanceof IExtendedBlockState)
+        if (state instanceof IExtendedBlockState)
         {
             TileEntity te = world.getTileEntity(pos);
-            if(te != null && te instanceof TileWallIfTablet)
+            if (te != null && te instanceof TileWallIfTablet)
             {
-                return ((IExtendedBlockState)state).withProperty(IF_TIER, ((TileWallIfTablet) te).getTier());
+                return ((IExtendedBlockState) state).withProperty(IF_TIER, ((TileWallIfTablet) te).getTier());
             }
         }
         return state;
@@ -228,7 +227,7 @@ public abstract class AbstractWallIfTablet extends BlockBase
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         TileEntity te = world.getTileEntity(pos);
-        if(te != null && te instanceof TileWallIfTablet)
+        if (te != null && te instanceof TileWallIfTablet)
             drops.add(new ItemStack(this, 1, ((TileWallIfTablet) te).getTier()));
     }
 }

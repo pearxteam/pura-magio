@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.CapabilityRegistry;
-import ru.pearx.purmag.common.infofield.playerdata.IfEntryStoreProvier;
+import ru.pearx.purmag.common.infofield.playerdata.IfEntryStoreProvider;
 
 /**
  * Created by mrAppleXZ on 25.06.17 11:58.
@@ -21,20 +21,20 @@ public class CapabilityEvents
     @SubscribeEvent
     public static void onEntityCaps(AttachCapabilitiesEvent<Entity> e)
     {
-        if(e.getObject() instanceof EntityPlayer)
-            e.addCapability(CapabilityRegistry.ENTRY_STORE_NAME, new IfEntryStoreProvier());
+        if (e.getObject() instanceof EntityPlayer)
+            e.addCapability(CapabilityRegistry.ENTRY_STORE_NAME, new IfEntryStoreProvider());
     }
 
     @SubscribeEvent
     public static void onRespawn(PlayerEvent.PlayerRespawnEvent e)
     {
-        e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).sync((EntityPlayerMP)e.player);
+        e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).sync((EntityPlayerMP) e.player);
     }
 
     @SubscribeEvent
     public static void onJoin(PlayerEvent.PlayerLoggedInEvent e)
     {
-        e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).sync((EntityPlayerMP)e.player);
+        e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).sync((EntityPlayerMP) e.player);
     }
 
     @SubscribeEvent
@@ -47,6 +47,6 @@ public class CapabilityEvents
     @SubscribeEvent
     public static void onChangeDim(PlayerEvent.PlayerChangedDimensionEvent e)
     {
-        e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).sync((EntityPlayerMP)e.player);
+        e.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).sync((EntityPlayerMP) e.player);
     }
 }

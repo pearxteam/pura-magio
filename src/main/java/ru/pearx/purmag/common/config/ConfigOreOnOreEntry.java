@@ -11,7 +11,7 @@ public class ConfigOreOnOreEntry
     public int minY, maxY;
     public float chance;
     public List<Integer> dimList;
-    public boolean dimListWhitelist;
+    public boolean dimListMode;
 
     public ConfigOreOnOreEntry()
     {

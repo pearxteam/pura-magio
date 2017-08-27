@@ -22,9 +22,9 @@ public class KeyEvents
     @SubscribeEvent
     public static void onKeyPress(InputEvent.KeyInputEvent e)
     {
-        if(KeyBindings.USE_SIP_AMULET.isPressed())
+        if (KeyBindings.USE_SIP_AMULET.isPressed())
         {
-            if(ItemSipAmulet.checkForAmulet(Minecraft.getMinecraft().player))
+            if (ItemSipAmulet.checkForAmulet(Minecraft.getMinecraft().player))
             {
                 NetworkManager.sendToServer(new SPacketUseSipAmulet());
             }

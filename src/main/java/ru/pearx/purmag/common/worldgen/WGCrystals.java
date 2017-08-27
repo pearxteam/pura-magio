@@ -22,16 +22,16 @@ public class WGCrystals implements IWorldGenerator
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
     {
-        for(WGCrystalsEntry entr : WorldgenRegistry.crystalGen)
+        for (WGCrystalsEntry entr : WorldgenRegistry.crystalGen)
         {
-            if(entr.getBlacklistedDims().contains(world.provider.getDimension())) continue;
+            if (entr.getBlacklistedDims().contains(world.provider.getDimension())) continue;
 
             int x = chunkX * 16 + random.nextInt(16);
             int z = chunkZ * 16 + random.nextInt(16);
             int y = 0;
 
             boolean cont = false;
-            if(entr.getBiomes().length > 0)
+            if (entr.getBiomes().length > 0)
             {
                 for (BiomeDictionary.Type b : entr.getBiomes())
                 {
@@ -41,13 +41,12 @@ public class WGCrystals implements IWorldGenerator
                         break;
                     }
                 }
-            }
-            else
+            } else
                 cont = true;
 
             if (!cont) continue;
 
-            int sif = (int)PurMag.INSTANCE.sif_storage.get(new GlobalChunkPos(chunkX, chunkZ, world.provider.getDimension()));
+            int sif = (int) PurMag.INSTANCE.sif_storage.get(new GlobalChunkPos(chunkX, chunkZ, world.provider.getDimension()));
 
             if (sif > 0)
             {
@@ -58,7 +57,7 @@ public class WGCrystals implements IWorldGenerator
                         break;
                     case UNDERGROUND:
                         y = world.getHeight(x, z) / 2;
-                        if(y <= 5)
+                        if (y <= 5)
                             continue;
                         for (int y1 = 0; y1 <= 2; y1++)
                         {
@@ -66,9 +65,9 @@ public class WGCrystals implements IWorldGenerator
                         }
                         break;
                     case FIRSTAIR:
-                        for(int y1 = 0; y1 < 256; y1++)
+                        for (int y1 = 0; y1 < 256; y1++)
                         {
-                            if(world.isAirBlock(new BlockPos(x, y1, z)))
+                            if (world.isAirBlock(new BlockPos(x, y1, z)))
                             {
                                 y = y1;
                                 break;

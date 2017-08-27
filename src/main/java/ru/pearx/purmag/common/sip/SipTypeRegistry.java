@@ -23,9 +23,9 @@ public class SipTypeRegistry
 
     public void unregister(String type)
     {
-        for(SipType t : types)
+        for (SipType t : types)
         {
-            if(t.getName().equals(type))
+            if (t.getName().equals(type))
             {
                 types.remove(t);
                 break;
@@ -36,8 +36,8 @@ public class SipTypeRegistry
 
     public SipType getType(String name)
     {
-        for(SipType type : types)
-            if(type.getName().equals(name))
+        for (SipType type : types)
+            if (type.getName().equals(name))
                 return type;
         return null;
     }

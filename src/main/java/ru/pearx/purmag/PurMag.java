@@ -9,11 +9,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.Logger;
+import ru.pearx.purmag.common.CapabilityRegistry;
+import ru.pearx.purmag.common.CommonProxy;
+import ru.pearx.purmag.common.commands.CommandIf;
 import ru.pearx.purmag.common.config.PMConfig;
 import ru.pearx.purmag.common.entities.EntityRegistry;
 import ru.pearx.purmag.common.infofield.IfRegistry;
 import ru.pearx.purmag.common.items.ItemRegistry;
-import ru.pearx.purmag.common.items.papyrus.ItemPapyrus;
 import ru.pearx.purmag.common.items.papyrus.PapyrusRegistry;
 import ru.pearx.purmag.common.loot_tables.LootTablesRegistry;
 import ru.pearx.purmag.common.networking.NetworkManager;
@@ -23,9 +25,6 @@ import ru.pearx.purmag.common.sip.SipEffectsRegistry;
 import ru.pearx.purmag.common.sip.SipTypeRegistry;
 import ru.pearx.purmag.common.tiles.TileRegistry;
 import ru.pearx.purmag.common.worldgen.WorldgenRegistry;
-import ru.pearx.purmag.common.commands.CommandIf;
-import ru.pearx.purmag.common.CapabilityRegistry;
-import ru.pearx.purmag.common.CommonProxy;
 
 import java.io.File;
 import java.util.Arrays;
@@ -37,6 +36,9 @@ import java.util.Random;
 @Mod(name = PurMag.NAME, modid = PurMag.MODID)
 public class PurMag
 {
+    public static final String MODID = "purmag";
+    public static final String NAME = "Purificati Magicae";
+    public static final String VERSION = "@VERSION@";
     //todo laboratory
     //todo smeltery
     //todo SIF plant, agronomy, paris,
@@ -45,24 +47,16 @@ public class PurMag
     //todo remote redstone controller
     @Mod.Instance
     public static PurMag INSTANCE;
-
-    public static final String MODID = "purmag";
-    public static final String NAME = "Purificati Magicae";
-    public static final String VERSION = "@VERSION@";
-
     @SidedProxy(clientSide = "ru.pearx.purmag.client.ClientProxy", serverSide = "ru.pearx.purmag.server.ServerProxy")
     public static CommonProxy proxy;
-
+    public PMConfig config = new PMConfig();
+    public Random random = new Random();
+    public Logger log;
+    public SifStorageServer sif_storage = new SifStorageServer();
     private SipTypeRegistry sip_registry = new SipTypeRegistry();
     private SipEffectsRegistry sip_effects = new SipEffectsRegistry();
     private IfRegistry if_registry = new IfRegistry();
     private PapyrusRegistry papyrus_registry = new PapyrusRegistry();
-
-    public PMConfig config = new PMConfig();
-    public Random random = new Random();
-    public Logger log;
-
-    public SifStorageServer sif_storage = new SifStorageServer();
 
     public SipTypeRegistry getSipRegistry()
     {
@@ -97,6 +91,7 @@ public class PurMag
         TileRegistry.register();
         CapabilityRegistry.register();
         EntityRegistry.register();
+        getPapyrusRegistry().setup();
 
         proxy.setupIfTiers();
 
@@ -108,7 +103,6 @@ public class PurMag
     {
         getSipEffects().register();
         ItemRegistry.setup();
-        getPapyrusRegistry().setup();
         getIfRegistry().setup();
         NetworkManager.setup();
         WorldgenRegistry.setup();

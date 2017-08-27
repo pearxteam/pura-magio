@@ -12,6 +12,76 @@ import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
  */
 public class IfTier
 {
+    private int tier;
+    @SideOnly(Side.CLIENT)
+    private TabletData tabletData;
+    @SideOnly(Side.CLIENT)
+    private ResourceLocation wallTabletTexture;
+    @SideOnly(Side.CLIENT)
+    private ResourceLocation itemModel;
+
+    public IfTier(int tier)
+    {
+        this.tier = tier;
+    }
+
+    public int getTier()
+    {
+        return tier;
+    }
+
+    public void setTier(int tier)
+    {
+        this.tier = tier;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public TabletData getTabletData()
+    {
+        return tabletData;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void setTabletData(TabletData tabletData)
+    {
+        this.tabletData = tabletData;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public ResourceLocation getWallTabletTexture()
+    {
+        return wallTabletTexture;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void setWallTabletTexture(ResourceLocation wallTabletTexture)
+    {
+        this.wallTabletTexture = wallTabletTexture;
+    }
+
+    public String getUnlocalizedName()
+    {
+        return "if_tier." + getTier() + ".name";
+    }
+
+    @SideOnly(Side.CLIENT)
+    public String getName()
+    {
+        return I18n.format(getUnlocalizedName());
+    }
+
+    @SideOnly(Side.CLIENT)
+    public ResourceLocation getItemModel()
+    {
+        return itemModel;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void setItemModel(ResourceLocation itemModel)
+    {
+        this.itemModel = itemModel;
+    }
+
     @SideOnly(Side.CLIENT)
     public static class TabletData
     {
@@ -79,78 +149,5 @@ public class IfTier
         {
             this.lineColorEnd = lineColorEnd;
         }
-    }
-
-    private int tier;
-
-    @SideOnly(Side.CLIENT)
-    private TabletData tabletData;
-
-    @SideOnly(Side.CLIENT)
-    private ResourceLocation wallTabletTexture;
-
-    @SideOnly(Side.CLIENT)
-    private ResourceLocation itemModel;
-
-    public IfTier(int tier)
-    {
-        this.tier = tier;
-    }
-
-    public int getTier()
-    {
-        return tier;
-    }
-
-    public void setTier(int tier)
-    {
-        this.tier = tier;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public TabletData getTabletData()
-    {
-        return tabletData;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void setTabletData(TabletData tabletData)
-    {
-        this.tabletData = tabletData;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public ResourceLocation getWallTabletTexture()
-    {
-        return wallTabletTexture;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void setWallTabletTexture(ResourceLocation wallTabletTexture)
-    {
-        this.wallTabletTexture = wallTabletTexture;
-    }
-
-    public String getUnlocalizedName()
-    {
-        return "if_tier." + getTier() + ".name";
-    }
-
-    @SideOnly(Side.CLIENT)
-    public String getName()
-    {
-        return I18n.format(getUnlocalizedName());
-    }
-
-    @SideOnly(Side.CLIENT)
-    public ResourceLocation getItemModel()
-    {
-        return itemModel;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void setItemModel(ResourceLocation itemModel)
-    {
-        this.itemModel = itemModel;
     }
 }
