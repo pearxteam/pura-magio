@@ -67,6 +67,12 @@ public class ParticleSipMovingTo extends ParticleMovingTo
     @Override
     public void onUpdate()
     {
+        spawnTrail(getX(), getY(), getZ());
         super.onUpdate();
+    }
+
+    public void spawnTrail(double x, double y, double z)
+    {
+        ParticleEngine.addParticle(new ParticleTrail(x, y, z, color, 0.75f, TEXTURE, (int)getWidth(), (int)getHeight(), 0.75f, 30));
     }
 }
