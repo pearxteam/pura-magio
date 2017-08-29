@@ -25,7 +25,7 @@ public class EntityRegistry
     public static void register()
     {
         int id = 0;
-        registerEntity(Utils.getRegistryName("verda_beetle"), EntityBeetle.class, "verda_beetle", id++, Colors.BROWN_500, Colors.GREEN_500);
+        registerEntity(Utils.getResourceLocation("verda_beetle"), EntityBeetle.class, "verda_beetle", id++, Colors.BROWN_500, Colors.GREEN_500);
     }
 
     public static void setupSpawns()

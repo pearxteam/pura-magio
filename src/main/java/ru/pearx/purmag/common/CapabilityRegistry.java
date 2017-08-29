@@ -24,8 +24,8 @@ public class CapabilityRegistry
     @CapabilityInject(ISipStore.class)
     public static final Capability<ISipStore> SIP_STORE_CAP = null;
 
-    public static final ResourceLocation ENTRY_STORE_NAME = Utils.getRegistryName("if_entry_store");
-    public static final ResourceLocation SIP_STORE_NAME = Utils.getRegistryName("sip_store");
+    public static final ResourceLocation ENTRY_STORE_NAME = Utils.getResourceLocation("if_entry_store");
+    public static final ResourceLocation SIP_STORE_NAME = Utils.getResourceLocation("sip_store");
 
     public static void register()
     {

@@ -75,6 +75,6 @@ public class EntityBeetle extends EntityCreature
     @Override
     protected ResourceLocation getLootTable()
     {
-        return Utils.getRegistryName("entities/verda_beetle");
+        return Utils.getResourceLocation("entities/verda_beetle");
     }
 }

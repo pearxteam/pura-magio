@@ -29,16 +29,16 @@ public class ModelEvents
     @SubscribeEvent
     public static void onBake(ModelBakeEvent e)
     {
-        putModel(e, PurMag.INSTANCE.config.useSmallerCrystalModel ? new StandardModels.CrystalOptionalSmaller() : new StandardModels.Crystal(), Utils.getRegistryName("crystal"));
-        putModel(e, new StandardModels.CrystalGlass(), Utils.getRegistryName("crystal_glass"));
-        putModel(e, new StandardModels.Glove(), Utils.getRegistryName("glove"));
-        putModel(e, new StandardModels.TranslationDesk(), Utils.getRegistryName("translation_desk"));
-        putModel(e, new StandardModels.CrystalSmall(), Utils.getRegistryName("crystal_small"));
+        putModel(e, PurMag.INSTANCE.config.useSmallerCrystalModel ? new StandardModels.CrystalOptionalSmaller() : new StandardModels.Crystal(), Utils.getResourceLocation("crystal"));
+        putModel(e, new StandardModels.CrystalGlass(), Utils.getResourceLocation("crystal_glass"));
+        putModel(e, new StandardModels.Glove(), Utils.getResourceLocation("glove"));
+        putModel(e, new StandardModels.TranslationDesk(), Utils.getResourceLocation("translation_desk"));
+        putModel(e, new StandardModels.CrystalSmall(), Utils.getResourceLocation("crystal_small"));
         StandardModels.WallIfTablet wit = new StandardModels.WallIfTablet();
-        putModel(e, wit, Utils.getRegistryName("wall_if_tablet"));
-        putModel(e, wit, Utils.getRegistryName("broken_wall_if_tablet"));
-        putModel(e, new StandardModels.Microscope(), Utils.getRegistryName("microscope"));
-        putModel(e, new StandardModels.LuminousCrystalGlass(), Utils.getRegistryName("luminous_crystal_glass"));
+        putModel(e, wit, Utils.getResourceLocation("wall_if_tablet"));
+        putModel(e, wit, Utils.getResourceLocation("broken_wall_if_tablet"));
+        putModel(e, new StandardModels.Microscope(), Utils.getResourceLocation("microscope"));
+        putModel(e, new StandardModels.LuminousCrystalGlass(), Utils.getResourceLocation("luminous_crystal_glass"));
     }
 
     private static void putModel(ModelBakeEvent e, IPXModel model, ResourceLocation loc)
@@ -61,12 +61,12 @@ public class ModelEvents
                 for (int k = 0; k < 2; k++)
                     for (int l = 0; l < 2; l++)
                         e.getMap().registerSprite(new ResourceLocation(PurMag.MODID, "blocks/luminous_crystal_glass/" + i + j + k + l));
-        e.getMap().registerSprite(Utils.getRegistryName("models/glove"));
-        e.getMap().registerSprite(Utils.getRegistryName("particle/sip"));
-        e.getMap().registerSprite(Utils.getRegistryName("models/crystal_small"));
-        e.getMap().registerSprite(Utils.getRegistryName("models/translation_desk"));
+        e.getMap().registerSprite(Utils.getResourceLocation("models/glove"));
+        e.getMap().registerSprite(Utils.getResourceLocation("particle/sip"));
+        e.getMap().registerSprite(Utils.getResourceLocation("models/crystal_small"));
+        e.getMap().registerSprite(Utils.getResourceLocation("models/translation_desk"));
         for (IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
             e.getMap().registerSprite(t.getWallTabletTexture());
-        e.getMap().registerSprite(Utils.getRegistryName("models/microscope"));
+        e.getMap().registerSprite(Utils.getResourceLocation("models/microscope"));
     }
 }

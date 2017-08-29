@@ -20,7 +20,7 @@ public class IPPapyrusRenderer extends IPRenderer<IfPagePapyrus>
     public void render()
     {
         super.render();
-        DrawingTools.drawTexture(Utils.getRegistryName("textures/gui/papyrus_v.png"), 0, 0, getWidth(), getHeight(), 0, 0, 368, 207);
+        DrawingTools.drawTexture(Utils.getResourceLocation("textures/gui/papyrus_v.png"), 0, 0, getWidth(), getHeight(), 0, 0, 368, 207);
         DrawingTools.drawString(page.getDisplayText(), 5, 5, Colors.GREY_300, getWidth() - 5);
     }
 }

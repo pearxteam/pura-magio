@@ -104,7 +104,7 @@ public class StandardModels
 
         public Glove()
         {
-            setBaseModel(Utils.getRegistryName("obj/glove.obj"));
+            setBaseModel(Utils.getResourceLocation("obj/glove.obj"));
         }
 
         @Override
@@ -130,7 +130,7 @@ public class StandardModels
         public TranslationDesk()
         {
             vertexProcessors.add(new FacingProcessor());
-            setBaseModel(Utils.getRegistryName("obj/translation_desk.obj"));
+            setBaseModel(Utils.getResourceLocation("obj/translation_desk.obj"));
         }
 
         @Override
@@ -149,7 +149,7 @@ public class StandardModels
 
         public CrystalSmall()
         {
-            setBaseModel(Utils.getRegistryName("obj/crystal_small.obj"));
+            setBaseModel(Utils.getResourceLocation("obj/crystal_small.obj"));
             quadProcessors.add(new TintProcessor(0));
         }
 
@@ -169,7 +169,7 @@ public class StandardModels
 
         public WallIfTablet()
         {
-            setBaseModel(Utils.getRegistryName("obj/wall_if_tablet.obj"));
+            setBaseModel(Utils.getResourceLocation("obj/wall_if_tablet.obj"));
             vertexProcessors.add(new FacingProcessor());
             quadProcessors.add(new IQuadProcessor()
             {
@@ -219,7 +219,7 @@ public class StandardModels
     {
         public Microscope()
         {
-            setBaseModel(Utils.getRegistryName("obj/microscope.obj"));
+            setBaseModel(Utils.getResourceLocation("obj/microscope.obj"));
             vertexProcessors.add(new FacingProcessor());
         }
     }

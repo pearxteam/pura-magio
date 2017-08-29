@@ -7,7 +7,6 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
-import ru.pearx.lib.Size;
 import ru.pearx.libmc.common.structure.StructureApi;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
@@ -41,7 +40,7 @@ public class WGLabSmall implements IWorldGenerator
             {
                 try
                 {
-                    NBTTagCompound tag = StructureApi.INSTANCE.getStructureNbt(Utils.getRegistryName("lab_small"));
+                    NBTTagCompound tag = StructureApi.INSTANCE.getStructureNbt(Utils.getResourceLocation("lab_small"));
                     System.out.println("WG START");
                     int x = chunkX * 16 + 16;
                     int z = chunkZ * 16 + 16;

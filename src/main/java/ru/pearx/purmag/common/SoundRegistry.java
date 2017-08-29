@@ -42,12 +42,12 @@ public class SoundRegistry
     public static void onRegisterSounds(RegistryEvent.Register<SoundEvent> e)
     {
         IForgeRegistry<SoundEvent> reg = e.getRegistry();
-        register(Utils.getRegistryName("misc.magical_click"), reg);
-        register(Utils.getRegistryName("misc.notification"), reg);
-        register(Utils.getRegistryName("misc.click"), reg);
-        register(Utils.getRegistryName("misc.glass"), reg);
-        register(Utils.getRegistryName("misc.error"), reg);
-        register(Utils.getRegistryName("mob.verda_beetle.idle"), reg);
-        register(Utils.getRegistryName("mob.verda_beetle.hurt"), reg);
+        register(Utils.getResourceLocation("misc.magical_click"), reg);
+        register(Utils.getResourceLocation("misc.notification"), reg);
+        register(Utils.getResourceLocation("misc.click"), reg);
+        register(Utils.getResourceLocation("misc.glass"), reg);
+        register(Utils.getResourceLocation("misc.error"), reg);
+        register(Utils.getResourceLocation("mob.verda_beetle.idle"), reg);
+        register(Utils.getResourceLocation("mob.verda_beetle.hurt"), reg);
     }
 }

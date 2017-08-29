@@ -12,6 +12,10 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.libmc.client.particle.ParticleEngine;
+import ru.pearx.purmag.client.particle.ParticleCrystal;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.sip.SipUtils;
 
@@ -29,12 +33,6 @@ public class BlockCrystal extends BlockSingleSip
         setHardness(2);
         setLightLevel(0.5f);
         setHarvestLevel("pickaxe", 1);
-    }
-
-    @Override
-    public BlockRenderLayer getBlockLayer()
-    {
-        return BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override
@@ -80,5 +78,15 @@ public class BlockCrystal extends BlockSingleSip
     {
         Random rand = world instanceof World ? ((World) world).rand : RANDOM;
         drops.add(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard, rand.nextInt(4) + 3), SipUtils.getSipInBlock(world, pos)));
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
+    {
+        if(rand.nextInt(3) == 0)
+        {
+            ParticleEngine.addParticle(new ParticleCrystal(pos.getX() + rand.nextFloat(), pos.getY() + 1.5f, pos.getZ() + rand.nextFloat(), SipUtils.getSipInBlock(worldIn, pos), 100));
+        }
     }
 }

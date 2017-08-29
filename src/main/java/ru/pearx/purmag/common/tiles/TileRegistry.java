@@ -14,10 +14,10 @@ public class TileRegistry
 {
     public static void register()
     {
-        GameRegistry.registerTileEntity(TileTranslationDesk.class, Utils.getRegistryName("translation_desk").toString());
-        GameRegistry.registerTileEntity(TileSingleSip.class, Utils.getRegistryName("single_sip").toString());
-        GameRegistry.registerTileEntity(TileWallIfTablet.class, Utils.getRegistryName("wall_if_tablet").toString());
-        GameRegistry.registerTileEntity(TileMicroscope.class, Utils.getRegistryName("microscope").toString());
+        GameRegistry.registerTileEntity(TileTranslationDesk.class, Utils.getResourceLocation("translation_desk").toString());
+        GameRegistry.registerTileEntity(TileSingleSip.class, Utils.getResourceLocation("single_sip").toString());
+        GameRegistry.registerTileEntity(TileWallIfTablet.class, Utils.getResourceLocation("wall_if_tablet").toString());
+        GameRegistry.registerTileEntity(TileMicroscope.class, Utils.getResourceLocation("microscope").toString());
     }
 
     @SideOnly(Side.CLIENT)

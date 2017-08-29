@@ -39,8 +39,14 @@ public class FurnaceControl extends Control
         GlStateManager.enableBlend();
         GuiDrawableRegistry.furnace.draw(getGuiScreen(), 0, 0);
         GlStateManager.disableBlend();
-        inDraw.drawWithTooltip(getGuiScreen(), 40, 16, lastX, lastY);
-        outDraw.drawWithTooltip(getGuiScreen(), 40, 54, lastX, lastY);
+        int x1 = 0;
+        int y1 = 0;
+        int x2 = 40;
+        int y2 = 40;
+        inDraw.draw(getGuiScreen(), x1, y1);
+        outDraw.draw(getGuiScreen(), x2, y2);
+        inDraw.drawTooltip(getGuiScreen(), x1, y1, lastX, lastY);
+        outDraw.drawTooltip(getGuiScreen(), x2, y2, lastX, lastY);
     }
 
     public ItemStack getIn()

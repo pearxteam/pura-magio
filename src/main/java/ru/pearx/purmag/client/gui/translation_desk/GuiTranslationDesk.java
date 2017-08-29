@@ -53,9 +53,9 @@ public class GuiTranslationDesk extends GuiOnScreen
         setWidth(384);
         setHeight(240);
 
-        textures = Utils.getRegistryName("textures/gui/translation_desk/translation_desk.png");
+        textures = Utils.getResourceLocation("textures/gui/translation_desk/translation_desk.png");
         bg = new TexturePart(textures, 0, 0, getWidth(), getHeight(), texW, texH);
-        btnStart = new BtnStart(Utils.getRegistryName("textures/gui/button_wooden.png"), null, () ->
+        btnStart = new BtnStart(Utils.getResourceLocation("textures/gui/button_wooden.png"), null, () ->
         {
             if (panel.translating)
                 panel.stop();

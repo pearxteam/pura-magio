@@ -147,9 +147,9 @@ public class IfRegistry
     @SideOnly(Side.CLIENT)
     public void setupIfTiersClient()
     {
-        registerTierClient(0, new IfTier.TabletData(GuiDrawableRegistry.paperEntry, false, Utils.getRegistryName("textures/gui/if_tablet/0.png"), Colors.BLACK, Colors.WHITE), Utils.getRegistryName("models/wall_if_tablet/0"), Utils.getRegistryName("if_tablet/0"));
-        registerTierClient(1, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getRegistryName("textures/gui/if_tablet/1.png"), Colors.LIGHTGREEN_900, Colors.LIGHTGREEN_300), Utils.getRegistryName("models/wall_if_tablet/1"), Utils.getRegistryName("if_tablet/1"));
-        registerTierClient(2, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getRegistryName("textures/gui/if_tablet/2.png"), Colors.LIGHTGREEN_900, Colors.LIGHTGREEN_300), Utils.getRegistryName("models/wall_if_tablet/2"), Utils.getRegistryName("if_tablet/2"));
+        registerTierClient(0, new IfTier.TabletData(GuiDrawableRegistry.paperEntry, false, Utils.getResourceLocation("textures/gui/if_tablet/0.png"), Colors.BLACK, Colors.WHITE), Utils.getResourceLocation("models/wall_if_tablet/0"), Utils.getResourceLocation("if_tablet/0"));
+        registerTierClient(1, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getResourceLocation("textures/gui/if_tablet/1.png"), Colors.LIGHTGREEN_900, Colors.LIGHTGREEN_300), Utils.getResourceLocation("models/wall_if_tablet/1"), Utils.getResourceLocation("if_tablet/1"));
+        registerTierClient(2, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getResourceLocation("textures/gui/if_tablet/2.png"), Colors.LIGHTGREEN_900, Colors.LIGHTGREEN_300), Utils.getResourceLocation("models/wall_if_tablet/2"), Utils.getResourceLocation("if_tablet/2"));
     }
 
     public void setup()
@@ -206,7 +206,7 @@ public class IfRegistry
     {
         registerChannelClient("information", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet, 1, 1)));
         registerChannelClient("exploration", new BigItemDrawable(new ItemStack(ItemRegistry.crystal)));
-        registerChannelClient("sip", new SimpleDrawable(Utils.getRegistryName("textures/icons/sip.png"), 28, 28, 28, 28));
+        registerChannelClient("sip", new SimpleDrawable(Utils.getResourceLocation("textures/icons/sip.png"), 28, 28, 28, 28));
 
         registerEntryClient(
                 "wooden_tablet", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet)),
@@ -219,7 +219,7 @@ public class IfRegistry
                 new IfPageText("crysagnetite.1", Integer.toString(PurMag.INSTANCE.config.genCrysagnetite.minY), Integer.toString(PurMag.INSTANCE.config.genCrysagnetite.maxY)
                 ));
         registerEntryClient(
-                "sip_knowledge", new SimpleDrawable(Utils.getRegistryName("textures/icons/sip_text.png"), 28, 28, 28, 28),
+                "sip_knowledge", new SimpleDrawable(Utils.getResourceLocation("textures/icons/sip_text.png"), 28, 28, 28, 28),
                 new IfPageText("sip_knowledge.0"),
                 new IfPagePapyrus("sip_knowledge.1")
         );

@@ -1,18 +1,13 @@
 package ru.pearx.purmag.client.particle;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import org.lwjgl.opengl.GL11;
 import ru.pearx.lib.Color;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.particle.PXParticle;
 import ru.pearx.libmc.client.particle.ParticleEngine;
 import ru.pearx.libmc.client.particle.ParticleMovingTo;
 import ru.pearx.libmc.client.particle.ParticleTrail;
 import ru.pearx.purmag.PurMag;
-import ru.pearx.purmag.client.models.StandardModels;
 import ru.pearx.purmag.common.Utils;
 
 import javax.vecmath.Vector3d;
@@ -23,7 +18,7 @@ import javax.vecmath.Vector3d;
  */
 public class ParticleSipMovingTo extends ParticleMovingTo
 {
-    public static final ResourceLocation TEXTURE = Utils.getRegistryName("textures/particle/sip.png");
+    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/particle/sip.png");
 
     private Color color;
     private float scale;
