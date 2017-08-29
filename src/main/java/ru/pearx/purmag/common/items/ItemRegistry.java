@@ -1,6 +1,7 @@
 package ru.pearx.purmag.common.items;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -38,6 +39,7 @@ public class ItemRegistry
     public static final ItemBlockWallIfTablet wall_if_tablet = null;
     public static final ItemBlockBrokenWallIfTablet broken_wall_if_tablet = null;
     public static final ItemBlockSingleSip luminous_crystal_glass = null;
+    public static final ItemBlock test = null;
 
     public static void register(Item itm, IForgeRegistry<Item> reg)
     {
@@ -81,5 +83,6 @@ public class ItemRegistry
         register(new ItemBlockBrokenWallIfTablet(), reg);
         register(new ItemBlockBase(BlockRegistry.microscope), reg);
         register(new ItemBlockSingleSip(BlockRegistry.luminous_crystal_glass), reg);
+        register(new ItemBlockBase(BlockRegistry.test), reg);
     }
 }

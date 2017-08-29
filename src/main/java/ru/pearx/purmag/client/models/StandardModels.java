@@ -223,4 +223,12 @@ public class StandardModels
             vertexProcessors.add(new FacingProcessor());
         }
     }
+
+    public static class Test extends OvModel
+    {
+        public Test()
+        {
+            setBaseModel(Utils.getResourceLocation("obj/test.obj"));
+        }
+    }
 }

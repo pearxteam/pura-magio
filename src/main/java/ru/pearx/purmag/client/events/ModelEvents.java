@@ -24,7 +24,6 @@ public class ModelEvents
     /*resources todo:
      - microscope texture
      - furnace texture
-     - tablet number two
     */
     @SubscribeEvent
     public static void onBake(ModelBakeEvent e)
@@ -39,6 +38,7 @@ public class ModelEvents
         putModel(e, wit, Utils.getResourceLocation("broken_wall_if_tablet"));
         putModel(e, new StandardModels.Microscope(), Utils.getResourceLocation("microscope"));
         putModel(e, new StandardModels.LuminousCrystalGlass(), Utils.getResourceLocation("luminous_crystal_glass"));
+        putModel(e, new StandardModels.Test(), Utils.getResourceLocation("test"));
     }
 
     private static void putModel(ModelBakeEvent e, IPXModel model, ResourceLocation loc)
