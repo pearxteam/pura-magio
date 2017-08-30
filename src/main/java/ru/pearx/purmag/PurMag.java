@@ -45,6 +45,7 @@ public class PurMag
     //todo glove modules and upgrades
     //todo time jail
     //todo remote redstone controller
+    //todo условные drugs
     @Mod.Instance
     public static PurMag INSTANCE;
     @SidedProxy(clientSide = "ru.pearx.purmag.client.ClientProxy", serverSide = "ru.pearx.purmag.server.ServerProxy")
