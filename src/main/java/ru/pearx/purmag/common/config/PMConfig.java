@@ -28,7 +28,7 @@ public class PMConfig
         genCrystallizedRedstone = loadOreOnOre(configFile, "Crystallized Redstone", 0, 16, 0.03f, new String[]{"-1", "1"}, false);
         genCrystallizedGlowstone = loadOreOnOre(configFile, "Crystallized Glowstone", 4, 123, 0.03f, new String[]{"-1"}, true);
         useSmallerCrystalModel = configFile.getBoolean("Use Smaller Crystal Model", "CLIENT", false, "Use Smaller Crystal Model? Credits: gt22.");
-        genLabSmall = loadStructure(configFile, "Small Laboratory", 0.01f, new String[]{"-1", "1"}, false);
+        genLabSmall = loadStructure(configFile, "Small Laboratory", 0.0007f, new String[]{"-1", "1"}, false);
 
         if (configFile.hasChanged())
             configFile.save();
