@@ -5,13 +5,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.INBTSerializable;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by mrAppleXZ on 22.04.17 16:51.
  */
 public interface IIfEntryStore extends INBTSerializable<NBTTagCompound>
 {
-    HashMap<String, Integer> getMap();
+    Map<String, Integer> getMap();
 
     int getSteps(String id);
 

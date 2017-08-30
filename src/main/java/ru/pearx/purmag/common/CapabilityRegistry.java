@@ -7,6 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import ru.pearx.purmag.common.aura.AuraContainer;
+import ru.pearx.purmag.common.aura.IAuraContainer;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import ru.pearx.purmag.common.infofield.playerdata.IfEntryStore;
 import ru.pearx.purmag.common.sip.store.ISipStore;
@@ -23,9 +25,12 @@ public class CapabilityRegistry
     public static final Capability<IIfEntryStore> ENTRY_STORE_CAP = null;
     @CapabilityInject(ISipStore.class)
     public static final Capability<ISipStore> SIP_STORE_CAP = null;
+    @CapabilityInject(IAuraContainer.class)
+    public static final Capability<IAuraContainer> AURA_CONTAINER_CAP = null;
 
     public static final ResourceLocation ENTRY_STORE_NAME = Utils.getResourceLocation("if_entry_store");
     public static final ResourceLocation SIP_STORE_NAME = Utils.getResourceLocation("sip_store");
+    public static final ResourceLocation AURA_CONTAINER_NAME = Utils.getResourceLocation("aura_container");
 
     public static void register()
     {
@@ -59,5 +64,21 @@ public class CapabilityRegistry
                 instance.deserializeNBT((NBTTagCompound) nbt);
             }
         }, SipStore.class);
+
+        CapabilityManager.INSTANCE.register(IAuraContainer.class, new Capability.IStorage<IAuraContainer>()
+        {
+            @Nullable
+            @Override
+            public NBTBase writeNBT(Capability<IAuraContainer> capability, IAuraContainer instance, EnumFacing side)
+            {
+                return instance.serializeNBT();
+            }
+
+            @Override
+            public void readNBT(Capability<IAuraContainer> capability, IAuraContainer instance, EnumFacing side, NBTBase nbt)
+            {
+                instance.deserializeNBT((NBTTagCompound) nbt);
+            }
+        }, AuraContainer.class);
     }
 }

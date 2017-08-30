@@ -9,6 +9,7 @@ import ru.pearx.purmag.common.networking.packets.CPacketDisplayMessage;
 import ru.pearx.purmag.common.networking.packets.CPacketSyncEntryStore;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by mrAppleXZ on 22.04.17 17:30.
@@ -18,7 +19,7 @@ public class IfEntryStore implements IIfEntryStore
     private HashMap<String, Integer> entries = new HashMap<>();
 
     @Override
-    public HashMap<String, Integer> getMap()
+    public Map<String, Integer> getMap()
     {
         return entries;
     }

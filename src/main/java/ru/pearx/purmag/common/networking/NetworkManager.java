@@ -26,6 +26,7 @@ public class NetworkManager
         INSTANCE.registerMessage(CPacketSpawnSipParticle.Handler.class, CPacketSpawnSipParticle.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(SPacketDoneTranslation.Handler.class, SPacketDoneTranslation.class, id++, Side.SERVER);
         INSTANCE.registerMessage(CPacketSpawnParticle.Handler.class, CPacketSpawnParticle.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(CPacketSyncAura.Handler.class, CPacketSyncAura.class, id++, Side.CLIENT);
     }
 
     public static void sendTo(IMessage msg, EntityPlayerMP p)
