@@ -28,7 +28,7 @@ public class ModelEvents
     @SubscribeEvent
     public static void onBake(ModelBakeEvent e)
     {
-        putModel(e, PurMag.INSTANCE.config.useSmallerCrystalModel ? new StandardModels.CrystalOptionalSmaller() : new StandardModels.Crystal(), Utils.getResourceLocation("crystal"));
+        putModel(e, new StandardModels.Crystal(), Utils.getResourceLocation("crystal"));
         putModel(e, new StandardModels.CrystalGlass(), Utils.getResourceLocation("crystal_glass"));
         putModel(e, new StandardModels.Glove(), Utils.getResourceLocation("glove"));
         putModel(e, new StandardModels.TranslationDesk(), Utils.getResourceLocation("translation_desk"));

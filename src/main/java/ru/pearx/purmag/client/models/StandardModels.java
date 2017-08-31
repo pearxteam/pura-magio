@@ -52,33 +52,6 @@ public class StandardModels
         }
     }
 
-    public static class CrystalOptionalSmaller extends OvModel
-    {
-        private Matrix4f mat = new TRSRTransformation(new Vector3f(0, 0, 0), null, new Vector3f(0.45f, 0.45f, 0.45f), new Quat4f(0, -0.20944f, 0, 1)).getMatrix();
-        private Matrix4f mat_big = new TRSRTransformation(new Vector3f(0, 0, 0), null, new Vector3f(0.75f, 0.75f, 0.75f), new Quat4f(0, -0.20944f, 0, 1)).getMatrix();
-        private Matrix4f mat_third_person = new TRSRTransformation(new Vector3f(0, 0f, -0.3f), new Quat4f(-0.8f, 0, 0, 1), new Vector3f(0.65f, 0.65f, 0.65f), new Quat4f(0, -0.20944f, 0, 1)).getMatrix();
-
-        public CrystalOptionalSmaller()
-        {
-            setBaseModel(new ResourceLocation(PurMag.MODID, "obj/crystal_optional_smaller.obj"));
-            quadProcessors.add(new TintProcessor(0));
-        }
-
-        @Override
-        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
-        {
-            if (cameraTransformType == ItemCameraTransforms.TransformType.GUI || cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND || cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND)
-            {
-                return Pair.of(this, mat_big);
-            }
-            if (cameraTransformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND || cameraTransformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND)
-            {
-                return Pair.of(this, mat_third_person);
-            }
-            return Pair.of(this, mat);
-        }
-    }
-
     public static class CrystalGlass extends ConnectedModel
     {
         public CrystalGlass()
