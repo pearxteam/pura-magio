@@ -2,6 +2,7 @@ package ru.pearx.purmag.common.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -27,6 +28,7 @@ public class BlockRegistry
     public static final BlockMicroscope microscope = null;
     public static final BlockLuminousCrystalGlass luminous_crystal_glass = null;
     public static final BlockTest test = null;
+    public static final BlockBrulantaFlower brulanta_flower = null;
 
     @SubscribeEvent
     public static void onRegisterBlocks(RegistryEvent.Register<Block> e)
@@ -44,6 +46,7 @@ public class BlockRegistry
         register(new BlockMicroscope(), reg);
         register(new BlockLuminousCrystalGlass(), reg);
         register(new BlockTest(), reg);
+        register(new BlockBrulantaFlower(), reg);
     }
 
     public static void register(Block b, IForgeRegistry<Block> reg)

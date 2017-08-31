@@ -40,6 +40,7 @@ public class ItemRegistry
     public static final ItemBlockBrokenWallIfTablet broken_wall_if_tablet = null;
     public static final ItemBlockSingleSip luminous_crystal_glass = null;
     public static final ItemBlock test = null;
+    public static final ItemBlock brulanta_flower = null;
 
     public static void register(Item itm, IForgeRegistry<Item> reg)
     {
@@ -84,5 +85,6 @@ public class ItemRegistry
         register(new ItemBlockBase(BlockRegistry.microscope), reg);
         register(new ItemBlockSingleSip(BlockRegistry.luminous_crystal_glass), reg);
         register(new ItemBlockBase(BlockRegistry.test), reg);
+        register(new ItemBlockBase(BlockRegistry.brulanta_flower), reg);
     }
 }
