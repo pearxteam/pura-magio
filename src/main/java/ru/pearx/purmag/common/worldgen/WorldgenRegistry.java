@@ -1,21 +1,30 @@
 package ru.pearx.purmag.common.worldgen;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import ru.pearx.libmc.common.worldgen.WGGround;
 import ru.pearx.libmc.common.worldgen.WGOre;
 import ru.pearx.libmc.common.worldgen.WGOreOnOre;
+import ru.pearx.libmc.common.worldgen.WorldGenPredicate;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.blocks.BlockBushBase;
 import ru.pearx.purmag.common.blocks.BlockCrystalSmall;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
+import ru.pearx.purmag.common.config.ConfigGroundgenEntry;
 import ru.pearx.purmag.common.config.ConfigOreOnOreEntry;
 import ru.pearx.purmag.common.config.ConfigOregenEntry;
 import ru.pearx.purmag.common.config.ConfigStructureEntry;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by mrAppleXZ on 04.05.17 15:10.
@@ -79,7 +88,25 @@ public class WorldgenRegistry
         if (PurMag.INSTANCE.config.genLabSmall.generate)
         {
             ConfigStructureEntry cse = PurMag.INSTANCE.config.genLabSmall;
-            GameRegistry.registerWorldGenerator(new WGLabSmall(cse.chance, cse.dimList, cse.dimListMode), 20);
+            GameRegistry.registerWorldGenerator(new WGLabSmall(cse.chance, cse.minY, cse.maxY, cse.dimList, cse.dimListMode), 20);
+        }
+        if (PurMag.INSTANCE.config.genBrulantaFlower.generate)
+        {
+            ConfigGroundgenEntry entr = PurMag.INSTANCE.config.genBrulantaFlower;
+            GameRegistry.registerWorldGenerator(new WGGround(BlockRegistry.brulanta_flower.getDefaultState(),
+                    (world, pos, rand, toGenerate) ->
+                    {
+                        if(toGenerate.getBlock() instanceof BlockBush)
+                        {
+                            BlockBush bush = (BlockBush) toGenerate.getBlock();
+                            if(bush.canBlockStay(world, pos, toGenerate))
+                            {
+                                Biome b = world.getBiome(pos);;
+                                return BiomeDictionary.hasType(b, BiomeDictionary.Type.HOT) && BiomeDictionary.hasType(b, BiomeDictionary.Type.DRY);
+                            }
+                        }
+                        return false;
+                    }, entr.minY, entr.maxY, entr.minCount, entr.maxCount, entr.chance, entr.dimList, entr.dimListMode), 5);
         }
     }
 }

@@ -210,6 +210,13 @@ public abstract class AbstractWallIfTablet extends BlockBase
         return BOUNDING_BOXES.get(state.getValue(HorizontalFacingController.FACING_H));
     }
 
+    @Nullable
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    {
+        return NULL_AABB;
+    }
+
     @Override
     public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
     {

@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import ru.pearx.libmc.common.structure.StructureApi;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
+import ru.pearx.purmag.common.config.PMConfig;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,12 +22,15 @@ import java.util.Random;
 public class WGLabSmall implements IWorldGenerator
 {
     public float chance;
+    public int minY, maxY;
     public List<Integer> dimList;
     public boolean dimListMode;
 
-    public WGLabSmall(float chance, List<Integer> dimList, boolean dimListMode)
+    public WGLabSmall(float chance, int minY, int maxY, List<Integer> dimList, boolean dimListMode)
     {
         this.chance = chance;
+        this.minY = minY;
+        this.maxY = maxY;
         this.dimList = dimList;
         this.dimListMode = dimListMode;
     }
@@ -38,19 +42,22 @@ public class WGLabSmall implements IWorldGenerator
         {
             if (random.nextFloat() <= chance)
             {
-                try
+                int x = chunkX * 16 + 16;
+                int z = chunkZ * 16 + 16;
+                BlockPos pos = new BlockPos(x, world.getHeight(x, z) - 7, z);
+                if(pos.getY() >= minY && pos.getY() <= maxY)
                 {
-                    NBTTagCompound tag = StructureApi.INSTANCE.getStructureNbt(Utils.getResourceLocation("lab_small"));
-                    System.out.println("WG START");
-                    int x = chunkX * 16 + 16;
-                    int z = chunkZ * 16 + 16;
-                    BlockPos pos = new BlockPos(x, world.getHeight(x, z) - 7, z);
-                    StructureApi.INSTANCE.spawnStructure(tag, pos, (WorldServer) world, random);
-                    System.out.println("WG END AT " + pos);
-                }
-                catch (IOException e)
-                {
-                    PurMag.INSTANCE.log.error("An IOException occurred when spawning the small lab structure!", e);
+                    try
+                    {
+                        NBTTagCompound tag = StructureApi.INSTANCE.getStructureNbt(Utils.getResourceLocation("lab_small"));
+                        System.out.println("WG START");
+                        StructureApi.INSTANCE.spawnStructure(tag, pos, (WorldServer) world, random);
+                        System.out.println("WG END AT " + pos);
+                    }
+                    catch (IOException e)
+                    {
+                        PurMag.INSTANCE.log.error("An IOException occurred when spawning the small lab structure!", e);
+                    }
                 }
             }
         }

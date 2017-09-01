@@ -108,7 +108,6 @@ public class PurMag
         NetworkManager.setup();
         WorldgenRegistry.setup();
         LootTablesRegistry.setup();
-        RecipeRegistry.setup();
 
         proxy.init();
     }

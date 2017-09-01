@@ -1,5 +1,5 @@
 {
-  "parent": "block/tall_grass",
+  "parent": "block/cross",
   "textures": {
     "cross": "purmag:blocks/brulanta_flower"
   }
