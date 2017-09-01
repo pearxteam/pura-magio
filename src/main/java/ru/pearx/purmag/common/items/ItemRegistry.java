@@ -41,6 +41,7 @@ public class ItemRegistry
     public static final ItemBlockSingleSip luminous_crystal_glass = null;
     public static final ItemBlock test = null;
     public static final ItemBlock brulanta_flower = null;
+    public static final Item pyroblend = null;
 
     public static void register(Item itm, IForgeRegistry<Item> reg)
     {
@@ -86,5 +87,6 @@ public class ItemRegistry
         register(new ItemBlockSingleSip(BlockRegistry.luminous_crystal_glass), reg);
         register(new ItemBlockBase(BlockRegistry.test), reg);
         register(new ItemBlockBase(BlockRegistry.brulanta_flower), reg);
+        register(new ItemBase("pyroblend"), reg);
     }
 }
