@@ -90,7 +90,7 @@ if_page.sip_knowledge.0.text=I found the old papyrus written in Esperanto. The t
 if_page.sip_knowledge.1.text=January 27, 1501   Servogey Shatunerov%nI noticed a new type of energy by accident, when I stoked the furnace with coal. Something small and barely noticeable flew from time to time from the furnace. It was like a ball lightning, but a thousand times smaller. These were clearly not burnt pieces of coal. Later I found out that this is some kind of energy, not previously known, which, moreover, shines in nitrogen. This is why this energy was visible to me. I think I will be able to find application of it in the future when I'll know this energy better.%n. . .%n. . .%nIt turns out that this energy can be of different types and can interact with all matter, and not just with nitrogen. A ball consisting of this energy can violate several laws of physics. I also noticed that passing through me, this ball made me invulnerable to the fire for a couple of seconds. I will continue researching.
 
 if_entry.verda_beetle.name=Verda Beetle
-if_entry.verda_beetle.desc=I HAVE ARACHNOPHOBIA! Oh, stop, it's just a beetle.
+if_entry.verda_beetle.desc=I HAVE ARACHNOPHOBIA!%nOh, stop, that's just a beetle.
 if_step.verda_beetle.desc=Find a big brown beetle with green wings and kill it.
 if_page.verda_beetle.0.text=I found a few big brown beetles with green wings. But despite the fact that they have wings, they cannot fly. The beetles behave peacefully at first, but if I attack them, they will attack me too. Also, they make creaking sounds while they idle. For attack they usually use their mandibles.%nI noticed that beetles' meat is even edible and tastes like a crab meat. Also, I took some wings. Maybe, they can be useful.
 if_page.verda_beetle.1.name=Verda Beetle
@@ -99,6 +99,13 @@ if_entry.brulanta_flower.name=Brulanta Flower
 if_entry.brulanta_flower.desc=Why "brulanta"?
 if_step.brulanta_flower.desc=Find this red flower and collect it.
 if_page.brulanta_flower.0.text=These flowers grew in the sands. They're red like the flame. I collected one of them, so I can plant it in my garden or come up with a more useful way to use them. I noticed that they ignite at fairly low temperatures, so be careful. Looks like I can find them in hot and dry places.
+
+if_entry.mortar_and_pestle.name=Mortar and Pestle
+if_entry.mortar_and_pestle.desc=Throw out prehistoric%nwooden trash and use our%nceramic and shiny goodies!
+if_page.mortar_and_pestle.0.text=So, I should make a thing where I can crush my materials into the dust, like mortar and pestle. I decided to make ceramic one because it a lot more durable and comfortable than the wooden one. I'll just make a mortar using clay and I'll make a pestle using clay and a stick. Then I'll smelt it in the furnace.
+
+if_entry.pyroblend.name=Pyroblend
+if_entry.pyroblend.desc=Can I blow it?
 
 #Miscellaneous
 itemGroup.purmag=Purificati Magicae

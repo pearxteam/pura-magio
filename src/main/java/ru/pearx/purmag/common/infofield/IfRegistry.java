@@ -194,6 +194,22 @@ public class IfRegistry
         attachEntry("exploration", new IfEntryLocation("brulanta_flower", -2, 2));
 
         registerEntry(new IfEntry(
+                "mortar_and_pestle", 0,
+                null,
+                Collections.emptyList(),
+                0
+        ));
+        attachEntry("exploration", new IfEntryLocation("mortar_and_pestle", 2, 2));
+
+        registerEntry(new IfEntry(
+                "pyroblend", 0,
+                Arrays.asList("mortar_and_pestle", "verda_beetle", "brulanta_flower"),
+                Collections.emptyList(),
+                0
+        ));
+        attachEntry("exploration", new IfEntryLocation("pyroblend", 0, 4));
+
+        registerEntry(new IfEntry(
                 "crystals", 0,
                 null,
                 Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals", true)),
@@ -239,7 +255,20 @@ public class IfRegistry
         );
         registerEntryClient(
                 "brulanta_flower", new BigItemDrawable(new ItemStack(ItemRegistry.brulanta_flower)),
-                new IfPageText("brulanta_flower.0"));
+                new IfPageText("brulanta_flower.0")
+        );
+        registerEntryClient(
+                "mortar_and_pestle", new BigItemDrawable(new ItemStack(ItemRegistry.mortar_and_pestle)),
+                new IfPageText("mortar_and_pestle.0"),
+                //todo unfinished pestle recipe page
+                new IfPageFurnace(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle))
+        );
+        registerEntryClient(
+                "pyroblend", new BigItemDrawable(new ItemStack(ItemRegistry.pyroblend)),
+                new IfPageText("pyroblend.0")
+                //todo pyroblend recipe page
+        );
+
         registerEntryClient(
                 "crystals", new BigItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "flame")),
                 new IfPageText("crystals.0")
