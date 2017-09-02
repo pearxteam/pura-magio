@@ -186,6 +186,14 @@ public class IfRegistry
         attachEntry("exploration", new IfEntryLocation("verda_beetle", 0, 2));
 
         registerEntry(new IfEntry(
+                "brulanta_flower", 0,
+                null,
+                Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.brulanta_flower), "brulanta_flower", true)),
+                0
+        ));
+        attachEntry("exploration", new IfEntryLocation("brulanta_flower", -2, 2));
+
+        registerEntry(new IfEntry(
                 "crystals", 0,
                 null,
                 Arrays.asList(new IRSCollect(new ItemStack(ItemRegistry.crystal_shard), "crystals", true)),
@@ -229,6 +237,9 @@ public class IfRegistry
                 new IfPageEntity(EntityBeetle.class, "verda_beetle.1"),
                 new IfPageFurnace(new ItemStack(ItemRegistry.beetle_meat))
         );
+        registerEntryClient(
+                "brulanta_flower", new BigItemDrawable(new ItemStack(ItemRegistry.brulanta_flower)),
+                new IfPageText("brulanta_flower.0"));
         registerEntryClient(
                 "crystals", new BigItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "flame")),
                 new IfPageText("crystals.0")
