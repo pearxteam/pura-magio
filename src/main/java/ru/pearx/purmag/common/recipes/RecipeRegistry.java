@@ -1,6 +1,7 @@
 package ru.pearx.purmag.common.recipes;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
@@ -26,20 +27,21 @@ public class RecipeRegistry
     @SubscribeEvent
     public static void onRecipeRegistry(RegistryEvent.Register<IRecipe> e)
     {
-        register(new ShapedOreRecipe(null, ItemRegistry.mortar_and_pestle,
-                " S ",
-                "C C",
-                " C ",
-                 'S', "stickWood", 'C', Blocks.HARDENED_CLAY
+        register(new ShapedOreRecipe(null, ItemRegistry.unfinished_mortar_and_pestle,
+                "  |",
+                "BcB",
+                " B ",
+                'c', Items.CLAY_BALL, 'B', Blocks.CLAY, '|', "stickWood"
         ), e.getRegistry());
 
-        register(new ShapelessOreRecipe(null, ItemRegistry.pyroblend,
+        register(new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.pyroblend, 2),
                 ItemRegistry.verda_wing,
                 ItemRegistry.brulanta_flower,
                 new IngredientNBT(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard), "flame")),
                 ItemRegistry.mortar_and_pestle
         ), e.getRegistry());
 
+        GameRegistry.addSmelting(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle), new ItemStack(ItemRegistry.mortar_and_pestle), 0.1f);
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.beetle_meat), new ItemStack(ItemRegistry.beetle_meat, 1, 1), 0.5f);
     }
 

@@ -30,6 +30,9 @@ tile.purmag.broken_wall_if_tablet.tooltip=You can't harvest it.
 tile.purmag.microscope.name=Microscope
 tile.purmag.luminous_crystal_glass.name=%s Luminous Crystal Glass
 tile.purmag.brulanta_flower.name=Brulanta Flower
+item.purmag.pyroblend.name=Pyroblend
+item.purmag.mortar_and_pestle.name=Mortar and Pestle
+item.purmag.unfinished_mortar_and_pestle.name=Unfinished Mortar and Pestle
 
 #Sip Types
 sip.sea.name=Mara
