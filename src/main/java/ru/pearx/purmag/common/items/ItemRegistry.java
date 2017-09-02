@@ -14,6 +14,8 @@ import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.items.papyrus.ItemPapyrus;
 
+import javax.annotation.Nonnull;
+
 /**
  * Created by mrAppleXZ on 08.04.17 18:46.
  */
@@ -42,6 +44,7 @@ public class ItemRegistry
     public static final ItemBlock test = null;
     public static final ItemBlock brulanta_flower = null;
     public static final Item pyroblend = null;
+    public static final ItemMortarAndPestle mortar_and_pestle = null;
 
     public static void register(Item itm, IForgeRegistry<Item> reg)
     {
@@ -88,5 +91,6 @@ public class ItemRegistry
         register(new ItemBlockBase(BlockRegistry.test), reg);
         register(new ItemBlockBase(BlockRegistry.brulanta_flower), reg);
         register(new ItemBase("pyroblend"), reg);
+        register(new ItemMortarAndPestle(), reg);
     }
 }
