@@ -1,28 +1,30 @@
 package ru.pearx.purmag.client.gui.if_tablet.pages;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.util.ResourceLocation;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.controls.Control;
+import ru.pearx.purmag.client.gui.recipes.CraftingControl;
 import ru.pearx.purmag.client.gui.recipes.FurnaceControl;
+import ru.pearx.purmag.client.infofield.pages.IfPageCrafting;
 import ru.pearx.purmag.client.infofield.pages.IfPageFurnace;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /*
- * Created by mrAppleXZ on 14.08.17 14:24.
+ * Created by mrAppleXZ on 03.09.17 21:34.
  */
-public class IPFurnaceRenderer extends IPAbstractMultipleRenderer<IfPageFurnace>
+public class IPCraftingRenderer extends IPAbstractMultipleRenderer<IfPageCrafting>
 {
-    protected List<FurnaceControl> smelts = new ArrayList<>();
+    protected List<CraftingControl> crafts = new ArrayList<>();
 
-    public IPFurnaceRenderer(IfPageFurnace page)
+    public IPCraftingRenderer(IfPageCrafting page)
     {
         super(page);
-        for (int i = 0; i < page.getInputs().size(); i++)
+        for(ResourceLocation loc : page.getIds())
         {
-            smelts.add(new FurnaceControl(page.getInput(i), page.getOutput(i)));
+            crafts.add(new CraftingControl(loc));
         }
     }
 
@@ -30,13 +32,13 @@ public class IPFurnaceRenderer extends IPAbstractMultipleRenderer<IfPageFurnace>
     public void init()
     {
         super.init();
-        setupControls(smelts);
+        setupControls(crafts);
     }
 
     @Override
     public void render()
     {
-        String s = I18n.format("if_page.furnace_recipes.name");
+        String s = I18n.format("if_page.crafting_recipes.name");
         DrawingTools.drawString(s, (getWidth() - DrawingTools.measureString(s)) / 2, 0, Colors.WHITE);
     }
 }

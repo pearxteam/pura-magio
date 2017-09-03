@@ -265,8 +265,8 @@ public class IfRegistry
         );
         registerEntryClient(
                 "pyroblend", new BigItemDrawable(new ItemStack(ItemRegistry.pyroblend)),
-                new IfPageText("pyroblend.0")
-                //todo pyroblend recipe page
+                new IfPageText("pyroblend.0"),
+                new IfPageCrafting(Utils.getResourceLocation("pyroblend"))
         );
 
         registerEntryClient(

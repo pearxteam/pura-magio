@@ -4,6 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -27,14 +28,14 @@ public class RecipeRegistry
     @SubscribeEvent
     public static void onRecipeRegistry(RegistryEvent.Register<IRecipe> e)
     {
-        register(new ShapedOreRecipe(null, ItemRegistry.unfinished_mortar_and_pestle,
+        register("unf_mortar_and_pestle", new ShapedOreRecipe(null, ItemRegistry.unfinished_mortar_and_pestle,
                 "  |",
                 "BcB",
                 " B ",
                 'c', Items.CLAY_BALL, 'B', Blocks.CLAY, '|', "stickWood"
         ), e.getRegistry());
 
-        register(new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.pyroblend, 2),
+        register("pyroblend", new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.pyroblend, 2),
                 ItemRegistry.verda_wing,
                 ItemRegistry.brulanta_flower,
                 new IngredientNBT(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard), "flame")),
@@ -45,14 +46,8 @@ public class RecipeRegistry
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.beetle_meat), new ItemStack(ItemRegistry.beetle_meat, 1, 1), 0.5f);
     }
 
-    private static int id = 0;
-    private static ResourceLocation getRL()
+    private static void register(String name, IRecipe recipe, IForgeRegistry<IRecipe> reg)
     {
-        return Utils.getResourceLocation("recipe_" + (id++));
-    }
-
-    private static void register(IRecipe recipe, IForgeRegistry<IRecipe> reg)
-    {
-        reg.register(recipe.setRegistryName(getRL()));
+        reg.register(recipe.setRegistryName(Utils.getResourceLocation(name)));
     }
 }

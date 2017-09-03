@@ -62,6 +62,7 @@ if_step.translate_papyrus.desc=Translate the Papyrus named "%s" using Translatio
 if_step.kill_entity.name=Kill an Entity
 
 if_page.furnace_recipes.name=Furnace Recipes
+if_page.crafting_recipes.name=Crafting Recipes
 
 if_entry.wooden_tablet.name=Wooden Tablet
 if_entry.wooden_tablet.desc=Where's my WiFi?!
@@ -106,6 +107,7 @@ if_page.mortar_and_pestle.0.text=So, I should make a thing where I can crush my 
 
 if_entry.pyroblend.name=Pyroblend
 if_entry.pyroblend.desc=Can I blow it?
+if_page.pyroblend.0.text=todo
 
 #Miscellaneous
 itemGroup.purmag=Purificati Magicae
