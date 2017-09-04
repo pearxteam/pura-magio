@@ -39,9 +39,9 @@ public class FurnaceControl extends Control
         GlStateManager.enableBlend();
         GuiDrawableRegistry.furnace.draw(getGuiScreen(), 0, 0);
         GlStateManager.disableBlend();
-        int x1 = 0;
-        int y1 = 0;
-        int x2 = 40;
+        int x1 = 2;
+        int y1 = 40;
+        int x2 = 80;
         int y2 = 40;
         inDraw.draw(getGuiScreen(), x1, y1);
         outDraw.draw(getGuiScreen(), x2, y2);
