@@ -4,10 +4,8 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.purmag.client.gui.recipes.CraftingControl;
-import ru.pearx.purmag.client.gui.recipes.FurnaceControl;
+import ru.pearx.purmag.client.gui.recipes.crafting.CraftingControl;
 import ru.pearx.purmag.client.infofield.pages.IfPageCrafting;
-import ru.pearx.purmag.client.infofield.pages.IfPageFurnace;
 
 import java.util.ArrayList;
 import java.util.List;
