@@ -96,12 +96,13 @@ public class WorldgenRegistry
             GameRegistry.registerWorldGenerator(new WGGround(BlockRegistry.brulanta_flower.getDefaultState(),
                     (world, pos, rand, toGenerate) ->
                     {
-                        if(toGenerate.getBlock() instanceof BlockBush)
+                        if (toGenerate.getBlock() instanceof BlockBush)
                         {
                             BlockBush bush = (BlockBush) toGenerate.getBlock();
-                            if(bush.canBlockStay(world, pos, toGenerate))
+                            if (bush.canBlockStay(world, pos, toGenerate))
                             {
-                                Biome b = world.getBiome(pos);;
+                                Biome b = world.getBiome(pos);
+                                ;
                                 return BiomeDictionary.hasType(b, BiomeDictionary.Type.HOT) && BiomeDictionary.hasType(b, BiomeDictionary.Type.DRY);
                             }
                         }

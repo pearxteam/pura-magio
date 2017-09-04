@@ -34,7 +34,8 @@ public class IRSCollectRenderer extends IRSRenderer<IRSCollect>
             ItemDrawable draw = new ItemDrawable(rend, 5);
             DrawingTools.drawString(step.getDescription(), 5, draw.getWidth(), Colors.WHITE, getWidth() - 5);
             draw.drawWithTooltip(getGuiScreen(), (getWidth() - draw.getWidth()) / 2, 0, lastX, lastY);
-        } else
+        }
+        else
             DrawingTools.drawString(step.getDescription(), 5, 0, Colors.WHITE, getWidth() - 5);
     }
 

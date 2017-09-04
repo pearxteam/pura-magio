@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 public class AuraContainerProvider implements ICapabilitySerializable<NBTTagCompound>
 {
     public AuraContainer container = new AuraContainer();
+
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing)
     {
@@ -26,7 +27,7 @@ public class AuraContainerProvider implements ICapabilitySerializable<NBTTagComp
     @Override
     public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
     {
-        if(capability == CapabilityRegistry.AURA_CONTAINER_CAP)
+        if (capability == CapabilityRegistry.AURA_CONTAINER_CAP)
         {
             return CapabilityRegistry.AURA_CONTAINER_CAP.cast(container);
         }

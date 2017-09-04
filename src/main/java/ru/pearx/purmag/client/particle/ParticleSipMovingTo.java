@@ -54,7 +54,7 @@ public class ParticleSipMovingTo extends ParticleMovingTo
         GlStateManager.enableBlend();
         GlStateManager.depthMask(false);
         GlStateManager.color(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f);
-        DrawingTools.drawTexture(TEXTURE, 0, 0, (int)getWidth(), (int)getHeight());
+        DrawingTools.drawTexture(TEXTURE, 0, 0, (int) getWidth(), (int) getHeight());
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
     }
@@ -68,6 +68,6 @@ public class ParticleSipMovingTo extends ParticleMovingTo
 
     public void spawnTrail(double x, double y, double z)
     {
-        ParticleEngine.addParticle(new ParticleTrail(x, y, z, color, 0.75f, TEXTURE, (int)getWidth(), (int)getHeight(), 0.75f, 30));
+        ParticleEngine.addParticle(new ParticleTrail(x, y, z, color, 0.75f, TEXTURE, (int) getWidth(), (int) getHeight(), 0.75f, 30));
     }
 }

@@ -20,7 +20,7 @@ public class IPCraftingRenderer extends IPAbstractMultipleRenderer<IfPageCraftin
     public IPCraftingRenderer(IfPageCrafting page)
     {
         super(page);
-        for(ResourceLocation loc : page.getIds())
+        for (ResourceLocation loc : page.getIds())
         {
             crafts.add(new CraftingControl(loc));
         }

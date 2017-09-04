@@ -115,7 +115,8 @@ public class GuiIfTabletSP extends GuiIfTabletS
                         rend = newRend;
                         sensitive = true;
                     }).start();
-                } else
+                }
+                else
                 {
                     controls.remove(rend);
                     rend = entry.getPages().get(index).getRenderer();
