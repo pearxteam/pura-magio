@@ -45,7 +45,7 @@ public class WGLabSmall implements IWorldGenerator
                 int x = chunkX * 16 + 16;
                 int z = chunkZ * 16 + 16;
                 BlockPos pos = new BlockPos(x, world.getHeight(x, z) - 7, z);
-                if(pos.getY() >= minY && pos.getY() <= maxY)
+                if (pos.getY() >= minY && pos.getY() <= maxY)
                 {
                     try
                     {

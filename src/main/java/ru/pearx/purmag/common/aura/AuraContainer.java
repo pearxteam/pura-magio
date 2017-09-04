@@ -17,7 +17,7 @@ public class AuraContainer implements IAuraContainer
     @Override
     public UUID getKey()
     {
-        if(uuid == null)
+        if (uuid == null)
             uuid = UUID.randomUUID();
         return uuid;
     }

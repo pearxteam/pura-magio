@@ -46,9 +46,9 @@ public class PapyrusRegistry
     public void addNotImportantToTable(LootTable table)
     {
         List<LootEntry> entrs = new ArrayList<>();
-        for(PapyrusData p : getPapyruses())
+        for (PapyrusData p : getPapyruses())
         {
-            if(!p.isImportant())
+            if (!p.isImportant())
             {
                 NBTTagCompound tag = new NBTTagCompound();
                 tag.setString("papyrus_id", p.getPapyrusId());

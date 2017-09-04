@@ -13,5 +13,6 @@ import java.util.UUID;
 public interface IAuraContainer extends INBTSerializable<NBTTagCompound>
 {
     UUID getKey();
+
     void sync(EntityPlayerMP p);
 }

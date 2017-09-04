@@ -22,7 +22,7 @@ public class IngredientNBT extends Ingredient
     @Override
     public boolean apply(@Nullable ItemStack used)
     {
-        if(used != null)
+        if (used != null)
         {
             for (ItemStack stack : getMatchingStacks())
             {
@@ -31,15 +31,15 @@ public class IngredientNBT extends Ingredient
                     int i = stack.getMetadata();
                     if (i == 32767 || i == used.getMetadata())
                     {
-                        if(used.getTagCompound() != null && stack.getTagCompound() != null)
+                        if (used.getTagCompound() != null && stack.getTagCompound() != null)
                         {
                             NBTTagCompound tagStack = stack.getTagCompound();
                             NBTTagCompound tagUsed = used.getTagCompound();
-                            for(String s : tagStack.getKeySet())
+                            for (String s : tagStack.getKeySet())
                             {
-                                if(!tagUsed.hasKey(s))
+                                if (!tagUsed.hasKey(s))
                                     return false;
-                                if(!tagUsed.getTag(s).equals(tagStack.getTag(s)))
+                                if (!tagUsed.getTag(s).equals(tagStack.getTag(s)))
                                     return false;
                             }
                         }

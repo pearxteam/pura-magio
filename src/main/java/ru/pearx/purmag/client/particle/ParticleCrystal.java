@@ -49,7 +49,7 @@ public class ParticleCrystal extends PXParticle
         GlStateManager.enableBlend();
         GlStateManager.depthMask(false);
         GlStateManager.color(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, alpha);
-        DrawingTools.drawTexture(TEXTURE, 0, 0, (int)getWidth(), (int)getHeight());
+        DrawingTools.drawTexture(TEXTURE, 0, 0, (int) getWidth(), (int) getHeight());
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
@@ -57,10 +57,11 @@ public class ParticleCrystal extends PXParticle
 
     float prevSin, prevCos;
     int degrees = 0;
+
     @Override
     public void onUpdate()
     {
-        alpha = 1f - ((float)getAge() / getMaxAge());
+        alpha = 1f - ((float) getAge() / getMaxAge());
         float sin = MathHelper.sin(MathUtils.toRadians(degrees)) * 0.1f;
         float cos = MathHelper.cos(MathUtils.toRadians(degrees)) * 0.1f;
         move(sin - prevSin, 0.02f, cos - prevCos);
@@ -68,7 +69,7 @@ public class ParticleCrystal extends PXParticle
         prevCos = cos;
         super.onUpdate();
         degrees += 10;
-        if(degrees > 360)
+        if (degrees > 360)
             degrees = 0;
     }
 }

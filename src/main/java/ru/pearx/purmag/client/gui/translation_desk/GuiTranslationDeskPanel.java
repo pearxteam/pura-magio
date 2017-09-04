@@ -91,7 +91,8 @@ public class GuiTranslationDeskPanel extends Control
                             Minecraft.getMinecraft().player.playSound(SoundEvents.BLOCK_NOTE_SNARE, 1, 1);
                         }
                         GlStateManager.color(0, 0, 1);
-                    } else
+                    }
+                    else
                         GlStateManager.color(1, 0, 0);
                 }
                 GlStateManager.enableBlend();
@@ -190,7 +191,8 @@ public class GuiTranslationDeskPanel extends Control
         {
             NetworkManager.sendToServer(new SPacketDoneTranslation(getDesk().pos, getDesk().entryName));
             updSt = true;
-        } else
+        }
+        else
         {
             Minecraft.getMinecraft().player.playSound(SoundRegistry.ERROR, 1, 0.1f);
         }

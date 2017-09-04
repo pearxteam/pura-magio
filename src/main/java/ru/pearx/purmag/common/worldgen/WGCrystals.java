@@ -44,7 +44,8 @@ public class WGCrystals implements IWorldGenerator
                         break;
                     }
                 }
-            } else
+            }
+            else
                 cont = true;
 
             if (!cont) continue;
@@ -64,7 +65,7 @@ public class WGCrystals implements IWorldGenerator
                             continue;
                         BlockPos p = new BlockPos(x, y, z);
                         IBlockState ibs = world.getBlockState(p);
-                        if(!ibs.getBlock().isReplaceableOreGen(ibs, world, p, new WGOre.StonePredicate()))
+                        if (!ibs.getBlock().isReplaceableOreGen(ibs, world, p, new WGOre.StonePredicate()))
                             continue;
                         for (int y1 = 0; y1 <= 2; y1++)
                         {

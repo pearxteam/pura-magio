@@ -260,7 +260,10 @@ public class IfRegistry
         registerEntryClient(
                 "mortar_and_pestle", new BigItemDrawable(new ItemStack(ItemRegistry.mortar_and_pestle)),
                 new IfPageText("mortar_and_pestle.0"),
-                //todo unfinished pestle recipe page
+                new IfPageCrafting(Utils.getResourceLocation("unf_mortar_and_pestle")),
+                new IfPageCrafting(new ResourceLocation("minecraft:lever")),
+                new IfPageCrafting(new ResourceLocation("minecraft:light_blue_bed")),
+                new IfPageCrafting(new ResourceLocation("minecraft:leather_boots")),
                 new IfPageFurnace(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle))
         );
         registerEntryClient(
