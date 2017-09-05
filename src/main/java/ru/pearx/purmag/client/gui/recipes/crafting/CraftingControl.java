@@ -13,9 +13,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.IGuiScreen;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
+import ru.pearx.purmag.common.Utils;
 
 import java.util.*;
 
@@ -124,7 +126,7 @@ public class CraftingControl extends Control
     }
 
     //24 is an item, 4 and 8 are the margins.
-    //4 + 24 + 4 + 24 + 4 + 24 + 8 + 24 + 4 = 120
+    //4 + 24 + 4 + 24 + 4 + 24 + 16 + 24 + 4 = 128
     //4 + 24 + 4 + 24 + 4 + 24 + 4 = 88
 
     private ItemDrawable[][] inDraws;
@@ -139,10 +141,10 @@ public class CraftingControl extends Control
     {
         if (containsHandler(recipe.getClass()))
         {
-            setWidth(120);
+            setWidth(128);
             setHeight(88);
 
-            xOut = 92;
+            xOut = 100;
             yOut = 32;
 
             for (int row = 0; row < 3; row++)
@@ -185,7 +187,7 @@ public class CraftingControl extends Control
     @Override
     public void render()
     {
-        //todo render the texture here
+        DrawingTools.drawTexture(Utils.getResourceLocation("textures/gui/recipes/crafting.png"), 0, 0, getWidth(), getHeight());
         IGuiScreen gs = getGuiScreen();
         for (int row = 0; row < 3; row++)
         {

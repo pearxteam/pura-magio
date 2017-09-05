@@ -23,7 +23,9 @@ public class ModelEvents
 {
     /*resources todo:
      - microscope texture
-     - furnace texture
+     - mortar and pestle texture
+     - unfinished mortar and pestle texture
+     - fix furnace recipe texture
     */
     @SubscribeEvent
     public static void onBake(ModelBakeEvent e)
