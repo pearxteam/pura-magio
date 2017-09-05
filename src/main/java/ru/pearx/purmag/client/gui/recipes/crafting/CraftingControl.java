@@ -1,5 +1,6 @@
 package ru.pearx.purmag.client.gui.recipes.crafting;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -187,7 +188,9 @@ public class CraftingControl extends Control
     @Override
     public void render()
     {
+        GlStateManager.enableBlend();
         DrawingTools.drawTexture(Utils.getResourceLocation("textures/gui/recipes/crafting.png"), 0, 0, getWidth(), getHeight());
+        GlStateManager.disableBlend();
         IGuiScreen gs = getGuiScreen();
         for (int row = 0; row < 3; row++)
         {
