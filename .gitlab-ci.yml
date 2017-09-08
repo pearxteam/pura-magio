@@ -19,13 +19,10 @@ before_script:
   - fi
   - cd PurificatiMagicae
 
-after_script:
-  - cd ..
-  - rm -rf PearXLibMC
-
 build:
   stage: build
   script:
+    - pwd
     - ./gradlew assemble
   artifacts:
     paths:
