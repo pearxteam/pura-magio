@@ -24,7 +24,7 @@ repositories {
   }
 }
 
-version = "1.0"
+version = "${mc_version}-${mod_version}"
 group= "ru.pearx.purmag"
 archivesBaseName = "PurificatiMagicae"
 
@@ -37,6 +37,10 @@ minecraft {
     version = mc_version + "-" + forge_version
     runDir = "run"
     mappings = mappings_version
+    replace("@VERSION@", mod_version)
+    replace("@MCVERSION@", mc_version)
+    replace("acceptedMinecraftVersions = \"\"", "acceptedMinecraftVersions = \"" + accepted_mc_versions + "\"")
+    replaceIn("PurMag.java")
 }
 
 dependencies {
