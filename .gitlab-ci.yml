@@ -10,7 +10,7 @@ cache:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
   - mkdir PurificatiMagicae
-  - mv !(.gradle|PurificatiMagicae) PurificatiMagicae
+  - mv ./!(.gradle|PurificatiMagicae) PurificatiMagicae/
   - if [ -d "PearXLibMC" ]; then
   - cd PearXLibMC
   - git pull
