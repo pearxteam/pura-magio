@@ -1,11 +1,8 @@
 package ru.pearx.purmag.common.recipes.ingredients;
 
-import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.oredict.OreIngredient;
 
 import javax.annotation.Nullable;
 

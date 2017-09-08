@@ -1,7 +1,5 @@
 package ru.pearx.purmag.client.gui.recipes.crafting;
 
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
@@ -12,12 +10,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.IGuiScreen;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
-import ru.pearx.purmag.common.Utils;
 
 import java.util.HashMap;
 import java.util.List;

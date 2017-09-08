@@ -19,7 +19,6 @@ import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.items.papyrus.PapyrusRegistry;
 import ru.pearx.purmag.common.loot_tables.LootTablesRegistry;
 import ru.pearx.purmag.common.networking.NetworkManager;
-import ru.pearx.purmag.common.recipes.RecipeRegistry;
 import ru.pearx.purmag.common.sif.SifStorageServer;
 import ru.pearx.purmag.common.sip.SipEffectsRegistry;
 import ru.pearx.purmag.common.sip.SipTypeRegistry;

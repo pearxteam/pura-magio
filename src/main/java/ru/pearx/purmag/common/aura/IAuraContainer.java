@@ -1,6 +1,5 @@
 package ru.pearx.purmag.common.aura;
 
-import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.INBTSerializable;

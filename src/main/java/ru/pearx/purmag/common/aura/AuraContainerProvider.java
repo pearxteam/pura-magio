@@ -3,7 +3,6 @@ package ru.pearx.purmag.common.aura;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import ru.pearx.purmag.common.CapabilityRegistry;
 

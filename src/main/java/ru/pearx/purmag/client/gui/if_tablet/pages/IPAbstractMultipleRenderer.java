@@ -4,7 +4,6 @@ import net.minecraft.client.resources.I18n;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.Control;
-import ru.pearx.purmag.client.gui.recipes.FurnaceControl;
 import ru.pearx.purmag.client.infofield.pages.IIfPage;
 
 import java.util.List;

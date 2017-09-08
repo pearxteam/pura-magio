@@ -5,7 +5,6 @@ import net.minecraft.world.storage.loot.*;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.SetNBT;
-import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.items.ItemRegistry;
 
 import java.util.ArrayList;

@@ -14,8 +14,6 @@ import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.items.papyrus.ItemPapyrus;
 
-import javax.annotation.Nonnull;
-
 /**
  * Created by mrAppleXZ on 08.04.17 18:46.
  */

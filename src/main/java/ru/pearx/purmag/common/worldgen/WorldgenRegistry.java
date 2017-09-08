@@ -4,17 +4,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import ru.pearx.libmc.common.worldgen.WGGround;
 import ru.pearx.libmc.common.worldgen.WGOre;
 import ru.pearx.libmc.common.worldgen.WGOreOnOre;
-import ru.pearx.libmc.common.worldgen.WorldGenPredicate;
 import ru.pearx.purmag.PurMag;
-import ru.pearx.purmag.common.blocks.BlockBushBase;
 import ru.pearx.purmag.common.blocks.BlockCrystalSmall;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.config.ConfigGroundgenEntry;
@@ -24,7 +20,6 @@ import ru.pearx.purmag.common.config.ConfigStructureEntry;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by mrAppleXZ on 04.05.17 15:10.

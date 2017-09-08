@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import ru.pearx.libmc.common.structure.StructureApi;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
-import ru.pearx.purmag.common.config.PMConfig;
 
 import java.io.IOException;
 import java.util.List;
