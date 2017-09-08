@@ -4,10 +4,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,7 +19,9 @@ import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 import ru.pearx.purmag.common.Utils;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /*
  * Created by mrAppleXZ on 03.09.17 11:50.
@@ -39,7 +39,9 @@ public class CraftingControl extends Control
          */
         List<List<ItemStack>> getInputs(T recipe);
 
-        ItemStack getOutput(T recipe);
+        default ItemStack getOutput(T recipe) {
+            return AbstractCraftingThings.getOutputSimple(recipe);
+        }
     }
 
     private static Map<Class<? extends IRecipe>, IRecipeHandler> recipeHandlers = new HashMap<>();
@@ -66,65 +68,10 @@ public class CraftingControl extends Control
 
     static
     {
-        registerHandler(ShapelessOreRecipe.class, new IRecipeHandler<ShapelessOreRecipe>()
-        {
-            @Override
-            public List<List<ItemStack>> getInputs(ShapelessOreRecipe recipe)
-            {
-                return AbstractCraftingThings.getInputsShapeless(recipe);
-            }
-
-            @Override
-            public ItemStack getOutput(ShapelessOreRecipe recipe)
-            {
-                return AbstractCraftingThings.getOutputSimple(recipe);
-            }
-        });
-
-        registerHandler(ShapelessRecipes.class, new IRecipeHandler<ShapelessRecipes>()
-        {
-            @Override
-            public List<List<ItemStack>> getInputs(ShapelessRecipes recipe)
-            {
-                return AbstractCraftingThings.getInputsShapeless(recipe);
-            }
-
-            @Override
-            public ItemStack getOutput(ShapelessRecipes recipe)
-            {
-                return AbstractCraftingThings.getOutputSimple(recipe);
-            }
-        });
-
-        registerHandler(ShapedOreRecipe.class, new IRecipeHandler<ShapedOreRecipe>()
-        {
-            @Override
-            public List<List<ItemStack>> getInputs(ShapedOreRecipe recipe)
-            {
-                return AbstractCraftingThings.getInputsShaped(recipe);
-            }
-
-            @Override
-            public ItemStack getOutput(ShapedOreRecipe recipe)
-            {
-                return AbstractCraftingThings.getOutputSimple(recipe);
-            }
-        });
-
-        registerHandler(ShapedRecipes.class, new IRecipeHandler<ShapedRecipes>()
-        {
-            @Override
-            public List<List<ItemStack>> getInputs(ShapedRecipes recipe)
-            {
-                return AbstractCraftingThings.getInputsShaped(recipe);
-            }
-
-            @Override
-            public ItemStack getOutput(ShapedRecipes recipe)
-            {
-                return AbstractCraftingThings.getOutputSimple(recipe);
-            }
-        });
+        registerHandler(ShapelessOreRecipe.class, AbstractCraftingThings::getInputsShapeless);
+        registerHandler(ShapelessRecipes.class, AbstractCraftingThings::getInputsShapeless);
+        registerHandler(ShapedOreRecipe.class, AbstractCraftingThings::getInputsShaped);
+        registerHandler(ShapedRecipes.class, AbstractCraftingThings::getInputsShaped);
     }
 
     //24 is an item, 4 and 8 are the margins.
