@@ -21,14 +21,10 @@ before_script:
   - fi
   - cd PurificatiMagicae
 
-after_script:
-  - mv build ..
-  - rm -rf PurificatiMagicae
-
 build:
   stage: build
   script:
     - ./gradlew assemble
   artifacts:
     paths:
-      - build/libs/*.jar
+      - PurificatiMagicae/build/libs/*.jar
