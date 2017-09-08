@@ -5,10 +5,12 @@ cache:
    paths:
      - .gradle/wrapper
      - .gradle/caches
+     - PearXLibMC
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
   - mkdir PurificatiMagicae
+  - mv !(.gradle|PurificatiMagicae) PurificatiMagicae
   - if [ -d "PearXLibMC" ]; then
   - cd PearXLibMC
   - git pull
@@ -22,8 +24,7 @@ before_script:
 build:
   stage: build
   script:
-    - pwd
     - ./gradlew assemble
   artifacts:
     paths:
-      - build/libs/*.jar
+      - PurificatiMagicae/build/libs/*.jar
