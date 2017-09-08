@@ -1,13 +1,27 @@
 stages:
   - build
 
+cache:
+   paths:
+     - .gradle/wrapper
+     - .gradle/caches
+
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
+  - mkdir PurificatiMagicae
+  - if [ -d "PearXLibMC" ]; then
+  - cd PearXLibMC
+  - git pull
+  - cd ..
+  - fi
+  - if [ ! -d "PearXLibMC" ]; then
+  - git clone --recursive https://github.com/PearXTeam/PearXLibMC -b 1.12
+  - fi
+  - cd PurificatiMagicae
 
-cache:
-  paths:
-    - .gradle/wrapper
-    - .gradle/caches
+after_script:
+  - cd ..
+  - rm -rf PearXLibMC
 
 build:
   stage: build
