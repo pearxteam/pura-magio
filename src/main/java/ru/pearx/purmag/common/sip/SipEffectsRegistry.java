@@ -35,7 +35,6 @@ public class SipEffectsRegistry
         register("air", new SipEffect(MobEffects.SPEED, 400, -1));
         register("information", new SipEffect(MobEffects.BLINDNESS, 20, -1));
         register("vision", new SipEffect(MobEffects.NIGHT_VISION, 400, -1));
-        //todo
         register("analysis", new SipEffect(MobEffects.NAUSEA, 20, -1));
         register("electricity", new SipEffect(MobEffects.STRENGTH, 300, -1));
     }

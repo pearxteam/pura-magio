@@ -11,7 +11,6 @@ import java.util.List;
  */
 public class PMConfig
 {
-    //todo air and informa worldgen.
     public boolean genCrystals;
     public List<Integer> genRockCrystalsDimBlacklist;
     public ConfigOregenEntry genCrysagnetite;

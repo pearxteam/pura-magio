@@ -39,13 +39,6 @@ public class PurMag
     public static final String MODID = "purmag";
     public static final String NAME = "Purificati Magicae";
     public static final String VERSION = "@VERSION@";
-    //todo laboratory
-    //todo smeltery
-    //todo SIF plant, agronomy, paris,
-    //todo glove modules and upgrades
-    //todo time jail
-    //todo remote redstone controller
-    //todo drugs
     @Mod.Instance
     public static PurMag INSTANCE;
     @SidedProxy(clientSide = "ru.pearx.purmag.client.ClientProxy", serverSide = "ru.pearx.purmag.server.ServerProxy")

@@ -18,6 +18,7 @@ import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.IGuiScreen;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
+import ru.pearx.purmag.client.GuiDrawableRegistry;
 import ru.pearx.purmag.common.Utils;
 
 import java.util.*;
@@ -188,9 +189,7 @@ public class CraftingControl extends Control
     @Override
     public void render()
     {
-        GlStateManager.enableBlend();
-        DrawingTools.drawTexture(Utils.getResourceLocation("textures/gui/recipes/crafting.png"), 0, 0, getWidth(), getHeight());
-        GlStateManager.disableBlend();
+        GuiDrawableRegistry.crafting.draw(getGuiScreen(), 0, 0);
         IGuiScreen gs = getGuiScreen();
         for (int row = 0; row < 3; row++)
         {
