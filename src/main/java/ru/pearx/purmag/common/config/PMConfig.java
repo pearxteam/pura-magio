@@ -11,8 +11,11 @@ import java.util.List;
  */
 public class PMConfig
 {
-    public boolean genCrystals;
-    public List<Integer> genRockCrystalsDimBlacklist;
+    public ConfigCrystalGenEntry genCrystalRock;
+    public ConfigCrystalGenEntry genCrystalSea;
+    public ConfigCrystalGenEntry genCrystalFlame;
+    public ConfigCrystalGenEntry genCrystalAir;
+    public ConfigCrystalGenEntry genCrystalVision;
     public ConfigOregenEntry genCrysagnetite;
     public ConfigOreOnOreEntry genCrystallizedRedstone;
     public ConfigOreOnOreEntry genCrystallizedGlowstone;
@@ -21,8 +24,11 @@ public class PMConfig
 
     public void setup(Configuration configFile)
     {
-        genCrystals = configFile.getBoolean("Generate Crystals", "WORLD", true, "");
-        genRockCrystalsDimBlacklist = loadIntList(configFile, "Rock Crystals Dimension Blacklist", "WORLD", new String[]{"1", "-1"}, "");
+        genCrystalRock = loadCrystal(configFile, "Rock", new String[]{"-1", "1"}, false);
+        genCrystalSea = loadCrystal(configFile, "Sea", new String[]{"-1", "1"}, false);
+        genCrystalFlame = loadCrystal(configFile, "Flame", new String[]{"-1"}, true);
+        genCrystalAir = loadCrystal(configFile, "Air", new String[]{"-1", "1"}, false);
+        genCrystalVision = loadCrystal(configFile, "Vision", new String[]{"1"}, true);
         genCrysagnetite = loadOre(configFile, "Crysagnetite", 15, 25, 1, 3, 1, 2, 0.1f, new String[]{"-1", "1"}, false);
         genCrystallizedRedstone = loadOreOnOre(configFile, "Crystallized Redstone", 0, 16, 0.03f, new String[]{"-1", "1"}, false);
         genCrystallizedGlowstone = loadOreOnOre(configFile, "Crystallized Glowstone", 4, 123, 0.03f, new String[]{"-1"}, true);
@@ -89,6 +95,18 @@ public class PMConfig
         entr.minCount = config.getInt(name + " Min Count Per Chunk", "WORLD", minCount, 0, Integer.MAX_VALUE, "");
         entr.maxCount = config.getInt(name + " Max Count Per Chunk", "WORLD", maxCount, 0, Integer.MAX_VALUE, "");
         entr.chance = config.getFloat(name + " Generation Chance", "WORLD", chance, 0, 1, "");
+        entr.dimList = loadIntList(config, name + " DimList", "WORLD", dimList, "");
+        entr.dimListMode = config.getBoolean(name + " DimList Mode", "WORLD", dimListMode, "True = whitelist; False = blacklist");
+
+        return entr;
+    }
+
+    private ConfigCrystalGenEntry loadCrystal(Configuration config, String name, String[] dimList, boolean dimListMode)
+    {
+        ConfigCrystalGenEntry entr = new ConfigCrystalGenEntry();
+        name = name + " Crystal";
+
+        entr.generate = config.getBoolean(name, "WORLD", true, "");
         entr.dimList = loadIntList(config, name + " DimList", "WORLD", dimList, "");
         entr.dimListMode = config.getBoolean(name + " DimList Mode", "WORLD", dimListMode, "True = whitelist; False = blacklist");
 

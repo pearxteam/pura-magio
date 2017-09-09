@@ -4,7 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import ru.pearx.libmc.common.worldgen.WGGround;
@@ -13,38 +17,98 @@ import ru.pearx.libmc.common.worldgen.WGOreOnOre;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.blocks.BlockCrystalSmall;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
-import ru.pearx.purmag.common.config.ConfigGroundgenEntry;
-import ru.pearx.purmag.common.config.ConfigOreOnOreEntry;
-import ru.pearx.purmag.common.config.ConfigOregenEntry;
-import ru.pearx.purmag.common.config.ConfigStructureEntry;
+import ru.pearx.purmag.common.config.*;
+import ru.pearx.purmag.common.worldgen.crystal.CrystalGenPredicate;
+import ru.pearx.purmag.common.worldgen.crystal.CrystalGenPredicates;
+import ru.pearx.purmag.common.worldgen.crystal.WGCrystal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by mrAppleXZ on 04.05.17 15:10.
  */
 public class WorldgenRegistry
 {
-    public static List<WGCrystalsEntry> crystalGen = new ArrayList<>();
-
     public static void setup()
     {
-        if (PurMag.INSTANCE.config.genCrystals)
+        PMConfig config = PurMag.INSTANCE.config;
+        if(config.genCrystalSea.generate)
         {
-            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.SURFACE, "sea", null, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.RIVER));
-            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.UNDERGROUND, "rock", PurMag.INSTANCE.config.genRockCrystalsDimBlacklist));
-            crystalGen.add(new WGCrystalsEntry(WGCrystalsType.FIRSTAIR, "flame", null, BiomeDictionary.Type.NETHER));
-            GameRegistry.registerWorldGenerator(new WGCrystals(), 5);
+            ConfigCrystalGenEntry entr = config.genCrystalSea;
+            GameRegistry.registerWorldGenerator(new WGCrystal(new CrystalGenPredicate()
+            {
+                @Override
+                public int getY(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider, int x, int z, float sif)
+                {
+                    return world.getHeight(x, z);
+                }
+
+                @Override
+                public boolean canGenerateHere(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider, BlockPos pos, float sif)
+                {
+                    Biome b = world.getBiome(pos);
+                    return (int)sif > 0 && (BiomeDictionary.hasType(b, BiomeDictionary.Type.BEACH) || BiomeDictionary.hasType(b, BiomeDictionary.Type.RIVER));
+                }
+            }, "sea", entr.dimList, entr.dimListMode), 5);
         }
-        if (PurMag.INSTANCE.config.genCrysagnetite.generate)
+        if(config.genCrystalRock.generate)
         {
-            ConfigOregenEntry coe = PurMag.INSTANCE.config.genCrysagnetite;
+            ConfigCrystalGenEntry entr = config.genCrystalRock;
+            GameRegistry.registerWorldGenerator(new WGCrystal(new CrystalGenPredicates.Underground(), "rock", entr.dimList, entr.dimListMode), 5);
+        }
+        if(config.genCrystalFlame.generate)
+        {
+            ConfigCrystalGenEntry entr = config.genCrystalFlame;
+            GameRegistry.registerWorldGenerator(new WGCrystal(new CrystalGenPredicates.FirstAir(), "flame", entr.dimList, entr.dimListMode), 5);
+        }
+        if(config.genCrystalAir.generate)
+        {
+            ConfigCrystalGenEntry entr = config.genCrystalAir;
+            GameRegistry.registerWorldGenerator(new WGCrystal(new CrystalGenPredicate()
+            {
+                @Override
+                public int getY(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider, int x, int z, float sif)
+                {
+                    return world.getHeight(x, z);
+                }
+
+                @Override
+                public boolean canGenerateHere(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider, BlockPos pos, float sif)
+                {
+                    Biome b = world.getBiome(pos);
+                    return (int)sif > 0 && pos.getY() >= 90 && BiomeDictionary.hasType(b, BiomeDictionary.Type.HILLS);
+                }
+            }, "air", entr.dimList, entr.dimListMode), 5);
+        }
+        if(config.genCrystalVision.generate)
+        {
+            ConfigCrystalGenEntry entr = config.genCrystalVision;
+            GameRegistry.registerWorldGenerator(new WGCrystal(new CrystalGenPredicate()
+            {
+                @Override
+                public int getY(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider, int x, int z, float sif)
+                {
+                    return world.getHeight(x, z);
+                }
+
+                @Override
+                public boolean canGenerateHere(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider, BlockPos pos, float sif)
+                {
+                    return (int)sif > 0 && BiomeDictionary.hasType(world.getBiome(pos), BiomeDictionary.Type.END) && !world.isAirBlock(pos.down());
+                }
+            }, "vision", entr.dimList, entr.dimListMode), 5);
+        }
+
+        if (config.genCrysagnetite.generate)
+        {
+            ConfigOregenEntry coe = config.genCrysagnetite;
             GameRegistry.registerWorldGenerator(new WGOre(coe.minVeinSize, coe.maxVeinSize, coe.minY, coe.maxY, coe.chance, BlockRegistry.ore_crysagnetite.getDefaultState(), coe.dimList, coe.dimListMode, coe.minVeins, coe.maxVeins, new WGOre.StonePredicate()), 5);
         }
-        if (PurMag.INSTANCE.config.genCrystallizedRedstone.generate)
+        if (config.genCrystallizedRedstone.generate)
         {
-            ConfigOreOnOreEntry coe = PurMag.INSTANCE.config.genCrystallizedRedstone;
+            ConfigOreOnOreEntry coe = config.genCrystallizedRedstone;
             GameRegistry.registerWorldGenerator(new WGOreOnOre(coe.minY, coe.maxY, coe.chance,
                     BlockRegistry.crystal_small.getDefaultState().withProperty(BlockCrystalSmall.TYPE, BlockCrystalSmall.Type.REDSTONE),
                     (world, pos, posUp) ->
@@ -61,9 +125,9 @@ public class WorldgenRegistry
                         return false;
                     }, coe.dimList, coe.dimListMode), 6);
         }
-        if (PurMag.INSTANCE.config.genCrystallizedGlowstone.generate)
+        if (config.genCrystallizedGlowstone.generate)
         {
-            ConfigOreOnOreEntry coe = PurMag.INSTANCE.config.genCrystallizedGlowstone;
+            ConfigOreOnOreEntry coe = config.genCrystallizedGlowstone;
             GameRegistry.registerWorldGenerator(new WGOreOnOre(coe.minY, coe.maxY, coe.chance,
                     BlockRegistry.crystal_small.getDefaultState().withProperty(BlockCrystalSmall.TYPE, BlockCrystalSmall.Type.GLOWSTONE),
                     (world, pos, posUp) ->
@@ -80,14 +144,14 @@ public class WorldgenRegistry
                         return false;
                     }, coe.dimList, coe.dimListMode), 6);
         }
-        if (PurMag.INSTANCE.config.genLabSmall.generate)
+        if (config.genLabSmall.generate)
         {
-            ConfigStructureEntry cse = PurMag.INSTANCE.config.genLabSmall;
+            ConfigStructureEntry cse = config.genLabSmall;
             GameRegistry.registerWorldGenerator(new WGLabSmall(cse.chance, cse.minY, cse.maxY, cse.dimList, cse.dimListMode), 20);
         }
-        if (PurMag.INSTANCE.config.genBrulantaFlower.generate)
+        if (config.genBrulantaFlower.generate)
         {
-            ConfigGroundgenEntry entr = PurMag.INSTANCE.config.genBrulantaFlower;
+            ConfigGroundgenEntry entr = config.genBrulantaFlower;
             GameRegistry.registerWorldGenerator(new WGGround(BlockRegistry.brulanta_flower.getDefaultState(),
                     (world, pos, rand, toGenerate) ->
                     {
@@ -97,7 +161,6 @@ public class WorldgenRegistry
                             if (bush.canBlockStay(world, pos, toGenerate))
                             {
                                 Biome b = world.getBiome(pos);
-                                ;
                                 return BiomeDictionary.hasType(b, BiomeDictionary.Type.HOT) && BiomeDictionary.hasType(b, BiomeDictionary.Type.DRY);
                             }
                         }
