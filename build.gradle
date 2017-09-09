@@ -24,9 +24,9 @@ repositories {
   }
 }
 
-version = "${mc_version}-${mod_version}"
+version = "${mod_version}.${build_number}"
 group= "ru.pearx.purmag"
-archivesBaseName = "PurificatiMagicae"
+archivesBaseName = "PurificatiMagicae-${mc_version}"
 
 sourceCompatibility = targetCompatibility = "1.8"
 compileJava {
@@ -37,7 +37,7 @@ minecraft {
     version = mc_version + "-" + forge_version
     runDir = "run"
     mappings = mappings_version
-    replace("@VERSION@", mod_version)
+    replace("@VERSION@", version)
     replace("@MCVERSION@", mc_version)
     replace("acceptedMinecraftVersions = \"\"", "acceptedMinecraftVersions = \"" + accepted_mc_versions + "\"")
     replaceIn("PurMag.java")
