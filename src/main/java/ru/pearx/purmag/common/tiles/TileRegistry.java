@@ -15,7 +15,6 @@ public class TileRegistry
 {
     public static void register()
     {
-        OBJModel.OBJState
         GameRegistry.registerTileEntity(TileTranslationDesk.class, Utils.getResourceLocation("translation_desk").toString());
         GameRegistry.registerTileEntity(TileSingleSip.class, Utils.getResourceLocation("single_sip").toString());
         GameRegistry.registerTileEntity(TileWallIfTablet.class, Utils.getResourceLocation("wall_if_tablet").toString());

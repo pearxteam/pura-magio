@@ -44,6 +44,7 @@ public class ItemRegistry
     public static final Item pyroblend = null;
     public static final ItemMortarAndPestle mortar_and_pestle = null;
     public static final Item unfinished_mortar_and_pestle = null;
+    public static final ItemBlockCodeStorage code_storage = null;
 
     public static void register(Item itm, IForgeRegistry<Item> reg)
     {
@@ -92,5 +93,6 @@ public class ItemRegistry
         register(new ItemBase("pyroblend"), reg);
         register(new ItemMortarAndPestle(), reg);
         register(new ItemBase("unfinished_mortar_and_pestle"), reg);
+        register(new ItemBlockCodeStorage(), reg);
     }
 }

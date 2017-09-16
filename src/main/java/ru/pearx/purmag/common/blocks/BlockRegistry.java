@@ -28,6 +28,7 @@ public class BlockRegistry
     public static final BlockLuminousCrystalGlass luminous_crystal_glass = null;
     public static final BlockTest test = null;
     public static final BlockBrulantaFlower brulanta_flower = null;
+    public static final BlockCodeStorage code_storage = null;
 
     @SubscribeEvent
     public static void onRegisterBlocks(RegistryEvent.Register<Block> e)
@@ -46,6 +47,7 @@ public class BlockRegistry
         register(new BlockLuminousCrystalGlass(), reg);
         register(new BlockTest(), reg);
         register(new BlockBrulantaFlower(), reg);
+        register(new BlockCodeStorage(), reg);
     }
 
     public static void register(Block b, IForgeRegistry<Block> reg)

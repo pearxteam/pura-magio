@@ -44,9 +44,10 @@ public class TileCodeStorage extends TileSyncable
         }
     };
 
-    private String text;
-    private String code;
+    private String text = "";
+    private String code = "";
     private boolean unlocked;
+    private boolean lockable;
 
     public String getText()
     {
@@ -80,6 +81,17 @@ public class TileCodeStorage extends TileSyncable
         sendUpdatesToClients();
     }
 
+    public boolean isLockable()
+    {
+        return lockable;
+    }
+
+    public void setLockable(boolean lockable)
+    {
+        this.lockable = lockable;
+        sendUpdatesToClients();
+    }
+
     @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
     {
@@ -103,6 +115,7 @@ public class TileCodeStorage extends TileSyncable
         compound.setString("text", getText());
         compound.setString("code", getCode());
         compound.setBoolean("unlocked", isUnlocked());
+        compound.setBoolean("lockable", isLockable());
         return compound;
     }
 
@@ -124,5 +137,6 @@ public class TileCodeStorage extends TileSyncable
         if(compound.hasKey("code", Constants.NBT.TAG_STRING))
             setCode(compound.getString("code"));
         setUnlocked(compound.getBoolean("unlocked"));
+        setLockable(compound.getBoolean("lockable"));
     }
 }
