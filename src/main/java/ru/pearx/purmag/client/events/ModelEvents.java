@@ -4,6 +4,8 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.model.IModelState;
+import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,10 +39,15 @@ public class ModelEvents
         putModel(e, new StandardModels.Test(), Utils.getResourceLocation("test"));
     }
 
+    private static void putModel(ModelBakeEvent e, IPXModel model, ResourceLocation loc, IModelState state)
+    {
+        model.bake(state);
+        e.getModelRegistry().putObject(new ModelResourceLocation(loc, "normal"), model);
+    }
+
     private static void putModel(ModelBakeEvent e, IPXModel model, ResourceLocation loc)
     {
-        model.bake();
-        e.getModelRegistry().putObject(new ModelResourceLocation(loc, "normal"), model);
+        putModel(e, model, loc, TRSRTransformation.identity());
     }
 
     @SubscribeEvent

@@ -15,14 +15,14 @@ import javax.annotation.Nullable;
 /*
  * Created by mrAppleXZ on 09.09.17 20:48.
  */
-public class TileCodeChest extends TileSyncable
+public class TileCodeStorage extends TileSyncable
 {
     public ItemStackHandler handler = new ItemStackHandler(40)
     {
         @Override
         protected void onContentsChanged(int slot)
         {
-            TileCodeChest.this.markDirty();
+            TileCodeStorage.this.markDirty();
         }
 
         @Nonnull

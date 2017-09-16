@@ -38,9 +38,7 @@ public abstract class TileAbstractSingleItem extends TileSyncable
     @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
     {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return true;
-        return super.hasCapability(capability, facing);
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Nullable
@@ -48,7 +46,7 @@ public abstract class TileAbstractSingleItem extends TileSyncable
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
     {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return (T) handler;
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(handler);
         return super.getCapability(capability, facing);
     }
 

@@ -1,5 +1,6 @@
 package ru.pearx.purmag.common.tiles;
 
+import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -14,10 +15,12 @@ public class TileRegistry
 {
     public static void register()
     {
+        OBJModel.OBJState
         GameRegistry.registerTileEntity(TileTranslationDesk.class, Utils.getResourceLocation("translation_desk").toString());
         GameRegistry.registerTileEntity(TileSingleSip.class, Utils.getResourceLocation("single_sip").toString());
         GameRegistry.registerTileEntity(TileWallIfTablet.class, Utils.getResourceLocation("wall_if_tablet").toString());
         GameRegistry.registerTileEntity(TileMicroscope.class, Utils.getResourceLocation("microscope").toString());
+        GameRegistry.registerTileEntity(TileCodeStorage.class, Utils.getResourceLocation("code_storage").toString());
     }
 
     @SideOnly(Side.CLIENT)
