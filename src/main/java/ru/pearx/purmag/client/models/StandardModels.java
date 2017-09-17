@@ -144,7 +144,7 @@ public class StandardModels
         {
             setBaseModel(Utils.getResourceLocation("obj/wall_if_tablet.obj"));
             vertexProcessors.add(new FacingProcessor());
-            quadProcessors.add(new IQuadProcessor()
+            /*quadProcessors.add(new IQuadProcessor()
             {
                 @Override
                 public void process(List<BakedQuad> quads, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
@@ -173,7 +173,7 @@ public class StandardModels
                 {
                     return true;
                 }
-            });
+            })*/
         }
 
         @Override
