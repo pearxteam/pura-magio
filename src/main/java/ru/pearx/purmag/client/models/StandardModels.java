@@ -5,8 +5,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,6 +21,7 @@ import ru.pearx.libmc.client.models.IPXModel;
 import ru.pearx.libmc.client.models.OvModel;
 import ru.pearx.libmc.client.models.processors.FacingProcessor;
 import ru.pearx.libmc.client.models.processors.IQuadProcessor;
+import ru.pearx.libmc.client.models.processors.IVertexProcessor;
 import ru.pearx.libmc.client.models.processors.TintProcessor;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
@@ -144,22 +148,37 @@ public class StandardModels
         {
             setBaseModel(Utils.getResourceLocation("obj/wall_if_tablet.obj"));
             vertexProcessors.add(new FacingProcessor());
-            /*quadProcessors.add(new IQuadProcessor()
+            vertexProcessors.add(new IVertexProcessor()
             {
+                TextureAtlasSprite sprite;
+
                 @Override
-                public void process(List<BakedQuad> quads, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
+                public void preProcess(List<BakedQuad> quads, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
                 {
                     int tier;
                     if (state != null && state instanceof IExtendedBlockState)
                         tier = ((IExtendedBlockState) state).getValue(AbstractWallIfTablet.IF_TIER);
                     else
                         tier = getStack().getMetadata();
+                    String s = PurMag.INSTANCE.getIfRegistry().getTier(tier).getWallTabletTexture().toString();
+                    sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(s);
+                }
 
-                    for (int q = 0; q < quads.size(); q++)
+                @Override
+                public void processQuad(UnpackedBakedQuad.Builder bld, BakedQuad quad, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
+                {
+                    bld.setTexture(sprite);
+                }
+
+                @Override
+                public float[] processVertex(UnpackedBakedQuad.Builder bld, BakedQuad quad, float[] data, int vert, int element, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
+                {
+                    if(bld.getVertexFormat().getElement(element).getUsage() == VertexFormatElement.EnumUsage.UV)
                     {
-                        String s = PurMag.INSTANCE.getIfRegistry().getTier(tier).getWallTabletTexture().toString();
-                        quads.set(q, new BakedQuadWNT(quads.get(q), Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(s)));
+                        data[0] = sprite.getInterpolatedU(quad.getSprite().getUnInterpolatedU(data[0]));
+                        data[1] = sprite.getInterpolatedV(quad.getSprite().getUnInterpolatedV(data[1]));
                     }
+                    return data;
                 }
 
                 @Override
@@ -173,7 +192,7 @@ public class StandardModels
                 {
                     return true;
                 }
-            })*/
+            });
         }
 
         @Override
