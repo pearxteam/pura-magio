@@ -20,6 +20,6 @@ public class ItemBlockCodeStorage extends ItemBlockBase
     @Override
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return I18n.translateToLocalFormatted(getUnlocalizedName() + (stack.getMetadata() == 0 ? ".lockable" : ".notlockable") + ".name");
+        return I18n.translateToLocalFormatted(getUnlocalizedName() + (stack.getMetadata() == 0 ? ".lockable" : ".not_lockable") + ".name");
     }
 }

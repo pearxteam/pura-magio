@@ -8,6 +8,7 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.pearx.libmc.common.tiles.TileSyncable;
+import ru.pearx.purmag.common.inventory.ContainerCodeStorage;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -17,7 +18,7 @@ import javax.annotation.Nullable;
  */
 public class TileCodeStorage extends TileSyncable
 {
-    public ItemStackHandler handler = new ItemStackHandler(40)
+    public ItemStackHandler handler = new ItemStackHandler(ContainerCodeStorage.SLOT_COUNT)
     {
         @Override
         protected void onContentsChanged(int slot)
@@ -54,10 +55,11 @@ public class TileCodeStorage extends TileSyncable
         return text;
     }
 
-    public void setText(String text)
+    public void setText(String text, boolean sync)
     {
         this.text = text;
-        sendUpdatesToClients();
+        if(sync)
+            sendUpdatesToClients();
     }
 
     public String getCode()
@@ -75,10 +77,11 @@ public class TileCodeStorage extends TileSyncable
         return unlocked;
     }
 
-    public void setUnlocked(boolean unlocked)
+    public void setUnlocked(boolean unlocked, boolean sync)
     {
         this.unlocked = unlocked;
-        sendUpdatesToClients();
+        if(sync)
+            sendUpdatesToClients();
     }
 
     public boolean isLockable()
@@ -86,10 +89,11 @@ public class TileCodeStorage extends TileSyncable
         return lockable;
     }
 
-    public void setLockable(boolean lockable)
+    public void setLockable(boolean lockable, boolean sync)
     {
         this.lockable = lockable;
-        sendUpdatesToClients();
+        if(sync)
+            sendUpdatesToClients();
     }
 
     @Override
@@ -133,10 +137,10 @@ public class TileCodeStorage extends TileSyncable
     {
         super.readFromNBT(compound);
         handler.deserializeNBT(compound.getCompoundTag("items"));
-        setText(compound.getString("text"));
+        setText(compound.getString("text"), false);
         if(compound.hasKey("code", Constants.NBT.TAG_STRING))
             setCode(compound.getString("code"));
-        setUnlocked(compound.getBoolean("unlocked"));
-        setLockable(compound.getBoolean("lockable"));
+        setUnlocked(compound.getBoolean("unlocked"), false);
+        setLockable(compound.getBoolean("lockable"), false);
     }
 }

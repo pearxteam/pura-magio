@@ -33,6 +33,9 @@ tile.purmag.brulanta_flower.name=Brulanta Flower
 item.purmag.pyroblend.name=Pyroblend
 item.purmag.mortar_and_pestle.name=Mortar and Pestle
 item.purmag.unfinished_mortar_and_pestle.name=Unfinished Mortar and Pestle
+tile.purmag.code_storage.lockable.name=Code Storage
+tile.purmag.code_storage.not_lockable.name=Not Lockable Code Storage
+tile.purmag.code_storage.tooltip=Contains %s items.
 
 #Sip Types
 sip.sea.name=Mara
@@ -66,7 +69,7 @@ if_page.crafting_recipes.name=Crafting Recipes
 
 if_entry.wooden_tablet.name=Wooden Tablet
 if_entry.wooden_tablet.desc=Where's my WiFi?!
-if_page.wooden_tablet.0.text=Controls%n%nYou can move through the "channels" (tabs if you prefer) using mouse wheel or "W" or "Up Arrow" and "S" or "Down Arrow" keys. You can open entries using left click and go back by button in GUI or using "Q" or "Backspace" keys. You can change the pages by swipe or using "Right Arrow" or "D" and "Left Arrow" or "A" keys.
+if_page.wooden_tablet.0.text=Controls%n%nYou can move through the "channels" (tabs if you prefer) using mouse wheel or "W" or "Up Arrow" and "S" or "Down Arrow" keys. You can open entries using left click and go back by button in GUI or using "Q" or "Backspace" keys. You can change the pages using mouse wheel or using "Right Arrow" or "D" and "Left Arrow" or "A" keys.
 if_page.wooden_tablet.1.text=If I want to remember my thoughts, I should create a thing where I can record them. So, I just took a wooden plate and attached some paper to it. I can record all my thoughts and to do lists with it. Also, I use some dyes and a brush to draw colored pictures in the tablet.
 
 if_entry.crystals.name=Crystals

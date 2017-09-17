@@ -53,11 +53,9 @@ public class GuiIfTabletSP extends GuiIfTabletS
     }
 
     @Override
-    public void mouseMove(int x, int y, int dx, int dy)
+    public void mouseWheel(int delta)
     {
-        if (Mouse.isButtonDown(0))
-            if (dx > 10 || dx < -10)
-                update(dx < 0, true);
+        update(delta > 0, true);
     }
 
     @Override

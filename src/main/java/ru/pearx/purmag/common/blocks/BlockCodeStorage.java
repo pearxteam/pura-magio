@@ -1,27 +1,38 @@
 package ru.pearx.purmag.common.blocks;
 
+import jdk.nashorn.internal.runtime.CodeStore;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
+import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.tiles.TileCodeStorage;
+import ru.pearx.purmag.common.tiles.TileWallIfTablet;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 /*
  * Created by mrAppleXZ on 16.09.17 16:26.
@@ -29,6 +40,8 @@ import javax.annotation.Nullable;
 public class BlockCodeStorage extends BlockBase
 {
     public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1, 0f, 0.1f, 0.9f, 0.8f, 0.9f);
+    public static final int GUI_ID = 0;
+
     public BlockCodeStorage()
     {
         super("code_storage", Material.IRON);
@@ -83,7 +96,19 @@ public class BlockCodeStorage extends BlockBase
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        //todo
+        TileEntity te = worldIn.getTileEntity(pos);
+        if(te != null && te instanceof TileCodeStorage)
+        {
+            TileCodeStorage storage = (TileCodeStorage) te;
+            if(storage.isUnlocked())
+            {
+                playerIn.openGui(PurMag.INSTANCE, GUI_ID,  worldIn, pos.getX(), pos.getY(), pos.getZ());
+            }
+            else
+            {
+                //todo open unlocking gui
+            }
+        }
         return true;
     }
 
@@ -98,6 +123,11 @@ public class BlockCodeStorage extends BlockBase
     {
         super.harvestBlock(world, player, pos, state, te, stack);
         world.setBlockToAir(pos);
+    }
+
+    @Override
+    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    {
     }
 
     @Override
@@ -126,8 +156,8 @@ public class BlockCodeStorage extends BlockBase
         {
             TileCodeStorage storage = (TileCodeStorage) te;
             //meta == 0 - lockable; meta == 1 - not lockable
-            storage.setLockable(stack.getMetadata() == 0);
-            storage.setUnlocked(true);
+            storage.setLockable(stack.getMetadata() == 0, false);
+            storage.setUnlocked(true, false);
             if (stack.hasTagCompound())
             {
                 NBTTagCompound tag = stack.getTagCompound();
@@ -146,5 +176,37 @@ public class BlockCodeStorage extends BlockBase
         {
             items.add(new ItemStack(this, 1, i));
         }
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+        int meta = 0;
+        TileEntity te = world.getTileEntity(pos);
+        if (te != null && te instanceof TileCodeStorage)
+            meta = ((TileCodeStorage) te).isLockable() ? 0 : 1;
+        return new ItemStack(this, 1, meta);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced)
+    {
+        if(stack.hasTagCompound())
+        {
+            NBTTagCompound tag = stack.getTagCompound();
+            if(tag.hasKey("items", Constants.NBT.TAG_COMPOUND))
+            {
+                NBTTagList itemList = tag.getCompoundTag("items").getTagList("Items", Constants.NBT.TAG_COMPOUND);
+                tooltip.add(I18n.format(getUnlocalizedName() + ".tooltip", itemList.tagCount()));
+            }
+        }
+    }
+
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    {
+        super.dropBlockAsItemWithChance(worldIn, pos, state, 1, 0);
+        super.breakBlock(worldIn, pos, state);
     }
 }

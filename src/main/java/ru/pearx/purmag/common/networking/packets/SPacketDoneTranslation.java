@@ -55,7 +55,7 @@ public class SPacketDoneTranslation implements IMessage
         @Override
         public IMessage onMessage(SPacketDoneTranslation message, MessageContext ctx)
         {
-            ((WorldServer) ctx.getServerHandler().player.world).addScheduledTask(() ->
+            (ctx.getServerHandler().player.getServerWorld()).addScheduledTask(() ->
             {
                 TileEntity te = ctx.getServerHandler().player.world.getTileEntity(message.pos);
                 if (te != null && te instanceof TileTranslationDesk)
