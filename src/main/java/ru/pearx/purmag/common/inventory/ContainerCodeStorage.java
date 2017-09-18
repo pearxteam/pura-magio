@@ -15,12 +15,12 @@ public class ContainerCodeStorage extends PXLContainer
 {
     public static final int SLOT_COUNT = 40;
 
-    private TileCodeStorage storage;
+    public TileCodeStorage storage;
     private IInventory inv;
 
     public ContainerCodeStorage(TileCodeStorage storage, IInventory inv)
     {
-        super(inv, SLOT_COUNT, 18, 87);
+        super(inv, SLOT_COUNT, 18, 97);
         this.storage = storage;
         this.inv = inv;
 
@@ -32,7 +32,7 @@ public class ContainerCodeStorage extends PXLContainer
     {
         int index = 0;
         int offx = 9;
-        int offy = 9;
+        int offy = 19;
         for(int cy = 0; cy < 4; cy++)
         {
             for (int cx = 0; cx < 10; cx++)

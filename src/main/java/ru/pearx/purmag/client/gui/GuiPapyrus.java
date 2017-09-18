@@ -5,7 +5,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.GuiOnScreen;
+import ru.pearx.libmc.client.gui.controls.GuiOnScreen;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 

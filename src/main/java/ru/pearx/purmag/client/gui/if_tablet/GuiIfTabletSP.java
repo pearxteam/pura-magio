@@ -55,7 +55,10 @@ public class GuiIfTabletSP extends GuiIfTabletS
     @Override
     public void mouseWheel(int delta)
     {
-        update(delta > 0, true);
+        if(Keyboard.isKeyDown(Keyboard.KEY_LCONTROL))
+        {
+            update(delta > 0, true);
+        }
     }
 
     @Override
