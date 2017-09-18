@@ -3,6 +3,7 @@ package ru.pearx.purmag.client.gui.translation_desk;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
@@ -26,8 +27,9 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class GuiTranslationDeskPanel extends Control
 {
+    public static final ResourceLocation TEXTURE_BUTTON = Utils.getResourceLocation("textures/gui/translation_desk/semibutton.png");
+    public static final ResourceLocation TEXTURE_DISPLAY = Utils.getResourceLocation("textures/gui/translation_desk/display.png");
     public static final List<Integer> keyMap = new ArrayList<>();
-
     static
     {
         keyMap.add(Keyboard.KEY_S);
@@ -96,7 +98,7 @@ public class GuiTranslationDeskPanel extends Control
                         GlStateManager.color(1, 0, 0);
                 }
                 GlStateManager.enableBlend();
-                DrawingTools.drawTexture(Utils.getResourceLocation("textures/gui/translation_desk/semibutton.png"), x, y, w, h, 0, 0, w, h);
+                DrawingTools.drawTexture(TEXTURE_BUTTON, x, y, w, h, 0, 0, w, h);
                 GlStateManager.disableBlend();
             }
             if (entr.range <= 0)
@@ -113,7 +115,7 @@ public class GuiTranslationDeskPanel extends Control
         lastms = System.currentTimeMillis();
 
         GlStateManager.enableBlend();
-        DrawingTools.drawTexture(Utils.getResourceLocation("textures/gui/translation_desk/display.png"), 0, 0, getWidth(), getHeight());
+        DrawingTools.drawTexture(TEXTURE_DISPLAY, 0, 0, getWidth(), getHeight());
         GlStateManager.disableBlend();
 
         if (entries.size() == 0 && getDesk().status == GuiTranslationDesk.Status.TRANSLATING)

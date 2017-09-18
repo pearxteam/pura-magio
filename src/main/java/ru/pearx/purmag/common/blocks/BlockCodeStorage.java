@@ -24,10 +24,13 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
+import ru.pearx.libmc.client.gui.PXLGui;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.client.gui.code_storage.GuiCodeStorageUnlock;
 import ru.pearx.purmag.common.tiles.TileCodeStorage;
 import ru.pearx.purmag.common.tiles.TileWallIfTablet;
 
@@ -106,7 +109,10 @@ public class BlockCodeStorage extends BlockBase
             }
             else
             {
-                //todo open unlocking gui
+                if(worldIn.isRemote)
+                {
+                    Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiCodeStorageUnlock(te.getPos(), ((TileCodeStorage) te).getText())));
+                }
             }
         }
         return true;

@@ -37,7 +37,7 @@ public class GuiIfTabletSR extends GuiIfTabletS
             getTablet().changeScreen(new GuiIfTabletSP(entry, 0));
             return;
         }
-        btnBack = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("button.back.name"), this::goBack);
+        btnBack = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("misc.gui.if_tablet.back"), this::goBack);
         btnBack.setX(8);
         btnBack.setY(getHeight() - 24 - 8);
         btnBack.setWidth(getWidth() - 16);

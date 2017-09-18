@@ -1,6 +1,7 @@
 package ru.pearx.purmag.client.gui;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.lib.Colors;
@@ -16,6 +17,7 @@ import ru.pearx.purmag.common.Utils;
 @SideOnly(Side.CLIENT)
 public class GuiPapyrus extends GuiOnScreen
 {
+    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/papyrus.png");
     private String text;
 
     public GuiPapyrus(String papyrusId)
@@ -28,7 +30,7 @@ public class GuiPapyrus extends GuiOnScreen
     @Override
     public void render()
     {
-        DrawingTools.drawTexture(Utils.getResourceLocation("textures/gui/papyrus.png"), 0, 0, getWidth(), getHeight());
+        DrawingTools.drawTexture(TEXTURE, 0, 0, getWidth(), getHeight());
         boolean unic = Minecraft.getMinecraft().fontRenderer.getUnicodeFlag();
         Minecraft.getMinecraft().fontRenderer.setUnicodeFlag(true);
         DrawingTools.drawString(text, 5, 5, Colors.GREY_500, getWidth() - 10);

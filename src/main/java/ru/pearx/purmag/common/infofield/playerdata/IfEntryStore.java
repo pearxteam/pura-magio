@@ -63,7 +63,7 @@ public class IfEntryStore implements IIfEntryStore
     {
         setSteps(id, getSteps(id) + 1);
         sync(p, id);
-        NetworkManager.sendTo(new CPacketDisplayMessage(new DisplayMessage("%0", "%1", "if_entry:" + id, "i18n:if_step.unlocked.text")), p);
+        NetworkManager.sendTo(new CPacketDisplayMessage(new DisplayMessage("%0", "%1", "if_entry:" + id, "i18n:misc.popup.if_step_unlock.text")), p);
     }
 
     @Override

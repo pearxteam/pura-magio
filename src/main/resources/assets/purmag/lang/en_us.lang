@@ -114,11 +114,15 @@ if_page.pyroblend.0.text=todo
 
 #Miscellaneous
 itemGroup.purmag=Purificati Magicae
-if_step.unlocked.text=You've completed a research step!
-hovering.scalable.text=Scalable
-hovering.rotatable.text=Rotatable
-button.back.name=Back
-button.lock.name=LOCK
+misc.popup.if_step_unlock.text=You've completed a research step!
+misc.gui.if_tablet.back=Back
+misc.gui.code_storage.lock=LOCK
+misc.gui.code_storage.lock.text=Text:
+misc.gui.code_storage.lock.code=Code:
+misc.gui.code_storage.lock.lock=Lock
+misc.gui.code_storage.unlock.code=Code:
+misc.gui.code_storage.unlock.wrong=Wrong code!
+misc.gui.code_storage.unlock.unlock=Unlock
 
 #Commands
 command.if.usage=Usage: /infofield <unlock|lock> <entry> [player]

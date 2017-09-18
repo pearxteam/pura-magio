@@ -1,5 +1,6 @@
 package ru.pearx.purmag.client.gui.if_tablet.pages;
 
+import net.minecraft.util.ResourceLocation;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.purmag.client.infofield.pages.IfPagePapyrus;
@@ -11,6 +12,8 @@ import ru.pearx.purmag.common.Utils;
  */
 public class IPPapyrusRenderer extends IPRenderer<IfPagePapyrus>
 {
+    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/papyrus_v.png");
+
     public IPPapyrusRenderer(IfPagePapyrus page)
     {
         super(page);
@@ -20,7 +23,7 @@ public class IPPapyrusRenderer extends IPRenderer<IfPagePapyrus>
     public void render()
     {
         super.render();
-        DrawingTools.drawTexture(Utils.getResourceLocation("textures/gui/papyrus_v.png"), 0, 0, getWidth(), getHeight(), 0, 0, 368, 207);
+        DrawingTools.drawTexture(TEXTURE, 0, 0, getWidth(), getHeight(), 0, 0, 368, 207);
         DrawingTools.drawString(page.getDisplayText(), 5, 5, Colors.GREY_300, getWidth() - 5);
     }
 }

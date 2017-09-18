@@ -3,6 +3,7 @@ package ru.pearx.purmag.client.gui.code_storage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.Container;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.DrawingTools;
@@ -32,7 +33,7 @@ public class GuiContainerCodeStorage extends PXLGuiContainerControls
             setHeight(180);
             if(container.storage.isLockable())
             {
-                lock = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("button.lock.name"), () -> Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiCodeStorageLock())));
+                lock = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("misc.gui.code_storage.lock"), () -> Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiCodeStorageLock(container.storage.getPos()))));
                 lock.setSize(48, 12);
                 lock.setPos(4, 4);
             }
@@ -48,6 +49,8 @@ public class GuiContainerCodeStorage extends PXLGuiContainerControls
         }
     }
 
+    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/inventory/code_storage.png");
+
     public GuiContainerCodeStorage(ContainerCodeStorage container)
     {
         super(container, new Overlay(container));
@@ -58,6 +61,6 @@ public class GuiContainerCodeStorage extends PXLGuiContainerControls
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
-        DrawingTools.drawTexture(Utils.getResourceLocation("textures/gui/inventory/code_storage.png"), (width - xSize) / 2, (height - ySize) / 2, xSize, ySize);
+        DrawingTools.drawTexture(TEXTURE, (width - xSize) / 2, (height - ySize) / 2, xSize, ySize);
     }
 }

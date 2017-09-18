@@ -38,7 +38,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
     public void init()
     {
         super.init();
-        Button btnBack = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("button.back.name"), this::goBack);
+        Button btnBack = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("misc.gui.if_tablet.back"), this::goBack);
         //borders (8 * 2)
         int backWidth = getWidth() - 16;
         int y = getHeight() - 16 - 8;

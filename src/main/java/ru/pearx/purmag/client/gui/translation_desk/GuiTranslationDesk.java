@@ -32,9 +32,8 @@ import ru.pearx.purmag.common.tiles.TileTranslationDesk;
 @SideOnly(Side.CLIENT)
 public class GuiTranslationDesk extends GuiOnScreen
 {
-    public int texW, texH;
-    public ResourceLocation textures;
-    public TexturePart bg;
+    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/translation_desk/translation_desk.png");
+    public int texW = 384, texH = 240;
     public BlockPos pos;
     public World world;
     public Status status;
@@ -48,13 +47,8 @@ public class GuiTranslationDesk extends GuiOnScreen
     {
         this.pos = pos;
         this.world = world;
-        texW = 384;
-        texH = 240;
         setWidth(384);
         setHeight(240);
-
-        textures = Utils.getResourceLocation("textures/gui/translation_desk/translation_desk.png");
-        bg = new TexturePart(textures, 0, 0, getWidth(), getHeight(), texW, texH);
         btnStart = new BtnStart(Utils.getResourceLocation("textures/gui/button_wooden.png"), null, () ->
         {
             if (panel.translating)
@@ -81,7 +75,7 @@ public class GuiTranslationDesk extends GuiOnScreen
     public void render()
     {
         GlStateManager.enableBlend();
-        bg.draw(0, 0);
+        DrawingTools.drawTexture(TEXTURE, 0, 0, getWidth(), getHeight());
         GlStateManager.disableBlend();
         DrawingTools.drawString(I18n.format("translation_desk.status", I18n.format("translation_desk.status." + status.toString())), 15, 15, Colors.WHITE);
         if (panel.translating)
