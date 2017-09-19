@@ -2,6 +2,7 @@ package ru.pearx.purmag.client.gui.code_storage;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -22,6 +23,7 @@ import ru.pearx.purmag.common.networking.packets.code_storage.SPacketUnlock;
 @SideOnly(Side.CLIENT)
 public class GuiCodeStorageUnlock extends GuiOnScreen
 {
+    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/code_storage_lockunlock.png");
     private BlockPos pos;
     private String text;
     private int margin = 16;
@@ -50,6 +52,7 @@ public class GuiCodeStorageUnlock extends GuiOnScreen
     @Override
     public void render()
     {
+        DrawingTools.drawTexture(TEXTURE, 0, 0, getWidth(), getHeight());
         DrawingTools.drawString(text, margin, margin, Colors.WHITE);
         DrawingTools.drawString(I18n.format("misc.gui.code_storage.unlock.code"), margin, margin + DrawingTools.getFontHeight() + 8, Colors.WHITE);
         if(wrong)
