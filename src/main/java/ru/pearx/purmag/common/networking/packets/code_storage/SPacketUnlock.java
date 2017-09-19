@@ -52,17 +52,7 @@ public class SPacketUnlock implements IMessage
                 if(te != null && te instanceof TileCodeStorage)
                 {
                     TileCodeStorage storage = (TileCodeStorage) te;
-                    if(!storage.isUnlocked())
-                    {
-                        if(storage.getCode().equals(message.code))
-                        {
-                            storage.setUnlocked(true, false);
-                            storage.setCode("");
-                            storage.setText("", false);
-                            storage.sendUpdatesToClients();
-                            result = true;
-                        }
-                    }
+                    result = storage.tryUnlock(message.code);
                 }
                 NetworkManager.sendTo(new CPacketUnlockResponse(result), ctx.getServerHandler().player);
             });

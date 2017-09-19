@@ -43,11 +43,16 @@ minecraft {
     replaceIn("PurMag.java")
 }
 
+configurations {
+    incljar
+}
+
 dependencies {
-  compile project("PearXLibMC")
-  deobfCompile "mezz.jei:jei_" + jei_mcversion + ":" + jei_version + ":api"
-  runtime "mezz.jei:jei_" + jei_mcversion + ":" + jei_version
-  deobfCompile "mcjty.theoneprobe:TheOneProbe-" + top_mcversion + ":" + top_mcversion + "-" + top_version
+    compile project("PearXLibMC")
+    deobfCompile "mezz.jei:jei_" + jei_mcversion + ":" + jei_version + ":api"
+    runtime "mezz.jei:jei_" + jei_mcversion + ":" + jei_version
+    deobfCompile "mcjty.theoneprobe:TheOneProbe-" + top_mcversion + ":" + top_mcversion + "-" + top_version
+    compile configurations.incljar.dependencies
 }
 
 processResources {
@@ -58,4 +63,5 @@ jar {
     manifest {
         attributes 'FMLAT': 'purmag_at.cfg'
     }
+    from configurations.incljar
 }

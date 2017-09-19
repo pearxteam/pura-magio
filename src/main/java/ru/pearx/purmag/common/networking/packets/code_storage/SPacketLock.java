@@ -55,16 +55,7 @@ public class SPacketLock implements IMessage
                 if(te != null && te instanceof TileCodeStorage)
                 {
                     TileCodeStorage storage = (TileCodeStorage) te;
-                    if(storage.isLockable())
-                    {
-                        if(storage.isUnlocked())
-                        {
-                            storage.setText(message.text, false);
-                            storage.setCode(message.code);
-                            storage.setUnlocked(false, false);
-                            storage.sendUpdatesToClients();
-                        }
-                    }
+                    storage.tryLock(false, message.text, message.code);
                 }
             });
             return null;

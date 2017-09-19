@@ -7,11 +7,13 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import ru.pearx.lib.HashingUtils;
 import ru.pearx.libmc.common.tiles.TileSyncable;
 import ru.pearx.purmag.common.inventory.ContainerCodeStorage;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Arrays;
 
 /*
  * Created by mrAppleXZ on 09.09.17 20:48.
@@ -45,8 +47,8 @@ public class TileCodeStorage extends TileSyncable
         }
     };
 
-    private String text = "";
-    private String code = "";
+    private String text = null;
+    private byte[] hash = null;
     private boolean unlocked;
     private boolean lockable;
 
@@ -55,21 +57,19 @@ public class TileCodeStorage extends TileSyncable
         return text;
     }
 
-    public void setText(String text, boolean sync)
+    public void setText(String text)
     {
         this.text = text;
-        if(sync)
-            sendUpdatesToClients();
     }
 
-    public String getCode()
+    public byte[] getHash()
     {
-        return code;
+        return hash;
     }
 
-    public void setCode(String code)
+    protected void setHash(byte[] hash)
     {
-        this.code = code;
+        this.hash = hash;
     }
 
     public boolean isUnlocked()
@@ -77,11 +77,9 @@ public class TileCodeStorage extends TileSyncable
         return unlocked;
     }
 
-    public void setUnlocked(boolean unlocked, boolean sync)
+    public void setUnlocked(boolean unlocked)
     {
         this.unlocked = unlocked;
-        if(sync)
-            sendUpdatesToClients();
     }
 
     public boolean isLockable()
@@ -89,11 +87,52 @@ public class TileCodeStorage extends TileSyncable
         return lockable;
     }
 
-    public void setLockable(boolean lockable, boolean sync)
+    public void setLockable(boolean lockable)
     {
         this.lockable = lockable;
-        if(sync)
-            sendUpdatesToClients();
+    }
+
+    public void setCode(String code)
+    {
+        setHash(HashingUtils.getHash("SHA-512", getWorld().getSeed() + code));
+    }
+
+    public boolean isCodeValid(String code)
+    {
+        return getHash() != null && Arrays.equals(getHash(), HashingUtils.getHash("SHA-512", getWorld().getSeed() + code));
+    }
+
+    public boolean tryUnlock(String code)
+    {
+        if(!isUnlocked())
+        {
+            if(isCodeValid(code))
+            {
+                setUnlocked(true);
+                setHash(null);
+                setText(null);
+                sendUpdatesToClients();
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public boolean tryLock(boolean force,String text, String code)
+    {
+        if (isLockable() || force)
+        {
+            if (isUnlocked() || force)
+            {
+                setText(text);
+                setCode(code);
+                setUnlocked(false);
+                sendUpdatesToClients();
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -115,32 +154,37 @@ public class TileCodeStorage extends TileSyncable
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
-        compound.setTag("items", handler.serializeNBT());
-        compound.setString("text", getText());
-        compound.setString("code", getCode());
-        compound.setBoolean("unlocked", isUnlocked());
+        serializeMin(compound);
         compound.setBoolean("lockable", isLockable());
         return compound;
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        NBTTagCompound tag = new NBTTagCompound();
-        writeToNBT(tag);
-        tag.removeTag("code");
-        return tag;
     }
 
     @Override
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
+        deserializeMin(compound);
+        setLockable(compound.getBoolean("lockable"));
+    }
+
+    public NBTTagCompound serializeMin(NBTTagCompound compound)
+    {
+        compound.setTag("items", handler.serializeNBT());
+        if (getText() != null)
+            compound.setString("text", getText());
+        if (getHash() != null)
+            compound.setByteArray("hash", getHash());
+        compound.setBoolean("unlocked", isUnlocked());
+        return compound;
+    }
+
+    public void deserializeMin(NBTTagCompound compound)
+    {
         handler.deserializeNBT(compound.getCompoundTag("items"));
-        setText(compound.getString("text"), false);
-        if(compound.hasKey("code", Constants.NBT.TAG_STRING))
-            setCode(compound.getString("code"));
-        setUnlocked(compound.getBoolean("unlocked"), false);
-        setLockable(compound.getBoolean("lockable"), false);
+        if (compound.hasKey("text", Constants.NBT.TAG_STRING))
+            setText(compound.getString("text"));
+        if (compound.hasKey("hash", Constants.NBT.TAG_BYTE_ARRAY))
+            setHash(compound.getByteArray("hash"));
+        setUnlocked(compound.getBoolean("unlocked"));
     }
 }

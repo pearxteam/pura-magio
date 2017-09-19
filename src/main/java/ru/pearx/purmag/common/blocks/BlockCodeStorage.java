@@ -140,17 +140,14 @@ public class BlockCodeStorage extends BlockBase
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         TileEntity te = world.getTileEntity(pos);
-        if(te != null && te instanceof TileCodeStorage)
+        if (te != null && te instanceof TileCodeStorage)
         {
             TileCodeStorage storage = (TileCodeStorage) te;
-            if(storage.isUnlocked())
-            {
-                ItemStack stack = new ItemStack(this, 1, storage.isLockable() ? 0 : 1);
-                NBTTagCompound tag = new NBTTagCompound();
-                tag.setTag("items", storage.handler.serializeNBT());
-                stack.setTagCompound(tag);
-                drops.add(stack);
-            }
+            ItemStack stack = new ItemStack(this, 1, storage.isLockable() ? 0 : 1);
+            NBTTagCompound tag = new NBTTagCompound();
+            tag.setTag("data", storage.serializeMin(new NBTTagCompound()));
+            stack.setTagCompound(tag);
+            drops.add(stack);
         }
     }
 
@@ -162,16 +159,19 @@ public class BlockCodeStorage extends BlockBase
         {
             TileCodeStorage storage = (TileCodeStorage) te;
             //meta == 0 - lockable; meta == 1 - not lockable
-            storage.setLockable(stack.getMetadata() == 0, false);
-            storage.setUnlocked(true, false);
+            storage.setLockable(stack.getMetadata() == 0);
+            boolean unloc = true;
             if (stack.hasTagCompound())
             {
                 NBTTagCompound tag = stack.getTagCompound();
-                if (tag.hasKey("items", Constants.NBT.TAG_COMPOUND))
+                if(tag.hasKey("data", Constants.NBT.TAG_COMPOUND))
                 {
-                    storage.handler.deserializeNBT(tag.getCompoundTag("items"));
+                    storage.deserializeMin(tag.getCompoundTag("data"));
+                    unloc = false;
                 }
             }
+            if(unloc)
+                storage.setUnlocked(true);
         }
     }
 
@@ -201,9 +201,9 @@ public class BlockCodeStorage extends BlockBase
         if(stack.hasTagCompound())
         {
             NBTTagCompound tag = stack.getTagCompound();
-            if(tag.hasKey("items", Constants.NBT.TAG_COMPOUND))
+            if(tag.hasKey("data", Constants.NBT.TAG_COMPOUND))
             {
-                NBTTagList itemList = tag.getCompoundTag("items").getTagList("Items", Constants.NBT.TAG_COMPOUND);
+                NBTTagList itemList = tag.getCompoundTag("data").getCompoundTag("items").getTagList("Items", Constants.NBT.TAG_COMPOUND);
                 tooltip.add(I18n.format(getUnlocalizedName() + ".tooltip", itemList.tagCount()));
             }
         }
