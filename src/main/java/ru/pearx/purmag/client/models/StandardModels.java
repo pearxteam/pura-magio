@@ -10,22 +10,15 @@ import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.*;
-import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
-import net.minecraftforge.common.model.IModelPart;
 import net.minecraftforge.common.model.IModelState;
-import net.minecraftforge.common.model.Models;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
-import ru.pearx.libmc.client.models.BakedQuadWNT;
-import ru.pearx.libmc.client.models.ConnectedModel;
-import ru.pearx.libmc.client.models.IPXModel;
-import ru.pearx.libmc.client.models.OvModel;
+import ru.pearx.libmc.client.models.*;
 import ru.pearx.libmc.client.models.processors.FacingProcessor;
-import ru.pearx.libmc.client.models.processors.IQuadProcessor;
 import ru.pearx.libmc.client.models.processors.IVertexProcessor;
 import ru.pearx.libmc.client.models.processors.TintProcessor;
 import ru.pearx.purmag.PurMag;
@@ -36,9 +29,7 @@ import javax.annotation.Nullable;
 import javax.vecmath.Matrix4f;
 import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by mrAppleXZ on 17.05.17 8:04.
