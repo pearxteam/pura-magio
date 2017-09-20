@@ -19,11 +19,9 @@ import ru.pearx.purmag.common.networking.packets.code_storage.SPacketLock;
  * Created by mrAppleXZ on 17.09.17 20:08.
  */
 @SideOnly(Side.CLIENT)
-public class GuiCodeStorageLock extends GuiOnScreen
+public class GuiCodeStorageLock extends GuiCodeStorageLockUnlock
 {
-    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/code_storage_lockunlock.png");
     private BlockPos pos;
-    private int margin = 16;
 
     public TextBox text = new TextBox(Utils.getResourceLocation("textures/gui/textbox.png"));
     public TextBox code = new TextBox(Utils.getResourceLocation("textures/gui/textbox.png"));
@@ -52,7 +50,7 @@ public class GuiCodeStorageLock extends GuiOnScreen
     @Override
     public void render()
     {
-        DrawingTools.drawTexture(TEXTURE, 0, 0, getWidth(), getHeight());
+        super.render();
         DrawingTools.drawString(I18n.format("misc.gui.code_storage.lock.text"), margin, margin, Colors.WHITE);
         DrawingTools.drawString(I18n.format("misc.gui.code_storage.lock.code"), margin, text.getY() + margin, Colors.WHITE);
     }

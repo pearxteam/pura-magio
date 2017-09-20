@@ -1,14 +1,24 @@
 package ru.pearx.purmag.common.tiles;
 
+import com.google.common.collect.ImmutableMap;
+import javafx.animation.Animation;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.model.animation.AnimationStateMachine;
+import net.minecraftforge.common.model.animation.CapabilityAnimation;
+import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.pearx.lib.HashingUtils;
 import ru.pearx.libmc.common.tiles.TileSyncable;
+import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.inventory.ContainerCodeStorage;
 
 import javax.annotation.Nonnull;
@@ -138,7 +148,7 @@ public class TileCodeStorage extends TileSyncable
     @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
     {
-        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || capability == CapabilityAnimation.ANIMATION_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Nullable

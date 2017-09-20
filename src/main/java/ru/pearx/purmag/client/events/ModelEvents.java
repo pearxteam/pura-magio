@@ -4,6 +4,8 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.model.MultiModelState;
+import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.common.Mod;
@@ -37,17 +39,15 @@ public class ModelEvents
         putModel(e, new StandardModels.Microscope(), Utils.getResourceLocation("microscope"));
         putModel(e, new StandardModels.LuminousCrystalGlass(), Utils.getResourceLocation("luminous_crystal_glass"));
         putModel(e, new StandardModels.Test(), Utils.getResourceLocation("test"));
-    }
-
-    private static void putModel(ModelBakeEvent e, IPXModel model, ResourceLocation loc, IModelState state)
-    {
-        model.bake(state);
-        e.getModelRegistry().putObject(new ModelResourceLocation(loc, "normal"), model);
+        putModel(e, new StandardModels.CodeStorage(), Utils.getResourceLocation("code_storage"));
+        putModel(e, new StandardModels.CodeStorage.Top(), Utils.getResourceLocation("code_storage/top"));
+        putModel(e, new StandardModels.CodeStorage.Body(), Utils.getResourceLocation("code_storage/body"));
     }
 
     private static void putModel(ModelBakeEvent e, IPXModel model, ResourceLocation loc)
     {
-        putModel(e, model, loc, TRSRTransformation.identity());
+        model.bake();
+        e.getModelRegistry().putObject(new ModelResourceLocation(loc, "normal"), model);
     }
 
     @SubscribeEvent
@@ -71,5 +71,6 @@ public class ModelEvents
         for (IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
             e.getMap().registerSprite(t.getWallTabletTexture());
         e.getMap().registerSprite(Utils.getResourceLocation("models/microscope"));
+        e.getMap().registerSprite(Utils.getResourceLocation("models/code_storage"));
     }
 }

@@ -9,7 +9,12 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.*;
+import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
+import net.minecraftforge.common.model.IModelPart;
+import net.minecraftforge.common.model.IModelState;
+import net.minecraftforge.common.model.Models;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
@@ -31,7 +36,9 @@ import javax.annotation.Nullable;
 import javax.vecmath.Matrix4f;
 import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by mrAppleXZ on 17.05.17 8:04.
@@ -173,7 +180,7 @@ public class StandardModels
                 @Override
                 public float[] processVertex(UnpackedBakedQuad.Builder bld, BakedQuad quad, float[] data, int vert, int element, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
                 {
-                    if(bld.getVertexFormat().getElement(element).getUsage() == VertexFormatElement.EnumUsage.UV)
+                    if (bld.getVertexFormat().getElement(element).getUsage() == VertexFormatElement.EnumUsage.UV)
                     {
                         data[0] = sprite.getInterpolatedU(quad.getSprite().getUnInterpolatedU(data[0]));
                         data[1] = sprite.getInterpolatedV(quad.getSprite().getUnInterpolatedV(data[1]));
@@ -224,5 +231,31 @@ public class StandardModels
         }
     }
 
+    public static class CodeStorage extends OvModel
+    {
+        public CodeStorage()
+        {
+            setBaseModel(Utils.getResourceLocation("obj/code_storage.obj"));
+        }
 
+        public static class Top extends CodeStorage
+        {
+            private ModelStateHide hide = new ModelStateHide("top", "gauge");
+            @Override
+            public IModelState getModelState(IPXModel th, IModel model)
+            {
+                return hide;
+            }
+        }
+
+        public static class Body extends CodeStorage
+        {
+            private ModelStateHide hide = new ModelStateHide("body", "screenandkeyboard");
+            @Override
+            public IModelState getModelState(IPXModel th, IModel model)
+            {
+                return hide;
+            }
+        }
+    }
 }

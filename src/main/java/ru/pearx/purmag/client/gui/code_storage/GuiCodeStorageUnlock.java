@@ -21,12 +21,10 @@ import ru.pearx.purmag.common.networking.packets.code_storage.SPacketUnlock;
  * Created by mrAppleXZ on 18.09.17 22:59.
  */
 @SideOnly(Side.CLIENT)
-public class GuiCodeStorageUnlock extends GuiOnScreen
+public class GuiCodeStorageUnlock extends GuiCodeStorageLockUnlock
 {
-    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/code_storage_lockunlock.png");
     private BlockPos pos;
     private String text;
-    private int margin = 16;
 
     private boolean wrong = false;
 
@@ -39,8 +37,6 @@ public class GuiCodeStorageUnlock extends GuiOnScreen
         this.pos = pos;
         this.text = text;
 
-        setWidth(288);
-        setHeight(128);
         code.setWidth(256);
         code.setMaxRenderLength(64);
         code.setPos(margin, margin + DrawingTools.getFontHeight() + 8 + DrawingTools.getFontHeight() + 2);
@@ -52,7 +48,7 @@ public class GuiCodeStorageUnlock extends GuiOnScreen
     @Override
     public void render()
     {
-        DrawingTools.drawTexture(TEXTURE, 0, 0, getWidth(), getHeight());
+        super.render();
         DrawingTools.drawString(text, margin, margin, Colors.WHITE);
         DrawingTools.drawString(I18n.format("misc.gui.code_storage.unlock.code"), margin, margin + DrawingTools.getFontHeight() + 8, Colors.WHITE);
         if(wrong)
