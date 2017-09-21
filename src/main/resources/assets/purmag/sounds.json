@@ -42,5 +42,8 @@
       "purmag:beetle/hurt.0",
       "purmag:beetle/hurt.1"
     ]
+  },
+  "misc.code_storage_open": {
+    "sounds": ["purmag:code_storage_open"]
   }
 }

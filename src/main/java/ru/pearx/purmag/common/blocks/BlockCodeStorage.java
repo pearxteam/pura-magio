@@ -37,6 +37,7 @@ import ru.pearx.libmc.client.gui.PXLGui;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.gui.code_storage.GuiCodeStorageUnlock;
+import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.tiles.TileCodeStorage;
 
 import javax.annotation.Nullable;
@@ -49,7 +50,7 @@ import java.util.Optional;
  */
 public class BlockCodeStorage extends BlockBase
 {
-    public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1, 0f, 0.1f, 0.9f, 0.8f, 0.9f);
+    public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.05f, 0f, 0.05f, 0.95f, 0.875f, 0.95f);
     public static final int GUI_ID = 0;
 
     public BlockCodeStorage()
@@ -114,7 +115,7 @@ public class BlockCodeStorage extends BlockBase
             {
                 if(!worldIn.isRemote)
                 {
-                    storage.anim.changeState("opening");
+                    storage.setOpened(true);
                     playerIn.openGui(PurMag.INSTANCE, GUI_ID, worldIn, pos.getX(), pos.getY(), pos.getZ());
                 }
             }

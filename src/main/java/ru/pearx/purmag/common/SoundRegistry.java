@@ -30,6 +30,8 @@ public class SoundRegistry
     public static SoundEvent BEETLE_IDLE;
     @GameRegistry.ObjectHolder("mob.verda_beetle.hurt")
     public static SoundEvent BEETLE_HURT;
+    @GameRegistry.ObjectHolder("misc.code_storage_open")
+    public static SoundEvent CODE_STORAGE_OPEN;
 
     public static void register(ResourceLocation loc, IForgeRegistry<SoundEvent> reg)
     {
@@ -49,5 +51,6 @@ public class SoundRegistry
         register(Utils.getResourceLocation("misc.error"), reg);
         register(Utils.getResourceLocation("mob.verda_beetle.idle"), reg);
         register(Utils.getResourceLocation("mob.verda_beetle.hurt"), reg);
+        register(Utils.getResourceLocation("misc.code_storage_open"), reg);
     }
 }

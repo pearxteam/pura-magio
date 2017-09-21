@@ -5,7 +5,10 @@ import javafx.animation.Animation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.model.animation.AnimationStateMachine;
@@ -21,6 +24,7 @@ import ru.pearx.lib.HashingUtils;
 import ru.pearx.libmc.common.PXLCapabilities;
 import ru.pearx.libmc.common.animation.AnimationStateManager;
 import ru.pearx.libmc.common.tiles.TileSyncable;
+import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.inventory.ContainerCodeStorage;
 
@@ -75,6 +79,7 @@ public class TileCodeStorage extends TileSyncable
     private byte[] hash = null;
     private boolean unlocked;
     private boolean lockable;
+    private boolean opened;
 
     public TileCodeStorage()
     {
@@ -125,6 +130,41 @@ public class TileCodeStorage extends TileSyncable
     public void setCode(String code)
     {
         setHash(HashingUtils.getHash("SHA-512", getWorld().getSeed() + code));
+    }
+
+    public boolean isOpened()
+    {
+        return opened;
+    }
+
+    public void setOpened(boolean opened)
+    {
+        if(opened != this.opened)
+        {
+            if(!world.isRemote)
+                getWorld().playSound(null, getPos(), SoundRegistry.CODE_STORAGE_OPEN, SoundCategory.BLOCKS, 1, 1);
+            if(opened)
+                anim.changeState("opening");
+            else
+                anim.changeState("closing");
+        }
+        this.opened = opened;
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        NBTTagCompound tag = super.getUpdateTag();
+        tag.setBoolean("opened", isOpened());
+        return tag;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+    {
+        super.onDataPacket(net, pkt);
+        setOpened(pkt.getNbtCompound().getBoolean("opened"));
     }
 
     public boolean isCodeValid(String code)
@@ -188,7 +228,6 @@ public class TileCodeStorage extends TileSyncable
         super.writeToNBT(compound);
         serializeMin(compound);
         compound.setBoolean("lockable", isLockable());
-        compound.setTag("animation", anim.serializeNBT());
         return compound;
     }
 
@@ -198,7 +237,6 @@ public class TileCodeStorage extends TileSyncable
         super.readFromNBT(compound);
         deserializeMin(compound);
         setLockable(compound.getBoolean("lockable"));
-        anim.deserializeNBT(compound.getCompoundTag("animation"));
     }
 
     public NBTTagCompound serializeMin(NBTTagCompound compound)
