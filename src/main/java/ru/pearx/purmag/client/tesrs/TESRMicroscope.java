@@ -1,7 +1,9 @@
 package ru.pearx.purmag.client.tesrs;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -14,6 +16,12 @@ import ru.pearx.purmag.common.tiles.TileMicroscope;
  */
 public class TESRMicroscope extends PXLFastTESR<TileMicroscope>
 {
+    @Override
+    public void render(TileMicroscope te, double x, double y, double z, float partialTicks, int destroyStage, float alpha, BufferBuilder buffer, Tessellator tes)
+    {
+
+    }
+
     @Override
     public void renderPre(TileMicroscope te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
@@ -45,11 +53,5 @@ public class TESRMicroscope extends PXLFastTESR<TileMicroscope>
             Minecraft.getMinecraft().getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);
             GlStateManager.popMatrix();
         }
-    }
-
-    @Override
-    public void renderPost(TileMicroscope te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
-    {
-
     }
 }

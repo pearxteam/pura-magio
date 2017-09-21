@@ -19,7 +19,7 @@ import java.util.TimerTask;
  * Created by mrAppleXZ on 25.06.17 11:51.
  */
 @SideOnly(Side.CLIENT)
-@Mod.EventBusSubscriber(modid = PurMag.MODID)
+@Mod.EventBusSubscriber(modid = PurMag.MODID, value = Side.CLIENT)
 public class DisplayMessageEvents
 {
     private static Timer timerDM = new Timer();

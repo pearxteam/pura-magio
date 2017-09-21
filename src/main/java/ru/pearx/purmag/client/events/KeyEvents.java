@@ -16,7 +16,7 @@ import ru.pearx.purmag.common.networking.packets.SPacketUseSipAmulet;
  * Created by mrAppleXZ on 25.06.17 11:52.
  */
 @SideOnly(Side.CLIENT)
-@Mod.EventBusSubscriber(modid = PurMag.MODID)
+@Mod.EventBusSubscriber(modid = PurMag.MODID, value = Side.CLIENT)
 public class KeyEvents
 {
     @SubscribeEvent

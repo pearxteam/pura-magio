@@ -112,13 +112,17 @@ public class BlockCodeStorage extends BlockBase
             TileCodeStorage storage = (TileCodeStorage) te;
             if(storage.isUnlocked())
             {
-                playerIn.openGui(PurMag.INSTANCE, GUI_ID,  worldIn, pos.getX(), pos.getY(), pos.getZ());
+                if(!worldIn.isRemote)
+                {
+                    storage.anim.changeState("opening");
+                    playerIn.openGui(PurMag.INSTANCE, GUI_ID, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                }
             }
             else
             {
                 if(worldIn.isRemote)
                 {
-                    Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiCodeStorageUnlock(te.getPos(), ((TileCodeStorage) te).getText())));
+                    PurMag.proxy.openCodeStorageUnlock(storage);
                 }
             }
         }

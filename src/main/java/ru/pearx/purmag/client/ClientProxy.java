@@ -13,6 +13,7 @@ import ru.pearx.libmc.client.gui.PXLGui;
 import ru.pearx.libmc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.gui.GuiPapyrus;
+import ru.pearx.purmag.client.gui.code_storage.GuiCodeStorageUnlock;
 import ru.pearx.purmag.client.gui.if_tablet.GuiIfTablet;
 import ru.pearx.purmag.client.gui.microscope.GuiMicroscope;
 import ru.pearx.purmag.client.gui.translation_desk.GuiTranslationDesk;
@@ -22,6 +23,7 @@ import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.entities.EntityRegistry;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.sip.SipUtils;
+import ru.pearx.purmag.common.tiles.TileCodeStorage;
 import ru.pearx.purmag.common.tiles.TileRegistry;
 
 /**
@@ -110,5 +112,11 @@ public class ClientProxy extends CommonProxy
     public void openMicroscope(ItemStack stack)
     {
         Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiMicroscope(stack)));
+    }
+
+    @Override
+    public void openCodeStorageUnlock(TileCodeStorage te)
+    {
+        Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiCodeStorageUnlock(te.getPos(), te.getText())));
     }
 }

@@ -14,9 +14,12 @@ import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.pearx.lib.HashingUtils;
+import ru.pearx.libmc.common.PXLCapabilities;
+import ru.pearx.libmc.common.animation.AnimationStateManager;
 import ru.pearx.libmc.common.tiles.TileSyncable;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.inventory.ContainerCodeStorage;
@@ -30,6 +33,13 @@ import java.util.Arrays;
  */
 public class TileCodeStorage extends TileSyncable
 {
+    @SideOnly(Side.CLIENT)
+    public static class ClientAnimData
+    {
+        public boolean startedOpeningAnim;
+        public long animStartTime;
+    }
+
     public ItemStackHandler handler = new ItemStackHandler(ContainerCodeStorage.SLOT_COUNT)
     {
         @Override
@@ -57,10 +67,20 @@ public class TileCodeStorage extends TileSyncable
         }
     };
 
+    public AnimationStateManager anim = new AnimationStateManager(this, "closed", "closed", "closing", "opened", "opening");
+    @SideOnly(Side.CLIENT)
+    public ClientAnimData anim_data;
+
     private String text = null;
     private byte[] hash = null;
     private boolean unlocked;
     private boolean lockable;
+
+    public TileCodeStorage()
+    {
+        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+            anim_data = new ClientAnimData();
+    }
 
     public String getText()
     {
@@ -148,7 +168,7 @@ public class TileCodeStorage extends TileSyncable
     @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
     {
-        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || capability == CapabilityAnimation.ANIMATION_CAPABILITY || super.hasCapability(capability, facing);
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || capability == PXLCapabilities.ASM || super.hasCapability(capability, facing);
     }
 
     @Nullable
@@ -157,6 +177,8 @@ public class TileCodeStorage extends TileSyncable
     {
         if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(handler);
+        if(capability == PXLCapabilities.ASM)
+            return PXLCapabilities.ASM.cast(anim);
         return super.getCapability(capability, facing);
     }
 
@@ -166,6 +188,7 @@ public class TileCodeStorage extends TileSyncable
         super.writeToNBT(compound);
         serializeMin(compound);
         compound.setBoolean("lockable", isLockable());
+        compound.setTag("animation", anim.serializeNBT());
         return compound;
     }
 
@@ -175,6 +198,7 @@ public class TileCodeStorage extends TileSyncable
         super.readFromNBT(compound);
         deserializeMin(compound);
         setLockable(compound.getBoolean("lockable"));
+        anim.deserializeNBT(compound.getCompoundTag("animation"));
     }
 
     public NBTTagCompound serializeMin(NBTTagCompound compound)

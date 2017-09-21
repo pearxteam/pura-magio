@@ -22,7 +22,7 @@ import ru.pearx.purmag.common.infofield.IfTier;
  * Created by mrAppleXZ on 09.04.17 15:36.
  */
 @SideOnly(Side.CLIENT)
-@Mod.EventBusSubscriber(modid = PurMag.MODID)
+@Mod.EventBusSubscriber(modid = PurMag.MODID, value = Side.CLIENT)
 public class ModelEvents
 {
     @SubscribeEvent

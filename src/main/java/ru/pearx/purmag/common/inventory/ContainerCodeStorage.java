@@ -44,6 +44,13 @@ public class ContainerCodeStorage extends PXLContainer
     }
 
     @Override
+    public void onContainerClosed(EntityPlayer playerIn)
+    {
+        super.onContainerClosed(playerIn);
+        storage.anim.changeState("closing");
+    }
+
+    @Override
     public boolean canInteractWith(EntityPlayer playerIn)
     {
         return playerIn.getDistanceSq(storage.getPos()) < 64;

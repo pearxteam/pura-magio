@@ -33,7 +33,11 @@ public class GuiContainerCodeStorage extends PXLGuiContainerControls
             setHeight(180);
             if(container.storage.isLockable())
             {
-                lock = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("misc.gui.code_storage.lock"), () -> Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiCodeStorageLock(container.storage.getPos()))));
+                lock = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("misc.gui.code_storage.lock"), () ->
+                {
+                    Minecraft.getMinecraft().player.closeScreen();
+                    Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiCodeStorageLock(container.storage.getPos())));
+                });
                 lock.setSize(48, 12);
                 lock.setPos(4, 4);
             }
