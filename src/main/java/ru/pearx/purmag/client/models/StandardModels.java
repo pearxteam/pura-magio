@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.block.model.ModelRotation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.util.EnumFacing;
@@ -17,6 +18,7 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
+import ru.pearx.libmc.client.debug.ModelRotationDebugger;
 import ru.pearx.libmc.client.models.*;
 import ru.pearx.libmc.client.models.processors.FacingProcessor;
 import ru.pearx.libmc.client.models.processors.IVertexProcessor;
@@ -75,7 +77,7 @@ public class StandardModels
     public static class Glove extends OvModel
     {
         private Matrix4f mat_fp = new TRSRTransformation(new Vector3f(0f, 0.2f, -0.1f), new Quat4f(0, 0, 45, 1), null, new Quat4f(0, 0, 180, 1)).getMatrix();
-        private Matrix4f mat_gui = new TRSRTransformation(new Vector3f(0.15f, 0.15f, 0), null, new Vector3f(1.2f, 1.2f, 1.2f), new Quat4f(-1.64061f, -4.50295f, 0, 1)).getMatrix();
+        private Matrix4f mat_gui = new TRSRTransformation(new Vector3f(0.15f, 0.15f, 0), null, new Vector3f(1.2f, 1.2f, 1.2f), TRSRTransformation.quatFromXYZDegrees(new Vector3f(30, 225, 0))).getMatrix();
 
         public Glove()
         {
@@ -99,7 +101,7 @@ public class StandardModels
 
     public static class TranslationDesk extends OvModel
     {
-        private Matrix4f mat_gui = new TRSRTransformation(null, null, new Vector3f(0.6f, 0.6f, 0.6f), new Quat4f(0.523599f, 3.92699f, 1.5708f, 1)).getMatrix();
+        private Matrix4f mat_gui = new TRSRTransformation(null, null, new Vector3f(0.6f, 0.6f, 0.6f), TRSRTransformation.quatFromXYZDegrees(new Vector3f(30, 225, 0))).getMatrix();
         private Matrix4f mat = new TRSRTransformation(null, null, new Vector3f(0.375f, 0.375f, 0.375f), null).getMatrix();
 
         public TranslationDesk()
@@ -224,9 +226,20 @@ public class StandardModels
 
     public static class CodeStorage extends OvModel
     {
+        public Matrix4f mat_gui = new TRSRTransformation(null, null, new Vector3f(0.6f, 0.6f, 0.6f), TRSRTransformation.quatFromXYZDegrees(new Vector3f(30, 225, 0))).getMatrix();
+        public Matrix4f mat = new TRSRTransformation(null, null, new Vector3f(0.375f, 0.375f, 0.375f), null).getMatrix();
+
         public CodeStorage()
         {
             setBaseModel(Utils.getResourceLocation("obj/code_storage.obj"));
+        }
+
+        @Override
+        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
+        {
+            if(cameraTransformType == ItemCameraTransforms.TransformType.GUI)
+                return Pair.of(this, mat_gui);
+            return Pair.of(this, mat);
         }
 
         public static class Top extends CodeStorage
