@@ -25,7 +25,7 @@ import java.util.Random;
 /*
  * Created by mrAppleXZ on 09.07.17 17:15.
  */
-public class BlockBrokenWallIfTablet extends AbstractWallIfTablet
+public class BlockBrokenWallIfTablet extends BlockAbstractWallIfTablet
 {
     public BlockBrokenWallIfTablet()
     {

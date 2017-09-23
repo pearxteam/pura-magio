@@ -1,5 +1,6 @@
 package ru.pearx.purmag.client.tesrs;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -98,7 +99,8 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
         }
 
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-        dis.getBlockModelRenderer().renderModel(te.getWorld(), top, te.getWorld().getBlockState(te.getPos()), te.getPos(), buffer, false, MathHelper.getPositionRandom(te.getPos()));
+        IBlockState st = te.getWorld().getBlockState(te.getPos());
+        dis.getBlockModelRenderer().renderModel(te.getWorld(), top, st.getBlock().getExtendedState(st, te.getWorld(), te.getPos()), te.getPos(), buffer, false, MathHelper.getPositionRandom(te.getPos()));
         tessellator.draw();
         GlStateManager.popMatrix();
     }

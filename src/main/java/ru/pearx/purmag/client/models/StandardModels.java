@@ -5,7 +5,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.block.model.ModelRotation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.util.EnumFacing;
@@ -18,14 +17,14 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
-import ru.pearx.libmc.client.debug.ModelRotationDebugger;
 import ru.pearx.libmc.client.models.*;
 import ru.pearx.libmc.client.models.processors.FacingProcessor;
 import ru.pearx.libmc.client.models.processors.IVertexProcessor;
 import ru.pearx.libmc.client.models.processors.TintProcessor;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
-import ru.pearx.purmag.common.blocks.AbstractWallIfTablet;
+import ru.pearx.purmag.common.blocks.BlockAbstractWallIfTablet;
+import ru.pearx.purmag.common.blocks.BlockCodeStorage;
 
 import javax.annotation.Nullable;
 import javax.vecmath.Matrix4f;
@@ -157,7 +156,7 @@ public class StandardModels
                 {
                     int tier;
                     if (state != null && state instanceof IExtendedBlockState)
-                        tier = ((IExtendedBlockState) state).getValue(AbstractWallIfTablet.IF_TIER);
+                        tier = ((IExtendedBlockState) state).getValue(BlockAbstractWallIfTablet.IF_TIER);
                     else
                         tier = getStack().getMetadata();
                     String s = PurMag.INSTANCE.getIfRegistry().getTier(tier).getWallTabletTexture().toString();
@@ -244,7 +243,63 @@ public class StandardModels
 
         public static class Top extends CodeStorage
         {
+            public static final String CODE_STORAGE_LOCK_LOCKED_SPRITE = PurMag.MODID + ":models/code_storage/lock_locked";
+            public static final String CODE_STORAGE_LOCK_UNLOCKED_SPRITE = PurMag.MODID + ":models/code_storage/lock_unlocked";
+
+
             private ModelStateHide hide = new ModelStateHide("top", "gauge");
+
+            public Top()
+            {
+                super();
+                //unlocked processor
+                vertexProcessors.add(new IVertexProcessor()
+                {
+                    private TextureAtlasSprite sprite;
+
+                    @Override
+                    public void preProcess(List<BakedQuad> quads, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
+                    {
+                        sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Utils.getResourceLocation("models/code_storage/lock_unlocked").toString());
+                    }
+
+                    @Override
+                    public void processQuad(UnpackedBakedQuad.Builder bld, BakedQuad quad, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
+                    {
+                        bld.setTexture(sprite);
+                    }
+
+                    @Override
+                    public float[] processVertex(UnpackedBakedQuad.Builder bld, BakedQuad quad, float[] data, int vert, int element, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
+                    {
+                        if (bld.getVertexFormat().getElement(element).getUsage() == VertexFormatElement.EnumUsage.UV)
+                        {
+                            data[0] = sprite.getInterpolatedU(quad.getSprite().getUnInterpolatedU(data[0]));
+                            data[1] = sprite.getInterpolatedV(quad.getSprite().getUnInterpolatedV(data[1]));
+                        }
+                        return data;
+                    }
+
+                    @Override
+                    public boolean processState()
+                    {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean processStack()
+                    {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean shouldProcess(BakedQuad quad, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
+                    {
+                        return state != null && state instanceof IExtendedBlockState && ((IExtendedBlockState) state).getValue(BlockCodeStorage.UNLOCKED_PROPERTY) && quad.getSprite().getIconName().equals(CODE_STORAGE_LOCK_LOCKED_SPRITE);
+                    }
+                });
+            }
+
             @Override
             public IModelState getModelState(IPXModel th, IModel model)
             {

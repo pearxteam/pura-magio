@@ -71,6 +71,8 @@ public class ModelEvents
         for (IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
             e.getMap().registerSprite(t.getWallTabletTexture());
         e.getMap().registerSprite(Utils.getResourceLocation("models/microscope"));
-        e.getMap().registerSprite(Utils.getResourceLocation("models/code_storage"));
+        e.getMap().registerSprite(Utils.getResourceLocation("models/code_storage/code_storage"));
+        e.getMap().registerSprite(Utils.getResourceLocation("models/code_storage/lock_locked"));
+        e.getMap().registerSprite(Utils.getResourceLocation("models/code_storage/lock_unlocked"));
     }
 }

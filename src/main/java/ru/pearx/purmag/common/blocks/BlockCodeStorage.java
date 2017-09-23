@@ -4,6 +4,7 @@ import jdk.nashorn.internal.runtime.CodeStore;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -50,6 +51,7 @@ import java.util.Optional;
  */
 public class BlockCodeStorage extends BlockBase
 {
+    public static final IUnlistedProperty<Boolean> UNLOCKED_PROPERTY = new Properties.PropertyAdapter<>(PropertyBool.create("unlocked"));
     public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.05f, 0f, 0.05f, 0.95f, 0.875f, 0.95f);
     public static final int GUI_ID = 0;
 
@@ -231,7 +233,21 @@ public class BlockCodeStorage extends BlockBase
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, HorizontalFacingController.FACING_H);
+        return new ExtendedBlockState(this, new IProperty[] {HorizontalFacingController.FACING_H}, new IUnlistedProperty[] {UNLOCKED_PROPERTY});
+    }
+
+    @Override
+    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        if(state instanceof IExtendedBlockState)
+        {
+            TileEntity te = world.getTileEntity(pos);
+            if(te != null && te instanceof TileCodeStorage)
+            {
+                return ((IExtendedBlockState) state).withProperty(UNLOCKED_PROPERTY, ((TileCodeStorage) te).isUnlocked());
+            }
+        }
+        return super.getExtendedState(state, world, pos);
     }
 
     @Override

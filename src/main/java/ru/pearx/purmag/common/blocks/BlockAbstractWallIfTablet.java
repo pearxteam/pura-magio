@@ -33,7 +33,7 @@ import java.util.Map;
 /*
  * Created by mrAppleXZ on 06.07.17 10:55.
  */
-public abstract class AbstractWallIfTablet extends BlockBase
+public abstract class BlockAbstractWallIfTablet extends BlockBase
 {
     public static final PropertyIfTier IF_TIER = new PropertyIfTier("if_tier");
     public static final Map<EnumFacing, AxisAlignedBB> BOUNDING_BOXES = new HashMap<>();
@@ -46,7 +46,7 @@ public abstract class AbstractWallIfTablet extends BlockBase
         BOUNDING_BOXES.put(EnumFacing.EAST, new AxisAlignedBB(0.05f, 0.15f, 0.15f, 0, 0.85f, 0.85f));
     }
 
-    public AbstractWallIfTablet(String name)
+    public BlockAbstractWallIfTablet(String name)
     {
         super(name, Material.CIRCUITS);
         setHardness(1);
