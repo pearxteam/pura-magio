@@ -2,19 +2,16 @@ package ru.pearx.purmag.client.gui.code_storage;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.controls.GuiOnScreen;
 import ru.pearx.libmc.client.gui.controls.common.Button;
 import ru.pearx.libmc.client.gui.controls.common.TextBox;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.code_storage.CPacketUnlockResponse;
-import ru.pearx.purmag.common.networking.packets.code_storage.SPacketLock;
 import ru.pearx.purmag.common.networking.packets.code_storage.SPacketUnlock;
 
 /*

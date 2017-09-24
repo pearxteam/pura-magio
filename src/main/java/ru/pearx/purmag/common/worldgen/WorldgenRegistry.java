@@ -22,8 +22,6 @@ import ru.pearx.purmag.common.worldgen.crystal.CrystalGenPredicate;
 import ru.pearx.purmag.common.worldgen.crystal.CrystalGenPredicates;
 import ru.pearx.purmag.common.worldgen.crystal.WGCrystal;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**

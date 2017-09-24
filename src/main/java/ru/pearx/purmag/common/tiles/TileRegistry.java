@@ -1,7 +1,5 @@
 package ru.pearx.purmag.common.tiles;
 
-import net.minecraftforge.client.model.animation.AnimationTESR;
-import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;

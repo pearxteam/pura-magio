@@ -1,19 +1,12 @@
 package ru.pearx.purmag.common.tiles;
 
-import com.google.common.collect.ImmutableMap;
-import javafx.animation.Animation;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.model.animation.AnimationStateMachine;
-import net.minecraftforge.common.model.animation.CapabilityAnimation;
-import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -25,7 +18,6 @@ import ru.pearx.libmc.common.PXLCapabilities;
 import ru.pearx.libmc.common.animation.AnimationStateManager;
 import ru.pearx.libmc.common.tiles.TileSyncable;
 import ru.pearx.purmag.common.SoundRegistry;
-import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.inventory.ContainerCodeStorage;
 
 import javax.annotation.Nonnull;

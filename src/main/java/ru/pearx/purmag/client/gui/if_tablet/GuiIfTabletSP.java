@@ -4,7 +4,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.Button;

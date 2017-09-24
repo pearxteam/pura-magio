@@ -2,17 +2,13 @@ package ru.pearx.purmag.client.gui.code_storage;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.PXLGui;
-import ru.pearx.libmc.client.gui.controls.Control;
-import ru.pearx.libmc.client.gui.controls.GuiControlContainer;
 import ru.pearx.libmc.client.gui.controls.GuiOnScreen;
 import ru.pearx.libmc.client.gui.controls.common.Button;
-import ru.pearx.libmc.client.gui.inventory.PXLGuiContainer;
 import ru.pearx.libmc.client.gui.inventory.PXLGuiContainerControls;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.inventory.ContainerCodeStorage;
