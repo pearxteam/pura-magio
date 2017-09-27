@@ -117,8 +117,8 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
             offsetY = newY;
             for (Control cont : controls)
             {
-                cont.setX(cont.getX() + pX);
-                cont.setY(cont.getY() + pY);
+                cont.setX(cont.getX() + pX, false);
+                cont.setY(cont.getY() + pY, false);
             }
         }
     }
