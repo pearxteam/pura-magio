@@ -181,7 +181,7 @@ public class TileCodeStorage extends TileSyncable
         return true;
     }
 
-    public boolean tryLock(boolean force,String text, String code)
+    public boolean tryLock(boolean force, String text, String code)
     {
         if (isLockable() || force)
         {

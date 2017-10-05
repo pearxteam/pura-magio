@@ -1,10 +1,14 @@
 package ru.pearx.purmag.common.config;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.common.config.Configuration;
+import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.expressions.IExpression;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mrAppleXZ on 04.05.17 17:13.
@@ -22,6 +26,8 @@ public class PMConfig
     public ConfigStructureEntry genLabSmall;
     public ConfigGroundgenEntry genBrulantaFlower;
 
+    public List<ResourceLocation> enabledExpressions = new ArrayList<>();
+
     public void setup(Configuration configFile)
     {
         genCrystalRock = loadCrystal(configFile, "Rock", new String[]{"-1", "1"}, false);
@@ -34,6 +40,19 @@ public class PMConfig
         genCrystallizedGlowstone = loadOreOnOre(configFile, "Crystallized Glowstone", 4, 123, 0.03f, new String[]{"-1"}, true);
         genLabSmall = loadStructure(configFile, "Small Laboratory", 0.0007f, 15, 256, new String[]{"-1", "1"}, false);
         genBrulantaFlower = loadGround(configFile, "Brulanta Flower", 3, 256, 0, 4, 0.1f, new String[]{"-1", "1"}, false);
+
+        if (configFile.hasChanged())
+            configFile.save();
+    }
+
+    public void setupInit(Configuration configFile)
+    {
+        for(Map.Entry<ResourceLocation, IExpression> expr : PurMag.INSTANCE.getExpressionRegistry().getRegistry().getEntries())
+        {
+            boolean bool = configFile.getBoolean(expr.getKey().toString(), "EXPRESSIONS", expr.getValue().enabledByDefault(), expr.getValue().getDescription());
+            if(bool)
+                enabledExpressions.add(expr.getKey());
+        }
 
         if (configFile.hasChanged())
             configFile.save();

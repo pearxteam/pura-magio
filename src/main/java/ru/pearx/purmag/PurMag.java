@@ -1,5 +1,6 @@
 package ru.pearx.purmag;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
@@ -8,12 +9,19 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.RegistryBuilder;
 import org.apache.logging.log4j.Logger;
+import ru.pearx.libmc.PXLMC;
+import ru.pearx.libmc.common.structure.processors.IStructureProcessor;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.CommonProxy;
+import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.commands.CommandIf;
 import ru.pearx.purmag.common.config.PMConfig;
 import ru.pearx.purmag.common.entities.EntityRegistry;
+import ru.pearx.purmag.common.expressions.ExpressionRegistry;
+import ru.pearx.purmag.common.expressions.IExpression;
 import ru.pearx.purmag.common.infofield.IfRegistry;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.items.papyrus.PapyrusRegistry;
@@ -22,6 +30,8 @@ import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.sif.SifStorageServer;
 import ru.pearx.purmag.common.sip.SipEffectsRegistry;
 import ru.pearx.purmag.common.sip.SipTypeRegistry;
+import ru.pearx.purmag.common.structure.CodeStorageProcessor;
+import ru.pearx.purmag.common.structure.PMStructureProcessorRegistry;
 import ru.pearx.purmag.common.tiles.TileRegistry;
 import ru.pearx.purmag.common.worldgen.WorldgenRegistry;
 
@@ -45,11 +55,14 @@ public class PurMag
     public PMConfig config = new PMConfig();
     public Random random = new Random();
     public Logger log;
+
     public SifStorageServer sif_storage = new SifStorageServer();
     private SipTypeRegistry sip_registry = new SipTypeRegistry();
     private SipEffectsRegistry sip_effects = new SipEffectsRegistry();
     private IfRegistry if_registry = new IfRegistry();
     private PapyrusRegistry papyrus_registry = new PapyrusRegistry();
+    private ExpressionRegistry expressionRegistry = new ExpressionRegistry();
+    private Configuration configFile;
 
     public SipTypeRegistry getSipRegistry()
     {
@@ -71,13 +84,19 @@ public class PurMag
         return papyrus_registry;
     }
 
+    public ExpressionRegistry getExpressionRegistry()
+    {
+        return expressionRegistry;
+    }
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e)
     {
         log = e.getModLog();
         setupMetadata(e.getModMetadata());
 
-        config.setup(new Configuration(new File(e.getModConfigurationDirectory(), "Purificati Magicae.cfg")));
+        configFile = new Configuration(new File(e.getModConfigurationDirectory(), "Purificati Magicae.cfg"));
+        config.setup(configFile);
 
         proxy.setupDrawables();
         getSipRegistry().register();
@@ -85,6 +104,8 @@ public class PurMag
         CapabilityRegistry.register();
         EntityRegistry.register();
         getPapyrusRegistry().setup();
+        getExpressionRegistry().setup();
+        PMStructureProcessorRegistry.setup();
 
         proxy.setupIfTiers();
 
@@ -94,6 +115,7 @@ public class PurMag
     @Mod.EventHandler
     public void init(FMLInitializationEvent e)
     {
+        config.setupInit(configFile);
         getSipEffects().register();
         ItemRegistry.setup();
         getIfRegistry().setup();

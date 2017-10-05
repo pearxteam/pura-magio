@@ -124,6 +124,9 @@ misc.gui.code_storage.unlock.code=Code:
 misc.gui.code_storage.unlock.wrong=Wrong code!
 misc.gui.code_storage.unlock.unlock=Unlock
 
+misc.structure_processor.code_storage.name=Code Storage
+misc.structure_processor.code_storage.table=Loot Table:
+
 #Commands
 command.if.usage=Usage: /infofield <unlock|lock> <entry> [player]
 command.if.playerNotFound=Player not found!
