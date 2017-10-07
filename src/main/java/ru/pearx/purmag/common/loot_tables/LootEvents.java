@@ -4,6 +4,7 @@ import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.Utils;
 
 /*
  * Created by mrAppleXZ on 25.08.17 10:52.
@@ -14,7 +15,7 @@ public class LootEvents
     @SubscribeEvent
     public static void onLootTableLoad(LootTableLoadEvent e)
     {
-        if (e.getName().getResourceDomain().equals(PurMag.MODID) && e.getName().getResourcePath().equals("chests/lab_small"))
+        if (e.getName().equals(Utils.getResourceLocation("chests/lab_small")) || e.getName().equals(Utils.getResourceLocation("chests/lab_medium")))
             PurMag.INSTANCE.getPapyrusRegistry().addNotImportantToTable(e.getTable());
     }
 }
