@@ -24,6 +24,7 @@ public class PMConfig
     public ConfigOreOnOreEntry genCrystallizedRedstone;
     public ConfigOreOnOreEntry genCrystallizedGlowstone;
     public ConfigStructureEntry genLabSmall;
+    public ConfigStructureEntry genLabMedium;
     public ConfigGroundgenEntry genBrulantaFlower;
 
     public List<ResourceLocation> enabledExpressions = new ArrayList<>();
@@ -39,6 +40,7 @@ public class PMConfig
         genCrystallizedRedstone = loadOreOnOre(configFile, "Crystallized Redstone", 0, 16, 0.03f, new String[]{"-1", "1"}, false);
         genCrystallizedGlowstone = loadOreOnOre(configFile, "Crystallized Glowstone", 4, 123, 0.03f, new String[]{"-1"}, true);
         genLabSmall = loadStructure(configFile, "Small Laboratory", 0.0007f, 15, 256, new String[]{"-1", "1"}, false);
+        genLabMedium = loadStructure(configFile, "Medium Laboratory", 0.0007f, 15, 256, new String[]{"-1", "1"}, false);
         genBrulantaFlower = loadGround(configFile, "Brulanta Flower", 3, 256, 0, 4, 0.1f, new String[]{"-1", "1"}, false);
 
         if (configFile.hasChanged())

@@ -4,6 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -38,6 +39,21 @@ public class RecipeRegistry
                 ItemRegistry.brulanta_flower,
                 new IngredientNBT(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard), "flame")),
                 ItemRegistry.mortar_and_pestle
+        ), e.getRegistry());
+
+        register("painting_kit", new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.painting_kit),
+                "stickWood", "paper", "dyeBlack", "dyeWhite", "dyeBlue", "dyeYellow", "dyeRed"
+        ), e.getRegistry());
+
+        register("gray_paper_pack", new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.gray_paper_pack),
+                "paper", "paper", "paper", "paper", "paper", "paper", "dyeGray", "dyeGray"
+        ), e.getRegistry());
+
+        register("wooden_tablet", new ShapedOreRecipe(null, new ItemStack(ItemRegistry.if_tablet, 1, 0),
+                "SSS",
+                "PPP",
+                " K ",
+                'S', "slabWood", 'P', ItemRegistry.gray_paper_pack, 'K', ItemRegistry.painting_kit
         ), e.getRegistry());
 
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle), new ItemStack(ItemRegistry.mortar_and_pestle), 0.1f);

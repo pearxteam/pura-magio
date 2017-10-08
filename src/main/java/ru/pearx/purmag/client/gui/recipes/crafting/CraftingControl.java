@@ -10,6 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import org.lwjgl.util.Point;
 import ru.pearx.libmc.client.gui.IGuiScreen;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
@@ -86,10 +87,10 @@ public class CraftingControl extends Control
     {
         if (containsHandler(recipe.getClass()))
         {
-            setWidth(128);
+            setWidth(118);
             setHeight(88);
 
-            xOut = 100;
+            xOut = 90;
             yOut = 32;
 
             for (int row = 0; row < 3; row++)
@@ -143,17 +144,27 @@ public class CraftingControl extends Control
             }
         }
         outDraw.draw(gs, xOut, yOut);
-        for (int row = 0; row < 3; row++)
+    }
+
+    @Override
+    public void render2()
+    {
+        if(isFocused())
         {
-            for (int column = 0; column < 3; column++)
+            Point pos = getPosOnScreen();
+            IGuiScreen gs = getGuiScreen();
+            for (int row = 0; row < 3; row++)
             {
-                ItemDrawable[] arr = inDraws[row * 3 + column];
-                ItemDrawable draw = arr[(int) (System.currentTimeMillis() / 1000 % arr.length)];
-                if (!draw.stack.isEmpty())
-                    draw.drawTooltip(gs, xIn[column], yIn[row], mouseX, mouseY);
+                for (int column = 0; column < 3; column++)
+                {
+                    ItemDrawable[] arr = inDraws[row * 3 + column];
+                    ItemDrawable draw = arr[(int) (System.currentTimeMillis() / 1000 % arr.length)];
+                    if (!draw.stack.isEmpty())
+                        draw.drawTooltip(gs, xIn[column], yIn[row], mouseX, mouseY, pos.getX(), pos.getY());
+                }
             }
+            outDraw.drawTooltip(gs, xOut, yOut, mouseX, mouseY, pos.getX(), pos.getY());
         }
-        outDraw.drawTooltip(gs, xOut, yOut, mouseX, mouseY);
     }
 
     @Override

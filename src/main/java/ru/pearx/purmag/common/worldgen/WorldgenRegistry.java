@@ -152,6 +152,11 @@ public class WorldgenRegistry
             ConfigStructureEntry cse = config.genLabSmall;
             generatosPost.add(new WGLabSmall(cse.chance, cse.minY, cse.maxY, cse.dimList, cse.dimListMode));
         }
+        if(config.genLabMedium.generate)
+        {
+            ConfigStructureEntry cse = config.genLabMedium;
+            generatosPost.add(new WGLabMedium(cse.chance, cse.minY, cse.maxY, cse.dimList, cse.dimListMode));
+        }
         if (config.genBrulantaFlower.generate)
         {
             ConfigGroundgenEntry entr = config.genBrulantaFlower;

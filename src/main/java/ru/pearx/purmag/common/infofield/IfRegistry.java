@@ -194,6 +194,14 @@ public class IfRegistry
         attachEntry("exploration", new IfEntryLocation("brulanta_flower", -2, 2));
 
         registerEntry(new IfEntry(
+                "laboratories", 0,
+                null,
+                Collections.emptyList(),
+                0
+        ));
+        attachEntry("exploration", new IfEntryLocation("laboratories", 3, 0));
+
+        registerEntry(new IfEntry(
                 "mortar_and_pestle", 0,
                 null,
                 Collections.emptyList(),
@@ -235,7 +243,8 @@ public class IfRegistry
         registerEntryClient(
                 "wooden_tablet", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet)),
                 new IfPageText("wooden_tablet.0"),
-                new IfPageText("wooden_tablet.1")
+                new IfPageText("wooden_tablet.1"),
+                new IfPageCrafting(Utils.getResourceLocation("painting_kit"), Utils.getResourceLocation("gray_paper_pack"), Utils.getResourceLocation("wooden_tablet"))
         );
         registerEntryClient(
                 "crysagnetite", new BigItemDrawable(new ItemStack(ItemRegistry.ore_crysagnetite)),
@@ -267,6 +276,13 @@ public class IfRegistry
                 "pyroblend", new BigItemDrawable(new ItemStack(ItemRegistry.pyroblend)),
                 new IfPageText("pyroblend.0"),
                 new IfPageCrafting(Utils.getResourceLocation("pyroblend"))
+        );
+        registerEntryClient(
+                "laboratories", new BigItemDrawable(new ItemStack(ItemRegistry.microscope)),
+                new IfPageText("laboratories.0"),
+                new IfPagePicture(GuiDrawableRegistry.labSmall, "laboratories.1"),
+                new IfPagePicture(GuiDrawableRegistry.labMedium, "laboratories.2"),
+                new IfPageText("laboratories.3")
         );
 
         registerEntryClient(

@@ -2,6 +2,7 @@ package ru.pearx.purmag.client.gui.if_tablet.steps;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.util.Point;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
@@ -32,7 +33,8 @@ public class IRSPapyrusRenderer extends IRSRenderer<IRSPapyrus>
             draw = new ItemDrawable(ItemRegistry.papyrus.getPapyrusItem(step.id), 5);
         }
         DrawingTools.drawString(step.getDescription(), 5, draw.getHeight() + 5, Colors.WHITE, getWidth() - 5);
-        draw.drawWithTooltip(getGuiScreen(), (getWidth() - draw.getWidth()) / 2, 0, lastX, lastY);
+        Point pos = getPosOnScreen();
+        draw.drawWithTooltip(getGuiScreen(), (getWidth() - draw.getWidth()) / 2, 0, lastX, lastY, pos.getX(), pos.getY());
     }
 
     @Override

@@ -11,7 +11,7 @@ public class LootTablesRegistry
     public static void setup()
     {
         LootTableList.register(Utils.getResourceLocation("entities/verda_beetle"));
-        LootTableList.register(Utils.getResourceLocation("chests/lab_small"));
+        LootTableList.register(Utils.getResourceLocation("chests/lab"));
         LootTableList.register(Utils.getResourceLocation("chests/microscope"));
     }
 }

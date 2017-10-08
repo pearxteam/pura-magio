@@ -60,12 +60,15 @@ public class GuiIfTabletSEEntry extends Control
     }
 
     @Override
-    public void postRender()
+    public void render2()
     {
         if (isFocused())
         {
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(0, 0, 700);
             DrawingTools.drawHoveringText(entry.getDisplayName(), prevX, prevY, Colors.WHITE, true, 1, Minecraft.getMinecraft().fontRenderer);
             DrawingTools.drawHoveringText(entry.getDisplayDescription(), prevX, prevY + 9, Colors.WHITE, true, 0.9f, Minecraft.getMinecraft().fontRenderer);
+            GlStateManager.popMatrix();
         }
     }
 

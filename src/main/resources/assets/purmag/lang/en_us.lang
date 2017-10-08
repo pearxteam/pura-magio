@@ -36,6 +36,8 @@ item.purmag.unfinished_mortar_and_pestle.name=Unfinished Mortar and Pestle
 tile.purmag.code_storage.lockable.name=Code Storage
 tile.purmag.code_storage.not_lockable.name=Not Lockable Code Storage
 tile.purmag.code_storage.tooltip=Contains %s items.
+item.purmag.painting_kit.name=Drawing Kit
+item.purmag.gray_paper_pack.name=Gray Paper Pack
 
 #Sip Types
 sip.sea.name=Mara
@@ -105,12 +107,20 @@ if_step.brulanta_flower.desc=Find this red flower and collect it.
 if_page.brulanta_flower.0.text=These flowers grew in the sands. They're red like the flame. I collected one of them, so I can plant it in my garden or come up with a more useful way to use them. I noticed that they ignite at fairly low temperatures, so be careful. Looks like I can find them in hot and dry places.
 
 if_entry.mortar_and_pestle.name=Mortar and Pestle
-if_entry.mortar_and_pestle.desc=Throw out prehistoric%nwooden trash and use our%nceramic and shiny goodies!
+if_entry.mortar_and_pestle.desc=They're wasting our clay!
 if_page.mortar_and_pestle.0.text=So, I should make a thing where I can crush my materials into the dust, like mortar and pestle. I decided to make ceramic one because it a lot more durable and comfortable than the wooden one. I'll just make a mortar using clay and I'll make a pestle using clay and a stick. Then I'll smelt it in the furnace.
 
 if_entry.pyroblend.name=Pyroblend
-if_entry.pyroblend.desc=Can I blow it?
-if_page.pyroblend.0.text=todo
+if_entry.pyroblend.desc=Let's burn something!
+if_page.pyroblend.0.text=I've created a burnable material whose smoke is §lvery§r (more than 500 °C) hot. Looks like the burning verda wings give out much heat conducting smoke. The brulanta flower + flama shard make it very burnable. With that dust I can smelt many materials.
+
+if_entry.laboratories.name=Laboratories
+if_entry.laboratories.desc=Thinking with Portals
+if_page.laboratories.0.text=I can find the laboratories in the world. I guess that the labs are ancient and were used both as house and research centre. ...But why? Did the scientists not have their own homes or did they have to work too hard?%nI can find many obscure technologies there. Also, I think that the papyruses are important and I should "borrow" them and translate later. Every laboratory has an antenna, so I can guess that the scientists somehow communicated with each other.
+if_page.laboratories.1.text=The small laboratory.
+if_page.laboratories.2.text=The medium laboratory.
+if_page.laboratories.3.text=The small laboratory is a pretty small underground room with a ladder to the surface. It contains a few beds, a few tables, the storage and the strange structure at the centre.%nThe medium laboratory is a building with the windows. It contains something like bedroom, two multipurpose rooms and the room behind the pile.
+
 
 #Miscellaneous
 itemGroup.purmag=Purificati Magicae

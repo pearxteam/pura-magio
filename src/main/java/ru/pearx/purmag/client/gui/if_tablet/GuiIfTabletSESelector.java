@@ -52,6 +52,8 @@ public class GuiIfTabletSESelector extends GuiIfTabletSEPart
     @Override
     public void postRender()
     {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0, 0, 310);
         GlStateManager.enableBlend();
         int offset = 0;
         for (int i = selected - 3; i <= selected + 3; i++)
@@ -66,6 +68,7 @@ public class GuiIfTabletSESelector extends GuiIfTabletSEPart
             offset += texTab.height;
         }
         GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
     }
 
     @Override

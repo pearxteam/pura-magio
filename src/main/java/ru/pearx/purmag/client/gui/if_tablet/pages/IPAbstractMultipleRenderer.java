@@ -20,7 +20,7 @@ public abstract class IPAbstractMultipleRenderer<T extends IIfPage> extends IPRe
 
     protected void setupControls(List<? extends Control> lst)
     {
-        int margin = 8;
+        int margin = 2;
 
         int totalWidth = 0;
         int height = 0;

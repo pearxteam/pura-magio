@@ -2,6 +2,7 @@ package ru.pearx.purmag.client.gui.recipes;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
+import org.lwjgl.util.Point;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
@@ -43,8 +44,14 @@ public class FurnaceControl extends Control
         GlStateManager.disableBlend();
         inDraw.draw(getGuiScreen(), xIn, yIn);
         outDraw.draw(getGuiScreen(), xOut, yOut);
-        inDraw.drawTooltip(getGuiScreen(), xIn, yIn, lastX, lastY);
-        outDraw.drawTooltip(getGuiScreen(), xOut, yOut, lastX, lastY);
+    }
+
+    @Override
+    public void render2()
+    {
+        Point pos = getPosOnScreen();
+        inDraw.drawTooltip(getGuiScreen(), xIn, yIn, lastX, lastY, pos.getX(), pos.getY());
+        outDraw.drawTooltip(getGuiScreen(), xOut, yOut, lastX, lastY, pos.getX(), pos.getY());
     }
 
     public ItemStack getIn()

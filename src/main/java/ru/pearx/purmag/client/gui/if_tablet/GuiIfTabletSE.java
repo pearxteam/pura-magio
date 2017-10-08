@@ -1,5 +1,6 @@
 package ru.pearx.purmag.client.gui.if_tablet;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.lib.Colors;
@@ -33,6 +34,9 @@ public class GuiIfTabletSE extends GuiIfTabletS
     public void postRender()
     {
         super.postRender();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0, 0, 310);
         DrawingTools.drawString(selector.getSelectedChannel().getDisplayName(), 8, 8, Colors.WHITE);
+        GlStateManager.popMatrix();
     }
 }

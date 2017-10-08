@@ -53,9 +53,12 @@ public class GuiIfTablet extends GuiOnScreen
     @Override
     public void postRender()
     {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0, 0, 500);
         GlStateManager.enableBlend();
         texFrame.draw(0, 0);
         GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
     }
 
     public void changeScreen(GuiIfTabletS screen)

@@ -93,9 +93,9 @@ public class GuiIfTabletSP extends GuiIfTabletS
                     sensitive = false;
                     newRend = entry.getPages().get(index).getRenderer();
                     controls.add(newRend);
+                    newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
                     new Thread(() ->
                     {
-                        newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
                         for (int i = 0; i <= newRend.getWidth(); i++)
                         {
                             try
