@@ -38,20 +38,21 @@ public class GuiIfTabletSEEntry extends Control
         }
         if ((getX() + getWidth()) <= 0 || (getY() + getHeight()) <= 0 || getX() >= getEntries().getWidth() || getY() >= getEntries().getHeight())
             return;
+        int steps = Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).getSteps(entry.getId());
         float f = 1;
         if (getEntries().getTabletScreen().getTablet().data.isShouldGlow())
         {
             if (entry.getSteps().size() == 0)
                 f = 0;
             else
-                f = 1 - (Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).getSteps(entry.getId()) / (float) entry.getSteps().size());
+                f = 1 - (steps / (float) entry.getSteps().size());
         }
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(0, 0, 1);
         GlStateManager.color(f, 1, f);
         GlStateManager.enableBlend();
-        getEntries().getTabletScreen().getTablet().data.getEntryBackground().draw(getGuiScreen(), 0, 0);
+        getEntries().getTabletScreen().getTablet().data.getEntryBackground(entry, steps).draw(getGuiScreen(), 0, 0);
         GlStateManager.disableBlend();
         GlStateManager.color(1, 1, 1);
 

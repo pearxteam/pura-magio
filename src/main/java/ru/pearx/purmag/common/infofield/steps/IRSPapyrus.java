@@ -10,7 +10,7 @@ import ru.pearx.purmag.common.items.ItemRegistry;
 /**
  * Created by mrAppleXZ on 07.06.17 21:16.
  */
-public class IRSPapyrus extends IRSBase
+public abstract class IRSPapyrus extends IRSBase
 {
     public String id;
 

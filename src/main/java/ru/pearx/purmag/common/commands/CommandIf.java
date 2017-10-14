@@ -5,6 +5,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
@@ -28,13 +29,13 @@ public class CommandIf extends CommandBase
     @Override
     public String getName()
     {
-        return "infofield";
+        return "pm_infofield";
     }
 
     @Override
     public String getUsage(ICommandSender sender)
     {
-        return "command.if.usage";
+        return "command.pm_if.usage";
     }
 
     @Override
@@ -49,12 +50,32 @@ public class CommandIf extends CommandBase
         String player = args.length > 2 ? args[2] : sender.getName();
         if (!Arrays.asList(server.getPlayerList().getOnlinePlayerNames()).contains(player))
         {
-            throw new CommandException("command.if.playerNotFound");
+            throw new CommandException("command.pm_if.playerNotFound");
         }
-        if (!PurMag.INSTANCE.getIfRegistry().containsEntry(res))
+        if (!(PurMag.INSTANCE.getIfRegistry().containsEntry(res) || res.equals("all")))
         {
-            throw new CommandException("command.if.entryNotFound");
+            throw new CommandException("command.pm_if.entryNotFound");
         }
+
+        EntityPlayerMP p = server.getPlayerList().getPlayerByUsername(player);
+        IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
+        if(res.equals("all"))
+        {
+            for(IfEntry entr : PurMag.INSTANCE.getIfRegistry().entries)
+            {
+                setSteps(store, sender, act, entr.getId());
+            }
+        }
+        else
+        {
+            setSteps(store, sender, act, res);
+        }
+        store.sync(p);
+        sender.sendMessage(new TextComponentTranslation("command.pm_if.success." + act, "§5" + res, "§5" + player));
+    }
+
+    private void setSteps(IIfEntryStore store, ICommandSender sender, String act, String res) throws CommandException
+    {
         int steps;
         switch (act)
         {
@@ -67,11 +88,7 @@ public class CommandIf extends CommandBase
             default:
                 throw new WrongUsageException(getUsage(sender));
         }
-        EntityPlayerMP p = server.getPlayerList().getPlayerByUsername(player);
-        IIfEntryStore s = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
-        s.setSteps(res, steps);
-        s.sync(p, res);
-        sender.sendMessage(new TextComponentTranslation("command.if.success." + act, "§5" + res, "§5" + player));
+        store.setSteps(res, steps);
     }
 
     @Override

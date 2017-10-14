@@ -7,6 +7,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import ru.pearx.libmc.common.ItemStackUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,37 +18,15 @@ import java.util.List;
  */
 public final class AbstractCraftingThings
 {
-    private static final List<ItemStack> EMPTY = Collections.singletonList(ItemStack.EMPTY);
-
-    private static List<ItemStack> parseIngredient(Ingredient ing)
-    {
-        ItemStack[] stacks = ing.getMatchingStacks();
-        if (stacks.length == 0)
-            return EMPTY;
-        else
-        {
-            List<ItemStack> matching = new ArrayList<>();
-            for (ItemStack stack : stacks)
-            {
-                NonNullList<ItemStack> subs = NonNullList.create();
-                stack.getItem().getSubItems(stack.getItem().getCreativeTab() == null ? CreativeTabs.SEARCH : stack.getItem().getCreativeTab(), subs);
-                for (ItemStack sub : subs)
-                    if (ing.apply(sub))
-                        matching.add(sub);
-            }
-            return matching;
-        }
-    }
-
     public static List<List<ItemStack>> getInputsShapeless(IRecipe recipe)
     {
         List<List<ItemStack>> lst = new ArrayList<>();
         List<Ingredient> ings = recipe.getIngredients();
         for (int i = 0; i < 9; i++)
             if (i < ings.size())
-                lst.add(parseIngredient(ings.get(i)));
+                lst.add(ItemStackUtils.getIngredientItems(ings.get(i)));
             else
-                lst.add(EMPTY);
+                lst.add(ItemStackUtils.EMPTY_LIST);
         return lst;
     }
 
@@ -61,9 +40,9 @@ public final class AbstractCraftingThings
                 if (x > width || y > height)
                     lst.add(Collections.singletonList(ItemStack.EMPTY));
                 else if (i < ings.size())
-                    lst.add(parseIngredient(ings.get(i++)));
+                    lst.add(ItemStackUtils.getIngredientItems(ings.get(i++)));
                 else
-                    lst.add(EMPTY);
+                    lst.add(ItemStackUtils.EMPTY_LIST);
         return lst;
     }
 

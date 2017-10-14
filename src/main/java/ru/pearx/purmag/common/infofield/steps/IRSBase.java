@@ -8,14 +8,11 @@ import ru.pearx.purmag.client.gui.if_tablet.steps.IRSRenderer;
 /**
  * Created by mrAppleXZ on 26.04.17 14:48.
  */
-public class IRSBase implements IIfResearchStep
+public abstract class IRSBase implements IIfResearchStep
 {
     private String unlocDesc;
 
-    public String getUnlocalizedName()
-    {
-        return null;
-    }
+    public abstract String getUnlocalizedName();
 
     public String getUnlocalizedDescription()
     {
@@ -42,8 +39,5 @@ public class IRSBase implements IIfResearchStep
     }
 
     @Override
-    public IRSRenderer getRenderer()
-    {
-        return null;
-    }
+    public abstract IRSRenderer getRenderer();
 }

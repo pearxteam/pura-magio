@@ -42,7 +42,7 @@ public class RecipeRegistry
         ), e.getRegistry());
 
         register("painting_kit", new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.painting_kit),
-                "stickWood", "paper", "dyeBlack", "dyeWhite", "dyeBlue", "dyeYellow", "dyeRed"
+                "stickWood", "string", Blocks.WOODEN_PRESSURE_PLATE, "dyeBlack", "dyeWhite", "dyeBlue", "dyeYellow", "dyeRed"
         ), e.getRegistry());
 
         register("gray_paper_pack", new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.gray_paper_pack),

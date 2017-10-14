@@ -6,24 +6,33 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.client.gui.if_tablet.steps.IRSIngredientRenderer;
 import ru.pearx.purmag.client.gui.if_tablet.steps.IRSRenderer;
 
-/**
- * Created by mrAppleXZ on 26.04.17 14:16.
+/*
+ * Created by mrAppleXZ on 13.10.17 17:52.
  */
-public class IRSCollect extends IRSIngredient
+public class IRSMicroscopeResearch extends IRSIngredient
 {
-    private boolean showStack;
+    private boolean[][] pattern;
 
-    public IRSCollect(Ingredient ing, String unlocDesc, boolean showStack)
+    public IRSMicroscopeResearch(Ingredient ingredient, boolean[][] pattern)
     {
-        setIngredient(ing);
-        this.showStack = showStack;
-        setUnlocalizedDescription(unlocDesc);
+        setPattern(pattern);
+        setIngredient(ingredient);
+    }
+
+    public boolean[][] getPattern()
+    {
+        return pattern;
+    }
+
+    public void setPattern(boolean[][] pattern)
+    {
+        this.pattern = pattern;
     }
 
     @Override
     public String getUnlocalizedName()
     {
-        return "collect";
+        return "microscope_research";
     }
 
     @Override
@@ -36,6 +45,6 @@ public class IRSCollect extends IRSIngredient
     @Override
     public boolean shouldShowStack()
     {
-        return showStack;
+        return true;
     }
 }

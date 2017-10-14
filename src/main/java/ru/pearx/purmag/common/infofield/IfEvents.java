@@ -3,11 +3,16 @@ package ru.pearx.purmag.common.infofield;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.commons.lang3.tuple.Pair;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.CapabilityRegistry;
+import ru.pearx.purmag.common.infofield.steps.IRSBlockInteract;
 import ru.pearx.purmag.common.infofield.steps.IRSCollect;
 import ru.pearx.purmag.common.infofield.steps.IRSKillEntity;
 
@@ -25,7 +30,7 @@ public class IfEvents
             EntityPlayerMP p = (EntityPlayerMP) e.getEntityPlayer();
             for (Pair<IfEntry, IRSCollect> pair : PurMag.INSTANCE.getIfRegistry().getAllResearchableSteps(IRSCollect.class, p))
             {
-                if (pair.getRight().isSuitable(e.getItem().getItem()))
+                if (pair.getRight().getIngredient().apply(e.getItem().getItem()))
                 {
                     p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).unlockStepAndSync(pair.getLeft().getId(), p);
                 }
@@ -44,6 +49,21 @@ public class IfEvents
                 if (pair.getRight().clazz == e.getEntity().getClass())
                 {
                     p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).unlockStepAndSync(pair.getLeft().getId(), p);
+                }
+            }
+        }
+    }
+
+    public static void onInteract(PlayerInteractEvent.RightClickBlock e)
+    {
+        if(e.getEntityPlayer() instanceof EntityPlayerMP)
+        {
+            EntityPlayerMP mp = (EntityPlayerMP) e.getEntityPlayer();
+            for (Pair<IfEntry, IRSBlockInteract> pair : PurMag.INSTANCE.getIfRegistry().getAllResearchableSteps(IRSBlockInteract.class, mp))
+            {
+                if(pair.getRight().apply(mp, e.getHand(), e.getPos(), e.getFace(), e.getHitVec(), e.getWorld()))
+                {
+                    mp.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).unlockStepAndSync(pair.getLeft().getId(), mp);
                 }
             }
         }

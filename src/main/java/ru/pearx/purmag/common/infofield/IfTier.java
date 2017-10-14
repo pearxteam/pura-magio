@@ -100,7 +100,7 @@ public class IfTier
             this.lineColorEnd = lineColorEnd;
         }
 
-        public IGuiDrawable getEntryBackground()
+        public IGuiDrawable getEntryBackground(IfEntry entry, int currentSteps)
         {
             return entryBackground;
         }

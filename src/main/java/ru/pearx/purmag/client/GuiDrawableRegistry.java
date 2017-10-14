@@ -22,6 +22,7 @@ public class GuiDrawableRegistry
 
     public static IGuiDrawable labSmall;
     public static IGuiDrawable labMedium;
+    public static IGuiDrawable paperEntryCompleted;
 
 
     public static void setup()
@@ -32,6 +33,7 @@ public class GuiDrawableRegistry
         splitter = new SimpleDrawable(Utils.getResourceLocation("textures/gui/splitter.png"), 276, 4, 276, 4);
         furnace = new AnimatedDrawable(Utils.getResourceLocation("textures/gui/recipes/furnace.png"), 112, 112, 112, 112, 112, 1456, 100);
         crafting = new SimpleDrawable(Utils.getResourceLocation("textures/gui/recipes/crafting.png"), 118, 88, 118, 88);
+        paperEntryCompleted = new SimpleDrawable(Utils.getResourceLocation("textures/gui/sticker_green.png"), 32, 32, 32, 32);
 
         labSmall = new SimpleDrawable(Utils.getResourceLocation("textures/gui/pictures/lab_small.png"), 344, 193, 344, 193);
         labMedium = new SimpleDrawable(Utils.getResourceLocation("textures/gui/pictures/lab_medium.png"), 344, 193, 344, 193);

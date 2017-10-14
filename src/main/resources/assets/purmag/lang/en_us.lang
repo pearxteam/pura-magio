@@ -36,7 +36,7 @@ item.purmag.unfinished_mortar_and_pestle.name=Unfinished Mortar and Pestle
 tile.purmag.code_storage.lockable.name=Code Storage
 tile.purmag.code_storage.not_lockable.name=Not Lockable Code Storage
 tile.purmag.code_storage.tooltip=Contains %s items.
-item.purmag.painting_kit.name=Drawing Kit
+item.purmag.painting_kit.name=Painting Kit
 item.purmag.gray_paper_pack.name=Gray Paper Pack
 
 #Sip Types
@@ -65,6 +65,10 @@ if_step.read_papyrus.desc=Find the Papyrus named "%s" and read it.
 if_step.translate_papyrus.name=Translate the Papyrus
 if_step.translate_papyrus.desc=Translate the Papyrus named "%s" using Translation Desk.
 if_step.kill_entity.name=Kill an Entity
+if_step.microscope_research.name=Microscope Research
+if_step.microscope_research.desc=Research the item using the microscope.
+if_step.block_interact.name=Block Interact
+if_step.block_interact.desc=Interact with the block.
 
 if_page.furnace_recipes.name=Furnace Recipes
 if_page.crafting_recipes.name=Crafting Recipes
@@ -87,8 +91,8 @@ if_page.flame_crystal.text=I found the flama crystals in the nether. Looks like 
 if_entry.crysagnetite.name=Crysagnetite
 if_entry.crysagnetite.desc=Purple magnet?
 if_step.crysagnetite.desc=Dig underground and find shimmering bright purple ore.
-if_page.crysagnetite.0.text=You found some strange metal that shimmers bright purple. At first sight, it looks like a magnetite. You tried to bring something iron to it, but this metal didn't attract it. Maybe it can attract something else?
-if_page.crysagnetite.1.text=You can find the ore between Y %1$s and %2$s.
+if_page.crysagnetite.0.text=I found some strange metal that shimmers bright purple. At first sight, it looks like the magnetite. I've tried to bring something iron to it, but this metal didn't attract it. Maybe it can attract something else?
+if_page.crysagnetite.1.text=I can find the ore between Y %1$s and %2$s.
 
 if_entry.sip_knowledge.name=The SIP Knowledge
 if_entry.sip_knowledge.desc=KappaPride!
@@ -112,7 +116,7 @@ if_page.mortar_and_pestle.0.text=So, I should make a thing where I can crush my 
 
 if_entry.pyroblend.name=Pyroblend
 if_entry.pyroblend.desc=Let's burn something!
-if_page.pyroblend.0.text=I've created a burnable material whose smoke is §lvery§r (more than 500 °C) hot. Looks like the burning verda wings give out much heat conducting smoke. The brulanta flower + flama shard make it very burnable. With that dust I can smelt many materials.
+if_page.pyroblend.0.text=TODO: REWRITE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 if_entry.laboratories.name=Laboratories
 if_entry.laboratories.desc=Thinking with Portals
@@ -138,11 +142,11 @@ misc.structure_processor.code_storage.name=Code Storage
 misc.structure_processor.code_storage.table=Loot Table:
 
 #Commands
-command.if.usage=Usage: /infofield <unlock|lock> <entry> [player]
-command.if.playerNotFound=Player not found!
-command.if.entryNotFound=IF Entry not found!
-command.if.success.unlock=§7The IF entry %s§7 is successfully unlocked for %s§7!
-command.if.success.lock=§7The IF entry %s§7 is successfully locked for %s§7!
+command.pm_if.usage=Usage: /pm_infofield <unlock|lock> <entry id|all> [player]
+command.pm_if.playerNotFound=Player not found!
+command.pm_if.entryNotFound=IF Entry not found!
+command.pm_if.success.unlock=§7The IF entry %s§7 is successfully unlocked for %s§7!
+command.pm_if.success.lock=§7The IF entry %s§7 is successfully locked for %s§7!
 
 #Subtitles
 subtitle.magical_click=Magical Click
