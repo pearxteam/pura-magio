@@ -12,11 +12,13 @@ import ru.pearx.libmc.client.gui.drawables.BigItemDrawable;
 import ru.pearx.libmc.client.gui.drawables.EntityDrawable;
 import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.libmc.client.gui.drawables.SimpleDrawable;
+import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 import ru.pearx.purmag.client.infofield.pages.*;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.Utils;
+import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.entities.EntityBeetle;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import ru.pearx.purmag.common.infofield.steps.*;
@@ -251,8 +253,10 @@ public class IfRegistry
         registerEntry(new IfEntry(
                 "microscope", 0,
                 Arrays.asList("laboratories"),
-                Collections.emptyList(),
+                Arrays.asList(new IRSBlockInteract(Arrays.asList(new BlockArrayEntry(BlockRegistry.microscope.getDefaultState(), new ItemStack(ItemRegistry.microscope))))),
+                0
         ));
+        attachEntry("exploration", new IfEntryLocation("microscope", 5, 0));
     }
 
     @SideOnly(Side.CLIENT)
@@ -310,6 +314,10 @@ public class IfRegistry
                 new IfPagePicture(GuiDrawableRegistry.labSmall, "laboratories.1"),
                 new IfPagePicture(GuiDrawableRegistry.labMedium, "laboratories.2"),
                 new IfPageText("laboratories.3")
+        );
+        registerEntryClient(
+                "microscope", new BigItemDrawable(new ItemStack(ItemRegistry.microscope)),
+                new IfPageText("microscope.0")
         );
     }
 }

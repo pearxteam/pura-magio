@@ -95,7 +95,6 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
             GlStateManager.translate(-0.5f, 0, -0.5f);
             setTrans(te);
         }
-
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
         IBlockState st = te.getWorld().getBlockState(te.getPos());
         dis.getBlockModelRenderer().renderModel(te.getWorld(), top, st.getBlock().getExtendedState(st, te.getWorld(), te.getPos()), te.getPos(), buffer, false, MathHelper.getPositionRandom(te.getPos()));

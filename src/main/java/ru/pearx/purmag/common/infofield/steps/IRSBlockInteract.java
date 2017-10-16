@@ -11,7 +11,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
-import ru.pearx.purmag.client.gui.if_tablet.steps.IRSInteractRenderer;
+import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
+import ru.pearx.purmag.client.gui.if_tablet.steps.IRSBlockInteractRenderer;
 import ru.pearx.purmag.client.gui.if_tablet.steps.IRSRenderer;
 
 import java.util.List;
@@ -27,22 +28,23 @@ public class IRSBlockInteract extends IRSBase
     }
 
     private Predicate predicate;
-    private List<Pair<IBlockState, ItemStack>> renderStates;
+    private List<BlockArrayEntry> renderStates;
 
-    public IRSBlockInteract(Predicate predicate, List<Pair<IBlockState, ItemStack>> renderStates)
+    public IRSBlockInteract(Predicate predicate, List<BlockArrayEntry> renderStates)
     {
         setPredicate(predicate);
         setRenderStates(renderStates);
+        setUnlocalizedDescription("block_interact");
     }
 
-    public IRSBlockInteract(List<Pair<IBlockState, ItemStack>> renderStates)
+    public IRSBlockInteract(List<BlockArrayEntry> renderStates)
     {
         setPredicate((player, hand, pos, face, hit, world) ->
         {
             IBlockState state = world.getBlockState(pos);
-            for (Pair<IBlockState, ItemStack> rend : renderStates)
+            for (BlockArrayEntry entr : renderStates)
             {
-                if(state.getBlock() == rend.getLeft().getBlock())
+                if(state.getBlock() == entr.getState().getBlock())
                     return true;
             }
             return false;
@@ -60,12 +62,12 @@ public class IRSBlockInteract extends IRSBase
         this.predicate = predicate;
     }
 
-    public List<Pair<IBlockState, ItemStack>> getRenderStates()
+    public List<BlockArrayEntry> getRenderStates()
     {
         return renderStates;
     }
 
-    public void setRenderStates(List<Pair<IBlockState, ItemStack>> renderStates)
+    public void setRenderStates(List<BlockArrayEntry> renderStates)
     {
         this.renderStates = renderStates;
     }
@@ -85,6 +87,6 @@ public class IRSBlockInteract extends IRSBase
     @SideOnly(Side.CLIENT)
     public IRSRenderer getRenderer()
     {
-        return new IRSInteractRenderer(this);
+        return new IRSBlockInteractRenderer(this);
     }
 }

@@ -1,5 +1,8 @@
 package ru.pearx.purmag;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -13,6 +16,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
 import org.apache.logging.log4j.Logger;
 import ru.pearx.libmc.PXLMC;
+import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
 import ru.pearx.libmc.common.structure.processors.IStructureProcessor;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.CommonProxy;
@@ -32,6 +36,7 @@ import ru.pearx.purmag.common.sip.SipEffectsRegistry;
 import ru.pearx.purmag.common.sip.SipTypeRegistry;
 import ru.pearx.purmag.common.structure.CodeStorageProcessor;
 import ru.pearx.purmag.common.structure.PMStructureProcessorRegistry;
+import ru.pearx.purmag.common.tiles.TileCodeStorage;
 import ru.pearx.purmag.common.tiles.TileRegistry;
 import ru.pearx.purmag.common.worldgen.WorldgenRegistry;
 
@@ -110,6 +115,7 @@ public class PurMag
         proxy.setupIfTiers();
 
         proxy.preInit();
+
     }
 
     @Mod.EventHandler
