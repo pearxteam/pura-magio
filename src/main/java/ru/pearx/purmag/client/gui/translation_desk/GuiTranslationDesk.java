@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.tuple.Pair;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.GuiOnScreen;
@@ -107,23 +108,14 @@ public class GuiTranslationDesk extends GuiOnScreen
             entryName = null;
             if (!stack.isEmpty())
             {
-                IIfEntryStore store = Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
-                for (IfEntry entr : PurMag.INSTANCE.getIfRegistry().entries)
+                for (Pair<IfEntry, IRSTranslatePapyrus> p : PurMag.INSTANCE.getIfRegistry().getAllResearchableSteps(IRSTranslatePapyrus.class, Minecraft.getMinecraft().player))
                 {
-                    int steps = store.getSteps(entr.getId());
-                    if (steps < entr.getSteps().size())
+                    if (p.getRight().isSuitable(stack))
                     {
-                        IIfResearchStep step = entr.getSteps().get(steps);
-                        if (step instanceof IRSTranslatePapyrus)
-                        {
-                            if (((IRSTranslatePapyrus) step).isSuitable(stack))
-                            {
-                                this.entryName = entr.getId();
-                                this.stack = stack;
-                                status = Status.CAN_TRANSLATE;
-                                return;
-                            }
-                        }
+                        this.entryName = p.getLeft().getId();
+                        this.stack = stack;
+                        status = Status.CAN_TRANSLATE;
+                        return;
                     }
                 }
                 status = Status.CANT_TRANSLATE;

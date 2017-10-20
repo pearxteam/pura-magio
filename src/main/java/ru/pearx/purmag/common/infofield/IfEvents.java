@@ -54,6 +54,7 @@ public class IfEvents
         }
     }
 
+    @SubscribeEvent
     public static void onInteract(PlayerInteractEvent.RightClickBlock e)
     {
         if(e.getEntityPlayer() instanceof EntityPlayerMP)

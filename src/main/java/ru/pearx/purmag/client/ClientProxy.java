@@ -23,7 +23,9 @@ import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.entities.EntityRegistry;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.sip.SipUtils;
+import ru.pearx.purmag.common.tiles.TileAbstractSingleItem;
 import ru.pearx.purmag.common.tiles.TileCodeStorage;
+import ru.pearx.purmag.common.tiles.TileMicroscope;
 import ru.pearx.purmag.common.tiles.TileRegistry;
 
 /**
@@ -109,9 +111,9 @@ public class ClientProxy extends CommonProxy
     }
 
     @Override
-    public void openMicroscope(ItemStack stack)
+    public void openMicroscope(TileMicroscope tile)
     {
-        Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiMicroscope(stack)));
+        Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiMicroscope(tile.handler.getStackInSlot(0), tile.getPos())));
     }
 
     @Override

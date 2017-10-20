@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
@@ -12,6 +13,7 @@ import ru.pearx.libmc.client.gui.drawables.BigItemDrawable;
 import ru.pearx.libmc.client.gui.drawables.EntityDrawable;
 import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.libmc.client.gui.drawables.SimpleDrawable;
+import ru.pearx.libmc.common.structure.blockarray.BlockArray;
 import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
@@ -105,8 +107,12 @@ public class IfRegistry
 
     public <T extends IIfResearchStep> List<Pair<IfEntry, T>> getAllResearchableSteps(Class<T> clazz, EntityPlayer p)
     {
+        return getAllResearchableSteps(clazz, p, p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null));
+    }
+
+    public <T extends IIfResearchStep> List<Pair<IfEntry, T>> getAllResearchableSteps(Class<T> clazz, EntityPlayer p, IIfEntryStore store)
+    {
         List<Pair<IfEntry, T>> lst = new ArrayList<>();
-        IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
         for (IfEntry entr : entries)
         {
             int steps = store.getSteps(entr.getId());
@@ -317,7 +323,11 @@ public class IfRegistry
         );
         registerEntryClient(
                 "microscope", new BigItemDrawable(new ItemStack(ItemRegistry.microscope)),
-                new IfPageText("microscope.0")
+                new IfPageText("microscope.0"),
+                new IfPageBlocks(new BlockArray()
+                {{
+                    getMap().put(new BlockPos(0, 0, 0), new BlockArrayEntry(BlockRegistry.microscope.getDefaultState(), new ItemStack(ItemRegistry.microscope)));
+                }})
         );
     }
 }

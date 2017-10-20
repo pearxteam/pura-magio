@@ -38,6 +38,6 @@ public class BlockMicroscope extends BlockAbstractSingleItemHorizontal
     @Override
     public void openClientGui(World worldIn, BlockPos pos, IBlockState state, EntityPlayer p, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, TileAbstractSingleItem tile)
     {
-        PurMag.proxy.openMicroscope(tile.handler.getStackInSlot(0));
+        PurMag.proxy.openMicroscope((TileMicroscope)tile);
     }
 }

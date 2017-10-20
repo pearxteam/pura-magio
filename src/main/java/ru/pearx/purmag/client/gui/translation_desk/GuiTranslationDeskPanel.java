@@ -12,6 +12,7 @@ import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.libmc.client.gui.controls.common.ProgressBar;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.items.ItemRegistry;

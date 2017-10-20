@@ -1,6 +1,7 @@
 package ru.pearx.purmag.common.networking.packets;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -8,6 +9,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.apache.commons.lang3.tuple.Pair;
 import ru.pearx.libmc.common.networking.ByteBufTools;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.CapabilityRegistry;
@@ -54,31 +56,24 @@ public class SPacketDoneTranslation implements IMessage
         @Override
         public IMessage onMessage(SPacketDoneTranslation message, MessageContext ctx)
         {
-            (ctx.getServerHandler().player.getServerWorld()).addScheduledTask(() ->
+            EntityPlayerMP p = ctx.getServerHandler().player;
+            p.getServerWorld().addScheduledTask(() ->
             {
-                TileEntity te = ctx.getServerHandler().player.world.getTileEntity(message.pos);
+                TileEntity te = p.getEntityWorld().getTileEntity(message.pos);
                 if (te != null && te instanceof TileTranslationDesk)
                 {
                     TileTranslationDesk ttd = (TileTranslationDesk) te;
                     ItemStack papyrus = ttd.handler.getStackInSlot(0);
                     if (!papyrus.isEmpty())
                     {
-                        IIfEntryStore store = ctx.getServerHandler().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
-                        for (IfEntry entr : PurMag.INSTANCE.getIfRegistry().entries)
+                        IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
+                        for (Pair<IfEntry, IRSTranslatePapyrus> pair : PurMag.INSTANCE.getIfRegistry().getAllResearchableSteps(IRSTranslatePapyrus.class, p, store))
                         {
-                            if (entr.getId().equals(message.expected))
+                            if (pair.getLeft().getId().equals(message.expected))
                             {
-                                int steps = store.getSteps(entr.getId());
-                                if (steps < entr.getSteps().size())
+                                if (pair.getRight().isSuitable(papyrus))
                                 {
-                                    IIfResearchStep step = entr.getSteps().get(steps);
-                                    if (step instanceof IRSTranslatePapyrus)
-                                    {
-                                        if (((IRSTranslatePapyrus) step).isSuitable(papyrus))
-                                        {
-                                            store.unlockStepAndSync(entr.getId(), ctx.getServerHandler().player);
-                                        }
-                                    }
+                                    store.unlockStepAndSync(pair.getLeft().getId(), ctx.getServerHandler().player);
                                 }
                             }
                         }

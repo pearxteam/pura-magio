@@ -34,12 +34,11 @@ public class IRSBlockInteract extends IRSBase
     {
         setPredicate(predicate);
         setRenderStates(renderStates);
-        setUnlocalizedDescription("block_interact");
     }
 
     public IRSBlockInteract(List<BlockArrayEntry> renderStates)
     {
-        setPredicate((player, hand, pos, face, hit, world) ->
+        this((player, hand, pos, face, hit, world) ->
         {
             IBlockState state = world.getBlockState(pos);
             for (BlockArrayEntry entr : renderStates)
@@ -48,8 +47,7 @@ public class IRSBlockInteract extends IRSBase
                     return true;
             }
             return false;
-        });
-        setRenderStates(renderStates);
+        }, renderStates);
     }
 
     public Predicate getPredicate()
@@ -81,6 +79,12 @@ public class IRSBlockInteract extends IRSBase
     public String getUnlocalizedName()
     {
         return "block_interact";
+    }
+
+    @Override
+    public String getUnlocalizedDescription()
+    {
+        return super.getUnlocalizedDescription() != null ? super.getUnlocalizedDescription() : getRenderStates().size() > 1 ? "block_interact.mult" : "block_interact.single";
     }
 
     @Override

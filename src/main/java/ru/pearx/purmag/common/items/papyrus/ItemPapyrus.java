@@ -14,6 +14,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.tuple.Pair;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.infofield.IfEntry;
@@ -44,23 +45,11 @@ public class ItemPapyrus extends ItemBase
         if (!worldIn.isRemote)
         {
             IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
-            for (IfEntry entr : PurMag.INSTANCE.getIfRegistry().entries)
+            for (Pair<IfEntry, IRSReadPapyrus> pair : PurMag.INSTANCE.getIfRegistry().getAllResearchableSteps(IRSReadPapyrus.class, p, store))
             {
-                int steps = store.getSteps(entr.getId());
-                if (steps < entr.getSteps().size())
+                if (pair.getRight().isSuitable(stack))
                 {
-                    IIfResearchStep step = entr.getSteps().get(steps);
-                    if (step instanceof IRSReadPapyrus)
-                    {
-                        if (entr.isAvailableToResearch(p))
-                        {
-                            IRSReadPapyrus rp = (IRSReadPapyrus) step;
-                            if (rp.isSuitable(stack))
-                            {
-                                store.unlockStepAndSync(entr.getId(), (EntityPlayerMP) p);
-                            }
-                        }
-                    }
+                    store.unlockStepAndSync(pair.getLeft().getId(), (EntityPlayerMP)p);
                 }
             }
         }

@@ -58,8 +58,9 @@ public class PurMag
     @SidedProxy(clientSide = "ru.pearx.purmag.client.ClientProxy", serverSide = "ru.pearx.purmag.server.ServerProxy")
     public static CommonProxy proxy;
     public PMConfig config = new PMConfig();
-    public Random random = new Random();
     public Logger log;
+    //don't move this to PurMagClient
+    public Random random = new Random();
 
     public SifStorageServer sif_storage = new SifStorageServer();
     private SipTypeRegistry sip_registry = new SipTypeRegistry();

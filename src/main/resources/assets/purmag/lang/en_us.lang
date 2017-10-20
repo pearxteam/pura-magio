@@ -68,7 +68,8 @@ if_step.kill_entity.name=Kill an Entity
 if_step.microscope_research.name=Microscope Research
 if_step.microscope_research.desc=Research the item using the microscope.
 if_step.block_interact.name=Block Interact
-if_step.block_interact.desc=Interact with the block.
+if_step.block_interact.mult.desc=Interact with any of these blocks.
+if_step.block_interact.single.desc=Interact with that block.
 
 if_page.furnace_recipes.name=Furnace Recipes
 if_page.crafting_recipes.name=Crafting Recipes
@@ -125,6 +126,9 @@ if_page.laboratories.1.text=The small laboratory.
 if_page.laboratories.2.text=The medium laboratory.
 if_page.laboratories.3.text=The small laboratory is a pretty small underground room with a ladder to the surface. It contains a few beds, a few tables, the storage and the strange structure at the centre.%nThe medium laboratory is a building with the windows. It contains something like bedroom, two multipurpose rooms and the room behind the pile.
 
+if_entry.microscope.name=Microscope
+if_entry.microscope.desc=Yay! My pixels are bigger!
+if_page.microscope.0.text=There are some microscopes in the labs I found recently. The microscope is a pretty small electrical (?) device. It sometimes displays some additional information about the item. With a microscope, I can research many things. Sadly, I currently can't make a microscope and I even don't know how it works. To use it, I just should put the item in it and open its GUI.
 
 #Miscellaneous
 itemGroup.purmag=Purificati Magicae
@@ -137,6 +141,7 @@ misc.gui.code_storage.lock.lock=Lock
 misc.gui.code_storage.unlock.code=Code:
 misc.gui.code_storage.unlock.wrong=Wrong code!
 misc.gui.code_storage.unlock.unlock=Unlock
+misc.gui.microscope.research=Research
 
 misc.structure_processor.code_storage.name=Code Storage
 misc.structure_processor.code_storage.table=Loot Table:

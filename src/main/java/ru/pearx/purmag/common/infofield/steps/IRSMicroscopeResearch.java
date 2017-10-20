@@ -17,6 +17,7 @@ public class IRSMicroscopeResearch extends IRSIngredient
     {
         setPattern(pattern);
         setIngredient(ingredient);
+        setUnlocalizedDescription("microscope_research");
     }
 
     public boolean[][] getPattern()

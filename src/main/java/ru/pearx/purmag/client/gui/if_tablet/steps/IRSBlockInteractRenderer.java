@@ -17,6 +17,7 @@ import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.infofield.steps.IRSBlockInteract;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.sip.SipUtils;
+import ru.pearx.purmag.common.tiles.TileCodeStorage;
 import ru.pearx.purmag.common.tiles.TileSingleSip;
 
 /*
@@ -30,7 +31,7 @@ public class IRSBlockInteractRenderer extends IRSRenderer<IRSBlockInteract>
     {
         super(step);
         BlockArray arr = new BlockArray();
-        for(int i = 0, x = -(int)Math.floor((double)step.getRenderStates().size() / 2); i < step.getRenderStates().size(); i++, x++)
+        for(int i = 0, x = -step.getRenderStates().size() / 2; i < step.getRenderStates().size(); i++, x++)
         {
             arr.getMap().put(new BlockPos(x, 0, 0), step.getRenderStates().get(i));
         }
