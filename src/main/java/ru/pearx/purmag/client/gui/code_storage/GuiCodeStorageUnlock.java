@@ -9,6 +9,7 @@ import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.Button;
 import ru.pearx.libmc.client.gui.controls.common.TextBox;
+import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.code_storage.CPacketUnlockResponse;
@@ -26,7 +27,7 @@ public class GuiCodeStorageUnlock extends GuiCodeStorageLockUnlock
     private boolean wrong = false;
 
     public TextBox code = new TextBox(Utils.getResourceLocation("textures/gui/textbox.png"));
-    public Button done = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("misc.gui.code_storage.unlock.unlock"), () ->
+    public Button done = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.code_storage.unlock.unlock"), () ->
             NetworkManager.sendToServer(new SPacketUnlock(code.getBuffer().toString(), pos)));
 
     public GuiCodeStorageUnlock(BlockPos pos, String text)

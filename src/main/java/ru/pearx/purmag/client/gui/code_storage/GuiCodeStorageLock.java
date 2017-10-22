@@ -9,6 +9,7 @@ import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.Button;
 import ru.pearx.libmc.client.gui.controls.common.TextBox;
+import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.code_storage.SPacketLock;
@@ -23,7 +24,7 @@ public class GuiCodeStorageLock extends GuiCodeStorageLockUnlock
 
     public TextBox text = new TextBox(Utils.getResourceLocation("textures/gui/textbox.png"));
     public TextBox code = new TextBox(Utils.getResourceLocation("textures/gui/textbox.png"));
-    public Button done = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("misc.gui.code_storage.lock.lock"), () ->
+    public Button done = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.code_storage.lock.lock"), () ->
     {
         NetworkManager.sendToServer(new SPacketLock(text.getBuffer().toString(), code.getBuffer().toString(), pos));
         Minecraft.getMinecraft().displayGuiScreen(null);

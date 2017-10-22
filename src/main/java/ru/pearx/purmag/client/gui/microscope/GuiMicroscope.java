@@ -55,7 +55,7 @@ public class GuiMicroscope extends GuiAbstractMicroscope
     {
         if(entrName != null)
         {
-            btnResearch = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("misc.gui.microscope.research"), () ->
+            btnResearch = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.microscope.research"), () ->
                     Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiMicroscopeResearch(pos, step, entrName))));
             btnResearch.setSize(128, 32);
             btnResearch.setPos(getWidth() - btnResearch.getWidth() - margin, getHeight() - btnResearch.getHeight() - margin);

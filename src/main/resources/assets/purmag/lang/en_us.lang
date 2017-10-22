@@ -142,6 +142,8 @@ misc.gui.code_storage.unlock.code=Code:
 misc.gui.code_storage.unlock.wrong=Wrong code!
 misc.gui.code_storage.unlock.unlock=Unlock
 misc.gui.microscope.research=Research
+misc.gui.microscope.check=Check
+misc.gui.microscope.wrong=Wrong pattern!
 
 misc.structure_processor.code_storage.name=Code Storage
 misc.structure_processor.code_storage.table=Loot Table:

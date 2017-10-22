@@ -8,6 +8,7 @@ import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.Button;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
+import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.infofield.IfEntry;
@@ -37,7 +38,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
     public void init()
     {
         super.init();
-        Button btnBack = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("misc.gui.if_tablet.back"), this::goBack);
+        Button btnBack = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.if_tablet.back"), this::goBack);
         //borders (8 * 2)
         int backWidth = getWidth() - 16;
         int y = getHeight() - 16 - 8;
