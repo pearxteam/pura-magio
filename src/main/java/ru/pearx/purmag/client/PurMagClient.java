@@ -1,9 +1,11 @@
 package ru.pearx.purmag.client;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.client.gui.microscope.MicroscopeDataBuilder;
 import ru.pearx.purmag.client.sif.SifStorageClient;
+import ru.pearx.purmag.common.Utils;
 
 import java.util.Random;
 
@@ -14,6 +16,9 @@ import java.util.Random;
 public enum PurMagClient
 {
     INSTANCE;
+
+    public static ResourceLocation BUTTON_TEXTURE = Utils.getResourceLocation("textures/gui/button.png");
+
     public SifStorageClient sif_storage = new SifStorageClient();
 
     private MicroscopeDataBuilder microscopeDataBuilder = new MicroscopeDataBuilder();

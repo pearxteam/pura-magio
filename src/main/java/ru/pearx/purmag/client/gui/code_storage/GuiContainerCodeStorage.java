@@ -10,6 +10,7 @@ import ru.pearx.libmc.client.gui.PXLGui;
 import ru.pearx.libmc.client.gui.controls.GuiOnScreen;
 import ru.pearx.libmc.client.gui.controls.common.Button;
 import ru.pearx.libmc.client.gui.inventory.PXLGuiContainerControls;
+import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.inventory.ContainerCodeStorage;
 
@@ -29,7 +30,7 @@ public class GuiContainerCodeStorage extends PXLGuiContainerControls
             setHeight(180);
             if(container.storage.isLockable())
             {
-                lock = new Button(Utils.getResourceLocation("textures/gui/button.png"), I18n.format("misc.gui.code_storage.lock"), () ->
+                lock = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.code_storage.lock"), () ->
                 {
                     Minecraft.getMinecraft().player.closeScreen();
                     Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiCodeStorageLock(container.storage.getPos())));

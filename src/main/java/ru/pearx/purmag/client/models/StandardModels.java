@@ -208,10 +208,21 @@ public class StandardModels
 
     public static class Microscope extends OvModel
     {
+        public Matrix4f mat_gui = new TRSRTransformation(null, null, new Vector3f(0.7f, 0.7f, 0.7f), TRSRTransformation.quatFromXYZDegrees(new Vector3f(30, 225, 0))).getMatrix();
+        public Matrix4f mat = new TRSRTransformation(null, null, new Vector3f(0.375f, 0.375f, 0.375f), null).getMatrix();
+
         public Microscope()
         {
             setBaseModel(Utils.getResourceLocation("obj/microscope.obj"));
             vertexProcessors.add(new FacingProcessor());
+        }
+
+        @Override
+        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
+        {
+            if(cameraTransformType == ItemCameraTransforms.TransformType.GUI)
+                return Pair.of(this, mat_gui);
+            return Pair.of(this, mat);
         }
     }
 

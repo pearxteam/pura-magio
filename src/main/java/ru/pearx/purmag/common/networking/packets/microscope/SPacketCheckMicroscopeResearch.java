@@ -1,6 +1,7 @@
 package ru.pearx.purmag.common.networking.packets.microscope;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -15,6 +16,7 @@ import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.infofield.IfEntry;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import ru.pearx.purmag.common.infofield.steps.IRSMicroscopeResearch;
+import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.tiles.TileMicroscope;
 
 import java.util.Arrays;
@@ -94,14 +96,14 @@ public class SPacketCheckMicroscopeResearch implements IMessage
                                 if(pair.getRight().getIngredient().apply(((TileMicroscope) te).handler.getStackInSlot(0)))
                                 {
                                     store.unlockStepAndSync(pair.getLeft().getId(), p);
-                                    //send success
+                                    NetworkManager.sendTo(new CPacketCheckMicroscopeResearchResponse(true), p);
                                     return;
                                 }
                             }
                         }
                     }
                 }
-                //send failed packet here
+                NetworkManager.sendTo(new CPacketCheckMicroscopeResearchResponse(false), p);
             });
             return null;
         }

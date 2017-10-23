@@ -11,6 +11,8 @@ import ru.pearx.purmag.common.networking.packets.*;
 import ru.pearx.purmag.common.networking.packets.code_storage.CPacketUnlockResponse;
 import ru.pearx.purmag.common.networking.packets.code_storage.SPacketLock;
 import ru.pearx.purmag.common.networking.packets.code_storage.SPacketUnlock;
+import ru.pearx.purmag.common.networking.packets.microscope.CPacketCheckMicroscopeResearchResponse;
+import ru.pearx.purmag.common.networking.packets.microscope.SPacketCheckMicroscopeResearch;
 
 /**
  * Created by mrAppleXZ on 23.04.17 11:23.
@@ -36,6 +38,8 @@ public class NetworkManager
         INSTANCE.registerMessage(SPacketLock.Handler.class, SPacketLock.class, id++, Side.SERVER);
         INSTANCE.registerMessage(SPacketUnlock.Handler.class, SPacketUnlock.class, id++, Side.SERVER);
         INSTANCE.registerMessage(CPacketUnlockResponse.Handler.class, CPacketUnlockResponse.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(SPacketCheckMicroscopeResearch.Handler.class, SPacketCheckMicroscopeResearch.class, id++, Side.SERVER);
+        INSTANCE.registerMessage(CPacketCheckMicroscopeResearchResponse.Handler.class, CPacketCheckMicroscopeResearchResponse.class, id++, Side.CLIENT);
     }
 
     public static void sendTo(IMessage msg, EntityPlayerMP p)
