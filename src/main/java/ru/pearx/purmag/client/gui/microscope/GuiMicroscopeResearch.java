@@ -97,7 +97,7 @@ public class GuiMicroscopeResearch extends GuiAbstractMicroscope
             }
             for (int c = 0; c < step.getPattern()[0].length; c++)
             {
-                boolean[] bools = new boolean[step.getPattern()[0].length];
+                boolean[] bools = new boolean[step.getPattern().length];
                 for(int i = 0; i < bools.length; i++)
                 {
                     bools[i] = step.getPattern()[i][c];

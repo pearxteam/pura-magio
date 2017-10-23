@@ -18,14 +18,16 @@ public class IfPagePicture implements IIfPage
     private String unlocalizedText;
     private Object[] properties;
 
-    public IfPagePicture()
-    {
-    }
-
     public IfPagePicture(IGuiDrawable picture, String unlocalizedText, Object... properties)
     {
         setPicture(picture);
         setUnlocalizedText(unlocalizedText);
+        setProperties(properties);
+    }
+
+    public IfPagePicture(IGuiDrawable picture)
+    {
+        setPicture(picture);
     }
 
     public IGuiDrawable getPicture()
@@ -60,7 +62,7 @@ public class IfPagePicture implements IIfPage
 
     public String getText()
     {
-        return I18n.format("if_page." + getUnlocalizedText() + ".text", getProperties());
+        return getUnlocalizedText() == null ? "" : I18n.format("if_page." + getUnlocalizedText() + ".text", getProperties());
     }
 
     @Override
