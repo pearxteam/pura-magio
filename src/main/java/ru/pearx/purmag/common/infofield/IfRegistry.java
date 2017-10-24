@@ -28,7 +28,9 @@ import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import ru.pearx.purmag.common.infofield.steps.*;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.recipes.ingredients.IngredientNBT;
+import ru.pearx.purmag.common.sip.SipType;
 import ru.pearx.purmag.common.sip.SipUtils;
+import ru.pearx.purmag.common.tiles.TileSingleSip;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -216,12 +218,7 @@ public class IfRegistry
 
 
 
-        registerEntry(new IfEntry(
-                "crystals", 0,
-                null,
-                Arrays.asList(new IRSCollect(Ingredient.fromItem(ItemRegistry.crystal_shard), "crystals", true)),
-                0));
-        attachEntry("exploration", new IfEntryLocation("crystals", 0, -2));
+
 
         registerEntry(new IfEntry(
                 "flame_crystal", 0,
@@ -230,6 +227,12 @@ public class IfRegistry
                 0
         ));
         attachEntry("exploration", new IfEntryLocation("flame_crystal", 0, -4));*/
+
+        registerEntry(new IfEntry(
+                "crystals", 0,
+                null,
+                Arrays.asList(new IRSCollect(Ingredient.fromItem(ItemRegistry.crystal_shard), "crystals", true)), 0));
+        attachEntry("exploration", new IfEntryLocation("crystals", 0, 3));
 
         registerEntry(new IfEntry(
                 "laboratories", 0,
@@ -332,16 +335,30 @@ public class IfRegistry
 
 
 
-        registerEntryClient(
-                "crystals", new BigItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "flame")),
-                new IfPageText("crystals.0")
-        );
+
         registerEntryClient(
                 "flame_crystal", new BigItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "flame")),
                 new IfPageText("flame_crystal")
         );*/
 
         //EXPLORATION
+        {
+            BlockArray arr = new BlockArray();
+            int x = 0;
+            for (SipType t : PurMag.INSTANCE.getSipRegistry().getTypes())
+            {
+                x += 2;
+                TileSingleSip tile = new TileSingleSip();
+                tile.setType(t.getName(), false);
+                arr.getMap().put(new BlockPos(x, 0, 0), new BlockArrayEntry(BlockRegistry.crystal.getDefaultState(), SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), t.getName()), tile));
+            }
+            registerEntryClient(
+                    "crystals", new BigItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "flame")),
+                    new IfPageText("crystals.0"),
+                    new IfPageBlocks(arr)
+            );
+        }
+
         registerEntryClient(
                 "laboratories", new SimpleDrawable(Utils.getResourceLocation("textures/gui/icons/laboratory.png"), 28, 28),
                 new IfPageText("laboratories.0"),
