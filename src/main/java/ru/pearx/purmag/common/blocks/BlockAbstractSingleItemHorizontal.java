@@ -59,8 +59,12 @@ public abstract class BlockAbstractSingleItemHorizontal extends BlockBase
             ItemStack held = p.getHeldItem(hand);
             if (!p.isSneaking() && (tasi.isItemValid(held)))
             {
-                p.setHeldItem(hand, handler.insertItem(0, held, false));
-                return true;
+                ItemStack st = handler.insertItem(0, held, false);
+                if(!ItemStack.areItemStacksEqualUsingNBTShareTag(st, held))
+                {
+                    p.setHeldItem(hand, st);
+                    return true;
+                }
             }
             if (p.isSneaking() && !handler.getStackInSlot(0).isEmpty())
             {

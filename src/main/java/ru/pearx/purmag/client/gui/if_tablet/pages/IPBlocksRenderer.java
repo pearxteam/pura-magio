@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.BlockArrayShowcase;
+import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.client.infofield.pages.IfPageBlocks;
 
 /*
@@ -18,7 +19,7 @@ public class IPBlocksRenderer extends IPRenderer<IfPageBlocks>
     public IPBlocksRenderer(IfPageBlocks page)
     {
         super(page);
-        showcase = new BlockArrayShowcase(page.getArray());
+        showcase = new BlockArrayShowcase(PurMagClient.BUTTON_TEXTURE, page.getArray());
     }
 
     @Override

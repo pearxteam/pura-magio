@@ -13,6 +13,7 @@ import ru.pearx.libmc.client.gui.controls.common.BlockArrayShowcase;
 import ru.pearx.libmc.common.ItemStackUtils;
 import ru.pearx.libmc.common.structure.blockarray.BlockArray;
 import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
+import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.infofield.steps.IRSBlockInteract;
 import ru.pearx.purmag.common.items.ItemRegistry;
@@ -35,7 +36,7 @@ public class IRSBlockInteractRenderer extends IRSRenderer<IRSBlockInteract>
         {
             arr.getMap().put(new BlockPos(x, 0, 0), step.getRenderStates().get(i));
         }
-        showcase = new BlockArrayShowcase(arr);
+        showcase = new BlockArrayShowcase(PurMagClient.BUTTON_TEXTURE, arr);
     }
 
     @Override

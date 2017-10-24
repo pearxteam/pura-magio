@@ -1,6 +1,7 @@
 package ru.pearx.purmag.common.infofield;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -364,6 +365,7 @@ public class IfRegistry
                 new IfPageBlocks(new BlockArray()
                 {{
                     getMap().put(new BlockPos(0, 0, 0), new BlockArrayEntry(BlockRegistry.brulanta_flower.getDefaultState(), new ItemStack(ItemRegistry.brulanta_flower)));
+                    getMap().put(new BlockPos(0, -1, 0), new BlockArrayEntry(Blocks.SAND.getDefaultState(), ItemStack.EMPTY));
                 }})
         );
         registerEntryClient(
