@@ -1,5 +1,6 @@
 package ru.pearx.purmag.common.infofield;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -11,10 +12,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 import ru.pearx.lib.Colors;
-import ru.pearx.libmc.client.gui.drawables.BigItemDrawable;
 import ru.pearx.libmc.client.gui.drawables.EntityDrawable;
 import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.libmc.client.gui.drawables.SimpleDrawable;
+import ru.pearx.libmc.client.gui.drawables.item.ItemDrawable;
+import ru.pearx.libmc.client.gui.drawables.item.MultiItemDrawable;
 import ru.pearx.libmc.common.structure.blockarray.BlockArray;
 import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
 import ru.pearx.purmag.PurMag;
@@ -174,8 +176,8 @@ public class IfRegistry
                     return done;
             }
         }, Utils.getResourceLocation("models/wall_if_tablet/0"), Utils.getResourceLocation("if_tablet/0"));
-        registerTierClient(1, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getResourceLocation("textures/gui/if_tablet/1.png"), Colors.LIGHTGREEN_300, Colors.LIGHTGREEN_900), Utils.getResourceLocation("models/wall_if_tablet/1"), Utils.getResourceLocation("if_tablet/1"));
-        registerTierClient(2, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getResourceLocation("textures/gui/if_tablet/2.png"), Colors.LIGHTGREEN_300, Colors.LIGHTGREEN_900), Utils.getResourceLocation("models/wall_if_tablet/2"), Utils.getResourceLocation("if_tablet/2"));
+        registerTierClient(1, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getResourceLocation("textures/gui/if_tablet/1.png"), Colors.LIGHTGREEN_100, Colors.GREEN_900), Utils.getResourceLocation("models/wall_if_tablet/1"), Utils.getResourceLocation("if_tablet/1"));
+        registerTierClient(2, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.getResourceLocation("textures/gui/if_tablet/2.png"), Colors.LIGHTGREEN_100, Colors.GREEN_900), Utils.getResourceLocation("models/wall_if_tablet/2"), Utils.getResourceLocation("if_tablet/2"));
     }
 
     public void setup()
@@ -220,19 +222,44 @@ public class IfRegistry
 
 
 
-        registerEntry(new IfEntry(
-                "flame_crystal", 0,
-                Arrays.asList("crystals"),
-                Arrays.asList(new IRSCollect(new IngredientNBT(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard), "flame")), "flame_crystal", true)),
-                0
-        ));
-        attachEntry("exploration", new IfEntryLocation("flame_crystal", 0, -4));*/
+        */
 
         registerEntry(new IfEntry(
                 "crystals", 0,
                 null,
                 Arrays.asList(new IRSCollect(Ingredient.fromItem(ItemRegistry.crystal_shard), "crystals", true)), 0));
-        attachEntry("exploration", new IfEntryLocation("crystals", 0, 3));
+        attachEntry("exploration", new IfEntryLocation("crystals", -2, 3));
+
+        registerEntry(new IfEntry(
+                "crystals_2", 0,
+                Arrays.asList("crystals", "microscope"),
+                Arrays.asList(new IRSMicroscopeResearch(Ingredient.fromItem(ItemRegistry.crystal_shard), new boolean[][]
+                        {
+                                {false, false, false, true, false, false, false},
+                                {false, false, false, true, false, false, false},
+                                {true, false, true, true, true, false, false},
+                                {true, true, true, true, true, false, true},
+                                {false, true, true, false, true, true, true},
+                                {false, false, true, false, true, true, true},
+                                {false, false, true, true, true, true, false},
+                                {false, false, true, true, true, false, false},
+                        })), 0));
+        attachEntry("exploration", new IfEntryLocation("crystals_2", 0, 3));
+
+        registerEntry(new IfEntry(
+                "flame_crystal", 0,
+                Arrays.asList("crystals_2"),
+                Arrays.asList(new IRSMicroscopeResearch(new IngredientNBT(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard), "flame")), new boolean[][]
+                        {
+                                {false, false, true, false, false},
+                                {true, false, true, false, true},
+                                {true, true, true, true, true},
+                                {true, true, false, true, true},
+                                {false, true, true, true, false},
+                        })),
+                0));
+        attachEntry("exploration", new IfEntryLocation("flame_crystal", -3, 4));
+
 
         registerEntry(new IfEntry(
                 "laboratories", 0,
@@ -306,13 +333,13 @@ public class IfRegistry
     @SideOnly(Side.CLIENT)
     public void setupClient()
     {
-        registerChannelClient("information", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet, 1, 1)));
-        registerChannelClient("exploration", new BigItemDrawable(new ItemStack(ItemRegistry.crystal)));
+        registerChannelClient("information", new ItemDrawable(new ItemStack(ItemRegistry.if_tablet, 1, 1), 1.5f));
+        registerChannelClient("exploration", new ItemDrawable(new ItemStack(ItemRegistry.crystal), 1.5f));
         registerChannelClient("sip", new SimpleDrawable(Utils.getResourceLocation("textures/gui/icons/sip.png"), 28, 28, 28, 28));
 
         //INFORMATION
         registerEntryClient(
-                "wooden_tablet", new BigItemDrawable(new ItemStack(ItemRegistry.if_tablet)),
+                "wooden_tablet", new ItemDrawable(new ItemStack(ItemRegistry.if_tablet), 1.5f),
                 new IfPageText("wooden_tablet.0"),
                 new IfPageText("wooden_tablet.1"),
                 new IfPageCrafting(Utils.getResourceLocation("painting_kit"), Utils.getResourceLocation("gray_paper_pack"), Utils.getResourceLocation("wooden_tablet"))
@@ -336,28 +363,47 @@ public class IfRegistry
 
 
 
-        registerEntryClient(
-                "flame_crystal", new BigItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "flame")),
-                new IfPageText("flame_crystal")
-        );*/
+        */
 
         //EXPLORATION
         {
-            BlockArray arr = new BlockArray();
-            int x = 0;
+            List<ItemStack> l = new ArrayList<>();
             for (SipType t : PurMag.INSTANCE.getSipRegistry().getTypes())
+                l.add(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), t.getName()));
+            MultiItemDrawable draw = new MultiItemDrawable(l, 1.5f, 500);
+
             {
-                x += 2;
-                TileSingleSip tile = new TileSingleSip();
-                tile.setType(t.getName(), false);
-                arr.getMap().put(new BlockPos(x, 0, 0), new BlockArrayEntry(BlockRegistry.crystal.getDefaultState(), SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), t.getName()), tile));
+                BlockArray arr = new BlockArray();
+                int x = 0;
+                IBlockState stone = Blocks.STONE.getDefaultState();
+                for (SipType t : PurMag.INSTANCE.getSipRegistry().getTypes())
+                {
+                    TileSingleSip tile = new TileSingleSip();
+                    tile.setType(t.getName(), false);
+                    arr.getMap().put(new BlockPos(x, 0, 0), new BlockArrayEntry(BlockRegistry.crystal.getDefaultState(), SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), t.getName()), tile));
+                    x += 2;
+                }
+                for (int i = 0; i < PurMag.INSTANCE.getSipRegistry().getTypes().size() * 2 - 1; i++)
+                {
+                    arr.getMap().put(new BlockPos(i, -1, 0), new BlockArrayEntry(stone, ItemStack.EMPTY));
+                }
+                registerEntryClient(
+                        "crystals", draw,
+                        new IfPageText("crystals.0"),
+                        new IfPageBlocks(arr)
+                );
             }
+
             registerEntryClient(
-                    "crystals", new BigItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "flame")),
-                    new IfPageText("crystals.0"),
-                    new IfPageBlocks(arr)
+                    "crystals_2", draw,
+                    new IfPageText("crystals_2.0")
             );
         }
+
+        registerEntryClient(
+                "flame_crystal", new ItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "flame"), 1.5f),
+                new IfPageText("flame_crystal")
+        );
 
         registerEntryClient(
                 "laboratories", new SimpleDrawable(Utils.getResourceLocation("textures/gui/icons/laboratory.png"), 28, 28),
@@ -367,7 +413,7 @@ public class IfRegistry
                 new IfPageText("laboratories.3")
         );
         registerEntryClient(
-                "microscope", new BigItemDrawable(new ItemStack(ItemRegistry.microscope)),
+                "microscope", new ItemDrawable(new ItemStack(ItemRegistry.microscope), 1.5f),
                 new IfPageText("microscope.0"),
                 new IfPageText("microscope.1"),
                 new IfPagePicture(new SimpleDrawable(Utils.getResourceLocation("textures/gui/pictures/microscope_research.png"), 344, 185), "microscope.2"),
@@ -377,7 +423,7 @@ public class IfRegistry
                 }})
         );
         registerEntryClient(
-                "brulanta_flower", new BigItemDrawable(new ItemStack(ItemRegistry.brulanta_flower)),
+                "brulanta_flower", new ItemDrawable(new ItemStack(ItemRegistry.brulanta_flower), 1.5f),
                 new IfPageText("brulanta_flower.0"),
                 new IfPageBlocks(new BlockArray()
                 {{
@@ -386,7 +432,7 @@ public class IfRegistry
                 }})
         );
         registerEntryClient(
-                "mortar_and_pestle", new BigItemDrawable(new ItemStack(ItemRegistry.mortar_and_pestle)),
+                "mortar_and_pestle", new ItemDrawable(new ItemStack(ItemRegistry.mortar_and_pestle), 1.5f),
                 new IfPageText("mortar_and_pestle.0"),
                 new IfPageCrafting(Utils.getResourceLocation("unf_mortar_and_pestle")),
                 new IfPageFurnace(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle))

@@ -13,7 +13,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.lwjgl.util.Point;
 import ru.pearx.libmc.client.gui.IGuiScreen;
 import ru.pearx.libmc.client.gui.controls.Control;
-import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
+import ru.pearx.libmc.client.gui.drawables.item.ItemDrawable;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 
 import java.util.HashMap;
@@ -159,7 +159,7 @@ public class CraftingControl extends Control
                 {
                     ItemDrawable[] arr = inDraws[row * 3 + column];
                     ItemDrawable draw = arr[(int) (System.currentTimeMillis() / 1000 % arr.length)];
-                    if (!draw.stack.isEmpty())
+                    if (!draw.getStack().isEmpty())
                         draw.drawTooltip(gs, xIn[column], yIn[row], mouseX, mouseY, pos.getX(), pos.getY());
                 }
             }

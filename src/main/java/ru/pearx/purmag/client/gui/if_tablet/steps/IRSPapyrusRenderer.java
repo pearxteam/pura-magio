@@ -5,7 +5,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.util.Point;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.drawables.ItemDrawable;
+import ru.pearx.libmc.client.gui.drawables.item.ItemDrawable;
 import ru.pearx.purmag.common.infofield.steps.IRSPapyrus;
 import ru.pearx.purmag.common.items.ItemRegistry;
 
@@ -28,7 +28,7 @@ public class IRSPapyrusRenderer extends IRSRenderer<IRSPapyrus>
     public void render()
     {
         super.render();
-        if (draw == null || draw.stack.getItem() != ItemRegistry.papyrus || !ItemRegistry.papyrus.getId(draw.stack).equals(step.id))
+        if (draw == null || draw.getStack().getItem() != ItemRegistry.papyrus || !ItemRegistry.papyrus.getId(draw.getStack()).equals(step.id))
         {
             draw = new ItemDrawable(ItemRegistry.papyrus.getPapyrusItem(step.id), 5);
         }

@@ -80,14 +80,17 @@ if_page.wooden_tablet.0.text=Controls%n%nYou can move through the "channels" (ta
 if_page.wooden_tablet.1.text=If I want to remember my thoughts, I should create a thing where I can record them. So, I just took a wooden plate and attached some paper to it. I can record all my thoughts and to do lists with it. Also, I use some dyes and a brush to draw colored pictures in the tablet.
 
 if_entry.crystals.name=Crystals
-if_entry.crystals.desc=The rainbow candies?
+if_entry.crystals.desc=Rainbow candies?
 if_step.crystals.desc=Find these big colorful crystals in the world and mine them.
 if_page.crystals.0.text=I found the strange crystal clusters... After touching them, I felt as if some wave ran through my body. They shine from inside, as if they contain some power. I tried to take a cluster, but to my regret from the hit of the pick on it, it split into shards. I will continue researching.
 
+if_entry.crystals_2.name=Crystals II
+if_entry.crystals_2.desc=
+if_page.crystals_2.0.text=I researched crystals a little more. They don't consist of ordinary silicon, that's something other. I called this chemical substance "Cretonite". //todo
+
 if_entry.flame_crystal.name=Flama Crystal
-if_entry.flame_crystal.desc=Hot! So HOT!!!
-if_step.flame_crystal.desc=Find the flama crystal in the hot place and mine it.
-if_page.flame_crystal.text=I found the flama crystals in the nether. Looks like I can find them only in the lowest levels of the nether. The flame crystals are very hot, maybe I can use them in the metallurgy in the future.
+if_entry.flame_crystal.desc=Hot Topic!
+if_page.flame_crystal.text=I found the flama crystals in the nether. Looks like I can find them only on the lowest levels of nether.//todo
 
 if_entry.crysagnetite.name=Crysagnetite
 if_entry.crysagnetite.desc=Purple magnet?
