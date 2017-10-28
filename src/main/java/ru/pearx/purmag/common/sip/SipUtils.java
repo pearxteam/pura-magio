@@ -8,7 +8,9 @@ import net.minecraft.world.IBlockAccess;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.tiles.TileSingleSip;
 
-/*
+import javax.annotation.Nullable;
+
+        /*
  * Created by mrAppleXZ on 09.07.17 8:57.
  */
 
@@ -32,13 +34,16 @@ public class SipUtils
         return PurMag.INSTANCE.getSipRegistry().getDefaultType().getName();
     }
 
-    public static String getSipInBlock(IBlockAccess access, BlockPos pos)
+    public static String getSipInBlock(@Nullable IBlockAccess access, BlockPos pos)
     {
-        TileEntity te = access.getTileEntity(pos);
-        if (te != null && te instanceof TileSingleSip)
+        if(access != null)
         {
-            TileSingleSip tss = (TileSingleSip) te;
-            return tss.getType();
+            TileEntity te = access.getTileEntity(pos);
+            if (te != null && te instanceof TileSingleSip)
+            {
+                TileSingleSip tss = (TileSingleSip) te;
+                return tss.getType();
+            }
         }
         return PurMag.INSTANCE.getSipRegistry().getDefaultType().getName();
     }

@@ -81,6 +81,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
         GuiDrawableRegistry.splitter.draw(getGuiScreen(), (getWidth() - GuiDrawableRegistry.splitter.getWidth()) / 2, DrawingTools.getFontHeight() + 8 + 2);
     }
 
+    private long startTime = 0;
     public void update(boolean next, boolean playAnim)
     {
         if (sensitive)
@@ -95,21 +96,17 @@ public class GuiIfTabletSP extends GuiIfTabletS
                     newRend = entry.getPages().get(index).getRenderer();
                     controls.add(newRend);
                     newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
+                    startTime = System.currentTimeMillis();
                     new Thread(() ->
                     {
-                        for (int i = 0; i <= newRend.getWidth(); i++)
+                        int nX = newRend.getX();
+                        int x = rend.getX();
+                        while((System.currentTimeMillis() - startTime) < newRend.getWidth())
                         {
-                            try
-                            {
-                                Thread.sleep(1);
-                            }
-                            catch (InterruptedException e)
-                            {
-                                e.printStackTrace();
-                            }
-                            newRend.setX(newRend.getX() + (next ? -1 : 1));
+                            int pos = (int)((System.currentTimeMillis() - startTime) % rend.getWidth()) + 1;
+                            newRend.setX(nX + (next ? -pos : pos));
                             if (rend != null)
-                                rend.setX(rend.getX() + (next ? -1 : 1));
+                                rend.setX(x + (next ? -pos : pos));
                         }
                         if (rend != null)
                             controls.remove(rend);

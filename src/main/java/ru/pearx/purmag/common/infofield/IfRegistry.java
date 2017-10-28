@@ -258,7 +258,35 @@ public class IfRegistry
                                 {false, true, true, true, false},
                         })),
                 0));
-        attachEntry("exploration", new IfEntryLocation("flame_crystal", -3, 4));
+        attachEntry("exploration", new IfEntryLocation("flame_crystal", 3, 4));
+
+        registerEntry(new IfEntry(
+                "rock_crystal", 0,
+                Arrays.asList("crystals_2"),
+                Arrays.asList(new IRSMicroscopeResearch(new IngredientNBT(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard), "rock")), new boolean[][]
+                        {
+                                {false, true, true, true, false},
+                                {true, false, false, false, true},
+                                {true, false, false, false, true},
+                                {true, true, true, true, true},
+                        })),
+                0));
+        attachEntry("exploration", new IfEntryLocation("rock_crystal", 1, 5));
+
+        registerEntry(new IfEntry(
+                "air_crystal", 0,
+                Arrays.asList("crystals_2"),
+                Arrays.asList(new IRSMicroscopeResearch(new IngredientNBT(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard), "air")), new boolean[][]
+                        {
+                                {false, true, true, true, true, false},
+                                {true, false, false, true, false, true},
+                                {true, false, true, false, false, true},
+                                {true, false, false, true, true, false},
+                                {true, false, false, false, false, false},
+                                {false, true, true, true, true, true},
+                        })),
+                0));
+        attachEntry("exploration", new IfEntryLocation("air_crystal", -1, 5));
 
 
         registerEntry(new IfEntry(
@@ -403,6 +431,14 @@ public class IfRegistry
         registerEntryClient(
                 "flame_crystal", new ItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "flame"), 1.5f),
                 new IfPageText("flame_crystal")
+        );
+        registerEntryClient(
+                "rock_crystal", new ItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "rock"), 1.5f),
+                new IfPageText("rock_crystal")
+        );
+        registerEntryClient(
+                "air_crystal", new ItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "air"), 1.5f),
+                new IfPageText("air_crystal")
         );
 
         registerEntryClient(

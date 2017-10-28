@@ -86,11 +86,19 @@ if_page.crystals.0.text=I found the strange crystal clusters... After touching t
 
 if_entry.crystals_2.name=Crystals II
 if_entry.crystals_2.desc=
-if_page.crystals_2.0.text=I researched crystals a little more. They don't consist of ordinary silicon, that's something other. I called this chemical substance "Cretonite". //todo
+if_page.crystals_2.0.text=I researched crystals a little more. They don't consist of ordinary silicon, that's something other. I called this chemical substance "Cretonite". However, //todo
 
 if_entry.flame_crystal.name=Flama Crystal
 if_entry.flame_crystal.desc=Hot Topic!
 if_page.flame_crystal.text=I found the flama crystals in the nether. Looks like I can find them only on the lowest levels of nether.//todo
+
+if_entry.rock_crystal.name=Roka Crystal
+if_entry.rock_crystal.desc=you rock
+if_page.rock_crystal.text=TODO: write something
+
+if_entry.air_crystal.name=Aera Crystal
+if_entry.air_crystal.desc=The wind timidly touches your hair...
+if_page.air_crystal.text=TODO: write something
 
 if_entry.crysagnetite.name=Crysagnetite
 if_entry.crysagnetite.desc=Purple magnet?
@@ -110,9 +118,9 @@ if_page.verda_beetle.0.text=I found a few big brown beetles with green wings. Bu
 if_page.verda_beetle.1.name=Verda Beetle
 
 if_entry.brulanta_flower.name=Brulanta Flower
-if_entry.brulanta_flower.desc=Why "brulanta"?
+if_entry.brulanta_flower.desc=Look! My mod also have the magical flowers!
 if_step.brulanta_flower.desc=Find this red flower and collect it.
-if_page.brulanta_flower.0.text=These flowers grew in the sands. They're red like the flame. I collected one of them, so I can plant it in my garden or come up with a more useful way to use them. I noticed that they ignite at fairly low temperatures, so be careful. Looks like I can find them in hot and dry places.
+if_page.brulanta_flower.0.text=These flowers grew in the sands. They're red like the flame. I collected one of them, so I can plant it in my garden or come up with a more useful way to use them. I noticed that they ignite at fairly low temperatures, so I should be careful. Looks like I can find them in hot and dry places.
 
 if_entry.mortar_and_pestle.name=Mortar and Pestle
 if_entry.mortar_and_pestle.desc=They're wasting our clay!
