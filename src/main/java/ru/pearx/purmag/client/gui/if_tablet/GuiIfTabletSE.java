@@ -21,8 +21,8 @@ public class GuiIfTabletSE extends GuiIfTabletS
     {
         selector = new GuiIfTabletSESelector();
         controls.add(selector);
-        selector.setX(getWidth() - selector.getWidth());
-        selector.setY((getHeight() - selector.getHeight()) / 2);
+        selector.setX(getWidth() - selector.getWidth(), false);
+        selector.setY((getHeight() - selector.getHeight()) / 2, false);
 
         entries = new GuiIfTabletSEEntries();
         controls.add(entries);

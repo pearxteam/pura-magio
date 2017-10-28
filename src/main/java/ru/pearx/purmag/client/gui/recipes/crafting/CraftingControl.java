@@ -81,8 +81,6 @@ public class CraftingControl extends Control
     private int[] xIn = new int[3], yIn = new int[3];
     private int xOut, yOut;
 
-    private int mouseX, mouseY;
-
     public CraftingControl(IRecipe recipe)
     {
         if (containsHandler(recipe.getClass()))
@@ -160,17 +158,10 @@ public class CraftingControl extends Control
                     ItemDrawable[] arr = inDraws[row * 3 + column];
                     ItemDrawable draw = arr[(int) (System.currentTimeMillis() / 1000 % arr.length)];
                     if (!draw.getStack().isEmpty())
-                        draw.drawTooltip(gs, xIn[column], yIn[row], mouseX, mouseY, pos.getX(), pos.getY());
+                        draw.drawTooltip(gs, xIn[column], yIn[row], getLastMouseX(), getLastMouseY(), pos.getX(), pos.getY());
                 }
             }
-            outDraw.drawTooltip(gs, xOut, yOut, mouseX, mouseY, pos.getX(), pos.getY());
+            outDraw.drawTooltip(gs, xOut, yOut, getLastMouseX(), getLastMouseY(), pos.getX(), pos.getY());
         }
-    }
-
-    @Override
-    public void mouseMove(int x, int y, int dx, int dy)
-    {
-        mouseX = x;
-        mouseY = y;
     }
 }
