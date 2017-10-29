@@ -1,8 +1,10 @@
 package ru.pearx.purmag.client.gui.microscope;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import ru.pearx.lib.Color;
 import ru.pearx.lib.Colors;
 import ru.pearx.lib.math.MathUtils;
@@ -11,6 +13,7 @@ import ru.pearx.libmc.client.gui.PXLGui;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.libmc.client.gui.controls.common.Button;
 import ru.pearx.purmag.client.PurMagClient;
+import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.infofield.IfEntry;
 import ru.pearx.purmag.common.infofield.steps.IRSMicroscopeResearch;
 import ru.pearx.purmag.common.networking.NetworkManager;
@@ -78,6 +81,30 @@ public class GuiMicroscopeResearch extends GuiAbstractMicroscope
             setFailed();
     }
 
+    public class ShimmeringColor extends Color
+    {
+        private Color base;
+        public ShimmeringColor(Color base)
+        {
+            this.base = base;
+        }
+        @Override
+        public int getARGB()
+        {
+            int base = this.base.getARGB();
+            float mult = MathHelper.sin(MathUtils.toRadians(System.currentTimeMillis() / 5 % 360)) * 0.15f + 0.85f;
+            int a = (base >> 24);
+            int r = (int)(((base >> 16) & 0xFF) * mult);
+            int g = (int)(((base >> 8) & 0xFF) * mult);
+            int b = (int)((base & 0xFF) * mult);
+            int argb = a << 24;
+            argb |= r << 16;
+            argb |= g << 8;
+            argb |= b;
+            return argb;
+        }
+    }
+
     public class Panel extends Control
     {
         private int buttSize;
@@ -86,6 +113,9 @@ public class GuiMicroscopeResearch extends GuiAbstractMicroscope
         private String[] upTexts;
         private String[] leftTexts;
         private boolean[][] current;
+        private boolean[][] crosses;
+        private Color shGreen = new ShimmeringColor(Colors.GREEN_500);
+        private Color shBlue = new ShimmeringColor(Colors.BLUE_500);
 
         public Panel()
         {
@@ -121,9 +151,13 @@ public class GuiMicroscopeResearch extends GuiAbstractMicroscope
             this.maxLeft = maxLeft;
             this.maxUp = maxUp;
             current = new boolean[step.getPattern().length][step.getPattern()[0].length];
+            crosses = new boolean[step.getPattern().length][step.getPattern()[0].length];
             for(int r = 0; r < current.length; r++)
                 for(int c = 0; c < current[0].length; c++)
+                {
                     current[r][c] = false;
+                    crosses[r][c] = false;
+                }
 
             int bsH = (GuiMicroscopeResearch.this.getHeight() - maxUp - margin * 2 - 34) / step.getPattern().length;
             int bsW = (GuiMicroscopeResearch.this.getWidth() - maxLeft - margin * 2) / step.getPattern().length;
@@ -154,7 +188,15 @@ public class GuiMicroscopeResearch extends GuiAbstractMicroscope
                 {
                     int xx = maxLeft + c * buttSize;
                     int yy = maxUp + r * buttSize;
-                    DrawingTools.drawGradientRect(xx, yy, buttSize, buttSize, current[r][c] ? Colors.GREEN_500 : Colors.BLUE_500);
+                    GlStateManager.color(0, 0, 0, 0);
+                    Color cSimple = current[r][c] ? Colors.GREEN_500 : Colors.BLUE_500;
+                    Color cShimmer = current[r][c] ? shGreen : shBlue;
+                    DrawingTools.drawGradientRect(xx, yy, buttSize, buttSize, cShimmer, cSimple, cShimmer, cSimple);
+                    if(crosses[r][c])
+                    {
+                        DrawingTools.drawLine(xx, yy, xx + buttSize, yy + buttSize, 5, Colors.GREY_800, Colors.GREY_800);
+                        DrawingTools.drawLine(xx + buttSize, yy, xx, yy + buttSize, 5, Colors.GREY_800, Colors.GREY_800);
+                    }
                     DrawingTools.drawGradientRect(xx, yy, buttSize, 1, Colors.GREY_800);
                     DrawingTools.drawGradientRect(xx, yy + buttSize - 1, buttSize, 1, Colors.GREY_800);
                     DrawingTools.drawGradientRect(xx, yy, 1, buttSize, Colors.GREY_800);
@@ -172,7 +214,11 @@ public class GuiMicroscopeResearch extends GuiAbstractMicroscope
             {
                 int col = x / buttSize;
                 int row = y / buttSize;
-                current[row][col] = !current[row][col];
+                if(button == 0)
+                    current[row][col] = !current[row][col];
+                else if(button == 1)
+                    crosses[row][col] = !crosses[row][col];
+                Minecraft.getMinecraft().player.playSound(SoundRegistry.MAGICAL_CLICK, 1, 1);
             }
         }
 
