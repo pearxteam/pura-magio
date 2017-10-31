@@ -20,6 +20,7 @@ public class TileRegistry
         GameRegistry.registerTileEntity(TileWallIfTablet.class, Utils.getResourceLocation("wall_if_tablet").toString());
         GameRegistry.registerTileEntity(TileMicroscope.class, Utils.getResourceLocation("microscope").toString());
         GameRegistry.registerTileEntity(TileCodeStorage.class, Utils.getResourceLocation("code_storage").toString());
+        GameRegistry.registerTileEntity(TileMagibench.class, Utils.getResourceLocation("magibench").toString());
     }
 
     @SideOnly(Side.CLIENT)

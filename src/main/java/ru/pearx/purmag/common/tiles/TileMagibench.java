@@ -10,6 +10,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.pearx.libmc.common.ItemStackUtils;
 import ru.pearx.libmc.common.tiles.TileSyncable;
+import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 
 import javax.annotation.Nullable;
@@ -29,7 +30,7 @@ public class TileMagibench extends TileSyncable
 
     public void setTier(int tier, boolean sync)
     {
-        MagibenchRegistry.Tier t = MagibenchRegistry.INSTANCE.getTier(tier);
+        MagibenchRegistry.Tier t = PurMag.INSTANCE.getMagibenchRegistry().getTier(tier);
         if(handler != null && getTier() != tier && !getWorld().isRemote)
         {
             ItemStackUtils.drop(handler, getWorld(), getPos());
@@ -54,20 +55,19 @@ public class TileMagibench extends TileSyncable
     }
 
     @Override
-    public NBTTagCompound serializeNBT()
+    public void readFromNBT(NBTTagCompound compound)
     {
-        NBTTagCompound tag = super.serializeNBT();
-        tag.setInteger("tier", getTier());
-        tag.setTag("items", handler.serializeNBT());
-        return tag;
+        super.readFromNBT(compound);
+        setTier(compound.getInteger("tier"), false);
+        handler.deserializeNBT(compound.getCompoundTag("items"));
     }
 
     @Override
-    public void deserializeNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {
-        super.deserializeNBT(nbt);
-        setTier(nbt.getInteger("tier"), false);
-        handler.deserializeNBT(nbt.getCompoundTag("items"));
+        compound.setInteger("tier", getTier());
+        compound.setTag("items", handler.serializeNBT());
+        return super.writeToNBT(compound);
     }
 
     public boolean canWork()

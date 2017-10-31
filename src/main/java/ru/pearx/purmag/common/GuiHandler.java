@@ -7,10 +7,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.purmag.client.gui.GuiContainerMagibench;
 import ru.pearx.purmag.client.gui.code_storage.GuiContainerCodeStorage;
 import ru.pearx.purmag.common.blocks.BlockCodeStorage;
+import ru.pearx.purmag.common.blocks.BlockMagibench;
 import ru.pearx.purmag.common.inventory.ContainerCodeStorage;
+import ru.pearx.purmag.common.inventory.ContainerMagibench;
 import ru.pearx.purmag.common.tiles.TileCodeStorage;
+import ru.pearx.purmag.common.tiles.TileMagibench;
 
 import javax.annotation.Nullable;
 
@@ -26,13 +30,25 @@ public class GuiHandler implements IGuiHandler
         switch (id)
         {
             case BlockCodeStorage.GUI_ID:
+            {
                 BlockPos pos = new BlockPos(x, y, z);
                 TileEntity te = world.getTileEntity(pos);
-                if(te != null && te instanceof TileCodeStorage)
+                if (te != null && te instanceof TileCodeStorage)
                 {
                     return new ContainerCodeStorage((TileCodeStorage) te, player.inventory);
                 }
                 break;
+            }
+            case BlockMagibench.GUI_ID:
+            {
+                BlockPos pos = new BlockPos(x, y, z);
+                TileEntity te = world.getTileEntity(pos);
+                if (te != null && te instanceof TileMagibench)
+                {
+                    return new ContainerMagibench((TileMagibench) te, world, player.inventory);
+                }
+                break;
+            }
         }
         return null;
     }
@@ -45,13 +61,25 @@ public class GuiHandler implements IGuiHandler
         switch (id)
         {
             case BlockCodeStorage.GUI_ID:
+            {
                 BlockPos pos = new BlockPos(x, y, z);
                 TileEntity te = world.getTileEntity(pos);
-                if(te != null && te instanceof TileCodeStorage)
+                if (te != null && te instanceof TileCodeStorage)
                 {
                     return new GuiContainerCodeStorage(new ContainerCodeStorage((TileCodeStorage) te, player.inventory));
                 }
                 break;
+            }
+            case BlockMagibench.GUI_ID:
+            {
+                BlockPos pos = new BlockPos(x, y, z);
+                TileEntity te = world.getTileEntity(pos);
+                if (te != null && te instanceof TileMagibench)
+                {
+                    return new GuiContainerMagibench(new ContainerMagibench((TileMagibench) te, world, player.inventory));
+                }
+                break;
+            }
         }
         return null;
     }

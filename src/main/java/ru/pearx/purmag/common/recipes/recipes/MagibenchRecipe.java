@@ -57,6 +57,7 @@ public class MagibenchRecipe extends IForgeRegistryEntry.Impl<IRecipe> implement
     public boolean matches(InventoryCrafting inv, World worldIn)
     {
         boolean base = ItemStackUtils.isCraftingMatrixMatches(inv, getRecipeWidth(), getRecipeHeight(), ingredients, mirrored);
+        return base;
     }
 
     @Override

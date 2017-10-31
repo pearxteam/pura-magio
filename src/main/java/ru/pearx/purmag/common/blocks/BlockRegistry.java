@@ -29,6 +29,7 @@ public class BlockRegistry
     public static final BlockTest test = null;
     public static final BlockBrulantaFlower brulanta_flower = null;
     public static final BlockCodeStorage code_storage = null;
+    public static final BlockMagibench magibench = null;
 
     @SubscribeEvent
     public static void onRegisterBlocks(RegistryEvent.Register<Block> e)
@@ -48,6 +49,7 @@ public class BlockRegistry
         register(new BlockTest(), reg);
         register(new BlockBrulantaFlower(), reg);
         register(new BlockCodeStorage(), reg);
+        register(new BlockMagibench(), reg);
     }
 
     public static void register(Block b, IForgeRegistry<Block> reg)

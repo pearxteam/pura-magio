@@ -30,6 +30,7 @@ import ru.pearx.purmag.common.infofield.IfRegistry;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.items.papyrus.PapyrusRegistry;
 import ru.pearx.purmag.common.loot_tables.LootTablesRegistry;
+import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.sif.SifStorageServer;
 import ru.pearx.purmag.common.sip.SipEffectsRegistry;
@@ -68,6 +69,7 @@ public class PurMag
     private IfRegistry if_registry = new IfRegistry();
     private PapyrusRegistry papyrus_registry = new PapyrusRegistry();
     private ExpressionRegistry expressionRegistry = new ExpressionRegistry();
+    private MagibenchRegistry magibenchRegistry = new MagibenchRegistry();
     private Configuration configFile;
 
     public SipTypeRegistry getSipRegistry()
@@ -95,6 +97,11 @@ public class PurMag
         return expressionRegistry;
     }
 
+    public MagibenchRegistry getMagibenchRegistry()
+    {
+        return magibenchRegistry;
+    }
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e)
     {
@@ -112,6 +119,7 @@ public class PurMag
         getPapyrusRegistry().setup();
         getExpressionRegistry().setup();
         PMStructureProcessorRegistry.setup();
+        getMagibenchRegistry().setup();
 
         proxy.setupIfTiers();
 
