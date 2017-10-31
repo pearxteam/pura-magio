@@ -138,6 +138,12 @@ public class ContainerMagibench extends PXLContainer
     }
 
     @Override
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    {
+        return super.transferStackInSlot(playerIn, index);
+    }
+
+    @Override
     public boolean canInteractWith(EntityPlayer playerIn)
     {
         return playerIn.getDistanceSq(tile.getPos()) < 64;
