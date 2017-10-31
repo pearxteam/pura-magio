@@ -184,6 +184,7 @@ public class IfRegistry
     {
         registerChannel(new IfChannel("information", 0));
         registerChannel(new IfChannel("exploration", 0));
+        registerChannel(new IfChannel("smelting", 1));
         registerChannel(new IfChannel("sip", 1));
 
         //INFORMATION
@@ -197,7 +198,6 @@ public class IfRegistry
                 Arrays.asList(new IRSReadPapyrus("sip_knowledge"), new IRSTranslatePapyrus("sip_knowledge")),
                 1));
         attachEntry("sip", new IfEntryLocation("sip_knowledge", 0, 0));
-
         //EXPLORATION
         /*registerEntry(new IfEntry(
                 "crysagnetite", 0,
@@ -288,6 +288,19 @@ public class IfRegistry
                 0));
         attachEntry("exploration", new IfEntryLocation("air_crystal", -1, 5));
 
+        registerEntry(new IfEntry(
+                "sea_crystal", 0,
+                Arrays.asList("crystals_2"),
+                Arrays.asList(new IRSMicroscopeResearch(new IngredientNBT(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard), "sea")), new boolean[][]
+                        {
+                                {false, true, true, false, false, true},
+                                {true, false, false, true, true, false},
+                                {false, true, true, false, false, true},
+                                {true, false, false, true, true, false},
+                        })),
+                0));
+        attachEntry("exploration", new IfEntryLocation("sea_crystal", -3, 5));
+
 
         registerEntry(new IfEntry(
                 "laboratories", 0,
@@ -363,7 +376,8 @@ public class IfRegistry
     {
         registerChannelClient("information", new ItemDrawable(new ItemStack(ItemRegistry.if_tablet, 1, 1), 1.5f));
         registerChannelClient("exploration", new ItemDrawable(new ItemStack(ItemRegistry.crystal), 1.5f));
-        registerChannelClient("sip", new SimpleDrawable(Utils.getResourceLocation("textures/gui/icons/sip.png"), 28, 28, 28, 28));
+        registerChannelClient("smelting", new SimpleDrawable(Utils.getResourceLocation("textures/gui/icons/smelting.png"), 28, 28));
+        registerChannelClient("sip", new SimpleDrawable(Utils.getResourceLocation("textures/gui/icons/sip.png"), 28, 28));
 
         //INFORMATION
         registerEntryClient(
@@ -439,6 +453,11 @@ public class IfRegistry
         registerEntryClient(
                 "air_crystal", new ItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "air"), 1.5f),
                 new IfPageText("air_crystal")
+        );
+
+        registerEntryClient(
+                "sea_crystal", new ItemDrawable(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), "sea"), 1.5f),
+                new IfPageText("sea_crystal")
         );
 
         registerEntryClient(

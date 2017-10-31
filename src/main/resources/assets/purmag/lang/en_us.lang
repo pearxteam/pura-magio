@@ -54,8 +54,7 @@ if_channel.information.name=Information
 if_channel.exploration.name=Exploration
 if_channel.sip.name=Solid Interacting Power
 if_channel.sif.name=Solid Interacting Field
-if_channel.ancients.name=Ancients' Knowledges
-if_channel.white.name=The White Cataclysm
+if_channel.smelting.name=Smelting
 
 #Entries and steps
 if_step.none.desc=No description
@@ -99,6 +98,10 @@ if_page.rock_crystal.text=TODO: write something
 if_entry.air_crystal.name=Aera Crystal
 if_entry.air_crystal.desc=The wind timidly touches your hair...
 if_page.air_crystal.text=TODO: write something
+
+if_entry.sea_crystal.name=Sea Crystal
+if_entry.sea_crystal.desc=Who lives in a pineapple under the sea?
+if_page.sea_crystal.text=TODO: write something
 
 if_entry.crysagnetite.name=Crysagnetite
 if_entry.crysagnetite.desc=Purple magnet?
