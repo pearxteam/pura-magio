@@ -93,6 +93,11 @@ public class ContainerMagibench extends PXLContainer
                 helper.accountStack(handler.getStackInSlot(i));
             }
         }
+
+        public ContainerMagibench getMagibench()
+        {
+            return ContainerMagibench.this;
+        }
     }
 
     public World world;
@@ -101,8 +106,7 @@ public class ContainerMagibench extends PXLContainer
     public InventoryCraftResult result;
     public TileMagibench tile;
     public MagibenchRegistry.Tier tier;
-
-    private InventoryPlayer inv;
+    public InventoryPlayer inv;
 
     public ContainerMagibench(TileMagibench tile, World world, InventoryPlayer inv)
     {
@@ -127,20 +131,14 @@ public class ContainerMagibench extends PXLContainer
     {
         addSlotToContainer(new SlotCrafting(inv.player, matrix, result, 0, tier.getGuiResultX(), tier.getGuiResultY()));
         int index = 0;
-        for(int x = 0; x < tier.getWidth(); x++)
+        for(int y = 0; y < tier.getWidth(); y++)
         {
-            for (int y = 0; y < tier.getHeight(); y++)
+            for (int x = 0; x < tier.getHeight(); x++)
             {
                 addSlotToContainer(new Slot(matrix, index, tier.getGuiGridX() + 18 * x, tier.getGuiGridY() + 18 * y));
                 index++;
             }
         }
-    }
-
-    @Override
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
-    {
-        return super.transferStackInSlot(playerIn, index);
     }
 
     @Override

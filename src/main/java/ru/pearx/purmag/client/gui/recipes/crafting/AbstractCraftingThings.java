@@ -6,6 +6,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import ru.pearx.libmc.common.ItemStackUtils;
 
@@ -46,14 +47,9 @@ public final class AbstractCraftingThings
         return lst;
     }
 
-    public static List<List<ItemStack>> getInputsShaped(ShapedRecipes recipe)
+    public static List<List<ItemStack>> getInputsShaped(IShapedRecipe recipe)
     {
-        return getInputsShaped(recipe, recipe.recipeWidth, recipe.recipeHeight);
-    }
-
-    public static List<List<ItemStack>> getInputsShaped(ShapedOreRecipe recipe)
-    {
-        return getInputsShaped(recipe, recipe.getWidth(), recipe.getHeight());
+        return getInputsShaped(recipe, recipe.getRecipeWidth(), recipe.getRecipeHeight());
     }
 
     public static ItemStack getOutputSimple(IRecipe recipe)

@@ -1,5 +1,6 @@
 package ru.pearx.purmag.client.gui.recipes.crafting;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
@@ -13,8 +14,10 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.lwjgl.util.Point;
 import ru.pearx.libmc.client.gui.IGuiScreen;
 import ru.pearx.libmc.client.gui.controls.Control;
+import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.libmc.client.gui.drawables.item.ItemDrawable;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
+import ru.pearx.purmag.common.recipes.recipes.MagibenchRecipe;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +42,10 @@ public class CraftingControl extends Control
         default ItemStack getOutput(T recipe) {
             return AbstractCraftingThings.getOutputSimple(recipe);
         }
+
+        default IGuiDrawable getBackground(CraftingControl c) { return GuiDrawableRegistry.crafting; }
+        default void render(CraftingControl c){}
+        default void render2(CraftingControl c){}
     }
 
     private static Map<Class<? extends IRecipe>, IRecipeHandler> recipeHandlers = new HashMap<>();
@@ -69,6 +76,34 @@ public class CraftingControl extends Control
         registerHandler(ShapelessRecipes.class, AbstractCraftingThings::getInputsShapeless);
         registerHandler(ShapedOreRecipe.class, AbstractCraftingThings::getInputsShaped);
         registerHandler(ShapedRecipes.class, AbstractCraftingThings::getInputsShaped);
+        registerHandler(MagibenchRecipe.class, new IRecipeHandler<MagibenchRecipe>()
+        {
+            @Override
+            public List<List<ItemStack>> getInputs(MagibenchRecipe recipe)
+            {
+                return AbstractCraftingThings.getInputsShaped(recipe);
+            }
+
+
+            @Override
+            public void render(CraftingControl c)
+            {
+
+            }
+
+            @Override
+            public void render2(CraftingControl c)
+            {
+                if(c.isFocused())
+                {
+                    Point p = c.getPosOnScreen();
+                    GlStateManager.pushMatrix();
+                    GlStateManager.translate(-p.getX(), -p.getY(), 0);
+                    c.getGuiScreen().drawHovering("123", p.getX() + c.getLastMouseX(), p.getY() + c.getLastMouseY());
+                    GlStateManager.popMatrix();
+                }
+            }
+        });
     }
 
     //24 is an item, 4 and 8 are the margins.
@@ -77,6 +112,7 @@ public class CraftingControl extends Control
 
     private ItemDrawable[][] inDraws;
     private ItemDrawable outDraw;
+    private IRecipeHandler handler;
 
     private int[] xIn = new int[3], yIn = new int[3];
     private int xOut, yOut;
@@ -101,6 +137,7 @@ public class CraftingControl extends Control
             }
 
             IRecipeHandler handler = getHandler(recipe.getClass());
+            this.handler = handler;
 
             outDraw = new ItemDrawable(handler.getOutput(recipe), 1.5f);
             List<List<ItemStack>> lst = handler.getInputs(recipe);
@@ -131,7 +168,7 @@ public class CraftingControl extends Control
     @Override
     public void render()
     {
-        GuiDrawableRegistry.crafting.draw(getGuiScreen(), 0, 0);
+        handler.getBackground(this).draw(getGuiScreen(), 0, 0);
         IGuiScreen gs = getGuiScreen();
         for (int row = 0; row < 3; row++)
         {
@@ -142,6 +179,7 @@ public class CraftingControl extends Control
             }
         }
         outDraw.draw(gs, xOut, yOut);
+        handler.render(this);
     }
 
     @Override
@@ -163,5 +201,6 @@ public class CraftingControl extends Control
             }
             outDraw.drawTooltip(gs, xOut, yOut, getLastMouseX(), getLastMouseY(), pos.getX(), pos.getY());
         }
+        handler.render2(this);
     }
 }

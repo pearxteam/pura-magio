@@ -16,6 +16,7 @@ import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.recipes.ingredients.IngredientNBT;
+import ru.pearx.purmag.common.recipes.recipes.MagibenchRecipe;
 import ru.pearx.purmag.common.sip.SipUtils;
 
 /*
@@ -27,7 +28,7 @@ public class RecipeRegistry
     @SubscribeEvent
     public static void onRecipeRegistry(RegistryEvent.Register<IRecipe> e)
     {
-        register("unf_mortar_and_pestle", new ShapedOreRecipe(null, ItemRegistry.unfinished_mortar_and_pestle,
+        register("unf_mortar_and_pestle", new MagibenchRecipe(ItemRegistry.unfinished_mortar_and_pestle, 0, "mortar_and_pestle",
                 "  |",
                 "BcB",
                 " B ",

@@ -29,4 +29,10 @@ public class ItemBlockMagibench extends ItemBlockBase
             ClientUtils.setModelLocation(this, t.getTier(), "");
         }
     }
+
+    @Override
+    public String getUnlocalizedName(ItemStack stack)
+    {
+        return super.getUnlocalizedName(stack) + "." + stack.getItemDamage();
+    }
 }
