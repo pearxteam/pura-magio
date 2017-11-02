@@ -7,8 +7,6 @@ import ru.pearx.purmag.client.gui.microscope.MicroscopeDataBuilder;
 import ru.pearx.purmag.client.sif.SifStorageClient;
 import ru.pearx.purmag.common.Utils;
 
-import java.util.Random;
-
 /**
  * Created by mrAppleXZ on 27.06.17 15:38.
  */

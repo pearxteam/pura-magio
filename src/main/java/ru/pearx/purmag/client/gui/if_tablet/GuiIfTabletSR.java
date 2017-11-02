@@ -9,7 +9,6 @@ import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.Button;
 import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.common.CapabilityRegistry;
-import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.infofield.IfEntry;
 
 

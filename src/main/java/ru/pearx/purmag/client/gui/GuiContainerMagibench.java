@@ -1,12 +1,9 @@
 package ru.pearx.purmag.client.gui;
 
-import net.minecraft.inventory.Container;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.PXLGui;
 import ru.pearx.libmc.client.gui.controls.GuiOnScreen;
-import ru.pearx.libmc.client.gui.inventory.PXLGuiContainer;
 import ru.pearx.libmc.client.gui.inventory.PXLGuiContainerControls;
 import ru.pearx.purmag.common.inventory.ContainerMagibench;
 

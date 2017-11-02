@@ -1,13 +1,9 @@
 package ru.pearx.purmag.client.gui.recipes.crafting;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.crafting.IShapedRecipe;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 import ru.pearx.libmc.common.ItemStackUtils;
 
 import java.util.ArrayList;

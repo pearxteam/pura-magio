@@ -1,17 +1,13 @@
 package ru.pearx.purmag.client.gui.if_tablet.steps;
 
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.util.Point;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.drawables.item.ItemDrawable;
 import ru.pearx.libmc.client.gui.drawables.item.MultiItemDrawable;
 import ru.pearx.libmc.common.ItemStackUtils;
 import ru.pearx.purmag.common.infofield.steps.IRSIngredient;
-
-import java.util.List;
 
 /*
  * Created by mrAppleXZ on 13.10.17 18:41.

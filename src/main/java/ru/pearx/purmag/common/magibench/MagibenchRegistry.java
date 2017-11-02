@@ -2,10 +2,7 @@ package ru.pearx.purmag.common.magibench;
 
 import net.minecraft.util.ResourceLocation;
 import ru.pearx.purmag.common.Utils;
-import ru.pearx.purmag.common.sip.store.ISipStore;
-import ru.pearx.purmag.common.sip.store.SipStore;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +21,10 @@ public class MagibenchRegistry
         private int guiResultX;
         private int guiResultY;
         private ResourceLocation guiTexture;
+        private int guiJeiStartX;
+        private int guiJeiStartY;
 
-        public Tier(int tier, int width, int height, int guiGridX, int guiGridY, int guiResultX, int guiResultY, ResourceLocation guiTexture)
+        public Tier(int tier, int width, int height, int guiGridX, int guiGridY, int guiResultX, int guiResultY, ResourceLocation guiTexture, int guiJeiStartX, int guiJeiStartY)
         {
             this.tier = tier;
             this.width = width;
@@ -35,6 +34,8 @@ public class MagibenchRegistry
             this.guiResultX = guiResultX;
             this.guiResultY = guiResultY;
             this.guiTexture = guiTexture;
+            this.guiJeiStartX = guiJeiStartX;
+            this.guiJeiStartY = guiJeiStartY;
         }
 
         public int getTier()
@@ -76,6 +77,16 @@ public class MagibenchRegistry
         {
             return guiTexture;
         }
+
+        public int getGuiJeiStartX()
+        {
+            return guiJeiStartX;
+        }
+
+        public int getGuiJeiStartY()
+        {
+            return guiJeiStartY;
+        }
     }
 
     private List<Tier> tiers = new ArrayList<>();
@@ -100,6 +111,7 @@ public class MagibenchRegistry
 
     public void setup()
     {
-        registerTier(new Tier(0, 3, 3, 48, 29, 133, 46, Utils.getResourceLocation("textures/gui/inventory/magibench/0.png")));
+        //jei: (144 - 104) / 2 = 20;  (94 - 54) / 2 = 20;
+        registerTier(new Tier(0, 3, 3, 48, 29, 133, 46, Utils.getResourceLocation("textures/gui/inventory/magibench/0.png"), 20, 10));
     }
 }

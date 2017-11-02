@@ -10,7 +10,6 @@ import ru.pearx.libmc.client.gui.controls.common.Button;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
-import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.infofield.IfEntry;
 
 

@@ -15,7 +15,6 @@ import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.infofield.IfEntry;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
-import ru.pearx.purmag.common.infofield.steps.IIfResearchStep;
 import ru.pearx.purmag.common.infofield.steps.IRSTranslatePapyrus;
 import ru.pearx.purmag.common.tiles.TileTranslationDesk;
 

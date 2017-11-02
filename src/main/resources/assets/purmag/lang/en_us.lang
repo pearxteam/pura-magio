@@ -165,6 +165,8 @@ misc.gui.microscope.wrong=Wrong pattern!
 misc.structure_processor.code_storage.name=Code Storage
 misc.structure_processor.code_storage.table=Loot Table:
 
+misc.jei.magibench.name=Magibench
+
 #Commands
 command.pm_if.usage=Usage: /pm_infofield <unlock|lock> <entry id|all> [player]
 command.pm_if.playerNotFound=Player not found!

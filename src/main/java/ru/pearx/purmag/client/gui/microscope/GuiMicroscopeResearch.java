@@ -9,17 +9,14 @@ import ru.pearx.lib.Color;
 import ru.pearx.lib.Colors;
 import ru.pearx.lib.math.MathUtils;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.PXLGui;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.libmc.client.gui.controls.common.Button;
 import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.common.SoundRegistry;
-import ru.pearx.purmag.common.infofield.IfEntry;
 import ru.pearx.purmag.common.infofield.steps.IRSMicroscopeResearch;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.microscope.CPacketCheckMicroscopeResearchResponse;
 import ru.pearx.purmag.common.networking.packets.microscope.SPacketCheckMicroscopeResearch;
-import sun.java2d.loops.DrawGlyphList;
 
 import java.util.Arrays;
 

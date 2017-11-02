@@ -1,27 +1,19 @@
 package ru.pearx.purmag.client.gui.microscope;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 import ru.pearx.lib.Colors;
-import ru.pearx.lib.RandomUtils;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.PXLGui;
-import ru.pearx.libmc.client.gui.controls.GuiOnScreen;
 import ru.pearx.libmc.client.gui.controls.common.Button;
-import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
-import ru.pearx.libmc.client.gui.drawables.SimpleDrawable;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.PurMagClient;
-import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.infofield.IfEntry;
-import ru.pearx.purmag.common.infofield.IfRegistry;
 import ru.pearx.purmag.common.infofield.steps.IRSMicroscopeResearch;
 
 /*

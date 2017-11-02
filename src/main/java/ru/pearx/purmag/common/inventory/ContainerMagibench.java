@@ -1,20 +1,15 @@
 package ru.pearx.purmag.common.inventory;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.RecipeItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.SlotItemHandler;
 import ru.pearx.libmc.common.ItemStackUtils;
 import ru.pearx.libmc.common.inventory.PXLContainer;
 import ru.pearx.purmag.PurMag;
-import ru.pearx.purmag.common.infofield.IfTier;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 import ru.pearx.purmag.common.tiles.TileMagibench;
 

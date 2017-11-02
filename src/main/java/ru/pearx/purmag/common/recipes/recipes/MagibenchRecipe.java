@@ -7,30 +7,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IShapedRecipe;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.registries.ForgeRegistry;
-import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import ru.pearx.libmc.common.ItemStackUtils;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.inventory.ContainerMagibench;
-import ru.pearx.purmag.common.magibench.MagibenchRegistry;
-
-import javax.annotation.Nullable;
 
 /*
  * Created by mrAppleXZ on 30.10.17 18:11.
  */
-public class MagibenchRecipe extends IForgeRegistryEntry.Impl<IRecipe> implements IShapedRecipe
+public class MagibenchRecipe extends AbstractMagibenchRecipe implements IShapedRecipe
 {
-    private int tier;
     private ItemStack out;
-    private String entry;
     private int width, height;
     private boolean mirrored;
     private NonNullList<Ingredient> ingredients;
@@ -52,8 +42,8 @@ public class MagibenchRecipe extends IForgeRegistryEntry.Impl<IRecipe> implement
 
     public MagibenchRecipe(ItemStack out, int minTier, String entryId, CraftingHelper.ShapedPrimer primer)
     {
-        this.entry = entryId;
-        this.tier = minTier;
+        setEntry(entryId);
+        setTier(minTier);
         this.out = out.copy();
         this.width = primer.width;
         this.height = primer.height;
@@ -76,14 +66,7 @@ public class MagibenchRecipe extends IForgeRegistryEntry.Impl<IRecipe> implement
     @Override
     public boolean matches(InventoryCrafting inv, World worldIn)
     {
-        if(inv instanceof ContainerMagibench.Crafting)
-        {
-            ContainerMagibench.Crafting craft = (ContainerMagibench.Crafting) inv;
-            return craft.getMagibench().tier.getTier() >= tier &&
-                    craft.getMagibench().inv.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).isFullyUnlocked(entry) &&
-                    ItemStackUtils.isCraftingMatrixMatches(inv, getRecipeWidth(), getRecipeHeight(), ingredients, mirrored);
-        }
-        return false;
+        return super.matches(inv, worldIn) && ItemStackUtils.isCraftingMatrixMatches(inv, getRecipeWidth(), getRecipeHeight(), ingredients, mirrored);
     }
 
     @Override

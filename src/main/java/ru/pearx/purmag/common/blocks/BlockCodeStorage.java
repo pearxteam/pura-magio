@@ -29,7 +29,6 @@ import net.minecraftforge.common.property.Properties;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.models.processors.FacingProcessor;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.tiles.TileCodeStorage;
