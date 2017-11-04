@@ -7,7 +7,7 @@ import java.util.Random;
 public class SimpleInequality extends Expression
 {
     private final Expression base = PurMag.INSTANCE.getExpressionRegistry().simple;
-    private static final String FORMAT = "%s ? %s (Answer <. > or =)";
+    private static final String FORMAT = "%s ? %s (Answer <, > or =)";
     public SimpleInequality() {
         setRegistryName("simple_ie");
         setLuck(5);
