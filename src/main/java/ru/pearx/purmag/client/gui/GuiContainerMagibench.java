@@ -1,5 +1,6 @@
 package ru.pearx.purmag.client.gui;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.DrawingTools;
@@ -31,6 +32,7 @@ public class GuiContainerMagibench extends PXLGuiContainerControls
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
+        GlStateManager.color(1F, 1F, 1F, 1F);
         DrawingTools.drawTexture(container.tier.getGuiTexture(), (width - xSize) / 2, (height - ySize) / 2, xSize, ySize);
     }
 }
