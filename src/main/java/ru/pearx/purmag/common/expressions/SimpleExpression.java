@@ -1,6 +1,7 @@
 package ru.pearx.purmag.common.expressions;
 
 import java.util.Random;
+import java.util.function.Function;
 
 /*
  * Created by mrAppleXZ on 29.09.17 20:20.
@@ -10,6 +11,7 @@ public class SimpleExpression extends Expression
     public SimpleExpression()
     {
         setRegistryName("simple");
+        setLuck(0);
     }
 
     @Override
@@ -27,74 +29,50 @@ public class SimpleExpression extends Expression
     @Override
     public ExpressionData generateExpression(Random rand)
     {
-        //todo this
-        ExpressionData dat = new ExpressionData();
-        dat.setLuck(0);
-
         int act = rand.nextInt(4);
+        Function<Random, Integer> generator = act < 3 ? this::nextNum : this::nextSmallNum; //Use small numbers for multiplication and division
+        int i1 = generator.apply(rand), i2 = generator.apply(rand);
+        String format = "Something went wrong";
+        int result = -1;
+
         switch (act)
         {
             case 0:
             {
-                int i1 = rand.nextInt(100001);
-                int i2 = rand.nextInt(100001);
-                dat.setText(i1 + " + " + i2);
-                dat.setResult(Integer.toString(i1 + i2));
+                format = "%d + %d";
+                result = i1 + i2;
+
             }
             break;
             case 1:
             {
-                int i1 = rand.nextInt(100001);
-                int i2 = rand.nextInt(100001);
-                int first = Math.max(i1, i2);
-                int second = Math.min(i1, i2);
-                dat.setText(first + " - " + second);
-                dat.setResult(Integer.toString(first - second));
+                if(i2 > i1) {
+                    int tmp = i1;
+                    i1 = i2;
+                    i2 = tmp;
+                }
+                format = "%d - %d";
+                result = i1 - i2;
             }
             break;
             case 2:
             {
-                int[] simple = new int[] {1, 2, 3, 5, 7, 11, 13};
-                int firstTimes = rand.nextInt(5) + 1;
-                int first = 1;
-                for(int i = 0; i < firstTimes; i++)
-                {
-                    first *= simple[rand.nextInt(simple.length)];
-                }
-                int second = 1;
-                int secondTimes = rand.nextInt(3) + 1;
-                for(int i = 0; i < secondTimes; i++)
-                {
-                    second *= simple[rand.nextInt(simple.length)];
-                }
-                dat.setText(first + " * " + second);
-                dat.setResult(Integer.toString(first * second));
+                format = "%d * %d";
+                result = i1 * i2;
             }
             break;
             case 3:
             {
-                int[] simple = new int[] {1, 2, 3, 5, 7, 11, 13};
-                int firstTimes = rand.nextInt(5) + 1;
-                int first = 1;
-                for(int i = 0; i < firstTimes; i++)
-                {
-                    first *= simple[rand.nextInt(simple.length)];
-                }
-                int second = 1;
-                int secondTimes = rand.nextInt(3) + 1;
-                for(int i = 0; i < secondTimes; i++)
-                {
-                    second *= simple[rand.nextInt(simple.length)];
-                }
-                int result = first * second;
-
-                int min = Math.min(first, second);
-                dat.setText(result + " / " + min);
-                dat.setResult(Integer.toString(result / min));
+                int mul = i1 * i2;
+                int min = Math.min(i1, i2);
+                i1 = mul;
+                i2 = min;
+                format = "%d / %d";
+                result = i1 / i2;
             }
             break;
         }
 
-        return dat;
+        return createData(format, result, i1, i2);
     }
 }

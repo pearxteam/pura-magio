@@ -59,6 +59,7 @@ public class GuiCodeStorageUnlock extends GuiCodeStorageLockUnlock
             Minecraft.getMinecraft().displayGuiScreen(null);
         else
             wrong = true;
+
     }
 
     @Override
