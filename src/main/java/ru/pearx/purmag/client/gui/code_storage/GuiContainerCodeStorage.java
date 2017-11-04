@@ -1,6 +1,7 @@
 package ru.pearx.purmag.client.gui.code_storage;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -62,6 +63,7 @@ public class GuiContainerCodeStorage extends PXLGuiContainerControls
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
+        GlStateManager.color(1F, 1F, 1F, 1F);
         DrawingTools.drawTexture(TEXTURE, (width - xSize) / 2, (height - ySize) / 2, xSize, ySize);
     }
 }
