@@ -50,7 +50,7 @@ public class GuiContainerCodeStorage extends PXLGuiContainerControls
         }
     }
 
-    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/inventory/code_storage.png");
+    public static final ResourceLocation TEXTURE = Utils.gRL("textures/gui/inventory/code_storage.png");
 
     public GuiContainerCodeStorage(ContainerCodeStorage container)
     {

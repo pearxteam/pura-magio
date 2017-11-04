@@ -25,6 +25,7 @@ import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.BlockAbstractWallIfTablet;
 import ru.pearx.purmag.common.blocks.BlockCodeStorage;
+import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 
 import javax.annotation.Nullable;
 import javax.vecmath.Matrix4f;
@@ -80,7 +81,7 @@ public class StandardModels
 
         public Glove()
         {
-            setBaseModel(Utils.getResourceLocation("obj/glove.obj"));
+            setBaseModel(Utils.gRL("obj/glove.obj"));
         }
 
         @Override
@@ -106,7 +107,7 @@ public class StandardModels
         public TranslationDesk()
         {
             vertexProcessors.add(new FacingProcessor());
-            setBaseModel(Utils.getResourceLocation("obj/translation_desk.obj"));
+            setBaseModel(Utils.gRL("obj/translation_desk.obj"));
         }
 
         @Override
@@ -125,7 +126,7 @@ public class StandardModels
 
         public CrystalSmall()
         {
-            setBaseModel(Utils.getResourceLocation("obj/crystal_small.obj"));
+            setBaseModel(Utils.gRL("obj/crystal_small.obj"));
             quadProcessors.add(new TintProcessor(0));
         }
 
@@ -145,7 +146,7 @@ public class StandardModels
 
         public WallIfTablet()
         {
-            setBaseModel(Utils.getResourceLocation("obj/wall_if_tablet.obj"));
+            setBaseModel(Utils.gRL("obj/wall_if_tablet.obj"));
             vertexProcessors.add(new FacingProcessor());
             vertexProcessors.add(new IVertexProcessor()
             {
@@ -213,7 +214,7 @@ public class StandardModels
 
         public Microscope()
         {
-            setBaseModel(Utils.getResourceLocation("obj/microscope.obj"));
+            setBaseModel(Utils.gRL("obj/microscope.obj"));
             vertexProcessors.add(new FacingProcessor());
         }
 
@@ -230,7 +231,7 @@ public class StandardModels
     {
         public Test()
         {
-            setBaseModel(Utils.getResourceLocation("obj/test.obj"));
+            setBaseModel(Utils.gRL("obj/test.obj"));
         }
     }
 
@@ -241,7 +242,7 @@ public class StandardModels
 
         public CodeStorage()
         {
-            setBaseModel(Utils.getResourceLocation("obj/code_storage.obj"));
+            setBaseModel(Utils.gRL("obj/code_storage.obj"));
         }
 
         @Override
@@ -271,7 +272,7 @@ public class StandardModels
                     @Override
                     public void preProcess(List<BakedQuad> quads, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
                     {
-                        sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Utils.getResourceLocation("models/code_storage/lock_unlocked").toString());
+                        sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Utils.gRL("models/code_storage/lock_unlocked").toString());
                     }
 
                     @Override
@@ -326,6 +327,24 @@ public class StandardModels
             {
                 return hide;
             }
+        }
+    }
+
+    public static class Magibench extends OvModel
+    {
+        public Matrix4f mat_gui = new TRSRTransformation(null, null, new Vector3f(0.7f, 0.7f, 0.7f), TRSRTransformation.quatFromXYZDegrees(new Vector3f(30, 225, 0))).getMatrix();
+        public Matrix4f mat = new TRSRTransformation(null, null, new Vector3f(0.375f, 0.375f, 0.375f), null).getMatrix();
+
+        public Magibench(MagibenchRegistry.Tier t)
+        {
+            setBaseModel(t.getObj());
+            vertexProcessors.add(new FacingProcessor());
+        }
+
+        @Override
+        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
+        {
+            return Pair.of(this, cameraTransformType == ItemCameraTransforms.TransformType.GUI ? mat_gui : mat);
         }
     }
 }

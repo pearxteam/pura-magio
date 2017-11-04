@@ -8,7 +8,7 @@ import ru.pearx.purmag.PurMag;
  */
 public class Utils
 {
-    public static ResourceLocation getResourceLocation(String name)
+    public static ResourceLocation gRL(String name)
     {
         return new ResourceLocation(PurMag.MODID, name);
     }

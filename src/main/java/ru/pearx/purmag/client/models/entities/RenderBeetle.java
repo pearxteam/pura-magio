@@ -26,6 +26,6 @@ public class RenderBeetle extends RenderLiving<EntityBeetle>
     @Override
     protected ResourceLocation getEntityTexture(EntityBeetle entity)
     {
-        return Utils.getResourceLocation("textures/entities/verda_beetle.png");
+        return Utils.gRL("textures/entities/verda_beetle.png");
     }
 }

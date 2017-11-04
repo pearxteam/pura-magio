@@ -26,7 +26,7 @@ public class GuiCodeStorageUnlock extends GuiCodeStorageLockUnlock
 
     private boolean wrong = false;
 
-    public TextBox code = new TextBox(Utils.getResourceLocation("textures/gui/textbox.png"));
+    public TextBox code = new TextBox(Utils.gRL("textures/gui/textbox.png"));
     public Button done = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.code_storage.unlock.unlock"), () ->
             NetworkManager.sendToServer(new SPacketUnlock(code.getBuffer().toString(), pos)));
 

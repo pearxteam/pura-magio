@@ -17,6 +17,7 @@ import ru.pearx.purmag.common.recipes.recipes.AbstractMagibenchRecipe;
 import ru.pearx.purmag.common.recipes.recipes.MagibenchRecipe;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 /*
  * Created by mrAppleXZ on 02.11.17 18:57.

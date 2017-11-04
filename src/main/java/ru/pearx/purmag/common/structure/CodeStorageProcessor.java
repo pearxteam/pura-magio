@@ -31,7 +31,7 @@ import java.util.Random;
  */
 public class CodeStorageProcessor extends StructureProcessor
 {
-    public static final ResourceLocation ID = Utils.getResourceLocation("code_storage");
+    public static final ResourceLocation ID = Utils.gRL("code_storage");
 
     public CodeStorageProcessor()
     {
@@ -71,7 +71,7 @@ public class CodeStorageProcessor extends StructureProcessor
     @SideOnly(Side.CLIENT)
     public static class Control extends ControlStructureProcessor
     {
-        public TextBox table = new TextBox(Utils.getResourceLocation("textures/gui/textbox.png"));
+        public TextBox table = new TextBox(Utils.gRL("textures/gui/textbox.png"));
 
         public Control()
         {

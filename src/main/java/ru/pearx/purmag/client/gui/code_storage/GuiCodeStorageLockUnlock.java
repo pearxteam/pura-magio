@@ -10,7 +10,7 @@ import ru.pearx.purmag.common.Utils;
  */
 public class GuiCodeStorageLockUnlock extends GuiOnScreen
 {
-    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/code_storage_lockunlock.png");
+    public static final ResourceLocation TEXTURE = Utils.gRL("textures/gui/code_storage_lockunlock.png");
 
     protected int margin = 16;
 

@@ -140,6 +140,7 @@ public abstract class BlockAbstractSingleItemHorizontal extends BlockBase
                 ItemStackUtils.drop(((TileAbstractSingleItem) te).handler, worldIn, pos);
             }
         }
+        super.breakBlock(worldIn, pos, state);
     }
 
     @Override

@@ -15,7 +15,7 @@ import ru.pearx.purmag.common.Utils;
  */
 public class ParticleCrystal extends PXParticle
 {
-    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/particle/crystal.png");
+    public static final ResourceLocation TEXTURE = Utils.gRL("textures/particle/crystal.png");
 
     private Color color;
     private float alpha;

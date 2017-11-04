@@ -23,8 +23,11 @@ public class MagibenchRegistry
         private ResourceLocation guiTexture;
         private int guiJeiStartX;
         private int guiJeiStartY;
+        private ResourceLocation modelTexture;
+        private ResourceLocation obj;
+        private ResourceLocation smartModel;
 
-        public Tier(int tier, int width, int height, int guiGridX, int guiGridY, int guiResultX, int guiResultY, ResourceLocation guiTexture, int guiJeiStartX, int guiJeiStartY)
+        public Tier(int tier, int width, int height, int guiGridX, int guiGridY, int guiResultX, int guiResultY, ResourceLocation guiTexture, int guiJeiStartX, int guiJeiStartY, ResourceLocation modelTexture, ResourceLocation obj, ResourceLocation smartModel)
         {
             this.tier = tier;
             this.width = width;
@@ -36,6 +39,9 @@ public class MagibenchRegistry
             this.guiTexture = guiTexture;
             this.guiJeiStartX = guiJeiStartX;
             this.guiJeiStartY = guiJeiStartY;
+            this.modelTexture = modelTexture;
+            this.obj = obj;
+            this.smartModel = smartModel;
         }
 
         public int getTier()
@@ -87,6 +93,21 @@ public class MagibenchRegistry
         {
             return guiJeiStartY;
         }
+
+        public ResourceLocation getModelTexture()
+        {
+            return modelTexture;
+        }
+
+        public ResourceLocation getObj()
+        {
+            return obj;
+        }
+
+        public ResourceLocation getSmartModel()
+        {
+            return smartModel;
+        }
     }
 
     private List<Tier> tiers = new ArrayList<>();
@@ -112,6 +133,6 @@ public class MagibenchRegistry
     public void setup()
     {
         //jei: (144 - 104) / 2 = 20;  (94 - 54) / 2 = 20;
-        registerTier(new Tier(0, 3, 3, 48, 29, 133, 46, Utils.getResourceLocation("textures/gui/inventory/magibench/0.png"), 20, 10));
+        registerTier(new Tier(0, 3, 3, 48, 29, 133, 46, Utils.gRL("textures/gui/inventory/magibench/0.png"), 20, 10, Utils.gRL("models/magibench/0"), Utils.gRL("obj/magibench/0.obj"), Utils.gRL("magibench/0")));
     }
 }

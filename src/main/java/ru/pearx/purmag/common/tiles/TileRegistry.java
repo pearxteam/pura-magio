@@ -15,12 +15,12 @@ public class TileRegistry
 {
     public static void register()
     {
-        GameRegistry.registerTileEntity(TileTranslationDesk.class, Utils.getResourceLocation("translation_desk").toString());
-        GameRegistry.registerTileEntity(TileSingleSip.class, Utils.getResourceLocation("single_sip").toString());
-        GameRegistry.registerTileEntity(TileWallIfTablet.class, Utils.getResourceLocation("wall_if_tablet").toString());
-        GameRegistry.registerTileEntity(TileMicroscope.class, Utils.getResourceLocation("microscope").toString());
-        GameRegistry.registerTileEntity(TileCodeStorage.class, Utils.getResourceLocation("code_storage").toString());
-        GameRegistry.registerTileEntity(TileMagibench.class, Utils.getResourceLocation("magibench").toString());
+        GameRegistry.registerTileEntity(TileTranslationDesk.class, Utils.gRL("translation_desk").toString());
+        GameRegistry.registerTileEntity(TileSingleSip.class, Utils.gRL("single_sip").toString());
+        GameRegistry.registerTileEntity(TileWallIfTablet.class, Utils.gRL("wall_if_tablet").toString());
+        GameRegistry.registerTileEntity(TileMicroscope.class, Utils.gRL("microscope").toString());
+        GameRegistry.registerTileEntity(TileCodeStorage.class, Utils.gRL("code_storage").toString());
+        GameRegistry.registerTileEntity(TileMagibench.class, Utils.gRL("magibench").toString());
     }
 
     @SideOnly(Side.CLIENT)

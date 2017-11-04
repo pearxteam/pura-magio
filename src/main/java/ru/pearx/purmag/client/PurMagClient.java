@@ -15,7 +15,7 @@ public enum PurMagClient
 {
     INSTANCE;
 
-    public static ResourceLocation BUTTON_TEXTURE = Utils.getResourceLocation("textures/gui/button.png");
+    public static ResourceLocation BUTTON_TEXTURE = Utils.gRL("textures/gui/button.png");
 
     public SifStorageClient sif_storage = new SifStorageClient();
 

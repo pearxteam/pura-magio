@@ -28,9 +28,9 @@ public class CapabilityRegistry
     @CapabilityInject(IAuraContainer.class)
     public static final Capability<IAuraContainer> AURA_CONTAINER_CAP = null;
 
-    public static final ResourceLocation ENTRY_STORE_NAME = Utils.getResourceLocation("if_entry_store");
-    public static final ResourceLocation SIP_STORE_NAME = Utils.getResourceLocation("sip_store");
-    public static final ResourceLocation AURA_CONTAINER_NAME = Utils.getResourceLocation("aura_container");
+    public static final ResourceLocation ENTRY_STORE_NAME = Utils.gRL("if_entry_store");
+    public static final ResourceLocation SIP_STORE_NAME = Utils.gRL("sip_store");
+    public static final ResourceLocation AURA_CONTAINER_NAME = Utils.gRL("aura_container");
 
     public static void register()
     {

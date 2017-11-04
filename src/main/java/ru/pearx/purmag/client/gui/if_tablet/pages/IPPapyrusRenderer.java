@@ -12,7 +12,7 @@ import ru.pearx.purmag.common.Utils;
  */
 public class IPPapyrusRenderer extends IPRenderer<IfPagePapyrus>
 {
-    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/papyrus_v.png");
+    public static final ResourceLocation TEXTURE = Utils.gRL("textures/gui/papyrus_v.png");
 
     public IPPapyrusRenderer(IfPagePapyrus page)
     {

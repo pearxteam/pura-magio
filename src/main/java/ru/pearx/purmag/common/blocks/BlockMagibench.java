@@ -2,9 +2,15 @@ package ru.pearx.purmag.common.blocks;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,9 +21,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.property.ExtendedBlockState;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.libmc.common.ItemStackUtils;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
+import ru.pearx.libmc.common.blocks.properties.PropertyInt;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.client.models.StandardModels;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
+import ru.pearx.purmag.common.tiles.TileAbstractSingleItem;
 import ru.pearx.purmag.common.tiles.TileMagibench;
 
 import javax.annotation.Nullable;
@@ -29,13 +43,15 @@ public class BlockMagibench extends BlockBase
 {
     public static final int GUI_ID = 1;
 
+    public static final PropertyInt TIER = PropertyInt.create("tier", 0, PurMag.INSTANCE.getMagibenchRegistry().getTiers().size() - 1);
+
     public BlockMagibench()
     {
         super("magibench", Material.WOOD);
         setSoundType(SoundType.WOOD);
         setHardness(1f);
         setHarvestLevel("axe", 0);
-        setDefaultState(getDefaultState().withProperty(HorizontalFacingController.FACING_H, EnumFacing.NORTH));
+        setDefaultState(getDefaultState().withProperty(HorizontalFacingController.FACING_H, EnumFacing.NORTH).withProperty(TIER, 0));
     }
 
     @Override
@@ -122,7 +138,7 @@ public class BlockMagibench extends BlockBase
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, HorizontalFacingController.FACING_H);
+        return new BlockStateContainer(this, HorizontalFacingController.FACING_H, TIER);
     }
 
     @Override
@@ -153,5 +169,44 @@ public class BlockMagibench extends BlockBase
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         return HorizontalFacingController.getStateForPlacement(getDefaultState(), placer);
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    {
+        TileEntity te = worldIn.getTileEntity(pos);
+        if(te != null && te instanceof TileMagibench)
+            return state.withProperty(TIER, ((TileMagibench) te).getTier());
+        return state;
+    }
+
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    {
+        if (!worldIn.isRemote)
+        {
+            TileEntity te = worldIn.getTileEntity(pos);
+            if (te != null && te instanceof TileMagibench)
+            {
+                ItemStackUtils.drop(((TileMagibench) te).handler, worldIn, pos);
+            }
+        }
+        super.breakBlock(worldIn, pos, state);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void setupModels()
+    {
+        StateMapperBase st = new StateMapperBase()
+        {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+            {
+                MagibenchRegistry.Tier t = PurMag.INSTANCE.getMagibenchRegistry().getTier(state.getValue(TIER));
+                return new ModelResourceLocation(t.getSmartModel(), "normal");
+            }
+        };
+        ModelLoader.setCustomStateMapper(this, st);
     }
 }

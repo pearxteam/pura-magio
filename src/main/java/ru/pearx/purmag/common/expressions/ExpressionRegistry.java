@@ -9,7 +9,7 @@ import ru.pearx.purmag.common.Utils;
  */
 public class ExpressionRegistry
 {
-    private final IForgeRegistry<IExpression> registry = new RegistryBuilder<IExpression>().setName(Utils.getResourceLocation("expression")).setType(IExpression.class).create();
+    private final IForgeRegistry<IExpression> registry = new RegistryBuilder<IExpression>().setName(Utils.gRL("expression")).setType(IExpression.class).create();
 
     public IForgeRegistry<IExpression> getRegistry()
     {

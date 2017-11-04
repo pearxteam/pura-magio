@@ -22,8 +22,8 @@ import ru.pearx.purmag.common.tiles.TileCodeStorage;
  */
 public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
 {
-    public static final ModelResourceLocation MDL_BODY = new ModelResourceLocation(Utils.getResourceLocation("code_storage/body"), "normal");
-    public static final ModelResourceLocation MDL_TOP = new ModelResourceLocation(Utils.getResourceLocation("code_storage/top"), "normal");
+    public static final ModelResourceLocation MDL_BODY = new ModelResourceLocation(Utils.gRL("code_storage/body"), "normal");
+    public static final ModelResourceLocation MDL_TOP = new ModelResourceLocation(Utils.gRL("code_storage/top"), "normal");
 
     @Override
     public void renderPre(TileCodeStorage te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)

@@ -17,7 +17,7 @@ import ru.pearx.purmag.common.Utils;
 @SideOnly(Side.CLIENT)
 public class GuiPapyrus extends GuiOnScreen
 {
-    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/papyrus.png");
+    public static final ResourceLocation TEXTURE = Utils.gRL("textures/gui/papyrus.png");
     private String text;
 
     public GuiPapyrus(String papyrusId)

@@ -1,6 +1,8 @@
 package ru.pearx.purmag.common.items;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.ClientUtils;
@@ -24,7 +26,7 @@ public class ItemBlockMagibench extends ItemBlockBase
     {
         for(MagibenchRegistry.Tier t : PurMag.INSTANCE.getMagibenchRegistry().getTiers())
         {
-            ClientUtils.setModelLocation(this, t.getTier(), "");
+            ModelLoader.setCustomModelResourceLocation(this, t.getTier(), new ModelResourceLocation(t.getSmartModel(), "normal"));
         }
     }
 

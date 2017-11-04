@@ -48,7 +48,7 @@ public class WGLabSmall implements IWorldGenerator
                 {
                     try
                     {
-                        NBTTagCompound tag = StructureApi.INSTANCE.getStructureNbt(Utils.getResourceLocation("lab_small"));
+                        NBTTagCompound tag = StructureApi.INSTANCE.getStructureNbt(Utils.gRL("lab_small"));
                         System.out.println("WG START");
                         StructureApi.INSTANCE.spawnStructure(tag, pos, (WorldServer) world, random);
                         System.out.println("WG END AT " + pos);

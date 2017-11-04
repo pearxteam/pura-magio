@@ -18,7 +18,7 @@ import javax.vecmath.Vector3d;
  */
 public class ParticleSipMovingTo extends ParticleMovingTo
 {
-    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/particle/sip.png");
+    public static final ResourceLocation TEXTURE = Utils.gRL("textures/particle/sip.png");
 
     private Color color;
     private float scale;

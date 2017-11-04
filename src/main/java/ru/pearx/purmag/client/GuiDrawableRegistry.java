@@ -27,15 +27,15 @@ public class GuiDrawableRegistry
 
     public static void setup()
     {
-        runes = new AnimatedDrawable(Utils.getResourceLocation("textures/gui/runes.png"), 32, 38, 32, 38, 32, 380, 100, 0, -6);
-        displayMessage = new AnimatedDrawable(Utils.getResourceLocation("textures/gui/message.png"), 192, 32, 192, 32, 192, 1024, 100);
-        paperEntry = new SimpleDrawable(Utils.getResourceLocation("textures/gui/sticker.png"), 32, 32);
-        splitter = new SimpleDrawable(Utils.getResourceLocation("textures/gui/splitter.png"), 276, 4);
-        furnace = new AnimatedDrawable(Utils.getResourceLocation("textures/gui/recipes/furnace.png"), 112, 112, 112, 112, 112, 1456, 100);
-        crafting = new SimpleDrawable(Utils.getResourceLocation("textures/gui/recipes/crafting.png"), 118, 88);
-        paperEntryCompleted = new SimpleDrawable(Utils.getResourceLocation("textures/gui/sticker_green.png"), 32, 32);
+        runes = new AnimatedDrawable(Utils.gRL("textures/gui/runes.png"), 32, 38, 32, 38, 32, 380, 100, 0, -6);
+        displayMessage = new AnimatedDrawable(Utils.gRL("textures/gui/message.png"), 192, 32, 192, 32, 192, 1024, 100);
+        paperEntry = new SimpleDrawable(Utils.gRL("textures/gui/sticker.png"), 32, 32);
+        splitter = new SimpleDrawable(Utils.gRL("textures/gui/splitter.png"), 276, 4);
+        furnace = new AnimatedDrawable(Utils.gRL("textures/gui/recipes/furnace.png"), 112, 112, 112, 112, 112, 1456, 100);
+        crafting = new SimpleDrawable(Utils.gRL("textures/gui/recipes/crafting.png"), 118, 88);
+        paperEntryCompleted = new SimpleDrawable(Utils.gRL("textures/gui/sticker_green.png"), 32, 32);
 
-        labSmall = new SimpleDrawable(Utils.getResourceLocation("textures/gui/pictures/lab_small.png"), 344, 193);
-        labMedium = new SimpleDrawable(Utils.getResourceLocation("textures/gui/pictures/lab_medium.png"), 344, 193);
+        labSmall = new SimpleDrawable(Utils.gRL("textures/gui/pictures/lab_small.png"), 344, 193);
+        labMedium = new SimpleDrawable(Utils.gRL("textures/gui/pictures/lab_medium.png"), 344, 193);
     }
 }

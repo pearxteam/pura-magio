@@ -62,6 +62,6 @@ public class RecipeRegistry
 
     private static void register(String name, IRecipe recipe, IForgeRegistry<IRecipe> reg)
     {
-        reg.register(recipe.setRegistryName(Utils.getResourceLocation(name)));
+        reg.register(recipe.setRegistryName(Utils.gRL(name)));
     }
 }

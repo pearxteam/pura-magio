@@ -29,7 +29,7 @@ import ru.pearx.purmag.common.tiles.TileTranslationDesk;
 @SideOnly(Side.CLIENT)
 public class GuiTranslationDesk extends GuiOnScreen
 {
-    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/translation_desk/translation_desk.png");
+    public static final ResourceLocation TEXTURE = Utils.gRL("textures/gui/translation_desk/translation_desk.png");
     public int texW = 384, texH = 240;
     public BlockPos pos;
     public World world;
@@ -46,7 +46,7 @@ public class GuiTranslationDesk extends GuiOnScreen
         this.world = world;
         setWidth(384);
         setHeight(240);
-        btnStart = new BtnStart(Utils.getResourceLocation("textures/gui/button_wooden.png"), null, () ->
+        btnStart = new BtnStart(Utils.gRL("textures/gui/button_wooden.png"), null, () ->
         {
             if (panel.translating)
                 panel.stop();

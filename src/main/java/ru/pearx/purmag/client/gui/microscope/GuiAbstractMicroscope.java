@@ -16,7 +16,7 @@ import ru.pearx.purmag.common.Utils;
 public abstract class GuiAbstractMicroscope extends GuiOnScreen
 {
     protected int margin = 9;
-    public static final ResourceLocation TEXTURE = Utils.getResourceLocation("textures/gui/microscope.png");
+    public static final ResourceLocation TEXTURE = Utils.gRL("textures/gui/microscope.png");
     private static final IGuiDrawable bg = new SimpleDrawable(TEXTURE, 368 * 2, 240 * 2, 368, 240, 0, 0);
     private static final IGuiDrawable frame = new SimpleDrawable(TEXTURE, 368 * 2, 240 * 2, 368, 240, 368, 0);
     private static final IGuiDrawable lcd = new SimpleDrawable(TEXTURE, 368 * 2, 240 * 2, 368, 240, 0, 240);

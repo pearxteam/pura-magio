@@ -22,8 +22,8 @@ public class GuiCodeStorageLock extends GuiCodeStorageLockUnlock
 {
     private BlockPos pos;
 
-    public TextBox text = new TextBox(Utils.getResourceLocation("textures/gui/textbox.png"));
-    public TextBox code = new TextBox(Utils.getResourceLocation("textures/gui/textbox.png"));
+    public TextBox text = new TextBox(Utils.gRL("textures/gui/textbox.png"));
+    public TextBox code = new TextBox(Utils.gRL("textures/gui/textbox.png"));
     public Button done = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.code_storage.lock.lock"), () ->
     {
         NetworkManager.sendToServer(new SPacketLock(text.getBuffer().toString(), code.getBuffer().toString(), pos));

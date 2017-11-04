@@ -27,8 +27,8 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class GuiTranslationDeskPanel extends Control
 {
-    public static final ResourceLocation TEXTURE_BUTTON = Utils.getResourceLocation("textures/gui/translation_desk/semibutton.png");
-    public static final ResourceLocation TEXTURE_DISPLAY = Utils.getResourceLocation("textures/gui/translation_desk/display.png");
+    public static final ResourceLocation TEXTURE_BUTTON = Utils.gRL("textures/gui/translation_desk/semibutton.png");
+    public static final ResourceLocation TEXTURE_DISPLAY = Utils.gRL("textures/gui/translation_desk/display.png");
     public static final List<Integer> keyMap = new ArrayList<>();
     static
     {
