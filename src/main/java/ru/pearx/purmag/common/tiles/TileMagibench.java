@@ -1,7 +1,9 @@
 package ru.pearx.purmag.common.tiles;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -17,8 +19,34 @@ import javax.annotation.Nullable;
  */
 public class TileMagibench extends TileSyncable
 {
+    public class Handler extends ItemStackHandler
+    {
+        public Handler()
+        {
+            super();
+        }
+
+        public Handler(int size)
+        {
+            super(size);
+        }
+
+        public Handler(NonNullList<ItemStack> stacks)
+        {
+            super(stacks);
+        }
+
+        @Override
+        protected void onContentsChanged(int slot)
+        {
+            TileMagibench.this.markDirty();
+            sendUpdatesToClients();
+        }
+    }
+
     private int tier;
-    public ItemStackHandler handler;
+    public Handler handler;
+
 
     public int getTier()
     {
@@ -33,7 +61,7 @@ public class TileMagibench extends TileSyncable
             ItemStackUtils.drop(handler, getWorld(), getPos());
         }
         this.tier = tier;
-        handler = new ItemStackHandler(t.getWidth() * t.getHeight());
+        handler = new Handler(t.getWidth() * t.getHeight());
         if(sync)
             sendUpdatesToClients();
     }
