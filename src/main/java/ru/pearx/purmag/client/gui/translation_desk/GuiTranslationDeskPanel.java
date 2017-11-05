@@ -27,6 +27,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class GuiTranslationDeskPanel extends Control
 {
+    public static final float REQUIRED_RATE = 0.65f;
     public static final ResourceLocation TEXTURE_BUTTON = Utils.gRL("textures/gui/translation_desk/semibutton.png");
     public static final ResourceLocation TEXTURE_DISPLAY = Utils.gRL("textures/gui/translation_desk/display.png");
     public static final List<Integer> keyMap = new ArrayList<>();
@@ -169,7 +170,7 @@ public class GuiTranslationDeskPanel extends Control
                 entries.add(new Entry((byte) PurMag.INSTANCE.random.nextInt(4), 250 + (i * 40)));
             }
             totalEntries = entries.size();
-            getDesk().barRate.getMarks().add(new ProgressBar.Mark((int) (totalEntries * 0.7f), Colors.BLACK));
+            getDesk().barRate.getMarks().add(new ProgressBar.Mark((int) (totalEntries * REQUIRED_RATE), Colors.BLACK));
         }
     }
 
@@ -189,7 +190,7 @@ public class GuiTranslationDeskPanel extends Control
     public void done()
     {
         boolean updSt = false;
-        if (rate >= (totalEntries * 0.7f))
+        if (rate >= (totalEntries * REQUIRED_RATE))
         {
             NetworkManager.sendToServer(new SPacketDoneTranslation(getDesk().pos, getDesk().entryName));
             updSt = true;

@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import org.lwjgl.input.Mouse;
 import ru.pearx.lib.Color;
 import ru.pearx.lib.Colors;
 import ru.pearx.lib.math.MathUtils;
@@ -41,6 +42,7 @@ public class GuiMicroscopeResearch extends GuiAbstractMicroscope
         }
     });
     private String text = "";
+    private int prevR = -1, prevC = -1;
 
     public GuiMicroscopeResearch(BlockPos pos, IRSMicroscopeResearch step, String entryName)
     {
@@ -185,7 +187,6 @@ public class GuiMicroscopeResearch extends GuiAbstractMicroscope
                 {
                     int xx = maxLeft + c * buttSize;
                     int yy = maxUp + r * buttSize;
-                    GlStateManager.color(0, 0, 0, 0);
                     Color cSimple = current[r][c] ? Colors.GREEN_500 : Colors.BLUE_500;
                     Color cShimmer = current[r][c] ? shGreen : shBlue;
                     DrawingTools.drawGradientRect(xx, yy, buttSize, buttSize, cShimmer, cSimple, cShimmer, cSimple);
@@ -205,17 +206,37 @@ public class GuiMicroscopeResearch extends GuiAbstractMicroscope
         @Override
         public void mouseDown(int button, int x, int y)
         {
+            performAction(x, y, false);
+        }
+
+        @Override
+        public void mouseMove(int x, int y, int dx, int dy)
+        {
+            performAction(x, y, true);
+        }
+
+        private void performAction(int x, int y, boolean checkPos)
+        {
             x = x - maxLeft;
             y = y - maxUp;
             if(x > 0 && y > 0)
             {
                 int col = x / buttSize;
                 int row = y / buttSize;
-                if(button == 0)
-                    current[row][col] = !current[row][col];
-                else if(button == 1)
-                    crosses[row][col] = !crosses[row][col];
-                Minecraft.getMinecraft().player.playSound(SoundRegistry.MAGICAL_CLICK, 1, 1);
+                if(!checkPos || (prevC != col || prevR != row))
+                {
+                    prevC = col;
+                    prevR = row;
+                    if (Mouse.isButtonDown(0))
+                    {
+                        current[row][col] = !current[row][col];
+                        Minecraft.getMinecraft().player.playSound(SoundRegistry.MAGICAL_CLICK, 1, 1);
+                    } else if (Mouse.isButtonDown(1))
+                    {
+                        crosses[row][col] = !crosses[row][col];
+                        Minecraft.getMinecraft().player.playSound(SoundRegistry.MAGICAL_CLICK, 1, 1);
+                    }
+                }
             }
         }
 
