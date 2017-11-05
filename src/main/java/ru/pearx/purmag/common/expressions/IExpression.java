@@ -55,6 +55,18 @@ public interface IExpression extends IForgeRegistryEntry<IExpression>
         {
             this.luck = luck;
         }
+
+        public static ExpressionData createData(String format, int result, Object... vals) {
+            return createData(format, Integer.toString(result), vals);
+        }
+
+        public static ExpressionData createData(String format, String result, Object... vals)
+        {
+            ExpressionData dat = new ExpressionData();
+            dat.setText(String.format(format, vals));
+            dat.setResult(result);
+            return dat;
+        }
     }
 
     String getDescription();

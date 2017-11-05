@@ -1,28 +1,17 @@
 package ru.pearx.purmag.common.expressions;
 
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.expressions.operations.Operation;
 
 import java.util.Random;
+
 
 public class SimpleInequality extends Expression
 {
     private final Expression base = PurMag.INSTANCE.getExpressionRegistry().simple;
     private static final String FORMAT = "%s ? %s (Answer <, > or =)";
     public SimpleInequality() {
-        setRegistryName("simple_ie");
-        setLuck(5);
-    }
-
-    @Override
-    public String getDescription()
-    {
-        return "Inequalities composed of simple expressions, like 6/2; 2+3 or 3*9; 5-2";
-    }
-
-    @Override
-    public boolean enabledByDefault()
-    {
-        return true;
+        super("simple_ie","Inequalities composed of simple expressions, like 6/2; 2+3 or 3*9; 5-2", true, 5, (Operation[]) null);
     }
 
     @Override
@@ -48,7 +37,7 @@ public class SimpleInequality extends Expression
                 throw new RuntimeException(String.format("PURMAG: Integer.compare returned wrong value (%d), contact mod authors", cmp));
             }
         }
-        return createData(FORMAT, op, first.getText(), second.getText());
+        return ExpressionData.createData(FORMAT, op, first.getText(), second.getText());
     }
 
 }
