@@ -28,6 +28,7 @@ public class TESRMagibench extends PXLFastTESR<TileMagibench>
     @Override
     public void renderPre(TileMagibench te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
+        //todo add floating items support
         MagibenchRegistry.Tier t = PurMag.INSTANCE.getMagibenchRegistry().getTier(te.getTier());
         int index = 0;
         float scale = Math.min(1f / t.getWidth(), 1f / t.getHeight());

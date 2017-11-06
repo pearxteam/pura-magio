@@ -2,6 +2,7 @@ package ru.pearx.purmag.common.items;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -31,8 +32,8 @@ public class ItemBlockMagibench extends ItemBlockBase
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getItemStackDisplayName(ItemStack stack)
     {
-        return super.getUnlocalizedName(stack) + "." + stack.getItemDamage();
+        return I18n.translateToLocal(PurMag.INSTANCE.getMagibenchRegistry().getTier(stack.getMetadata()).getUnlocalizedName());
     }
 }

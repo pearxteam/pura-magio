@@ -1,6 +1,9 @@
 package ru.pearx.purmag.common.magibench;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.common.Utils;
 
 import java.util.ArrayList;
@@ -26,8 +29,10 @@ public class MagibenchRegistry
         private ResourceLocation modelTexture;
         private ResourceLocation obj;
         private ResourceLocation smartModel;
+        private boolean areItemsFloating;
+        private String unlocalizedName;
 
-        public Tier(int tier, int width, int height, int guiGridX, int guiGridY, int guiResultX, int guiResultY, ResourceLocation guiTexture, int guiJeiStartX, int guiJeiStartY, ResourceLocation modelTexture, ResourceLocation obj, ResourceLocation smartModel)
+        public Tier(int tier, int width, int height, int guiGridX, int guiGridY, int guiResultX, int guiResultY, ResourceLocation guiTexture, int guiJeiStartX, int guiJeiStartY, ResourceLocation modelTexture, ResourceLocation obj, ResourceLocation smartModel, boolean areItemsFloating, String unlocalizedName)
         {
             this.tier = tier;
             this.width = width;
@@ -42,6 +47,8 @@ public class MagibenchRegistry
             this.modelTexture = modelTexture;
             this.obj = obj;
             this.smartModel = smartModel;
+            this.areItemsFloating = areItemsFloating;
+            this.unlocalizedName = unlocalizedName;
         }
 
         public int getTier()
@@ -108,6 +115,16 @@ public class MagibenchRegistry
         {
             return smartModel;
         }
+
+        public boolean areItemsFloating()
+        {
+            return areItemsFloating;
+        }
+
+        public String getUnlocalizedName()
+        {
+            return unlocalizedName;
+        }
     }
 
     private List<Tier> tiers = new ArrayList<>();
@@ -133,6 +150,6 @@ public class MagibenchRegistry
     public void setup()
     {
         //jei: (144 - 104) / 2 = 20;  (94 - 54) / 2 = 20;
-        registerTier(new Tier(0, 3, 3, 48, 29, 133, 46, Utils.gRL("textures/gui/inventory/magibench/0.png"), 20, 10, Utils.gRL("models/magibench/0"), Utils.gRL("obj/magibench/0.obj"), Utils.gRL("magibench/0")));
+        registerTier(new Tier(0, 3, 3, 48, 29, 133, 46, Utils.gRL("textures/gui/inventory/magibench/0.png"), 20, 10, Utils.gRL("models/magibench/0"), Utils.gRL("obj/magibench/0.obj"), Utils.gRL("magibench/0"), false, "tile.purmag.magibench.0.name"));
     }
 }
