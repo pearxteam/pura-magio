@@ -1,13 +1,11 @@
 package ru.pearx.purmag.common.jei.magibench;
 
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IStackHelper;
 import mezz.jei.api.recipe.wrapper.ICraftingRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,10 +14,8 @@ import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.Utils;
-import ru.pearx.purmag.common.infofield.IfTier;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 import ru.pearx.purmag.common.recipes.recipes.AbstractMagibenchRecipe;
-import ru.pearx.purmag.common.recipes.recipes.MagibenchRecipe;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;

@@ -4,7 +4,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.expressions.operations.EquationOperations;
-import ru.pearx.purmag.common.expressions.operations.Operation;
 import ru.pearx.purmag.common.expressions.operations.SimpleOperations;
 
 /*

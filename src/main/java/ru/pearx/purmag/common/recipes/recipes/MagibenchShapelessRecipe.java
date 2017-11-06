@@ -4,15 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 import ru.pearx.libmc.common.ItemStackUtils;
-import ru.pearx.purmag.common.CapabilityRegistry;
-import ru.pearx.purmag.common.inventory.ContainerMagibench;
 
 import javax.annotation.Nonnull;
 

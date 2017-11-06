@@ -1,9 +1,6 @@
 package ru.pearx.purmag.common.magibench;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.common.Utils;
 
 import java.util.ArrayList;
