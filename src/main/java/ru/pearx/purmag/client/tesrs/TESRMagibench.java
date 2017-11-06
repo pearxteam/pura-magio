@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.client.PXLFastTESR;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.purmag.PurMag;
@@ -32,7 +33,7 @@ public class TESRMagibench extends PXLFastTESR<TileMagibench>
         float scale = Math.min(1f / t.getWidth(), 1f / t.getHeight());
         GlStateManager.pushMatrix();
         GlStateManager.translate(0.5f, 0, 0.5f);
-        GlStateManager.rotate(te.getWorld().getBlockState(te.getPos()).getValue(HorizontalFacingController.FACING_H).getHorizontalAngle(), 0, 1, 0);
+        GlStateManager.rotate(PXLMC.getHorizontalRotation(te.getWorld().getBlockState(te.getPos()).getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
         GlStateManager.translate(-0.5f, 0, -0.5f);
         GlStateManager.translate(0.16f, 1.09f, 0.16f);
         for (int yy = 0; yy < t.getHeight(); yy++)
@@ -46,7 +47,7 @@ public class TESRMagibench extends PXLFastTESR<TileMagibench>
                     GlStateManager.scale(0.8f, 0.8f, 0.8f);
                     GlStateManager.translate(0.1f, 0, 0.1f);
                     GlStateManager.scale(scale, scale, scale);
-                    GlStateManager.translate(xx, 0, yy);
+                    GlStateManager.translate(t.getWidth() - xx - 1, 0, t.getHeight() - yy - 1);
                     if (!(stack.getItem() instanceof ItemBlock))
                     {
                         GlStateManager.translate(0, -0.22f, 0);

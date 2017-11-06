@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
+import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.client.PXLFastTESR;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.purmag.common.Utils;
@@ -30,24 +31,7 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate(0.5f, 0, 0.5f);
-        EnumFacing face = te.getWorld().getBlockState(te.getPos()).getValue(HorizontalFacingController.FACING_H);
-        int angle = -10;
-        switch (face)
-        {
-            case NORTH:
-                angle = 0;
-                break;
-            case WEST:
-                angle = 90;
-                break;
-            case SOUTH:
-                angle = 180;
-                break;
-            case EAST:
-                angle = 270;
-                break;
-        }
-        GlStateManager.rotate(angle, 0, 1, 0);
+        GlStateManager.rotate(PXLMC.getHorizontalRotation(te.getWorld().getBlockState(te.getPos()).getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
         GlStateManager.translate(-0.5f, 0, -0.5f);
     }
 
