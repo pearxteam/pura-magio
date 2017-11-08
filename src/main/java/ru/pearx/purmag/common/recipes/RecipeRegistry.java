@@ -55,6 +55,12 @@ public class RecipeRegistry
                 " K ",
                 'S', "slabWood", 'P', ItemRegistry.gray_paper_pack, 'K', ItemRegistry.painting_kit
         ), e.getRegistry());
+        register("simple_magibench", new ShapedOreRecipe(null, new ItemStack(ItemRegistry.magibench, 1, 0),
+                "NNN",
+                "WWW",
+                " P ",
+                'N', "nuggetGold", 'W', "slabWood", 'P', "plankWood"
+        ), e.getRegistry());
 
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle), new ItemStack(ItemRegistry.mortar_and_pestle), 0.1f);
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.beetle_meat), new ItemStack(ItemRegistry.beetle_meat, 1, 1), 0.5f);

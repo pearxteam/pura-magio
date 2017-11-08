@@ -99,7 +99,6 @@ public class CraftingControl extends Control
                     Point p = c.getPosOnScreen();
                     GlStateManager.pushMatrix();
                     GlStateManager.translate(-p.getX(), -p.getY(), 0);
-                    c.getGuiScreen().drawHovering("123", p.getX() + c.getLastMouseX(), p.getY() + c.getLastMouseY());
                     GlStateManager.popMatrix();
                 }
             }

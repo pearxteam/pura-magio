@@ -153,4 +153,11 @@ public class ContainerMagibench extends PXLContainer
     {
         return slotIn.inventory != result && super.canMergeSlot(stack, slotIn);
     }
+
+    @Override
+    protected void slotChangedCraftingGrid(World p_192389_1_, EntityPlayer p_192389_2_, InventoryCrafting p_192389_3_, InventoryCraftResult p_192389_4_)
+    {
+        if(tile.canWork())
+            super.slotChangedCraftingGrid(p_192389_1_, p_192389_2_, p_192389_3_, p_192389_4_);
+    }
 }

@@ -162,6 +162,9 @@ misc.gui.code_storage.unlock.unlock=Unlock
 misc.gui.microscope.research=Research
 misc.gui.microscope.check=Check
 misc.gui.microscope.wrong=Wrong pattern!
+misc.gui.magibench.incorrectStructure=§cIncorrect structure!§r
+misc.gui.magibench.fine=§aEverything is fine!§r
+misc.gui.magibench.refresh=§7*click to refresh*§r
 
 misc.structure_processor.code_storage.name=Code Storage
 misc.structure_processor.code_storage.table=Loot Table:

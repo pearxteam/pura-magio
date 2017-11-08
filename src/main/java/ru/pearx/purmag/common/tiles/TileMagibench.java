@@ -1,10 +1,14 @@
 package ru.pearx.purmag.common.tiles;
 
+import net.minecraft.client.resources.I18n;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.pearx.libmc.common.ItemStackUtils;
@@ -97,7 +101,12 @@ public class TileMagibench extends TileSyncable
 
     public boolean canWork()
     {
-        //todo check the structure here.
         return true;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public String getCantWorkString()
+    {
+        return I18n.format("misc.gui.magibench.incorrectStructure");
     }
 }
