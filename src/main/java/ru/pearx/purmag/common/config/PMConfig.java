@@ -26,6 +26,7 @@ public class PMConfig
     public ConfigStructureEntry genLabSmall;
     public ConfigStructureEntry genLabMedium;
     public ConfigGroundgenEntry genBrulantaFlower;
+    public boolean debugMessages;
 
     public List<ResourceLocation> enabledExpressions = new ArrayList<>();
 
@@ -42,6 +43,7 @@ public class PMConfig
         genLabSmall = loadStructure(configFile, "Small Laboratory", 0.0007f, 15, 256, new String[]{"-1", "1"}, false);
         genLabMedium = loadStructure(configFile, "Medium Laboratory", 0.0007f, 15, 256, new String[]{"-1", "1"}, false);
         genBrulantaFlower = loadGround(configFile, "Brulanta Flower", 3, 256, 0, 4, 0.1f, new String[]{"-1", "1"}, false);
+        debugMessages = configFile.getBoolean("Debug", "general", false, "Enables or disables the debug logger.");
 
         if (configFile.hasChanged())
             configFile.save();

@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.CommonProxy;
@@ -47,6 +48,7 @@ public class PurMag
     public static CommonProxy proxy;
     public PMConfig config = new PMConfig();
     public Logger log;
+    public Logger debug;
     //don't move this to PurMagClient
     public Random random = new Random();
 
@@ -93,10 +95,13 @@ public class PurMag
     public void preInit(FMLPreInitializationEvent e)
     {
         log = e.getModLog();
+
         setupMetadata(e.getModMetadata());
 
         configFile = new Configuration(new File(e.getModConfigurationDirectory(), "Purificati Magicae.cfg"));
         config.setup(configFile);
+
+        debug = LogManager.getLogger(MODID + "-debug");
 
         proxy.setupDrawables();
         getSipRegistry().register();
@@ -149,5 +154,11 @@ public class PurMag
     public void serverStartup(FMLServerStartingEvent e)
     {
         e.registerServerCommand(new CommandIf());
+    }
+
+    public void debug(String s)
+    {
+        if(debug != null)
+            debug.debug(s);
     }
 }

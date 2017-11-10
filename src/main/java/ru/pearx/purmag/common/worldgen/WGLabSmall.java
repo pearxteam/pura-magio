@@ -1,6 +1,7 @@
 package ru.pearx.purmag.common.worldgen;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -49,9 +50,9 @@ public class WGLabSmall implements IWorldGenerator
                     try
                     {
                         NBTTagCompound tag = StructureApi.INSTANCE.getStructureNbt(Utils.gRL("lab_small"));
-                        System.out.println("WG START");
-                        StructureApi.INSTANCE.spawnStructure(tag, pos, (WorldServer) world, random);
-                        System.out.println("WG END AT " + pos);
+                        PurMag.INSTANCE.debug("WG START [lab_small]");
+                        StructureApi.INSTANCE.spawnStructure(tag, pos, null, Rotation.values()[random.nextInt(Rotation.values().length)], (WorldServer) world, random);
+                        PurMag.INSTANCE.debug("WG END AT " + pos);
                     }
                     catch (IOException e)
                     {

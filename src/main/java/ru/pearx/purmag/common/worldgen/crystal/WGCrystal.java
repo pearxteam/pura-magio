@@ -55,7 +55,7 @@ public class WGCrystal implements IWorldGenerator
                     tss.setType(sipType, false);
                     world.setTileEntity(genPos, tss);
                 }
-                System.out.println("Crystal " + sipType + " " + pos);
+                PurMag.INSTANCE.debug("Crystal " + sipType + " " + pos);
                 predicate.afterPlace(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider, pos, sif, count);
             }
         }
