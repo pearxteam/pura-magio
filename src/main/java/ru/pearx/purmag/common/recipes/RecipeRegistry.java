@@ -27,20 +27,6 @@ public class RecipeRegistry
     @SubscribeEvent
     public static void onRecipeRegistry(RegistryEvent.Register<IRecipe> e)
     {
-        register("unf_mortar_and_pestle", new MagibenchRecipe(ItemRegistry.unfinished_mortar_and_pestle, 0, "mortar_and_pestle",
-                "  |",
-                "BcB",
-                " B ",
-                'c', Items.CLAY_BALL, 'B', Blocks.CLAY, '|', "stickWood"
-        ), e.getRegistry());
-
-        register("pyroblend", new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.pyroblend, 2),
-                ItemRegistry.verda_wing,
-                ItemRegistry.brulanta_flower,
-                new IngredientNBT(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard), "flame")),
-                ItemRegistry.mortar_and_pestle
-        ), e.getRegistry());
-
         register("painting_kit", new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.painting_kit),
                 "stickWood", "string", Blocks.WOODEN_PRESSURE_PLATE, "dyeBlack", "dyeWhite", "dyeBlue", "dyeYellow", "dyeRed"
         ), e.getRegistry());
@@ -48,7 +34,6 @@ public class RecipeRegistry
         register("gray_paper_pack", new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.gray_paper_pack),
                 "paper", "paper", "paper", "paper", "paper", "paper", "dyeGray", "dyeGray"
         ), e.getRegistry());
-
         register("wooden_tablet", new ShapedOreRecipe(null, new ItemStack(ItemRegistry.if_tablet, 1, 0),
                 "SSS",
                 "PPP",
@@ -60,6 +45,19 @@ public class RecipeRegistry
                 "WWW",
                 " P ",
                 'N', "nuggetGold", 'W', "slabWood", 'P', "plankWood"
+        ), e.getRegistry());
+
+        register("pyroblend", new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.pyroblend, 2),
+                ItemRegistry.verda_wing,
+                ItemRegistry.brulanta_flower,
+                new IngredientNBT(SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal_shard), "flame")),
+                ItemRegistry.mortar_and_pestle
+        ), e.getRegistry());
+        register("unf_mortar_and_pestle", new MagibenchRecipe(ItemRegistry.unfinished_mortar_and_pestle, 0, "mortar_and_pestle",
+                "  |",
+                "BcB",
+                " B ",
+                'c', Items.CLAY_BALL, 'B', Blocks.CLAY, '|', "stickWood"
         ), e.getRegistry());
 
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle), new ItemStack(ItemRegistry.mortar_and_pestle), 0.1f);

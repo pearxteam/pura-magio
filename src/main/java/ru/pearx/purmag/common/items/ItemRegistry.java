@@ -49,6 +49,7 @@ public class ItemRegistry
     public static final Item painting_kit = null;
     public static final Item gray_paper_pack = null;
     public static final ItemBlockMagibench magibench = null;
+    public static final Item porcelain = null;
 
     public static void register(Item itm, IForgeRegistry<Item> reg)
     {
@@ -101,5 +102,6 @@ public class ItemRegistry
         register(new ItemBase("painting_kit"), reg);
         register(new ItemBase("gray_paper_pack"), reg);
         register(new ItemBlockMagibench(), reg);
+        register(new ItemBase("porcelain"), reg);
     }
 }
