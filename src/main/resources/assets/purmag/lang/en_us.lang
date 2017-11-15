@@ -38,8 +38,9 @@ tile.purmag.code_storage.not_lockable.name=Not Lockable Code Storage
 tile.purmag.code_storage.tooltip=Contains %s items.
 item.purmag.painting_kit.name=Painting Kit
 item.purmag.gray_paper_pack.name=Gray Paper Pack
-
 tile.purmag.magibench.0.name=Simple Magibench
+item.purmag.porcelain.name=Porcelain
+item.purmag.stone_tinkering_kit.name=Stone Tinkering Kit
 
 #Sip Types
 sip.sea.name=Mara
