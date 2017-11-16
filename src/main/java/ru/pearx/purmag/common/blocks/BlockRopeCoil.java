@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.libmc.common.blocks.controllers.AxisController;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
 
 /*
@@ -28,37 +29,31 @@ public class BlockRopeCoil extends BlockBase
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, HorizontalFacingController.FACING_H);
+        return new BlockStateContainer(this, AxisController.AXIS);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return HorizontalFacingController.getStateFromMeta(getDefaultState(), meta);
+        return AxisController.getStateFromMeta(getDefaultState(), meta);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return HorizontalFacingController.getMetaFromState(state);
+        return AxisController.getMetaFromState(state);
     }
 
     @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return HorizontalFacingController.getStateForPlacement(getDefaultState(), placer);
-    }
-
-    @Override
-    public IBlockState withMirror(IBlockState state, Mirror mirror)
-    {
-        return HorizontalFacingController.withMirror(state, mirror);
+        return AxisController.getStateForPlacement(getDefaultState(), facing, placer);
     }
 
     @Override
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
-        return HorizontalFacingController.withRotation(state, rot);
+        return AxisController.withRotation(state, rot);
     }
 
     @Override

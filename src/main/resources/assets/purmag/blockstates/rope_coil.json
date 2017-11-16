@@ -1,9 +1,8 @@
 {
   "variants": {
     "normal": {"model": "purmag:rope_coil"},
-    "facing=north": {"model": "purmag:rope_coil"},
-    "facing=south": {"model": "purmag:rope_coil", "y": 180},
-    "facing=west": {"model": "purmag:rope_coil", "y": 270},
-    "facing=east": {"model": "purmag:rope_coil", "y": 90}
+    "axis=x": {"model": "purmag:rope_coil", "y": 90},
+    "axis=y": {"model": "purmag:rope_coil", "x": 90},
+    "axis=z": {"model": "purmag:rope_coil"}
   }
 }
