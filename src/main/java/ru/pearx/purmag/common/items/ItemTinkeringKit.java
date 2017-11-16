@@ -42,8 +42,11 @@ public class ItemTinkeringKit extends ItemToolBase
     {
         for(Multiblock mb : Multiblock.REGISTRY)
         {
-            if(mb.tryForm(worldIn, pos).isPresent())
+            if(mb.tryForm(worldIn, pos, player).isPresent())
+            {
+                player.getHeldItem(hand).damageItem(1, player);
                 return EnumActionResult.PASS;
+            }
         }
         return EnumActionResult.FAIL;
     }

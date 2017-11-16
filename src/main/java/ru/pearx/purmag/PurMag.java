@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.CommonProxy;
+import ru.pearx.purmag.common.blocks.multiblock.MultiblockRegistry;
 import ru.pearx.purmag.common.commands.CommandIf;
 import ru.pearx.purmag.common.config.PMConfig;
 import ru.pearx.purmag.common.entities.EntityRegistry;
@@ -129,6 +130,7 @@ public class PurMag
         NetworkManager.setup();
         WorldgenRegistry.setup();
         LootTablesRegistry.setup();
+        MultiblockRegistry.setup();
 
         proxy.init();
     }

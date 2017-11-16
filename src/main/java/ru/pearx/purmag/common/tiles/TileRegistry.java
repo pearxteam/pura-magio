@@ -22,6 +22,7 @@ public class TileRegistry
         GameRegistry.registerTileEntity(TileMicroscope.class, Utils.gRL("microscope").toString());
         GameRegistry.registerTileEntity(TileCodeStorage.class, Utils.gRL("code_storage").toString());
         GameRegistry.registerTileEntity(TileMagibench.class, Utils.gRL("magibench").toString());
+        GameRegistry.registerTileEntity(TileStoneCrusher.class, Utils.gRL("stone_crusher").toString());
     }
 
     @SideOnly(Side.CLIENT)
