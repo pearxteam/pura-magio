@@ -24,6 +24,7 @@ public class BlockRopeCoil extends BlockBase
     {
         super("rope_coil", Material.CLOTH);
         setSoundType(SoundType.CLOTH);
+        setHardness(0.5f);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ru.pearx.purmag.common.blocks.multiblock;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
@@ -18,12 +19,13 @@ public class BlockStoneCrusher extends BlockMultiblockPart
     public BlockStoneCrusher()
     {
         super(Material.WOOD);
+        setHardness(1.1f);
+        setSoundType(SoundType.WOOD);
         setRegistryName("stone_crusher");
     }
 
-    @Nullable
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
+    public TileEntity createMasterTile(World world, IBlockState state)
     {
         return new TileStoneCrusher();
     }
