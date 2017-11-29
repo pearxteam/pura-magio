@@ -48,10 +48,10 @@ public final class MultiblockRegistry
                     new BlockPos(0, 2, 0), rope,
                     new BlockPos(1, 2, 0), rope,
                     new BlockPos(1, 0, 0), rope,
-                    new BlockPos(2, 0, 0), new BlockArrayEntry(Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.DOWN_X), new ItemStack(Blocks.LEVER)),
-                    new BlockPos(1, 0, 1), new BlockArrayEntry(Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.NORTH), new ItemStack(Blocks.LEVER))
+                    new BlockPos(2, 0, 0), new BlockArrayEntry(Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.UP_X), new ItemStack(Blocks.LEVER)),
+                    new BlockPos(1, 0, 1), new BlockArrayEntry(Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.SOUTH), new ItemStack(Blocks.LEVER))
             ));
-            Multiblock.REGISTRY.register(STONE_CRUSHER = new Multiblock(arr, new BlockPos(0, 2, 0), BlockRegistry.stone_crusher.getDefaultState()).setRegistryName("stone_crusher"));
+            Multiblock.REGISTRY.register(STONE_CRUSHER = new Multiblock(arr, new BlockPos(1, 0, 0), BlockRegistry.stone_crusher.getDefaultState()).setRegistryName("stone_crusher"));
         }
     }
 }
