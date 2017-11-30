@@ -2,6 +2,7 @@ package ru.pearx.purmag.common.items;
 
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
@@ -9,9 +10,11 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ru.pearx.libmc.common.structure.multiblock.Multiblock;
+import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.Utils;
 
 import java.util.Collections;
@@ -45,6 +48,7 @@ public class ItemTinkeringKit extends ItemToolBase
             if(mb.tryForm(worldIn, pos, player).isPresent())
             {
                 player.getHeldItem(hand).damageItem(1, player);
+                worldIn.playSound(player, pos, SoundRegistry.MULTIBLOCK_FORM, SoundCategory.BLOCKS, 1, 1);
                 return EnumActionResult.PASS;
             }
         }

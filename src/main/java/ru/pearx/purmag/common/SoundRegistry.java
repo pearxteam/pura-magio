@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import ru.pearx.purmag.PurMag;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 /**
  * Created by mrAppleXZ on 13.04.17 10:59.
@@ -16,22 +17,24 @@ import ru.pearx.purmag.PurMag;
 @GameRegistry.ObjectHolder(PurMag.MODID)
 public class SoundRegistry
 {
-    @GameRegistry.ObjectHolder("misc.magical_click")
+    @ObjectHolder("misc.magical_click")
     public static SoundEvent MAGICAL_CLICK;
-    @GameRegistry.ObjectHolder("misc.notification")
+    @ObjectHolder("misc.notification")
     public static SoundEvent NOTIFICATION;
-    @GameRegistry.ObjectHolder("misc.click")
+    @ObjectHolder("misc.click")
     public static SoundEvent CLICK;
-    @GameRegistry.ObjectHolder("misc.glass")
+    @ObjectHolder("misc.glass")
     public static SoundEvent GLASS;
-    @GameRegistry.ObjectHolder("misc.error")
+    @ObjectHolder("misc.error")
     public static SoundEvent ERROR;
-    @GameRegistry.ObjectHolder("mob.verda_beetle.idle")
+    @ObjectHolder("mob.verda_beetle.idle")
     public static SoundEvent BEETLE_IDLE;
-    @GameRegistry.ObjectHolder("mob.verda_beetle.hurt")
+    @ObjectHolder("mob.verda_beetle.hurt")
     public static SoundEvent BEETLE_HURT;
-    @GameRegistry.ObjectHolder("misc.code_storage_open")
+    @ObjectHolder("misc.code_storage_open")
     public static SoundEvent CODE_STORAGE_OPEN;
+    @ObjectHolder("misc.multiblock_form")
+    public static SoundEvent MULTIBLOCK_FORM;
 
     public static void register(ResourceLocation loc, IForgeRegistry<SoundEvent> reg)
     {
@@ -52,5 +55,6 @@ public class SoundRegistry
         register(Utils.gRL("mob.verda_beetle.idle"), reg);
         register(Utils.gRL("mob.verda_beetle.hurt"), reg);
         register(Utils.gRL("misc.code_storage_open"), reg);
+        register(Utils.gRL("misc.multiblock_form"), reg);
     }
 }

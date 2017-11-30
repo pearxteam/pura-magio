@@ -45,5 +45,8 @@
   },
   "misc.code_storage_open": {
     "sounds": ["purmag:code_storage_open"]
+  },
+  "misc.multiblock_form": {
+    "sounds": ["purmag:multiblock_form"]
   }
 }
