@@ -10,14 +10,18 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.client.particle.PXParticle;
 import ru.pearx.libmc.client.particle.ParticleEngine;
 import ru.pearx.libmc.common.structure.multiblock.Multiblock;
 import ru.pearx.purmag.client.particle.ParticleMultiblock;
 import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.Utils;
+import ru.pearx.purmag.common.networking.NetworkManager;
+import ru.pearx.purmag.common.networking.packets.CPacketSpawnMultiblockParticles;
 
 import java.util.Collections;
+import java.util.Optional;
 import java.util.Set;
 
 /*
@@ -43,14 +47,16 @@ public class ItemTinkeringKit extends ItemToolBase
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if(worldIn.isRemote)
-            ParticleEngine.addParticle(new ParticleMultiblock(player.posX + 3, player.posY + 10, player.posZ));
         for(Multiblock mb : Multiblock.REGISTRY)
         {
-            if(mb.tryForm(worldIn, pos, player).isPresent())
+            Optional<Rotation> rot = mb.tryForm(worldIn, pos, player);
+            if(rot.isPresent())
             {
                 player.getHeldItem(hand).damageItem(1, player);
-                worldIn.playSound(player, pos, SoundRegistry.MULTIBLOCK_FORM, SoundCategory.BLOCKS, 1, 1);
+                if(!worldIn.isRemote)
+                {
+                    NetworkManager.sendToAllAround(new CPacketSpawnMultiblockParticles(pos, mb.getRegistryName(), rot.get()), pos.getX(), pos.getY(), pos.getZ(), worldIn.provider.getDimension(), 256);
+                }
                 return EnumActionResult.PASS;
             }
         }
