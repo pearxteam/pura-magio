@@ -28,13 +28,13 @@ public class ParticleCrystal extends PXParticle
     }
 
     @Override
-    public double getWidth()
+    public float getWidth()
     {
         return 8;
     }
 
     @Override
-    public double getHeight()
+    public float getHeight()
     {
         return 8;
     }
@@ -55,8 +55,8 @@ public class ParticleCrystal extends PXParticle
         GlStateManager.popMatrix();
     }
 
-    float prevSin, prevCos;
-    int degrees = 0;
+    private float prevSin, prevCos;
+    private int degrees = 0;
 
     @Override
     public void onUpdate()

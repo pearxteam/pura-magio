@@ -7,13 +7,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import ru.pearx.libmc.client.particle.PXParticle;
+import ru.pearx.libmc.client.particle.ParticleEngine;
 import ru.pearx.libmc.common.structure.multiblock.Multiblock;
+import ru.pearx.purmag.client.particle.ParticleMultiblock;
 import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.Utils;
 
@@ -43,6 +43,8 @@ public class ItemTinkeringKit extends ItemToolBase
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        if(worldIn.isRemote)
+            ParticleEngine.addParticle(new ParticleMultiblock(player.posX + 3, player.posY + 10, player.posZ));
         for(Multiblock mb : Multiblock.REGISTRY)
         {
             if(mb.tryForm(worldIn, pos, player).isPresent())
