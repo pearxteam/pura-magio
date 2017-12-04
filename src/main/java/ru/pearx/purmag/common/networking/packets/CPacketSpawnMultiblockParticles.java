@@ -71,18 +71,24 @@ public class CPacketSpawnMultiblockParticles implements IMessage
             {
                 Minecraft.getMinecraft().world.playSound(message.pos, SoundRegistry.MULTIBLOCK_FORM, SoundCategory.BLOCKS, 1, 1, false);
                 BlockArray struct = Multiblock.REGISTRY.getValue(message.multiblockId).getStructure();
-                BlockPos min = new BlockPos(struct.getMinX(), struct.getMinY(), struct.getMinZ()).add(message.pos);
-                BlockPos max = new BlockPos(struct.getMaxX(), struct.getMaxY(), struct.getMaxZ()).add(message.pos);
+                BlockPos f = PXLMC.transformPos(new BlockPos(struct.getMinX(), struct.getMinY(), struct.getMinZ()), null, message.rot).add(message.pos);
+                BlockPos t = PXLMC.transformPos(new BlockPos(struct.getMaxX(), struct.getMaxY(), struct.getMaxZ()), null, message.rot).add(message.pos);
+                int minX = Math.min(f.getX(), t.getX());
+                int maxX = Math.max(f.getX(), t.getX());
+                int minY = Math.min(f.getY(), t.getY());
+                int maxY = Math.max(f.getY(), t.getY());
+                int minZ = Math.min(f.getZ(), t.getZ());
+                int maxZ = Math.max(f.getZ(), t.getZ());
                 for(int i = 0; i < 10; i++)
                 {
                     Random rand = PurMag.INSTANCE.random;
                     float delta = RandomUtils.nextFloat(0.001f, 0.002f, rand);
                     float lightDelta = RandomUtils.nextFloat(-0.001f, 0.001f, rand);
-                    float y = RandomUtils.nextFloat(min.getY(), max.getY() + 2, rand);
-                    ParticleEngine.addParticle(new ParticleMultiblock(RandomUtils.nextFloat(min.getX(), max.getX() + 1, rand), y, min.getZ() - 0.2f, lightDelta, -delta, rand));
-                    ParticleEngine.addParticle(new ParticleMultiblock(RandomUtils.nextFloat(min.getX(), max.getX() + 1, rand), y, max.getZ() + 1 + 0.2f, lightDelta, delta, rand));
-                    ParticleEngine.addParticle(new ParticleMultiblock(min.getX() - 0.2f, y, RandomUtils.nextFloat(min.getZ(), max.getZ() + 1, rand), -delta, lightDelta, rand));
-                    ParticleEngine.addParticle(new ParticleMultiblock(max.getX() + 1 + 0.2f, y, RandomUtils.nextFloat(min.getZ(), max.getZ() + 1, rand), delta, lightDelta, rand));
+                    float y = RandomUtils.nextFloat(minY, maxY + 2, rand);
+                    ParticleEngine.addParticle(new ParticleMultiblock(RandomUtils.nextFloat(minX, maxX + 1, rand), y, minZ - 0.2f, lightDelta, -delta, rand));
+                    ParticleEngine.addParticle(new ParticleMultiblock(RandomUtils.nextFloat(minX, maxX + 1, rand), y, maxZ + 1 + 0.2f, lightDelta, delta, rand));
+                    ParticleEngine.addParticle(new ParticleMultiblock(minX - 0.2f, y, RandomUtils.nextFloat(minZ, maxZ + 1, rand), -delta, lightDelta, rand));
+                    ParticleEngine.addParticle(new ParticleMultiblock(maxX + 1 + 0.2f, y, RandomUtils.nextFloat(minZ, maxZ + 1, rand), delta, lightDelta, rand));
                 }
             });
             return null;
