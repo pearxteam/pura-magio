@@ -76,13 +76,13 @@ public class CPacketSpawnMultiblockParticles implements IMessage
                 for(int i = 0; i < 10; i++)
                 {
                     Random rand = PurMag.INSTANCE.random;
-                    float delta = RandomUtils.nextFloat(0.005f, 0.04f, rand);
-                    float lightDelta = RandomUtils.nextFloat(-0.01f, 0.01f, rand);
+                    float delta = RandomUtils.nextFloat(0.001f, 0.002f, rand);
+                    float lightDelta = RandomUtils.nextFloat(-0.001f, 0.001f, rand);
                     float y = RandomUtils.nextFloat(min.getY(), max.getY() + 2, rand);
-                    ParticleEngine.addParticle(new ParticleMultiblock(RandomUtils.nextFloat(min.getX(), max.getX() + 1, rand), y, min.getZ() - 0.2f, lightDelta, -delta, RandomUtils.nextColor(rand)));
-                    ParticleEngine.addParticle(new ParticleMultiblock(RandomUtils.nextFloat(min.getX(), max.getX() + 1, rand), y, max.getZ() + 1 + 0.2f, lightDelta, delta, RandomUtils.nextColor(rand)));
-                    ParticleEngine.addParticle(new ParticleMultiblock(min.getX() - 0.2f, y, RandomUtils.nextFloat(min.getZ(), max.getZ() + 1, rand), -delta, lightDelta, RandomUtils.nextColor(rand)));
-                    ParticleEngine.addParticle(new ParticleMultiblock(max.getX() + 1 + 0.2f, y, RandomUtils.nextFloat(min.getZ(), max.getZ() + 1, rand), delta, lightDelta, RandomUtils.nextColor(rand)));
+                    ParticleEngine.addParticle(new ParticleMultiblock(RandomUtils.nextFloat(min.getX(), max.getX() + 1, rand), y, min.getZ() - 0.2f, lightDelta, -delta, rand));
+                    ParticleEngine.addParticle(new ParticleMultiblock(RandomUtils.nextFloat(min.getX(), max.getX() + 1, rand), y, max.getZ() + 1 + 0.2f, lightDelta, delta, rand));
+                    ParticleEngine.addParticle(new ParticleMultiblock(min.getX() - 0.2f, y, RandomUtils.nextFloat(min.getZ(), max.getZ() + 1, rand), -delta, lightDelta, rand));
+                    ParticleEngine.addParticle(new ParticleMultiblock(max.getX() + 1 + 0.2f, y, RandomUtils.nextFloat(min.getZ(), max.getZ() + 1, rand), delta, lightDelta, rand));
                 }
             });
             return null;

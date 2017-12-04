@@ -24,17 +24,20 @@ import java.util.Random;
 public class ParticleMultiblock extends ParticlePhysical
 {
     public static final ResourceLocation TEXTURE = Utils.gRL("textures/particle/multiblock.png");
+    public static final int TEX_COUNT = 4;
 
-    private Color color;
+    private int texIndex;
+    private int rotation;
 
-    public ParticleMultiblock(double x, double y, double z, float dx, float dz, Color color)
+    public ParticleMultiblock(double x, double y, double z, float dx, float dz, Random rand)
     {
         super(x, y, z);
         setMaxAge(300);
         setDx(dx);
         setDz(dz);
         setDy(-0.05f);
-        this.color = color;
+        this.texIndex = rand.nextInt(TEX_COUNT);
+        this.rotation = rand.nextInt(360);
     }
 
     @Override
@@ -71,13 +74,10 @@ public class ParticleMultiblock extends ParticlePhysical
         GlStateManager.pushMatrix();
         float scx = (getMaxAge() - getAge()) / (float)getMaxAge();
         GlStateManager.scale(scx, scx, 1);
-        GlStateManager.depthMask(false);
-        GlStateManager.enableBlend();
-        GlStateManager.color(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, (MathHelper.sin(MathUtils.toRadians((System.currentTimeMillis()) % 360)) * 0.15f) + 0.6f);
-        DrawingTools.drawTexture(TEXTURE, 0, 0, (int) getWidth(), (int) getHeight());
-        GlStateManager.color(1, 1, 1);
-        GlStateManager.disableBlend();
-        GlStateManager.depthMask(true);
+        GlStateManager.translate(getWidth() / 2, getHeight() / 2, 0);
+        GlStateManager.rotate(rotation, 0, 0, 1);
+        GlStateManager.translate(-(getWidth() / 2), -(getHeight() / 2), 0);
+        DrawingTools.drawTexture(TEXTURE, 0, 0, (int) getWidth(), (int) getHeight(), texIndex * (int)getWidth(), 0, (int) getWidth() * TEX_COUNT, (int) getHeight());
         GlStateManager.popMatrix();
     }
 }
