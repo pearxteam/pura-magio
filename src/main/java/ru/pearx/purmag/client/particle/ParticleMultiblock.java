@@ -73,8 +73,8 @@ public class ParticleMultiblock extends ParticlePhysical
     {
         GlStateManager.pushMatrix();
         float scx = (getMaxAge() - getAge()) / (float)getMaxAge();
-        GlStateManager.scale(scx, scx, 1);
         GlStateManager.translate(getWidth() / 2, getHeight() / 2, 0);
+        GlStateManager.scale(scx, scx, 1);
         GlStateManager.rotate(rotation, 0, 0, 1);
         GlStateManager.translate(-(getWidth() / 2), -(getHeight() / 2), 0);
         DrawingTools.drawTexture(TEXTURE, 0, 0, (int) getWidth(), (int) getHeight(), texIndex * (int)getWidth(), 0, (int) getWidth() * TEX_COUNT, (int) getHeight());
