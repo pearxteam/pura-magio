@@ -108,6 +108,6 @@ public class ItemRegistry
         register(new ItemBlockMagibench(), reg);
         register(new ItemBase("porcelain"), reg);
         register(new ItemTinkeringKit(Item.ToolMaterial.STONE, "stone_tinkering_kit"), reg);
-        register(new ItemBlockBase(BlockRegistry.rope_coil), reg);
+        register(new ItemBlockRopeCoil(), reg);
     }
 }

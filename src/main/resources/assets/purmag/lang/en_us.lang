@@ -41,7 +41,8 @@ item.purmag.gray_paper_pack.name=Gray Paper Pack
 tile.purmag.magibench.0.name=Simple Magibench
 item.purmag.porcelain.name=Porcelain
 item.purmag.stone_tinkering_kit.name=Stone Tinkering Kit
-tile.purmag.rope_coil.name=Rope Coil
+tile.purmag.rope_coil.normal.name=Rope Coil
+tile.purmag.rope_coil.cog.name=Cog Rope Coil
 
 #Sip Types
 sip.sea.name=Mara
