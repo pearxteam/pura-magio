@@ -150,6 +150,10 @@ if_page.microscope.0.text=There are some microscopes in the labs I found recentl
 if_page.microscope.1.text=The research process is pretty simple. If any research is available, the "Research" button should appear on the screen. Click it and solve the puzzle. A puzzle is a grid with cells, painting over which, you should create a picture. Each number above a row or column means how many cells in a row should be painted over. You can paint cells with left mouse button and put crosses (just for convenience) with right mouse button. Alternatively, you can just hold the button and drag your mouse. An example is given on the next page.
 if_page.microscope.2.text=An example research solution.
 
+if_entry.magibench.name=Simple Magibench
+if_entry.magibench.desc=Another crafting table that just stores items...
+if_page.magibench.0.text=I've built a table where I can craft a plenty of things. Standard crafting table is very inconvenient and I can't work comfortably on it! I also etched a neat golden pattern on it. The table doesn't drop items when somebody closes its GUI.
+
 #Miscellaneous
 itemGroup.purmag=Purificati Magicae
 misc.popup.if_step_unlock.text=You've completed a research step!
