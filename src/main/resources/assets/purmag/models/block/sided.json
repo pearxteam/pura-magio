@@ -8,10 +8,10 @@
       "to": [ 16, 16, 16 ],
       "faces": {
         "down":  { "texture": "#side", "rotation": 90, "cullface": "down" },
-        "up":    { "texture": "#side", "rotation": 90, "cullface": "up" },
+        "up":    { "texture": "#side", "rotation": 270, "cullface": "up" },
         "north": { "texture": "#front", "cullface": "north" },
         "south": { "texture": "#front", "cullface": "south" },
-        "west":  { "texture": "#side", "cullface": "west" },
+        "west":  { "texture": "#side", "rotation": 180, "cullface": "west" },
         "east":  { "texture": "#side", "cullface": "east" }
       }
     }
