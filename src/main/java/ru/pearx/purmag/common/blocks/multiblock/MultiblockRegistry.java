@@ -19,6 +19,7 @@ import ru.pearx.libmc.common.structure.blockarray.BlockArray;
 import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
 import ru.pearx.libmc.common.structure.multiblock.Multiblock;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
+import ru.pearx.purmag.common.blocks.BlockRopeCoil;
 import ru.pearx.purmag.common.items.ItemRegistry;
 
 /*
@@ -33,12 +34,13 @@ public final class MultiblockRegistry
         {
             BlockArray arr = new BlockArray();
             BlockArrayEntry rope = new BlockArrayEntry(BlockRegistry.rope_coil.getDefaultState().withProperty(AxisController.AXIS, EnumFacing.Axis.Z), new ItemStack(ItemRegistry.rope_coil));
+            BlockArrayEntry rope_cog = new BlockArrayEntry(BlockRegistry.rope_coil.getDefaultState().withProperty(AxisController.AXIS, EnumFacing.Axis.Z).withProperty(BlockRopeCoil.TYPE, BlockRopeCoil.Type.COG), new ItemStack(ItemRegistry.rope_coil));
 
             arr.getCheckers().add((BlockArrayEntry entr, IBlockState state, IBlockState worldState, World w, BlockPos pos, Rotation rot) ->
             {
                 for(IProperty<?> prop : state.getPropertyKeys())
                 {
-                    if(prop == BlockAnvil.DAMAGE)
+                    if(prop == BlockAnvil.DAMAGE || prop == BlockRopeCoil.TYPE)
                         return state.getValue(prop).equals(worldState.getValue(prop));
                 }
                 return true;
@@ -47,8 +49,8 @@ public final class MultiblockRegistry
                     new BlockPos(0, 0, 0), new BlockArrayEntry(Blocks.ANVIL, new ItemStack(Blocks.ANVIL)),
                     new BlockPos(0, 2, 0), rope,
                     new BlockPos(1, 2, 0), rope,
-                    new BlockPos(1, 0, 0), rope,
-                    new BlockPos(2, 0, 0), new BlockArrayEntry(Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.UP_X), new ItemStack(Blocks.LEVER)),
+                    new BlockPos(1, 0, 0), rope_cog,
+                    new BlockPos(2, 0, 0), new BlockArrayEntry(Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.UP_X).withProperty(BlockLever.POWERED, true), new ItemStack(Blocks.LEVER)),
                     new BlockPos(1, 0, 1), new BlockArrayEntry(Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.SOUTH), new ItemStack(Blocks.LEVER))
             ));
             Multiblock.REGISTRY.register(STONE_CRUSHER = new Multiblock(arr, new BlockPos(1, 0, 0), BlockRegistry.stone_crusher.getDefaultState()).setRegistryName("stone_crusher"));

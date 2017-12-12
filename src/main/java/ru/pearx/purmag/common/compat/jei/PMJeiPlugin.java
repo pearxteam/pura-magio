@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.jei;
+package ru.pearx.purmag.common.compat.jei;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
@@ -13,10 +13,10 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.inventory.ContainerMagibench;
 import ru.pearx.purmag.common.items.ItemRegistry;
-import ru.pearx.purmag.common.jei.magibench.AbstractMagibenchRecipeWrapper;
-import ru.pearx.purmag.common.jei.magibench.MagibenchRecipeCategory;
-import ru.pearx.purmag.common.jei.magibench.MagibenchShapedRecipeWrapper;
-import ru.pearx.purmag.common.jei.magibench.MagibenchShapelessRecipeWrapper;
+import ru.pearx.purmag.common.compat.jei.magibench.AbstractMagibenchRecipeWrapper;
+import ru.pearx.purmag.common.compat.jei.magibench.MagibenchRecipeCategory;
+import ru.pearx.purmag.common.compat.jei.magibench.MagibenchShapedRecipeWrapper;
+import ru.pearx.purmag.common.compat.jei.magibench.MagibenchShapelessRecipeWrapper;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 import ru.pearx.purmag.common.recipes.recipes.MagibenchRecipe;
 import ru.pearx.purmag.common.recipes.recipes.MagibenchShapelessRecipe;

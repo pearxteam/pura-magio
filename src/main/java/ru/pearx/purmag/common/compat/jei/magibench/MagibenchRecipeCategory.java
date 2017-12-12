@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.jei.magibench;
+package ru.pearx.purmag.common.compat.jei.magibench;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
