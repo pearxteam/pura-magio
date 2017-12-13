@@ -381,7 +381,7 @@ public class StandardModels
         {
             public Lever()
             {
-                super("lever");
+                super("lever_handle");
             }
         }
         public static class Coil extends StoneCrusher
