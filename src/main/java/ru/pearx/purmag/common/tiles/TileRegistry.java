@@ -7,6 +7,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.client.tesrs.TESRCodeStorage;
 import ru.pearx.purmag.client.tesrs.TESRMagibench;
 import ru.pearx.purmag.client.tesrs.TESRMicroscope;
+import ru.pearx.purmag.client.tesrs.TESRStoneCrusher;
 import ru.pearx.purmag.common.Utils;
 
 /**
@@ -31,5 +32,6 @@ public class TileRegistry
         ClientRegistry.bindTileEntitySpecialRenderer(TileMicroscope.class, new TESRMicroscope());
         ClientRegistry.bindTileEntitySpecialRenderer(TileCodeStorage.class, new TESRCodeStorage());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMagibench.class, new TESRMagibench());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileStoneCrusher.class, new TESRStoneCrusher());
     }
 }

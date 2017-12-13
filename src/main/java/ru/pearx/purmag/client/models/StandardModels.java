@@ -347,4 +347,49 @@ public class StandardModels
             return Pair.of(this, cameraTransformType == ItemCameraTransforms.TransformType.GUI ? mat_gui : mat);
         }
     }
+
+    public static class StoneCrusher extends OvModel
+    {
+        private ModelStateHide hide;
+        public StoneCrusher(String... keep)
+        {
+            setBaseModel(Utils.gRL("obj/stone_crusher.obj"));
+            this.hide = new ModelStateHide(keep);
+        }
+
+        @Override
+        public IModelState getModelState(IPXModel th, IModel model)
+        {
+            return hide;
+        }
+
+        public static class Main extends StoneCrusher
+        {
+            public Main()
+            {
+                super("holder", "lever_holder", "coil_rotating_2", "coil_rotating_3");
+            }
+        }
+        public static class Handle extends StoneCrusher
+        {
+            public Handle()
+            {
+                super("handle");
+            }
+        }
+        public static class Lever extends StoneCrusher
+        {
+            public Lever()
+            {
+                super("lever");
+            }
+        }
+        public static class Coil extends StoneCrusher
+        {
+            public Coil()
+            {
+                super("coil_rotating_1");
+            }
+        }
+    }
 }
