@@ -24,6 +24,6 @@ public class IPPapyrusRenderer extends IPRenderer<IfPagePapyrus>
     {
         super.render();
         DrawingTools.drawTexture(TEXTURE, 0, 0, getWidth(), getHeight(), 0, 0, 368, 207);
-        DrawingTools.drawString(page.getDisplayText(), 5, 5, Colors.GREY_300, getWidth() - 5);
+        DrawingTools.drawString(page.getDisplayText(), 5, 5, Colors.GREY_800, getWidth() - 5, false);
     }
 }
