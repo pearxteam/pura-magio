@@ -11,9 +11,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import ru.pearx.libmc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
-import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
-import ru.pearx.purmag.common.blocks.BlockRopeCoil;
 import ru.pearx.purmag.common.items.papyrus.ItemPapyrus;
 
 /**

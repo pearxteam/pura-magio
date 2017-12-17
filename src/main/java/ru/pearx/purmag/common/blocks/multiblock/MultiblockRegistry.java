@@ -2,18 +2,15 @@ package ru.pearx.purmag.common.blocks.multiblock;
 
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockLever;
-import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ru.pearx.lib.collections.CollectionUtils;
-import ru.pearx.libmc.client.gui.controls.common.BlockArrayShowcase;
 import ru.pearx.libmc.common.blocks.controllers.AxisController;
 import ru.pearx.libmc.common.structure.blockarray.BlockArray;
 import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
