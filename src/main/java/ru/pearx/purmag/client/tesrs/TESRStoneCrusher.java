@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.client.ModelSupplied;
 import ru.pearx.libmc.client.PXLFastTESR;
-import ru.pearx.purmag.client.models.PXLModelRenderer;
+import ru.pearx.libmc.client.models.PXLModelRenderer;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.tiles.TileStoneCrusher;
 
