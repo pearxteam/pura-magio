@@ -37,13 +37,13 @@ public class ParticleSipMovingTo extends ParticleMovingTo
     }
 
     @Override
-    public double getWidth()
+    public float getWidth()
     {
         return 32;
     }
 
     @Override
-    public double getHeight()
+    public float getHeight()
     {
         return 32;
     }

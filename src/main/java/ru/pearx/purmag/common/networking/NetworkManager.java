@@ -40,6 +40,7 @@ public class NetworkManager
         INSTANCE.registerMessage(CPacketUnlockResponse.Handler.class, CPacketUnlockResponse.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(SPacketCheckMicroscopeResearch.Handler.class, SPacketCheckMicroscopeResearch.class, id++, Side.SERVER);
         INSTANCE.registerMessage(CPacketCheckMicroscopeResearchResponse.Handler.class, CPacketCheckMicroscopeResearchResponse.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(CPacketSpawnMultiblockParticles.Handler.class, CPacketSpawnMultiblockParticles.class, id++, Side.CLIENT);
     }
 
     public static void sendTo(IMessage msg, EntityPlayerMP p)

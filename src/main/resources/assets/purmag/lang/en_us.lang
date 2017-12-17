@@ -38,8 +38,11 @@ tile.purmag.code_storage.not_lockable.name=Not Lockable Code Storage
 tile.purmag.code_storage.tooltip=Contains %s items.
 item.purmag.painting_kit.name=Painting Kit
 item.purmag.gray_paper_pack.name=Gray Paper Pack
-
 tile.purmag.magibench.0.name=Simple Magibench
+item.purmag.porcelain.name=Porcelain
+item.purmag.stone_tinkering_kit.name=Stone Tinkering Kit
+tile.purmag.rope_coil.normal.name=Rope Coil
+tile.purmag.rope_coil.cog.name=Cog Rope Coil
 
 #Sip Types
 sip.sea.name=Mara
@@ -147,6 +150,10 @@ if_entry.microscope.desc=Yay! My pixels are bigger!
 if_page.microscope.0.text=There are some microscopes in the labs I found recently. The microscope is a pretty small electrical (?) device. It sometimes displays some additional information about the item. With a microscope, I can research many things. Sadly, I currently can't make a microscope and I even don't know how it works. To use it, I just should put the item in it and open its GUI.
 if_page.microscope.1.text=The research process is pretty simple. If any research is available, the "Research" button should appear on the screen. Click it and solve the puzzle. A puzzle is a grid with cells, painting over which, you should create a picture. Each number above a row or column means how many cells in a row should be painted over. You can paint cells with left mouse button and put crosses (just for convenience) with right mouse button. Alternatively, you can just hold the button and drag your mouse. An example is given on the next page.
 if_page.microscope.2.text=An example research solution.
+
+if_entry.magibench.name=Simple Magibench
+if_entry.magibench.desc=Another crafting table that just stores items...
+if_page.magibench.0.text=I've built a table where I can craft a plenty of things. Standard crafting table is very inconvenient and I can't work comfortably on it! I also etched a neat golden pattern on it. The table doesn't drop items when somebody closes its GUI.
 
 #Miscellaneous
 itemGroup.purmag=Purificati Magicae

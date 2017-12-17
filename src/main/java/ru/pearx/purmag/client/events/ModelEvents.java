@@ -43,6 +43,10 @@ public class ModelEvents
         {
             putModel(e, new StandardModels.Magibench(t), t.getSmartModel());
         }
+        putModel(e, new StandardModels.StoneCrusher.Main(), Utils.gRL("stone_crusher/main"));
+        putModel(e, new StandardModels.StoneCrusher.Lever(), Utils.gRL("stone_crusher/lever"));
+        putModel(e, new StandardModels.StoneCrusher.Coil(), Utils.gRL("stone_crusher/coil"));
+        putModel(e, new StandardModels.StoneCrusher.Handle(), Utils.gRL("stone_crusher/handle"));
     }
 
     private static void putModel(ModelBakeEvent e, IPXModel model, ResourceLocation loc)
@@ -77,5 +81,6 @@ public class ModelEvents
         e.getMap().registerSprite(Utils.gRL("models/code_storage/lock_unlocked"));
         for(MagibenchRegistry.Tier t :  PurMag.INSTANCE.getMagibenchRegistry().getTiers())
             e.getMap().registerSprite(t.getModelTexture());
+        e.getMap().registerSprite(Utils.gRL("models/stone_crusher"));
     }
 }

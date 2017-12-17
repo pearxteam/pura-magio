@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import ru.pearx.libmc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.blocks.multiblock.BlockStoneCrusher;
 
 /**
  * Created by mrAppleXZ on 08.04.17 18:44.
@@ -30,6 +31,8 @@ public class BlockRegistry
     public static final BlockBrulantaFlower brulanta_flower = null;
     public static final BlockCodeStorage code_storage = null;
     public static final BlockMagibench magibench = null;
+    public static final BlockRopeCoil rope_coil = null;
+    public static final BlockStoneCrusher stone_crusher = null;
 
     @SubscribeEvent
     public static void onRegisterBlocks(RegistryEvent.Register<Block> e)
@@ -50,6 +53,8 @@ public class BlockRegistry
         register(new BlockBrulantaFlower(), reg);
         register(new BlockCodeStorage(), reg);
         register(new BlockMagibench(), reg);
+        register(new BlockRopeCoil(), reg);
+        register(new BlockStoneCrusher(), reg);
     }
 
     public static void register(Block b, IForgeRegistry<Block> reg)

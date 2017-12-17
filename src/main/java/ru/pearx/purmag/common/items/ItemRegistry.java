@@ -11,7 +11,9 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import ru.pearx.libmc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
+import ru.pearx.purmag.common.blocks.BlockRopeCoil;
 import ru.pearx.purmag.common.items.papyrus.ItemPapyrus;
 
 /**
@@ -50,6 +52,8 @@ public class ItemRegistry
     public static final Item gray_paper_pack = null;
     public static final ItemBlockMagibench magibench = null;
     public static final Item porcelain = null;
+    public static final ItemTinkeringKit tinkering_kit = null;
+    public static final ItemBlock rope_coil = null;
 
     public static void register(Item itm, IForgeRegistry<Item> reg)
     {
@@ -103,5 +107,7 @@ public class ItemRegistry
         register(new ItemBase("gray_paper_pack"), reg);
         register(new ItemBlockMagibench(), reg);
         register(new ItemBase("porcelain"), reg);
+        register(new ItemTinkeringKit(Item.ToolMaterial.STONE, "stone_tinkering_kit"), reg);
+        register(new ItemBlockRopeCoil(), reg);
     }
 }

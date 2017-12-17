@@ -18,9 +18,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 import ru.pearx.libmc.client.models.*;
+import ru.pearx.libmc.client.models.processors.SetterProcessor;
 import ru.pearx.libmc.client.models.processors.FacingProcessor;
 import ru.pearx.libmc.client.models.processors.IVertexProcessor;
-import ru.pearx.libmc.client.models.processors.TintProcessor;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.BlockAbstractWallIfTablet;
@@ -39,14 +39,14 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class StandardModels
 {
-    public static class Crystal extends OvModel
+    public static class Crystal extends CachedModel
     {
         private Matrix4f mat = new TRSRTransformation(new Vector3f(0, -0.25f, 0), null, new Vector3f(0.45f, 0.45f, 0.45f), new Quat4f(0, -0.20944f, 0, 1)).getMatrix();
 
         public Crystal()
         {
             setBaseModel(new ResourceLocation(PurMag.MODID, "obj/crystal.obj"));
-            quadProcessors.add(new TintProcessor(0));
+            quadProcessors.add(new SetterProcessor().setTintTo(0));
         }
 
         @Override
@@ -61,7 +61,7 @@ public class StandardModels
         public CrystalGlass()
         {
             setBaseTexture(new ResourceLocation(PurMag.MODID, "blocks/crystal_glass"));
-            quadProcessors.add(new TintProcessor(0));
+            quadProcessors.add(new SetterProcessor().setTintTo(0));
         }
     }
 
@@ -70,7 +70,7 @@ public class StandardModels
         public LuminousCrystalGlass()
         {
             setBaseTexture(new ResourceLocation(PurMag.MODID, "blocks/luminous_crystal_glass"));
-            quadProcessors.add(new TintProcessor(0));
+            quadProcessors.add(new SetterProcessor().setTintTo(0));
         }
     }
 
@@ -119,7 +119,7 @@ public class StandardModels
         }
     }
 
-    public static class CrystalSmall extends OvModel
+    public static class CrystalSmall extends CachedModel
     {
         private Matrix4f mat_gui = new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, new Vector3f(1.5f, 1.5f, 1.5f), new Quat4f(0.349066f, 0.20944f, 0, 1)).getMatrix();
         private Matrix4f mat = new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, null, null).getMatrix();
@@ -127,7 +127,7 @@ public class StandardModels
         public CrystalSmall()
         {
             setBaseModel(Utils.gRL("obj/crystal_small.obj"));
-            quadProcessors.add(new TintProcessor(0));
+            quadProcessors.add(new SetterProcessor().setTintTo(0));
         }
 
         @Override
@@ -345,6 +345,58 @@ public class StandardModels
         public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
         {
             return Pair.of(this, cameraTransformType == ItemCameraTransforms.TransformType.GUI ? mat_gui : mat);
+        }
+    }
+
+    public static class StoneCrusher extends CachedModel
+    {
+        private ModelStateHide hide;
+        public StoneCrusher(String... keep)
+        {
+            setBaseModel(Utils.gRL("obj/stone_crusher.obj"));
+            quadProcessors.add(new SetterProcessor().setDiffuseLightingTo(false));
+            this.hide = new ModelStateHide(keep);
+        }
+
+        @Override
+        public void bake()
+        {
+            super.bake();
+        }
+
+        @Override
+        public IModelState getModelState(IPXModel th, IModel model)
+        {
+            return hide;
+        }
+
+        public static class Main extends StoneCrusher
+        {
+            public Main()
+            {
+                super("holder", "lever_holder", "coil_rotating_2", "coil_rotating_3");
+            }
+        }
+        public static class Handle extends StoneCrusher
+        {
+            public Handle()
+            {
+                super("handle");
+            }
+        }
+        public static class Lever extends StoneCrusher
+        {
+            public Lever()
+            {
+                super("lever_handle");
+            }
+        }
+        public static class Coil extends StoneCrusher
+        {
+            public Coil()
+            {
+                super("coil_rotating_1");
+            }
         }
     }
 }

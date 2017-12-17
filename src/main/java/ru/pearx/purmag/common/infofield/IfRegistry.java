@@ -32,6 +32,7 @@ import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.recipes.ingredients.IngredientNBT;
 import ru.pearx.purmag.common.sip.SipType;
 import ru.pearx.purmag.common.sip.SipUtils;
+import ru.pearx.purmag.common.tiles.TileMagibench;
 import ru.pearx.purmag.common.tiles.TileSingleSip;
 
 import java.util.ArrayList;
@@ -319,8 +320,24 @@ public class IfRegistry
         attachEntry("exploration", new IfEntryLocation("microscope", 0, 0));
 
         registerEntry(new IfEntry(
-                "brulanta_flower", 0,
+                "magibench", 0,
                 Arrays.asList("microscope"),
+                Arrays.asList(new IRSMicroscopeResearch(Ingredient.fromStacks(new ItemStack(Blocks.CRAFTING_TABLE)), new boolean[][]
+                        {
+                                {true, true, true, false, true, true, true, false},
+                                {true, false, true, false, true, true, true, true},
+                                {true, true, true, false, false, true, false, false},
+                                {true, true, true, false, false, true, false, false},
+                                {false, true, true, false, false, true, false, false},
+                                {false, false, true, false, false, true, false, false}
+                        })),
+                0
+        ));
+        attachEntry("exploration", new IfEntryLocation("magibench", 2, 0));
+
+        registerEntry(new IfEntry(
+                "brulanta_flower", 0,
+                Arrays.asList("magibench"),
                 Arrays.asList(
                         new IRSCollect(Ingredient.fromItem(ItemRegistry.brulanta_flower), "brulanta_flower", true),
                         new IRSMicroscopeResearch(Ingredient.fromItem(ItemRegistry.brulanta_flower), new boolean[][]
@@ -335,11 +352,11 @@ public class IfRegistry
                                 })),
                 0
         ));
-        attachEntry("exploration", new IfEntryLocation("brulanta_flower", 2, 0));
+        attachEntry("exploration", new IfEntryLocation("brulanta_flower", 4, 0));
 
         registerEntry(new IfEntry(
                 "mortar_and_pestle", 0,
-                Arrays.asList("microscope"),
+                Arrays.asList("magibench"),
                 Arrays.asList(new IRSMicroscopeResearch(Ingredient.fromItem(Items.CLAY_BALL), new boolean[][]
                         {
                                 {false, false, true, true, false, false},
@@ -351,11 +368,11 @@ public class IfRegistry
                         })),
                 0
         ));
-        attachEntry("exploration", new IfEntryLocation("mortar_and_pestle", 2, 2));
+        attachEntry("exploration", new IfEntryLocation("mortar_and_pestle", 4, 2));
 
         registerEntry(new IfEntry(
                 "verda_beetle", 0,
-                Arrays.asList("microscope"),
+                Arrays.asList("magibench"),
                 Arrays.asList(
                         new IRSKillEntity(EntityBeetle.class, "verda_beetle"),
                         new IRSMicroscopeResearch(Ingredient.fromStacks(new ItemStack(ItemRegistry.beetle_meat, 1, 0)), new boolean[][]
@@ -368,7 +385,7 @@ public class IfRegistry
                                         {true, true, false, false, true, true},
                                 })),
                 0));
-        attachEntry("exploration", new IfEntryLocation("verda_beetle", 2, -2));
+        attachEntry("exploration", new IfEntryLocation("verda_beetle", 4, -2));
     }
 
     @SideOnly(Side.CLIENT)
@@ -477,6 +494,15 @@ public class IfRegistry
                     getMap().put(new BlockPos(0, 0, 0), new BlockArrayEntry(BlockRegistry.microscope.getDefaultState(), new ItemStack(ItemRegistry.microscope)));
                 }})
         );
+        {
+            TileMagibench mag = new TileMagibench();
+            mag.setTier(0, false);
+            registerEntryClient(
+                    "magibench", new ItemDrawable(new ItemStack(ItemRegistry.magibench), 1.5f),
+                    new IfPageText("magibench.0"),
+                    new IfPageBlocks(BlockArray.fromSingleBlock(BlockRegistry.magibench.getDefaultState(), new ItemStack(ItemRegistry.magibench, 1, 0), mag))
+            );
+        }
         registerEntryClient(
                 "brulanta_flower", new ItemDrawable(new ItemStack(ItemRegistry.brulanta_flower), 1.5f),
                 new IfPageText("brulanta_flower.0"),
