@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * Created by mrAppleXZ on 15.04.17 9:42.
@@ -391,17 +392,24 @@ public class IfRegistry
         attachEntry("exploration", new IfEntryLocation("verda_beetle", 4, -2));
 
         //MACHINERY
-        attachEntry("machinery", new IfEntryLocation("magibench", 0, 0));
+        attachEntry("machinery", new IfEntryLocation("magibench", 0, 2));
+
+        registerEntry(new IfEntry(
+                "multiblocks", 0,
+                Collections.emptyList(),
+                Collections.emptyList(),
+        0));
+        attachEntry("machinery", new IfEntryLocation("multiblocks", 0, 0));
 
         registerEntry(new IfEntry(
                 "stone_crusher", 0,
-                Arrays.asList("magibench"),
+                Arrays.asList("magibench", "multiblocks"),
                 Arrays.asList(
                         new IRSMicroscopeResearch(Ingredient.fromItem(Item.getItemFromBlock(Blocks.ANVIL)), new boolean[][]
                                 {
                                         {false, false, true, true, true, true, true, true},
-                                        {true, true, true, true, true, true, true, false},
-                                        {false, true, true, true, true, true, true, false},
+                                        {true, true, true, true, true, true, true, true},
+                                        {false, false, true, true, true, true, true, true},
                                         {false, false, false, true, true, false, false, false},
                                         {false, false, false, true, true, false, false, false},
                                         {false, false, false, true, true, false, false, false},
@@ -409,7 +417,7 @@ public class IfRegistry
                                         {true, true, true, false, false, true, true, true},
                                 })),
         0));
-        attachEntry("machinery", new IfEntryLocation("stone_crusher", 2, 0));
+        attachEntry("machinery", new IfEntryLocation("stone_crusher", 2, 1));
     }
 
     @SideOnly(Side.CLIENT)
@@ -524,6 +532,7 @@ public class IfRegistry
             registerEntryClient(
                     "magibench", new ItemDrawable(new ItemStack(ItemRegistry.magibench), 1.5f),
                     new IfPageText("magibench.0"),
+                    new IfPageCrafting(Utils.gRL("magibench")),
                     new IfPageBlocks(BlockArray.fromSingleBlock(BlockRegistry.magibench.getDefaultState(), new ItemStack(ItemRegistry.magibench, 1, 0), mag))
             );
         }
@@ -551,7 +560,15 @@ public class IfRegistry
 
         //MACHINERY
         registerEntryClient(
-                "stone_crusher", new ItemDrawable(PXLItems.multiblock.newStack(MultiblockRegistry.STONE_CRUSHER.getRegistryName()), 1.5f)
+                "multiblocks", new ItemDrawable(new ItemStack(ItemRegistry.stone_tinkering_kit), 1.5f),
+                new IfPageText("multiblocks.0"),
+                new IfPageCrafting(Utils.gRL("stone_tinkering_kit"))
+        );
+        registerEntryClient(
+                "stone_crusher", new ItemDrawable(PXLItems.multiblock.newStack(MultiblockRegistry.STONE_CRUSHER.getRegistryName()), 1.5f),
+                new IfPageText("stone_crusher.0"),
+                new IfPageCrafting(Utils.gRL("rope_coil"), Utils.gRL("cog_rope_coil")),
+                new IfPageBlocks(MultiblockRegistry.STONE_CRUSHER.getStructure())
         );
     }
 }

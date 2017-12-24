@@ -51,7 +51,7 @@ public class ItemRegistry
     public static final Item gray_paper_pack = null;
     public static final ItemBlockMagibench magibench = null;
     public static final Item porcelain = null;
-    public static final ItemTinkeringKit tinkering_kit = null;
+    public static final ItemTinkeringKit stone_tinkering_kit = null;
     public static final ItemBlock rope_coil = null;
 
     public static void register(Item itm, IForgeRegistry<Item> reg)

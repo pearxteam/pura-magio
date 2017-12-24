@@ -17,7 +17,7 @@ public class ItemBlockRopeCoil extends ItemBlockBase
     public ItemBlockRopeCoil()
     {
         super(BlockRegistry.rope_coil);
-
+        setHasSubtypes(true);
     }
 
     @Override

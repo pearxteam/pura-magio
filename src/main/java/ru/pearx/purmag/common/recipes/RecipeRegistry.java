@@ -8,6 +8,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -24,6 +25,7 @@ import ru.pearx.purmag.common.sip.SipUtils;
 @Mod.EventBusSubscriber(modid = PurMag.MODID)
 public class RecipeRegistry
 {
+    //todo recipe
     @SubscribeEvent
     public static void onRecipeRegistry(RegistryEvent.Register<IRecipe> e)
     {
@@ -58,6 +60,18 @@ public class RecipeRegistry
                 "BcB",
                 " B ",
                 'c', Items.CLAY_BALL, 'B', Blocks.CLAY, '|', "stickWood"
+        ), e.getRegistry());
+        register("rope_coil", new MagibenchRecipe(new ItemStack(ItemRegistry.rope_coil, 1, 0), 0, "stone_crusher",
+                "SSS",
+                "SWS",
+                "SSS",
+                'S', "string", 'W', "plankWood"
+        ), e.getRegistry());
+        register("cog_rope_coil", new MagibenchRecipe(new ItemStack(ItemRegistry.rope_coil, 1, 1), 0, "stone_crusher",
+                "S|S",
+                "|W|",
+                "S|S",
+                'S', "string", 'W', "plankWood", '|', "stickWood"
         ), e.getRegistry());
 
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle), new ItemStack(ItemRegistry.mortar_and_pestle), 0.1f);

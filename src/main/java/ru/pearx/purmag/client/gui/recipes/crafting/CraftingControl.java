@@ -1,22 +1,32 @@
 package ru.pearx.purmag.client.gui.recipes.crafting;
 
+import mezz.jei.api.IRecipesGui;
+import mezz.jei.api.recipe.IFocus;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.lwjgl.util.Point;
+import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.IGuiScreen;
 import ru.pearx.libmc.client.gui.controls.Control;
+import ru.pearx.libmc.client.gui.controls.common.Button;
 import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.libmc.client.gui.drawables.item.ItemDrawable;
+import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
+import ru.pearx.purmag.client.PurMagClient;
+import ru.pearx.purmag.common.compat.Loadings;
+import ru.pearx.purmag.common.compat.jei.PMJeiPlugin;
 import ru.pearx.purmag.common.recipes.recipes.MagibenchRecipe;
 
 import java.util.HashMap;
@@ -29,134 +39,28 @@ import java.util.Map;
 @SideOnly(Side.CLIENT)
 public class CraftingControl extends Control
 {
-    @SideOnly(Side.CLIENT)
-    public interface IRecipeHandler<T extends IRecipe>
-    {
-        /**
-         * Gets the list of the recipe ingredients. Should be 9-sized list of matching ItemStacks. Use ItemStack.EMPTY for empty stacks.
-         *
-         * @param recipe The recipe.
-         */
-        List<List<ItemStack>> getInputs(T recipe);
-
-        default ItemStack getOutput(T recipe) {
-            return AbstractCraftingThings.getOutputSimple(recipe);
-        }
-
-        default IGuiDrawable getBackground(CraftingControl c) { return GuiDrawableRegistry.crafting; }
-        default void render(CraftingControl c){}
-        default void render2(CraftingControl c){}
-    }
-
-    private static Map<Class<? extends IRecipe>, IRecipeHandler> recipeHandlers = new HashMap<>();
-
-    public static Map<Class<? extends IRecipe>, IRecipeHandler> getHandlers()
-    {
-        return recipeHandlers;
-    }
-
-    public static <T extends IRecipe> void registerHandler(Class<T> clazz, IRecipeHandler<T> handler)
-    {
-        getHandlers().put(clazz, handler);
-    }
-
-    public static boolean containsHandler(Class<? extends IRecipe> clazz)
-    {
-        return getHandlers().containsKey(clazz);
-    }
-
-    public static <T extends IRecipe> IRecipeHandler<T> getHandler(Class<T> clazz)
-    {
-        return getHandlers().get(clazz);
-    }
-
-    static
-    {
-        registerHandler(ShapelessOreRecipe.class, AbstractCraftingThings::getInputsShapeless);
-        registerHandler(ShapelessRecipes.class, AbstractCraftingThings::getInputsShapeless);
-        registerHandler(ShapedOreRecipe.class, AbstractCraftingThings::getInputsShaped);
-        registerHandler(ShapedRecipes.class, AbstractCraftingThings::getInputsShaped);
-        registerHandler(MagibenchRecipe.class, new IRecipeHandler<MagibenchRecipe>()
-        {
-            @Override
-            public List<List<ItemStack>> getInputs(MagibenchRecipe recipe)
-            {
-                return AbstractCraftingThings.getInputsShaped(recipe);
-            }
-
-
-            @Override
-            public void render(CraftingControl c)
-            {
-
-            }
-
-            @Override
-            public void render2(CraftingControl c)
-            {
-                if(c.isFocused())
-                {
-                    Point p = c.getPosOnScreen();
-                    GlStateManager.pushMatrix();
-                    GlStateManager.translate(-p.getX(), -p.getY(), 0);
-                    GlStateManager.popMatrix();
-                }
-            }
-        });
-    }
-
-    //24 is an item, 4 and 8 are the margins.
-    //4 + 24 + 4 + 24 + 4 + 24 + 16 + 24 + 4 = 128
-    //4 + 24 + 4 + 24 + 4 + 24 + 4 = 88
-
-    private ItemDrawable[][] inDraws;
     private ItemDrawable outDraw;
-    private IRecipeHandler handler;
-
-    private int[] xIn = new int[3], yIn = new int[3];
     private int xOut, yOut;
+    private Button showJei;
 
     public CraftingControl(IRecipe recipe)
     {
-        if (containsHandler(recipe.getClass()))
-        {
-            setWidth(118);
-            setHeight(88);
+        setWidth(118);
+        setHeight(88);
 
-            xOut = 90;
-            yOut = 32;
+        outDraw = new ItemDrawable(recipe.getRecipeOutput(), 2f);
 
-            for (int row = 0; row < 3; row++)
-            {
-                for (int column = 0; column < 3; column++)
-                {
-                    xIn[column] = 24 * column + 4 * (column + 1);
-                    yIn[row] = 24 * row + 4 * (row + 1);
-                }
-            }
+        xOut = (getWidth() - outDraw.getWidth()) / 2;
+        yOut = 5;
 
-            IRecipeHandler handler = getHandler(recipe.getClass());
-            this.handler = handler;
-
-            outDraw = new ItemDrawable(handler.getOutput(recipe), 1.5f);
-            List<List<ItemStack>> lst = handler.getInputs(recipe);
-
-            inDraws = new ItemDrawable[lst.size()][];
-            for (int i = 0; i < lst.size(); i++)
-            {
-                List<ItemStack> l = lst.get(i);
-                ItemDrawable[] arr = new ItemDrawable[l.size()];
-                for (int j = 0; j < l.size(); j++)
-                {
-                    arr[j] = new ItemDrawable(l.get(j), 1.5f);
-                }
-                inDraws[i] = arr;
-            }
-        }
+        if(Loadings.JEI)
+            showJei = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.crafting.show"), () ->
+                    PMJeiPlugin.RUNTIME.getRecipesGui().show(PMJeiPlugin.RUNTIME.getRecipeRegistry().createFocus(IFocus.Mode.OUTPUT, recipe.getRecipeOutput())));
         else
-        {
-            throw new RuntimeException("The recipe handler for " + recipe.getClass().getName() + " doesn't exists!");
-        }
+            showJei = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.crafting.jeiUnavailable"), () -> {});
+
+        showJei.setSize(getWidth() - 5*2, 32);
+        showJei.setPos(5, getHeight() - showJei.getHeight() - 5);
     }
 
     public CraftingControl(ResourceLocation loc)
@@ -167,18 +71,9 @@ public class CraftingControl extends Control
     @Override
     public void render()
     {
-        handler.getBackground(this).draw(getGuiScreen(), 0, 0);
         IGuiScreen gs = getGuiScreen();
-        for (int row = 0; row < 3; row++)
-        {
-            for (int column = 0; column < 3; column++)
-            {
-                ItemDrawable[] arr = inDraws[row * 3 + column];
-                arr[(int) (System.currentTimeMillis() / 1000 % arr.length)].draw(gs, xIn[column], yIn[row]);
-            }
-        }
+        GuiDrawableRegistry.crafting.draw(gs, 0, 0);
         outDraw.draw(gs, xOut, yOut);
-        handler.render(this);
     }
 
     @Override
@@ -188,18 +83,13 @@ public class CraftingControl extends Control
         {
             Point pos = getPosOnScreen();
             IGuiScreen gs = getGuiScreen();
-            for (int row = 0; row < 3; row++)
-            {
-                for (int column = 0; column < 3; column++)
-                {
-                    ItemDrawable[] arr = inDraws[row * 3 + column];
-                    ItemDrawable draw = arr[(int) (System.currentTimeMillis() / 1000 % arr.length)];
-                    if (!draw.getStack().isEmpty())
-                        draw.drawTooltip(gs, xIn[column], yIn[row], getLastMouseX(), getLastMouseY(), pos.getX(), pos.getY());
-                }
-            }
             outDraw.drawTooltip(gs, xOut, yOut, getLastMouseX(), getLastMouseY(), pos.getX(), pos.getY());
         }
-        handler.render2(this);
+    }
+
+    @Override
+    public void init()
+    {
+        controls.add(showJei);
     }
 }
