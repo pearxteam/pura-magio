@@ -59,7 +59,7 @@ if_channel.information.name=Information
 if_channel.exploration.name=Exploration
 if_channel.sip.name=Solid Interacting Power
 if_channel.sif.name=Solid Interacting Field
-if_channel.smelting.name=Smelting
+if_channel.machinery.name=Machinery
 
 #Entries and steps
 if_step.none.desc=No description
@@ -154,6 +154,9 @@ if_page.microscope.2.text=An example research solution.
 if_entry.magibench.name=Simple Magibench
 if_entry.magibench.desc=Another crafting table that just stores items...
 if_page.magibench.0.text=I've built a table where I can craft a plenty of things. Standard crafting table is very inconvenient and I can't work comfortably on it! I also etched a neat golden pattern on it. The table doesn't drop items when somebody closes its GUI.
+
+if_entry.stone_crusher.name=Stone Crusher
+if_entry.stone_crusher.desc=No magic invented here!
 
 #Miscellaneous
 itemGroup.purmag=Purificati Magicae

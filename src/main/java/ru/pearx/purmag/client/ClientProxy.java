@@ -91,12 +91,6 @@ public class ClientProxy extends CommonProxy
     }
 
     @Override
-    public void setupModels(IModelProvider prov)
-    {
-        prov.setupModels();
-    }
-
-    @Override
     public void setupIfTiers()
     {
         PurMag.INSTANCE.getIfRegistry().setupIfTiersClient();
