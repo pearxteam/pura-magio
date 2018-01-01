@@ -25,7 +25,7 @@ import ru.pearx.purmag.common.sip.SipUtils;
 @Mod.EventBusSubscriber(modid = PurMag.MODID)
 public class RecipeRegistry
 {
-    //todo recipe
+    //todo stone tinkering kit recipe
     @SubscribeEvent
     public static void onRecipeRegistry(RegistryEvent.Register<IRecipe> e)
     {
@@ -68,10 +68,10 @@ public class RecipeRegistry
                 'S', "string", 'W', "plankWood"
         ), e.getRegistry());
         register("cog_rope_coil", new MagibenchRecipe(new ItemStack(ItemRegistry.rope_coil, 1, 1), 0, "stone_crusher",
-                "S|S",
-                "|W|",
-                "S|S",
-                'S', "string", 'W', "plankWood", '|', "stickWood"
+                " | ",
+                "|C|",
+                " | ",
+                '|', "stickWood", 'C', new ItemStack(ItemRegistry.rope_coil, 1, 1)
         ), e.getRegistry());
 
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle), new ItemStack(ItemRegistry.mortar_and_pestle), 0.1f);

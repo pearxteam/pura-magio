@@ -62,7 +62,7 @@ public class ItemRegistry
     }
 
     @SuppressWarnings("ConstantConditions")
-    public static void setup()
+    public static void setupOreDict()
     {
         OreDictionary.registerOre("sipCrystal", new ItemStack(crystal, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("sipShard", new ItemStack(crystal_shard, 1, OreDictionary.WILDCARD_VALUE));

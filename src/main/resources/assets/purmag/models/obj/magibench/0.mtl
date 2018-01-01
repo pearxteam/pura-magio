@@ -1,5 +1,5 @@
 # Blender MTL File: 'magibench_0.blend'
-# Material Count: 2
+# Material Count: 1
 
 newmtl Material
 Ns 96.078431
@@ -10,4 +10,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 0
-map_Kd purmag:models/magibench/0
+map_Kd /home/me/Projects/PurificatiMagicae/blends/png/magibench_0.png
