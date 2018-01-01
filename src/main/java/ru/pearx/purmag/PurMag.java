@@ -125,7 +125,7 @@ public class PurMag
     {
         config.setupInit(configFile);
         getSipEffects().register();
-        ItemRegistry.setup();
+        ItemRegistry.setupOreDict();
         getIfRegistry().setup();
         NetworkManager.setup();
         WorldgenRegistry.setup();

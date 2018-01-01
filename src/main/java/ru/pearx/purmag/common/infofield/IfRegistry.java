@@ -4,6 +4,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -17,6 +18,7 @@ import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.libmc.client.gui.drawables.SimpleDrawable;
 import ru.pearx.libmc.client.gui.drawables.item.ItemDrawable;
 import ru.pearx.libmc.client.gui.drawables.item.MultiItemDrawable;
+import ru.pearx.libmc.common.items.PXLItems;
 import ru.pearx.libmc.common.structure.blockarray.BlockArray;
 import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
 import ru.pearx.purmag.PurMag;
@@ -25,6 +27,7 @@ import ru.pearx.purmag.client.infofield.pages.*;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
+import ru.pearx.purmag.common.blocks.multiblock.MultiblockRegistry;
 import ru.pearx.purmag.common.entities.EntityBeetle;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import ru.pearx.purmag.common.infofield.steps.*;
@@ -185,7 +188,7 @@ public class IfRegistry
     {
         registerChannel(new IfChannel("information", 0));
         registerChannel(new IfChannel("exploration", 0));
-        registerChannel(new IfChannel("smelting", 1));
+        registerChannel(new IfChannel("machinery", 1));
         registerChannel(new IfChannel("sip", 1));
 
         //INFORMATION
@@ -386,6 +389,34 @@ public class IfRegistry
                                 })),
                 0));
         attachEntry("exploration", new IfEntryLocation("verda_beetle", 4, -2));
+
+        //MACHINERY
+        attachEntry("machinery", new IfEntryLocation("magibench", 0, 2));
+
+        registerEntry(new IfEntry(
+                "multiblocks", 0,
+                Collections.emptyList(),
+                Collections.emptyList(),
+        0));
+        attachEntry("machinery", new IfEntryLocation("multiblocks", 0, 0));
+
+        registerEntry(new IfEntry(
+                "stone_crusher", 0,
+                Arrays.asList("magibench", "multiblocks"),
+                Arrays.asList(
+                        new IRSMicroscopeResearch(Ingredient.fromItem(Item.getItemFromBlock(Blocks.ANVIL)), new boolean[][]
+                                {
+                                        {false, false, true, true, true, true, true, true},
+                                        {true, true, true, true, true, true, true, true},
+                                        {false, false, true, true, true, true, true, true},
+                                        {false, false, false, true, true, false, false, false},
+                                        {false, false, false, true, true, false, false, false},
+                                        {false, false, false, true, true, false, false, false},
+                                        {false, false, true, true, true, true, false, false},
+                                        {true, true, true, false, false, true, true, true},
+                                })),
+        0));
+        attachEntry("machinery", new IfEntryLocation("stone_crusher", 2, 1));
     }
 
     @SideOnly(Side.CLIENT)
@@ -393,7 +424,7 @@ public class IfRegistry
     {
         registerChannelClient("information", new ItemDrawable(new ItemStack(ItemRegistry.if_tablet, 1, 1), 1.5f));
         registerChannelClient("exploration", new ItemDrawable(new ItemStack(ItemRegistry.crystal), 1.5f));
-        registerChannelClient("smelting", new SimpleDrawable(Utils.gRL("textures/gui/icons/smelting.png"), 28, 28));
+        registerChannelClient("machinery", new SimpleDrawable(Utils.gRL("textures/gui/icons/machinery.png"), 28, 28));
         registerChannelClient("sip", new SimpleDrawable(Utils.gRL("textures/gui/icons/sip.png"), 28, 28));
 
         //INFORMATION
@@ -500,6 +531,7 @@ public class IfRegistry
             registerEntryClient(
                     "magibench", new ItemDrawable(new ItemStack(ItemRegistry.magibench), 1.5f),
                     new IfPageText("magibench.0"),
+                    new IfPageCrafting(Utils.gRL("simple_magibench")),
                     new IfPageBlocks(BlockArray.fromSingleBlock(BlockRegistry.magibench.getDefaultState(), new ItemStack(ItemRegistry.magibench, 1, 0), mag))
             );
         }
@@ -523,6 +555,19 @@ public class IfRegistry
                 new IfPageText("verda_beetle.0"),
                 new IfPageEntity(EntityBeetle.class, "verda_beetle.1"),
                 new IfPageFurnace(new ItemStack(ItemRegistry.beetle_meat))
+        );
+
+        //MACHINERY
+        registerEntryClient(
+                "multiblocks", new ItemDrawable(new ItemStack(ItemRegistry.stone_tinkering_kit), 1.5f),
+                new IfPageText("multiblocks.0"),
+                new IfPageCrafting(Utils.gRL("stone_tinkering_kit"))
+        );
+        registerEntryClient(
+                "stone_crusher", new ItemDrawable(PXLItems.multiblock.newStack(MultiblockRegistry.STONE_CRUSHER.getRegistryName()), 1.5f),
+                new IfPageText("stone_crusher.0"),
+                new IfPageCrafting(Utils.gRL("rope_coil"), Utils.gRL("cog_rope_coil")),
+                new IfPageMultiblock(MultiblockRegistry.STONE_CRUSHER)
         );
     }
 }

@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
+import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.blocks.multiblock.BlockStoneCrusher;
@@ -61,6 +62,6 @@ public class BlockRegistry
     {
         reg.register(b);
         if (b instanceof IModelProvider)
-            PurMag.proxy.setupModels((IModelProvider) b);
+            PXLMC.PROXY.setupModels((IModelProvider) b);
     }
 }

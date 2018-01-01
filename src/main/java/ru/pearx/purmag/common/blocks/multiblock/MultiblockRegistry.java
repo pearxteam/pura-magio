@@ -2,22 +2,21 @@ package ru.pearx.purmag.common.blocks.multiblock;
 
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockLever;
-import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ru.pearx.lib.collections.CollectionUtils;
-import ru.pearx.libmc.client.gui.controls.common.BlockArrayShowcase;
 import ru.pearx.libmc.common.blocks.controllers.AxisController;
 import ru.pearx.libmc.common.structure.blockarray.BlockArray;
 import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
 import ru.pearx.libmc.common.structure.multiblock.Multiblock;
+import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.blocks.BlockRopeCoil;
 import ru.pearx.purmag.common.items.ItemRegistry;
@@ -27,7 +26,7 @@ import ru.pearx.purmag.common.items.ItemRegistry;
  */
 public final class MultiblockRegistry
 {
-    public static Multiblock STONE_CRUSHER;
+    public static PMMultiblock STONE_CRUSHER;
 
     public static void setup()
     {
@@ -53,7 +52,7 @@ public final class MultiblockRegistry
                     new BlockPos(2, 0, 0), new BlockArrayEntry(Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.UP_X).withProperty(BlockLever.POWERED, true), new ItemStack(Blocks.LEVER)),
                     new BlockPos(1, 0, 1), new BlockArrayEntry(Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.SOUTH), new ItemStack(Blocks.LEVER))
             ));
-            Multiblock.REGISTRY.register(STONE_CRUSHER = new Multiblock(arr, new BlockPos(1, 0, 0), BlockRegistry.stone_crusher.getDefaultState()).setRegistryName("stone_crusher"));
+            Multiblock.REGISTRY.register(STONE_CRUSHER = new PMMultiblock(0, arr, new BlockPos(1, 0, 0), BlockRegistry.stone_crusher.getDefaultState(), new ModelResourceLocation(Utils.gRL("stone_crusher"), "normal"), Utils.gRL("stone_crusher")));
         }
     }
 }

@@ -351,11 +351,16 @@ public class StandardModels
     public static class StoneCrusher extends CachedModel
     {
         private ModelStateHide hide;
-        public StoneCrusher(String... keep)
+        public StoneCrusher(boolean invert, String... keep)
         {
             setBaseModel(Utils.gRL("obj/stone_crusher.obj"));
             quadProcessors.add(new SetterProcessor().setDiffuseLightingTo(false));
-            this.hide = new ModelStateHide(keep);
+            this.hide = new ModelStateHide(invert, keep);
+        }
+
+        public StoneCrusher(String... keep)
+        {
+            this(false, keep);
         }
 
         @Override
@@ -397,6 +402,11 @@ public class StandardModels
             {
                 super("coil_rotating_1");
             }
+        }
+
+        public static class Item extends StoneCrusher
+        {
+            public Item() { super(true); }
         }
     }
 }

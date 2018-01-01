@@ -40,6 +40,7 @@ public abstract class AbstractMagibenchRecipeWrapper implements ICraftingRecipeW
     @Override
     public void getIngredients(IIngredients ingredients)
     {
+
         ingredients.setOutput(ItemStack.class, recipe.getRecipeOutput());
         ingredients.setInputLists(ItemStack.class, help.expandRecipeItemStackInputs(recipe.getIngredients()));
     }

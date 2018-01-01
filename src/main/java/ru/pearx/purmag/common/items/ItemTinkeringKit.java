@@ -1,26 +1,24 @@
 package ru.pearx.purmag.common.items;
 
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import ru.pearx.libmc.PXLMC;
-import ru.pearx.libmc.client.particle.PXParticle;
-import ru.pearx.libmc.client.particle.ParticleEngine;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.common.structure.multiblock.Multiblock;
-import ru.pearx.purmag.client.particle.ParticleMultiblock;
-import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.Utils;
+import ru.pearx.purmag.common.blocks.multiblock.PMMultiblock;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.CPacketSpawnMultiblockParticles;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -31,16 +29,19 @@ public class ItemTinkeringKit extends ItemToolBase
 {
     public static final String CLASS = Utils.gRL("tinkering_kit").toString();
     private Set<String> toolClasses = ImmutableSet.of(CLASS);
+    private int tier;
 
-    public ItemTinkeringKit(ToolMaterial mat)
+    public ItemTinkeringKit(ToolMaterial mat, int tier)
     {
         super(0, 0, mat, Collections.emptySet());
+        setTier(tier);
         setMaxDamage(toolMaterial.getMaxUses() / 8);
         attackDamage *= 0.25f;
     }
-    public ItemTinkeringKit(ToolMaterial mat, String name)
+    public ItemTinkeringKit(ToolMaterial mat, int tier, String name)
     {
         super(0, 0, mat, Collections.emptySet(), name);
+        setTier(tier);
         setMaxDamage(toolMaterial.getMaxUses() / 8);
     }
 
@@ -49,15 +50,18 @@ public class ItemTinkeringKit extends ItemToolBase
     {
         for(Multiblock mb : Multiblock.REGISTRY)
         {
-            Optional<Rotation> rot = mb.tryForm(worldIn, pos, player);
-            if(rot.isPresent())
+            if(mb instanceof PMMultiblock)
             {
-                player.getHeldItem(hand).damageItem(1, player);
-                if(!worldIn.isRemote)
+                Optional<Rotation> rot = mb.tryForm(worldIn, pos, player, hand);
+                if (rot.isPresent())
                 {
-                    NetworkManager.sendToAllAround(new CPacketSpawnMultiblockParticles(pos, mb.getRegistryName(), rot.get()), pos.getX(), pos.getY(), pos.getZ(), worldIn.provider.getDimension(), 256);
+                    player.getHeldItem(hand).damageItem(1, player);
+                    if (!worldIn.isRemote)
+                    {
+                        NetworkManager.sendToAllAround(new CPacketSpawnMultiblockParticles(pos, mb.getRegistryName(), rot.get()), pos.getX(), pos.getY(), pos.getZ(), worldIn.provider.getDimension(), 256);
+                    }
+                    return EnumActionResult.PASS;
                 }
-                return EnumActionResult.PASS;
             }
         }
         return EnumActionResult.FAIL;
@@ -67,5 +71,28 @@ public class ItemTinkeringKit extends ItemToolBase
     public Set<String> getToolClasses(ItemStack stack)
     {
         return toolClasses;
+    }
+
+    public int getTier()
+    {
+        return tier;
+    }
+
+    public void setTier(int tier)
+    {
+        this.tier = tier;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+        tooltip.add(I18n.format("item.purmag.tinkering_kit.tooltip", getTierDisplayName(getTier())));
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static String getTierDisplayName(int tier)
+    {
+        return I18n.format("item.purmag.tinkering_kit.tier." + tier);
     }
 }

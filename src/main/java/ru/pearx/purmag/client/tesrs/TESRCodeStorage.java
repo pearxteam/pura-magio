@@ -1,21 +1,16 @@
 package ru.pearx.purmag.client.tesrs;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
-import ru.pearx.lib.Supplied;
 import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.client.ModelSupplied;
 import ru.pearx.libmc.client.PXLFastTESR;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
+import ru.pearx.libmc.client.models.PXLModelRenderer;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.tiles.TileCodeStorage;
 
@@ -39,13 +34,12 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
     @Override
     public void render(TileCodeStorage te, double x, double y, double z, float partialTicks, int destroyStage, float partial, BufferBuilder buffer, Tessellator tessellator)
     {
-        BlockRendererDispatcher dis = Minecraft.getMinecraft().getBlockRendererDispatcher();
         long rnd = MathHelper.getPositionRandom(te.getPos());
         IBlockState st = te.getWorld().getBlockState(te.getPos());
 
         //body
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-        dis.getBlockModelRenderer().renderModel(te.getWorld(), BODY.get(), te.getWorld().getBlockState(te.getPos()), te.getPos(), buffer, false, rnd);
+        PXLModelRenderer.renderModelTESR(te.getWorld(), BODY.get(), te.getWorld().getBlockState(te.getPos()), te.getPos(), buffer, false, rnd);
         tessellator.draw();
 
         //top
@@ -81,7 +75,7 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
             setTrans(te);
         }
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-        dis.getBlockModelRenderer().renderModel(te.getWorld(), TOP.get(), st.getBlock().getExtendedState(st, te.getWorld(), te.getPos()), te.getPos(), buffer, false, rnd);
+        PXLModelRenderer.renderModelTESR(te.getWorld(), TOP.get(), st.getBlock().getExtendedState(st, te.getWorld(), te.getPos()), te.getPos(), buffer, false, rnd);
         tessellator.draw();
         GlStateManager.popMatrix();
     }

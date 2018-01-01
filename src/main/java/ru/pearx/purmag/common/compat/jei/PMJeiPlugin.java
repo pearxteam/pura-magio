@@ -1,5 +1,6 @@
 package ru.pearx.purmag.common.compat.jei;
 
+import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
@@ -69,6 +70,9 @@ public class PMJeiPlugin implements IModPlugin
             return container.inventorySlots.subList(fr, container.inventorySlots.size());
         }
     }
+
+    public static IJeiRuntime RUNTIME;
+
     @Override
     public void register(IModRegistry registry)
     {
@@ -96,5 +100,11 @@ public class PMJeiPlugin implements IModPlugin
     public void registerCategories(IRecipeCategoryRegistration registry)
     {
         registry.addRecipeCategories(new MagibenchRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
+    }
+
+    @Override
+    public void onRuntimeAvailable(IJeiRuntime jeiRuntime)
+    {
+        this.RUNTIME = jeiRuntime;
     }
 }

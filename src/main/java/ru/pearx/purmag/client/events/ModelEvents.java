@@ -43,6 +43,7 @@ public class ModelEvents
         {
             putModel(e, new StandardModels.Magibench(t), t.getSmartModel());
         }
+        putModel(e, new StandardModels.StoneCrusher.Item(), Utils.gRL("stone_crusher"));
         putModel(e, new StandardModels.StoneCrusher.Main(), Utils.gRL("stone_crusher/main"));
         putModel(e, new StandardModels.StoneCrusher.Lever(), Utils.gRL("stone_crusher/lever"));
         putModel(e, new StandardModels.StoneCrusher.Coil(), Utils.gRL("stone_crusher/coil"));
