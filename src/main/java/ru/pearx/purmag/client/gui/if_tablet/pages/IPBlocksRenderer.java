@@ -2,8 +2,6 @@ package ru.pearx.purmag.client.gui.if_tablet.pages;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.lib.Colors;
-import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.BlockArrayShowcase;
 import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.client.infofield.pages.IfPageBlocks;

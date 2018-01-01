@@ -2,8 +2,6 @@ package ru.pearx.purmag.client.infofield.pages;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.common.structure.blockarray.BlockArray;
-import ru.pearx.purmag.client.gui.if_tablet.pages.IPBlocksRenderer;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPMultiblockRenderer;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
 import ru.pearx.purmag.common.blocks.multiblock.PMMultiblock;

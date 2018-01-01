@@ -8,7 +8,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.BlockArrayShowcase;
-import ru.pearx.libmc.common.structure.blockarray.BlockArray;
 import ru.pearx.purmag.common.blocks.multiblock.PMMultiblock;
 import ru.pearx.purmag.common.items.ItemTinkeringKit;
 

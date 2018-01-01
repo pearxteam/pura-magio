@@ -1,37 +1,21 @@
 package ru.pearx.purmag.client.gui.recipes.crafting;
 
-import mezz.jei.api.IRecipesGui;
 import mezz.jei.api.recipe.IFocus;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.lwjgl.util.Point;
-import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.IGuiScreen;
 import ru.pearx.libmc.client.gui.controls.Control;
 import ru.pearx.libmc.client.gui.controls.common.Button;
-import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.libmc.client.gui.drawables.item.ItemDrawable;
-import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.common.compat.Loadings;
 import ru.pearx.purmag.common.compat.jei.PMJeiPlugin;
-import ru.pearx.purmag.common.recipes.recipes.MagibenchRecipe;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /*
  * Created by mrAppleXZ on 03.09.17 11:50.

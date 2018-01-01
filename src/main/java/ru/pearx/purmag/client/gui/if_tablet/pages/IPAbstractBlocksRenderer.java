@@ -5,11 +5,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.BlockArrayShowcase;
-import ru.pearx.libmc.common.structure.blockarray.BlockArray;
-import ru.pearx.purmag.client.PurMagClient;
-import ru.pearx.purmag.client.infofield.pages.IIfPage;
 import ru.pearx.purmag.client.infofield.pages.IfPageAbstractBlocks;
-import ru.pearx.purmag.client.infofield.pages.IfPageBlocks;
 
 /*
  * Created by mrAppleXZ on 01.01.18 21:58.
