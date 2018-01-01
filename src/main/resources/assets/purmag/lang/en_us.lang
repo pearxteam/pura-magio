@@ -40,7 +40,11 @@ item.purmag.painting_kit.name=Painting Kit
 item.purmag.gray_paper_pack.name=Gray Paper Pack
 tile.purmag.magibench.0.name=Simple Magibench
 item.purmag.porcelain.name=Porcelain
+
 item.purmag.stone_tinkering_kit.name=Stone Tinkering Kit
+item.purmag.tinkering_kit.tooltip=§eTier: %s
+item.purmag.tinkering_kit.tier.0=§8Prehistoric§r
+
 tile.purmag.rope_coil.normal.name=Rope Coil
 tile.purmag.rope_coil.cog.name=Cog Rope Coil
 
@@ -182,6 +186,7 @@ misc.gui.magibench.fine=§aEverything is fine!§r
 misc.gui.magibench.refresh=§7*click to refresh*§r
 misc.gui.crafting.jeiUnavailable=<JEI required>
 misc.gui.crafting.show=Show in JEI
+misc.gui.multiblock_showcase.requiredTier=Required Tier: %s.
 
 misc.structure_processor.code_storage.name=Code Storage
 misc.structure_processor.code_storage.table=Loot Table:

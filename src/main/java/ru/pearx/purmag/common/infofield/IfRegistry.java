@@ -532,7 +532,7 @@ public class IfRegistry
             registerEntryClient(
                     "magibench", new ItemDrawable(new ItemStack(ItemRegistry.magibench), 1.5f),
                     new IfPageText("magibench.0"),
-                    new IfPageCrafting(Utils.gRL("magibench")),
+                    new IfPageCrafting(Utils.gRL("simple_magibench")),
                     new IfPageBlocks(BlockArray.fromSingleBlock(BlockRegistry.magibench.getDefaultState(), new ItemStack(ItemRegistry.magibench, 1, 0), mag))
             );
         }
@@ -568,7 +568,7 @@ public class IfRegistry
                 "stone_crusher", new ItemDrawable(PXLItems.multiblock.newStack(MultiblockRegistry.STONE_CRUSHER.getRegistryName()), 1.5f),
                 new IfPageText("stone_crusher.0"),
                 new IfPageCrafting(Utils.gRL("rope_coil"), Utils.gRL("cog_rope_coil")),
-                new IfPageBlocks(MultiblockRegistry.STONE_CRUSHER.getStructure())
+                new IfPageMultiblock(MultiblockRegistry.STONE_CRUSHER)
         );
     }
 }

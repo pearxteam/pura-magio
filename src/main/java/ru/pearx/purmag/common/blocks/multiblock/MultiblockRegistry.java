@@ -26,7 +26,7 @@ import ru.pearx.purmag.common.items.ItemRegistry;
  */
 public final class MultiblockRegistry
 {
-    public static Multiblock STONE_CRUSHER;
+    public static PMMultiblock STONE_CRUSHER;
 
     public static void setup()
     {
@@ -52,7 +52,7 @@ public final class MultiblockRegistry
                     new BlockPos(2, 0, 0), new BlockArrayEntry(Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.UP_X).withProperty(BlockLever.POWERED, true), new ItemStack(Blocks.LEVER)),
                     new BlockPos(1, 0, 1), new BlockArrayEntry(Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.SOUTH), new ItemStack(Blocks.LEVER))
             ));
-            Multiblock.REGISTRY.register(STONE_CRUSHER = new Multiblock(arr, new BlockPos(1, 0, 0), BlockRegistry.stone_crusher.getDefaultState(), new ModelResourceLocation(Utils.gRL("stone_crusher"), "normal")).setRegistryName("stone_crusher"));
+            Multiblock.REGISTRY.register(STONE_CRUSHER = new PMMultiblock(0, arr, new BlockPos(1, 0, 0), BlockRegistry.stone_crusher.getDefaultState(), new ModelResourceLocation(Utils.gRL("stone_crusher"), "normal"), Utils.gRL("stone_crusher")));
         }
     }
 }
