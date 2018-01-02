@@ -66,7 +66,7 @@ public class RecipeRegistry
                 "SSS",
                 'S', "string", 'W', "plankWood"
         ), e.getRegistry());
-        register("cog_rope_coil", new MagibenchRecipe(new ItemStack(ItemRegistry.rope_coil, 1, 1), 0, "stone_crusher",
+        register("cog_rope_coil", new MagibenchRecipe(new ItemStack(ItemRegistry.rope_coil, 1, 0), 0, "stone_crusher",
                 " | ",
                 "|C|",
                 " | ",

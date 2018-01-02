@@ -413,7 +413,8 @@ public class StandardModels
             @Override
             public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
             {
-                return Pair.of(this, mat);
+                //return Pair.of(this, mat);
+                return Pair.of(this, new TRSRTransformation(new Vector3f(-0.15f, -0.3f, 0), null, new Vector3f(0.35f, 0.35f, 0.35f), TRSRTransformation.quatFromXYZDegrees(new Vector3f(30, -30, 0))).getMatrix());
             }
         }
     }
