@@ -25,7 +25,7 @@ public abstract class IPAbstractBlocksRenderer<T extends IfPageAbstractBlocks> e
     public void init()
     {
         super.init();
-        int y = DrawingTools.getStringHeight(page.getStructureName());
+        int y = DrawingTools.getStringHeight(page.getText());
         showcase.setSize(getWidth(), getHeight() - y);
         showcase.setPos(0, y);
         controls.add(showcase);
@@ -34,6 +34,6 @@ public abstract class IPAbstractBlocksRenderer<T extends IfPageAbstractBlocks> e
     @Override
     public void render()
     {
-        DrawingTools.drawString(page.getStructureName(), (getWidth() - DrawingTools.measureString(page.getStructureName())) / 2, 0, Colors.WHITE);
+        DrawingTools.drawString(page.getText(), (getWidth() - DrawingTools.measureString(page.getText())) / 2, 0, Colors.WHITE);
     }
 }

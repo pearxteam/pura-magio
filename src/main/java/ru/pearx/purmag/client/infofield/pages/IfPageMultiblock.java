@@ -14,12 +14,6 @@ public class IfPageMultiblock extends IfPageAbstractBlocks
 {
     private PMMultiblock multiblock;
 
-    public IfPageMultiblock(PMMultiblock mb, String unlocStructureName)
-    {
-        setMultiblock(mb);
-        setUnlocalizedStructureName(unlocStructureName);
-    }
-
     public IfPageMultiblock(PMMultiblock mb)
     {
         setMultiblock(mb);
@@ -39,5 +33,11 @@ public class IfPageMultiblock extends IfPageAbstractBlocks
     public IPRenderer getRenderer()
     {
         return new IPMultiblockRenderer(this);
+    }
+
+    @Override
+    public String getText()
+    {
+        return multiblock.getName();
     }
 }
