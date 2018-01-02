@@ -33,7 +33,7 @@ public final class MultiblockRegistry
         {
             BlockArray arr = new BlockArray();
             BlockArrayEntry rope = new BlockArrayEntry(BlockRegistry.rope_coil.getDefaultState().withProperty(AxisController.AXIS, EnumFacing.Axis.Z), new ItemStack(ItemRegistry.rope_coil));
-            BlockArrayEntry rope_cog = new BlockArrayEntry(BlockRegistry.rope_coil.getDefaultState().withProperty(AxisController.AXIS, EnumFacing.Axis.Z).withProperty(BlockRopeCoil.TYPE, BlockRopeCoil.Type.COG), new ItemStack(ItemRegistry.rope_coil));
+            BlockArrayEntry rope_cog = new BlockArrayEntry(BlockRegistry.rope_coil.getDefaultState().withProperty(AxisController.AXIS, EnumFacing.Axis.Z).withProperty(BlockRopeCoil.TYPE, BlockRopeCoil.Type.COG), new ItemStack(ItemRegistry.rope_coil, 1, 1));
 
             arr.getCheckers().add((BlockArrayEntry entr, IBlockState state, IBlockState worldState, World w, BlockPos pos, Rotation rot) ->
             {
