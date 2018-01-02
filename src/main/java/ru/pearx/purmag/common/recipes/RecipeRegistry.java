@@ -66,11 +66,11 @@ public class RecipeRegistry
                 "SSS",
                 'S', "string", 'W', "plankWood"
         ), e.getRegistry());
-        register("cog_rope_coil", new MagibenchRecipe(new ItemStack(ItemRegistry.rope_coil, 1, 0), 0, "stone_crusher",
+        register("cog_rope_coil", new MagibenchRecipe(new ItemStack(ItemRegistry.rope_coil, 1, 1), 0, "stone_crusher",
                 " | ",
                 "|C|",
                 " | ",
-                '|', "stickWood", 'C', new ItemStack(ItemRegistry.rope_coil, 1, 1)
+                '|', "stickWood", 'C', new ItemStack(ItemRegistry.rope_coil, 1, 0)
         ), e.getRegistry());
 
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle), new ItemStack(ItemRegistry.mortar_and_pestle), 0.1f);
