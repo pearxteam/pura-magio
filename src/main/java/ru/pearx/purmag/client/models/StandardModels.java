@@ -406,7 +406,15 @@ public class StandardModels
 
         public static class Item extends StoneCrusher
         {
+            public Matrix4f mat = new TRSRTransformation(null, null, new Vector3f(0.7f, 0.7f, 0.7f), TRSRTransformation.quatFromXYZDegrees(new Vector3f(30, 225, 0))).getMatrix();
+
             public Item() { super(true); }
+
+            @Override
+            public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
+            {
+                return Pair.of(this, mat);
+            }
         }
     }
 }

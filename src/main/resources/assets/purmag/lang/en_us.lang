@@ -239,3 +239,6 @@ entity.verda_beetle.name=Verda Beetle
 microscope.text.stackSize=Max stack size: %s.
 microscope.text.repairable=§aRepairable§r
 microscope.text.enchantable=§aEnchantable§r, §aEnchantability: §9%s§r.
+
+#Multiblocks
+multiblock.purmag:stone_crusher.name=Stone Crusher

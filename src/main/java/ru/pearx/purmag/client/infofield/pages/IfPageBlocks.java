@@ -1,5 +1,6 @@
 package ru.pearx.purmag.client.infofield.pages;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.common.structure.blockarray.BlockArray;
@@ -13,6 +14,7 @@ import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
 public class IfPageBlocks extends IfPageAbstractBlocks
 {
     private BlockArray array;
+    private String unlocStructureName;
 
     public IfPageBlocks(BlockArray array, String unlocStructureName)
     {
@@ -33,6 +35,21 @@ public class IfPageBlocks extends IfPageAbstractBlocks
     public void setArray(BlockArray array)
     {
         this.array = array;
+    }
+
+    public String getUnlocalizedStructureName()
+    {
+        return unlocStructureName;
+    }
+
+    public void setUnlocalizedStructureName(String unlocStructureName)
+    {
+        this.unlocStructureName = unlocStructureName;
+    }
+
+    public String getText()
+    {
+        return getUnlocalizedStructureName() == null ? "" : I18n.format(getUnlocalizedStructureName());
     }
 
     @Override

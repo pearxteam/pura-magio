@@ -30,7 +30,7 @@ public class PMMultiblockShowcase extends BlockArrayShowcase
     {
         super.render();
         GlStateManager.pushMatrix();
-        GlStateManager.translate(0, 0, 500);
+        GlStateManager.translate(0, 0, 0);
         String s = I18n.format("misc.gui.multiblock_showcase.requiredTier", ItemTinkeringKit.getTierDisplayName(multiblock.getTier()));
         DrawingTools.drawString(s, getWidth() - DrawingTools.measureString(s), getHeight() - DrawingTools.getStringHeight(s), Colors.WHITE);
         GlStateManager.popMatrix();
