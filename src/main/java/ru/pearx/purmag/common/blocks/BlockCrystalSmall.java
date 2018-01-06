@@ -14,6 +14,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import ru.pearx.purmag.common.blocks.base.BlockBase;
 
 /**
  * Created by mrAppleXZ on 04.06.17 18:22.

@@ -14,6 +14,7 @@ import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.common.blocks.controllers.ConnectionsController;
+import ru.pearx.purmag.common.blocks.base.BlockSingleSip;
 import ru.pearx.purmag.common.sip.SipUtils;
 
 /*

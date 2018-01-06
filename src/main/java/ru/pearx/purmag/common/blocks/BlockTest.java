@@ -2,6 +2,7 @@ package ru.pearx.purmag.common.blocks;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import ru.pearx.purmag.common.blocks.base.BlockBase;
 
 /*
  * Created by mrAppleXZ on 29.08.17 21:27.

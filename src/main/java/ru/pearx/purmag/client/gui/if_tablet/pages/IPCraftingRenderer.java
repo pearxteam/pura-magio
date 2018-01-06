@@ -1,10 +1,10 @@
 package ru.pearx.purmag.client.gui.if_tablet.pages;
 
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.ResourceLocation;
 import ru.pearx.lib.Colors;
+import ru.pearx.lib.Supplied;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.purmag.client.gui.recipes.crafting.CraftingControl;
+import ru.pearx.purmag.client.gui.controls.recipes.CraftingControl;
 import ru.pearx.purmag.client.infofield.pages.IfPageCrafting;
 
 import java.util.ArrayList;
@@ -15,22 +15,21 @@ import java.util.List;
  */
 public class IPCraftingRenderer extends IPAbstractMultipleRenderer<IfPageCrafting>
 {
-    protected List<CraftingControl> crafts = new ArrayList<>();
-
     public IPCraftingRenderer(IfPageCrafting page)
     {
         super(page);
-        for (ResourceLocation loc : page.getIds())
-        {
-            crafts.add(new CraftingControl(loc));
-        }
     }
 
     @Override
     public void init()
     {
         super.init();
-        setupControls(crafts);
+        List<CraftingControl> lst = new ArrayList<>();
+        for(Supplied<CraftingControl> sup : page.getCrafts())
+        {
+            lst.add(sup.get());
+        }
+        setupControls(lst);
     }
 
     @Override

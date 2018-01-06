@@ -23,6 +23,7 @@ import ru.pearx.libmc.common.structure.blockarray.BlockArray;
 import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
+import ru.pearx.purmag.client.gui.controls.recipes.CraftingControl;
 import ru.pearx.purmag.client.infofield.pages.*;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.Utils;
@@ -432,7 +433,7 @@ public class IfRegistry
                 "wooden_tablet", new ItemDrawable(new ItemStack(ItemRegistry.if_tablet), 1.5f),
                 new IfPageText("wooden_tablet.0"),
                 new IfPageText("wooden_tablet.1"),
-                new IfPageCrafting(Utils.gRL("painting_kit"), Utils.gRL("gray_paper_pack"), Utils.gRL("wooden_tablet"))
+                new IfPageCrafting(CraftingControl.fromVanillaCrafting(Utils.gRL("painting_kit")), CraftingControl.fromVanillaCrafting(Utils.gRL("gray_paper_pack")), CraftingControl.fromVanillaCrafting(Utils.gRL("wooden_tablet")))
         );
 
         //SIP
@@ -531,7 +532,7 @@ public class IfRegistry
             registerEntryClient(
                     "magibench", new ItemDrawable(new ItemStack(ItemRegistry.magibench), 1.5f),
                     new IfPageText("magibench.0"),
-                    new IfPageCrafting(Utils.gRL("simple_magibench")),
+                    new IfPageCrafting(CraftingControl.fromVanillaCrafting(Utils.gRL("simple_magibench"))),
                     new IfPageBlocks(BlockArray.fromSingleBlock(BlockRegistry.magibench.getDefaultState(), new ItemStack(ItemRegistry.magibench, 1, 0), mag))
             );
         }
@@ -547,26 +548,26 @@ public class IfRegistry
         registerEntryClient(
                 "mortar_and_pestle", new ItemDrawable(new ItemStack(ItemRegistry.mortar_and_pestle), 1.5f),
                 new IfPageText("mortar_and_pestle.0"),
-                new IfPageCrafting(Utils.gRL("unf_mortar_and_pestle")),
-                new IfPageFurnace(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle))
+                new IfPageCrafting(CraftingControl.fromMagibench(Utils.gRL("unf_mortar_and_pestle"))),
+                new IfPageCrafting(CraftingControl.fromSmelting(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle)))
         );
         registerEntryClient(
                 "verda_beetle", new EntityDrawable(EntityBeetle.class, 20, 5),
                 new IfPageText("verda_beetle.0"),
                 new IfPageEntity(EntityBeetle.class, "verda_beetle.1"),
-                new IfPageFurnace(new ItemStack(ItemRegistry.beetle_meat))
+                new IfPageCrafting(CraftingControl.fromSmelting(new ItemStack(ItemRegistry.beetle_meat)))
         );
 
         //MACHINERY
         registerEntryClient(
-                "multiblocks", new ItemDrawable(new ItemStack(ItemRegistry.stone_tinkering_kit), 1.5f),
+                "multiblocks", new ItemDrawable(new ItemStack(ItemRegistry.iron_tinkering_kit), 1.5f),
                 new IfPageText("multiblocks.0"),
-                new IfPageCrafting(Utils.gRL("stone_tinkering_kit"))
+                new IfPageCrafting(CraftingControl.fromMagibench(Utils.gRL("iron_tinkering_kit")))
         );
         registerEntryClient(
                 "stone_crusher", new ItemDrawable(PXLItems.multiblock.newStack(MultiblockRegistry.STONE_CRUSHER.getRegistryName()), 1.5f),
                 new IfPageText("stone_crusher.0"),
-                new IfPageCrafting(Utils.gRL("rope_coil"), Utils.gRL("cog_rope_coil")),
+                new IfPageCrafting(CraftingControl.fromMagibench(Utils.gRL("rope_coil")), CraftingControl.fromMagibench(Utils.gRL("cog_rope_coil"))),
                 new IfPageMultiblock(MultiblockRegistry.STONE_CRUSHER)
         );
     }

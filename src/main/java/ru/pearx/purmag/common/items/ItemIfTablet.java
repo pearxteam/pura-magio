@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.infofield.IfTier;
+import ru.pearx.purmag.common.items.base.ItemBase;
 
 /**
  * Created by mrAppleXZ on 13.04.17 21:54.

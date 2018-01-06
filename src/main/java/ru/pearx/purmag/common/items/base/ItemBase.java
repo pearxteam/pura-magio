@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.items;
+package ru.pearx.purmag.common.items.base;
 
 import ru.pearx.purmag.common.PMCreativeTab;
 import ru.pearx.purmag.common.Utils;

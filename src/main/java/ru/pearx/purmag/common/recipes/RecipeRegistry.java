@@ -24,10 +24,10 @@ import ru.pearx.purmag.common.sip.SipUtils;
 @Mod.EventBusSubscriber(modid = PurMag.MODID)
 public class RecipeRegistry
 {
-    //todo stone tinkering kit recipe
     @SubscribeEvent
     public static void onRecipeRegistry(RegistryEvent.Register<IRecipe> e)
     {
+        //SIMPLE CRAFTING TABLE
         register("painting_kit", new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.painting_kit),
                 "stickWood", "string", Blocks.WOODEN_PRESSURE_PLATE, "dyeBlack", "dyeWhite", "dyeBlue", "dyeYellow", "dyeRed"
         ), e.getRegistry());
@@ -48,6 +48,7 @@ public class RecipeRegistry
                 'N', "nuggetGold", 'W', "slabWood", 'P', "plankWood"
         ), e.getRegistry());
 
+        //MAGIBENCH
         register("pyroblend", new ShapelessOreRecipe(null, new ItemStack(ItemRegistry.pyroblend, 2),
                 ItemRegistry.verda_wing,
                 ItemRegistry.brulanta_flower,

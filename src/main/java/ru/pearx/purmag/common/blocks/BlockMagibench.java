@@ -24,6 +24,7 @@ import ru.pearx.libmc.common.ItemStackUtils;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.libmc.common.blocks.properties.PropertyInt;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.blocks.base.BlockBase;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 import ru.pearx.purmag.common.tiles.TileMagibench;
 

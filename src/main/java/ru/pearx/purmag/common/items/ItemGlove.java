@@ -9,6 +9,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.SoundRegistry;
+import ru.pearx.purmag.common.items.base.ItemBase;
 import ru.pearx.purmag.common.sip.SipUtils;
 
 /**

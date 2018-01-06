@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.items;
+package ru.pearx.purmag.common.items.base;
 
 import net.minecraft.block.Block;
 import ru.pearx.purmag.common.PMCreativeTab;

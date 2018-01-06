@@ -1,5 +1,7 @@
 package ru.pearx.purmag.common.items;
 
+import ru.pearx.purmag.common.items.base.ItemSingleSip;
+
 /**
  * Created by mrAppleXZ on 11.04.17 8:24.
  */

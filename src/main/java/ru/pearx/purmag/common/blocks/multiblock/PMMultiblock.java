@@ -11,7 +11,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ru.pearx.libmc.common.structure.blockarray.BlockArray;
 import ru.pearx.libmc.common.structure.multiblock.Multiblock;
-import ru.pearx.purmag.common.items.ItemTinkeringKit;
+import ru.pearx.purmag.common.PMCreativeTab;
+import ru.pearx.purmag.common.items.tinkering_kit.ItemTinkeringKit;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -25,7 +26,7 @@ public class PMMultiblock extends Multiblock
 
     public PMMultiblock(int requiredTier, BlockArray structure, BlockPos masterPos, IBlockState masterState, ModelResourceLocation itemModel, ResourceLocation regName)
     {
-        super(structure, masterPos, masterState, itemModel);
+        super(structure, masterPos, masterState, itemModel, PMCreativeTab.INSTANCE);
         setTier(requiredTier);
         setRegistryName(regName);
     }

@@ -1,4 +1,4 @@
-package ru.pearx.purmag.client.gui.recipes;
+package ru.pearx.purmag.client.gui.controls.recipes;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;

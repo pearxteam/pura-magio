@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.items;
+package ru.pearx.purmag.common.items.block;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemStack;
@@ -8,6 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
+import ru.pearx.purmag.common.items.base.ItemBlockBase;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 
 /*

@@ -76,6 +76,7 @@ public class PMJeiPlugin implements IModPlugin
     @Override
     public void register(IModRegistry registry)
     {
+
         for(MagibenchRegistry.Tier t : PurMag.INSTANCE.getMagibenchRegistry().getTiers())
         {
             registry.addRecipeCatalyst(new ItemStack(ItemRegistry.magibench, 1, t.getTier()), MagibenchRecipeCategory.ID);
@@ -105,6 +106,6 @@ public class PMJeiPlugin implements IModPlugin
     @Override
     public void onRuntimeAvailable(IJeiRuntime jeiRuntime)
     {
-        this.RUNTIME = jeiRuntime;
+        RUNTIME = jeiRuntime;
     }
 }

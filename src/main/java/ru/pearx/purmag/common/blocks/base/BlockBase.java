@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.blocks;
+package ru.pearx.purmag.common.blocks.base;
 
 import net.minecraft.block.material.Material;
 import ru.pearx.purmag.common.PMCreativeTab;

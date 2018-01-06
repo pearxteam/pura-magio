@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.items;
+package ru.pearx.purmag.common.items.base;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -8,6 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.ClientUtils;
+import ru.pearx.purmag.common.items.base.ItemBase;
 import ru.pearx.purmag.common.sip.SipType;
 import ru.pearx.purmag.common.sip.SipUtils;
 

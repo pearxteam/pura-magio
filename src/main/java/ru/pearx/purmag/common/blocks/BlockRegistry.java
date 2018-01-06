@@ -10,6 +10,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.blocks.base.BlockBase;
 import ru.pearx.purmag.common.blocks.multiblock.BlockStoneCrusher;
 
 /**

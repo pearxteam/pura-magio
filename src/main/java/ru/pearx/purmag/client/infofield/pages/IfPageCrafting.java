@@ -1,31 +1,37 @@
 package ru.pearx.purmag.client.infofield.pages;
 
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.lib.Supplied;
+import ru.pearx.purmag.client.gui.controls.recipes.CraftingControl;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPCraftingRenderer;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
+
+import java.util.Arrays;
+import java.util.List;
 
 /*
  * Created by mrAppleXZ on 03.09.17 21:33.
  */
+@SideOnly(Side.CLIENT)
 public class IfPageCrafting implements IIfPage
 {
-    private ResourceLocation[] ids;
+    private List<Supplied<CraftingControl>> crafts;
 
-    public IfPageCrafting(ResourceLocation... ids)
+    @SafeVarargs
+    public IfPageCrafting(Supplied<CraftingControl>... crafts)
     {
-        this.ids = ids;
+        setCrafts(Arrays.asList(crafts));
     }
 
-    public ResourceLocation[] getIds()
+    public List<Supplied<CraftingControl>> getCrafts()
     {
-        return ids;
+        return crafts;
     }
 
-    public void setIds(ResourceLocation[] ids)
+    public void setCrafts(List<Supplied<CraftingControl>> crafts)
     {
-        this.ids = ids;
+        this.crafts = crafts;
     }
 
     @SideOnly(Side.CLIENT)

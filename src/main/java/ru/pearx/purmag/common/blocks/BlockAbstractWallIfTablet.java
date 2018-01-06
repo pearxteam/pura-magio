@@ -22,6 +22,7 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.blocks.base.BlockBase;
 import ru.pearx.purmag.common.blocks.properties.PropertyIfTier;
 import ru.pearx.purmag.common.infofield.IfTier;
 import ru.pearx.purmag.common.tiles.TileWallIfTablet;

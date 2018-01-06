@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.items;
+package ru.pearx.purmag.common.items.tinkering_kit;
 
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.client.resources.I18n;
@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.common.structure.multiblock.Multiblock;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.multiblock.PMMultiblock;
+import ru.pearx.purmag.common.items.base.ItemToolBase;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.CPacketSpawnMultiblockParticles;
 
@@ -27,7 +28,7 @@ import java.util.Set;
  */
 public class ItemTinkeringKit extends ItemToolBase
 {
-    public static final String CLASS = Utils.gRL("tinkering_kit").toString();
+    public static final String CLASS = Utils.gRL(" ").toString();
     private Set<String> toolClasses = ImmutableSet.of(CLASS);
     private int tier;
 
@@ -43,6 +44,7 @@ public class ItemTinkeringKit extends ItemToolBase
         super(0, 0, mat, Collections.emptySet(), name);
         setTier(tier);
         setMaxDamage(toolMaterial.getMaxUses() / 8);
+        attackDamage *= 0.25f;
     }
 
     @Override

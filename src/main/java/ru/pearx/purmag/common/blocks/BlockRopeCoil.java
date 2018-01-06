@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.common.blocks.controllers.AxisController;
+import ru.pearx.purmag.common.blocks.base.BlockBase;
 
 /*
  * Created by mrAppleXZ on 14.11.17 16:50.

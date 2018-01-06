@@ -31,6 +31,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.blocks.base.BlockBase;
 import ru.pearx.purmag.common.tiles.TileCodeStorage;
 
 import javax.annotation.Nullable;

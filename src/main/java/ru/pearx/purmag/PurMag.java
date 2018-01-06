@@ -139,6 +139,7 @@ public class PurMag
     public void postInit(FMLPostInitializationEvent e)
     {
         EntityRegistry.setupSpawns();
+        proxy.postInit();
     }
 
     private void setupMetadata(ModMetadata data)

@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.ClientUtils;
 import ru.pearx.purmag.common.CapabilityRegistry;
+import ru.pearx.purmag.common.items.base.ItemBase;
 import ru.pearx.purmag.common.sip.SipType;
 import ru.pearx.purmag.common.sip.store.SipStoreAll;
 import ru.pearx.purmag.common.sip.store.SipStoreProvider;

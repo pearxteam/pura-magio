@@ -20,7 +20,7 @@ import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.infofield.IfEntry;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
 import ru.pearx.purmag.common.infofield.steps.IRSReadPapyrus;
-import ru.pearx.purmag.common.items.ItemBase;
+import ru.pearx.purmag.common.items.base.ItemBase;
 
 import javax.annotation.Nullable;
 import java.util.List;

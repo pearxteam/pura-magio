@@ -13,7 +13,12 @@ import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
+import ru.pearx.purmag.common.items.base.ItemBase;
+import ru.pearx.purmag.common.items.base.ItemBlockBase;
+import ru.pearx.purmag.common.items.block.*;
 import ru.pearx.purmag.common.items.papyrus.ItemPapyrus;
+import ru.pearx.purmag.common.items.tinkering_kit.ItemIronTinkeringKitMold;
+import ru.pearx.purmag.common.items.tinkering_kit.ItemTinkeringKit;
 
 /**
  * Created by mrAppleXZ on 08.04.17 18:46.
@@ -51,8 +56,9 @@ public class ItemRegistry
     public static final Item gray_paper_pack = null;
     public static final ItemBlockMagibench magibench = null;
     public static final Item porcelain = null;
-    public static final ItemTinkeringKit stone_tinkering_kit = null;
+    public static final ItemTinkeringKit iron_tinkering_kit = null;
     public static final ItemBlock rope_coil = null;
+    public static final ItemIronTinkeringKitMold iron_tinkering_kit_mold = null;
 
     public static void register(Item itm, IForgeRegistry<Item> reg)
     {
@@ -106,7 +112,8 @@ public class ItemRegistry
         register(new ItemBase("gray_paper_pack"), reg);
         register(new ItemBlockMagibench(), reg);
         register(new ItemBase("porcelain"), reg);
-        register(new ItemTinkeringKit(Item.ToolMaterial.STONE, 0, "stone_tinkering_kit"), reg);
+        register(new ItemTinkeringKit(Item.ToolMaterial.IRON, 0, "iron_tinkering_kit"), reg);
         register(new ItemBlockRopeCoil(), reg);
+        register(new ItemIronTinkeringKitMold(), reg);
     }
 }

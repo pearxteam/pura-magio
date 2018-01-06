@@ -15,6 +15,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.particle.ParticleEngine;
 import ru.pearx.purmag.client.particle.ParticleCrystal;
+import ru.pearx.purmag.common.blocks.base.BlockSingleSip;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.sip.SipUtils;
 

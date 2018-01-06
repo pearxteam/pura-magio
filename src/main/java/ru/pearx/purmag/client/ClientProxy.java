@@ -67,7 +67,6 @@ public class ClientProxy extends CommonProxy
 
         KeyBindings.setup();
 
-        PurMag.INSTANCE.getIfRegistry().setupClient();
         TileRegistry.registerClient();
     }
 
@@ -111,5 +110,11 @@ public class ClientProxy extends CommonProxy
     public void openCodeStorageUnlock(TileCodeStorage te)
     {
         Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiCodeStorageUnlock(te.getPos(), te.getText())));
+    }
+
+    @Override
+    public void postInit()
+    {
+        PurMag.INSTANCE.getIfRegistry().setupClient();
     }
 }

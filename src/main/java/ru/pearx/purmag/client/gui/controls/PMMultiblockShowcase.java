@@ -9,7 +9,7 @@ import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.BlockArrayShowcase;
 import ru.pearx.purmag.common.blocks.multiblock.PMMultiblock;
-import ru.pearx.purmag.common.items.ItemTinkeringKit;
+import ru.pearx.purmag.common.items.tinkering_kit.ItemTinkeringKit;
 
 /*
  * Created by mrAppleXZ on 01.01.18 21:42.

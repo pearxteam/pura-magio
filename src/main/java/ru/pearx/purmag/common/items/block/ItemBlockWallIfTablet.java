@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.items;
+package ru.pearx.purmag.common.items.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -8,6 +8,7 @@ import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.ClientUtils;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.infofield.IfTier;
+import ru.pearx.purmag.common.items.base.ItemBlockBase;
 
 /*
  * Created by mrAppleXZ on 07.07.17 16:07.

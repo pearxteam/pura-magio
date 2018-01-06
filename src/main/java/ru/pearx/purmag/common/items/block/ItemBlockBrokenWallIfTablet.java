@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.items;
+package ru.pearx.purmag.common.items.block;
 
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 
