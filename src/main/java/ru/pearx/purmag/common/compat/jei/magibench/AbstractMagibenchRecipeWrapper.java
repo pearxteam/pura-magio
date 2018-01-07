@@ -40,7 +40,6 @@ public abstract class AbstractMagibenchRecipeWrapper implements ICraftingRecipeW
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-
         ingredients.setOutput(ItemStack.class, recipe.getRecipeOutput());
         ingredients.setInputLists(ItemStack.class, help.expandRecipeItemStackInputs(recipe.getIngredients()));
     }
@@ -58,7 +57,7 @@ public abstract class AbstractMagibenchRecipeWrapper implements ICraftingRecipeW
     {
         MagibenchRegistry.Tier t = PurMag.INSTANCE.getMagibenchRegistry().getTier(recipe.getTier());
         DrawingTools.drawTexture(t.getGuiTexture(), 0, 0, MagibenchRecipeCategory.WIDTH, MagibenchRecipeCategory.HEIGHT, t.getGuiJeiStartX(), t.getGuiJeiStartY(), 196, 190);
-        DrawingTools.drawTexture(INFO, MagibenchRecipeCategory.WIDTH - 16, 2, 14, 14);
+        DrawingTools.drawTexture(INFO, MagibenchRecipeCategory.WIDTH - 16, MagibenchRecipeCategory.HEIGHT - 16, 14, 14);
     }
 
     @Override
@@ -66,7 +65,7 @@ public abstract class AbstractMagibenchRecipeWrapper implements ICraftingRecipeW
     public List<String> getTooltipStrings(int mouseX, int mouseY)
     {
         int stX = MagibenchRecipeCategory.WIDTH - 16;
-        int stY = 2;
+        int stY = MagibenchRecipeCategory.HEIGHT - 16;
         if(mouseX >= stX && mouseY >= stY && mouseX <= stX + 14 && mouseY <= stY + 14)
         {
             boolean unloc = Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).isFullyUnlocked(recipe.getEntry());

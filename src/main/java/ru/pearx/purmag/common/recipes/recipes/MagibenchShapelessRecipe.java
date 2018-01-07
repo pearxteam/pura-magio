@@ -8,6 +8,8 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import ru.pearx.libmc.common.ItemStackUtils;
 
 import javax.annotation.Nonnull;
@@ -18,26 +20,31 @@ import javax.annotation.Nonnull;
 public class MagibenchShapelessRecipe extends AbstractMagibenchRecipe
 {
     private ItemStack out;
-    private NonNullList<Ingredient> ingredients;
+    private NonNullList<Ingredient> ingredients = NonNullList.create();
+    private boolean simple;
 
-    public MagibenchShapelessRecipe(Block result, Object... recipe)
+    public MagibenchShapelessRecipe(Block result, int minTier, String entryId, Object... recipe)
     {
-        this(new ItemStack(result), recipe);
+        this(new ItemStack(result), minTier, entryId, recipe);
     }
 
-    public MagibenchShapelessRecipe(Item result, Object... recipe)
+    public MagibenchShapelessRecipe(Item result, int minTier, String entryId, Object... recipe)
     {
-        this(new ItemStack(result), recipe);
+        this(new ItemStack(result), minTier, entryId, recipe);
     }
 
-    public MagibenchShapelessRecipe(NonNullList<Ingredient> input, @Nonnull ItemStack result)
+    public MagibenchShapelessRecipe(NonNullList<Ingredient> input, @Nonnull ItemStack result, int minTier, String entryId)
     {
         out = result.copy();
         ingredients = input;
+        setTier(minTier);
+        setEntry(entryId);
     }
 
-    public MagibenchShapelessRecipe(@Nonnull ItemStack result, Object... recipe)
+    public MagibenchShapelessRecipe(@Nonnull ItemStack result, int minTier, String entryId, Object... recipe)
     {
+        setTier(minTier);
+        setEntry(entryId);
         out = result.copy();
         for (Object in : recipe)
         {
@@ -45,10 +52,11 @@ public class MagibenchShapelessRecipe extends AbstractMagibenchRecipe
             if (ing != null)
             {
                 ingredients.add(ing);
+                this.simple &= ing.isSimple();
             }
             else
             {
-                StringBuilder ret = new StringBuilder("Invalid shapeless  recipe: ");
+                StringBuilder ret = new StringBuilder("Invalid shapeless ore recipe: ");
                 for (Object tmp :  recipe)
                 {
                     ret.append(tmp).append(", ");
@@ -62,7 +70,7 @@ public class MagibenchShapelessRecipe extends AbstractMagibenchRecipe
     @Override
     public boolean matches(InventoryCrafting inv, World worldIn)
     {
-        return super.matches(inv, worldIn) && ItemStackUtils.isCraftingMatrixMatchesShapeless(inv, ingredients);
+        return super.matches(inv, worldIn) && ItemStackUtils.isCraftingMatrixMatchesShapeless(inv, ingredients, this, simple);
     }
 
     @Override

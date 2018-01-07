@@ -12,6 +12,8 @@ import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 
+import java.util.List;
+
 /*
  * Created by mrAppleXZ on 02.11.17 18:39.
  */
@@ -64,12 +66,17 @@ public class MagibenchRecipeCategory implements IRecipeCategory<AbstractMagibenc
         st.set(index, ingredients.getOutputs(ItemStack.class).get(0));
         index++;
 
+        List<List<ItemStack>> lst = ingredients.getInputs(ItemStack.class);
         for(int y = 0; y < t.getHeight(); y++)
         {
             for(int x = 0; x < t.getWidth(); x++)
             {
                 st.init(index, true, t.getGuiGridX() - t.getGuiJeiStartX() + 18*x - 1, t.getGuiGridY() - t.getGuiJeiStartY() + 18*y - 1);
-                st.set(index, ingredients.getInputs(ItemStack.class).get(index - 1));
+                int ind = index - 1;
+                if(lst.size() > ind)
+                {
+                    st.set(index, lst.get(ind));
+                }
                 index++;
             }
         }

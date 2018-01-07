@@ -23,7 +23,6 @@ public class GuiIfTabletSP extends GuiIfTabletS
     public int index;
 
     private IPRenderer rend;
-    private IPRenderer newRend;
     private boolean sensitive = true;
 
     public GuiIfTabletSP(IfEntry entr, int index)
@@ -91,7 +90,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
                 if (playAnim)
                 {
                     sensitive = false;
-                    newRend = entry.getPages().get(index).getRenderer();
+                    IPRenderer newRend = entry.getPages().get(index).getRenderer();
                     controls.add(newRend);
                     newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
                     long startTime = System.currentTimeMillis();

@@ -16,6 +16,7 @@ import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.recipes.ingredients.IngredientNBT;
 import ru.pearx.purmag.common.recipes.recipes.MagibenchRecipe;
+import ru.pearx.purmag.common.recipes.recipes.MagibenchShapelessRecipe;
 import ru.pearx.purmag.common.sip.SipUtils;
 
 /*
@@ -74,7 +75,21 @@ public class RecipeRegistry
                 '|', "stickWood", 'C', new ItemStack(ItemRegistry.rope_coil, 1, 0)
         ), e.getRegistry());
 
-        GameRegistry.addSmelting(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle), new ItemStack(ItemRegistry.mortar_and_pestle), 0.1f);
+
+        register("iron_tinkering_kit_0", new MagibenchRecipe(new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 0), 0, "multiblocks",
+                "cc ",
+                "c  ",
+                "c C",
+                'c', Items.CLAY_BALL, 'C', Blocks.CLAY
+        ), e.getRegistry());
+        GameRegistry.addSmelting(new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 0), new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 1), 1.1f);
+        register("iron_tinkering_kit_2", new MagibenchShapelessRecipe(new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 2), 0, "multiblocks",
+                new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 1), "nuggetIron", "nuggetIron", "nuggetIron", "nuggetIron", "ingotIron"
+        ), e.getRegistry());
+        GameRegistry.addSmelting(new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 2), new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 3), 1.1f);
+
+
+        GameRegistry.addSmelting(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle), new ItemStack(ItemRegistry.mortar_and_pestle), 1.1f);
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.beetle_meat), new ItemStack(ItemRegistry.beetle_meat, 1, 1), 0.5f);
     }
 

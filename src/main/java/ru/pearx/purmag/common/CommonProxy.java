@@ -59,4 +59,9 @@ public class CommonProxy
     {
 
     }
+
+    public void onJeiAvailable()
+    {
+
+    }
 }

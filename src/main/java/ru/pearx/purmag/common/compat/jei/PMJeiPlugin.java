@@ -107,5 +107,6 @@ public class PMJeiPlugin implements IModPlugin
     public void onRuntimeAvailable(IJeiRuntime jeiRuntime)
     {
         RUNTIME = jeiRuntime;
+        PurMag.proxy.onJeiAvailable();
     }
 }

@@ -7,8 +7,7 @@ import ru.pearx.purmag.client.gui.controls.recipes.CraftingControl;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPCraftingRenderer;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /*
  * Created by mrAppleXZ on 03.09.17 21:33.

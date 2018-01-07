@@ -9,10 +9,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 import ru.pearx.lib.Colors;
+import ru.pearx.lib.Supplied;
 import ru.pearx.libmc.client.gui.drawables.EntityDrawable;
 import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.libmc.client.gui.drawables.SimpleDrawable;
@@ -398,7 +402,7 @@ public class IfRegistry
                 "multiblocks", 0,
                 Collections.emptyList(),
                 Collections.emptyList(),
-        0));
+                0));
         attachEntry("machinery", new IfEntryLocation("multiblocks", 0, 0));
 
         registerEntry(new IfEntry(
@@ -416,8 +420,10 @@ public class IfRegistry
                                         {false, false, true, true, true, true, false, false},
                                         {true, true, true, false, false, true, true, true},
                                 })),
-        0));
+                0));
         attachEntry("machinery", new IfEntryLocation("stone_crusher", 2, 1));
+
+        MinecraftForge.EVENT_BUS.post(new EventIfRegistry.Setup());
     }
 
     @SideOnly(Side.CLIENT)
@@ -570,6 +576,24 @@ public class IfRegistry
                 new IfPageCrafting(CraftingControl.fromMagibench(Utils.gRL("rope_coil")), CraftingControl.fromMagibench(Utils.gRL("cog_rope_coil"))),
                 new IfPageMultiblock(MultiblockRegistry.STONE_CRUSHER)
         );
+
+        MinecraftForge.EVENT_BUS.post(new EventIfRegistry.SetupClient());
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void setupJei()
+    {
+        for(IfEntry entr : entries)
+        {
+            for(IIfPage p : entr.getPages())
+            {
+                if(p instanceof IfPageCrafting)
+                {
+                    for(Supplied<CraftingControl> sup : ((IfPageCrafting) p).getCrafts())
+                        sup.supply();
+                }
+            }
+        }
     }
 }
 
