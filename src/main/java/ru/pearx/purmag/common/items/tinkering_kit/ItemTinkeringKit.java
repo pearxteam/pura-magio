@@ -38,6 +38,7 @@ public class ItemTinkeringKit extends ItemToolBase
         setTier(tier);
         setMaxDamage(toolMaterial.getMaxUses() / 8);
         attackDamage *= 0.25f;
+        setFull3D();
     }
     public ItemTinkeringKit(ToolMaterial mat, int tier, String name)
     {
@@ -45,6 +46,7 @@ public class ItemTinkeringKit extends ItemToolBase
         setTier(tier);
         setMaxDamage(toolMaterial.getMaxUses() / 8);
         attackDamage *= 0.25f;
+        setFull3D();
     }
 
     @Override

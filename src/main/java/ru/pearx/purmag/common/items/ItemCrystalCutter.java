@@ -24,6 +24,7 @@ public class ItemCrystalCutter extends ItemBase
     {
         super("crystal_cutter");
         setMaxStackSize(1);
+        setFull3D();
     }
 
     @Override

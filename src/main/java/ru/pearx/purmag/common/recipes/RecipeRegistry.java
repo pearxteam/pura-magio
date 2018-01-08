@@ -78,8 +78,8 @@ public class RecipeRegistry
 
         register("iron_tinkering_kit_0", new MagibenchRecipe(new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 0), 0, "multiblocks",
                 "cc ",
-                "c  ",
                 "c C",
+                "cc ",
                 'c', Items.CLAY_BALL, 'C', Blocks.CLAY
         ), e.getRegistry());
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 0), new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 1), 1.1f);
