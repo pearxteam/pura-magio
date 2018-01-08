@@ -10,7 +10,7 @@ import ru.pearx.purmag.client.gui.if_tablet.pages.IPTextRenderer;
  * Created by mrAppleXZ on 22.04.17 21:05.
  */
 @SideOnly(Side.CLIENT)
-public class IfPageText implements IIfPage
+public class IfPageText extends IfPage
 {
     private String unlocalizedText;
     private Object[] properties;
@@ -52,7 +52,7 @@ public class IfPageText implements IIfPage
     }
 
     @Override
-    public IPRenderer getRenderer()
+    public IPRenderer createNewRenderer()
     {
         return new IPTextRenderer(this);
     }

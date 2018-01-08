@@ -13,7 +13,7 @@ import java.util.*;
  * Created by mrAppleXZ on 03.09.17 21:33.
  */
 @SideOnly(Side.CLIENT)
-public class IfPageCrafting implements IIfPage
+public class IfPageCrafting extends IfPage
 {
     private List<Supplied<CraftingControl>> crafts;
 
@@ -33,9 +33,8 @@ public class IfPageCrafting implements IIfPage
         this.crafts = crafts;
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public IPRenderer getRenderer()
+    public IPRenderer createNewRenderer()
     {
         return new IPCraftingRenderer(this);
     }

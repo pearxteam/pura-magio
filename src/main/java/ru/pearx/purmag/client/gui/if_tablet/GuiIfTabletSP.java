@@ -92,26 +92,26 @@ public class GuiIfTabletSP extends GuiIfTabletS
                     sensitive = false;
                     IPRenderer newRend = entry.getPages().get(index).getRenderer();
                     controls.add(newRend);
-                    newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
-                    long startTime = System.currentTimeMillis();
-                    new Thread(() ->
-                    {
-                        int nX = newRend.getX();
-                        int x = rend.getX();
-                        int pos = 0;
-                        while(pos < newRend.getWidth())
-                        {
-                            int t = (int)(System.currentTimeMillis() - startTime);
-                            pos = t > newRend.getWidth() ? newRend.getWidth() : t;
-                            newRend.setX(nX + (next ? -pos : pos));
-                            if (rend != null)
-                                rend.setX(x + (next ? -pos : pos));
-                        }
-                        if (rend != null)
+                    //newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
+                //    long startTime = System.currentTimeMillis();
+                //    new Thread(() ->
+               //     {
+               //         int nX = newRend.getX();
+               //         int x = rend.getX();
+                //        int pos = 0;
+               //         while(pos < newRend.getWidth())
+               //         {
+              //              int t = (int)(System.currentTimeMillis() - startTime);
+              //              pos = t > newRend.getWidth() ? newRend.getWidth() : t;
+              //              newRend.setX(nX + (next ? -pos : pos));
+                 //           if (rend != null)
+               //                 rend.setX(x + (next ? -pos : pos));
+                //        }
+                        //if (rend != null)
                             controls.remove(rend);
                         rend = newRend;
                         sensitive = true;
-                    }).start();
+                    //}).start();
                 }
                 else
                 {

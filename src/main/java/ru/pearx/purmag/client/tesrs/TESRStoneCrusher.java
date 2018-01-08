@@ -30,24 +30,15 @@ public class TESRStoneCrusher extends PXLFastTESR<TileStoneCrusher>
     public static final ModelSupplied MDL_ANVIL = new ModelSupplied(new ModelResourceLocation(new ResourceLocation("minecraft", "anvil"), "damage=0,facing=north"));
 
     @Override
-    public void renderPre(TileStoneCrusher te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
+    public void render(TileStoneCrusher te, double x, double y, double z, float partialTicks, int destroyStage, float alpha, BufferBuilder buffer, Tessellator tes)
     {
         GlStateManager.pushMatrix();
+        resetTrans(te);
         GlStateManager.translate(0.5f, 0, 0.5f);
         GlStateManager.rotate(PXLMC.getHorizontalRotation(te.getRotation()), 0, 1, 0);
         GlStateManager.translate(-0.5f, 0, -0.5f);
-    }
+        setTrans(te);
 
-    @Override
-    public void renderPost(TileStoneCrusher te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
-    {
-        GlStateManager.popMatrix();
-    }
-
-    @Override
-    public void render(TileStoneCrusher te, double x, double y, double z, float partialTicks, int destroyStage, float alpha, BufferBuilder buffer, Tessellator tes)
-    {
-        float sin = MathHelper.sin(MathUtils.toRadians(System.currentTimeMillis() / 10 % 360));
         int deg = (int)(System.currentTimeMillis() / 2 % 360);
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
         PXLModelRenderer.renderModelTESR(te.getWorld(), MDL_MAIN.get(), te.getWorld().getBlockState(te.getPos()), te.getPos(), buffer, false, MathHelper.getPositionRandom(te.getPos()));
@@ -91,6 +82,8 @@ public class TESRStoneCrusher extends PXLFastTESR<TileStoneCrusher>
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
         Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelRenderer().renderModel(te.getWorld(), MDL_ANVIL.get(), te.getWorld().getBlockState(te.getPos()), te.getPos(), buffer, false, MathHelper.getPositionRandom(te.getPos()));
         tes.draw();
+        GlStateManager.popMatrix();
+
         GlStateManager.popMatrix();
     }
 }

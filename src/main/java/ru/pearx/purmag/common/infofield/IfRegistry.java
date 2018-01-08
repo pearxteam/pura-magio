@@ -9,9 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
@@ -423,7 +421,7 @@ public class IfRegistry
                 0));
         attachEntry("machinery", new IfEntryLocation("stone_crusher", 2, 1));
 
-        MinecraftForge.EVENT_BUS.post(new EventIfRegistry.Setup());
+        MinecraftForge.EVENT_BUS.post(new IfRegistryEvent.Setup(this));
     }
 
     @SideOnly(Side.CLIENT)
@@ -577,7 +575,7 @@ public class IfRegistry
                 new IfPageMultiblock(MultiblockRegistry.STONE_CRUSHER)
         );
 
-        MinecraftForge.EVENT_BUS.post(new EventIfRegistry.SetupClient());
+        MinecraftForge.EVENT_BUS.post(new IfRegistryEvent.SetupClient(this));
     }
 
     @SideOnly(Side.CLIENT)

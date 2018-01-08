@@ -11,7 +11,7 @@ import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
  * Created by mrAppleXZ on 07.10.17 12:23.
  */
 @SideOnly(Side.CLIENT)
-public class IfPagePicture implements IIfPage
+public class IfPagePicture extends IfPage
 {
     private IGuiDrawable picture;
     private String unlocalizedText;
@@ -65,7 +65,7 @@ public class IfPagePicture implements IIfPage
     }
 
     @Override
-    public IPRenderer getRenderer()
+    public IPRenderer createNewRenderer()
     {
         return new IPPictureRenderer(this);
     }

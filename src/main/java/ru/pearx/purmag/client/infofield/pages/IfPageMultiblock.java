@@ -30,7 +30,7 @@ public class IfPageMultiblock extends IfPageAbstractBlocks
     }
 
     @Override
-    public IPRenderer getRenderer()
+    public IPRenderer createNewRenderer()
     {
         return new IPMultiblockRenderer(this);
     }

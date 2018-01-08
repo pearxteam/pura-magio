@@ -53,7 +53,7 @@ public class IfPageBlocks extends IfPageAbstractBlocks
     }
 
     @Override
-    public IPRenderer getRenderer()
+    public IPRenderer createNewRenderer()
     {
         return new IPBlocksRenderer(this);
     }

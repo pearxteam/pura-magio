@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.infofield.IfRegistryEvent;
 
 /**
  * Created by mrAppleXZ on 25.06.17 11:54.
@@ -13,14 +14,4 @@ import ru.pearx.purmag.PurMag;
 @Mod.EventBusSubscriber(modid = PurMag.MODID, value = Side.CLIENT)
 public class ClientEvents
 {
-    @SubscribeEvent
-    public static void onTooltip(ItemTooltipEvent e)
-    {
-        //todo [RELEASE] REMOVE DEBUG PRINT!
-        int[] ids = OreDictionary.getOreIDs(e.getItemStack());
-        for (int id : ids)
-        {
-            e.getToolTip().add(OreDictionary.getOreName(id));
-        }
-    }
 }

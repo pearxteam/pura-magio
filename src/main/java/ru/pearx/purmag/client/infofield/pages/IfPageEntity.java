@@ -11,7 +11,7 @@ import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
  * Created by mrAppleXZ on 04.07.17 20:34.
  */
 @SideOnly(Side.CLIENT)
-public class IfPageEntity implements IIfPage
+public class IfPageEntity extends IfPage
 {
     public Class<? extends EntityLivingBase> clazz;
     public String unlocName;
@@ -23,7 +23,7 @@ public class IfPageEntity implements IIfPage
     }
 
     @Override
-    public IPRenderer getRenderer()
+    public IPRenderer createNewRenderer()
     {
         return new IPEntityRenderer(this);
     }

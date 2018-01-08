@@ -12,6 +12,7 @@ import ru.pearx.libmc.client.PXLFastTESR;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.libmc.client.models.PXLModelRenderer;
 import ru.pearx.purmag.common.Utils;
+import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.tiles.TileCodeStorage;
 
 /*
@@ -23,23 +24,24 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
     public static final ModelSupplied TOP = new ModelSupplied(new ModelResourceLocation(Utils.gRL("code_storage/top"), "normal"));
 
     @Override
-    public void renderPre(TileCodeStorage te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
-    {
-        GlStateManager.pushMatrix();
-        GlStateManager.translate(0.5f, 0, 0.5f);
-        GlStateManager.rotate(PXLMC.getHorizontalRotation(te.getWorld().getBlockState(te.getPos()).getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
-        GlStateManager.translate(-0.5f, 0, -0.5f);
-    }
-
-    @Override
     public void render(TileCodeStorage te, double x, double y, double z, float partialTicks, int destroyStage, float partial, BufferBuilder buffer, Tessellator tessellator)
     {
-        long rnd = MathHelper.getPositionRandom(te.getPos());
         IBlockState st = te.getWorld().getBlockState(te.getPos());
+        if(st.getBlock() != BlockRegistry.code_storage)
+            return;
+
+        GlStateManager.pushMatrix();
+        resetTrans(te);
+        GlStateManager.translate(0.5f, 0, 0.5f);
+        GlStateManager.rotate(PXLMC.getHorizontalRotation(st.getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
+        GlStateManager.translate(-0.5f, 0, -0.5f);
+        setTrans(te);
+
+        long rnd = MathHelper.getPositionRandom(te.getPos());
 
         //body
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-        PXLModelRenderer.renderModelTESR(te.getWorld(), BODY.get(), te.getWorld().getBlockState(te.getPos()), te.getPos(), buffer, false, rnd);
+        PXLModelRenderer.renderModelTESR(te.getWorld(), BODY.get(), st, te.getPos(), buffer, false, rnd);
         tessellator.draw();
 
         //top
@@ -78,11 +80,7 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
         PXLModelRenderer.renderModelTESR(te.getWorld(), TOP.get(), st.getBlock().getExtendedState(st, te.getWorld(), te.getPos()), te.getPos(), buffer, false, rnd);
         tessellator.draw();
         GlStateManager.popMatrix();
-    }
 
-    @Override
-    public void renderPost(TileCodeStorage te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
-    {
         GlStateManager.popMatrix();
     }
 }
