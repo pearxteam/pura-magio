@@ -15,6 +15,12 @@ import java.util.Map;
  */
 public class PMConfig
 {
+    public static final String GENERAL = "GENERAL";
+    public static final String WORLD = "WORLD";
+    public static final String CLIENT = "CLIENT";
+    public static final String EXPRESSIONS = "EXPRESSIONS";
+
+
     public ConfigCrystalGenEntry genCrystalRock;
     public ConfigCrystalGenEntry genCrystalSea;
     public ConfigCrystalGenEntry genCrystalFlame;
@@ -27,6 +33,7 @@ public class PMConfig
     public ConfigStructureEntry genLabMedium;
     public ConfigGroundgenEntry genBrulantaFlower;
     public boolean debugMessages;
+    public boolean animateIfTabletPageTransition;
 
     public List<ResourceLocation> enabledExpressions = new ArrayList<>();
 
@@ -43,7 +50,8 @@ public class PMConfig
         genLabSmall = loadStructure(configFile, "Small Laboratory", 0.0007f, 15, 256, new String[]{"-1", "1"}, false);
         genLabMedium = loadStructure(configFile, "Medium Laboratory", 0.0007f, 15, 256, new String[]{"-1", "1"}, false);
         genBrulantaFlower = loadGround(configFile, "Brulanta Flower", 3, 256, 0, 4, 0.1f, new String[]{"-1", "1"}, false);
-        debugMessages = configFile.getBoolean("Debug", "general", false, "Enables or disables the debug logger.");
+        debugMessages = configFile.getBoolean("Debug", GENERAL, false, "Enables or disables the debug logger.");
+        animateIfTabletPageTransition = configFile.getBoolean("Animate IF Tablet page transitions", CLIENT, true, "");
 
         if (configFile.hasChanged())
             configFile.save();
@@ -53,7 +61,7 @@ public class PMConfig
     {
         for(Map.Entry<ResourceLocation, IExpression> expr : PurMag.INSTANCE.getExpressionRegistry().getRegistry().getEntries())
         {
-            boolean bool = configFile.getBoolean(expr.getKey().toString(), "EXPRESSIONS", expr.getValue().enabledByDefault(), expr.getValue().getDescription());
+            boolean bool = configFile.getBoolean(expr.getKey().toString(), EXPRESSIONS, expr.getValue().enabledByDefault(), expr.getValue().getDescription());
             if(bool)
                 enabledExpressions.add(expr.getKey());
         }
@@ -66,16 +74,16 @@ public class PMConfig
     {
         ConfigOregenEntry entr = new ConfigOregenEntry();
 
-        entr.generate = config.getBoolean(name, "WORLD", true, "");
-        entr.minY = config.getInt(name + " Min Y", "WORLD", minY, 0, Integer.MAX_VALUE, "");
-        entr.maxY = config.getInt(name + " Max Y", "WORLD", maxY, 0, Integer.MAX_VALUE, "");
-        entr.minVeinSize = config.getInt(name + " Min Vein Size", "WORLD", minVs, 0, Integer.MAX_VALUE, "");
-        entr.maxVeinSize = config.getInt(name + " Max Vein Size", "WORLD", maxVs, 0, Integer.MAX_VALUE, "");
-        entr.minVeins = config.getInt(name + " Min Veins Per Chunk", "WORLD", minVeins, 0, Integer.MAX_VALUE, "");
-        entr.maxVeins = config.getInt(name + " Max Veins Per Chunk", "WORLD", maxVeins, 0, Integer.MAX_VALUE, "");
-        entr.chance = config.getFloat(name + " Generation Chance", "WORLD", chance, 0, 1, "");
-        entr.dimList = loadIntList(config, name + " DimList", "WORLD", dimList, "");
-        entr.dimListMode = config.getBoolean(name + " DimList Mode", "WORLD", dimListMode, "True = whitelist; False = blacklist");
+        entr.generate = config.getBoolean(name, WORLD, true, "");
+        entr.minY = config.getInt(name + " Min Y", WORLD, minY, 0, Integer.MAX_VALUE, "");
+        entr.maxY = config.getInt(name + " Max Y", WORLD, maxY, 0, Integer.MAX_VALUE, "");
+        entr.minVeinSize = config.getInt(name + " Min Vein Size", WORLD, minVs, 0, Integer.MAX_VALUE, "");
+        entr.maxVeinSize = config.getInt(name + " Max Vein Size", WORLD, maxVs, 0, Integer.MAX_VALUE, "");
+        entr.minVeins = config.getInt(name + " Min Veins Per Chunk", WORLD, minVeins, 0, Integer.MAX_VALUE, "");
+        entr.maxVeins = config.getInt(name + " Max Veins Per Chunk", WORLD, maxVeins, 0, Integer.MAX_VALUE, "");
+        entr.chance = config.getFloat(name + " Generation Chance", WORLD, chance, 0, 1, "");
+        entr.dimList = loadIntList(config, name + " DimList", WORLD, dimList, "");
+        entr.dimListMode = config.getBoolean(name + " DimList Mode", WORLD, dimListMode, "True = whitelist; False = blacklist");
 
         return entr;
     }
@@ -84,12 +92,12 @@ public class PMConfig
     {
         ConfigOreOnOreEntry entr = new ConfigOreOnOreEntry();
 
-        entr.generate = config.getBoolean(orename, "WORLD", true, "");
-        entr.minY = config.getInt(orename + " Min Y", "WORLD", minY, 0, Integer.MAX_VALUE, "");
-        entr.maxY = config.getInt(orename + " Max Y", "WORLD", maxY, 0, Integer.MAX_VALUE, "");
-        entr.chance = config.getFloat(orename + " Generation Chance", "WORLD", chance, 0, 1, "");
-        entr.dimList = loadIntList(config, orename + " DimList", "WORLD", dimList, "");
-        entr.dimListMode = config.getBoolean(orename + " DimList Mode", "WORLD", dimListMode, "True = whitelist; False = blacklist");
+        entr.generate = config.getBoolean(orename, WORLD, true, "");
+        entr.minY = config.getInt(orename + " Min Y", WORLD, minY, 0, Integer.MAX_VALUE, "");
+        entr.maxY = config.getInt(orename + " Max Y", WORLD, maxY, 0, Integer.MAX_VALUE, "");
+        entr.chance = config.getFloat(orename + " Generation Chance", WORLD, chance, 0, 1, "");
+        entr.dimList = loadIntList(config, orename + " DimList", WORLD, dimList, "");
+        entr.dimListMode = config.getBoolean(orename + " DimList Mode", WORLD, dimListMode, "True = whitelist; False = blacklist");
 
         return entr;
     }
@@ -98,12 +106,12 @@ public class PMConfig
     {
         ConfigStructureEntry entr = new ConfigStructureEntry();
 
-        entr.generate = config.getBoolean(name, "WORLD", true, "");
-        entr.chance = config.getFloat(name + " Generation Chance", "WORLD", chance, 0, 1, "");
-        entr.dimList = loadIntList(config, name + " DimList", "WORLD", dimList, "");
-        entr.dimListMode = config.getBoolean(name + " DimList Mode", "WORLD", dimListMode, "True = whitelist; False = blacklist");
-        entr.minY = config.getInt(name + " Min Y", "WORLD", minY, 0, Integer.MAX_VALUE, "");
-        entr.maxY = config.getInt(name + " Max Y", "WORLD", maxY, 0, Integer.MAX_VALUE, "");
+        entr.generate = config.getBoolean(name, WORLD, true, "");
+        entr.chance = config.getFloat(name + " Generation Chance", WORLD, chance, 0, 1, "");
+        entr.dimList = loadIntList(config, name + " DimList", WORLD, dimList, "");
+        entr.dimListMode = config.getBoolean(name + " DimList Mode", WORLD, dimListMode, "True = whitelist; False = blacklist");
+        entr.minY = config.getInt(name + " Min Y", WORLD, minY, 0, Integer.MAX_VALUE, "");
+        entr.maxY = config.getInt(name + " Max Y", WORLD, maxY, 0, Integer.MAX_VALUE, "");
 
         return entr;
     }
@@ -112,14 +120,14 @@ public class PMConfig
     {
         ConfigGroundgenEntry entr = new ConfigGroundgenEntry();
 
-        entr.generate = config.getBoolean(name, "WORLD", true, "");
-        entr.minY = config.getInt(name + " Min Y", "WORLD", minY, 0, Integer.MAX_VALUE, "");
-        entr.maxY = config.getInt(name + " Max Y", "WORLD", maxY, 0, Integer.MAX_VALUE, "");
-        entr.minCount = config.getInt(name + " Min Count Per Chunk", "WORLD", minCount, 0, Integer.MAX_VALUE, "");
-        entr.maxCount = config.getInt(name + " Max Count Per Chunk", "WORLD", maxCount, 0, Integer.MAX_VALUE, "");
-        entr.chance = config.getFloat(name + " Generation Chance", "WORLD", chance, 0, 1, "");
-        entr.dimList = loadIntList(config, name + " DimList", "WORLD", dimList, "");
-        entr.dimListMode = config.getBoolean(name + " DimList Mode", "WORLD", dimListMode, "True = whitelist; False = blacklist");
+        entr.generate = config.getBoolean(name, WORLD, true, "");
+        entr.minY = config.getInt(name + " Min Y", WORLD, minY, 0, Integer.MAX_VALUE, "");
+        entr.maxY = config.getInt(name + " Max Y", WORLD, maxY, 0, Integer.MAX_VALUE, "");
+        entr.minCount = config.getInt(name + " Min Count Per Chunk", WORLD, minCount, 0, Integer.MAX_VALUE, "");
+        entr.maxCount = config.getInt(name + " Max Count Per Chunk", WORLD, maxCount, 0, Integer.MAX_VALUE, "");
+        entr.chance = config.getFloat(name + " Generation Chance", WORLD, chance, 0, 1, "");
+        entr.dimList = loadIntList(config, name + " DimList", WORLD, dimList, "");
+        entr.dimListMode = config.getBoolean(name + " DimList Mode", WORLD, dimListMode, "True = whitelist; False = blacklist");
 
         return entr;
     }
@@ -129,9 +137,9 @@ public class PMConfig
         ConfigCrystalGenEntry entr = new ConfigCrystalGenEntry();
         name = name + " Crystal";
 
-        entr.generate = config.getBoolean(name, "WORLD", true, "");
-        entr.dimList = loadIntList(config, name + " DimList", "WORLD", dimList, "");
-        entr.dimListMode = config.getBoolean(name + " DimList Mode", "WORLD", dimListMode, "True = whitelist; False = blacklist");
+        entr.generate = config.getBoolean(name, WORLD, true, "");
+        entr.dimList = loadIntList(config, name + " DimList", WORLD, dimList, "");
+        entr.dimListMode = config.getBoolean(name + " DimList Mode", WORLD, dimListMode, "True = whitelist; False = blacklist");
 
         return entr;
     }

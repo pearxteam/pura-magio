@@ -28,8 +28,6 @@ IPRenderer<T extends IIfPage> extends Control
         setWidth(getTablet().getWidth() - 16);
         //top + bottom + back height + text + splitter + margins
         setHeight(getTablet().getHeight() - (8 + 8 + 16 + DrawingTools.getFontHeight() + GuiDrawableRegistry.splitter.getHeight() + 4));
-        setX(8);
-        setY(8 + DrawingTools.getFontHeight() + GuiDrawableRegistry.splitter.getHeight() + 4);
     }
 
     public GuiIfTabletSP getTablet()

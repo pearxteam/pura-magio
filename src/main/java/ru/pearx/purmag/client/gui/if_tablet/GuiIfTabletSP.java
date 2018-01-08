@@ -7,6 +7,7 @@ import org.lwjgl.input.Keyboard;
 import ru.pearx.lib.Colors;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.Button;
+import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
@@ -87,39 +88,47 @@ public class GuiIfTabletSP extends GuiIfTabletS
             if (ind >= 0 && ind < entry.getPages().size())
             {
                 this.index = ind;
-                if (playAnim)
+                if (playAnim && PurMag.INSTANCE.config.animateIfTabletPageTransition)
                 {
                     sensitive = false;
-                    IPRenderer newRend = entry.getPages().get(index).getRenderer();
+                    IPRenderer newRend = getRenderer(index);
                     controls.add(newRend);
-                    //newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
-                //    long startTime = System.currentTimeMillis();
-                //    new Thread(() ->
-               //     {
-               //         int nX = newRend.getX();
-               //         int x = rend.getX();
-                //        int pos = 0;
-               //         while(pos < newRend.getWidth())
-               //         {
-              //              int t = (int)(System.currentTimeMillis() - startTime);
-              //              pos = t > newRend.getWidth() ? newRend.getWidth() : t;
-              //              newRend.setX(nX + (next ? -pos : pos));
-                 //           if (rend != null)
-               //                 rend.setX(x + (next ? -pos : pos));
-                //        }
-                        //if (rend != null)
+                    newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
+                    long startTime = System.currentTimeMillis();
+                    new Thread(() ->
+                    {
+                        int nX = newRend.getX();
+                        int x = rend.getX();
+                        int pos = 0;
+                        while(pos < newRend.getWidth())
+                        {
+                            int t = (int)(System.currentTimeMillis() - startTime);
+                            pos = t > newRend.getWidth() ? newRend.getWidth() : t;
+                            newRend.setX(nX + (next ? -pos : pos));
+                            if (rend != null)
+                                rend.setX(x + (next ? -pos : pos));
+                        }
+                        if (rend != null)
                             controls.remove(rend);
                         rend = newRend;
                         sensitive = true;
-                    //}).start();
+                    }).start();
                 }
                 else
                 {
                     controls.remove(rend);
-                    rend = entry.getPages().get(index).getRenderer();
+                    rend = getRenderer(index);
                     controls.add(rend);
                 }
             }
         }
+    }
+
+    private IPRenderer getRenderer(int index)
+    {
+        IPRenderer rend = entry.getPages().get(index).getRenderer();
+        rend.setX(8);
+        rend.setY(8 + DrawingTools.getFontHeight() + GuiDrawableRegistry.splitter.getHeight() + 4);
+        return rend;
     }
 }
