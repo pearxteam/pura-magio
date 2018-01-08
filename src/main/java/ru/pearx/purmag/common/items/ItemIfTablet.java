@@ -13,6 +13,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.client.ClientUtils;
 import ru.pearx.purmag.common.infofield.IfTier;
 import ru.pearx.purmag.common.items.base.ItemBase;
 
@@ -64,7 +65,7 @@ public class ItemIfTablet extends ItemBase
     {
         for (IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
         {
-            ModelLoader.setCustomModelResourceLocation(this, t.getTier(), new ModelResourceLocation(t.getItemModel(), "normal"));
+            ClientUtils.setModelLocationDirBased(this, t.getTier());
         }
     }
 }

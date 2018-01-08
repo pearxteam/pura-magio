@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0":"purmag:items/sip_amulet.2"
+    "layer0":"purmag:items/sip_amulet/0"
   }
 }

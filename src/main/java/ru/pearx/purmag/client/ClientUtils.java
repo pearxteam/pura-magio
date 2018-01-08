@@ -13,18 +13,28 @@ import ru.pearx.purmag.PurMag;
 @SideOnly(Side.CLIENT)
 public class ClientUtils
 {
-    public static ModelResourceLocation getModelResourceLocation(String s)
+    public static void setModelLocationDirBased(Item itm, int meta, String file)
     {
-        return new ModelResourceLocation(PurMag.MODID + ":" + s, "normal");
+        ModelLoader.setCustomModelResourceLocation(itm, meta, new ModelResourceLocation(itm.getRegistryName() + "/" + file, "normal"));
     }
 
-    public static void setModelLocation(Item itm, int meta, String suffix)
+    public static void setModelLocationDirBased(Item itm, int meta)
+    {
+        setModelLocationDirBased(itm, meta, Integer.toString(meta));
+    }
+
+    public static void setModelLocationSimple(Item itm)
+    {
+        setModelLocationSimple(itm, 0, "");
+    }
+
+    public static void setModelLocationSimple(Item itm, int meta)
+    {
+        setModelLocationSimple(itm, meta, "");
+    }
+
+    public static void setModelLocationSimple(Item itm, int meta, String suffix)
     {
         ModelLoader.setCustomModelResourceLocation(itm, meta, new ModelResourceLocation(itm.getRegistryName() + suffix, "normal"));
-    }
-
-    public static void setModelLocation(Item itm)
-    {
-        setModelLocation(itm, 0, "");
     }
 }

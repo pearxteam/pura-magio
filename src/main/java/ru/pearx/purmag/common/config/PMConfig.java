@@ -34,6 +34,7 @@ public class PMConfig
     public ConfigGroundgenEntry genBrulantaFlower;
     public boolean debugMessages;
     public boolean animateIfTabletPageTransition;
+    public boolean testItem;
 
     public List<ResourceLocation> enabledExpressions = new ArrayList<>();
 
@@ -52,6 +53,7 @@ public class PMConfig
         genBrulantaFlower = loadGround(configFile, "Brulanta Flower", 3, 256, 0, 4, 0.1f, new String[]{"-1", "1"}, false);
         debugMessages = configFile.getBoolean("Debug", GENERAL, false, "Enables or disables the debug logger.");
         animateIfTabletPageTransition = configFile.getBoolean("Animate IF Tablet page transitions", CLIENT, true, "");
+        testItem = configFile.getBoolean("Test Item", CLIENT, false, "Enables or disables the test item made for messing with models.");
 
         if (configFile.hasChanged())
             configFile.save();

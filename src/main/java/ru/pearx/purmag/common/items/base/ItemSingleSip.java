@@ -49,6 +49,6 @@ public class ItemSingleSip extends ItemBase
     @SideOnly(Side.CLIENT)
     public void setupModels()
     {
-        ClientUtils.setModelLocation(this);
+        ClientUtils.setModelLocationSimple(this);
     }
 }

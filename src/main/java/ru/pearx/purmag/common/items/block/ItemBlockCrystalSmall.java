@@ -30,6 +30,6 @@ public class ItemBlockCrystalSmall extends ItemBlockBase
     public void setupModels()
     {
         for (BlockCrystalSmall.Type t : BlockCrystalSmall.Type.values())
-            ClientUtils.setModelLocation(this, t.ordinal(), "");
+            ClientUtils.setModelLocationSimple(this, t.ordinal());
     }
 }

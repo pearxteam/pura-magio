@@ -88,7 +88,7 @@ public class ItemSipAmulet extends ItemBase implements IBauble
     public void setupModels()
     {
         for (int i = 0; i < 3; i++)
-            ClientUtils.setModelLocation(this, i, "." + i);
+            ClientUtils.setModelLocationDirBased(this, i);
     }
 
     @Nullable

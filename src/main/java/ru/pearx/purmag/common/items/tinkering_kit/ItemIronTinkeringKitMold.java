@@ -45,7 +45,7 @@ public class ItemIronTinkeringKitMold extends ItemBase
     {
         for(int i = 0; i < STAGES; i++)
         {
-            ClientUtils.setModelLocation(this, i, "_" + i);
+            ClientUtils.setModelLocationDirBased(this, i);
         }
     }
 }

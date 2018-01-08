@@ -13,6 +13,7 @@ import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
+import ru.pearx.purmag.common.config.PMConfig;
 import ru.pearx.purmag.common.items.base.ItemBase;
 import ru.pearx.purmag.common.items.base.ItemBlockBase;
 import ru.pearx.purmag.common.items.block.*;
@@ -102,7 +103,8 @@ public class ItemRegistry
         register(new ItemBlockBrokenWallIfTablet(), reg);
         register(new ItemBlockBase(BlockRegistry.microscope), reg);
         register(new ItemBlockSingleSip(BlockRegistry.luminous_crystal_glass), reg);
-        register(new ItemBlockBase(BlockRegistry.test), reg);
+        if(PurMag.INSTANCE.config.testItem)
+            register(new ItemBlockBase(BlockRegistry.test), reg);
         register(new ItemBlockBase(BlockRegistry.brulanta_flower), reg);
         register(new ItemBase("pyroblend"), reg);
         register(new ItemMortarAndPestle(), reg);

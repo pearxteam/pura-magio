@@ -37,6 +37,6 @@ public class ItemBlockWallIfTablet extends ItemBlockBase
     public void setupModels()
     {
         for (IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
-            ClientUtils.setModelLocation(this, t.getTier(), "");
+            ClientUtils.setModelLocationSimple(this, t.getTier());
     }
 }
