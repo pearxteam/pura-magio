@@ -2,6 +2,7 @@ package ru.pearx.purmag.client.gui.controls.recipes;
 
 import mezz.jei.api.IRecipeRegistry;
 import mezz.jei.api.gui.IRecipeLayoutDrawable;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IFocus;
 import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -9,12 +10,13 @@ import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import mezz.jei.api.recipe.wrapper.ICraftingRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.crash.CrashReport;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.Drawable;
 import ru.pearx.lib.Colors;
 import ru.pearx.lib.Supplied;
 import ru.pearx.libmc.client.gui.DrawingTools;
@@ -31,6 +33,20 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class CraftingControl extends AbstractOfParts
 {
+    private static final Class<? extends IIngredients> INGREDIENTS;
+
+    static
+    {
+        try
+        {
+            INGREDIENTS = Class.forName("mezz.jei.ingredients.Ingredients").asSubclass(IIngredients.class);
+        }
+        catch (ClassNotFoundException e)
+        {
+            throw new ReportedException(CrashReport.makeCrashReport(e, "Unable to locate JEI"));
+        }
+    }
+
     private IRecipeLayoutDrawable draw;
     private String title;
     private int off;
@@ -42,8 +58,8 @@ public class CraftingControl extends AbstractOfParts
         off = DrawingTools.getStringHeight(title) + 2;
         IRecipeRegistry reg = PMJeiPlugin.RUNTIME.getRecipeRegistry();
         IRecipeLayoutDrawable draw = reg.createRecipeLayoutDrawable(category, wrapper, reg.createFocus(IFocus.Mode.OUTPUT, new ItemStack(Items.STICK /*hack*/)));
-        setWidth(category.getBackground().getWidth() + size*2);
-        setHeight(category.getBackground().getHeight() + size*2);
+        setWidth(category.getBackground().getWidth() + size * 2);
+        setHeight(category.getBackground().getHeight() + size * 2);
         draw.setPosition(size, size);
         this.draw = draw;
     }
@@ -55,9 +71,9 @@ public class CraftingControl extends AbstractOfParts
             IRecipeCategory cat = PMJeiPlugin.RUNTIME.getRecipeRegistry().getRecipeCategory(category);
             List<T> lst = PMJeiPlugin.RUNTIME.getRecipeRegistry().getRecipeWrappers(cat);
             T rec = null;
-            for(T wr : lst)
+            for (T wr : lst)
             {
-                if(wr.getRegistryName().equals(id))
+                if (wr.getRegistryName().equals(id))
                 {
                     rec = wr;
                     break;
@@ -77,11 +93,40 @@ public class CraftingControl extends AbstractOfParts
         return fromCrafting(MagibenchRecipeCategory.ID, id);
     }
 
-    public static Supplied<CraftingControl> fromSmelting(ItemStack input)
+    public static <T extends IRecipeWrapper> Supplied<CraftingControl> fromSmelting(ItemStack input)
     {
         return new Supplied<>(() ->
         {
-            return null; //todo
+            IRecipeCategory cat = PMJeiPlugin.RUNTIME.getRecipeRegistry().getRecipeCategory(VanillaRecipeCategoryUid.SMELTING);
+            List<T> lst = PMJeiPlugin.RUNTIME.getRecipeRegistry().getRecipeWrappers(cat);
+            T rec = null;
+            try
+            {
+                IIngredients holder = INGREDIENTS.newInstance();
+                recipeLoop:
+                for (T wr : lst)
+                {
+                    wr.getIngredients(holder);
+                    List<List<ItemStack>> inp = holder.getInputs(ItemStack.class);
+                    if (inp.size() > 0)
+                    {
+                        List<ItemStack> i = inp.get(0);
+                        for (ItemStack is : i)
+                        {
+                            if (ItemStack.areItemStacksEqual(is, input))
+                            {
+                                rec = wr;
+                                break recipeLoop;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (InstantiationException | IllegalAccessException e)
+            {
+                throw new ReportedException(CrashReport.makeCrashReport(e, "Something went wrong when creating furnace recipe renderer"));
+            }
+            return new CraftingControl(cat, rec);
         });
     }
 
@@ -100,7 +145,7 @@ public class CraftingControl extends AbstractOfParts
     @Override
     public void render2()
     {
-        if(isFocused())
+        if (isFocused())
         {
             draw.drawOverlays(Minecraft.getMinecraft(), getLastMouseX(), getLastMouseY());
         }
