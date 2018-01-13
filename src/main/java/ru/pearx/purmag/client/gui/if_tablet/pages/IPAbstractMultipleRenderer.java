@@ -23,20 +23,16 @@ public abstract class IPAbstractMultipleRenderer<T extends IIfPage> extends IPRe
         int margin = 2;
 
         int totalWidth = 0;
-        int height = 0;
         for (Control cont : lst)
         {
             totalWidth += cont.getWidth();
             totalWidth += margin;
-            if (height < cont.getHeight())
-                height = cont.getHeight();
         }
         totalWidth -= margin;
         int x = (getWidth() - totalWidth) / 2;
-        int y = (getHeight() - height) / 2;
         for (Control cont : lst)
         {
-            cont.setPos(x, y);
+            cont.setPos(x, (getHeight() - cont.getHeight()) / 2);
             controls.add(cont);
             x += cont.getWidth();
             x += margin;

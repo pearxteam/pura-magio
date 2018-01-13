@@ -398,14 +398,14 @@ public class IfRegistry
 
         registerEntry(new IfEntry(
                 "multiblocks", 0,
-                Collections.emptyList(),
+                Arrays.asList("magibench"),
                 Collections.emptyList(),
                 0));
         attachEntry("machinery", new IfEntryLocation("multiblocks", 0, 0));
 
         registerEntry(new IfEntry(
                 "stone_crusher", 0,
-                Arrays.asList("magibench", "multiblocks"),
+                Arrays.asList("multiblocks"),
                 Arrays.asList(
                         new IRSMicroscopeResearch(Ingredient.fromItem(Item.getItemFromBlock(Blocks.ANVIL)), new boolean[][]
                                 {
@@ -566,6 +566,8 @@ public class IfRegistry
         registerEntryClient(
                 "multiblocks", new ItemDrawable(new ItemStack(ItemRegistry.iron_tinkering_kit), 1.5f),
                 new IfPageText("multiblocks.0"),
+                new IfPageCrafting(CraftingControl.fromMagibench(Utils.gRL("iron_tinkering_kit_0")), CraftingControl.fromSmelting(new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 0))),
+                new IfPageCrafting(CraftingControl.fromMagibench(Utils.gRL("iron_tinkering_kit_2")), CraftingControl.fromSmelting(new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 2))),
                 new IfPageCrafting(CraftingControl.fromMagibench(Utils.gRL("iron_tinkering_kit")))
         );
         registerEntryClient(

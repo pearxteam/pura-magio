@@ -87,6 +87,9 @@ public class RecipeRegistry
                 new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 1), "nuggetIron", "nuggetIron", "nuggetIron", "nuggetIron", "ingotIron"
         ), e.getRegistry());
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 2), new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 3), 1.1f);
+        register("iron_tinkering_kit", new MagibenchShapelessRecipe(new ItemStack(ItemRegistry.iron_tinkering_kit), 0, "multiblocks",
+                new ItemStack(ItemRegistry.iron_tinkering_kit_mold, 1, 3), "stickWood"
+        ), e.getRegistry());
 
 
         GameRegistry.addSmelting(new ItemStack(ItemRegistry.unfinished_mortar_and_pestle), new ItemStack(ItemRegistry.mortar_and_pestle), 1.1f);
