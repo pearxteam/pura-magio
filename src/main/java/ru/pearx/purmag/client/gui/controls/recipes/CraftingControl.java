@@ -23,6 +23,7 @@ import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.AbstractOfParts;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.compat.jei.PMJeiPlugin;
+import ru.pearx.purmag.common.compat.jei.magibench.AbstractMagibenchRecipeWrapper;
 import ru.pearx.purmag.common.compat.jei.magibench.MagibenchRecipeCategory;
 
 import java.util.List;
@@ -33,6 +34,11 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class CraftingControl extends AbstractOfParts
 {
+    public static final int BORDER_PURMAG_SIZE = 2;
+    public static final ResourceLocation BORDER_PURMAG = Utils.gRL("textures/gui/recipe_transition.png");
+    public static final int BORDER_VANILLA_SIZE = 2;
+    public static final ResourceLocation BORDER_VANILLA = Utils.gRL("textures/gui/recipe_transition_vanilla.png");
+
     private static final Class<? extends IIngredients> INGREDIENTS;
 
     static
@@ -51,9 +57,9 @@ public class CraftingControl extends AbstractOfParts
     private String title;
     private int off;
 
-    public <T extends IRecipeWrapper> CraftingControl(IRecipeCategory<T> category, T wrapper)
+    public <T extends IRecipeWrapper> CraftingControl(IRecipeCategory<T> category, T wrapper, ResourceLocation border, int borderSize)
     {
-        super(Utils.gRL("textures/gui/recipe_transition.png"), 2);
+        super(border, 2);
         this.title = category.getTitle();
         off = DrawingTools.getStringHeight(title) + 2;
         IRecipeRegistry reg = PMJeiPlugin.RUNTIME.getRecipeRegistry();
@@ -79,7 +85,14 @@ public class CraftingControl extends AbstractOfParts
                     break;
                 }
             }
-            return new CraftingControl(cat, rec);
+            ResourceLocation loc = BORDER_VANILLA;
+            int size = BORDER_VANILLA_SIZE;
+            if(rec instanceof AbstractMagibenchRecipeWrapper)
+            {
+                loc = BORDER_PURMAG;
+                size = BORDER_PURMAG_SIZE;
+            }
+            return new CraftingControl(cat, rec, loc, size);
         });
     }
 
@@ -126,7 +139,7 @@ public class CraftingControl extends AbstractOfParts
             {
                 throw new ReportedException(CrashReport.makeCrashReport(e, "Something went wrong when creating furnace recipe renderer"));
             }
-            return new CraftingControl(cat, rec);
+            return new CraftingControl(cat, rec, BORDER_VANILLA, BORDER_VANILLA_SIZE);
         });
     }
 
