@@ -70,7 +70,7 @@ public class CraftingControl extends AbstractOfParts
         this.draw = draw;
     }
 
-    public static <T extends ICraftingRecipeWrapper> Supplied<CraftingControl> fromCrafting(String category, ResourceLocation id)
+    public static <T extends ICraftingRecipeWrapper> Supplied<CraftingControl> fromCrafting(String category, ResourceLocation id, ResourceLocation border, int borderSize)
     {
         return new Supplied<>(() ->
         {
@@ -85,25 +85,18 @@ public class CraftingControl extends AbstractOfParts
                     break;
                 }
             }
-            ResourceLocation loc = BORDER_VANILLA;
-            int size = BORDER_VANILLA_SIZE;
-            if(rec instanceof AbstractMagibenchRecipeWrapper)
-            {
-                loc = BORDER_PURMAG;
-                size = BORDER_PURMAG_SIZE;
-            }
-            return new CraftingControl(cat, rec, loc, size);
+            return new CraftingControl(cat, rec, border, borderSize);
         });
     }
 
     public static Supplied<CraftingControl> fromVanillaCrafting(ResourceLocation id)
     {
-        return fromCrafting(VanillaRecipeCategoryUid.CRAFTING, id);
+        return fromCrafting(VanillaRecipeCategoryUid.CRAFTING, id, BORDER_VANILLA, BORDER_VANILLA_SIZE);
     }
 
     public static Supplied<CraftingControl> fromMagibench(ResourceLocation id)
     {
-        return fromCrafting(MagibenchRecipeCategory.ID, id);
+        return fromCrafting(MagibenchRecipeCategory.ID, id, BORDER_PURMAG, BORDER_PURMAG_SIZE);
     }
 
     public static <T extends IRecipeWrapper> Supplied<CraftingControl> fromSmelting(ItemStack input)
