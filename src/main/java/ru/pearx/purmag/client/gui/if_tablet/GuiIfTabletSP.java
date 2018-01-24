@@ -37,15 +37,27 @@ public class GuiIfTabletSP extends GuiIfTabletS
     public void init()
     {
         super.init();
+        int margin = 8;
+        int w = (getWidth() - margin * 4) / 3;
+        int h = 16;
+        int y = getHeight() - margin - h;
+
+        Button btnLeft = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.if_tablet.left"), () -> update(false, true));
+        btnLeft.setSize(w, h);
+        btnLeft.setPos(margin, y);
+        controls.add(btnLeft);
+
         Button btnBack = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.if_tablet.back"), this::goBack);
-        //borders (8 * 2)
-        int backWidth = getWidth() - 16;
-        int y = getHeight() - 16 - 8;
-        btnBack.setWidth(backWidth);
-        btnBack.setHeight(16);
-        btnBack.setX(8);
-        btnBack.setY(y);
+        btnBack.setSize(w, h);
+        btnBack.setPos(margin + w + margin, y);
         controls.add(btnBack);
+
+        Button btnRight = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.if_tablet.right"), () -> update(true, true));
+        btnRight.setSize(w, h);
+        btnRight.setPos(margin + w + margin + w + margin, y);
+        controls.add(btnRight);
+
+
 
         index = index - 1;
         update(true, false);
@@ -102,7 +114,8 @@ public class GuiIfTabletSP extends GuiIfTabletS
                         int pos = 0;
                         while(pos < newRend.getWidth())
                         {
-                            int t = (int)(System.currentTimeMillis() - startTime);
+                            int t = (int)(System.currentTimeMillis() - startTime) * 3;
+
                             pos = t > newRend.getWidth() ? newRend.getWidth() : t;
                             newRend.setX(nX + (next ? -pos : pos));
                             if (rend != null)
