@@ -3,7 +3,7 @@ package ru.pearx.purmag.client.infofield.pages;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.lib.Supplied;
-import ru.pearx.purmag.client.gui.controls.recipes.CraftingControl;
+import ru.pearx.purmag.client.gui.controls.CraftingControl;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPCraftingRenderer;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
 

@@ -32,7 +32,7 @@ public class IRSKillEntityRenderer extends IRSRenderer<IRSKillEntity>
     public void init()
     {
         super.init();
-        controls.add(showcase);
+        getControls().add(showcase);
         showcase.setWidth(getWidth());
         showcase.setHeight(getHeight() - DrawingTools.getFontHeight() - 2 - 5);
     }

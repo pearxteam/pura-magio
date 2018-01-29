@@ -51,7 +51,7 @@ public class CPacketCheckMicroscopeResearchResponse implements IMessage
                 {
                     if (Minecraft.getMinecraft().currentScreen instanceof PXLGui)
                     {
-                        for (Control c : ((PXLGui) Minecraft.getMinecraft().currentScreen).gui.controls)
+                        for (Control c : ((PXLGui) Minecraft.getMinecraft().currentScreen).gui.getControls())
                         {
                             if (c instanceof GuiMicroscopeResearch)
                             {

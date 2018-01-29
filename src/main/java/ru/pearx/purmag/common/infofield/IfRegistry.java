@@ -25,7 +25,7 @@ import ru.pearx.libmc.common.structure.blockarray.BlockArray;
 import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
-import ru.pearx.purmag.client.gui.controls.recipes.CraftingControl;
+import ru.pearx.purmag.client.gui.controls.CraftingControl;
 import ru.pearx.purmag.client.infofield.pages.*;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.Utils;

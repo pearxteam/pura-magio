@@ -65,7 +65,7 @@ public class GuiCodeStorageUnlock extends GuiCodeStorageLockUnlock
     @Override
     public void init()
     {
-        controls.add(code);
-        controls.add(done);
+        getControls().add(code);
+        getControls().add(done);
     }
 }

@@ -85,9 +85,9 @@ public class GuiTranslationDesk extends GuiOnScreen
     public void init()
     {
         updateStatus();
-        controls.add(btnStart);
-        controls.add(panel);
-        controls.add(barRate);
+        getControls().add(btnStart);
+        getControls().add(panel);
+        getControls().add(barRate);
     }
 
     public void updateStatus()

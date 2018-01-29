@@ -51,7 +51,7 @@ public class GuiMicroscope extends GuiAbstractMicroscope
                     Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiMicroscopeResearch(pos, step, entrName))));
             btnResearch.setSize(128, 32);
             btnResearch.setPos(getWidth() - btnResearch.getWidth() - margin, getHeight() - btnResearch.getHeight() - margin);
-            controls.add(btnResearch);
+            getControls().add(btnResearch);
         }
     }
 

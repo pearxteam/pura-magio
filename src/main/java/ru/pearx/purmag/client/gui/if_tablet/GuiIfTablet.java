@@ -63,8 +63,8 @@ public class GuiIfTablet extends GuiOnScreen
 
     public void changeScreen(GuiIfTabletS screen)
     {
-        controls.remove(if_screen);
+        getControls().remove(if_screen);
         if_screen = screen;
-        controls.add(screen);
+        getControls().add(screen);
     }
 }

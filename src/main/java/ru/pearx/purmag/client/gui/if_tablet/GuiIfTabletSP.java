@@ -45,19 +45,17 @@ public class GuiIfTabletSP extends GuiIfTabletS
         Button btnLeft = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.if_tablet.left"), () -> update(false, true));
         btnLeft.setSize(w, h);
         btnLeft.setPos(margin, y);
-        controls.add(btnLeft);
+        getControls().add(btnLeft);
 
         Button btnBack = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.if_tablet.back"), this::goBack);
         btnBack.setSize(w, h);
         btnBack.setPos(margin + w + margin, y);
-        controls.add(btnBack);
+        getControls().add(btnBack);
 
         Button btnRight = new Button(PurMagClient.BUTTON_TEXTURE, I18n.format("misc.gui.if_tablet.right"), () -> update(true, true));
         btnRight.setSize(w, h);
         btnRight.setPos(margin + w + margin + w + margin, y);
-        controls.add(btnRight);
-
-
+        getControls().add(btnRight);
 
         index = index - 1;
         update(true, false);
@@ -104,7 +102,7 @@ public class GuiIfTabletSP extends GuiIfTabletS
                 {
                     sensitive = false;
                     IPRenderer newRend = getRenderer(index);
-                    controls.add(newRend);
+                    getControls().add(newRend);
                     newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
                     long startTime = System.currentTimeMillis();
                     new Thread(() ->
@@ -122,16 +120,16 @@ public class GuiIfTabletSP extends GuiIfTabletS
                                 rend.setX(x + (next ? -pos : pos));
                         }
                         if (rend != null)
-                            controls.remove(rend);
+                            getControls().remove(rend);
                         rend = newRend;
                         sensitive = true;
                     }).start();
                 }
                 else
                 {
-                    controls.remove(rend);
+                    getControls().remove(rend);
                     rend = getRenderer(index);
-                    controls.add(rend);
+                    getControls().add(rend);
                 }
             }
         }

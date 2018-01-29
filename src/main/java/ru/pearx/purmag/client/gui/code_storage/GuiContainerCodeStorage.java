@@ -46,7 +46,7 @@ public class GuiContainerCodeStorage extends PXLGuiContainerControls
         {
             if(lock != null)
             {
-                controls.add(lock);
+                getControls().add(lock);
             }
         }
     }

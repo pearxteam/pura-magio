@@ -56,8 +56,8 @@ public class GuiMicroscopeResearch extends GuiAbstractMicroscope
     @Override
     public void init()
     {
-        controls.add(panel);
-        controls.add(btnCheck);
+        getControls().add(panel);
+        getControls().add(btnCheck);
     }
 
     @Override

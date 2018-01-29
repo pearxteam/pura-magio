@@ -28,7 +28,7 @@ public abstract class IPAbstractBlocksRenderer<T extends IfPageAbstractBlocks> e
         int y = DrawingTools.getStringHeight(page.getText());
         showcase.setSize(getWidth(), getHeight() - y);
         showcase.setPos(0, y);
-        controls.add(showcase);
+        getControls().add(showcase);
     }
 
     @Override

@@ -76,7 +76,7 @@ public class GuiContainerMagibench extends PXLGuiContainerControls
         @Override
         public void init()
         {
-            controls.add(cont);
+            getControls().add(cont);
         }
     }
 

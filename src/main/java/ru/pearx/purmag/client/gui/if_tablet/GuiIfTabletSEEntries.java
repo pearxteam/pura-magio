@@ -54,7 +54,7 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
 
     public void reload()
     {
-        controls.clear();
+        getControls().clear();
 
         int minX = 0, minY = 0, maxX = 0, maxY = 0;
 
@@ -75,16 +75,16 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
                 GuiIfTabletSEEntry entrC = new GuiIfTabletSEEntry(entr);
                 entrC.setX(loc.getX() * entrSize + ((getTabletScreen().getWidth() - entrSize) / 2));
                 entrC.setY(-loc.getY() * entrSize + ((getTabletScreen().getHeight() - entrSize) / 2));
-                controls.add(entrC);
+                getControls().add(entrC);
             }
         }
-        for (Control c : controls)
+        for (Control c : getControls())
         {
             if (c instanceof GuiIfTabletSEEntry)
             {
                 List<Point> points = new ArrayList<>();
                 GuiIfTabletSEEntry par = (GuiIfTabletSEEntry) c;
-                for (Control c1 : controls)
+                for (Control c1 : getControls())
                 {
                     if (c1 instanceof GuiIfTabletSEEntry)
                     {
@@ -115,7 +115,7 @@ public class GuiIfTabletSEEntries extends GuiIfTabletSEPart
         {
             offsetX = newX;
             offsetY = newY;
-            for (Control cont : controls)
+            for (Control cont : getControls())
             {
                 cont.setX(cont.getX() + pX, false);
                 cont.setY(cont.getY() + pY, false);

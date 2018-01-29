@@ -33,7 +33,7 @@ public class IRSBlockInteractRenderer extends IRSRenderer<IRSBlockInteract>
     {
         super.init();
         showcase.setSize(getWidth(), getHeight() - DrawingTools.getStringHeight(step.getDescription()));
-        controls.add(showcase);
+        getControls().add(showcase);
     }
 
     @Override

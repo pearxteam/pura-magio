@@ -91,7 +91,7 @@ public class CodeStorageProcessor extends StructureProcessor
         public void init()
         {
             super.init();
-            controls.add(table);
+            getControls().add(table);
         }
 
         @Override

@@ -38,6 +38,6 @@ public class IPEntityRenderer extends IPRenderer<IfPageEntity>
         super.init();
         showcase.setPos(0, DrawingTools.getFontHeight());
         showcase.setSize(getWidth(), getHeight() - DrawingTools.getFontHeight());
-        controls.add(showcase);
+        getControls().add(showcase);
     }
 }

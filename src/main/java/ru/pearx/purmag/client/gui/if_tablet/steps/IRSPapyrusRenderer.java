@@ -16,7 +16,6 @@ import ru.pearx.purmag.common.items.ItemRegistry;
 @SideOnly(Side.CLIENT)
 public class IRSPapyrusRenderer extends IRSRenderer<IRSPapyrus>
 {
-    private int lastX, lastY;
     private ItemDrawable draw;
 
     public IRSPapyrusRenderer(IRSPapyrus step)
@@ -34,24 +33,6 @@ public class IRSPapyrusRenderer extends IRSRenderer<IRSPapyrus>
         }
         DrawingTools.drawString(step.getDescription(), 5, draw.getHeight() + 5, Colors.WHITE, getWidth() - 5);
         Point pos = getPosOnScreen();
-        draw.drawWithTooltip(getGuiScreen(), (getWidth() - draw.getWidth()) / 2, 0, lastX, lastY, pos.getX(), pos.getY());
-    }
-
-    @Override
-    public void mouseMove(int x, int y, int dx, int dy)
-    {
-        lastX = x;
-        lastY = y;
-    }
-
-    @Override
-    public void setFocused(boolean val)
-    {
-        super.setFocused(val);
-        if (!val)
-        {
-            lastX = -1;
-            lastY = -1;
-        }
+        draw.drawWithTooltip(getGuiScreen(), (getWidth() - draw.getWidth()) / 2, 0, getLastMouseX(), getLastMouseY(), pos.getX(), pos.getY());
     }
 }

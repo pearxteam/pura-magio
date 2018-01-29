@@ -4,7 +4,7 @@ import net.minecraft.client.resources.I18n;
 import ru.pearx.lib.Colors;
 import ru.pearx.lib.Supplied;
 import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.purmag.client.gui.controls.recipes.CraftingControl;
+import ru.pearx.purmag.client.gui.controls.CraftingControl;
 import ru.pearx.purmag.client.infofield.pages.IfPageCrafting;
 
 import java.util.ArrayList;

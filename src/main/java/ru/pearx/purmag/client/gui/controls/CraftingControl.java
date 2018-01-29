@@ -1,4 +1,4 @@
-package ru.pearx.purmag.client.gui.controls.recipes;
+package ru.pearx.purmag.client.gui.controls;
 
 import mezz.jei.api.IRecipeRegistry;
 import mezz.jei.api.gui.IRecipeLayoutDrawable;
@@ -23,7 +23,6 @@ import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.common.AbstractOfParts;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.compat.jei.PMJeiPlugin;
-import ru.pearx.purmag.common.compat.jei.magibench.AbstractMagibenchRecipeWrapper;
 import ru.pearx.purmag.common.compat.jei.magibench.MagibenchRecipeCategory;
 
 import java.util.List;

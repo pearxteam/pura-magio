@@ -33,7 +33,7 @@ public abstract class IPAbstractMultipleRenderer<T extends IIfPage> extends IPRe
         for (Control cont : lst)
         {
             cont.setPos(x, (getHeight() - cont.getHeight()) / 2);
-            controls.add(cont);
+            getControls().add(cont);
             x += cont.getWidth();
             x += margin;
         }
