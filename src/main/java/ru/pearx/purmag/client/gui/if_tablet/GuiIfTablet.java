@@ -7,6 +7,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.controls.GuiOnScreen;
 import ru.pearx.libmc.client.gui.TexturePart;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.client.PurMagClient;
 import ru.pearx.purmag.common.infofield.IfTier;
 
 /**

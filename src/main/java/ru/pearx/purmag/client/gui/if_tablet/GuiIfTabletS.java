@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.libmc.client.gui.controls.Control;
+import ru.pearx.purmag.PurMag;
 
 /**
  * Created by mrAppleXZ on 28.04.17 11:27.
@@ -12,30 +13,6 @@ import ru.pearx.libmc.client.gui.controls.Control;
 @SideOnly(Side.CLIENT)
 public class GuiIfTabletS extends Control
 {
-    protected int bit = 0;
-
-    @Override
-    public void render()
-    {
-        enableStencil();
-    }
-
-    public void enableStencil()
-    {
-        bit = DrawingTools.drawStencil(getWidth(), getHeight());
-    }
-
-    public void disableStencil()
-    {
-        DrawingTools.removeStencil(bit);
-    }
-
-    @Override
-    public void postRender()
-    {
-        disableStencil();
-    }
-
     public GuiIfTablet getTablet()
     {
         if (getParent() instanceof GuiIfTablet)
@@ -67,5 +44,11 @@ public class GuiIfTabletS extends Control
     public void goBack()
     {
         getTablet().changeScreen(getTablet().se);
+    }
+
+    @Override
+    public boolean shouldStencil()
+    {
+        return true;
     }
 }

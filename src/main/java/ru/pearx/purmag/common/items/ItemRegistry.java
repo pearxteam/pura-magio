@@ -13,7 +13,6 @@ import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
-import ru.pearx.purmag.common.config.PMConfig;
 import ru.pearx.purmag.common.items.base.ItemBase;
 import ru.pearx.purmag.common.items.base.ItemBlockBase;
 import ru.pearx.purmag.common.items.block.*;

@@ -45,14 +45,18 @@ public abstract class GuiAbstractMicroscope extends GuiOnScreen
         GlStateManager.pushMatrix();
         if(PurMag.INSTANCE.random.nextInt(5) == 0)
             yOff = RandomUtils.nextInt(-8, 9, PurMag.INSTANCE.random);
-        int bit = DrawingTools.drawStencil(getWidth(), getHeight());
         GlStateManager.translate(0, yOff, 0);
         lcd.draw(null, 0, 0);
         GlStateManager.popMatrix();
         frame.draw(null, 0, 0);
         GlStateManager.popMatrix();
         GlStateManager.disableBlend();
-        DrawingTools.removeStencil(bit);
+    }
+
+    @Override
+    public boolean shouldStencil()
+    {
+        return true;
     }
 
     public abstract void renderMainPart();

@@ -62,7 +62,6 @@ public class GuiTranslationDeskPanel extends Control
     @Override
     public void render()
     {
-        int bit = DrawingTools.drawStencil(getWidth(), getHeight());
         DrawingTools.drawRectangle(0, 0, getWidth(), getHeight());
 
         List<Entry> toRemove = new ArrayList<>();
@@ -121,7 +120,6 @@ public class GuiTranslationDeskPanel extends Control
 
         if (entries.size() == 0 && getDesk().status == GuiTranslationDesk.Status.TRANSLATING)
             done();
-        DrawingTools.removeStencil(bit);
     }
 
     public void minRate()
@@ -202,6 +200,12 @@ public class GuiTranslationDeskPanel extends Control
         stop();
         if (updSt)
             getDesk().status = GuiTranslationDesk.Status.CANT_TRANSLATE;
+    }
+
+    @Override
+    public boolean shouldStencil()
+    {
+        return true;
     }
 
     @SideOnly(Side.CLIENT)

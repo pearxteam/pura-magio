@@ -5,7 +5,6 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.purmag.PurMag;
 
 /**
  * Created by mrAppleXZ on 08.04.17 18:53.
