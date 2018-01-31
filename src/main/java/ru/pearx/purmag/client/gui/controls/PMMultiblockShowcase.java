@@ -21,7 +21,7 @@ public class PMMultiblockShowcase extends BlockArrayShowcase
 
     public PMMultiblockShowcase(ResourceLocation buttonTex, PMMultiblock multiblock)
     {
-        super(buttonTex, multiblock.getStructure());
+        super(buttonTex, multiblock.getStructure(), true);
         this.multiblock = multiblock;
     }
 

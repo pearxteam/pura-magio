@@ -46,7 +46,6 @@ public class ClientProxy extends CommonProxy
     @Override
     public void preInit()
     {
-        Minecraft.getMinecraft().getFramebuffer().enableStencil();
         OBJLoader.INSTANCE.addDomain(PurMag.MODID);
         EntityRegistry.registerClient();
         PurMagClient.INSTANCE.getMicroscopeDataBuilder().setup();
