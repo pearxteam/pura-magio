@@ -20,7 +20,6 @@ public class GuiIfTabletSEEntry extends Control
 {
     public IfEntry entry;
     Point[] childs;
-    private int prevX, prevY;
 
     public GuiIfTabletSEEntry(IfEntry entry)
     {
@@ -67,8 +66,8 @@ public class GuiIfTabletSEEntry extends Control
         {
             GlStateManager.pushMatrix();
             GlStateManager.translate(0, 0, 700);
-            DrawingTools.drawHoveringText(entry.getDisplayName(), prevX, prevY, Colors.WHITE, true, 1, Minecraft.getMinecraft().fontRenderer);
-            DrawingTools.drawHoveringText(entry.getDisplayDescription(), prevX, prevY + 9, Colors.WHITE, true, 0.9f, Minecraft.getMinecraft().fontRenderer);
+            DrawingTools.drawHoveringText(entry.getDisplayName(), getLastMouseX(), getLastMouseY(), Colors.WHITE, true, 1, Minecraft.getMinecraft().fontRenderer);
+            DrawingTools.drawHoveringText(entry.getDisplayDescription(), getLastMouseX(), getLastMouseY()+ 9, Colors.WHITE, true, 0.9f, Minecraft.getMinecraft().fontRenderer);
             GlStateManager.popMatrix();
         }
     }
@@ -80,13 +79,6 @@ public class GuiIfTabletSEEntry extends Control
             return (GuiIfTabletSEEntries) getParent();
         }
         return null;
-    }
-
-    @Override
-    public void mouseMove(int x, int y, int dx, int dy)
-    {
-        prevX = x;
-        prevY = y;
     }
 
     @Override
