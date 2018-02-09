@@ -35,7 +35,7 @@ public class CraftingControl extends AbstractOfParts
 {
     public static final int BORDER_PURMAG_SIZE = 2;
     public static final ResourceLocation BORDER_PURMAG = Utils.gRL("textures/gui/recipe_transition.png");
-    public static final int BORDER_VANILLA_SIZE = 2;
+    public static final int BORDER_VANILLA_SIZE = 4;
     public static final ResourceLocation BORDER_VANILLA = Utils.gRL("textures/gui/recipe_transition_vanilla.png");
 
     private static final Class<? extends IIngredients> INGREDIENTS;
