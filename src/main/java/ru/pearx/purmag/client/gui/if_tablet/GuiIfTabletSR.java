@@ -42,8 +42,8 @@ public class GuiIfTabletSR extends GuiIfTabletS
         btnBack.setY(getHeight() - 24 - 8);
         btnBack.setWidth(getWidth() - 16);
         btnBack.setHeight(24);
-        getControls().add(entry.getSteps().get(doneSteps).getRenderer());
         getControls().add(btnBack);
+        getControls().add(entry.getSteps().get(doneSteps).getRenderer());
     }
 
     @Override
