@@ -24,7 +24,6 @@ public class GuiIfTabletSP extends GuiIfTabletS
     public int index;
 
     private IPRenderer rend;
-    private boolean sensitive = true;
 
     public GuiIfTabletSP(IfEntry entr, int index)
     {
@@ -90,40 +89,65 @@ public class GuiIfTabletSP extends GuiIfTabletS
         GuiDrawableRegistry.splitter.draw(getGuiScreen(), (getWidth() - GuiDrawableRegistry.splitter.getWidth()) / 2, DrawingTools.getFontHeight() + 8 + 2);
     }
 
+    private boolean playingAnim;
+    private boolean next;
+    private long startTime = -1;
+    private IPRenderer newRend;
+    private int nX;
+    private int x;
+    private int pos;
+
+    @Override
+    public void update()
+    {
+        if(playingAnim)
+        {
+            if(startTime == -1)
+            {
+                //init
+                newRend = getRenderer(index);
+                getControls().add(newRend);
+                newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
+                startTime = System.currentTimeMillis();
+                nX = newRend.getX();
+                x = rend.getX();
+                pos = 0;
+            }
+            {
+                //process
+                int t = (int) ((System.currentTimeMillis() - startTime) * 2f);
+
+                pos = t > newRend.getWidth() ? newRend.getWidth() : t;
+                newRend.setX(nX + (next ? -pos : pos));
+                rend.setX(x + (next ? -pos : pos));
+            }
+            if(pos >= newRend.getWidth())
+            {
+                //end
+                getControls().remove(rend);
+                rend = newRend;
+                playingAnim = false;
+                startTime = -1;
+                newRend = null;
+                nX = 0;
+                x = 0;
+                pos = 0;
+            }
+        }
+    }
+
     public void update(boolean next, boolean playAnim)
     {
-        if (sensitive)
+        if (!playingAnim)
         {
             int ind = index + (next ? 1 : -1);
             if (ind >= 0 && ind < entry.getPages().size())
             {
                 this.index = ind;
-                if (playAnim && PurMag.INSTANCE.config.animateIfTabletPageTransition)
+                if (playAnim && PurMag.INSTANCE.config.ifTabletPageAnimationSpeed > 0)
                 {
-                    sensitive = false;
-                    IPRenderer newRend = getRenderer(index);
-                    getControls().add(newRend);
-                    newRend.setX(next ? newRend.getX() + newRend.getWidth() : newRend.getX() - newRend.getWidth());
-                    long startTime = System.currentTimeMillis();
-                    new Thread(() ->
-                    {
-                        int nX = newRend.getX();
-                        int x = rend.getX();
-                        int pos = 0;
-                        while(pos < newRend.getWidth())
-                        {
-                            int t = (int)(System.currentTimeMillis() - startTime) * 3;
-
-                            pos = t > newRend.getWidth() ? newRend.getWidth() : t;
-                            newRend.setX(nX + (next ? -pos : pos));
-                            if (rend != null)
-                                rend.setX(x + (next ? -pos : pos));
-                        }
-                        if (rend != null)
-                            getControls().remove(rend);
-                        rend = newRend;
-                        sensitive = true;
-                    }).start();
+                    this.playingAnim = true;
+                    this.next = next;
                 }
                 else
                 {
