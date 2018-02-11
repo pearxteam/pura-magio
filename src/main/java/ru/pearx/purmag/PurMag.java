@@ -1,5 +1,7 @@
 package ru.pearx.purmag;
 
+import mcmultipart.api.addon.IMCMPAddon;
+import mcmultipart.api.addon.MCMPAddon;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;

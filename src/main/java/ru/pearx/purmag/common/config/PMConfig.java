@@ -52,7 +52,7 @@ public class PMConfig
         genLabMedium = loadStructure(configFile, "Medium Laboratory", 0.0007f, 15, 256, new String[]{"-1", "1"}, false);
         genBrulantaFlower = loadGround(configFile, "Brulanta Flower", 3, 256, 0, 4, 0.1f, new String[]{"-1", "1"}, false);
         debugMessages = configFile.getBoolean("Debug", GENERAL, false, "Enables or disables the debug logger.");
-        ifTabletPageAnimationSpeed = configFile.getFloat("IF Tablet Page Animation Speed", CLIENT, 2.1f, 0f, Float.MAX_VALUE, "Speed of the IF Tablet page transition animation. Set to \"0\" to disable the animation.");
+        ifTabletPageAnimationSpeed = configFile.getFloat("IF Tablet Page Animation Speed", CLIENT, 2.8f, 0f, Float.MAX_VALUE, "Speed of the IF Tablet page transition animation. Set to \"0\" to disable the animation.");
         testItem = configFile.getBoolean("Test Item", CLIENT, false, "Enables or disables the test item made for messing with models.");
 
         if (configFile.hasChanged())

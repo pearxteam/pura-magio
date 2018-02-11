@@ -7,21 +7,22 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 repositories {
-  maven {
-    name "progwml"
-    url "http://dvs1.progwml6.com/files/maven"
-  }
-  maven {
-    name "tterrag"
-    url "http://maven.tterrag.com"
-  }
-  maven {
-    name = "CoFH Maven"
-    url = "http://maven.covers1624.net"
-  }
+    maven {
+        name "progwml"
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+    maven {
+        name "tterrag"
+        url "http://maven.tterrag.com"
+    }
+    maven {
+        name = "CoFH Maven"
+        url = "http://maven.covers1624.net"
+    }
 }
 
 version = "${mod_version}.${build_number}"
