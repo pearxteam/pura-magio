@@ -88,16 +88,16 @@ public class IfTier
         private IGuiDrawable entryBackground;
         private boolean shouldGlow;
         private ResourceLocation texture;
-        private Color lineColorStart;
-        private Color lineColorEnd;
+        private Color lineColor;
+        private Color lineColorActive;
 
-        public TabletData(IGuiDrawable entryBackground, boolean shouldGlow, ResourceLocation texture, Color lineColorStart, Color lineColorEnd)
+        public TabletData(IGuiDrawable entryBackground, boolean shouldGlow, ResourceLocation texture, Color lineColor, Color lineColorActive)
         {
             this.entryBackground = entryBackground;
             this.shouldGlow = shouldGlow;
             this.texture = texture;
-            this.lineColorStart = lineColorStart;
-            this.lineColorEnd = lineColorEnd;
+            this.lineColor = lineColor;
+            this.lineColorActive = lineColorActive;
         }
 
         public IGuiDrawable getEntryBackground(IfEntry entry, int currentSteps)
@@ -130,24 +130,24 @@ public class IfTier
             this.texture = texture;
         }
 
-        public Color getLineColorStart()
+        public Color getLineColor()
         {
-            return lineColorStart;
+            return lineColor;
         }
 
-        public void setLineColorStart(Color lineColorStart)
+        public void setLineColor(Color lineColor)
         {
-            this.lineColorStart = lineColorStart;
+            this.lineColor = lineColor;
         }
 
-        public Color getLineColorEnd()
+        public Color getLineColorActive()
         {
-            return lineColorEnd;
+            return lineColorActive;
         }
 
-        public void setLineColorEnd(Color lineColorEnd)
+        public void setLineColorActive(Color lineColorActive)
         {
-            this.lineColorEnd = lineColorEnd;
+            this.lineColorActive = lineColorActive;
         }
     }
 }

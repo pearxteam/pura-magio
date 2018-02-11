@@ -19,7 +19,7 @@ import ru.pearx.purmag.common.infofield.IfEntry;
 public class GuiIfTabletSEEntry extends Control
 {
     public IfEntry entry;
-    Point[] childs;
+    public Point[] childs;
 
     public GuiIfTabletSEEntry(IfEntry entry)
     {
@@ -33,7 +33,18 @@ public class GuiIfTabletSEEntry extends Control
     {
         for (Point p : childs)
         {
-            DrawingTools.drawLine(getWidth() / 2, getHeight() / 2, p.getX(), p.getY(), 3, getEntries().getTabletScreen().getTablet().data.getLineColorStart(), getEntries().getTabletScreen().getTablet().data.getLineColorEnd());
+            int x0 = getWidth() / 2;
+            int y0 = getHeight() / 2;
+            int x1 = p.getX();
+            int y1 = p.getY();
+
+            DrawingTools.drawBezier(0.1f, 3, x0, y0, x0, y1, x1, y1, (pts, pt, i) ->
+            {
+                int curr = (int)(System.currentTimeMillis() / 50 % pts.length);
+                int currRange = 1;
+                boolean b = i >= curr - currRange && i <= curr + currRange;
+                return b ? getEntries().getTabletScreen().getTablet().data.getLineColorActive() : getEntries().getTabletScreen().getTablet().data.getLineColor();
+            });
         }
         if ((getX() + getWidth()) <= 0 || (getY() + getHeight()) <= 0 || getX() >= getEntries().getWidth() || getY() >= getEntries().getHeight())
             return;

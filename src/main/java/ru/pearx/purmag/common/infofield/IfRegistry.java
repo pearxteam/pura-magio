@@ -170,7 +170,7 @@ public class IfRegistry
     @SideOnly(Side.CLIENT)
     public void setupIfTiersClient()
     {
-        registerTierClient(0, new IfTier.TabletData(GuiDrawableRegistry.paperEntry, false, Utils.gRL("textures/gui/if_tablet/0.png"), Colors.WHITE, Colors.BLACK)
+        registerTierClient(0, new IfTier.TabletData(GuiDrawableRegistry.paperEntry, false, Utils.gRL("textures/gui/if_tablet/0.png"), Colors.GREY_100, Colors.GREY_700)
         {
             IGuiDrawable done = GuiDrawableRegistry.paperEntryCompleted;
             @Override
@@ -183,8 +183,8 @@ public class IfRegistry
                     return done;
             }
         }, Utils.gRL("models/wall_if_tablet/0"), Utils.gRL("if_tablet/0"));
-        registerTierClient(1, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.gRL("textures/gui/if_tablet/1.png"), Colors.LIGHTGREEN_100, Colors.GREEN_900), Utils.gRL("models/wall_if_tablet/1"), Utils.gRL("if_tablet/1"));
-        registerTierClient(2, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.gRL("textures/gui/if_tablet/2.png"), Colors.LIGHTGREEN_100, Colors.GREEN_900), Utils.gRL("models/wall_if_tablet/2"), Utils.gRL("if_tablet/2"));
+        registerTierClient(1, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.gRL("textures/gui/if_tablet/1.png"), Colors.LIGHTGREEN_200, Colors.GREEN_800), Utils.gRL("models/wall_if_tablet/1"), Utils.gRL("if_tablet/1"));
+        registerTierClient(2, new IfTier.TabletData(GuiDrawableRegistry.runes, true, Utils.gRL("textures/gui/if_tablet/2.png"), Colors.LIGHTGREEN_200, Colors.GREEN_900), Utils.gRL("models/wall_if_tablet/2"), Utils.gRL("if_tablet/2"));
     }
 
     public void setup()
