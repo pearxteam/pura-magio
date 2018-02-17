@@ -1,7 +1,7 @@
 package ru.pearx.purmag.common.compat.jei.magibench;
 
 import mezz.jei.api.recipe.IStackHelper;
-import ru.pearx.purmag.common.recipes.recipes.MagibenchShapelessRecipe;
+import ru.pearx.purmag.common.recipes.magibench.MagibenchShapelessRecipe;
 
 /*
  * Created by mrAppleXZ on 02.11.17 17:33.

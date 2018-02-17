@@ -19,8 +19,8 @@ import ru.pearx.purmag.common.compat.jei.magibench.MagibenchRecipeCategory;
 import ru.pearx.purmag.common.compat.jei.magibench.MagibenchShapedRecipeWrapper;
 import ru.pearx.purmag.common.compat.jei.magibench.MagibenchShapelessRecipeWrapper;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
-import ru.pearx.purmag.common.recipes.recipes.MagibenchRecipe;
-import ru.pearx.purmag.common.recipes.recipes.MagibenchShapelessRecipe;
+import ru.pearx.purmag.common.recipes.magibench.MagibenchRecipe;
+import ru.pearx.purmag.common.recipes.magibench.MagibenchShapelessRecipe;
 
 import java.util.ArrayList;
 import java.util.List;

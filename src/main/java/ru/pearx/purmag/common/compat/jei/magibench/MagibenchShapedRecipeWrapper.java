@@ -2,7 +2,7 @@ package ru.pearx.purmag.common.compat.jei.magibench;
 
 import mezz.jei.api.recipe.IStackHelper;
 import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
-import ru.pearx.purmag.common.recipes.recipes.MagibenchRecipe;
+import ru.pearx.purmag.common.recipes.magibench.MagibenchRecipe;
 
 /*
  * Created by mrAppleXZ on 01.11.17 22:40.

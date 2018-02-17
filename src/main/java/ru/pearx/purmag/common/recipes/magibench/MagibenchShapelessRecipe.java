@@ -1,4 +1,4 @@
-package ru.pearx.purmag.common.recipes.recipes;
+package ru.pearx.purmag.common.recipes.magibench;
 
 import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;

@@ -24,18 +24,6 @@ public class PMMultiblock extends Multiblock
 {
     private int tier;
 
-    public PMMultiblock(int requiredTier, BlockArray structure, BlockPos masterPos, IBlockState masterState, ModelResourceLocation itemModel, ResourceLocation regName)
-    {
-        super(structure, masterPos, masterState, itemModel, PMCreativeTab.INSTANCE);
-        setTier(requiredTier);
-        setRegistryName(regName);
-    }
-
-    public PMMultiblock()
-    {
-        super();
-    }
-
     public int getTier()
     {
         return tier;

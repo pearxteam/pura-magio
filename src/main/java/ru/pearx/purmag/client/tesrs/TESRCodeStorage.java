@@ -46,7 +46,7 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
 
         //top
         GlStateManager.pushMatrix();
-        String state = te.anim.getState();
+        String state = te.anim.getElement("head").getState();
         if(!state.equals("closed"))
         {
             resetTrans(te);
@@ -66,7 +66,7 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
                 if(degrees >= 90)
                 {
                     degrees = 90;
-                    te.anim.changeState(state.equals("opening") ? "opened" : "closed");
+                    te.anim.changeState("head", state.equals("opening") ? "opened" : "closed");
                     te.anim_data.startedOpeningAnim = false;
                 }
                 GlStateManager.rotate(state.equals("opening") ? degrees : 90 - degrees, 1, 0, 0);

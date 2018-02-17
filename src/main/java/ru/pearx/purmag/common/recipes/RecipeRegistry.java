@@ -15,8 +15,8 @@ import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.items.ItemRegistry;
 import ru.pearx.purmag.common.recipes.ingredients.IngredientNBT;
-import ru.pearx.purmag.common.recipes.recipes.MagibenchRecipe;
-import ru.pearx.purmag.common.recipes.recipes.MagibenchShapelessRecipe;
+import ru.pearx.purmag.common.recipes.magibench.MagibenchRecipe;
+import ru.pearx.purmag.common.recipes.magibench.MagibenchShapelessRecipe;
 import ru.pearx.purmag.common.sip.SipUtils;
 
 /*

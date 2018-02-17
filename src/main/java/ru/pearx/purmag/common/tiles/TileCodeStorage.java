@@ -15,6 +15,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.pearx.lib.HashingUtils;
 import ru.pearx.libmc.common.PXLCapabilities;
+import ru.pearx.libmc.common.animation.AnimationElement;
 import ru.pearx.libmc.common.animation.AnimationStateManager;
 import ru.pearx.libmc.common.tiles.TileSyncable;
 import ru.pearx.purmag.common.SoundRegistry;
@@ -63,7 +64,7 @@ public class TileCodeStorage extends TileSyncable
         }
     };
 
-    public AnimationStateManager anim = new AnimationStateManager(this, "closed", "closed", "closing", "opened", "opening");
+    public AnimationStateManager anim = new AnimationStateManager(this, new AnimationElement("head", "closed", "closed", "closing", "opened", "opening"));
     @SideOnly(Side.CLIENT)
     public ClientAnimData anim_data;
 
@@ -136,9 +137,9 @@ public class TileCodeStorage extends TileSyncable
             if(!world.isRemote)
                 getWorld().playSound(null, getPos(), SoundRegistry.CODE_STORAGE_OPEN, SoundCategory.BLOCKS, 1, 1);
             if(opened)
-                anim.changeState("opening");
+                anim.changeState("head", "opening");
             else
-                anim.changeState("closing");
+                anim.changeState("head", "closing");
         }
         this.opened = opened;
     }

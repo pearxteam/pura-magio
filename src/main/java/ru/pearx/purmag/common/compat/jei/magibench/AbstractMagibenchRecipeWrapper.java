@@ -15,7 +15,7 @@ import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
-import ru.pearx.purmag.common.recipes.recipes.AbstractMagibenchRecipe;
+import ru.pearx.purmag.common.recipes.magibench.AbstractMagibenchRecipe;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;

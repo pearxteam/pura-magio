@@ -265,7 +265,7 @@ public class IfRegistry
                                 {false, true, true, true, false},
                         })),
                 0));
-        attachEntry("exploration", new IfEntryLocation("flame_crystal", 3, 4));
+        attachEntry("exploration", new IfEntryLocation("flame_crystal", 3, 5));
 
         registerEntry(new IfEntry(
                 "rock_crystal", 0,
