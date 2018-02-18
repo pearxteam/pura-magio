@@ -1,6 +1,7 @@
 package ru.pearx.purmag.common.tiles;
 
 import net.minecraft.nbt.NBTTagCompound;
+import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
 import ru.pearx.libmc.common.tiles.TileSyncable;
 import ru.pearx.purmag.PurMag;
 
@@ -21,22 +22,19 @@ public class TileSingleSip extends TileSyncable
         this.type = type;
         markDirty();
         if (sync)
-            sendUpdatesToClients();
+            sendUpdates(new NBTTagCompoundBuilder().setString("sip_type", type).build());
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    public void readCustomData(NBTTagCompound tag)
     {
-        super.writeToNBT(compound);
-        compound.setString("sip_type", getType());
-        return compound;
+        if (tag.hasKey("sip_type"))
+            setType(tag.getString("sip_type"), false);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound)
+    public void writeCustomData(NBTTagCompound tag)
     {
-        super.readFromNBT(compound);
-        if (compound.hasKey("sip_type"))
-            setType(compound.getString("sip_type"), false);
+        tag.setString("sip_type", getType());
     }
 }

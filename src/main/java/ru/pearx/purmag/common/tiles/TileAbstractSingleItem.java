@@ -6,6 +6,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
 import ru.pearx.libmc.common.tiles.TileSyncable;
 
 import javax.annotation.Nonnull;
@@ -22,7 +23,7 @@ public abstract class TileAbstractSingleItem extends TileSyncable
         protected void onContentsChanged(int slot)
         {
             TileAbstractSingleItem.this.markDirty();
-            sendUpdatesToClients();
+            sendUpdates(new NBTTagCompoundBuilder().setTag("items", serializeNBT()).build());
         }
 
         @Nonnull
@@ -51,19 +52,16 @@ public abstract class TileAbstractSingleItem extends TileSyncable
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    public void readCustomData(NBTTagCompound tag)
     {
-        super.writeToNBT(compound);
-        compound.setTag("items", handler.serializeNBT());
-        return compound;
+        if (tag.hasKey("items"))
+            handler.deserializeNBT((NBTTagCompound) tag.getTag("items"));
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound)
+    public void writeCustomData(NBTTagCompound tag)
     {
-        super.readFromNBT(compound);
-        if (compound.hasKey("items"))
-            handler.deserializeNBT((NBTTagCompound) compound.getTag("items"));
+        tag.setTag("items", handler.serializeNBT());
     }
 
     public abstract boolean isItemValid(ItemStack stack);

@@ -15,8 +15,9 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.pearx.lib.HashingUtils;
 import ru.pearx.libmc.common.PXLCapabilities;
-import ru.pearx.libmc.common.animation.AnimationElement;
-import ru.pearx.libmc.common.animation.AnimationStateManager;
+import ru.pearx.libmc.common.caps.animation.AnimationElement;
+import ru.pearx.libmc.common.caps.animation.AnimationStateManager;
+import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
 import ru.pearx.libmc.common.tiles.TileSyncable;
 import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.inventory.ContainerCodeStorage;
@@ -174,7 +175,7 @@ public class TileCodeStorage extends TileSyncable
                 setUnlocked(true);
                 setHash(null);
                 setText(null);
-                sendUpdatesToClients();
+                sendUpdates(serializeLockUpdate(new NBTTagCompound()));
                 return true;
             }
             return false;
@@ -191,7 +192,7 @@ public class TileCodeStorage extends TileSyncable
                 setText(text);
                 setCode(code);
                 setUnlocked(false);
-                sendUpdatesToClients();
+                sendUpdates(serializeLockUpdate(new NBTTagCompound()));
                 return true;
             }
         }
@@ -216,25 +217,29 @@ public class TileCodeStorage extends TileSyncable
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    public void readCustomData(NBTTagCompound tag)
     {
-        super.writeToNBT(compound);
-        serializeMin(compound);
-        compound.setBoolean("lockable", isLockable());
-        return compound;
+        deserializeMin(tag);
+        if(tag.hasKey("lockable", Constants.NBT.TAG_BYTE))
+            setLockable(tag.getBoolean("lockable"));
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound)
+    public void writeCustomData(NBTTagCompound tag)
     {
-        super.readFromNBT(compound);
-        deserializeMin(compound);
-        setLockable(compound.getBoolean("lockable"));
+        serializeMin(tag);
+        tag.setBoolean("lockable", isLockable());
     }
 
     public NBTTagCompound serializeMin(NBTTagCompound compound)
     {
         compound.setTag("items", handler.serializeNBT());
+        serializeLockUpdate(compound);
+        return compound;
+    }
+
+    private NBTTagCompound serializeLockUpdate(NBTTagCompound compound)
+    {
         if (getText() != null)
             compound.setString("text", getText());
         if (getHash() != null)
@@ -245,11 +250,13 @@ public class TileCodeStorage extends TileSyncable
 
     public void deserializeMin(NBTTagCompound compound)
     {
-        handler.deserializeNBT(compound.getCompoundTag("items"));
+        if(compound.hasKey("items", Constants.NBT.TAG_COMPOUND))
+            handler.deserializeNBT(compound.getCompoundTag("items"));
         if (compound.hasKey("text", Constants.NBT.TAG_STRING))
             setText(compound.getString("text"));
         if (compound.hasKey("hash", Constants.NBT.TAG_BYTE_ARRAY))
             setHash(compound.getByteArray("hash"));
-        setUnlocked(compound.getBoolean("unlocked"));
+        if(compound.hasKey("unlocked", Constants.NBT.TAG_BYTE))
+            setUnlocked(compound.getBoolean("unlocked"));
     }
 }
