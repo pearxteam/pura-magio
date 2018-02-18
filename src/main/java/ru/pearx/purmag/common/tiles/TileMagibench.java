@@ -6,11 +6,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.pearx.libmc.common.ItemStackUtils;
+import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
 import ru.pearx.libmc.common.tiles.TileSyncable;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
@@ -43,7 +45,7 @@ public class TileMagibench extends TileSyncable
         protected void onContentsChanged(int slot)
         {
             TileMagibench.this.markDirty();
-            sendUpdatesToClients();
+            sendUpdates(new NBTTagCompoundBuilder().setTag("items", serializeNBT()).build());
         }
     }
 
@@ -66,7 +68,7 @@ public class TileMagibench extends TileSyncable
         this.tier = tier;
         handler = new Handler(t.getWidth() * t.getHeight());
         if(sync)
-            sendUpdatesToClients();
+            sendUpdates(new NBTTagCompoundBuilder().setInteger("tier", tier).build());
     }
 
     @Nullable
@@ -83,19 +85,19 @@ public class TileMagibench extends TileSyncable
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound)
+    public void readCustomData(NBTTagCompound tag)
     {
-        super.readFromNBT(compound);
-        setTier(compound.getInteger("tier"), false);
-        handler.deserializeNBT(compound.getCompoundTag("items"));
+        if(tag.hasKey("tier", Constants.NBT.TAG_INT))
+            setTier(tag.getInteger("tier"), false);
+        if(tag.hasKey("items", Constants.NBT.TAG_COMPOUND))
+            handler.deserializeNBT(tag.getCompoundTag("items"));
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    public void writeCustomData(NBTTagCompound tag)
     {
-        compound.setInteger("tier", getTier());
-        compound.setTag("items", handler.serializeNBT());
-        return super.writeToNBT(compound);
+        tag.setInteger("tier", getTier());
+        tag.setTag("items", handler.serializeNBT());
     }
 
     public boolean canWork()

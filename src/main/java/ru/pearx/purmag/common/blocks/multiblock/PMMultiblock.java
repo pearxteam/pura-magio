@@ -34,6 +34,11 @@ public class PMMultiblock extends Multiblock
         this.tier = tier;
     }
 
+    public PMMultiblock()
+    {
+        setItemCreativeTab(PMCreativeTab.INSTANCE);
+    }
+
     @Override
     public Optional<Rotation> checkMultiblock(World w, BlockPos pos, @Nullable EntityPlayer p, @Nullable EnumHand hand)
     {

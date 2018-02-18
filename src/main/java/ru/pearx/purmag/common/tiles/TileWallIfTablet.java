@@ -1,6 +1,9 @@
 package ru.pearx.purmag.common.tiles;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraftforge.common.util.Constants;
+import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
 import ru.pearx.libmc.common.tiles.TileSyncable;
 
 /*
@@ -19,23 +22,21 @@ public class TileWallIfTablet extends TileSyncable
     {
         this.tier = tier;
         markDirty();
+
         if (sync)
-            sendUpdatesToClients();
+            sendUpdates(new NBTTagCompoundBuilder().setInteger("tier", tier).build());
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    public void readCustomData(NBTTagCompound tag)
     {
-        super.writeToNBT(compound);
-        compound.setInteger("tier", getTier());
-        return compound;
+        if (tag.hasKey("tier", Constants.NBT.TAG_INT))
+            setTier(tag.getInteger("tier"), false);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound)
+    public void writeCustomData(NBTTagCompound tag)
     {
-        super.readFromNBT(compound);
-        if (compound.hasKey("tier"))
-            setTier(compound.getInteger("tier"), false);
+        tag.setInteger("tier", getTier());
     }
 }
