@@ -9,9 +9,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
+import ru.pearx.lib.math.MathUtils;
 import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.client.ModelSupplied;
 import ru.pearx.libmc.client.PXLFastTESR;
+import ru.pearx.libmc.client.TESRMultiblock;
 import ru.pearx.libmc.client.models.PXLModelRenderer;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.tiles.TileStoneCrusher;
@@ -20,7 +22,7 @@ import ru.pearx.purmag.common.tiles.TileStoneCrusher;
  * Created by mrAppleXZ on 12.12.17 19:22.
  */
 @SideOnly(Side.CLIENT)
-public class TESRStoneCrusher extends PXLFastTESR<TileStoneCrusher>
+public class TESRStoneCrusher extends TESRMultiblock<TileStoneCrusher>
 {
     public static final ModelSupplied MDL_MAIN = new ModelSupplied(new ModelResourceLocation(Utils.gRL("stone_crusher/main"), "normal"));
     public static final ModelSupplied MDL_LEVER = new ModelSupplied(new ModelResourceLocation(Utils.gRL("stone_crusher/lever"), "normal"));
@@ -54,32 +56,41 @@ public class TESRStoneCrusher extends PXLFastTESR<TileStoneCrusher>
         tes.draw();
         GlStateManager.popMatrix();
 
-        GlStateManager.pushMatrix();
-        resetTrans(te);
-        GlStateManager.translate(0.5, 0.5, 0);
-        GlStateManager.rotate(deg, 0, 0, 1);
-        GlStateManager.translate(-0.5, -0.5, 0);
-        setTrans(te);
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-        PXLModelRenderer.renderModelTESR(te.getWorld(), MDL_HANDLE.get(), te.getWorld().getBlockState(te.getPos()), te.getPos(), buffer, false, MathHelper.getPositionRandom(te.getPos()));
-        tes.draw();
-        GlStateManager.popMatrix();
+        {
+            long timeDelta = te.getWorld().getTotalWorldTime() - te.getPreviousSpin();
+            float rot = timeDelta > te.getCooldownBetweenSpins() ? te.getSpins() * 90 : (te.getSpins() - 1) * 90 + timeDelta * (90f / te.getCooldownBetweenSpins());
+            GlStateManager.pushMatrix();
+            resetTrans(te);
+            GlStateManager.translate(0.5, 0.5, 0);
+            GlStateManager.rotate(rot, 0, 0, 1);
+            GlStateManager.translate(-0.5, -0.5, 0);
+            setTrans(te);
+            buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
+            PXLModelRenderer.renderModelTESR(te.getWorld(), MDL_HANDLE.get(), te.getWorld().getBlockState(te.getPos()), te.getPos(), buffer, false, MathHelper.getPositionRandom(te.getPos()));
+            tes.draw();
+            GlStateManager.popMatrix();
+
+            GlStateManager.pushMatrix();
+            resetTrans(te);
+            GlStateManager.translate(0.5, 0.5, -0.5);
+            GlStateManager.rotate(rot, 0, 0, 1);
+            GlStateManager.translate(-0.5, -0.5, 0.5);
+            setTrans(te);
+            buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
+            PXLModelRenderer.renderModelTESR(te.getWorld(), MDL_COIL.get(), te.getWorld().getBlockState(te.getPos()), te.getPos(), buffer, false, MathHelper.getPositionRandom(te.getPos()));
+            tes.draw();
+            GlStateManager.popMatrix();
+        }
 
         GlStateManager.pushMatrix();
-        resetTrans(te);
-        GlStateManager.translate(0.5, 0.5, -0.5);
-        GlStateManager.rotate(deg, 0, 0, 1);
-        GlStateManager.translate(-0.5, -0.5, 0.5);
-        setTrans(te);
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-        PXLModelRenderer.renderModelTESR(te.getWorld(), MDL_COIL.get(), te.getWorld().getBlockState(te.getPos()), te.getPos(), buffer, false, MathHelper.getPositionRandom(te.getPos()));
-        tes.draw();
-        GlStateManager.popMatrix();
-
-        GlStateManager.pushMatrix();
-        GlStateManager.translate(1, 0, 0);
+        float anvilY = (float)te.getSpins() / te.getMaxSpins();
+        boolean onGround = te.getSpins() <= 0;
+        float anvilXMod = onGround ? 0 : MathHelper.sin(MathUtils.toRadians((System.currentTimeMillis() / 10) % 360)) * 0.2f * (1 - anvilY);
+        GlStateManager.translate(1 + anvilXMod, anvilY, 0);
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
         Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelRenderer().renderModel(te.getWorld(), MDL_ANVIL.get(), te.getWorld().getBlockState(te.getPos()), te.getPos(), buffer, false, MathHelper.getPositionRandom(te.getPos()));
+        tes.draw();
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
         tes.draw();
         GlStateManager.popMatrix();
 

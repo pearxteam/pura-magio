@@ -56,14 +56,12 @@ public class ItemTinkeringKit extends ItemToolBase
         {
             if(mb instanceof PMMultiblock)
             {
-                Optional<Rotation> rot = mb.tryForm(worldIn, pos, player, hand);
+                Optional<Rotation> rot = mb.checkMultiblock(worldIn, pos, player, hand);
                 if (rot.isPresent())
                 {
                     player.getHeldItem(hand).damageItem(1, player);
-                    if (!worldIn.isRemote)
-                    {
-                        NetworkManager.sendToAllAround(new CPacketSpawnMultiblockParticles(pos, mb.getRegistryName(), rot.get()), pos.getX(), pos.getY(), pos.getZ(), worldIn.provider.getDimension(), 256);
-                    }
+                    if(!worldIn.isRemote)
+                        mb.form(worldIn, pos, rot.get(), player);
                     return EnumActionResult.PASS;
                 }
             }

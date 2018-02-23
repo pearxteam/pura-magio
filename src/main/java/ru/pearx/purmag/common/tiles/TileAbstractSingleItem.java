@@ -23,7 +23,7 @@ public abstract class TileAbstractSingleItem extends TileSyncable
         protected void onContentsChanged(int slot)
         {
             TileAbstractSingleItem.this.markDirty();
-            sendUpdates(new NBTTagCompoundBuilder().setTag("items", serializeNBT()).build());
+            sendUpdates(new NBTTagCompoundBuilder().setTag("items", serializeNBT()).build(), null);
         }
 
         @Nonnull

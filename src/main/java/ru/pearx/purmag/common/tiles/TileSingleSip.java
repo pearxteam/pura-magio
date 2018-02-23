@@ -22,7 +22,7 @@ public class TileSingleSip extends TileSyncable
         this.type = type;
         markDirty();
         if (sync)
-            sendUpdates(new NBTTagCompoundBuilder().setString("sip_type", type).build());
+            sendUpdates(new NBTTagCompoundBuilder().setString("sip_type", type).build(), null);
     }
 
     @Override

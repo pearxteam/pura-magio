@@ -45,7 +45,7 @@ public class TileMagibench extends TileSyncable
         protected void onContentsChanged(int slot)
         {
             TileMagibench.this.markDirty();
-            sendUpdates(new NBTTagCompoundBuilder().setTag("items", serializeNBT()).build());
+            sendUpdates(new NBTTagCompoundBuilder().setTag("items", serializeNBT()).build(), null);
         }
     }
 
@@ -68,7 +68,7 @@ public class TileMagibench extends TileSyncable
         this.tier = tier;
         handler = new Handler(t.getWidth() * t.getHeight());
         if(sync)
-            sendUpdates(new NBTTagCompoundBuilder().setInteger("tier", tier).build());
+            sendUpdates(new NBTTagCompoundBuilder().setInteger("tier", tier).build(), null);
     }
 
     @Nullable

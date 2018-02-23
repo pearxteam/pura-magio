@@ -24,7 +24,7 @@ public class TileWallIfTablet extends TileSyncable
         markDirty();
 
         if (sync)
-            sendUpdates(new NBTTagCompoundBuilder().setInteger("tier", tier).build());
+            sendUpdates(new NBTTagCompoundBuilder().setInteger("tier", tier).build(), null);
     }
 
     @Override

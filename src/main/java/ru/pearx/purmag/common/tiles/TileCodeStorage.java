@@ -175,7 +175,7 @@ public class TileCodeStorage extends TileSyncable
                 setUnlocked(true);
                 setHash(null);
                 setText(null);
-                sendUpdates(serializeLockUpdate(new NBTTagCompound()));
+                sendUpdates(serializeLockUpdate(new NBTTagCompound()), null);
                 return true;
             }
             return false;
@@ -192,7 +192,7 @@ public class TileCodeStorage extends TileSyncable
                 setText(text);
                 setCode(code);
                 setUnlocked(false);
-                sendUpdates(serializeLockUpdate(new NBTTagCompound()));
+                sendUpdates(serializeLockUpdate(new NBTTagCompound()), null);
                 return true;
             }
         }
