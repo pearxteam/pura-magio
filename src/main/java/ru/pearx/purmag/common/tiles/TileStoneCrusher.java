@@ -1,22 +1,20 @@
 package ru.pearx.purmag.common.tiles;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import ru.pearx.libmc.common.ItemStackUtils;
 import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
 import ru.pearx.libmc.common.structure.multiblock.IMultiblockPart;
-import ru.pearx.libmc.common.structure.multiblock.Multiblock;
 import ru.pearx.libmc.common.structure.multiblock.events.MultiblockActivatedEvent;
-import ru.pearx.libmc.common.tiles.TileMultiblockMaster;
+import ru.pearx.libmc.common.structure.multiblock.events.MultiblockBreakEvent;
 import ru.pearx.purmag.common.blocks.multiblock.MultiblockRegistry;
-import scala.reflect.api.Trees;
 
 import javax.annotation.Nullable;
 
@@ -141,10 +139,41 @@ public class TileStoneCrusher extends TilePMMultiblockMaster
             }
         }
         //drop the anvil
-        if (MultiblockRegistry.STONE_CRUSHER.lever.equals(original))
+        else if (MultiblockRegistry.STONE_CRUSHER.lever.equals(original))
         {
 
         }
+        //insert the item
+        else if(MultiblockRegistry.STONE_CRUSHER.anvil.equals(original) && getSpins() > 0)
+        {
+            if(evt.getPlayer().isSneaking())
+            {
+                if(!handler.getStackInSlot(0).isEmpty())
+                {
+                    evt.getPlayer().addItemStackToInventory(handler.extractItem(0, 64, false));
+                    return true;
+                }
+            }
+            else
+            {
+                ItemStack remainder = handler.insertItem(0, evt.getPlayer().getHeldItem(evt.getHand()), false);
+                boolean changed = !ItemStack.areItemStacksEqualUsingNBTShareTag(remainder, evt.getPlayer().getHeldItem(evt.getHand()));
+                if(changed)
+                {
+                    evt.getPlayer().setHeldItem(evt.getHand(), remainder);
+                    return true;
+                }
+            }
+        }
         return false;
+    }
+
+    @Override
+    public void handleBreak(MultiblockBreakEvent evt, IMultiblockPart part)
+    {
+        if(getOriginalPos(part.getPos()).equals(MultiblockRegistry.STONE_CRUSHER.anvil))
+        {
+            ItemStackUtils.drop(handler, part.getWorld(), part.getPos());
+        }
     }
 }

@@ -4,8 +4,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -146,6 +149,24 @@ public class TESRStoneCrusher extends TESRMultiblock<TileStoneCrusher>
                 buffer.pos(x1, y0, z0).color(r, g, b, a).endVertex();
                 tes.draw();
                 GlStateManager.enableTexture2D();
+            }
+        }
+
+        //item
+        {
+            ItemStack stack = te.handler.getStackInSlot(0);
+            if(!stack.isEmpty())
+            {
+                GlStateManager.pushMatrix();
+                GlStateManager.translate(1.5f, 0.13f, 0.5f);
+                GlStateManager.scale(0.5f, 0.5f, 0.5f);
+                if (!(stack.getItem() instanceof ItemBlock))
+                {
+                    GlStateManager.translate(0, -0.22f, 0);
+                    GlStateManager.rotate(90, 1, 0, 0);
+                }
+                Minecraft.getMinecraft().getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);
+                GlStateManager.popMatrix();
             }
         }
 

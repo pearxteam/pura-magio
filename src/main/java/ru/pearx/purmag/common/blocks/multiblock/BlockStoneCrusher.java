@@ -48,6 +48,7 @@ public class BlockStoneCrusher extends BlockMultiblockPart
     {
         public BlockPos lever = new BlockPos(2, 0, 0);
         public BlockPos handle = new BlockPos(1, 0, 1);
+        public BlockPos anvil = new BlockPos(0, 0, 0);
 
         public Multiblock()
         {
@@ -71,7 +72,7 @@ public class BlockStoneCrusher extends BlockMultiblockPart
                 return true;
             });
             arr.getMap().putAll(CollectionUtils.createMap(BlockPos.class, BlockArrayEntry.class,
-                    new BlockPos(0, 0, 0), new BlockArrayEntry(Blocks.ANVIL, new ItemStack(Blocks.ANVIL)),
+                    anvil, new BlockArrayEntry(Blocks.ANVIL, new ItemStack(Blocks.ANVIL)),
                     new BlockPos(0, 2, 0), rope,
                     new BlockPos(1, 2, 0), rope,
                     new BlockPos(1, 0, 0), rope_cog,
