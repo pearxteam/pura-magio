@@ -30,7 +30,6 @@ public class TESRMicroscope extends PXLFastTESR<TileMicroscope>
         if (!stack.isEmpty())
         {
             GlStateManager.pushMatrix();
-            resetTrans(te);
             GlStateManager.translate(0.5f, 0, 0.5f);
             GlStateManager.rotate(PXLMC.getHorizontalRotation(state.getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
             GlStateManager.rotate(180, 0, 1, 0);

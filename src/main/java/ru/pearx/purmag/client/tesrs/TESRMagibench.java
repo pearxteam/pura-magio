@@ -22,7 +22,6 @@ public class TESRMagibench extends PXLFastTESR<TileMagibench>
     @Override
     public void render(TileMagibench te, double x, double y, double z, float partialTicks, int destroyStage, float alpha, BufferBuilder buffer, Tessellator tes)
     {
-        resetTrans(te);
         //todo add floating items support
         MagibenchRegistry.Tier t = PurMag.INSTANCE.getMagibenchRegistry().getTier(te.getTier());
         int index = 0;
@@ -56,6 +55,5 @@ public class TESRMagibench extends PXLFastTESR<TileMagibench>
             }
         }
         GlStateManager.popMatrix();
-        setTrans(te);
     }
 }

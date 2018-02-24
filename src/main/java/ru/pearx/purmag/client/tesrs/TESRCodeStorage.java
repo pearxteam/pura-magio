@@ -31,11 +31,9 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
             return;
 
         GlStateManager.pushMatrix();
-        resetTrans(te);
         GlStateManager.translate(0.5f, 0, 0.5f);
         GlStateManager.rotate(PXLMC.getHorizontalRotation(st.getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
         GlStateManager.translate(-0.5f, 0, -0.5f);
-        setTrans(te);
 
         long rnd = MathHelper.getPositionRandom(te.getPos());
 
@@ -49,7 +47,6 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
         String state = te.anim.getElement("head").getState();
         if(!state.equals("closed"))
         {
-            resetTrans(te);
             GlStateManager.translate(0.5f, 0, 0.5f);
             GlStateManager.translate(0, 0.703f, 0.4457f);
 
@@ -74,7 +71,6 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
 
             GlStateManager.translate(0, -0.703f, -0.4457f);
             GlStateManager.translate(-0.5f, 0, -0.5f);
-            setTrans(te);
         }
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
         PXLModelRenderer.renderModelTESR(te.getWorld(), TOP.get(), st.getBlock().getExtendedState(st, te.getWorld(), te.getPos()), te.getPos(), buffer, false, rnd);
