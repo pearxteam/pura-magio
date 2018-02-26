@@ -40,12 +40,12 @@ public class TESRMagibench extends PXLFastTESR<TileMagibench>
                 {
                     GlStateManager.pushMatrix();
                     GlStateManager.scale(0.8f, 0.8f, 0.8f);
-                    GlStateManager.translate(0.1f, 0, 0.1f);
+                    GlStateManager.translate(0.1f, -0.03f, 0.1f);
                     GlStateManager.scale(scale, scale, scale);
                     GlStateManager.translate(t.getWidth() - xx - 1, 0, t.getHeight() - yy - 1);
                     if (!(stack.getItem() instanceof ItemBlock))
                     {
-                        GlStateManager.translate(0, -0.22f, 0);
+                        GlStateManager.translate(0, -0.2f, 0);
                         GlStateManager.rotate(90, 1, 0, 0);
                     }
                     Minecraft.getMinecraft().getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);

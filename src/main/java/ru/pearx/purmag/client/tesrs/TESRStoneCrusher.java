@@ -20,7 +20,6 @@ import ru.pearx.lib.math.MathUtils;
 import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.client.ModelSupplied;
 import ru.pearx.libmc.client.TESRMultiblock;
-import ru.pearx.libmc.client.gui.controls.common.BlockArrayShowcase;
 import ru.pearx.libmc.client.models.PXLModelRenderer;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.tiles.TileStoneCrusher;
@@ -60,10 +59,10 @@ public class TESRStoneCrusher extends TESRMultiblock<TileStoneCrusher>
         tes.draw();
         GlStateManager.popMatrix();
 
-        long timeDelta = te.getWorld().getTotalWorldTime() - te.getPreviousSpin();
+        long timeDelta = te.getWorld().getTotalWorldTime() - te.getPreviousAction();
         float deltaCooldown = (float) timeDelta / te.getCooldownBetweenSpins();
         {
-            float rot = te.getSpins() * 90 + (timeDelta > te.getCooldownBetweenSpins() ? 0 : -90 + 90 * deltaCooldown);
+            float rot = timeDelta > te.getCooldownBetweenSpins() ? te.getSpins() * 90 : te.getPreviousSpins() * 90 + (te.getSpins() - te.getPreviousSpins()) * 90 * deltaCooldown;
 
             //handle
             GlStateManager.pushMatrix();
@@ -88,10 +87,10 @@ public class TESRStoneCrusher extends TESRMultiblock<TileStoneCrusher>
 
         {
             float os = 1f / te.getMaxSpins();
-            boolean onGround = te.getSpins() <= 0;
+            boolean onGround = timeDelta > te.getCooldownBetweenSpins() && te.getSpins() <= 0;
 
             float anvilX = 1;
-            float anvilY = te.getSpins() * os + (timeDelta > te.getCooldownBetweenSpins() ? 0 : -os + os * deltaCooldown);
+            float anvilY = timeDelta > te.getCooldownBetweenSpins() ? te.getSpins() * os : te.getPreviousSpins() * os + (te.getSpins() - te.getPreviousSpins()) * os * deltaCooldown;
 
             if (!onGround)
             {

@@ -222,6 +222,10 @@ public class GuiMicroscopeResearch extends GuiAbstractMicroscope
             {
                 int col = x / buttSize;
                 int row = y / buttSize;
+                if(row >= current.length)
+                    return;
+                if(col >= current[0].length)
+                    return;
                 if(!checkPos || (prevC != col || prevR != row))
                 {
                     prevC = col;
