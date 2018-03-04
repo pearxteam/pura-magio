@@ -30,6 +30,8 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
+import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
+import ru.pearx.libmc.common.tiles.syncable.WriteTarget;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.blocks.base.BlockBase;
 import ru.pearx.purmag.common.tiles.TileCodeStorage;
@@ -102,14 +104,14 @@ public class BlockCodeStorage extends BlockBase
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         TileEntity te = worldIn.getTileEntity(pos);
-        if(te != null && te instanceof TileCodeStorage)
+        if(te instanceof TileCodeStorage)
         {
             TileCodeStorage storage = (TileCodeStorage) te;
             if(storage.isUnlocked())
             {
+                storage.setOpenedAndUpdate(playerIn, true);
                 if(!worldIn.isRemote)
                 {
-                    storage.setOpened(true);
                     playerIn.openGui(PurMag.INSTANCE, GUI_ID, worldIn, pos.getX(), pos.getY(), pos.getZ());
                 }
             }
@@ -146,13 +148,11 @@ public class BlockCodeStorage extends BlockBase
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         TileEntity te = world.getTileEntity(pos);
-        if (te != null && te instanceof TileCodeStorage)
+        if (te instanceof TileCodeStorage)
         {
             TileCodeStorage storage = (TileCodeStorage) te;
             ItemStack stack = new ItemStack(this, 1, storage.isLockable() ? 0 : 1);
-            NBTTagCompound tag = new NBTTagCompound();
-            tag.setTag("data", storage.serializeMin(new NBTTagCompound()));
-            stack.setTagCompound(tag);
+            stack.setTagCompound(new NBTTagCompoundBuilder().setTag("data", storage.writeCustomData(WriteTarget.SAVE, TileCodeStorage.NBT_ITEM_DATA)).build());
             drops.add(stack);
         }
     }
@@ -161,23 +161,17 @@ public class BlockCodeStorage extends BlockBase
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         TileEntity te = worldIn.getTileEntity(pos);
-        if (te != null && te instanceof TileCodeStorage)
+        if (te instanceof TileCodeStorage)
         {
             TileCodeStorage storage = (TileCodeStorage) te;
             //meta == 0 - lockable; meta == 1 - not lockable
             storage.setLockable(stack.getMetadata() == 0);
-            boolean unloc = true;
             if (stack.hasTagCompound())
             {
                 NBTTagCompound tag = stack.getTagCompound();
                 if(tag.hasKey("data", Constants.NBT.TAG_COMPOUND))
-                {
-                    storage.deserializeMin(tag.getCompoundTag("data"));
-                    unloc = false;
-                }
+                    storage.readCustomData(tag.getCompoundTag("data"));
             }
-            if(unloc)
-                storage.setUnlocked(true);
         }
     }
 
@@ -195,7 +189,7 @@ public class BlockCodeStorage extends BlockBase
     {
         int meta = 0;
         TileEntity te = world.getTileEntity(pos);
-        if (te != null && te instanceof TileCodeStorage)
+        if (te instanceof TileCodeStorage)
             meta = ((TileCodeStorage) te).isLockable() ? 0 : 1;
         return new ItemStack(this, 1, meta);
     }

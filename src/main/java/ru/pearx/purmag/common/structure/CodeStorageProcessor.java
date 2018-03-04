@@ -137,7 +137,7 @@ public class CodeStorageProcessor extends StructureProcessor
         if(te != null && te instanceof TileCodeStorage)
         {
             TileCodeStorage storage = (TileCodeStorage) te;
-            storage.tryLock(true, expr.getText(), expr.getResult());
+            storage.tryLock(null, true, expr.getText(), expr.getResult());
             PXLMC.fillBlockWithLoot(world, rand, d.getAbsolutePos(), EnumFacing.NORTH, d.table, expr.getLuck());
         }
     }

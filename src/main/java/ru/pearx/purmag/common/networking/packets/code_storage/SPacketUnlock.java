@@ -47,14 +47,11 @@ public class SPacketUnlock implements IMessage
         {
             ctx.getServerHandler().player.getServerWorld().addScheduledTask(() ->
             {
-                boolean result = false;
                 TileEntity te = ctx.getServerHandler().player.world.getTileEntity(message.pos);
-                if(te != null && te instanceof TileCodeStorage)
+                if(te instanceof TileCodeStorage)
                 {
-                    TileCodeStorage storage = (TileCodeStorage) te;
-                    result = storage.tryUnlock(message.code);
+                    ((TileCodeStorage) te).tryUnlock(ctx.getServerHandler().player, message.code);
                 }
-                NetworkManager.sendTo(new CPacketUnlockResponse(result), ctx.getServerHandler().player);
             });
             return null;
         }

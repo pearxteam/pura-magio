@@ -1,42 +1,37 @@
 package ru.pearx.purmag.common.tiles;
 
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraftforge.common.util.Constants;
-import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
-import ru.pearx.libmc.common.tiles.TileSyncable;
+import net.minecraft.entity.player.EntityPlayer;
+import ru.pearx.libmc.common.nbt.serialization.NBTSerializer;
+import ru.pearx.libmc.common.tiles.syncable.TileSyncableComposite;
 
 /*
  * Created by mrAppleXZ on 09.07.17 10:23.
  */
-public class TileWallIfTablet extends TileSyncable
+public class TileWallIfTablet extends TileSyncableComposite
 {
+    public static final String NBT_TIER = "tier";
+
     private int tier;
+
+    public TileWallIfTablet()
+    {
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_TIER, int.class, this::setTier, this::getTier));
+    }
 
     public int getTier()
     {
         return tier;
     }
 
-    public void setTier(int tier, boolean sync)
+    public void setTier(int tier)
     {
         this.tier = tier;
         markDirty();
-
-        if (sync)
-            sendUpdates(new NBTTagCompoundBuilder().setInteger("tier", tier).build(), null);
     }
 
-    @Override
-    public void readCustomData(NBTTagCompound tag)
+    public void setTierAndSync(EntityPlayer p, int tier)
     {
-        if (tag.hasKey("tier", Constants.NBT.TAG_INT))
-            setTier(tag.getInteger("tier"), false);
-    }
-
-    @Override
-    public void writeCustomData(NBTTagCompound tag)
-    {
-        tag.setInteger("tier", getTier());
+        setTier(tier);
+        sendUpdates(p, NBT_TIER);
     }
 }

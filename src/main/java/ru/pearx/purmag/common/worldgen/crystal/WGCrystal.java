@@ -52,7 +52,7 @@ public class WGCrystal implements IWorldGenerator
                     genPos.setY(pos.getY() + i);
                     world.setBlockState(genPos, BlockRegistry.crystal.getDefaultState(), 2);
                     TileSingleSip tss = new TileSingleSip();
-                    tss.setType(sipType, false);
+                    tss.setType(sipType);
                     world.setTileEntity(genPos, tss);
                 }
                 PurMag.INSTANCE.debug("Crystal " + sipType + " " + pos);

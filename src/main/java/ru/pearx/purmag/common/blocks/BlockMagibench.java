@@ -103,10 +103,10 @@ public class BlockMagibench extends BlockBase
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         TileEntity te = worldIn.getTileEntity(pos);
-        if (te != null && te instanceof TileMagibench)
+        if (te instanceof TileMagibench)
         {
             TileMagibench bench = (TileMagibench) te;
-            bench.setTier(stack.getMetadata(), false);
+            bench.setTier(stack.getMetadata());
         }
     }
 

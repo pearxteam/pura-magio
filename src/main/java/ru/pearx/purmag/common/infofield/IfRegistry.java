@@ -474,7 +474,7 @@ public class IfRegistry
                 for (SipType t : PurMag.INSTANCE.getSipRegistry().getTypes())
                 {
                     TileSingleSip tile = new TileSingleSip();
-                    tile.setType(t.getName(), false);
+                    tile.setType(t.getName());
                     arr.getMap().put(new BlockPos(x, 0, 0), new BlockArrayEntry(BlockRegistry.crystal.getDefaultState(), SipUtils.getStackWithSip(new ItemStack(ItemRegistry.crystal), t.getName()), tile));
                     x += 2;
                 }
@@ -532,7 +532,7 @@ public class IfRegistry
         );
         {
             TileMagibench mag = new TileMagibench();
-            mag.setTier(0, false);
+            mag.setTier(0);
             registerEntryClient(
                     "magibench", new ItemDrawable(new ItemStack(ItemRegistry.magibench), 1.5f),
                     new IfPageText("magibench.0"),

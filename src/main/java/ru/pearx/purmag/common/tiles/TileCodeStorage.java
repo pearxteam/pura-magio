@@ -1,9 +1,13 @@
 package ru.pearx.purmag.common.tiles;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
@@ -14,11 +18,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.pearx.lib.HashingUtils;
+import ru.pearx.libmc.common.ItemStackUtils;
 import ru.pearx.libmc.common.PXLCapabilities;
 import ru.pearx.libmc.common.caps.animation.AnimationElement;
 import ru.pearx.libmc.common.caps.animation.AnimationStateManager;
-import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
-import ru.pearx.libmc.common.tiles.TileSyncable;
+import ru.pearx.libmc.common.nbt.serialization.NBTSerializer;
+import ru.pearx.libmc.common.tiles.syncable.TileSyncable;
+import ru.pearx.libmc.common.tiles.syncable.TileSyncableComposite;
+import ru.pearx.libmc.common.tiles.syncable.WriteTarget;
 import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.inventory.ContainerCodeStorage;
 
@@ -29,28 +36,35 @@ import java.util.Arrays;
 /*
  * Created by mrAppleXZ on 09.09.17 20:48.
  */
-public class TileCodeStorage extends TileSyncable
+public class TileCodeStorage extends TileSyncableComposite
 {
-    @SideOnly(Side.CLIENT)
-    public static class ClientAnimData
-    {
-        public boolean startedOpeningAnim;
-        public long animStartTime;
-    }
+    public static final String NBT_LOCKABLE = "lockable";
+    public static final String NBT_ITEMS = "items";
+    public static final String NBT_TEXT = "text";
+    public static final String NBT_HASH = "hash";
+    public static final String NBT_UNLOCKED = "unlocked";
+    public static final String NBT_SLOT_UPDATE = "slot_update";
+    public static final String NBT_OPENED = "opened";
+    public static final String NBT_OPENED_UPDATE = "opened_u";
 
+    public static final String[] NBT_LOCK_UPDATE = new String[]{NBT_TEXT, NBT_HASH, NBT_UNLOCKED};
+    public static final String[] NBT_ITEM_DATA = new String[]{NBT_ITEMS, NBT_TEXT, NBT_HASH, NBT_UNLOCKED};
+
+    private boolean lockable;
     public ItemStackHandler handler = new ItemStackHandler(ContainerCodeStorage.SLOT_COUNT)
     {
         @Override
         protected void onContentsChanged(int slot)
         {
-            TileCodeStorage.this.markDirty();
+            markDirty();
+            sendUpdates(null, ItemStackUtils.writeSlotUpdate(this, slot));
         }
 
         @Nonnull
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate)
         {
-            if(unlocked)
+            if (unlocked)
                 return super.extractItem(slot, amount, simulate);
             return ItemStack.EMPTY;
         }
@@ -59,26 +73,28 @@ public class TileCodeStorage extends TileSyncable
         @Override
         public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate)
         {
-            if(unlocked)
+            if (unlocked)
                 return super.insertItem(slot, stack, simulate);
             return stack;
         }
     };
-
-    public AnimationStateManager anim = new AnimationStateManager(this, new AnimationElement("head", "closed", "closed", "closing", "opened", "opening"));
-    @SideOnly(Side.CLIENT)
-    public ClientAnimData anim_data;
-
     private String text = null;
     private byte[] hash = null;
-    private boolean unlocked;
-    private boolean lockable;
+    private boolean unlocked = true;
     private boolean opened;
+    @SideOnly(Side.CLIENT)
+    private long openTime;
 
     public TileCodeStorage()
     {
-        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-            anim_data = new ClientAnimData();
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_LOCKABLE, boolean.class, this::setLockable, this::isLockable));
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_ITEMS, NBTTagCompound.class, handler::deserializeNBT, handler::serializeNBT));
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_TEXT, String.class, this::setText, this::getText));
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_HASH, byte[].class, this::setHash, this::getHash));
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_UNLOCKED, boolean.class, this::setUnlocked, this::isUnlocked));
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_OPENED, boolean.class, this::setOpened, this::isOpened, WriteTarget.SAVE));
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_OPENED_UPDATE, boolean.class, (Boolean b) -> setOpenedAndUpdate(Minecraft.getMinecraft().player, b), this::isOpened, WriteTarget.PARTIAL_UPDATE));
+        getSerializers().add(new NBTSerializer.Reader<>(NBT_SLOT_UPDATE, NBTTagCompound.class, (tag) -> ItemStackUtils.loadSlotUpdate(tag, handler)));
     }
 
     public String getText()
@@ -89,6 +105,7 @@ public class TileCodeStorage extends TileSyncable
     public void setText(String text)
     {
         this.text = text;
+        markDirty();
     }
 
     public byte[] getHash()
@@ -99,6 +116,7 @@ public class TileCodeStorage extends TileSyncable
     protected void setHash(byte[] hash)
     {
         this.hash = hash;
+        markDirty();
     }
 
     public boolean isUnlocked()
@@ -109,6 +127,7 @@ public class TileCodeStorage extends TileSyncable
     public void setUnlocked(boolean unlocked)
     {
         this.unlocked = unlocked;
+        markDirty();
     }
 
     public boolean isLockable()
@@ -119,6 +138,7 @@ public class TileCodeStorage extends TileSyncable
     public void setLockable(boolean lockable)
     {
         this.lockable = lockable;
+        markDirty();
     }
 
     public void setCode(String code)
@@ -133,32 +153,35 @@ public class TileCodeStorage extends TileSyncable
 
     public void setOpened(boolean opened)
     {
+        this.opened = opened;
+        markDirty();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public long getOpenTime()
+    {
+        return openTime;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void setOpenTime(long openTime)
+    {
+        this.openTime = openTime;
+    }
+
+    public void setOpenedAndUpdate(EntityPlayer p, boolean opened)
+    {
         if(opened != this.opened)
         {
-            if(!world.isRemote)
-                getWorld().playSound(null, getPos(), SoundRegistry.CODE_STORAGE_OPEN, SoundCategory.BLOCKS, 1, 1);
-            if(opened)
-                anim.changeState("head", "opening");
+            setOpened(opened);
+            if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT && world.isRemote)
+            {
+                setOpenTime(System.currentTimeMillis());
+                world.playSound(p, getPos(), SoundRegistry.CODE_STORAGE_OPEN, SoundCategory.BLOCKS, 1, 1);
+            }
             else
-                anim.changeState("head", "closing");
+                sendUpdates(p, NBT_OPENED_UPDATE);
         }
-        this.opened = opened;
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        NBTTagCompound tag = super.getUpdateTag();
-        tag.setBoolean("opened", isOpened());
-        return tag;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        super.onDataPacket(net, pkt);
-        setOpened(pkt.getNbtCompound().getBoolean("opened"));
     }
 
     public boolean isCodeValid(String code)
@@ -166,34 +189,45 @@ public class TileCodeStorage extends TileSyncable
         return getHash() != null && Arrays.equals(getHash(), HashingUtils.getHash("SHA-512", getWorld().getSeed() + code));
     }
 
-    public boolean tryUnlock(String code)
+    public boolean canInteract(EntityPlayer p)
     {
-        if(!isUnlocked())
+        return p == null || p.getDistanceSq(getPos()) <= 64;
+    }
+
+    public boolean tryUnlock(EntityPlayer p, String code)
+    {
+        if(canInteract(p))
         {
-            if(isCodeValid(code))
+            if (!isUnlocked())
             {
-                setUnlocked(true);
-                setHash(null);
-                setText(null);
-                sendUpdates(serializeLockUpdate(new NBTTagCompound()), null);
-                return true;
+                if (isCodeValid(code))
+                {
+                    setUnlocked(true);
+                    setHash(null);
+                    setText(null);
+                    sendUpdates(null, NBT_LOCK_UPDATE);
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
         return true;
     }
 
-    public boolean tryLock(boolean force, String text, String code)
+    public boolean tryLock(EntityPlayer p, boolean force, String text, String code)
     {
-        if (isLockable() || force)
+        if(canInteract(p))
         {
-            if (isUnlocked() || force)
+            if (isLockable() || force)
             {
-                setText(text);
-                setCode(code);
-                setUnlocked(false);
-                sendUpdates(serializeLockUpdate(new NBTTagCompound()), null);
-                return true;
+                if (isUnlocked() || force)
+                {
+                    setText(text);
+                    setCode(code);
+                    setUnlocked(false);
+                    sendUpdates(null, NBT_LOCK_UPDATE);
+                    return true;
+                }
             }
         }
         return false;
@@ -202,7 +236,7 @@ public class TileCodeStorage extends TileSyncable
     @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
     {
-        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || capability == PXLCapabilities.ASM || super.hasCapability(capability, facing);
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Nullable
@@ -211,52 +245,6 @@ public class TileCodeStorage extends TileSyncable
     {
         if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(handler);
-        if(capability == PXLCapabilities.ASM)
-            return PXLCapabilities.ASM.cast(anim);
         return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public void readCustomData(NBTTagCompound tag)
-    {
-        deserializeMin(tag);
-        if(tag.hasKey("lockable", Constants.NBT.TAG_BYTE))
-            setLockable(tag.getBoolean("lockable"));
-    }
-
-    @Override
-    public void writeCustomData(NBTTagCompound tag)
-    {
-        serializeMin(tag);
-        tag.setBoolean("lockable", isLockable());
-    }
-
-    public NBTTagCompound serializeMin(NBTTagCompound compound)
-    {
-        compound.setTag("items", handler.serializeNBT());
-        serializeLockUpdate(compound);
-        return compound;
-    }
-
-    private NBTTagCompound serializeLockUpdate(NBTTagCompound compound)
-    {
-        if (getText() != null)
-            compound.setString("text", getText());
-        if (getHash() != null)
-            compound.setByteArray("hash", getHash());
-        compound.setBoolean("unlocked", isUnlocked());
-        return compound;
-    }
-
-    public void deserializeMin(NBTTagCompound compound)
-    {
-        if(compound.hasKey("items", Constants.NBT.TAG_COMPOUND))
-            handler.deserializeNBT(compound.getCompoundTag("items"));
-        if (compound.hasKey("text", Constants.NBT.TAG_STRING))
-            setText(compound.getString("text"));
-        if (compound.hasKey("hash", Constants.NBT.TAG_BYTE_ARRAY))
-            setHash(compound.getByteArray("hash"));
-        if(compound.hasKey("unlocked", Constants.NBT.TAG_BYTE))
-            setUnlocked(compound.getBoolean("unlocked"));
     }
 }

@@ -59,10 +59,10 @@ public class TESRStoneCrusher extends TESRMultiblock<TileStoneCrusher>
         tes.draw();
         GlStateManager.popMatrix();
 
-        long timeDelta = te.getWorld().getTotalWorldTime() - te.getPreviousAction();
-        float deltaCooldown = (float) timeDelta / te.getCooldownBetweenSpins();
+       /* long timeDelta = te.getWorld().getTotalWorldTime() - te.getPreviousAction();
+        float deltaCooldown = (float) timeDelta / te.getCooldownBetweenSpins();*/
         {
-            float rot = timeDelta > te.getCooldownBetweenSpins() ? te.getSpins() * 90 : te.getPreviousSpins() * 90 + (te.getSpins() - te.getPreviousSpins()) * 90 * deltaCooldown;
+            float rot = /*timeDelta > te.getCooldownBetweenSpins() ? te.getSpins() * 90 : te.getAnimationData().getPreviousSpins() * 90 + (te.getSpins() - te.getAnimationData().getPreviousSpins()) * 90 * deltaCooldown;*/ 0;
 
             //handle
             GlStateManager.pushMatrix();
@@ -86,22 +86,22 @@ public class TESRStoneCrusher extends TESRMultiblock<TileStoneCrusher>
         }
 
         {
-            float os = 1f / te.getMaxSpins();
+         /*   float os = 1f / te.getMaxSpins();
             boolean onGround = timeDelta > te.getCooldownBetweenSpins() && te.getSpins() <= 0;
 
             float anvilX = 1;
-            float anvilY = timeDelta > te.getCooldownBetweenSpins() ? te.getSpins() * os : te.getPreviousSpins() * os + (te.getSpins() - te.getPreviousSpins()) * os * deltaCooldown;
+            float anvilY = timeDelta > te.getCooldownBetweenSpins() ? te.getSpins() * os : te.getAnimationData().getPreviousSpins() * os + (te.getSpins() - te.getAnimationData().getPreviousSpins()) * os * deltaCooldown;
 
             if (!onGround)
             {
-                float sin = MathHelper.sin(MathUtils.toRadians((System.currentTimeMillis() / 8) % 360));
+                float sin = MathHelper.sin(MathUtils.toRadians(((System.currentTimeMillis() - te.getAnimationData().getUpTime()) / 8) % 360));
                 anvilX += sin * 0.2f * (1 - anvilY);
                 anvilY += Math.abs(sin) * 0.05f * (1 - anvilY);
-            }
+            }*/
 
             //anvil
             GlStateManager.pushMatrix();
-            GlStateManager.translate(anvilX, anvilY, 0);
+            /*GlStateManager.translate(anvilX, anvilY, 0);*/
             buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
             setTrans(buffer, te);
             Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelRenderer().renderModel(te.getWorld(), MDL_ANVIL.get(), te.getWorld().getBlockState(te.getPos()), te.getPos(), buffer, false, MathHelper.getPositionRandom(te.getPos()));
@@ -109,7 +109,7 @@ public class TESRStoneCrusher extends TESRMultiblock<TileStoneCrusher>
             tes.draw();
             GlStateManager.popMatrix();
 
-            {
+            /*{
                 //rope
                 float width = 0.05f;
                 Color c = Colors.BROWN_800;
@@ -148,7 +148,7 @@ public class TESRStoneCrusher extends TESRMultiblock<TileStoneCrusher>
                 buffer.pos(x1, y0, z0).color(r, g, b, a).endVertex();
                 tes.draw();
                 GlStateManager.enableTexture2D();
-            }
+            }*/
         }
 
         //item

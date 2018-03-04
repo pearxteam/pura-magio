@@ -48,12 +48,12 @@ public class SipUtils
         return PurMag.INSTANCE.getSipRegistry().getDefaultType().getName();
     }
 
-    public static void setSipInBlock(IBlockAccess access, BlockPos pos, String type, boolean sync)
+    public static void setSipInBlock(IBlockAccess access, BlockPos pos, String type)
     {
         TileEntity te = access.getTileEntity(pos);
         if (te != null && te instanceof TileSingleSip)
         {
-            ((TileSingleSip) te).setType(type, sync);
+            ((TileSingleSip) te).setType(type);
         }
     }
 }

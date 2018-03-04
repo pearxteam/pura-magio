@@ -1,6 +1,5 @@
 package ru.pearx.purmag.common.blocks.base;
 
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -11,10 +10,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ru.pearx.purmag.PurMag;
-import ru.pearx.purmag.common.blocks.base.BlockBase;
 import ru.pearx.purmag.common.sip.SipType;
 import ru.pearx.purmag.common.sip.SipUtils;
 import ru.pearx.purmag.common.tiles.TileSingleSip;
@@ -61,7 +58,7 @@ public class BlockSingleSip extends BlockBase
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        SipUtils.setSipInBlock(worldIn, pos, SipUtils.getSipInStack(stack), false);
+        SipUtils.setSipInBlock(worldIn, pos, SipUtils.getSipInStack(stack));
     }
 
     @Override

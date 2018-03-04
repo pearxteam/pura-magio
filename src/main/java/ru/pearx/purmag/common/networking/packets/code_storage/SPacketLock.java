@@ -1,6 +1,7 @@
 package ru.pearx.purmag.common.networking.packets.code_storage;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -51,10 +52,10 @@ public class SPacketLock implements IMessage
             (ctx.getServerHandler().player.getServerWorld()).addScheduledTask(() ->
             {
                 TileEntity te = ctx.getServerHandler().player.world.getTileEntity(message.pos);
-                if(te != null && te instanceof TileCodeStorage)
+                if(te instanceof TileCodeStorage)
                 {
                     TileCodeStorage storage = (TileCodeStorage) te;
-                    storage.tryLock(false, message.text, message.code);
+                    storage.tryLock(ctx.getServerHandler().player, false, message.text, message.code);
                 }
             });
             return null;

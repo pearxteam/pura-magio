@@ -6,8 +6,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import ru.pearx.libmc.common.ItemStackUtils;
 import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
-import ru.pearx.libmc.common.tiles.TileSyncable;
+import ru.pearx.libmc.common.nbt.serialization.NBTSerializer;
+import ru.pearx.libmc.common.tiles.syncable.TileSyncableComposite;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -15,15 +17,18 @@ import javax.annotation.Nullable;
 /*
  * Created by mrAppleXZ on 17.08.17 21:28.
  */
-public abstract class TileAbstractSingleItem extends TileSyncable
+public abstract class TileAbstractSingleItem extends TileSyncableComposite
 {
+    public static final String NBT_ITEMS = "items";
+    public static final String NBT_ITEMS_UPDATE = "items_update";
+
     public ItemStackHandler handler = new ItemStackHandler(1)
     {
         @Override
         protected void onContentsChanged(int slot)
         {
-            TileAbstractSingleItem.this.markDirty();
-            sendUpdates(new NBTTagCompoundBuilder().setTag("items", serializeNBT()).build(), null);
+            markDirty();
+            sendUpdates(null, new NBTTagCompoundBuilder().setTag(NBT_ITEMS_UPDATE, ItemStackUtils.writeSlotUpdate(this, slot)).build());
         }
 
         @Nonnull
@@ -35,6 +40,12 @@ public abstract class TileAbstractSingleItem extends TileSyncable
             return super.insertItem(slot, stack, simulate);
         }
     };
+
+    public TileAbstractSingleItem()
+    {
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_ITEMS, NBTTagCompound.class, handler::deserializeNBT, handler::serializeNBT));
+        getSerializers().add(new NBTSerializer.Reader<>(NBT_ITEMS_UPDATE, NBTTagCompound.class, (tag) -> ItemStackUtils.loadSlotUpdate(tag, handler)));
+    }
 
     @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
@@ -49,19 +60,6 @@ public abstract class TileAbstractSingleItem extends TileSyncable
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(handler);
         return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public void readCustomData(NBTTagCompound tag)
-    {
-        if (tag.hasKey("items"))
-            handler.deserializeNBT((NBTTagCompound) tag.getTag("items"));
-    }
-
-    @Override
-    public void writeCustomData(NBTTagCompound tag)
-    {
-        tag.setTag("items", handler.serializeNBT());
     }
 
     public abstract boolean isItemValid(ItemStack stack);
