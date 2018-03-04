@@ -34,6 +34,7 @@ public class TileMagibench extends TileSyncableComposite
     {
         getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_TIER, int.class, this::setTier, this::getTier));
         getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_ITEMS, NBTTagCompound.class, (tag) -> handler.deserializeNBT(tag), () -> handler.serializeNBT()));
+        getSerializers().add(new NBTSerializer.Reader<>(NBT_ITEMS_UPDATE, NBTTagCompound.class, (tag) -> ItemStackUtils.loadSlotUpdate(tag, handler)));
     }
 
 
