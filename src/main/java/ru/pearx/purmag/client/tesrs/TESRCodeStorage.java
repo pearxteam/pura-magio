@@ -22,7 +22,7 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
 {
     public static final ModelSupplied BODY = new ModelSupplied(new ModelResourceLocation(Utils.gRL("code_storage/body"), "normal"));
     public static final ModelSupplied TOP = new ModelSupplied(new ModelResourceLocation(Utils.gRL("code_storage/top"), "normal"));
-    public static final int ANIMATION_DURATION = 1000;
+    public static final int ANIMATION_DURATION = 400;
 
     @Override
     public void render(TileCodeStorage te, double x, double y, double z, float partialTicks, int destroyStage, float partial, BufferBuilder buffer, Tessellator tessellator)
@@ -45,7 +45,8 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
 
         //top
         GlStateManager.pushMatrix();
-        long delta = System.currentTimeMillis() - te.getOpenTime();
+        double delta = (System.currentTimeMillis() - te.getOpenTime());
+        delta += delta / 4;
         if(delta >= 0)
         {
             float degrees;
@@ -55,7 +56,7 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
             }
             else
             {
-                float percentage = (delta / (float)ANIMATION_DURATION);
+                float percentage = ((float)delta / (float)ANIMATION_DURATION);
                 degrees = te.isOpened() ? 90 * percentage : 90 - 90*percentage;
             }
             GlStateManager.translate(0.5f, 0, 0.5f);

@@ -45,7 +45,7 @@ public class ContainerCodeStorage extends PXLContainer
     public void onContainerClosed(EntityPlayer playerIn)
     {
         super.onContainerClosed(playerIn);
-        storage.setOpenedAndUpdate(playerIn, false);
+        storage.setOpenedAndUpdate(null, false);
     }
 
     @Override
