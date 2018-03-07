@@ -62,7 +62,7 @@ public class SPacketDoneTranslation implements IMessage
                 if (te != null && te instanceof TileTranslationDesk)
                 {
                     TileTranslationDesk ttd = (TileTranslationDesk) te;
-                    ItemStack papyrus = ttd.handler.getStackInSlot(0);
+                    ItemStack papyrus = ttd.getHandler().getStackInSlot(0);
                     if (!papyrus.isEmpty())
                     {
                         IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);

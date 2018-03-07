@@ -96,7 +96,7 @@ public class GuiTranslationDesk extends GuiOnScreen
         if (te != null && te instanceof TileTranslationDesk)
         {
             TileTranslationDesk ttd = (TileTranslationDesk) te;
-            ItemStack stack = ttd.handler.getStackInSlot(0);
+            ItemStack stack = ttd.getHandler().getStackInSlot(0);
             if (panel.translating)
             {
                 status = Status.TRANSLATING;

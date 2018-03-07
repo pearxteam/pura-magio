@@ -102,7 +102,7 @@ public class ClientProxy extends CommonProxy
     @Override
     public void openMicroscope(TileMicroscope tile)
     {
-        Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiMicroscope(tile.handler.getStackInSlot(0), tile.getPos())));
+        Minecraft.getMinecraft().displayGuiScreen(new PXLGui(new GuiMicroscope(tile.getHandler().getStackInSlot(0), tile.getPos())));
     }
 
     @Override
@@ -122,4 +122,6 @@ public class ClientProxy extends CommonProxy
     {
         PurMag.INSTANCE.getIfRegistry().setupJei();
     }
+
+
 }

@@ -92,7 +92,7 @@ public class SPacketCheckMicroscopeResearch implements IMessage
                             TileEntity te = p.getEntityWorld().getTileEntity(message.pos);
                             if (te != null && te instanceof TileMicroscope)
                             {
-                                if(pair.getRight().getIngredient().apply(((TileMicroscope) te).handler.getStackInSlot(0)))
+                                if(pair.getRight().getIngredient().apply(((TileMicroscope) te).getHandler().getStackInSlot(0)))
                                 {
                                     store.unlockStepAndSync(pair.getLeft().getId(), p);
                                     NetworkManager.sendTo(new CPacketCheckMicroscopeResearchResponse(true), p);

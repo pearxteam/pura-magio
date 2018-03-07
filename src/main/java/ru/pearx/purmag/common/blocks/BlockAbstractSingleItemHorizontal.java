@@ -138,7 +138,7 @@ public abstract class BlockAbstractSingleItemHorizontal extends BlockBase
             TileEntity te = worldIn.getTileEntity(pos);
             if (te != null && te instanceof TileAbstractSingleItem)
             {
-                ItemStackUtils.drop(((TileAbstractSingleItem) te).handler, worldIn, pos);
+                ItemStackUtils.drop(((TileAbstractSingleItem) te).getHandler(), worldIn, pos);
             }
         }
         super.breakBlock(worldIn, pos, state);

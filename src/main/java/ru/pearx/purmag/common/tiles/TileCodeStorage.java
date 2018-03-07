@@ -18,6 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.pearx.lib.HashingUtils;
+import ru.pearx.libmc.PXLMC;
 import ru.pearx.libmc.common.ItemStackUtils;
 import ru.pearx.libmc.common.PXLCapabilities;
 import ru.pearx.libmc.common.caps.animation.AnimationElement;
@@ -51,7 +52,7 @@ public class TileCodeStorage extends TileSyncableComposite
     public static final String[] NBT_ITEM_DATA = new String[]{NBT_ITEMS, NBT_TEXT, NBT_HASH, NBT_UNLOCKED};
 
     private boolean lockable;
-    public ItemStackHandler handler = new ItemStackHandler(ContainerCodeStorage.SLOT_COUNT)
+    private ItemStackHandler handler = new ItemStackHandler(ContainerCodeStorage.SLOT_COUNT)
     {
         @Override
         protected void onContentsChanged(int slot)
@@ -93,8 +94,13 @@ public class TileCodeStorage extends TileSyncableComposite
         getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_HASH, byte[].class, this::setHash, this::getHash));
         getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_UNLOCKED, boolean.class, this::setUnlocked, this::isUnlocked));
         getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_OPENED, boolean.class, this::setOpened, this::isOpened, WriteTarget.SAVE));
-        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_OPENED_UPDATE, boolean.class, (Boolean b) -> setOpenedAndUpdate(Minecraft.getMinecraft().player, b), this::isOpened, WriteTarget.PARTIAL_UPDATE));
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_OPENED_UPDATE, boolean.class, (Boolean b) -> setOpenedAndUpdate(PXLMC.PROXY.getClientPlayer(), b), this::isOpened, WriteTarget.PARTIAL_UPDATE));
         getSerializers().add(new NBTSerializer.Reader<>(NBT_SLOT_UPDATE, NBTTagCompound.class, (tag) -> ItemStackUtils.loadSlotUpdate(tag, handler)));
+    }
+
+    public ItemStackHandler getHandler()
+    {
+        return handler;
     }
 
     public String getText()

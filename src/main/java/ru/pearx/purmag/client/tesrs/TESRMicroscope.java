@@ -25,7 +25,7 @@ public class TESRMicroscope extends PXLFastTESR<TileMicroscope>
         IBlockState state = getWorld().getBlockState(te.getPos());
         if (state.getBlock() != BlockRegistry.microscope)
             return;
-        ItemStack stack = te.handler.getStackInSlot(0);
+        ItemStack stack = te.getHandler().getStackInSlot(0);
 
         if (!stack.isEmpty())
         {

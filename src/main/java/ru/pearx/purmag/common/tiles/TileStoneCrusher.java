@@ -1,13 +1,16 @@
 package ru.pearx.purmag.common.tiles;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.pearx.libmc.common.ItemStackUtils;
+import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
+import ru.pearx.libmc.common.nbt.serialization.NBTSerializer;
 import ru.pearx.libmc.common.structure.multiblock.IMultiblockPart;
 import ru.pearx.libmc.common.structure.multiblock.events.MultiblockActivatedEvent;
 import ru.pearx.libmc.common.structure.multiblock.events.MultiblockBreakEvent;
@@ -20,35 +23,43 @@ import javax.annotation.Nullable;
  */
 public class TileStoneCrusher extends TilePMMultiblockMaster
 {
+    public static final String NBT_ITEMS = "items";
+    public static final String NBT_SLOT_UPDATE = "items_update";
+    public static final String NBT_SPINS = "spins";
+
     public ItemStackHandler handler = new ItemStackHandler()
     {
         @Override
         protected void onContentsChanged(int slot)
         {
             TileStoneCrusher.this.markDirty();
-            //sendUpdates(ItemStackUtils.writeSlotUpdate(this, slot, "slotUpdateStack", "slotUpdateStack"), null);
+            sendUpdates(null, new NBTTagCompoundBuilder().setTag(NBT_SLOT_UPDATE, ItemStackUtils.writeSlotUpdate(this, slot)).build());
         }
     };
+    private int spins;
 
-    public int getMaxSpins()
+    public TileStoneCrusher()
     {
-        return 10;
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_ITEMS, NBTTagCompound.class, (tag) -> handler.deserializeNBT(tag), () -> handler.serializeNBT()));
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_SPINS, int.class, this::setSpins, this::getSpins));
+        getSerializers().add(new NBTSerializer.Reader<>(NBT_SLOT_UPDATE, NBTTagCompound.class, (tag) -> ItemStackUtils.loadSlotUpdate(tag, handler)));
     }
 
-    public int getCooldownBetweenSpins()
+    public int getSpins()
     {
-        return 6;
+        return spins;
     }
 
-    @Override
-    public void readCustomData(NBTTagCompound tag)
+    public void setSpins(int spins)
     {
-        super.readCustomData(tag);
-        if (tag.hasKey("items", Constants.NBT.TAG_COMPOUND))
-            handler.deserializeNBT((NBTTagCompound) tag.getTag("items"));
+        this.spins = spins;
+        markDirty();
+    }
 
-        //update only
-       // ItemStackUtils.loadSlotUpdate(tag, handler, "slotUpdateSlot", "slotUpdateStack");
+    public void setSpinsAndSync(int spins, EntityPlayer p)
+    {
+        setSpins(spins);
+        sendUpdates(p, NBT_SPINS);
     }
 
     @Override
@@ -69,31 +80,9 @@ public class TileStoneCrusher extends TilePMMultiblockMaster
     @Override
     public boolean handleActivated(MultiblockActivatedEvent evt, IMultiblockPart part)
     {
-        //elevate the anvil
         BlockPos original = getOriginalPos(part.getPos());
-       /* if (MultiblockRegistry.STONE_CRUSHER.handle.equals(original))
-        {
-            long delta = part.getWorld().getTotalWorldTime() - getPreviousAction();
-            if (getSpins() < getMaxSpins() && (delta < 0 || delta > getCooldownBetweenSpins()))
-            {
-                setSpins(getSpins() + 1, true, evt.getPlayer());
-                setPreviousSpin(part.getWorld().getTotalWorldTime(), true, evt.getPlayer());
-                return true;
-            }
-        }
-        //drop the anvil
-        else if (MultiblockRegistry.STONE_CRUSHER.lever.equals(original))
-        {
-            if(getSpins() > 0)
-            {
-                setCrushes(getCrushes() + getSpins(), true, evt.getPlayer());
-                setSpins(0, true, evt.getPlayer());
-                setPreviousSpin(part.getWorld().getTotalWorldTime(), true, evt.getPlayer());
-                return true;
-            }
-        }
         //insert the item
-        else if(MultiblockRegistry.STONE_CRUSHER.anvil.equals(original) && getSpins() > 0)
+        if(MultiblockRegistry.STONE_CRUSHER.anvil.equals(original) && getSpins() > 0)
         {
             if(evt.getPlayer().isSneaking())
             {
@@ -113,7 +102,7 @@ public class TileStoneCrusher extends TilePMMultiblockMaster
                     return true;
                 }
             }
-        }*/
+        }
         return false;
     }
 

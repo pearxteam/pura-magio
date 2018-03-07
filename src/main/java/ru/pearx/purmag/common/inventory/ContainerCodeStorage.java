@@ -35,7 +35,7 @@ public class ContainerCodeStorage extends PXLContainer
         {
             for (int cx = 0; cx < 10; cx++)
             {
-                addSlotToContainer(new SlotItemHandler(storage.handler, index, offx + cx * 18, offy + cy * 18));
+                addSlotToContainer(new SlotItemHandler(storage.getHandler(), index, offx + cx * 18, offy + cy * 18));
                 index++;
             }
         }

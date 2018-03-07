@@ -22,7 +22,7 @@ public abstract class TileAbstractSingleItem extends TileSyncableComposite
     public static final String NBT_ITEMS = "items";
     public static final String NBT_ITEMS_UPDATE = "items_update";
 
-    public ItemStackHandler handler = new ItemStackHandler(1)
+    private ItemStackHandler handler = new ItemStackHandler(1)
     {
         @Override
         protected void onContentsChanged(int slot)
@@ -41,6 +41,11 @@ public abstract class TileAbstractSingleItem extends TileSyncableComposite
         }
     };
 
+    public ItemStackHandler getHandler()
+    {
+        return handler;
+    }
+
     public TileAbstractSingleItem()
     {
         getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_ITEMS, NBTTagCompound.class, handler::deserializeNBT, handler::serializeNBT));
@@ -58,7 +63,7 @@ public abstract class TileAbstractSingleItem extends TileSyncableComposite
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
     {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(handler);
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(getHandler());
         return super.getCapability(capability, facing);
     }
 
