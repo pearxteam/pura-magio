@@ -4,7 +4,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
-import ru.pearx.purmag.common.CapabilityRegistry;
+import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.inventory.ContainerMagibench;
 
 /*
@@ -42,7 +42,7 @@ public abstract class AbstractMagibenchRecipe extends IForgeRegistryEntry.Impl<I
         {
             ContainerMagibench.Crafting craft = (ContainerMagibench.Crafting) inv;
             return craft.getMagibench().tier.getTier() >= getTier() &&
-                    craft.getMagibench().inv.player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).isFullyUnlocked(getEntry());
+                    PurMag.INSTANCE.getIfRegistry().getEntry(getEntry()).isUnlocked(craft.getMagibench().inv.player);
         }
         return false;
     }

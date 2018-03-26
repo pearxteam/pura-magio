@@ -2,7 +2,6 @@ package ru.pearx.purmag.common.infofield.playerdata;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.DisplayMessage;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.CPacketDisplayMessage;
@@ -36,12 +35,6 @@ public class IfEntryStore implements IIfEntryStore
     public void setSteps(String id, int steps)
     {
         entries.put(id, steps);
-    }
-
-    @Override
-    public boolean isFullyUnlocked(String id)
-    {
-        return getSteps(id) >= PurMag.INSTANCE.getIfRegistry().getEntry(id).getSteps().size();
     }
 
     @Override

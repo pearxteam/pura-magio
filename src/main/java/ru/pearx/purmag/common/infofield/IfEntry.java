@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
+import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.infofield.pages.IIfPage;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
@@ -133,12 +134,11 @@ public class IfEntry
     //Just available to see, not read/continue researching/etc.
     public boolean isAvailableToSee(EntityPlayer p, int tier)
     {
-        IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
         //if tier is < needed.
         if (tier < getTier())
             return false;
 
-        if (!isAllParentsUnlocked(p))
+        if (!isAvailable(p))
             return false;
 
         return true;
@@ -146,16 +146,35 @@ public class IfEntry
 
     public boolean isAvailableToResearch(EntityPlayer p)
     {
-        if (!isAllParentsUnlocked(p))
-            return false;
+        return isAvailable(p);
+    }
+
+    public boolean isAvailable(EntityPlayer p)
+    {
+        for (String id : getParents())
+        {
+            if(!PurMag.INSTANCE.getIfRegistry().getEntry(id).isUnlocked(p))
+                return false;
+        }
         return true;
     }
 
-    public boolean isAllParentsUnlocked(EntityPlayer p)
+    public boolean isUnlocked(EntityPlayer p)
     {
-        for (String id : getParents())
-            if (!p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).isFullyUnlocked(id))
-                return false;
+        IIfEntryStore store = p.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null);
+        if(store.getSteps(getId()) < getSteps().size())
+        {
+            return false;
+        }
+        if(getSteps().size() == 0)
+        {
+            for(String parent : getParents())
+            {
+                IfEntry entr = PurMag.INSTANCE.getIfRegistry().getEntry(parent);
+                if(!entr.isUnlocked(p))
+                    return false;
+            }
+        }
         return true;
     }
 }

@@ -12,7 +12,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.libmc.client.gui.DrawingTools;
 import ru.pearx.purmag.PurMag;
-import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 import ru.pearx.purmag.common.recipes.magibench.AbstractMagibenchRecipe;
@@ -68,7 +67,7 @@ public abstract class AbstractMagibenchRecipeWrapper implements ICraftingRecipeW
         int stY = MagibenchRecipeCategory.HEIGHT - 16;
         if(mouseX >= stX && mouseY >= stY && mouseX <= stX + 14 && mouseY <= stY + 14)
         {
-            boolean unloc = Minecraft.getMinecraft().player.getCapability(CapabilityRegistry.ENTRY_STORE_CAP, null).isFullyUnlocked(recipe.getEntry());
+            boolean unloc = PurMag.INSTANCE.getIfRegistry().getEntry(recipe.getEntry()).isUnlocked(Minecraft.getMinecraft().player);
             return Arrays.asList(
                     I18n.format("misc.jei.magibench.tooltip.entry"),
                     (unloc ? TextFormatting.GREEN : TextFormatting.RED) + PurMag.INSTANCE.getIfRegistry().getEntry(recipe.getEntry()).getDisplayName() + TextFormatting.RESET,

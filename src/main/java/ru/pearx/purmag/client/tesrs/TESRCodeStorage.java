@@ -56,6 +56,7 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
             }
             else
             {
+
                 float percentage = ((float)delta / (float)ANIMATION_DURATION);
                 degrees = te.isOpened() ? 90 * percentage : 90 - 90*percentage;
             }
