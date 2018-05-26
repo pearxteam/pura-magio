@@ -1,0 +1,4 @@
+[submodule "CarbideMC"]
+	path = CarbideMC
+	url = git://github.com/PearXTeam/CarbideMC
+	branch = 1.12.2
