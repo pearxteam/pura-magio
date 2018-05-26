@@ -6,9 +6,9 @@ import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.lib.Colors;
-import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.OverlayGui;
+import ru.pearx.carbide.Colors;
+import ru.pearx.carbide.mc.client.gui.DrawingTools;
+import ru.pearx.carbide.mc.client.gui.OverlayGui;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.GuiDrawableRegistry;
 

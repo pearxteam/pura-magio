@@ -5,7 +5,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
+import ru.pearx.carbide.mc.client.gui.drawables.IGuiDrawable;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.infofield.pages.IIfPage;
 import ru.pearx.purmag.common.CapabilityRegistry;

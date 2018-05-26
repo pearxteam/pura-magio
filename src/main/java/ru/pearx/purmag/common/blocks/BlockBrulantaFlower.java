@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.lib.RandomUtils;
+import ru.pearx.carbide.RandomUtils;
 import ru.pearx.purmag.common.blocks.base.BlockBushBase;
 
 import java.util.Random;

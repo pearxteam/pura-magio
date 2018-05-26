@@ -2,7 +2,7 @@ package ru.pearx.purmag.client.gui.if_tablet.steps;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.gui.controls.Control;
+import ru.pearx.carbide.mc.client.gui.controls.Control;
 import ru.pearx.purmag.client.gui.if_tablet.GuiIfTabletSR;
 import ru.pearx.purmag.common.infofield.steps.IIfResearchStep;
 

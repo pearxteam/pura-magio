@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.common.blocks.controllers.AxisController;
+import ru.pearx.carbide.mc.common.blocks.controllers.AxisController;
 import ru.pearx.purmag.common.blocks.base.BlockBase;
 
 /*

@@ -1,8 +1,8 @@
 package ru.pearx.purmag.common.sip;
 
 import net.minecraft.util.text.TextFormatting;
-import ru.pearx.lib.Color;
-import ru.pearx.lib.Colors;
+import ru.pearx.carbide.Color;
+import ru.pearx.carbide.Colors;
 
 import java.util.ArrayList;
 import java.util.List;

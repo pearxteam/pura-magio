@@ -1,32 +1,22 @@
 package ru.pearx.purmag.common.tiles;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import ru.pearx.lib.HashingUtils;
-import ru.pearx.libmc.PXLMC;
-import ru.pearx.libmc.common.ItemStackUtils;
-import ru.pearx.libmc.common.PXLCapabilities;
-import ru.pearx.libmc.common.caps.animation.AnimationElement;
-import ru.pearx.libmc.common.caps.animation.AnimationStateManager;
-import ru.pearx.libmc.common.nbt.serialization.NBTSerializer;
-import ru.pearx.libmc.common.tiles.syncable.TileSyncable;
-import ru.pearx.libmc.common.tiles.syncable.TileSyncableComposite;
-import ru.pearx.libmc.common.tiles.syncable.WriteTarget;
+import ru.pearx.carbide.HashingUtils;
+import ru.pearx.carbide.mc.CarbideMC;
+import ru.pearx.carbide.mc.common.ItemStackUtils;
+import ru.pearx.carbide.mc.common.nbt.serialization.NBTSerializer;
+import ru.pearx.carbide.mc.common.tiles.syncable.TileSyncableComposite;
+import ru.pearx.carbide.mc.common.tiles.syncable.WriteTarget;
 import ru.pearx.purmag.common.SoundRegistry;
 import ru.pearx.purmag.common.inventory.ContainerCodeStorage;
 
@@ -94,7 +84,7 @@ public class TileCodeStorage extends TileSyncableComposite
         getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_HASH, byte[].class, this::setHash, this::getHash));
         getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_UNLOCKED, boolean.class, this::setUnlocked, this::isUnlocked));
         getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_OPENED, boolean.class, this::setOpened, this::isOpened, WriteTarget.SAVE));
-        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_OPENED_UPDATE, boolean.class, (Boolean b) -> setOpenedAndUpdate(PXLMC.PROXY.getClientPlayer(), b), this::isOpened, WriteTarget.PARTIAL_UPDATE));
+        getSerializers().add(new NBTSerializer.ReaderWriter<>(NBT_OPENED_UPDATE, boolean.class, (Boolean b) -> setOpenedAndUpdate(CarbideMC.PROXY.getClientPlayer(), b), this::isOpened, WriteTarget.PARTIAL_UPDATE));
         getSerializers().add(new NBTSerializer.Reader<>(NBT_SLOT_UPDATE, NBTTagCompound.class, (tag) -> ItemStackUtils.loadSlotUpdate(tag, handler)));
     }
 

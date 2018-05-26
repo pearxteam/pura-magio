@@ -2,11 +2,10 @@ package ru.pearx.purmag.client.gui.microscope;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
-import ru.pearx.lib.RandomUtils;
-import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.controls.GuiOnScreen;
-import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
-import ru.pearx.libmc.client.gui.drawables.SimpleDrawable;
+import ru.pearx.carbide.RandomUtils;
+import ru.pearx.carbide.mc.client.gui.controls.GuiOnScreen;
+import ru.pearx.carbide.mc.client.gui.drawables.IGuiDrawable;
+import ru.pearx.carbide.mc.client.gui.drawables.SimpleDrawable;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 

@@ -9,7 +9,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IShapedRecipe;
-import ru.pearx.libmc.common.ItemStackUtils;
+import ru.pearx.carbide.mc.common.ItemStackUtils;
 
 /*
  * Created by mrAppleXZ on 30.10.17 18:11.

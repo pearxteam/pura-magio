@@ -37,7 +37,7 @@ import java.util.Random;
 /**
  * Created by mrAppleXZ on 08.04.17 10:31.
  */
-@Mod(name = PurMag.NAME, modid = PurMag.MODID, version = PurMag.VERSION, acceptedMinecraftVersions = "", dependencies = "required-after:pxlmc;required-after:baubles;required-after:jei;")
+@Mod(name = PurMag.NAME, modid = PurMag.MODID, version = PurMag.VERSION, acceptedMinecraftVersions = "", dependencies = "required-after:carbide;required-after:baubles;required-after:jei;")
 public class PurMag
 {
     public static final String MODID = "purmag";

@@ -13,7 +13,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
+import ru.pearx.carbide.mc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.CPacketSpawnParticle;
 

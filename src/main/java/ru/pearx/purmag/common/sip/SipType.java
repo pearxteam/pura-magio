@@ -2,7 +2,7 @@ package ru.pearx.purmag.common.sip;
 
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
-import ru.pearx.lib.Color;
+import ru.pearx.carbide.Color;
 
 /**
  * Created by mrAppleXZ on 10.04.17 9:06.

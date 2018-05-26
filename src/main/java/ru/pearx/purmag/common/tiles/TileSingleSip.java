@@ -1,12 +1,8 @@
 package ru.pearx.purmag.common.tiles;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
-import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
-import ru.pearx.libmc.common.nbt.serialization.NBTSerializer;
-import ru.pearx.libmc.common.tiles.syncable.TileSyncable;
-import ru.pearx.libmc.common.tiles.syncable.TileSyncableComposite;
-import ru.pearx.libmc.common.tiles.syncable.WriteTarget;
+import ru.pearx.carbide.mc.common.nbt.serialization.NBTSerializer;
+import ru.pearx.carbide.mc.common.tiles.syncable.TileSyncableComposite;
 import ru.pearx.purmag.PurMag;
 
 /*

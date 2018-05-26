@@ -13,7 +13,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.particle.ParticleEngine;
+import ru.pearx.carbide.mc.client.particle.ParticleEngine;
 import ru.pearx.purmag.client.particle.ParticleCrystal;
 import ru.pearx.purmag.common.blocks.base.BlockSingleSip;
 import ru.pearx.purmag.common.items.ItemRegistry;

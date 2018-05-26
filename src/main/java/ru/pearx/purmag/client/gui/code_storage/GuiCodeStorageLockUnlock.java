@@ -3,8 +3,8 @@ package ru.pearx.purmag.client.gui.code_storage;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.controls.GuiOnScreen;
+import ru.pearx.carbide.mc.client.gui.DrawingTools;
+import ru.pearx.carbide.mc.client.gui.controls.GuiOnScreen;
 import ru.pearx.purmag.common.Utils;
 
 /*

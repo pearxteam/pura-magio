@@ -2,9 +2,9 @@ package ru.pearx.purmag.client;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.gui.drawables.AnimatedDrawable;
-import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
-import ru.pearx.libmc.client.gui.drawables.SimpleDrawable;
+import ru.pearx.carbide.mc.client.gui.drawables.AnimatedDrawable;
+import ru.pearx.carbide.mc.client.gui.drawables.IGuiDrawable;
+import ru.pearx.carbide.mc.client.gui.drawables.SimpleDrawable;
 import ru.pearx.purmag.common.Utils;
 
 /**

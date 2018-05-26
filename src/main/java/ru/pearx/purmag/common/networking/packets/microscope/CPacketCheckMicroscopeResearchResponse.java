@@ -7,8 +7,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.gui.PXLGui;
-import ru.pearx.libmc.client.gui.controls.Control;
+import ru.pearx.carbide.mc.client.gui.PXLGui;
+import ru.pearx.carbide.mc.client.gui.controls.Control;
 import ru.pearx.purmag.client.gui.microscope.GuiMicroscopeResearch;
 
 /*

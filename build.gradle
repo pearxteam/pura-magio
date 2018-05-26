@@ -1,10 +1,10 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url = 'http://files.minecraftforge.net/maven' }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath "net.minecraftforge.gradle:ForgeGradle:${fg_version}"
     }
 }
 
@@ -20,13 +20,13 @@ repositories {
         url "http://maven.tterrag.com"
     }
     maven {
-        name = "CoFH Maven"
+        name = "covers1624"
         url = "http://maven.covers1624.net"
     }
 }
 
-version = "${mod_version}.${build_number}"
-group= "ru.pearx.purmag"
+version = "${mod_version}+${build_number}"
+group = "ru.pearx.purmag"
 archivesBaseName = "PurificatiMagicae-${mc_version}"
 
 sourceCompatibility = targetCompatibility = "1.8"
@@ -34,6 +34,7 @@ compileJava {
     sourceCompatibility = targetCompatibility = "1.8"
 }
 
+evaluationDependsOn(project("CarbideMC").path)
 minecraft {
     version = mc_version + "-" + forge_version
     runDir = "run"
@@ -42,27 +43,20 @@ minecraft {
     replace("@MCVERSION@", mc_version)
     replace("acceptedMinecraftVersions = \"\"", "acceptedMinecraftVersions = \"" + accepted_mc_versions + "\"")
     replaceIn("PurMag.java")
+    accessTransformerSource(project.project("CarbideMC").sourceSets.main)
 }
 
-configurations {
-    incljar
-}
+
 
 dependencies {
-    compile project("PearXLibMC")
+    compile project("CarbideMC")
     deobfCompile "mezz.jei:jei_" + jei_mcversion + ":" + jei_version + ":api"
     runtime "mezz.jei:jei_" + jei_mcversion + ":" + jei_version
     deobfCompile "mcjty.theoneprobe:TheOneProbe-" + top_mcversion + ":" + top_mcversion + "-" + top_version
-    compile configurations.incljar.dependencies
-}
-
-processResources {
-    rename '(.+_at.cfg)', 'META-INF/$1'
 }
 
 jar {
     manifest {
         attributes 'FMLAT': 'purmag_at.cfg'
     }
-    from configurations.incljar
 }

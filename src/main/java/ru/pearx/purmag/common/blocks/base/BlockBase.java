@@ -7,7 +7,7 @@ import ru.pearx.purmag.common.Utils;
 /*
  * Created by mrAppleXZ on 14.07.17 11:46.
  */
-public class BlockBase extends ru.pearx.libmc.common.blocks.BlockBase
+public class BlockBase extends ru.pearx.carbide.mc.common.blocks.BlockBase
 {
     public BlockBase(Material materialIn)
     {

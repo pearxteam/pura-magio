@@ -1,16 +1,12 @@
 package ru.pearx.purmag.common.blocks.multiblock;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import ru.pearx.libmc.common.structure.blockarray.BlockArray;
-import ru.pearx.libmc.common.structure.multiblock.Multiblock;
+import ru.pearx.carbide.mc.common.structure.multiblock.Multiblock;
 import ru.pearx.purmag.common.PMCreativeTab;
 import ru.pearx.purmag.common.items.tinkering_kit.ItemTinkeringKit;
 

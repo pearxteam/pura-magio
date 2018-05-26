@@ -1,8 +1,8 @@
 package ru.pearx.purmag.client.gui.if_tablet.pages;
 
-import ru.pearx.lib.Colors;
-import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.controls.common.EntityShowcase;
+import ru.pearx.carbide.Colors;
+import ru.pearx.carbide.mc.client.gui.DrawingTools;
+import ru.pearx.carbide.mc.client.gui.controls.common.EntityShowcase;
 import ru.pearx.purmag.client.infofield.pages.IfPageEntity;
 
 

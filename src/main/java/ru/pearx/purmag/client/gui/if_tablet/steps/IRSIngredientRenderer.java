@@ -3,10 +3,10 @@ package ru.pearx.purmag.client.gui.if_tablet.steps;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.util.Point;
-import ru.pearx.lib.Colors;
-import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.drawables.item.MultiItemDrawable;
-import ru.pearx.libmc.common.ItemStackUtils;
+import ru.pearx.carbide.Colors;
+import ru.pearx.carbide.mc.client.gui.DrawingTools;
+import ru.pearx.carbide.mc.client.gui.drawables.item.MultiItemDrawable;
+import ru.pearx.carbide.mc.common.ItemStackUtils;
 import ru.pearx.purmag.common.infofield.steps.IRSIngredient;
 
 /*

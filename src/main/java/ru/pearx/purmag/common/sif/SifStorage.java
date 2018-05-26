@@ -1,6 +1,6 @@
 package ru.pearx.purmag.common.sif;
 
-import ru.pearx.libmc.common.GlobalChunkPos;
+import ru.pearx.carbide.mc.common.GlobalChunkPos;
 
 import java.util.HashMap;
 import java.util.Map;

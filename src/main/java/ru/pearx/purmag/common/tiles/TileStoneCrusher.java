@@ -8,12 +8,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import ru.pearx.libmc.common.ItemStackUtils;
-import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
-import ru.pearx.libmc.common.nbt.serialization.NBTSerializer;
-import ru.pearx.libmc.common.structure.multiblock.IMultiblockPart;
-import ru.pearx.libmc.common.structure.multiblock.events.MultiblockActivatedEvent;
-import ru.pearx.libmc.common.structure.multiblock.events.MultiblockBreakEvent;
+import ru.pearx.carbide.mc.common.ItemStackUtils;
+import ru.pearx.carbide.mc.common.nbt.NBTTagCompoundBuilder;
+import ru.pearx.carbide.mc.common.nbt.serialization.NBTSerializer;
+import ru.pearx.carbide.mc.common.structure.multiblock.IMultiblockPart;
+import ru.pearx.carbide.mc.common.structure.multiblock.events.MultiblockActivatedEvent;
+import ru.pearx.carbide.mc.common.structure.multiblock.events.MultiblockBreakEvent;
 import ru.pearx.purmag.common.blocks.multiblock.MultiblockRegistry;
 
 import javax.annotation.Nullable;

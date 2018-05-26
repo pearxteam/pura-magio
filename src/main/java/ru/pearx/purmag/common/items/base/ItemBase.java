@@ -6,7 +6,7 @@ import ru.pearx.purmag.common.Utils;
 /*
  * Created by mrAppleXZ on 14.07.17 11:45.
  */
-public class ItemBase extends ru.pearx.libmc.common.items.ItemBase
+public class ItemBase extends ru.pearx.carbide.mc.common.items.ItemBase
 {
     public ItemBase()
     {

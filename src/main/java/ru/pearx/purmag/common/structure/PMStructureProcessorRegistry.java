@@ -1,6 +1,6 @@
 package ru.pearx.purmag.common.structure;
 
-import ru.pearx.libmc.common.structure.processors.StructureProcessor;
+import ru.pearx.carbide.mc.common.structure.processors.StructureProcessor;
 
 /*
  * Created by mrAppleXZ on 05.10.17 21:17.

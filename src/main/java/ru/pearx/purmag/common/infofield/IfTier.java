@@ -4,8 +4,8 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.lib.Color;
-import ru.pearx.libmc.client.gui.drawables.IGuiDrawable;
+import ru.pearx.carbide.Color;
+import ru.pearx.carbide.mc.client.gui.drawables.IGuiDrawable;
 
 /*
  * Created by mrAppleXZ on 15.08.17 23:31.

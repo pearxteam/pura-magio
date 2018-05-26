@@ -7,7 +7,7 @@ import ru.pearx.purmag.common.Utils;
 /*
  * Created by mrAppleXZ on 31.08.17 18:06.
  */
-public class BlockBushBase extends ru.pearx.libmc.common.blocks.BlockBushBase
+public class BlockBushBase extends ru.pearx.carbide.mc.common.blocks.BlockBushBase
 {
     public BlockBushBase()
     {

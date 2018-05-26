@@ -9,10 +9,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import ru.pearx.libmc.common.ItemStackUtils;
-import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
-import ru.pearx.libmc.common.nbt.serialization.NBTSerializer;
-import ru.pearx.libmc.common.tiles.syncable.TileSyncableComposite;
+import ru.pearx.carbide.mc.common.ItemStackUtils;
+import ru.pearx.carbide.mc.common.nbt.NBTTagCompoundBuilder;
+import ru.pearx.carbide.mc.common.nbt.serialization.NBTSerializer;
+import ru.pearx.carbide.mc.common.tiles.syncable.TileSyncableComposite;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 

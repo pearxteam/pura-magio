@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.models.IPXModel;
+import ru.pearx.carbide.mc.client.models.IPXModel;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.models.StandardModels;
 import ru.pearx.purmag.common.Utils;

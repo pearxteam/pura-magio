@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.gui.PXLGui;
+import ru.pearx.carbide.mc.client.gui.PXLGui;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.gui.GuiPapyrus;
 import ru.pearx.purmag.client.gui.code_storage.GuiCodeStorageUnlock;

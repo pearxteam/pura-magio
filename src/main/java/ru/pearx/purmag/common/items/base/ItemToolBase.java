@@ -9,7 +9,7 @@ import java.util.Set;
 /*
  * Created by mrAppleXZ on 14.11.17 9:09.
  */
-public class ItemToolBase extends ru.pearx.libmc.common.items.ItemToolBase
+public class ItemToolBase extends ru.pearx.carbide.mc.common.items.ItemToolBase
 {
     protected ItemToolBase(float attackDamageIn, float attackSpeedIn, ToolMaterial materialIn, Set<Block> effectiveBlocksIn)
     {

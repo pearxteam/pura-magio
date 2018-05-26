@@ -3,9 +3,7 @@ package ru.pearx.purmag.client.gui.if_tablet;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
-import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.controls.Control;
-import ru.pearx.purmag.PurMag;
+import ru.pearx.carbide.mc.client.gui.controls.Control;
 
 /**
  * Created by mrAppleXZ on 28.04.17 11:27.

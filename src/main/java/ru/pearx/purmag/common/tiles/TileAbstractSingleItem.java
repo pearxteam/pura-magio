@@ -6,10 +6,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import ru.pearx.libmc.common.ItemStackUtils;
-import ru.pearx.libmc.common.nbt.NBTTagCompoundBuilder;
-import ru.pearx.libmc.common.nbt.serialization.NBTSerializer;
-import ru.pearx.libmc.common.tiles.syncable.TileSyncableComposite;
+import ru.pearx.carbide.mc.common.ItemStackUtils;
+import ru.pearx.carbide.mc.common.nbt.NBTTagCompoundBuilder;
+import ru.pearx.carbide.mc.common.nbt.serialization.NBTSerializer;
+import ru.pearx.carbide.mc.common.tiles.syncable.TileSyncableComposite;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

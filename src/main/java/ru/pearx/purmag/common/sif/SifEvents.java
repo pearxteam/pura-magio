@@ -5,7 +5,7 @@ import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.event.world.ChunkWatchEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import ru.pearx.libmc.common.GlobalChunkPos;
+import ru.pearx.carbide.mc.common.GlobalChunkPos;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.CPacketDesyncSif;

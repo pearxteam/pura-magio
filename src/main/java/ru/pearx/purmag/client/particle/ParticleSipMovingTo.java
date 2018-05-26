@@ -2,11 +2,11 @@ package ru.pearx.purmag.client.particle;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
-import ru.pearx.lib.Color;
-import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.particle.ParticleEngine;
-import ru.pearx.libmc.client.particle.ParticleMovingTo;
-import ru.pearx.libmc.client.particle.ParticleTrail;
+import ru.pearx.carbide.Color;
+import ru.pearx.carbide.mc.client.gui.DrawingTools;
+import ru.pearx.carbide.mc.client.particle.ParticleEngine;
+import ru.pearx.carbide.mc.client.particle.ParticleMovingTo;
+import ru.pearx.carbide.mc.client.particle.ParticleTrail;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 

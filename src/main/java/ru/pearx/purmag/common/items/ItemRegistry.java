@@ -9,8 +9,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
-import ru.pearx.libmc.PXLMC;
-import ru.pearx.libmc.client.models.IModelProvider;
+import ru.pearx.carbide.mc.CarbideMC;
+import ru.pearx.carbide.mc.client.models.IModelProvider;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.items.base.ItemBase;
@@ -64,7 +64,7 @@ public class ItemRegistry
     {
         reg.register(itm);
         if (itm instanceof IModelProvider)
-            PXLMC.PROXY.setupModels((IModelProvider) itm);
+            CarbideMC.PROXY.setupModels((IModelProvider) itm);
     }
 
     @SuppressWarnings("ConstantConditions")

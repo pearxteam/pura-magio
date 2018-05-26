@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import org.apache.commons.lang3.tuple.Pair;
-import ru.pearx.libmc.common.networking.ByteBufTools;
+import ru.pearx.carbide.mc.common.networking.ByteBufTools;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.infofield.IfEntry;

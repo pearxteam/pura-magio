@@ -6,11 +6,11 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
-import ru.pearx.libmc.PXLMC;
-import ru.pearx.libmc.client.ModelSupplied;
-import ru.pearx.libmc.client.PXLFastTESR;
-import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
-import ru.pearx.libmc.client.models.PXLModelRenderer;
+import ru.pearx.carbide.mc.CarbideMC;
+import ru.pearx.carbide.mc.client.ModelSupplied;
+import ru.pearx.carbide.mc.client.PXLFastTESR;
+import ru.pearx.carbide.mc.common.blocks.controllers.HorizontalFacingController;
+import ru.pearx.carbide.mc.client.models.PXLModelRenderer;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.tiles.TileCodeStorage;
@@ -33,7 +33,7 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(0.5f, 0, 0.5f);
-        GlStateManager.rotate(PXLMC.getHorizontalRotation(st.getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
+        GlStateManager.rotate(CarbideMC.getHorizontalRotation(st.getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
         GlStateManager.translate(-0.5f, 0, -0.5f);
 
         long rnd = MathHelper.getPositionRandom(te.getPos());

@@ -2,8 +2,8 @@ package ru.pearx.purmag.client.gui.if_tablet.pages;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.lib.Colors;
-import ru.pearx.libmc.client.gui.DrawingTools;
+import ru.pearx.carbide.Colors;
+import ru.pearx.carbide.mc.client.gui.DrawingTools;
 import ru.pearx.purmag.client.infofield.pages.IfPageText;
 
 

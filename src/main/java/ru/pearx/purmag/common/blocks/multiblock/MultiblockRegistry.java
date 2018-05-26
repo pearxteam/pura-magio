@@ -1,6 +1,6 @@
 package ru.pearx.purmag.common.blocks.multiblock;
 
-import ru.pearx.libmc.common.structure.multiblock.Multiblock;
+import ru.pearx.carbide.mc.common.structure.multiblock.Multiblock;
 
 /*
  * Created by mrAppleXZ on 14.11.17 15:49.

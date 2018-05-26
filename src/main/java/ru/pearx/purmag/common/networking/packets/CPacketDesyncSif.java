@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.common.GlobalChunkPos;
+import ru.pearx.carbide.mc.common.GlobalChunkPos;
 import ru.pearx.purmag.client.PurMagClient;
 
 /**

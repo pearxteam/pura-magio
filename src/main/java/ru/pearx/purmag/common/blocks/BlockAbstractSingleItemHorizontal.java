@@ -17,8 +17,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import ru.pearx.libmc.common.ItemStackUtils;
-import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
+import ru.pearx.carbide.mc.common.ItemStackUtils;
+import ru.pearx.carbide.mc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.purmag.common.blocks.base.BlockBase;
 import ru.pearx.purmag.common.tiles.TileAbstractSingleItem;
 

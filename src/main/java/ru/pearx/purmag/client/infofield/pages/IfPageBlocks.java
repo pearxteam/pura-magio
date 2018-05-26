@@ -3,7 +3,7 @@ package ru.pearx.purmag.client.infofield.pages;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.common.structure.blockarray.BlockArray;
+import ru.pearx.carbide.mc.common.structure.blockarray.BlockArray;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPBlocksRenderer;
 import ru.pearx.purmag.client.gui.if_tablet.pages.IPRenderer;
 

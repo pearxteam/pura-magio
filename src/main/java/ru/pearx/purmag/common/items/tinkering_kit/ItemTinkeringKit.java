@@ -10,12 +10,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.common.structure.multiblock.Multiblock;
+import ru.pearx.carbide.mc.common.structure.multiblock.Multiblock;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.multiblock.PMMultiblock;
 import ru.pearx.purmag.common.items.base.ItemToolBase;
-import ru.pearx.purmag.common.networking.NetworkManager;
-import ru.pearx.purmag.common.networking.packets.CPacketSpawnMultiblockParticles;
 
 import javax.annotation.Nullable;
 import java.util.Collections;

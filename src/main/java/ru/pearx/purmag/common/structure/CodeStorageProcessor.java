@@ -10,13 +10,13 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
-import ru.pearx.lib.Colors;
-import ru.pearx.libmc.PXLMC;
-import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.controls.common.TextBox;
-import ru.pearx.libmc.client.gui.structure.ControlStructureProcessor;
-import ru.pearx.libmc.common.structure.processors.StructureProcessor;
-import ru.pearx.libmc.common.structure.processors.StructureProcessorData;
+import ru.pearx.carbide.Colors;
+import ru.pearx.carbide.mc.CarbideMC;
+import ru.pearx.carbide.mc.client.gui.DrawingTools;
+import ru.pearx.carbide.mc.client.gui.controls.common.TextBox;
+import ru.pearx.carbide.mc.client.gui.structure.ControlStructureProcessor;
+import ru.pearx.carbide.mc.common.structure.processors.StructureProcessor;
+import ru.pearx.carbide.mc.common.structure.processors.StructureProcessorData;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.config.PMConfig;
@@ -104,7 +104,7 @@ public class CodeStorageProcessor extends StructureProcessor
         @Override
         public Pair<ResourceLocation, StructureProcessorData> getData()
         {
-            return Pair.of(ID, new Data(PXLMC.parseCoords(pos.getBuffer().toString()), new ResourceLocation(table.getBuffer().toString())));
+            return Pair.of(ID, new Data(CarbideMC.parseCoords(pos.getBuffer().toString()), new ResourceLocation(table.getBuffer().toString())));
         }
     }
 
@@ -138,7 +138,7 @@ public class CodeStorageProcessor extends StructureProcessor
         {
             TileCodeStorage storage = (TileCodeStorage) te;
             storage.tryLock(null, true, expr.getText(), expr.getResult());
-            PXLMC.fillBlockWithLoot(world, rand, d.getAbsolutePos(), EnumFacing.NORTH, d.table, expr.getLuck());
+            CarbideMC.fillBlockWithLoot(world, rand, d.getAbsolutePos(), EnumFacing.NORTH, d.table, expr.getLuck());
         }
     }
 

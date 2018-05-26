@@ -5,7 +5,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.Point;
-import ru.pearx.libmc.client.gui.controls.Control;
+import ru.pearx.carbide.mc.client.gui.controls.Control;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.infofield.IfChannel;
 import ru.pearx.purmag.common.infofield.IfEntry;

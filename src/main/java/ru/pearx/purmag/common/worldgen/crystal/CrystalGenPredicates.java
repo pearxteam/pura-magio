@@ -5,7 +5,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
-import ru.pearx.libmc.common.worldgen.WGOre;
+import ru.pearx.carbide.mc.common.worldgen.WGOre;
 
 import java.util.Random;
 

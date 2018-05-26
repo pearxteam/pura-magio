@@ -1,8 +1,7 @@
 package ru.pearx.purmag.common.tiles;
 
 import net.minecraft.entity.player.EntityPlayer;
-import ru.pearx.libmc.PXLMC;
-import ru.pearx.libmc.common.tiles.TileMultiblockMaster;
+import ru.pearx.carbide.mc.common.tiles.TileMultiblockMaster;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.CPacketSpawnMultiblockParticles;
 

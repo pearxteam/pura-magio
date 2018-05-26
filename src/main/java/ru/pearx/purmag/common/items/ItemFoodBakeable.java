@@ -6,7 +6,7 @@ import ru.pearx.purmag.common.Utils;
 /*
  * Created by mrAppleXZ on 14.07.17 11:50.
  */
-public class ItemFoodBakeable extends ru.pearx.libmc.common.items.ItemFoodBakeable
+public class ItemFoodBakeable extends ru.pearx.carbide.mc.common.items.ItemFoodBakeable
 {
     public ItemFoodBakeable(int food, float saturation, boolean isWolfsFood, int foodB, float saturationB)
     {

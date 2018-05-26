@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
-import ru.pearx.libmc.common.blocks.controllers.HorizontalFacingController;
+import ru.pearx.carbide.mc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.blocks.base.BlockBase;
 import ru.pearx.purmag.common.blocks.properties.PropertyIfTier;

@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.management.PlayerChunkMapEntry;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
-import ru.pearx.libmc.common.GlobalChunkPos;
+import ru.pearx.carbide.mc.common.GlobalChunkPos;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.networking.packets.CPacketDesyncSif;
 import ru.pearx.purmag.common.networking.packets.CPacketSyncSif;

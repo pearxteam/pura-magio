@@ -5,10 +5,10 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.gui.controls.Control;
-import ru.pearx.libmc.client.gui.controls.GuiOnScreenContainer;
-import ru.pearx.libmc.client.gui.inventory.PXLGuiContainerControls;
+import ru.pearx.carbide.mc.client.gui.DrawingTools;
+import ru.pearx.carbide.mc.client.gui.controls.Control;
+import ru.pearx.carbide.mc.client.gui.controls.GuiOnScreenContainer;
+import ru.pearx.carbide.mc.client.gui.inventory.PXLGuiContainerControls;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.inventory.ContainerMagibench;
 

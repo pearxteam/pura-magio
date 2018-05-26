@@ -1,8 +1,8 @@
 package ru.pearx.purmag.common.tiles;
 
 import net.minecraft.entity.player.EntityPlayer;
-import ru.pearx.libmc.common.nbt.serialization.NBTSerializer;
-import ru.pearx.libmc.common.tiles.syncable.TileSyncableComposite;
+import ru.pearx.carbide.mc.common.nbt.serialization.NBTSerializer;
+import ru.pearx.carbide.mc.common.tiles.syncable.TileSyncableComposite;
 
 /*
  * Created by mrAppleXZ on 09.07.17 10:23.

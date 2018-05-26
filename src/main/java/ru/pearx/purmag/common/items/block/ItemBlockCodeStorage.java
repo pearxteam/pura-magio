@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.ClientUtils;
+import ru.pearx.carbide.mc.client.ClientUtils;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.items.base.ItemBlockBase;
 

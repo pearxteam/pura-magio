@@ -3,10 +3,10 @@ package ru.pearx.purmag.client.particle;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import ru.pearx.lib.Color;
-import ru.pearx.lib.math.MathUtils;
-import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.particle.PXParticle;
+import ru.pearx.carbide.Color;
+import ru.pearx.carbide.math.MathUtils;
+import ru.pearx.carbide.mc.client.gui.DrawingTools;
+import ru.pearx.carbide.mc.client.particle.PXParticle;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.Utils;
 

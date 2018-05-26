@@ -4,8 +4,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.client.gui.DrawingTools;
-import ru.pearx.libmc.client.particle.ParticlePhysical;
+import ru.pearx.carbide.mc.client.gui.DrawingTools;
+import ru.pearx.carbide.mc.client.particle.ParticlePhysical;
 import ru.pearx.purmag.common.Utils;
 
 import java.util.Random;

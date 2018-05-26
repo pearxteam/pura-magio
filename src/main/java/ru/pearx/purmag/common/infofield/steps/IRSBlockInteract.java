@@ -9,7 +9,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.libmc.common.structure.blockarray.BlockArrayEntry;
+import ru.pearx.carbide.mc.common.structure.blockarray.BlockArrayEntry;
 import ru.pearx.purmag.client.gui.if_tablet.steps.IRSBlockInteractRenderer;
 import ru.pearx.purmag.client.gui.if_tablet.steps.IRSRenderer;
 
