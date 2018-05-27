@@ -23,7 +23,6 @@ import ru.pearx.purmag.common.items.papyrus.PapyrusRegistry;
 import ru.pearx.purmag.common.loot_tables.LootTablesRegistry;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 import ru.pearx.purmag.common.networking.NetworkManager;
-import ru.pearx.purmag.common.sif.SifStorageServer;
 import ru.pearx.purmag.common.sip.SipEffectsRegistry;
 import ru.pearx.purmag.common.sip.SipTypeRegistry;
 import ru.pearx.purmag.common.structure.PMStructureProcessorRegistry;
@@ -53,7 +52,6 @@ public class PurMag
     //don't move this to PurMagClient
     public Random random = new Random();
 
-    public SifStorageServer sif_storage = new SifStorageServer();
     private SipTypeRegistry sip_registry = new SipTypeRegistry();
     private SipEffectsRegistry sip_effects = new SipEffectsRegistry();
     private IfRegistry if_registry = new IfRegistry();

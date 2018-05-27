@@ -5,8 +5,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
-import ru.pearx.carbide.mc.common.GlobalChunkPos;
+import ru.pearx.carbide.mc.common.misc.GlobalChunkPos;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.tiles.TileSingleSip;
 
@@ -38,7 +39,7 @@ public class WGCrystal implements IWorldGenerator
         {
             int x = chunkX * 16 + random.nextInt(16);
             int z = chunkZ * 16 + random.nextInt(16);
-            float sif = PurMag.INSTANCE.sif_storage.get(new GlobalChunkPos(chunkX, chunkZ, world.provider.getDimension()));
+            float sif = world.getChunkFromChunkCoords(chunkX, chunkZ).getCapability(CapabilityRegistry.SIF_STORAGE, null).getPower();
             int y = predicate.getY(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider, x, z, sif);
             BlockPos pos = new BlockPos(x, y, z);
 

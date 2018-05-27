@@ -15,6 +15,8 @@ import ru.pearx.carbide.mc.CarbideMC;
 import ru.pearx.carbide.mc.client.gui.DrawingTools;
 import ru.pearx.carbide.mc.client.gui.controls.common.TextBox;
 import ru.pearx.carbide.mc.client.gui.structure.ControlStructureProcessor;
+import ru.pearx.carbide.mc.common.misc.CoordUtils;
+import ru.pearx.carbide.mc.common.misc.MiscUtils;
 import ru.pearx.carbide.mc.common.structure.processors.StructureProcessor;
 import ru.pearx.carbide.mc.common.structure.processors.StructureProcessorData;
 import ru.pearx.purmag.PurMag;
@@ -104,7 +106,7 @@ public class CodeStorageProcessor extends StructureProcessor
         @Override
         public Pair<ResourceLocation, StructureProcessorData> getData()
         {
-            return Pair.of(ID, new Data(CarbideMC.parseCoords(pos.getBuffer().toString()), new ResourceLocation(table.getBuffer().toString())));
+            return Pair.of(ID, new Data(CoordUtils.parseCoords(pos.getBuffer().toString()), new ResourceLocation(table.getBuffer().toString())));
         }
     }
 
@@ -138,7 +140,7 @@ public class CodeStorageProcessor extends StructureProcessor
         {
             TileCodeStorage storage = (TileCodeStorage) te;
             storage.tryLock(null, true, expr.getText(), expr.getResult());
-            CarbideMC.fillBlockWithLoot(world, rand, d.getAbsolutePos(), EnumFacing.NORTH, d.table, expr.getLuck());
+            MiscUtils.fillBlockWithLoot(world, rand, d.getAbsolutePos(), EnumFacing.NORTH, d.table, expr.getLuck());
         }
     }
 

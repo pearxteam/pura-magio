@@ -10,4 +10,9 @@ import ru.pearx.purmag.common.sif.SifStorage;
 @SideOnly(Side.CLIENT)
 public class SifStorageClient extends SifStorage
 {
+    @Override
+    public void markDirty()
+    {
+
+    }
 }

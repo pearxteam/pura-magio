@@ -6,7 +6,7 @@ import org.lwjgl.util.Point;
 import ru.pearx.carbide.Colors;
 import ru.pearx.carbide.mc.client.gui.DrawingTools;
 import ru.pearx.carbide.mc.client.gui.drawables.item.MultiItemDrawable;
-import ru.pearx.carbide.mc.common.ItemStackUtils;
+import ru.pearx.carbide.mc.common.misc.ItemStackUtils;
 import ru.pearx.purmag.common.infofield.steps.IRSIngredient;
 
 /*

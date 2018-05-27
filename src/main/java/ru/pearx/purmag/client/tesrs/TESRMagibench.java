@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import ru.pearx.carbide.mc.CarbideMC;
 import ru.pearx.carbide.mc.client.PXLFastTESR;
 import ru.pearx.carbide.mc.common.blocks.controllers.HorizontalFacingController;
+import ru.pearx.carbide.mc.common.misc.CoordUtils;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
 import ru.pearx.purmag.common.tiles.TileMagibench;
@@ -28,7 +29,7 @@ public class TESRMagibench extends PXLFastTESR<TileMagibench>
         float scale = Math.min(1f / t.getWidth(), 1f / t.getHeight());
         GlStateManager.pushMatrix();
         GlStateManager.translate(0.5f, 0, 0.5f);
-        GlStateManager.rotate(CarbideMC.getHorizontalRotation(te.getWorld().getBlockState(te.getPos()).getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
+        GlStateManager.rotate(CoordUtils.getHorizontalDegrees(te.getWorld().getBlockState(te.getPos()).getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
         GlStateManager.translate(-0.5f, 0, -0.5f);
         GlStateManager.translate(0.16f, 1.09f, 0.16f);
         for (int yy = 0; yy < t.getHeight(); yy++)

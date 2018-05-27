@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import ru.pearx.carbide.mc.CarbideMC;
 import ru.pearx.carbide.mc.client.PXLFastTESR;
 import ru.pearx.carbide.mc.common.blocks.controllers.HorizontalFacingController;
+import ru.pearx.carbide.mc.common.misc.CoordUtils;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.tiles.TileMicroscope;
 
@@ -31,7 +32,7 @@ public class TESRMicroscope extends PXLFastTESR<TileMicroscope>
         {
             GlStateManager.pushMatrix();
             GlStateManager.translate(0.5f, 0, 0.5f);
-            GlStateManager.rotate(CarbideMC.getHorizontalRotation(state.getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
+            GlStateManager.rotate(CoordUtils.getHorizontalDegrees(state.getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
             GlStateManager.rotate(180, 0, 1, 0);
             GlStateManager.translate(-0.5f, 0, -0.5f);
 

@@ -15,6 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.carbide.RandomUtils;
 import ru.pearx.carbide.mc.CarbideMC;
 import ru.pearx.carbide.mc.client.particle.ParticleEngine;
+import ru.pearx.carbide.mc.common.misc.CoordUtils;
 import ru.pearx.carbide.mc.common.networking.ByteBufTools;
 import ru.pearx.carbide.mc.common.structure.blockarray.BlockArray;
 import ru.pearx.carbide.mc.common.structure.multiblock.Multiblock;
@@ -71,8 +72,8 @@ public class CPacketSpawnMultiblockParticles implements IMessage
             {
                 Minecraft.getMinecraft().world.playSound(message.pos, SoundRegistry.MULTIBLOCK_FORM, SoundCategory.BLOCKS, 1, 1, false);
                 BlockArray struct = Multiblock.REGISTRY.getValue(message.multiblockId).getStructure();
-                BlockPos f = CarbideMC.transformPos(new BlockPos(struct.getMinX(), struct.getMinY(), struct.getMinZ()), null, message.rot).add(message.pos);
-                BlockPos t = CarbideMC.transformPos(new BlockPos(struct.getMaxX(), struct.getMaxY(), struct.getMaxZ()), null, message.rot).add(message.pos);
+                BlockPos f = CoordUtils.transformPos(new BlockPos(struct.getMinX(), struct.getMinY(), struct.getMinZ()), null, message.rot).add(message.pos);
+                BlockPos t = CoordUtils.transformPos(new BlockPos(struct.getMaxX(), struct.getMaxY(), struct.getMaxZ()), null, message.rot).add(message.pos);
                 int minX = Math.min(f.getX(), t.getX());
                 int maxX = Math.max(f.getX(), t.getX());
                 int minY = Math.min(f.getY(), t.getY());

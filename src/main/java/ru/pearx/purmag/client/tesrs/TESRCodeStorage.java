@@ -11,6 +11,7 @@ import ru.pearx.carbide.mc.client.ModelSupplied;
 import ru.pearx.carbide.mc.client.PXLFastTESR;
 import ru.pearx.carbide.mc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.carbide.mc.client.models.PXLModelRenderer;
+import ru.pearx.carbide.mc.common.misc.CoordUtils;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.tiles.TileCodeStorage;
@@ -33,7 +34,7 @@ public class TESRCodeStorage extends PXLFastTESR<TileCodeStorage>
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(0.5f, 0, 0.5f);
-        GlStateManager.rotate(CarbideMC.getHorizontalRotation(st.getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
+        GlStateManager.rotate(CoordUtils.getHorizontalDegrees(st.getValue(HorizontalFacingController.FACING_H)), 0, 1, 0);
         GlStateManager.translate(-0.5f, 0, -0.5f);
 
         long rnd = MathHelper.getPositionRandom(te.getPos());

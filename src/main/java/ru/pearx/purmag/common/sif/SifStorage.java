@@ -1,29 +1,38 @@
 package ru.pearx.purmag.common.sif;
 
-import ru.pearx.carbide.mc.common.GlobalChunkPos;
+import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Created by mrAppleXZ on 27.06.17 15:29.
+/*
+ * Created by mrAppleXZ on 27.05.18 12:21.
  */
-public class SifStorage
+public abstract class SifStorage implements ISifStorage
 {
-    protected Map<GlobalChunkPos, Float> loaded = new HashMap<>();
+    private float power;
 
-    public float get(GlobalChunkPos pos)
+    @Override
+    public NBTTagCompound serializeNBT()
     {
-        return loaded.get(pos);
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setFloat("power", getPower());
+        return tag;
     }
 
-    public void set(GlobalChunkPos pos, float value)
+    @Override
+    public void deserializeNBT(NBTTagCompound nbt)
     {
-        loaded.put(pos, value);
+        setPower(nbt.getFloat("power"));
     }
 
-    public void remove(GlobalChunkPos pos)
+    @Override
+    public float getPower()
     {
-        loaded.remove(pos);
+        return power;
+    }
+
+    @Override
+    public void setPower(float value)
+    {
+        power = value;
+        markDirty();
     }
 }

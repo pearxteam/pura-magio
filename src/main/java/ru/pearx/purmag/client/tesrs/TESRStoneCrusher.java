@@ -18,6 +18,7 @@ import ru.pearx.carbide.mc.CarbideMC;
 import ru.pearx.carbide.mc.client.ModelSupplied;
 import ru.pearx.carbide.mc.client.TESRMultiblock;
 import ru.pearx.carbide.mc.client.models.PXLModelRenderer;
+import ru.pearx.carbide.mc.common.misc.CoordUtils;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.tiles.TileStoneCrusher;
 
@@ -38,7 +39,7 @@ public class TESRStoneCrusher extends TESRMultiblock<TileStoneCrusher>
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate(0.5f, 0, 0.5f);
-        GlStateManager.rotate(CarbideMC.getHorizontalRotation(te.getRotation()), 0, 1, 0);
+        GlStateManager.rotate(CoordUtils.getHorizontalDegrees(te.getRotation()), 0, 1, 0);
         GlStateManager.translate(-0.5f, 0, -0.5f);
 
         //main part

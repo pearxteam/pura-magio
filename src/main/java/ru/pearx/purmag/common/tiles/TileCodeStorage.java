@@ -13,7 +13,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.pearx.carbide.HashingUtils;
 import ru.pearx.carbide.mc.CarbideMC;
-import ru.pearx.carbide.mc.common.ItemStackUtils;
+import ru.pearx.carbide.mc.common.misc.ItemStackUtils;
 import ru.pearx.carbide.mc.common.nbt.serialization.NBTSerializer;
 import ru.pearx.carbide.mc.common.tiles.syncable.TileSyncableComposite;
 import ru.pearx.carbide.mc.common.tiles.syncable.WriteTarget;

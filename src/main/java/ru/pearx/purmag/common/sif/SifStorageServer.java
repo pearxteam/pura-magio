@@ -2,12 +2,13 @@ package ru.pearx.purmag.common.sif;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.management.PlayerChunkMapEntry;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.DimensionManager;
-import ru.pearx.carbide.mc.common.GlobalChunkPos;
+import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.networking.NetworkManager;
-import ru.pearx.purmag.common.networking.packets.CPacketDesyncSif;
-import ru.pearx.purmag.common.networking.packets.CPacketSyncSif;
+import ru.pearx.purmag.common.sif.net.CPacketSyncSif;
 
 import java.util.Random;
 
@@ -16,51 +17,43 @@ import java.util.Random;
  */
 public class SifStorageServer extends SifStorage
 {
-    @Override
-    public void set(GlobalChunkPos pos, float value)
+    private Chunk chunk;
+    private boolean isSet;
+
+    public SifStorageServer(Chunk chunk)
     {
-        if (loaded.containsKey(pos))
-            if (loaded.get(pos).equals(value))
-                return;
-        loaded.put(pos, value);
-        WorldServer wrld = DimensionManager.getWorld(pos.getDimension());
-        wrld.getChunkFromChunkCoords(pos.getX(), pos.getZ()).markDirty();
-        PlayerChunkMapEntry map = wrld.getPlayerChunkMap().getEntry(pos.getX(), pos.getZ());
-        if (map != null)
+        this.chunk = chunk;
+    }
+
+    @Override
+    public void setPower(float value)
+    {
+        isSet = true;
+        super.setPower(value);
+        World w = chunk.getWorld();
+        if(w instanceof WorldServer)
         {
-            for (EntityPlayerMP p : map.players)
+            PlayerChunkMapEntry map = ((WorldServer) w).getPlayerChunkMap().getEntry(chunk.x, chunk.z);
+            if (map != null)
             {
-                NetworkManager.sendTo(new CPacketSyncSif(pos, value), p);
+                for (EntityPlayerMP p : map.players)
+                {
+                    NetworkManager.sendTo(new CPacketSyncSif(chunk.x, chunk.z, value), p);
+                }
             }
         }
     }
 
     @Override
-    public void remove(GlobalChunkPos pos)
+    public float getPower()
     {
-        if (!loaded.containsKey(pos))
-            return;
-        loaded.remove(pos);
-        PlayerChunkMapEntry map = DimensionManager.getWorld(pos.getDimension()).getPlayerChunkMap().getEntry(pos.getX(), pos.getZ());
-        if (map != null)
+        if(!isSet)
         {
-            for (EntityPlayerMP p : map.players)
-            {
-                NetworkManager.sendTo(new CPacketDesyncSif(pos), p);
-            }
-        }
-    }
-
-    @Override
-    public float get(GlobalChunkPos pos)
-    {
-        if (!loaded.containsKey(pos))
-        {
-            long worldSeed = DimensionManager.getWorld(pos.getDimension()).getSeed();
+            long worldSeed = chunk.getWorld().getSeed();
             Random rand = new Random(worldSeed);
             long xSeed = rand.nextLong() >> 2 + 1L;
             long zSeed = rand.nextLong() >> 2 + 1L;
-            rand.setSeed((xSeed * pos.getX() + zSeed * pos.getZ()) ^ worldSeed);
+            rand.setSeed((xSeed * chunk.x + zSeed * chunk.z) ^ worldSeed);
 
             int main;
             float f = rand.nextFloat();
@@ -77,8 +70,14 @@ public class SifStorageServer extends SifStorage
                     main = 0;
 
             }
-            set(pos, main + f);
+            setPower(main + f);
         }
-        return loaded.get(pos);
+        return super.getPower();
+    }
+
+    @Override
+    public void markDirty()
+    {
+        chunk.markDirty();
     }
 }

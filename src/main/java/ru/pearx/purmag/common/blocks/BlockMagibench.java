@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.carbide.mc.common.ItemStackUtils;
+import ru.pearx.carbide.mc.common.misc.ItemStackUtils;
 import ru.pearx.carbide.mc.common.blocks.controllers.HorizontalFacingController;
 import ru.pearx.carbide.mc.common.blocks.properties.PropertyInt;
 import ru.pearx.purmag.PurMag;

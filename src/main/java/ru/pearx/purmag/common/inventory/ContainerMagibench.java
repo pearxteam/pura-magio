@@ -7,7 +7,7 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
-import ru.pearx.carbide.mc.common.ItemStackUtils;
+import ru.pearx.carbide.mc.common.misc.ItemStackUtils;
 import ru.pearx.carbide.mc.common.inventory.PXLContainer;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.magibench.MagibenchRegistry;
