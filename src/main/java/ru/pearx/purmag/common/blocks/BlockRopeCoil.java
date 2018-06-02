@@ -87,11 +87,4 @@ public class BlockRopeCoil extends BlockBase
         for(Type t : Type.values())
             items.add(new ItemStack(this, 1, t.ordinal()));
     }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void setupModels()
-    {
-        //leave this empty.
-    }
 }

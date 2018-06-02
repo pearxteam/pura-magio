@@ -18,10 +18,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 import ru.pearx.carbide.mc.client.models.*;
+import ru.pearx.carbide.mc.client.models.connected.ConnectedModel;
+import ru.pearx.carbide.mc.client.models.connected.ConnectedTextureGetter;
 import ru.pearx.carbide.mc.client.models.processors.SetterProcessor;
 import ru.pearx.carbide.mc.client.models.processors.FacingProcessor;
 import ru.pearx.carbide.mc.client.models.processors.IVertexProcessor;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.client.resources.PMResources;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.BlockAbstractWallIfTablet;
 import ru.pearx.purmag.common.blocks.BlockCodeStorage;
@@ -39,7 +42,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class StandardModels
 {
-    public static class Crystal extends CachedModel
+    public static class Crystal extends OvModel
     {
         private Matrix4f mat = new TRSRTransformation(new Vector3f(0, -0.25f, 0), null, new Vector3f(0.45f, 0.45f, 0.45f), new Quat4f(0, -0.20944f, 0, 1)).getMatrix();
 
@@ -60,7 +63,7 @@ public class StandardModels
     {
         public CrystalGlass()
         {
-            setBaseTexture(new ResourceLocation(PurMag.MODID, "blocks/crystal_glass"));
+            setTextureGetter((north, east, south, west) -> PMResources.CRYSTAL_GLASS[ConnectedTextureGetter.indexFromSides(north, east, south, west)]);
             quadProcessors.add(new SetterProcessor().setTintTo(0));
         }
     }
@@ -69,7 +72,7 @@ public class StandardModels
     {
         public LuminousCrystalGlass()
         {
-            setBaseTexture(new ResourceLocation(PurMag.MODID, "blocks/luminous_crystal_glass"));
+            setTextureGetter((north, east, south, west) -> PMResources.LUMINOUS_CRYSTAL_GLASS[ConnectedTextureGetter.indexFromSides(north, east, south, west)]);
             quadProcessors.add(new SetterProcessor().setTintTo(0));
         }
     }
@@ -99,27 +102,7 @@ public class StandardModels
         }
     }
 
-    public static class TranslationDesk extends OvModel
-    {
-        private Matrix4f mat_gui = new TRSRTransformation(null, null, new Vector3f(0.6f, 0.6f, 0.6f), TRSRTransformation.quatFromXYZDegrees(new Vector3f(30, 225, 0))).getMatrix();
-        private Matrix4f mat = new TRSRTransformation(null, null, new Vector3f(0.375f, 0.375f, 0.375f), null).getMatrix();
-
-        public TranslationDesk()
-        {
-            vertexProcessors.add(new FacingProcessor());
-            setBaseModel(Utils.gRL("obj/translation_desk.obj"));
-        }
-
-        @Override
-        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
-        {
-            if (cameraTransformType == ItemCameraTransforms.TransformType.GUI)
-                return Pair.of(this, mat_gui);
-            return Pair.of(this, mat);
-        }
-    }
-
-    public static class CrystalSmall extends CachedModel
+    public static class CrystalSmall extends OvModel
     {
         private Matrix4f mat_gui = new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, new Vector3f(1.5f, 1.5f, 1.5f), new Quat4f(0.349066f, 0.20944f, 0, 1)).getMatrix();
         private Matrix4f mat = new TRSRTransformation(new Vector3f(0, 0.35f, 0), null, null, null).getMatrix();
@@ -156,7 +139,7 @@ public class StandardModels
                 public void preProcess(List<BakedQuad> quads, @Nullable IBlockState state, @Nullable EnumFacing side, long rand, IPXModel model)
                 {
                     int tier;
-                    if (state != null && state instanceof IExtendedBlockState)
+                    if (state instanceof IExtendedBlockState)
                         tier = ((IExtendedBlockState) state).getValue(BlockAbstractWallIfTablet.IF_TIER);
                     else
                         tier = getStack().getMetadata();
@@ -348,7 +331,7 @@ public class StandardModels
         }
     }
 
-    public static class StoneCrusher extends CachedModel
+    public static class StoneCrusher extends OvModel
     {
         private ModelStateHide hide;
         public StoneCrusher(boolean invert, String... keep)

@@ -13,8 +13,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.pearx.carbide.RandomUtils;
-import ru.pearx.carbide.mc.CarbideMC;
-import ru.pearx.carbide.mc.client.particle.ParticleEngine;
 import ru.pearx.carbide.mc.common.misc.CoordUtils;
 import ru.pearx.carbide.mc.common.networking.ByteBufTools;
 import ru.pearx.carbide.mc.common.structure.blockarray.BlockArray;
@@ -86,10 +84,10 @@ public class CPacketSpawnMultiblockParticles implements IMessage
                     float delta = RandomUtils.nextFloat(0.001f, 0.002f, rand);
                     float lightDelta = RandomUtils.nextFloat(-0.001f, 0.001f, rand);
                     float y = RandomUtils.nextFloat(minY, maxY + 2, rand);
-                    ParticleEngine.addParticle(new ParticleMultiblock(RandomUtils.nextFloat(minX, maxX + 1, rand), y, minZ - 0.2f, lightDelta, -delta, rand));
-                    ParticleEngine.addParticle(new ParticleMultiblock(RandomUtils.nextFloat(minX, maxX + 1, rand), y, maxZ + 1 + 0.2f, lightDelta, delta, rand));
-                    ParticleEngine.addParticle(new ParticleMultiblock(minX - 0.2f, y, RandomUtils.nextFloat(minZ, maxZ + 1, rand), -delta, lightDelta, rand));
-                    ParticleEngine.addParticle(new ParticleMultiblock(maxX + 1 + 0.2f, y, RandomUtils.nextFloat(minZ, maxZ + 1, rand), delta, lightDelta, rand));
+                    Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleMultiblock(RandomUtils.nextFloat(minX, maxX + 1, rand), y, minZ - 0.2f, lightDelta, -delta, rand));
+                    Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleMultiblock(RandomUtils.nextFloat(minX, maxX + 1, rand), y, maxZ + 1 + 0.2f, lightDelta, delta, rand));
+                    Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleMultiblock(minX - 0.2f, y, RandomUtils.nextFloat(minZ, maxZ + 1, rand), -delta, lightDelta, rand));
+                    Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleMultiblock(maxX + 1 + 0.2f, y, RandomUtils.nextFloat(minZ, maxZ + 1, rand), delta, lightDelta, rand));
                 }
             });
             return null;

@@ -1,10 +1,18 @@
 {
-  "variants": {
-    "axis=x,type=normal": {"model": "purmag:rope_coil_normal", "y": 90},
-    "axis=y,type=normal": {"model": "purmag:rope_coil_normal", "x": 90},
-    "axis=z,type=normal": {"model": "purmag:rope_coil_normal"},
-    "axis=x,type=cog": {"model": "purmag:rope_coil_cog", "y": 90},
-    "axis=y,type=cog": {"model": "purmag:rope_coil_cog", "x": 90},
-    "axis=z,type=cog": {"model": "purmag:rope_coil_cog"}
+  "forge_marker": 1,
+  "variants":
+  {
+    "facing":
+    {
+      "north": { "transform": { "rotation": {"y": 0 } }},
+      "east": { "transform": { "rotation": {"y": 90 } }},
+      "south": { "transform": { "rotation": {"y": 180 } }},
+      "west": { "transform": { "rotation": {"y": 270 } }}
+    },
+    "type":
+    {
+      "cog": { "model": "purmag:rope_coil_cog" },
+      "normal": { "model": "purmag:rope_coil_cog" }
+    }
   }
 }

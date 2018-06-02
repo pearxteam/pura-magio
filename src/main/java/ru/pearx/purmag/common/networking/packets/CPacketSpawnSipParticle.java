@@ -8,7 +8,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.carbide.mc.client.particle.ParticleEngine;
 import ru.pearx.carbide.mc.common.networking.ByteBufTools;
 import ru.pearx.purmag.client.particle.ParticleSipMovingTo;
 
@@ -67,7 +66,7 @@ public class CPacketSpawnSipParticle implements IMessage
         @SideOnly(Side.CLIENT)
         public IMessage onMessage(CPacketSpawnSipParticle msg, MessageContext ctx)
         {
-            Minecraft.getMinecraft().addScheduledTask(() -> ParticleEngine.addParticle(new ParticleSipMovingTo(msg.pos, msg.posTo, msg.sipType, msg.amount, msg.speed)));
+            Minecraft.getMinecraft().addScheduledTask(() -> Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleSipMovingTo(msg.pos, msg.posTo, msg.sipType, msg.amount, msg.speed)));
             return null;
         }
     }

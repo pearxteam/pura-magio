@@ -5,7 +5,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
-import ru.pearx.carbide.mc.common.misc.GlobalChunkPos;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.CapabilityRegistry;
 import ru.pearx.purmag.common.blocks.BlockRegistry;

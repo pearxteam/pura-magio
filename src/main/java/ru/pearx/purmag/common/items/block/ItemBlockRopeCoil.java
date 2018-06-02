@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.pearx.carbide.mc.client.ClientUtils;
 import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.blocks.BlockRegistry;
 import ru.pearx.purmag.common.blocks.BlockRopeCoil;
@@ -32,6 +33,6 @@ public class ItemBlockRopeCoil extends ItemBlockBase
     public void setupModels()
     {
         for(BlockRopeCoil.Type t : BlockRopeCoil.Type.values())
-            ModelLoader.setCustomModelResourceLocation(this, t.ordinal(), new ModelResourceLocation(Utils.gRL("rope_coil"), "axis=x,type=" + t.getName()));
+            ClientUtils.setModelLocation(this, t.ordinal(), "", "axis=x,type=" + t.getName());
     }
 }

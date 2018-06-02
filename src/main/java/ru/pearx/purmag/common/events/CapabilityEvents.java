@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.common.CapabilityRegistry;
+import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.aura.AuraContainerProvider;
 import ru.pearx.purmag.common.infofield.playerdata.IfEntryStoreProvider;
 
@@ -23,8 +24,8 @@ public class CapabilityEvents
     {
         if (e.getObject() instanceof EntityPlayer)
         {
-            e.addCapability(CapabilityRegistry.ENTRY_STORE_NAME, new IfEntryStoreProvider());
-            e.addCapability(CapabilityRegistry.AURA_CONTAINER_NAME, new AuraContainerProvider());
+            e.addCapability(Utils.gRL("if_entry_store"), new IfEntryStoreProvider());
+            e.addCapability(Utils.gRL("aura_container"), new AuraContainerProvider());
         }
     }
 

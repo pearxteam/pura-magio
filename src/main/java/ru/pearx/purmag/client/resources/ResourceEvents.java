@@ -1,4 +1,4 @@
-package ru.pearx.purmag.client.events;
+package ru.pearx.purmag.client.resources;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
@@ -20,15 +20,21 @@ import ru.pearx.purmag.common.magibench.MagibenchRegistry;
  */
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(modid = PurMag.MODID, value = Side.CLIENT)
-public class ModelEvents
+public class ResourceEvents
 {
+    public static final ResourceLocation PARTICLE_CRYSTAL = Utils.gRL("particle/crystal");
+    public static final ResourceLocation PARTICLE_MULTIBLOCK = Utils.gRL("particle/multiblock");
+    public static final String CRYSTAL_GLASS = "blocks/crystal_glass/";
+    public static final String LUMINOUS_CRYSTAL_GLASS = "blocks/luminous_crystal_glass/";
+
+
+
     @SubscribeEvent
     public static void onBake(ModelBakeEvent e)
     {
         putModel(e, new StandardModels.Crystal(), Utils.gRL("crystal"));
         putModel(e, new StandardModels.CrystalGlass(), Utils.gRL("crystal_glass"));
         putModel(e, new StandardModels.Glove(), Utils.gRL("glove"));
-        putModel(e, new StandardModels.TranslationDesk(), Utils.gRL("translation_desk"));
         putModel(e, new StandardModels.CrystalSmall(), Utils.gRL("crystal_small"));
         StandardModels.WallIfTablet wit = new StandardModels.WallIfTablet();
         putModel(e, wit, Utils.gRL("wall_if_tablet"));
@@ -64,24 +70,40 @@ public class ModelEvents
             for (int j = 0; j < 2; j++)
                 for (int k = 0; k < 2; k++)
                     for (int l = 0; l < 2; l++)
-                        e.getMap().registerSprite(new ResourceLocation(PurMag.MODID, "blocks/crystal_glass/" + i + j + k + l));
-        for (int i = 0; i < 2; i++)
-            for (int j = 0; j < 2; j++)
-                for (int k = 0; k < 2; k++)
-                    for (int l = 0; l < 2; l++)
-                        e.getMap().registerSprite(new ResourceLocation(PurMag.MODID, "blocks/luminous_crystal_glass/" + i + j + k + l));
+                    {
+                        e.getMap().registerSprite(Utils.gRL(CRYSTAL_GLASS + i + j + k + l));
+                        e.getMap().registerSprite(Utils.gRL(LUMINOUS_CRYSTAL_GLASS + i + j + k + l));
+                    }
         e.getMap().registerSprite(Utils.gRL("models/glove"));
         e.getMap().registerSprite(Utils.gRL("particle/sip"));
         e.getMap().registerSprite(Utils.gRL("models/crystal_small"));
-        e.getMap().registerSprite(Utils.gRL("models/translation_desk"));
+       // e.getMap().registerSprite(Utils.gRL("models/translation_desk"));
         for (IfTier t : PurMag.INSTANCE.getIfRegistry().tiers)
             e.getMap().registerSprite(t.getWallTabletTexture());
         e.getMap().registerSprite(Utils.gRL("models/microscope"));
         e.getMap().registerSprite(Utils.gRL("models/code_storage/code_storage"));
         e.getMap().registerSprite(Utils.gRL("models/code_storage/lock_locked"));
         e.getMap().registerSprite(Utils.gRL("models/code_storage/lock_unlocked"));
-        for(MagibenchRegistry.Tier t :  PurMag.INSTANCE.getMagibenchRegistry().getTiers())
+        for(MagibenchRegistry.Tier t : PurMag.INSTANCE.getMagibenchRegistry().getTiers())
             e.getMap().registerSprite(t.getModelTexture());
         e.getMap().registerSprite(Utils.gRL("models/stone_crusher"));
+
+        e.getMap().registerSprite(PARTICLE_CRYSTAL);
+        e.getMap().registerSprite(PARTICLE_MULTIBLOCK);
+    }
+
+    @SubscribeEvent
+    public static void stitchPost(TextureStitchEvent.Post e)
+    {
+        PMResources.PARTICLE_CRYSTAL = e.getMap().getAtlasSprite(PARTICLE_CRYSTAL.toString());
+        PMResources.PARTICLE_MULTIBLOCK = e.getMap().getAtlasSprite(PARTICLE_MULTIBLOCK.toString());
+        for(int i = 0; i < 2; i++)
+            for(int j = 0; j < 2; j++)
+                for(int k = 0; k < 2; k++)
+                    for(int l = 0; l < 2; l++)
+                    {
+                        PMResources.CRYSTAL_GLASS[i*8 + j*4 + k*2 + l] = e.getMap().getAtlasSprite(Utils.gRL(CRYSTAL_GLASS + i + j + k + l).toString());
+                        PMResources.LUMINOUS_CRYSTAL_GLASS[i*8 + j*4 + k*2 + l] = e.getMap().getAtlasSprite(Utils.gRL(LUMINOUS_CRYSTAL_GLASS + i + j + k + l).toString());
+                    }
     }
 }

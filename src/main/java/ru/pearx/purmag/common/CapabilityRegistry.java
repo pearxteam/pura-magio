@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import ru.pearx.carbide.mc.common.CapabilityStorageSimple;
+import ru.pearx.carbide.mc.common.capability.CapabilityStorageSimple;
 import ru.pearx.purmag.common.aura.AuraContainer;
 import ru.pearx.purmag.common.aura.IAuraContainer;
 import ru.pearx.purmag.common.infofield.playerdata.IIfEntryStore;
@@ -28,11 +28,6 @@ public class CapabilityRegistry
     public static final Capability<IAuraContainer> AURA_CONTAINER_CAP = null;
     @CapabilityInject(ISifStorage.class)
     public static final Capability<ISifStorage> SIF_STORAGE = null;
-
-    public static final ResourceLocation ENTRY_STORE_NAME = Utils.gRL("if_entry_store");
-    public static final ResourceLocation SIP_STORE_NAME = Utils.gRL("sip_store");
-    public static final ResourceLocation AURA_CONTAINER_NAME = Utils.gRL("aura_container");
-    public static final ResourceLocation SIF_STORAGE_NAME = Utils.gRL("sif_storage");
 
     public static void register()
     {

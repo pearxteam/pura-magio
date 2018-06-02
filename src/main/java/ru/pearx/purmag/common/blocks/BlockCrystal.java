@@ -3,6 +3,7 @@ package ru.pearx.purmag.common.blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -13,7 +14,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.pearx.carbide.mc.client.particle.ParticleEngine;
 import ru.pearx.purmag.client.particle.ParticleCrystal;
 import ru.pearx.purmag.common.blocks.base.BlockSingleSip;
 import ru.pearx.purmag.common.items.ItemRegistry;
@@ -86,7 +86,7 @@ public class BlockCrystal extends BlockSingleSip
     {
         if (rand.nextInt(2) == 0)
         {
-            ParticleEngine.addParticle(new ParticleCrystal(pos.getX() + rand.nextFloat(), pos.getY() + 1.5f, pos.getZ() + rand.nextFloat(), SipUtils.getSipInBlock(worldIn, pos), 100));
+            Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleCrystal(pos.getX() + rand.nextFloat(), pos.getY() + 1.5f, pos.getZ() + rand.nextFloat(), SipUtils.getSipInBlock(worldIn, pos), 100));
         }
     }
 }

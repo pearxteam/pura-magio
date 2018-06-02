@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import ru.pearx.purmag.PurMag;
 import ru.pearx.purmag.client.sif.SifStorageClient;
 import ru.pearx.purmag.common.CapabilityRegistry;
+import ru.pearx.purmag.common.Utils;
 import ru.pearx.purmag.common.networking.NetworkManager;
 import ru.pearx.purmag.common.sif.net.CPacketSyncSif;
 
@@ -20,7 +21,7 @@ public class SifEvents
     @SubscribeEvent
     public static void onAttach(AttachCapabilitiesEvent<Chunk> e)
     {
-        e.addCapability(CapabilityRegistry.SIF_STORAGE_NAME, new SifStorageProvider(e.getObject().getWorld().isRemote ? new SifStorageClient() : new SifStorageServer(e.getObject())));
+        e.addCapability(Utils.gRL("sif_storage"), new SifStorageProvider(e.getObject().getWorld().isRemote ? new SifStorageClient() : new SifStorageServer(e.getObject())));
     }
 
     @SubscribeEvent

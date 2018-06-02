@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "defaults":
+  {
+    "model": "purmag:translation_desk.obj",
+    "custom": {"flip-v": true}
+  },
+  "variants":
+  {
+    "normal": [{ "transform": "forge:default-block" }],
+    "facing":
+    {
+      "north": { "transform": { "rotation": {"y": 0 } }},
+      "east": { "transform": { "rotation": {"y": 270 } }},
+      "south": { "transform": { "rotation": {"y": 180 } }},
+      "west": { "transform": { "rotation": {"y": 90 } }}
+    }
+  }
+}

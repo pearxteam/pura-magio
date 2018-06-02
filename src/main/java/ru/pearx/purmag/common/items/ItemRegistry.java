@@ -93,7 +93,7 @@ public class ItemRegistry
         register(new ItemSipAmulet(), reg);
         register(new ItemGlove(), reg);
         register(new ItemPapyrus(), reg);
-        register(new ItemBlockBase(BlockRegistry.translation_desk), reg);
+        register(new ItemBlockTranslationDesk(), reg);
         register(new ItemBlockCrystalSmall(), reg);
         register(new ItemBase("ingot_plumfero"), reg);
         register(new ItemBase("verda_wing"), reg);

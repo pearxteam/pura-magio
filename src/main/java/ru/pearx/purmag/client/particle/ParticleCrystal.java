@@ -1,13 +1,13 @@
 package ru.pearx.purmag.client.particle;
 
-import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import ru.pearx.carbide.Color;
+import ru.pearx.carbide.RandomUtils;
 import ru.pearx.carbide.math.MathUtils;
-import ru.pearx.carbide.mc.client.gui.DrawingTools;
 import ru.pearx.carbide.mc.client.particle.PXParticle;
 import ru.pearx.purmag.PurMag;
+import ru.pearx.purmag.client.resources.PMResources;
 import ru.pearx.purmag.common.Utils;
 
 /*
@@ -15,61 +15,36 @@ import ru.pearx.purmag.common.Utils;
  */
 public class ParticleCrystal extends PXParticle
 {
-    public static final ResourceLocation TEXTURE = Utils.gRL("textures/particle/crystal.png");
-
-    private Color color;
-    private float alpha;
+    private float prevSin, prevCos;
+    private float angleDelta;
 
     public ParticleCrystal(double x, double y, double z, String sip, int age)
     {
         super(x, y, z);
+        setLightEnabled(false);
+        setMotionFixed(true);
+        setColor(PurMag.INSTANCE.getSipRegistry().getType(sip).getColor());
         setMaxAge(age);
-        color = PurMag.INSTANCE.getSipRegistry().getType(sip).getColor();
+        setParticleTexture(PMResources.PARTICLE_CRYSTAL);
+        motionY = RandomUtils.nextFloat(0.02f, 0.03f, PurMag.INSTANCE.random);
+        setScale(RandomUtils.nextFloat(0.6f, 0.9f, PurMag.INSTANCE.random));
+        this.angleDelta = MathUtils.toRadians(10);
     }
-
-    @Override
-    public float getWidth()
-    {
-        return 8;
-    }
-
-    @Override
-    public float getHeight()
-    {
-        return 8;
-    }
-
-    @Override
-    public void onRender()
-    {
-        GlStateManager.pushMatrix();
-        GlStateManager.translate(getWidth() / 2, getHeight() / 2, 0);
-        GlStateManager.rotate(degrees, 0, 0, 1);
-        GlStateManager.translate(-(getWidth() / 2), -(getHeight() / 2), 0);
-        GlStateManager.enableBlend();
-        GlStateManager.depthMask(false);
-        GlStateManager.color(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, alpha);
-        DrawingTools.drawTexture(TEXTURE, 0, 0, (int) getWidth(), (int) getHeight());
-        GlStateManager.depthMask(true);
-        GlStateManager.disableBlend();
-        GlStateManager.popMatrix();
-    }
-
-    private float prevSin, prevCos;
-    private int degrees = 0;
 
     @Override
     public void onUpdate()
     {
-        alpha = 1f - ((float) getAge() / getMaxAge());
-        float sin = MathHelper.sin(MathUtils.toRadians(degrees)) * 0.1f;
-        float cos = MathHelper.cos(MathUtils.toRadians(degrees)) * 0.1f;
-        move(sin - prevSin, 0.02f, cos - prevCos);
+        setAlphaF(1f - ((float) getAge() / getMaxAge()));
+        float sin = MathHelper.sin(getAngle()) * 0.1f;
+        float cos = MathHelper.cos(getAngle()) * 0.1f;
+        this.motionX = sin - prevSin;
+        this.motionZ = cos - prevCos;
         prevSin = sin;
         prevCos = cos;
         super.onUpdate();
-        degrees += 10;
-        if (degrees > 360)
-            degrees = 0;
+        float angle = getAngle() + angleDelta;
+        if (angle > Math.PI * 2)
+            angle = 0;
+        setAngle(angle);
     }
 }
