@@ -23,7 +23,7 @@ Windows: `gradlew.bat setupDecompWorkspace`
 
 6: Wait some time until all the background tasks finished.
 
-7: Create two run configurations of type "Application". In both configurations, select "PurificatiMagicae_main" in "Use classpath of module:" and type at the end of "Working directory:" "\run" on Windows and "/run" on *nix. In first configuration, use "GradleStart" as a main class. It's a client configuration. In the second configuration, use "GradleStartServer" as a main class. It's a server configuration.
+7: Create two run configurations of type "Application". In both configurations, select "pura-magio-1.12.2.main" in "Use classpath of module:" and type at the end of "Working directory:" "\run" on Windows and "/run" on *nix. In first configuration, use "GradleStart" as a main class. It's a client configuration. In the second configuration, use "GradleStartServer" as a main class. It's a server configuration.
 
 ## Building the project
 1: Make sure that the instructions in the "Preparing the project" section have been executed.
