@@ -3,9 +3,14 @@ pipeline {
     agent any
     stages {
         stage('prepare') { steps { ciSkip 'check' } }
+        stage('setup-workspace') {
+            steps {
+                sh './gradlew setupCiWorkspace'
+            }
+        }
         stage('build') {
             steps {
-                sh './gradlew setupCiWorkspace clean build'
+                sh './gradlew clean build'
             }
         }
         stage('deploy-develop') {
