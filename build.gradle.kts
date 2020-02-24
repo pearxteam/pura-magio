@@ -143,6 +143,7 @@ tasks {
         dependsOn(named("curseforge"))
         dependsOn(named("githubRelease"))
     }
-    named<Task>("setupDecompWorkspace") {dependsOn(gradle.includedBuild("craftlin-$minecraftVersion").task(":setupDecompWorkspace")) }
-
+    for (ws in arrayOf("Decomp", "CI", "Dev")) {
+        named<Task>("setup${ws}Workspace") { dependsOn(gradle.includedBuild("craftlin-$minecraftVersion").task(":setup${ws}Workspace")) }
+    }
 }
