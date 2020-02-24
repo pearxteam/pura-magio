@@ -1,10 +1,10 @@
-# Purificati Magicae
+# Pura Magio
 ## Preparing the project
-1: Clone the Purificati Magicae repository.
+1: Clone the mod repository.
 
-HTTPS: `git clone --recursive https://git.pearx.ru/PearXTeam/PurificatiMagicae.git`
+HTTPS: `git clone --recursive https://github.com/pearxteam/pura-magio`
 
-SSH: `git clone --recursive git@pearx.ru:PearXTeam/PurificatiMagicae.git`
+SSH: `git clone --recursive git@pearx.ru:pearxteam/pura-magio.git`
 
 ## Setting up the project for development.
 1: Make sure that the instructions in the "Preparing the project" section have been executed.
@@ -19,7 +19,7 @@ Windows: `gradlew.bat setupDecompWorkspace`
 
 4: Create "run" directory: `mkdir run`
 
-5: Open IntelliJ IDEA, import build.gradle as a Gradle project. Make sure "Create separate module per source set" is checked.
+5: Open IntelliJ IDEA, import build.gradle.kts as a Gradle project. Make sure "Create separate module per source set" is checked.
 
 6: Wait some time until all the background tasks finished.
 

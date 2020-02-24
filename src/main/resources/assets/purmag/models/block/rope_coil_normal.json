@@ -1,7 +1,0 @@
-{
-  "parent": "purmag:block/sided",
-  "textures": {
-    "side": "purmag:blocks/rope_side",
-    "front": "purmag:blocks/rope_front"
-  }
-}

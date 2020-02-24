@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "purmag:blocks/brulanta_flower"
-  }
-}

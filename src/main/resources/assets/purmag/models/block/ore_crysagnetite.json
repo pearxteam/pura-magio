@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "purmag:blocks/ore_crysagnetite"
-  }
-}
